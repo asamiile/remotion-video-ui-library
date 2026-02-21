@@ -2,22 +2,22 @@ import "./index.css";
 import { Composition, staticFile } from "remotion";
 import { parseMedia } from "@remotion/media-parser";
 import { MyComposition } from "./Composition";
-import { LocationTemplate } from "./Location/LocationTemplate";
-import { locationSchema } from "./Location/location-schema";
-import { locationConfigs, defaultLocationProps } from "./Location/location-config";
-import { PlaceholderImage } from "./PlaceholderImage";
-import { MiniMapTemplate } from "./Map/MiniMapTemplate";
-import { miniMapSchema } from "./Map/mini-map-schema";
-import { defaultMiniMapProps, mapLocationPoints } from "./Map/mini-map-config";
-import { LoadingIconTemplate } from "./LoadingIcon/LoadingIconTemplate";
-import { loadingIconSchema } from "./LoadingIcon/loading-icon-schema";
-import { loadingIconPatterns } from "./LoadingIcon/loading-icon-config";
-import { AudioSpectrumTemplate } from "./AudioSpectrum/AudioSpectrumTemplate";
-import { audioSpectrumSchema } from "./AudioSpectrum/audio-spectrum-schema";
-import { audioSpectrumPatterns, audioSpectrumAudioFiles, defaultAudioSpectrumProps } from "./AudioSpectrum/audio-spectrum-config";
-import { IntroTemplate } from "./Intro/IntroTemplate";
-import { introSchema } from "./Intro/intro-schema";
-import { defaultIntroProps, introScenes } from "./Intro/intro-config";
+import { LocationTemplateV1 } from "./Location/Location-v1/LocationTemplate";
+import { locationSchemaV1 } from "./Location/Location-v1/location-schema";
+import { locationConfigsV1, defaultLocationV1Props } from "./Location/Location-v1/location-config";
+import { PlaceholderImageV1 } from "./PlaceholderImage/PlaceholderImage-v1/PlaceholderImage";
+import { MiniMapTemplateV1 } from "./Map/Map-v1/MiniMapTemplate";
+import { miniMapSchemaV1 } from "./Map/Map-v1/mini-map-schema";
+import { defaultMiniMapV1Props, mapLocationPointsV1 } from "./Map/Map-v1/mini-map-config";
+import { LoadingIconTemplateV1 } from "./LoadingIcon/LoadingIcon-v1/LoadingIconTemplate";
+import { loadingIconSchemaV1 } from "./LoadingIcon/LoadingIcon-v1/loading-icon-schema";
+import { loadingIconV1Patterns } from "./LoadingIcon/LoadingIcon-v1/loading-icon-config";
+import { AudioSpectrumTemplateV1 } from "./AudioSpectrum/AudioSpectrum-v1/AudioSpectrumTemplate";
+import { audioSpectrumSchemaV1 } from "./AudioSpectrum/AudioSpectrum-v1/audio-spectrum-schema";
+import { audioSpectrumV1Patterns, audioSpectrumAudioFilesV1, defaultAudioSpectrumV1Props } from "./AudioSpectrum/AudioSpectrum-v1/audio-spectrum-config";
+import { IntroTemplateV1 } from "./Intro/Intro-v1/IntroTemplate";
+import { introSchemaV1 } from "./Intro/Intro-v1/intro-schema";
+import { defaultIntroV1Props, introScenesV1 } from "./Intro/Intro-v1/intro-config";
 import { FPS } from "./helpers/ms-to-frame";
 
 export const RemotionRoot: React.FC = () => {
@@ -34,8 +34,8 @@ export const RemotionRoot: React.FC = () => {
 
       {/* 仮置き画像 */}
       <Composition
-        id="PlaceholderImage"
-        component={PlaceholderImage}
+        id="PlaceholderImageV1"
+        component={PlaceholderImageV1}
         width={1920}
         height={1080}
         fps={FPS}
@@ -43,33 +43,33 @@ export const RemotionRoot: React.FC = () => {
       />
 
       {/* LoadingIcon コンポジション */}
-      {Object.entries(loadingIconPatterns).map(([patternId, patternProps]) => (
+      {Object.entries(loadingIconV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
-          id={`LoadingIcon-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-          component={LoadingIconTemplate}
+          id={`LoadingIconV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+          component={LoadingIconTemplateV1}
           width={1920}
           height={1080}
           fps={FPS}
           durationInFrames={1800}
-          schema={loadingIconSchema}
+          schema={loadingIconSchemaV1}
           defaultProps={patternProps}
         />
       ))}
 
       {/* AudioSpectrum パターン コンポジション */}
-      {Object.entries(audioSpectrumPatterns).map(([patternId, patternProps]) => (
+      {Object.entries(audioSpectrumV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
-          id={`AudioSpectrum-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-          component={AudioSpectrumTemplate}
+          id={`AudioSpectrumV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+          component={AudioSpectrumTemplateV1}
           width={1920}
           height={1080}
           fps={FPS}
-          schema={audioSpectrumSchema}
+          schema={audioSpectrumSchemaV1}
           defaultProps={{
             ...patternProps,
-            audioFile: `audio/AudioSpectrum/${audioSpectrumAudioFiles[0].filename}`,
+            audioFile: `audio/AudioSpectrum/${audioSpectrumAudioFilesV1[0].filename}`,
           }}
           calculateMetadata={async ({ props }) => {
             const { slowDurationInSeconds } = await parseMedia({
@@ -89,17 +89,17 @@ export const RemotionRoot: React.FC = () => {
       ))}
 
       {/* AudioSpectrum コンポジション（オーディオファイル別） */}
-      {audioSpectrumAudioFiles.map((audioFile) => (
+      {audioSpectrumAudioFilesV1.map((audioFile) => (
         <Composition
           key={audioFile.id}
-          id={`AudioSpectrum-${audioFile.id}`}
-          component={AudioSpectrumTemplate}
+          id={`AudioSpectrumV1-${audioFile.id}`}
+          component={AudioSpectrumTemplateV1}
           width={1920}
           height={1080}
           fps={FPS}
-          schema={audioSpectrumSchema}
+          schema={audioSpectrumSchemaV1}
           defaultProps={{
-            ...defaultAudioSpectrumProps,
+            ...defaultAudioSpectrumV1Props,
             audioFile: `audio/AudioSpectrum/${audioFile.filename}`,
           }}
           calculateMetadata={async ({ props }) => {
@@ -120,36 +120,36 @@ export const RemotionRoot: React.FC = () => {
       ))}
 
       {/* Mini Map コンポジション */}
-      {mapLocationPoints.map((location) => (
+      {mapLocationPointsV1.map((location) => (
         <Composition
           key={location.id}
-          id={`MiniMap-${location.id}`}
-          component={MiniMapTemplate}
+          id={`MiniMapV1-${location.id}`}
+          component={MiniMapTemplateV1}
           width={1920}
           height={1080}
           fps={FPS}
           durationInFrames={1800}
-          schema={miniMapSchema}
+          schema={miniMapSchemaV1}
           defaultProps={{
-            ...defaultMiniMapProps,
+            ...defaultMiniMapV1Props,
             mapLocationId: location.id,
           }}
         />
       ))}
       
       {/* 地名コンポジション */}
-      {locationConfigs.map((config) => (
+      {locationConfigsV1.map((config) => (
         <Composition
           key={config.id}
-          id={`Location-${config.id}`}
-          component={LocationTemplate}
+          id={`LocationV1-${config.id}`}
+          component={LocationTemplateV1}
           width={1920}
           height={1080}
           fps={FPS}
           durationInFrames={1800}
-          schema={locationSchema}
+          schema={locationSchemaV1}
           defaultProps={{
-            ...defaultLocationProps,
+            ...defaultLocationV1Props,
             locationName: config.locationName,
           }}
         />
@@ -157,15 +157,15 @@ export const RemotionRoot: React.FC = () => {
 
       {/* Intro コンポジション */}
       <Composition
-        id="Intro"
-        component={IntroTemplate}
+        id="IntroV1"
+        component={IntroTemplateV1}
         width={1920}
         height={1080}
         fps={FPS}
-        durationInFrames={introScenes.reduce((total, scene) => total + scene.duration, 0)}
-        schema={introSchema}
+        durationInFrames={introScenesV1.reduce((total, scene) => total + scene.duration, 0)}
+        schema={introSchemaV1}
         defaultProps={{
-          ...defaultIntroProps,
+          ...defaultIntroV1Props,
         }}
       />
     </>
