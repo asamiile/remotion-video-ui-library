@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const introSchema = z.object({
+export const introSchemaV1 = z.object({
   // 背景設定
   backgroundColor: zColor().default("#6B685C"),
   
@@ -25,4 +25,4 @@ export const introSchema = z.object({
   fadeOutDuration: z.number().min(1).default(30), // フレーム数
 });
 
-export type IntroSchemaType = z.infer<typeof introSchema>;
+export type IntroSchemaV1Type = z.infer<typeof introSchemaV1>;

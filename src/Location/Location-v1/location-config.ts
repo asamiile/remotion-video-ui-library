@@ -1,9 +1,9 @@
 // 地名設定の配列
-import { msToFrame } from "../helpers/ms-to-frame";
+import { msToFrame } from "../../helpers/ms-to-frame";
 // import { fontFamily as FONT_FAMILY_LINE_SEED } from "@remotion/google-fonts/LineSeedJP";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
 
-export const locationConfigs = [
+export const locationConfigsV1 = [
   {
     id: "TenjinBrickCross",
     locationName: "天神ブリッククロス",
@@ -31,7 +31,7 @@ export const locationConfigs = [
 ];
 
 // 共通のデフォルトプロパティ
-export const defaultLocationProps = {
+export const defaultLocationV1Props = {
   fontSize: 36,
   textColor: "rgb(195, 192, 187)",
   backgroundColor: "rgb(195, 192, 187)",

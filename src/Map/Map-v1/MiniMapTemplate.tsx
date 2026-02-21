@@ -9,19 +9,19 @@ import {
 } from "remotion";
 import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MiniMapSchemaType } from "./mini-map-schema";
+import { MiniMapSchemaV1Type } from "./mini-map-schema";
 import {
-  mapLocationPoints,
-  defaultMapCameraConfig,
-  mapboxMapOptions,
-  defaultMiniMapProps,
+  mapLocationPointsV1,
+  defaultMapCameraV1Config,
+  mapboxMapV1Options,
+  defaultMiniMapV1Props,
 } from "./mini-map-config";
 // import { PlaceholderImage } from "../PlaceholderImage";
 
 // Mapbox トークン設定
 mapboxgl.accessToken = process.env.REMOTION_MAPBOX_TOKEN as string;
 
-export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
+export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
   mapLocationId,
   width,
   height,
@@ -48,7 +48,7 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
 
   // 地点情報の取得
   const locationPoint = useMemo(() => {
-    return mapLocationPoints.find((point) => point.id === mapLocationId);
+    return mapLocationPointsV1.find((point) => point.id === mapLocationId);
   }, [mapLocationId]);
 
   // フェードイン/アウトの計算
@@ -105,11 +105,11 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
       console.log("Creating Mapbox map...");
       const _map = new Map({
         container: mapContainer.current,
-        ...mapboxMapOptions,
+        ...mapboxMapV1Options,
         center: [locationPoint.longitude, locationPoint.latitude],
-        zoom: locationPoint.zoom || defaultMapCameraConfig.initialZoom,
-        pitch: locationPoint.pitch || defaultMapCameraConfig.initialPitch,
-        bearing: locationPoint.bearing || defaultMapCameraConfig.initialBearing,
+        zoom: locationPoint.zoom || defaultMapCameraV1Config.initialZoom,
+        pitch: locationPoint.pitch || defaultMapCameraV1Config.initialPitch,
+        bearing: locationPoint.bearing || defaultMapCameraV1Config.initialBearing,
       });
 
       console.log("Map load event fired, rendering can begin");
@@ -121,20 +121,20 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
         if (showMarker) {
           // カスタムマーカーアイコンを作成
           const canvas = document.createElement("canvas");
-          canvas.width = defaultMiniMapProps.markerCanvasSize;
-          canvas.height = defaultMiniMapProps.markerCanvasSize;
+          canvas.width = defaultMiniMapV1Props.markerCanvasSize;
+          canvas.height = defaultMiniMapV1Props.markerCanvasSize;
           const ctx = canvas.getContext("2d");
           if (ctx) {
             ctx.fillStyle = markerColor;
-            ctx.fillRect(0, 0, defaultMiniMapProps.markerCanvasSize, defaultMiniMapProps.markerCanvasSize);
-            ctx.strokeStyle = defaultMiniMapProps.markerStrokeColor;
-            ctx.lineWidth = defaultMiniMapProps.markerStrokeWidth;
-            ctx.strokeRect(0, 0, defaultMiniMapProps.markerCanvasSize, defaultMiniMapProps.markerCanvasSize);
+            ctx.fillRect(0, 0, defaultMiniMapV1Props.markerCanvasSize, defaultMiniMapV1Props.markerCanvasSize);
+            ctx.strokeStyle = defaultMiniMapV1Props.markerStrokeColor;
+            ctx.lineWidth = defaultMiniMapV1Props.markerStrokeWidth;
+            ctx.strokeRect(0, 0, defaultMiniMapV1Props.markerCanvasSize, defaultMiniMapV1Props.markerCanvasSize);
             const imageData = ctx.getImageData(
               0,
               0,
-              defaultMiniMapProps.markerCanvasSize,
-              defaultMiniMapProps.markerCanvasSize
+              defaultMiniMapV1Props.markerCanvasSize,
+              defaultMiniMapV1Props.markerCanvasSize
             );
             _map.addImage("marker-square", imageData);
           }
@@ -159,11 +159,11 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
             layout: {
               "icon-image": "marker-square",
               "icon-size": markerSize / 10,
-              "icon-rotate": defaultMiniMapProps.markerIconRotate,
+              "icon-rotate": defaultMiniMapV1Props.markerIconRotate,
               "icon-allow-overlap": true,
             },
             paint: {
-              "icon-opacity": defaultMiniMapProps.markerIconOpacity,
+              "icon-opacity": defaultMiniMapV1Props.markerIconOpacity,
             },
           });
         }
@@ -188,7 +188,7 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
     if (!map.current || !enableCameraAnimation || !locationPoint) return;
 
     const animationStartFrame = delayFrames + fadeInDuration;
-    const animationEndFrame = animationStartFrame + defaultMapCameraConfig.cameraAnimationDuration;
+    const animationEndFrame = animationStartFrame + defaultMapCameraV1Config.cameraAnimationDuration;
 
     if (frame >= animationStartFrame && frame < animationEndFrame) {
       const progress = interpolate(
@@ -203,14 +203,14 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
       );
 
       const currentZoom =
-        (locationPoint.zoom || defaultMapCameraConfig.initialZoom) +
-        (defaultMapCameraConfig.targetZoom - (locationPoint.zoom || defaultMapCameraConfig.initialZoom)) * progress;
+        (locationPoint.zoom || defaultMapCameraV1Config.initialZoom) +
+        (defaultMapCameraV1Config.targetZoom - (locationPoint.zoom || defaultMapCameraV1Config.initialZoom)) * progress;
       const currentPitch =
-        (locationPoint.pitch || defaultMapCameraConfig.initialPitch) +
-        (defaultMapCameraConfig.targetPitch - (locationPoint.pitch || defaultMapCameraConfig.initialPitch)) * progress;
+        (locationPoint.pitch || defaultMapCameraV1Config.initialPitch) +
+        (defaultMapCameraV1Config.targetPitch - (locationPoint.pitch || defaultMapCameraV1Config.initialPitch)) * progress;
       const currentBearing =
-        (locationPoint.bearing || defaultMapCameraConfig.initialBearing) +
-        (defaultMapCameraConfig.targetBearing - (locationPoint.bearing || defaultMapCameraConfig.initialBearing)) * progress;
+        (locationPoint.bearing || defaultMapCameraV1Config.initialBearing) +
+        (defaultMapCameraV1Config.targetBearing - (locationPoint.bearing || defaultMapCameraV1Config.initialBearing)) * progress;
 
       map.current.flyTo({
         zoom: currentZoom,
@@ -248,8 +248,8 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
       left: `${positionX}%`,
       top: `${positionY}%`,
       transform: "translate(-50%, -50%)",
-      border: defaultMiniMapProps.border,
-      padding: defaultMiniMapProps.padding,
+      border: defaultMiniMapV1Props.border,
+      padding: defaultMiniMapV1Props.padding,
       borderRadius: `${borderRadius}px`,
       opacity: fadeProgress,
     }),

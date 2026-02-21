@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import { LoadingIconSchemaType } from "./loading-icon-schema";
-import { LoadingIcon } from "./LoadingIcon";
+import { LoadingIconSchemaV1Type } from "./loading-icon-schema";
+import { LoadingIconV1 } from "./LoadingIcon";
 import { PlaceholderImage } from "../PlaceholderImage";
 
-export const LoadingIconTemplate: React.FC<LoadingIconSchemaType> = ({
+export const LoadingIconTemplateV1: React.FC<LoadingIconSchemaV1Type> = ({
   size,
   lightColor,
   darkColor,
@@ -86,12 +86,12 @@ export const LoadingIconTemplate: React.FC<LoadingIconSchemaType> = ({
           zIndex: 0,
         }}
       >
-        <PlaceholderImage />
+        <PlaceholderImageV1 />
       </div> */}
 
       {/* LoadingIcon とテキスト */}
       <div style={containerStyle}>
-        <LoadingIcon
+        <LoadingIconV1
           size={size}
           lightColor={lightColor}
           darkColor={darkColor}

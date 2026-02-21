@@ -8,7 +8,7 @@ interface LoadingIconProps {
   strokeWidth?: number;
 }
 
-export const LoadingIcon: React.FC<LoadingIconProps> = ({
+export const LoadingIconV1: React.FC<LoadingIconProps> = ({
   size = 100,
   lightColor = "#DFE2D7",
   darkColor = "#6B685C",

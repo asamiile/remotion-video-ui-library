@@ -2,7 +2,7 @@
 // import { fontFamily as FONT_FAMILY_LINE_SEED } from "@remotion/google-fonts/LineSeedJP";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
 
-export const defaultLoadingIconProps = {
+export const defaultLoadingIconV1Props = {
   // アイコン設定
   size: 150,
   lightColor: "#DFE2D7",
@@ -30,24 +30,24 @@ export const defaultLoadingIconProps = {
 };
 
 // LoadingIcon パターン
-export const loadingIconPatterns = {
+export const loadingIconV1Patterns = {
   // デフォルトサイズ（100px）- 文字なし
   default: {
-    ...defaultLoadingIconProps,
+    ...defaultLoadingIconV1Props,
     size: 100,
     showText: false,
   },
   
   // 大きいサイズ（150px）- 文字なし
   large: {
-    ...defaultLoadingIconProps,
+    ...defaultLoadingIconV1Props,
     size: 150,
     showText: false,
   },
   
   // カスタム色パターン - 文字なし
   custom: {
-    ...defaultLoadingIconProps,
+    ...defaultLoadingIconV1Props,
     size: 120,
     lightColor: "#FF6B9D",
     darkColor: "#C20039",
@@ -56,21 +56,21 @@ export const loadingIconPatterns = {
   
   // デフォルトサイズ（100px）- 文字付き
   defaultWithText: {
-    ...defaultLoadingIconProps,
+    ...defaultLoadingIconV1Props,
     size: 100,
     showText: true,
   },
   
   // 大きいサイズ（150px）- 文字付き
   largeWithText: {
-    ...defaultLoadingIconProps,
+    ...defaultLoadingIconV1Props,
     size: 150,
     showText: true,
   },
   
   // カスタム色パターン - 文字付き
   customWithText: {
-    ...defaultLoadingIconProps,
+    ...defaultLoadingIconV1Props,
     size: 120,
     lightColor: "#FF6B9D",
     darkColor: "#C20039",

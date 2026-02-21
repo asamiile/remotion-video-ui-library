@@ -9,7 +9,7 @@ export interface MapLocationPoint {
   bearing?: number;
 }
 
-export const mapLocationPoints: MapLocationPoint[] = [
+export const mapLocationPointsV1: MapLocationPoint[] = [
   {
     id: "TenjinBrickCross",
     name: "天神ブリッククロス",
@@ -49,7 +49,7 @@ export const mapLocationPoints: MapLocationPoint[] = [
 ];
 
 // デフォルトカメラ設定
-export const defaultMapCameraConfig = {
+export const defaultMapCameraV1Config = {
   // 初期状态の値
   initialZoom: 4,
   initialPitch: 0,
@@ -64,7 +64,7 @@ export const defaultMapCameraConfig = {
 };
 
 // Mapbox Map オプション
-export const mapboxMapOptions = {
+export const mapboxMapV1Options = {
   style: "mapbox://styles/asamiile/cmli18nq5002t01skhqfk1rfu",
   interactive: false,
   fadeDuration: 0,
@@ -72,7 +72,7 @@ export const mapboxMapOptions = {
 } as const;
 
 // Mini Map デフォルトプロパティ
-export const defaultMiniMapProps = {
+export const defaultMiniMapV1Props = {
   mapLocationId: "map-fukuoka-tenjin",
   width: 340,
   height: 340,

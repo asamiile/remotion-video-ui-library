@@ -1,6 +1,6 @@
 // AudioSpectrum デフォルト設定
 
-export const defaultAudioSpectrumProps = {
+export const defaultAudioSpectrumV1Props = {
   audioOffsetInSeconds: 0,
   
   // スペクトラム表示設定
@@ -18,16 +18,16 @@ export const defaultAudioSpectrumProps = {
   positionY: 10,
 };
 
-export const audioSpectrumPatterns = {
+export const audioSpectrumV1Patterns = {
   // シンプル
   simple: {
-    ...defaultAudioSpectrumProps,
+    ...defaultAudioSpectrumV1Props,
     barCount: 16,
   },
   
   // 詳細
   detailed: {
-    ...defaultAudioSpectrumProps,
+    ...defaultAudioSpectrumV1Props,
     barCount: 32,
     barWidth: 12,
     barGap: 2,
@@ -36,7 +36,7 @@ export const audioSpectrumPatterns = {
 
 // オーディオファイル設定
 // ファイルはpublic/audio/AudioSpectrum に格納する
-export const audioSpectrumAudioFiles = [
+export const audioSpectrumAudioFilesV1 = [
   {
     id: "dialogue",
     filename: "dialogue.wav",

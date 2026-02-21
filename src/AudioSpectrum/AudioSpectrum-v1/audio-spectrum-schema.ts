@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const audioSpectrumSchema = z.object({
+export const audioSpectrumSchemaV1 = z.object({
   // 音声ファイル設定
   audioFile: z.string().default("audio.mp3"), // 公式まで使い方後ろ{public/} 相対パス
   audioOffsetInSeconds: z.number().default(0), // オーディオオフセット（秒）
@@ -21,4 +21,4 @@ export const audioSpectrumSchema = z.object({
 
 });
 
-export type AudioSpectrumSchemaType = z.infer<typeof audioSpectrumSchema>;
+export type AudioSpectrumSchemaV1Type = z.infer<typeof audioSpectrumSchemaV1>;

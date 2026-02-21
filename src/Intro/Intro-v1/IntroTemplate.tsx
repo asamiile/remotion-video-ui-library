@@ -7,10 +7,10 @@ import {
   Easing,
   Sequence,
 } from "remotion";
-import { IntroSchemaType } from "./intro-schema";
-import { introScenes } from "./intro-config";
+import { IntroSchemaV1Type } from "./intro-schema";
+import { introScenesV1 } from "./intro-config";
 
-export const IntroTemplate: React.FC<IntroSchemaType> = ({
+export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
   backgroundColor,
   textColor,
   titleFontSize,
@@ -31,8 +31,8 @@ export const IntroTemplate: React.FC<IntroSchemaType> = ({
 
   // シーンごとのレンダリング
   const renderScene = (sceneIndex: number) => {
-    const scene = introScenes[sceneIndex];
-    const sceneStartFrame = introScenes
+    const scene = introScenesV1[sceneIndex];
+    const sceneStartFrame = introScenesV1
       .slice(0, sceneIndex)
       .reduce((acc, s) => acc + s.duration, 0);
 
@@ -131,7 +131,7 @@ export const IntroTemplate: React.FC<IntroSchemaType> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor }}>
-      {introScenes.map((_, index) => renderScene(index))}
+      {introScenesV1.map((_, index) => renderScene(index))}
     </AbsoluteFill>
   );
 };

@@ -1,4 +1,4 @@
-import { msToFrame } from "../helpers/ms-to-frame";
+import { msToFrame } from "../../helpers/ms-to-frame";
 // import { fontFamily as FONT_FAMILY_LINE_SEED } from "@remotion/google-fonts/LineSeedJP";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
 
@@ -19,7 +19,7 @@ export interface IntroScene {
   duration: number;
 }
 
-export const introScenes: IntroScene[] = [
+export const introScenesV1: IntroScene[] = [
   {
     id: "scene1",
     centerText: INTRO_TITLE,
@@ -37,7 +37,7 @@ export const introScenes: IntroScene[] = [
 ];
 
 // デフォルトプロパティ
-export const defaultIntroProps = {
+export const defaultIntroV1Props = {
   backgroundColor: "#6B685C",
   textColor: "#DFE2D7",
   fontFamily: LINESEED_FONT,

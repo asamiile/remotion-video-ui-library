@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import { LocationSchemaType } from "./location-schema";
-import { PlaceholderImage } from "../PlaceholderImage";
+import { LocationSchemaV1Type } from "./location-schema";
+import { PlaceholderImageV1 } from "../../PlaceholderImage/PlaceholderImage-v1/PlaceholderImage";
 
 // アニメーション進度計算関数
 const createAnimationProgress = (
@@ -22,7 +22,7 @@ const createAnimationProgress = (
   );
 };
 
-export const LocationTemplate: React.FC<LocationSchemaType> = ({
+export const LocationTemplateV1: React.FC<LocationSchemaV1Type> = ({
   locationName,
   fontSize,
   textColor,
@@ -156,7 +156,7 @@ export const LocationTemplate: React.FC<LocationSchemaType> = ({
           zIndex: 0,
         }}
       >
-        <PlaceholderImage />
+        <PlaceholderImageV1 />
       </div> */}
 
       {/* 地名テキスト */}

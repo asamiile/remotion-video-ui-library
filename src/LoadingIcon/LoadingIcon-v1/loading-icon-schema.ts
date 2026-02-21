@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const loadingIconSchema = z.object({
+export const loadingIconSchemaV1 = z.object({
   // アイコン設定
   size: z.number().min(50).max(300).default(150),
   lightColor: zColor().default("#DFE2D7"),
@@ -27,4 +27,4 @@ export const loadingIconSchema = z.object({
   delayFrames: z.number().min(0).default(0), // 遅延フレーム数
 });
 
-export type LoadingIconSchemaType = z.infer<typeof loadingIconSchema>;
+export type LoadingIconSchemaV1Type = z.infer<typeof loadingIconSchemaV1>;

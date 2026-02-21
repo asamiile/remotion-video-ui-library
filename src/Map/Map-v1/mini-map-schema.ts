@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const miniMapSchema = z.object({
+export const miniMapSchemaV1 = z.object({
   // マップ基本設定
   mapLocationId: z.string().default("map-fukuoka-tenjin"),
   
@@ -30,4 +30,4 @@ export const miniMapSchema = z.object({
   boxShadow: z.string().default("0px 4px 12px rgba(0, 0, 0, 0.15)"),
 });
 
-export type MiniMapSchemaType = z.infer<typeof miniMapSchema>;
+export type MiniMapSchemaV1Type = z.infer<typeof miniMapSchemaV1>;

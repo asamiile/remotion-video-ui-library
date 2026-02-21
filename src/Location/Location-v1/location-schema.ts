@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const locationSchema = z.object({
+export const locationSchemaV1 = z.object({
   // テキスト設定
   locationName: z.string().default("Tokyo"),
   fontSize: z.number().min(10).max(200).default(60),
@@ -33,4 +33,4 @@ export const locationSchema = z.object({
   circleSize: z.number().default(16), // 円のサイズ（px）
 });
 
-export type LocationSchemaType = z.infer<typeof locationSchema>;
+export type LocationSchemaV1Type = z.infer<typeof locationSchemaV1>;
