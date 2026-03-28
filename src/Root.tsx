@@ -42,6 +42,9 @@ import { typewriterTextV1DurationFrames } from "./TypewriterText/TypewriterText-
 import { ShakeTextTemplateV1 } from "./ShakeText/ShakeText-v1/ShakeTextTemplate";
 import { shakeTextSchemaV1 } from "./ShakeText/ShakeText-v1/shake-text-schema";
 import { shakeTextV1DurationFrames } from "./ShakeText/ShakeText-v1/shake-text-config";
+import { ConfettiPopTextTemplateV1 } from "./ConfettiPopText/ConfettiPopText-v1/ConfettiPopTextTemplate";
+import { confettiPopTextSchemaV1 } from "./ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-schema";
+import { confettiPopTextV1DurationFrames } from "./ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -52,6 +55,7 @@ import {
   mergedMapLocationPointsV1,
   mergedNeonTextV1Patterns,
   mergedRainbowNeonTextV1Patterns,
+  mergedConfettiPopTextV1Patterns,
   mergedShakeTextV1Patterns,
   mergedSlideInCaptionV1Patterns,
   mergedTypewriterTextV1Patterns,
@@ -338,6 +342,23 @@ export const RemotionRoot: React.FC = () => {
             fps={FPS}
             durationInFrames={shakeTextV1DurationFrames}
             schema={shakeTextSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
+
+      {/* クラッカー／完成（紙吹雪・リング） */}
+      {Object.entries(mergedConfettiPopTextV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`ConfettiPopTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={ConfettiPopTextTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={confettiPopTextV1DurationFrames}
+            schema={confettiPopTextSchemaV1}
             defaultProps={patternProps}
           />
         ),
