@@ -20,6 +20,11 @@ export const defaultNeonTextV1Props = {
   pulsePeriodFrames: 85,
   breathePeriodFrames: 130,
 
+  blinkPeriodFrames: 56,
+  blinkDutyRatio: 0.5,
+  blinkDimOpacity: 0.06,
+  blinkGlowOffMul: 0.12,
+
   flickerStrength: 0.1,
   randomSeed: "neon-default",
 
@@ -79,5 +84,56 @@ export const neonTextV1Patterns = {
     letterSpacing: "0.08em",
     flickerStrength: 0.06,
     randomSeed: "neon-jp",
+  },
+
+  /**
+   * Arduino D13 / L LED 想定 — アンバー〜オレンジのみ、矩形波点滅。
+   * Composition: NeonTextV1-LchikaOrange
+   */
+  lchikaOrange: {
+    ...defaultNeonTextV1Props,
+    text: "Lチカ",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    fontSize: 110,
+    letterSpacing: "0.22em",
+    coreColor: "#fff5e8",
+    glowColor: "#ffbf00",
+    haloColor: "#c2410c",
+    tubeStrokeColor: "rgba(0, 48, 52, 0.58)",
+    tubeStrokeWidth: 1.4,
+    animationMode: "blink" as const,
+    blinkPeriodFrames: 48,
+    blinkDutyRatio: 0.5,
+    blinkDimOpacity: 0.05,
+    blinkGlowOffMul: 0.1,
+    flickerStrength: 0,
+    shadowStrength: 1.15,
+    pulsePeriodFrames: 80,
+    randomSeed: "neon-lchika-orange",
+    backgroundColor: "#05484c",
+    vignetteOpacity: 0.48,
+  },
+
+  /**
+   * Arduino 電源 ON LED 想定 — ライムグリーンのみ、常時点灯（static）。
+   * Composition: NeonTextV1-LchikaGreen
+   */
+  lchikaGreen: {
+    ...defaultNeonTextV1Props,
+    text: "ON",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    fontSize: 110,
+    letterSpacing: "0.28em",
+    coreColor: "#ecfccb",
+    glowColor: "#39ff14",
+    haloColor: "#166534",
+    tubeStrokeColor: "rgba(0, 48, 40, 0.58)",
+    tubeStrokeWidth: 1.4,
+    animationMode: "static" as const,
+    flickerStrength: 0,
+    shadowStrength: 1.2,
+    randomSeed: "neon-lchika-green",
+    backgroundColor: "#05484c",
+    vignetteOpacity: 0.48,
   },
 };
