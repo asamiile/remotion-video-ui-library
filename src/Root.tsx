@@ -30,6 +30,9 @@ import { glitchTextV1DurationFrames } from "./GlitchText/GlitchText-v1/glitch-te
 import { WireTextTemplateV1 } from "./WireText/WireText-v1/WireTextTemplate";
 import { wireTextSchemaV1 } from "./WireText/WireText-v1/wire-text-schema";
 import { wireTextV1DurationFrames } from "./WireText/WireText-v1/wire-text-config";
+import { RainbowNeonTextTemplateV1 } from "./RainbowNeonText/RainbowNeonText-v1/RainbowNeonTextTemplate";
+import { rainbowNeonTextSchemaV1 } from "./RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-schema";
+import { rainbowNeonTextV1DurationFrames } from "./RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -38,6 +41,7 @@ import {
   mergedLocationConfigsV1,
   mergedMapLocationPointsV1,
   mergedNeonTextV1Patterns,
+  mergedRainbowNeonTextV1Patterns,
   mergedSlideInCaptionV1Patterns,
   mergedWireTextV1Patterns,
 } from "./composition/composition-merged";
@@ -254,6 +258,23 @@ export const RemotionRoot: React.FC = () => {
             fps={FPS}
             durationInFrames={wireTextV1DurationFrames}
             schema={wireTextSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
+
+      {/* 虹色グラデ循環ネオン（チューブ） */}
+      {Object.entries(mergedRainbowNeonTextV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`RainbowNeonTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={RainbowNeonTextTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={rainbowNeonTextV1DurationFrames}
+            schema={rainbowNeonTextSchemaV1}
             defaultProps={patternProps}
           />
         ),

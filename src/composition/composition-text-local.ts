@@ -10,6 +10,7 @@ export type CompositionTextLocal = {
   slideInCaptionV1Patterns?: Record<string, Record<string, unknown>>;
   glitchTextV1Patterns?: Record<string, Record<string, unknown>>;
   wireTextV1Patterns?: Record<string, Record<string, unknown>>;
+  rainbowNeonTextV1Patterns?: Record<string, Record<string, unknown>>;
   loadingIconV1Patterns?: Record<string, Record<string, unknown>>;
   locationV1?: Record<string, { locationName?: string }>;
   mapLocationPointsV1?: Record<
