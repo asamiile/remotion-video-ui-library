@@ -171,8 +171,8 @@ export const LedTextTemplateV1: React.FC<LedTextSchemaV1Type> = (props) => {
     randomSeed,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     panelBackground,
     panelPadding,
     panelBorderRadius,
@@ -309,15 +309,14 @@ export const LedTextTemplateV1: React.FC<LedTextSchemaV1Type> = (props) => {
 
   const panelStyle: React.CSSProperties = {
     position: "absolute",
-    left: `${positionX}%`,
-    top: `${positionY}%`,
-    transform: "translate(-50%, -50%)",
+    left: `${paddingLeftPercent}%`,
+    bottom: `${paddingBottomPercent}%`,
     backgroundColor: panelBackground,
     padding: panelPadding,
     borderRadius: panelBorderRadius,
     boxSizing: "border-box",
     opacity: fadeIn,
-    maxWidth: "min(96vw, 1680px)",
+    maxWidth: `${100 - paddingLeftPercent - 2}%`,
   };
 
   const showGlow = glowEnabled && glowBlur > 0;

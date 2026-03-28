@@ -4,7 +4,7 @@ export const defaultLedTextV1Props = {
   text: "サンプル LED",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 80,
+  fontSize: 48,
   cellSize: 11,
   sampleThreshold: 120,
   paddingCells: 2,
@@ -30,8 +30,8 @@ export const defaultLedTextV1Props = {
   fadeInDuration: 24,
   delayFrames: 6,
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   panelBackground: "#080808",
   panelPadding: 32,
@@ -44,7 +44,7 @@ export const ledTextV1Patterns = {
   redScroll: {
     ...defaultLedTextV1Props,
     text: "SAMPLE  ///  SCROLL  ///  TEXT  ///  ",
-    fontSize: 56,
+    fontSize: 48,
     cellSize: 9,
     animationMode: "scroll" as const,
     scrollPixelsPerFrame: 3,
@@ -58,7 +58,7 @@ export const ledTextV1Patterns = {
     ...defaultLedTextV1Props,
     text: "サンプル  ///  スクロール  ///  テキスト  ///  ",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
-    fontSize: 56,
+    fontSize: 48,
     cellSize: 9,
     animationMode: "scroll" as const,
     scrollPixelsPerFrame: 3,

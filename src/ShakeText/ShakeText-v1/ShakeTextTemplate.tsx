@@ -30,8 +30,8 @@ export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaV1Type> = (props) => {
     settleDurationFrames,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     backgroundColor,
   } = props;
 
@@ -101,7 +101,7 @@ export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaV1Type> = (props) => {
     letterSpacing,
     lineHeight,
     color: textColor,
-    textAlign: "center",
+    textAlign: "left",
     whiteSpace: "pre-line",
     transform: `translate(${dx * amp}px, ${dy * amp}px) rotate(${deg * amp}deg)`,
     willChange: "transform",
@@ -112,11 +112,10 @@ export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaV1Type> = (props) => {
       <div
         style={{
           position: "absolute",
-          left: `${positionX}%`,
-          top: `${positionY}%`,
-          transform: "translate(-50%, -50%)",
+          left: `${paddingLeftPercent}%`,
+          bottom: `${paddingBottomPercent}%`,
           opacity: fade,
-          maxWidth: "92vw",
+          maxWidth: `${100 - paddingLeftPercent - 2}%`,
         }}
       >
         <h1 style={labelStyle}>{text}</h1>

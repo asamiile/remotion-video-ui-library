@@ -44,8 +44,8 @@ export const GlitchTextTemplateV1: React.FC<GlitchTextSchemaV1Type> = ({
   jitterPx,
   scanlineOpacity,
   backgroundColor,
-  positionX,
-  positionY,
+  paddingLeftPercent,
+  paddingBottomPercent,
   randomSeed,
   fadeInDuration,
   delayFrames,
@@ -148,9 +148,9 @@ export const GlitchTextTemplateV1: React.FC<GlitchTextSchemaV1Type> = ({
       <div
         style={{
           position: "absolute",
-          left: `${positionX}%`,
-          top: `${positionY}%`,
-          transform: "translate(-50%, -50%)",
+          left: `${paddingLeftPercent}%`,
+          bottom: `${paddingBottomPercent}%`,
+          maxWidth: `${100 - paddingLeftPercent - 2}%`,
           opacity: fade,
         }}
       >

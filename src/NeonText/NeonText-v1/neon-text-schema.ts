@@ -6,7 +6,7 @@ export const neonTextSchemaV1 = z.object({
   text: z.string().default("SAMPLE"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
-  fontSize: z.number().min(24).max(220).default(96),
+  fontSize: z.number().min(24).max(220).default(48),
   letterSpacing: z.string().default("0.12em"),
 
   coreColor: zColor().default("#fff8f4"),
@@ -39,8 +39,8 @@ export const neonTextSchemaV1 = z.object({
   fadeInDuration: z.number().min(0).default(30),
   delayFrames: z.number().min(0).default(0),
 
-  positionX: z.number().min(0).max(100).default(50),
-  positionY: z.number().min(0).max(100).default(50),
+  paddingLeftPercent: z.number().min(0).max(30).default(3.2),
+  paddingBottomPercent: z.number().min(0).max(30).default(3.2),
 
   backgroundColor: zColor().default("#070712"),
   vignetteOpacity: z.number().min(0).max(0.85).default(0.55),

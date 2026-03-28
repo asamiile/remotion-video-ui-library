@@ -28,8 +28,8 @@ export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
     showCursorAfterComplete,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     backgroundColor,
   } = props;
 
@@ -68,12 +68,10 @@ export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
 
   const wrapStyle: React.CSSProperties = {
     position: "absolute",
-    left: `${positionX}%`,
-    top: `${positionY}%`,
-    transform: "translate(-50%, -50%)",
+    left: `${paddingLeftPercent}%`,
+    bottom: `${paddingBottomPercent}%`,
     opacity: mountFade,
-    maxWidth: "92vw",
-    padding: "0 1rem",
+    maxWidth: `${100 - paddingLeftPercent - 2}%`,
   };
 
   const monoStyle: React.CSSProperties = {
@@ -85,6 +83,7 @@ export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
     color: textColor,
     whiteSpace: "nowrap",
     lineHeight: 1.45,
+    textAlign: "left",
   };
 
   const cursorStyle: React.CSSProperties = {

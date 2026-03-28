@@ -17,9 +17,7 @@
     "lchikaGreen": { "text": "ON · GREEN" }
   },
   "slideInCaptionV1Patterns": {
-    "refWhite": { "text": "2025/06/19 サンプル · Arduino UNO" },
-    "arduinoOrange": { "text": "2025/06/19 サンプル（オレンジ）" },
-    "arduinoGreen": { "text": "2025/06/19 サンプル（グリーン）" }
+    "refWhite": { "text": "2025/06/19 サンプル · Arduino UNO" }
   },
   "glitchTextV1Patterns": {
     "measuring": { "text": "測定中（サンプル）" },

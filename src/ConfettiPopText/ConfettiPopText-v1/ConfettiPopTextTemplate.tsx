@@ -73,8 +73,8 @@ export const ConfettiPopTextTemplateV1: React.FC<ConfettiPopTextSchemaV1Type> = 
     randomSeed,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     backgroundColor,
   } = props;
 
@@ -169,7 +169,7 @@ export const ConfettiPopTextTemplateV1: React.FC<ConfettiPopTextSchemaV1Type> = 
     letterSpacing,
     lineHeight,
     color: textColor,
-    textAlign: "center",
+    textAlign: "left",
     whiteSpace: "pre-line",
     transform: `scale(${scale})`,
     opacity: textOpacity,
@@ -193,21 +193,19 @@ export const ConfettiPopTextTemplateV1: React.FC<ConfettiPopTextSchemaV1Type> = 
       <div
         style={{
           position: "absolute",
-          left: `${positionX}%`,
-          top: `${positionY}%`,
-          transform: "translate(-50%, -50%)",
+          left: `${paddingLeftPercent}%`,
+          bottom: `${paddingBottomPercent}%`,
           opacity: mountFade,
           display: "inline-block",
           minWidth: 120,
           minHeight: 80,
+          maxWidth: `${100 - paddingLeftPercent - 2}%`,
         }}
       >
         <div
           style={{
             position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "block",
           }}
         >
           {showShockwaveRing && ringOpacity > 0.02 ? (

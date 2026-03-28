@@ -7,7 +7,7 @@ export const defaultSlideInCaptionV1Props = {
   text: "",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 44,
+  fontSize: 48,
   letterSpacing: "0.02em",
   lineHeight: 1.35,
 
@@ -32,23 +32,7 @@ export const slideInCaptionV1Patterns = {
   refWhite: {
     ...defaultSlideInCaptionV1Props,
     text: "2025/06/19 Arduino UNOで電子工作",
-    fontSize: 46,
+    fontSize: 48,
     fontWeight: "700" as const,
-  },
-
-  /** Arduino L LED 系オレンジ */
-  arduinoOrange: {
-    ...defaultSlideInCaptionV1Props,
-    text: "2025/06/19 サンプル · Lチカ（Arduino UNO）",
-    textColor: "#ffbf00",
-    fontSize: 44,
-  },
-
-  /** 電源 ON 系ライムグリーン */
-  arduinoGreen: {
-    ...defaultSlideInCaptionV1Props,
-    text: "2025/06/19 サンプル · 基板は点灯中",
-    textColor: "#39ff14",
-    fontSize: 44,
   },
 };
