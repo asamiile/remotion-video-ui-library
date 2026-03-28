@@ -1,29 +1,34 @@
 import "./index.css";
 import { Composition, staticFile } from "remotion";
 import { parseMedia } from "@remotion/media-parser";
-import { MyComposition } from "./Composition";
+import { MyComposition } from "./composition/Composition";
 import { LocationTemplateV1 } from "./Location/Location-v1/LocationTemplate";
 import { locationSchemaV1 } from "./Location/Location-v1/location-schema";
-import { locationConfigsV1, defaultLocationV1Props } from "./Location/Location-v1/location-config";
+import { defaultLocationV1Props } from "./Location/Location-v1/location-config";
 import { PlaceholderImageV1 } from "./PlaceholderImage/PlaceholderImage-v1/PlaceholderImage";
 import { MiniMapTemplateV1 } from "./Map/Map-v1/MiniMapTemplate";
 import { miniMapSchemaV1 } from "./Map/Map-v1/mini-map-schema";
-import { defaultMiniMapV1Props, mapLocationPointsV1 } from "./Map/Map-v1/mini-map-config";
+import { defaultMiniMapV1Props } from "./Map/Map-v1/mini-map-config";
 import { LoadingIconTemplateV1 } from "./LoadingIcon/LoadingIcon-v1/LoadingIconTemplate";
 import { loadingIconSchemaV1 } from "./LoadingIcon/LoadingIcon-v1/loading-icon-schema";
-import { loadingIconV1Patterns } from "./LoadingIcon/LoadingIcon-v1/loading-icon-config";
 import { AudioSpectrumTemplateV1 } from "./AudioSpectrum/AudioSpectrum-v1/AudioSpectrumTemplate";
 import { audioSpectrumSchemaV1 } from "./AudioSpectrum/AudioSpectrum-v1/audio-spectrum-schema";
 import { audioSpectrumV1Patterns, audioSpectrumAudioFilesV1, defaultAudioSpectrumV1Props } from "./AudioSpectrum/AudioSpectrum-v1/audio-spectrum-config";
 import { IntroTemplateV1 } from "./Intro/Intro-v1/IntroTemplate";
 import { introSchemaV1 } from "./Intro/Intro-v1/intro-schema";
-import { defaultIntroV1Props, introScenesV1 } from "./Intro/Intro-v1/intro-config";
+import { introSceneTimingV1 } from "./Intro/Intro-v1/intro-config";
 import { LedTextTemplateV1 } from "./LedText/LedText-v1/LedTextTemplate";
 import { ledTextSchemaV1 } from "./LedText/LedText-v1/led-text-schema";
-import { ledTextV1Patterns } from "./LedText/LedText-v1/led-text-config";
 import { NeonTextTemplateV1 } from "./NeonText/NeonText-v1/NeonTextTemplate";
 import { neonTextSchemaV1 } from "./NeonText/NeonText-v1/neon-text-schema";
-import { neonTextV1Patterns } from "./NeonText/NeonText-v1/neon-text-config";
+import {
+  mergedDefaultIntroV1Props,
+  mergedLedTextV1Patterns,
+  mergedLoadingIconV1Patterns,
+  mergedLocationConfigsV1,
+  mergedMapLocationPointsV1,
+  mergedNeonTextV1Patterns,
+} from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
 
 export const RemotionRoot: React.FC = () => {
@@ -49,7 +54,7 @@ export const RemotionRoot: React.FC = () => {
       />
 
       {/* LoadingIcon コンポジション */}
-      {Object.entries(loadingIconV1Patterns).map(([patternId, patternProps]) => (
+      {Object.entries(mergedLoadingIconV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
           id={`LoadingIconV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
@@ -126,7 +131,7 @@ export const RemotionRoot: React.FC = () => {
       ))}
 
       {/* Mini Map コンポジション */}
-      {mapLocationPointsV1.map((location) => (
+      {mergedMapLocationPointsV1.map((location) => (
         <Composition
           key={location.id}
           id={`MiniMapV1-${location.id}`}
@@ -142,9 +147,9 @@ export const RemotionRoot: React.FC = () => {
           }}
         />
       ))}
-      
+
       {/* 地名コンポジション */}
-      {locationConfigsV1.map((config) => (
+      {mergedLocationConfigsV1.map((config) => (
         <Composition
           key={config.id}
           id={`LocationV1-${config.id}`}
@@ -162,7 +167,7 @@ export const RemotionRoot: React.FC = () => {
       ))}
 
       {/* LED テキスト コンポジション */}
-      {Object.entries(ledTextV1Patterns).map(([patternId, patternProps]) => (
+      {Object.entries(mergedLedTextV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
           id={`LedTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
@@ -177,7 +182,7 @@ export const RemotionRoot: React.FC = () => {
       ))}
 
       {/* ネオンサインテキスト コンポジション */}
-      {Object.entries(neonTextV1Patterns).map(([patternId, patternProps]) => (
+      {Object.entries(mergedNeonTextV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
           id={`NeonTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
@@ -198,10 +203,10 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
         fps={FPS}
-        durationInFrames={introScenesV1.reduce((total, scene) => total + scene.duration, 0)}
+        durationInFrames={introSceneTimingV1.reduce((total, scene) => total + scene.duration, 0)}
         schema={introSchemaV1}
         defaultProps={{
-          ...defaultIntroV1Props,
+          ...mergedDefaultIntroV1Props,
         }}
       />
     </>

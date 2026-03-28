@@ -3,7 +3,7 @@ import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const neonTextSchemaV1 = z.object({
-  text: z.string().default("OPEN"),
+  text: z.string().default("SAMPLE"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
   fontSize: z.number().min(24).max(220).default(96),

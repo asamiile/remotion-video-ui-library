@@ -3,7 +3,7 @@ import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const ledTextSchemaV1 = z.object({
-  text: z.string().default("HELLO"),
+  text: z.string().default("サンプル LED"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
   fontSize: z.number().min(8).max(200).default(72),

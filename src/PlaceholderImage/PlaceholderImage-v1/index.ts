@@ -1,1 +1,1 @@
-export { PlaceholderImage } from "./PlaceholderImage";
+export { PlaceholderImageV1 } from "./PlaceholderImage";

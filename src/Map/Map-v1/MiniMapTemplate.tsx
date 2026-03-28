@@ -11,11 +11,11 @@ import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { MiniMapSchemaV1Type } from "./mini-map-schema";
 import {
-  mapLocationPointsV1,
   defaultMapCameraV1Config,
   mapboxMapV1Options,
   defaultMiniMapV1Props,
 } from "./mini-map-config";
+import { mergedMapLocationPointsV1 } from "../../composition/composition-merged";
 // import { PlaceholderImage } from "../PlaceholderImage";
 
 // Mapbox トークン設定
@@ -48,7 +48,7 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
 
   // 地点情報の取得
   const locationPoint = useMemo(() => {
-    return mapLocationPointsV1.find((point) => point.id === mapLocationId);
+    return mergedMapLocationPointsV1.find((point) => point.id === mapLocationId);
   }, [mapLocationId]);
 
   // フェードイン/アウトの計算

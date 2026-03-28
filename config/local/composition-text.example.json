@@ -1,0 +1,38 @@
+{
+  "intro": {
+    "authorName": "サンプル著者名",
+    "introTitle": "サンプルタイトル（例）",
+    "introDescription": "こちらは composition-text のサンプル文言です。\nintro / パターン / 地点名は local で差し替えてください。"
+  },
+  "ledTextV1Patterns": {
+    "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
+    "redScrollJp": { "text": "サンプル  ///  LED  ///  スクロール  ///  " }
+  },
+  "neonTextV1Patterns": {
+    "pinkPulse": { "text": "SAMPLE OPEN" },
+    "cyanFlicker": { "text": "SAMPLE NEON" },
+    "greenBreathe": { "text": "DEMO TEXT" },
+    "jpStatic": { "text": "ネオン表示サンプル" }
+  },
+  "loadingIconV1Patterns": {
+    "defaultWithText": { "text": "読み込み中（サンプル）…" },
+    "largeWithText": { "text": "読み込み中（サンプル）…" },
+    "customWithText": { "text": "読み込み中（サンプル）…" }
+  },
+  "locationV1": {
+    "SampleLocationA": { "locationName": "サンプル · 地点 A" },
+    "SampleLocationB": { "locationName": "サンプル · 地点 B" }
+  },
+  "mapLocationPointsV1": {
+    "SampleLocationA": {
+      "name": "サンプル · 地点 A",
+      "latitude": 33.59280493802063,
+      "longitude": 130.40067973150843
+    },
+    "SampleLocationB": {
+      "name": "サンプル · 地点 B",
+      "latitude": 33.59135241138666,
+      "longitude": 130.3994274097612
+    }
+  }
+}

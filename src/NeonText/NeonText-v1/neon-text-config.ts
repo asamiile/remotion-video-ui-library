@@ -1,7 +1,7 @@
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const defaultNeonTextV1Props = {
-  text: "NEON",
+  text: "SAMPLE",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
   fontSize: 100,
@@ -36,7 +36,7 @@ export const defaultNeonTextV1Props = {
 export const neonTextV1Patterns = {
   pinkPulse: {
     ...defaultNeonTextV1Props,
-    text: "OPEN 24H",
+    text: "SAMPLE OPEN",
     animationMode: "pulse" as const,
     glowColor: "#ff4bd4",
     haloColor: "#a855f7",
@@ -45,7 +45,7 @@ export const neonTextV1Patterns = {
 
   cyanFlicker: {
     ...defaultNeonTextV1Props,
-    text: "COOL",
+    text: "SAMPLE",
     coreColor: "#e8ffff",
     glowColor: "#22d3ee",
     haloColor: "#38bdf8",
@@ -58,7 +58,7 @@ export const neonTextV1Patterns = {
 
   greenBreathe: {
     ...defaultNeonTextV1Props,
-    text: "BAR",
+    text: "SAMPLE BAR",
     coreColor: "#eefff0",
     glowColor: "#4ade80",
     haloColor: "#16a34a",
@@ -70,7 +70,7 @@ export const neonTextV1Patterns = {
 
   jpStatic: {
     ...defaultNeonTextV1Props,
-    text: "日本語テキスト",
+    text: "ネオンサンプル",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 88,
     animationMode: "static" as const,
