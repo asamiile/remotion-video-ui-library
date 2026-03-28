@@ -39,6 +39,9 @@ import { lightSweepTextV1DurationFrames } from "./LightSweepText/LightSweepText-
 import { TypewriterTextTemplateV1 } from "./TypewriterText/TypewriterText-v1/TypewriterTextTemplate";
 import { typewriterTextSchemaV1 } from "./TypewriterText/TypewriterText-v1/typewriter-text-schema";
 import { typewriterTextV1DurationFrames } from "./TypewriterText/TypewriterText-v1/typewriter-text-config";
+import { ShakeTextTemplateV1 } from "./ShakeText/ShakeText-v1/ShakeTextTemplate";
+import { shakeTextSchemaV1 } from "./ShakeText/ShakeText-v1/shake-text-schema";
+import { shakeTextV1DurationFrames } from "./ShakeText/ShakeText-v1/shake-text-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -49,6 +52,7 @@ import {
   mergedMapLocationPointsV1,
   mergedNeonTextV1Patterns,
   mergedRainbowNeonTextV1Patterns,
+  mergedShakeTextV1Patterns,
   mergedSlideInCaptionV1Patterns,
   mergedTypewriterTextV1Patterns,
   mergedWireTextV1Patterns,
@@ -317,6 +321,23 @@ export const RemotionRoot: React.FC = () => {
             fps={FPS}
             durationInFrames={typewriterTextV1DurationFrames}
             schema={typewriterTextSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
+
+      {/* シェイク（試行錯誤・ジッター） */}
+      {Object.entries(mergedShakeTextV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`ShakeTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={ShakeTextTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={shakeTextV1DurationFrames}
+            schema={shakeTextSchemaV1}
             defaultProps={patternProps}
           />
         ),
