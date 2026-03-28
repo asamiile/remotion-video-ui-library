@@ -6,7 +6,7 @@ const defaultRainbowNeonTextV1Props = {
   text: "NEON",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 80,
+  fontSize: 48,
   letterSpacing: "0.08em",
   lineHeight: 1.15,
 
@@ -28,8 +28,8 @@ const defaultRainbowNeonTextV1Props = {
   fadeInDuration: 15,
   delayFrames: 0,
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   backgroundColor: "#06060a",
   vignetteOpacity: 0.52,
@@ -42,7 +42,7 @@ export const rainbowNeonTextV1Patterns = {
   roundedTube: {
     ...defaultRainbowNeonTextV1Props,
     text: "TUBE NEON",
-    fontSize: 72,
+    fontSize: 48,
     hueCycleFrames: 220,
     colorShiftStartFrame: 90,
     colorShiftDurationFrames: 120,

@@ -42,8 +42,8 @@ export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaV1Type> = (
     completionGlowStrength,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     backgroundColor,
     vignetteOpacity,
   } = props;
@@ -144,7 +144,7 @@ export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaV1Type> = (
     letterSpacing,
     lineHeight,
     color: textColor,
-    textAlign: "center",
+    textAlign: "left",
     textShadow,
     whiteSpace: "pre-line",
   };
@@ -162,11 +162,10 @@ export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaV1Type> = (
       <div
         style={{
           position: "absolute",
-          left: `${positionX}%`,
-          top: `${positionY}%`,
-          transform: "translate(-50%, -50%)",
+          left: `${paddingLeftPercent}%`,
+          bottom: `${paddingBottomPercent}%`,
           opacity: mountFade,
-          maxWidth: "90vw",
+          maxWidth: `${100 - paddingLeftPercent - 2}%`,
         }}
       >
         <div
@@ -174,8 +173,6 @@ export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaV1Type> = (
             position: "relative",
             display: "inline-block",
             isolation: "isolate",
-            left: "50%",
-            transform: "translateX(-50%)",
           }}
         >
           <h1 style={labelStyle}>{text}</h1>

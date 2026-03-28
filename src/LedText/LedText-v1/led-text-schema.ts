@@ -6,7 +6,7 @@ export const ledTextSchemaV1 = z.object({
   text: z.string().default("サンプル LED"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
-  fontSize: z.number().min(8).max(200).default(72),
+  fontSize: z.number().min(8).max(200).default(48),
   cellSize: z.number().min(4).max(40).default(10),
   sampleThreshold: z.number().min(0).max(255).default(128),
   paddingCells: z.number().min(0).max(12).default(2),
@@ -32,8 +32,8 @@ export const ledTextSchemaV1 = z.object({
   fadeInDuration: z.number().min(0).default(24),
   delayFrames: z.number().min(0).default(0),
 
-  positionX: z.number().min(0).max(100).default(50),
-  positionY: z.number().min(0).max(100).default(50),
+  paddingLeftPercent: z.number().min(0).max(30).default(3.2),
+  paddingBottomPercent: z.number().min(0).max(30).default(3.2),
 
   panelBackground: zColor().default("#0a0a0a"),
   panelPadding: z.number().min(0).default(28),

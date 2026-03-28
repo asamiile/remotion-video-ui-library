@@ -4,13 +4,15 @@ import {
   Easing,
   interpolate,
   useCurrentFrame,
+  useVideoConfig,
 } from "remotion";
 import { WireTextSchemaV1Type } from "./wire-text-schema";
 import "../../helpers/line-seed-jp";
 
 const VB_W = 1600;
 const VB_H = 420;
-const CX = VB_W / 2;
+/** GlitchText と同様に左下コンテナ内で文字列の左端から始まる */
+const TX = 0;
 const CY = VB_H / 2;
 
 function estimateDashLength(
@@ -41,15 +43,9 @@ function pickDrawEasing(mode: WireTextSchemaV1Type["drawEasing"]) {
 
 export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
   const frame = useCurrentFrame();
+  const { width: compositionWidth } = useVideoConfig();
   const filterId = useId().replace(/:/g, "");
   const strokeTextRef = useRef<SVGTextElement>(null);
-  const [dashTotal, setDashTotal] = useState(() =>
-    estimateDashLength(
-      props.text.split("\n"),
-      props.fontSize,
-      props.lineHeight,
-    ),
-  );
 
   const {
     text,
@@ -69,18 +65,39 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
     drawEasing,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     backgroundColor,
   } = props;
 
+  /**
+   * GlitchText は CSS の fontSize（コンポジション px と 1:1）。ここは SVG viewBox 内のユーザー単位なので、
+   * 出力で props.fontSize と同じピクセルになるようユーザー座標でのフォントを補正する。
+   */
+  const captionInnerWidthPx =
+    compositionWidth * ((100 - paddingLeftPercent - 2) / 100);
+  const svgFontSize =
+    (fontSize * VB_W) / Math.max(1, captionInnerWidthPx);
+
+  const [dashTotal, setDashTotal] = useState(() =>
+    estimateDashLength(
+      text.split("\n"),
+      (fontSize * VB_W) /
+        Math.max(
+          1,
+          compositionWidth * ((100 - paddingLeftPercent - 2) / 100),
+        ),
+      lineHeight,
+    ),
+  );
+
   const lines = useMemo(() => text.split("\n"), [text]);
-  const lineGapPx = fontSize * lineHeight;
+  const lineGapPx = svgFontSize * lineHeight;
   const startDy = -((lines.length - 1) / 2) * lineGapPx;
 
   const buildTspans = (keyPrefix: string) =>
     lines.map((line, i) => (
-      <tspan key={`${keyPrefix}-${i}`} x={CX} dy={i === 0 ? startDy : lineGapPx}>
+      <tspan key={`${keyPrefix}-${i}`} x={TX} dy={i === 0 ? startDy : lineGapPx}>
         {line}
       </tspan>
     ));
@@ -98,13 +115,21 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
       const combined = Math.max(
         w * 2.9 + h * 3.2,
         len * 2.6,
-        estimateDashLength(lines, fontSize, lineHeight),
+        estimateDashLength(lines, svgFontSize, lineHeight),
       );
       setDashTotal(Math.ceil(combined));
     } catch {
-      setDashTotal(estimateDashLength(lines, fontSize, lineHeight));
+      setDashTotal(estimateDashLength(lines, svgFontSize, lineHeight));
     }
-  }, [text, fontSize, fontFamily, fontWeight, letterSpacing, lineHeight, lines]);
+  }, [
+    text,
+    svgFontSize,
+    fontFamily,
+    fontWeight,
+    letterSpacing,
+    lineHeight,
+    lines,
+  ]);
 
   const activeFrame = frame - delayFrames;
 
@@ -152,14 +177,14 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
   }, [activeFrame, fillStartsAt, fillFadeInFrames]);
 
   const textCommon: React.SVGTextElementAttributes<SVGTextElement> = {
-    x: CX,
+    x: TX,
     y: CY,
-    textAnchor: "middle",
+    textAnchor: "start",
     dominantBaseline: "middle",
     style: {
       fontFamily,
       fontWeight: fontWeight as string,
-      fontSize,
+      fontSize: svgFontSize,
       letterSpacing,
     },
   };
@@ -171,11 +196,11 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
       <div
         style={{
           position: "absolute",
-          left: `${positionX}%`,
-          top: `${positionY}%`,
-          transform: "translate(-50%, -50%)",
+          left: `${paddingLeftPercent}%`,
+          bottom: `${paddingBottomPercent}%`,
           opacity: mountFade,
-          maxWidth: "92vw",
+          width: `${100 - paddingLeftPercent - 2}%`,
+          maxWidth: `${100 - paddingLeftPercent - 2}%`,
         }}
       >
         <svg
@@ -183,7 +208,8 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
           preserveAspectRatio="xMidYMid meet"
           style={{
             display: "block",
-            width: "min(1200px, 88vw)",
+            width: "100%",
+            maxWidth: "100%",
             height: "auto",
             overflow: "visible",
           }}

@@ -6,7 +6,7 @@ const defaultConfettiPopTextV1Props = {
   text: "おめでとう！",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 58,
+  fontSize: 48,
   letterSpacing: "0.08em",
   lineHeight: 1.2,
 
@@ -30,8 +30,8 @@ const defaultConfettiPopTextV1Props = {
   fadeInDuration: 8,
   delayFrames: 0,
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   backgroundColor: "#1a1428",
 };

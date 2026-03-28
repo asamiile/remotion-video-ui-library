@@ -5,6 +5,7 @@ import {
   interpolate,
   interpolateColors,
   useCurrentFrame,
+  useVideoConfig,
 } from "remotion";
 import { RainbowNeonTextSchemaV1Type } from "./rainbow-neon-text-schema";
 import "../../helpers/line-seed-jp";
@@ -13,6 +14,8 @@ const VB_W = 1600;
 const VB_H = 420;
 const CX = VB_W / 2;
 const CY = VB_H / 2;
+/** GlitchText と同様に左下コンテナ内で文字列の左端から始まる */
+const TX = 0;
 
 /** delay 後タイムライン上のストップ位置（rotate させる前のベース） */
 const STOP_OFFSETS = [
@@ -64,6 +67,7 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
   props,
 ) => {
   const frame = useCurrentFrame();
+  const { width: compositionWidth } = useVideoConfig();
   const gid = useId().replace(/:/g, "");
   const filterMainId = `${gid}-main`;
   const filterHaloId = `${gid}-halo`;
@@ -88,19 +92,25 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
     haloOpacity,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     backgroundColor,
     vignetteOpacity,
   } = props;
 
+  /** GlitchText と同じコンポジション px。SVG ユーザー座標用に補正（WireText と同じ式） */
+  const captionInnerWidthPx =
+    compositionWidth * ((100 - paddingLeftPercent - 2) / 100);
+  const svgFontSize =
+    (fontSize * VB_W) / Math.max(1, captionInnerWidthPx);
+
   const lines = useMemo(() => text.split("\n"), [text]);
-  const lineGapPx = fontSize * lineHeight;
+  const lineGapPx = svgFontSize * lineHeight;
   const startDy = -((lines.length - 1) / 2) * lineGapPx;
 
   const buildTspans = (keyPrefix: string) =>
     lines.map((line, i) => (
-      <tspan key={`${keyPrefix}-${i}`} x={CX} dy={i === 0 ? startDy : lineGapPx}>
+      <tspan key={`${keyPrefix}-${i}`} x={TX} dy={i === 0 ? startDy : lineGapPx}>
         {line}
       </tspan>
     ));
@@ -151,15 +161,15 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
   }, [activeFrame, fadeInDuration]);
 
   const textCommon: React.SVGTextElementAttributes<SVGTextElement> = {
-    x: CX,
+    x: TX,
     y: CY,
-    textAnchor: "middle",
+    textAnchor: "start",
     dominantBaseline: "middle",
     fill: "none",
     style: {
       fontFamily,
       fontWeight: fontWeight as string,
-      fontSize,
+      fontSize: svgFontSize,
       letterSpacing,
     },
   };
@@ -187,11 +197,11 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
       <div
         style={{
           position: "absolute",
-          left: `${positionX}%`,
-          top: `${positionY}%`,
-          transform: "translate(-50%, -50%)",
+          left: `${paddingLeftPercent}%`,
+          bottom: `${paddingBottomPercent}%`,
           opacity: mountFade,
-          maxWidth: "92vw",
+          width: `${100 - paddingLeftPercent - 2}%`,
+          maxWidth: `${100 - paddingLeftPercent - 2}%`,
         }}
       >
         <svg
@@ -199,7 +209,8 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
           preserveAspectRatio="xMidYMid meet"
           style={{
             display: "block",
-            width: "min(1200px, 88vw)",
+            width: "100%",
+            maxWidth: "100%",
             height: "auto",
             overflow: "visible",
           }}

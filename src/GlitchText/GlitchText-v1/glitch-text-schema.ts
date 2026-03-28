@@ -6,7 +6,7 @@ export const glitchTextSchemaV1 = z.object({
   text: z.string().default("測定中"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
-  fontSize: z.number().min(16).max(160).default(72),
+  fontSize: z.number().min(16).max(160).default(48),
   letterSpacing: z.string().default("0.06em"),
   lineHeight: z.number().min(1).max(2).default(1.2),
 
@@ -28,8 +28,9 @@ export const glitchTextSchemaV1 = z.object({
   scanlineOpacity: z.number().min(0).max(0.35).default(0.08),
   backgroundColor: zColor().default("#0a0e12"),
 
-  positionX: z.number().min(0).max(100).default(50),
-  positionY: z.number().min(0).max(100).default(50),
+  /** SlideInCaption と同じ: 左端・下端からの余白（%） */
+  paddingLeftPercent: z.number().min(0).max(30).default(3.2),
+  paddingBottomPercent: z.number().min(0).max(30).default(3.2),
 
   randomSeed: z.string().default("glitch-v1"),
   fadeInDuration: z.number().min(0).default(20),

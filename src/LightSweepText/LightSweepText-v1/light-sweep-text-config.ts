@@ -6,7 +6,7 @@ const defaultLightSweepTextV1Props = {
   text: "COMPLETE",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 72,
+  fontSize: 48,
   letterSpacing: "0.14em",
   lineHeight: 1.2,
 
@@ -27,8 +27,8 @@ const defaultLightSweepTextV1Props = {
   fadeInDuration: 14,
   delayFrames: 0,
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   backgroundColor: "#05080f",
   vignetteOpacity: 0.55,
@@ -50,7 +50,7 @@ export const lightSweepTextV1Patterns = {
   doneJp: {
     ...defaultLightSweepTextV1Props,
     text: "処理完了",
-    fontSize: 78,
+    fontSize: 48,
     letterSpacing: "0.18em",
     sweepStartFrame: 54,
     sweepDurationFrames: 16,
@@ -63,7 +63,7 @@ export const lightSweepTextV1Patterns = {
   rapid: {
     ...defaultLightSweepTextV1Props,
     text: "OK",
-    fontSize: 96,
+    fontSize: 48,
     sweepStartFrame: 36,
     sweepDurationFrames: 9,
     sweepEasing: "linear" as const,

@@ -49,8 +49,8 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
     randomSeed,
     fadeInDuration,
     delayFrames,
-    positionX,
-    positionY,
+    paddingLeftPercent,
+    paddingBottomPercent,
     backgroundColor,
     vignetteOpacity,
   } = props;
@@ -153,7 +153,7 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
     WebkitTextStroke: `${tubeStrokeWidth}px ${tubeStrokeColor}`,
     paintOrder: "stroke fill",
     textShadow,
-    textAlign: "center",
+    textAlign: "left",
     whiteSpace: "nowrap",
   };
 
@@ -172,11 +172,10 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
       <div
         style={{
           position: "absolute",
-          left: `${positionX}%`,
-          top: `${positionY}%`,
-          transform: "translate(-50%, -50%)",
+          left: `${paddingLeftPercent}%`,
+          bottom: `${paddingBottomPercent}%`,
           opacity: mountOpacity,
-          maxWidth: "92vw",
+          maxWidth: `${100 - paddingLeftPercent - 2}%`,
         }}
       >
         <h1 style={labelStyle}>{text}</h1>

@@ -7,7 +7,7 @@ const defaultTypewriterTextV1Props = {
   text: 'const ready = true;',
   fontFamily: JETBRAINS_MONO_FONT_FAMILY,
   fontWeight: "400" as const,
-  fontSize: 36,
+  fontSize: 48,
   letterSpacing: "0.02em",
 
   textColor: "#d8dee9",
@@ -23,8 +23,8 @@ const defaultTypewriterTextV1Props = {
   fadeInDuration: 12,
   delayFrames: 0,
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   backgroundColor: "#0d1117",
 };
@@ -41,7 +41,7 @@ export const typewriterTextV1Patterns = {
   npmScript: {
     ...defaultTypewriterTextV1Props,
     text: "npm run build && echo 'done'",
-    fontSize: 32,
+    fontSize: 48,
     typingDurationFrames: 96,
   },
 
@@ -51,7 +51,7 @@ export const typewriterTextV1Patterns = {
     text: "// 処理が完了しました",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontWeight: "700" as const,
-    fontSize: 38,
+    fontSize: 48,
     letterSpacing: "0.08em",
     typingDurationFrames: 84,
   },

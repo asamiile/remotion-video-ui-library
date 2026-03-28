@@ -7,7 +7,7 @@ export const confettiPopTextSchemaV1 = z.object({
 
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
-  fontSize: z.number().min(28).max(120).default(58),
+  fontSize: z.number().min(28).max(120).default(48),
   letterSpacing: z.string().default("0.08em"),
   lineHeight: z.number().min(1).max(2).default(1.2),
 
@@ -37,8 +37,8 @@ export const confettiPopTextSchemaV1 = z.object({
   fadeInDuration: z.number().min(0).default(8),
   delayFrames: z.number().min(0).default(0),
 
-  positionX: z.number().min(0).max(100).default(50),
-  positionY: z.number().min(0).max(100).default(50),
+  paddingLeftPercent: z.number().min(0).max(30).default(3.2),
+  paddingBottomPercent: z.number().min(0).max(30).default(3.2),
 
   backgroundColor: zColor().default("#1a1428"),
 });

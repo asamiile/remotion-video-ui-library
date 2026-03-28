@@ -6,7 +6,7 @@ export const defaultGlitchTextV1Props = {
   text: "測定中",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 76,
+  fontSize: 48,
   letterSpacing: "0.08em",
   lineHeight: 1.2,
 
@@ -23,8 +23,8 @@ export const defaultGlitchTextV1Props = {
   scanlineOpacity: 0.08,
   backgroundColor: "#0a0e12",
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   randomSeed: "glitch-default",
   fadeInDuration: 20,
@@ -36,7 +36,7 @@ export const glitchTextV1Patterns = {
   measuring: {
     ...defaultGlitchTextV1Props,
     text: "測定中",
-    fontSize: 80,
+    fontSize: 48,
     randomSeed: "glitch-measuring",
   },
 
@@ -44,7 +44,7 @@ export const glitchTextV1Patterns = {
   meterReadout: {
     ...defaultGlitchTextV1Props,
     text: "測定中  —  12.48 V",
-    fontSize: 58,
+    fontSize: 48,
     letterSpacing: "0.05em",
     strongGlitchProbability: 0.22,
     garbleRate: 0.48,
@@ -55,7 +55,7 @@ export const glitchTextV1Patterns = {
   harshSignal: {
     ...defaultGlitchTextV1Props,
     text: "SIGNAL  UNSTABLE",
-    fontSize: 52,
+    fontSize: 48,
     rgbOffsetMax: 12,
     strongGlitchProbability: 0.32,
     glitchSegmentFrames: 4,

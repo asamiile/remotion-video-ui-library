@@ -6,7 +6,7 @@ const defaultShakeTextV1Props = {
   text: "試行錯誤中…",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 56,
+  fontSize: 48,
   letterSpacing: "0.06em",
   lineHeight: 1.25,
 
@@ -26,8 +26,8 @@ const defaultShakeTextV1Props = {
   fadeInDuration: 18,
   delayFrames: 0,
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   backgroundColor: "#0c1016",
 };

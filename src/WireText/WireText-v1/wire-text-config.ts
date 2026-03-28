@@ -6,7 +6,7 @@ export const defaultWireTextV1Props = {
   text: "TRACE",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
-  fontSize: 88,
+  fontSize: 48,
   letterSpacing: "0.06em",
   lineHeight: 1.15,
 
@@ -25,8 +25,8 @@ export const defaultWireTextV1Props = {
   fadeInDuration: 12,
   delayFrames: 0,
 
-  positionX: 50,
-  positionY: 50,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
 
   backgroundColor: "#0a1018",
 };
@@ -36,7 +36,7 @@ export const wireTextV1Patterns = {
   trace: {
     ...defaultWireTextV1Props,
     text: "WIRE TRACE",
-    fontSize: 72,
+    fontSize: 48,
     drawDurationFrames: 90,
     wireGlowBlur: 2,
   },
@@ -45,7 +45,7 @@ export const wireTextV1Patterns = {
   japaneseTitle: {
     ...defaultWireTextV1Props,
     text: "測定ライン",
-    fontSize: 84,
+    fontSize: 48,
     letterSpacing: "0.1em",
     drawDurationFrames: 96,
     wireColor: "#9cf0ff",
@@ -57,7 +57,7 @@ export const wireTextV1Patterns = {
   outlineOnly: {
     ...defaultWireTextV1Props,
     text: "OUTLINE ONLY",
-    fontSize: 64,
+    fontSize: 48,
     fillEnabled: false,
     wireGlowBlur: 1.5,
     strokeWidth: 2.8,

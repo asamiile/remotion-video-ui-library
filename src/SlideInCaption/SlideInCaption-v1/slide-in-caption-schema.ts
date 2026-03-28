@@ -6,7 +6,7 @@ export const slideInCaptionSchemaV1 = z.object({
   text: z.string().default(""),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
-  fontSize: z.number().min(12).max(120).default(44),
+  fontSize: z.number().min(12).max(120).default(48),
   letterSpacing: z.string().default("0.02em"),
   lineHeight: z.number().min(1).max(2).default(1.35),
 
