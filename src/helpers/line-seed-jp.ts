@@ -8,6 +8,7 @@ export const LINE_SEED_JP_FONT_FAMILY = `'${fontFamily}', sans-serif`;
 // weights のみ指定すると各ウェイトの全チャンクが載り、ひらがな・漢字も含まれる。
 const lineSeed = loadFont("normal", {
   weights: ["400", "700"],
+  ignoreTooManyRequestsWarning: true,
 });
 
 const handle = delayRender("LINE Seed JP");

@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { LoadingIconSchemaV1Type } from "./loading-icon-schema";
 import { LoadingIconV1 } from "./LoadingIcon";
-import { PlaceholderImage } from "../PlaceholderImage";
 
 export const LoadingIconTemplateV1: React.FC<LoadingIconSchemaV1Type> = ({
   size,

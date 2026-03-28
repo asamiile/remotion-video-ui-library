@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const miniMapSchemaV1 = z.object({
   // マップ基本設定
-  mapLocationId: z.string().default("map-fukuoka-tenjin"),
+  mapLocationId: z.string().default(""),
   
   // 表示設定
   width: z.number().min(100).max(1920).default(400),

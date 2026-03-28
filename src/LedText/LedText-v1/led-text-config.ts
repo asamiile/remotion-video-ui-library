@@ -1,7 +1,7 @@
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const defaultLedTextV1Props = {
-  text: "LED MATRIX",
+  text: "サンプル LED",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
   fontSize: 80,
@@ -43,7 +43,7 @@ export const defaultLedTextV1Props = {
 export const ledTextV1Patterns = {
   redScroll: {
     ...defaultLedTextV1Props,
-    text: "NEWS  ///  SCROLL  ///  REMOTION  ///  ",
+    text: "SAMPLE  ///  SCROLL  ///  TEXT  ///  ",
     fontSize: 56,
     cellSize: 9,
     animationMode: "scroll" as const,
@@ -56,7 +56,7 @@ export const ledTextV1Patterns = {
 
   redScrollJp: {
     ...defaultLedTextV1Props,
-    text: "お知らせ  ///  スクロール  ///  リモーション  ///  ",
+    text: "サンプル  ///  スクロール  ///  テキスト  ///  ",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 56,
     cellSize: 9,

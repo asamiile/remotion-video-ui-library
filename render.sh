@@ -29,15 +29,13 @@ PRORES_PROFILE="4444"
 # 出力ディレクトリ作成
 mkdir -p "$OUTPUT_DIR"
 
-# ロケーション一覧
-LOCATIONS=(
-  "TenjinBrickCross"
-  "OneFukuoka"
-  "InabaConstruction"
-  "TenjinBusinessCenter"
-  "HurricSquare"
-  "DaimyoGardenCity"
-)
+# ロケーション一覧（composition-text.example.json / composition-text.local.json の locationV1 と同期）
+LOCATIONS=()
+while IFS= read -r line || [ -n "$line" ]; do
+  if [ -n "$line" ]; then
+    LOCATIONS+=("$line")
+  fi
+done < <(node "$SCRIPT_DIR/scripts/list-location-v1-composition-ids.cjs")
 
 # LoadingIcon パターン一覧
 LOADINGICON_PATTERNS=(
@@ -74,7 +72,7 @@ render_intro() {
   echo ""
   echo -e "${YELLOW}→ Intro${NC}"
   
-  npx remotion render src/index.ts "Intro" \
+  npx remotion render src/index.ts "IntroV1" \
     "$OUTPUT_DIR/Intro.mov" \
     --concurrency=4 \
     --network-timeout="$NETWORK_TIMEOUT" \
@@ -124,8 +122,8 @@ render_location() {
     echo ""
     echo -e "${YELLOW}→ Location-${location}${NC}"
     
-    npx remotion render src/index.ts "Location-${location}" \
-      "$OUTPUT_DIR/Location-${location}.mov" \
+    npx remotion render src/index.ts "LocationV1-${location}" \
+      "$OUTPUT_DIR/LocationV1-${location}.mov" \
       --concurrency="$CONCURRENCY_LOCATION" \
       --network-timeout="$NETWORK_TIMEOUT" \
       --codec="$CODEC" \
@@ -152,8 +150,8 @@ render_minimap() {
     echo ""
     echo -e "${YELLOW}→ MiniMap-${location}${NC}"
     
-    npx remotion render src/index.ts "MiniMap-${location}" \
-      "$OUTPUT_DIR/MiniMap-${location}.mov" \
+    npx remotion render src/index.ts "MiniMapV1-${location}" \
+      "$OUTPUT_DIR/MiniMapV1-${location}.mov" \
       --concurrency="$CONCURRENCY_MINIMAP" \
       --network-timeout=120000 \
       --gl=angle \
