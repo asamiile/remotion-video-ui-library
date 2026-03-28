@@ -33,9 +33,13 @@ import { wireTextV1DurationFrames } from "./WireText/WireText-v1/wire-text-confi
 import { RainbowNeonTextTemplateV1 } from "./RainbowNeonText/RainbowNeonText-v1/RainbowNeonTextTemplate";
 import { rainbowNeonTextSchemaV1 } from "./RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-schema";
 import { rainbowNeonTextV1DurationFrames } from "./RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-config";
+import { LightSweepTextTemplateV1 } from "./LightSweepText/LightSweepText-v1/LightSweepTextTemplate";
+import { lightSweepTextSchemaV1 } from "./LightSweepText/LightSweepText-v1/light-sweep-text-schema";
+import { lightSweepTextV1DurationFrames } from "./LightSweepText/LightSweepText-v1/light-sweep-text-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
+  mergedLightSweepTextV1Patterns,
   mergedLedTextV1Patterns,
   mergedLoadingIconV1Patterns,
   mergedLocationConfigsV1,
@@ -275,6 +279,23 @@ export const RemotionRoot: React.FC = () => {
             fps={FPS}
             durationInFrames={rainbowNeonTextV1DurationFrames}
             schema={rainbowNeonTextSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
+
+      {/* ライトスイープ（完了・疾走感） */}
+      {Object.entries(mergedLightSweepTextV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`LightSweepTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={LightSweepTextTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={lightSweepTextV1DurationFrames}
+            schema={lightSweepTextSchemaV1}
             defaultProps={patternProps}
           />
         ),

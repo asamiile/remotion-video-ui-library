@@ -5,6 +5,7 @@ import { slideInCaptionV1Patterns } from "../SlideInCaption/SlideInCaption-v1/sl
 import { glitchTextV1Patterns } from "../GlitchText/GlitchText-v1/glitch-text-config";
 import { wireTextV1Patterns } from "../WireText/WireText-v1/wire-text-config";
 import { rainbowNeonTextV1Patterns } from "../RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-config";
+import { lightSweepTextV1Patterns } from "../LightSweepText/LightSweepText-v1/light-sweep-text-config";
 import { loadingIconV1Patterns } from "../LoadingIcon/LoadingIcon-v1/loading-icon-config";
 import {
   buildLocationConfigsFromCompositionKeys,
@@ -51,6 +52,11 @@ export const mergedRainbowNeonTextV1Patterns = shallowMergePatternRecord(
   rainbowNeonTextV1Patterns,
   local.rainbowNeonTextV1Patterns,
 ) as typeof rainbowNeonTextV1Patterns;
+
+export const mergedLightSweepTextV1Patterns = shallowMergePatternRecord(
+  lightSweepTextV1Patterns,
+  local.lightSweepTextV1Patterns,
+) as typeof lightSweepTextV1Patterns;
 
 export const mergedLoadingIconV1Patterns = shallowMergePatternRecord(
   loadingIconV1Patterns,
