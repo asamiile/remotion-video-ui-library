@@ -18,6 +18,12 @@ import { audioSpectrumV1Patterns, audioSpectrumAudioFilesV1, defaultAudioSpectru
 import { IntroTemplateV1 } from "./Intro/Intro-v1/IntroTemplate";
 import { introSchemaV1 } from "./Intro/Intro-v1/intro-schema";
 import { defaultIntroV1Props, introScenesV1 } from "./Intro/Intro-v1/intro-config";
+import { LedTextTemplateV1 } from "./LedText/LedText-v1/LedTextTemplate";
+import { ledTextSchemaV1 } from "./LedText/LedText-v1/led-text-schema";
+import { ledTextV1Patterns } from "./LedText/LedText-v1/led-text-config";
+import { NeonTextTemplateV1 } from "./NeonText/NeonText-v1/NeonTextTemplate";
+import { neonTextSchemaV1 } from "./NeonText/NeonText-v1/neon-text-schema";
+import { neonTextV1Patterns } from "./NeonText/NeonText-v1/neon-text-config";
 import { FPS } from "./helpers/ms-to-frame";
 
 export const RemotionRoot: React.FC = () => {
@@ -152,6 +158,36 @@ export const RemotionRoot: React.FC = () => {
             ...defaultLocationV1Props,
             locationName: config.locationName,
           }}
+        />
+      ))}
+
+      {/* LED テキスト コンポジション */}
+      {Object.entries(ledTextV1Patterns).map(([patternId, patternProps]) => (
+        <Composition
+          key={patternId}
+          id={`LedTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+          component={LedTextTemplateV1}
+          width={1920}
+          height={1080}
+          fps={FPS}
+          durationInFrames={540}
+          schema={ledTextSchemaV1}
+          defaultProps={patternProps}
+        />
+      ))}
+
+      {/* ネオンサインテキスト コンポジション */}
+      {Object.entries(neonTextV1Patterns).map(([patternId, patternProps]) => (
+        <Composition
+          key={patternId}
+          id={`NeonTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+          component={NeonTextTemplateV1}
+          width={1920}
+          height={1080}
+          fps={FPS}
+          durationInFrames={480}
+          schema={neonTextSchemaV1}
+          defaultProps={patternProps}
         />
       ))}
 
