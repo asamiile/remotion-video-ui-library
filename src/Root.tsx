@@ -36,6 +36,9 @@ import { rainbowNeonTextV1DurationFrames } from "./RainbowNeonText/RainbowNeonTe
 import { LightSweepTextTemplateV1 } from "./LightSweepText/LightSweepText-v1/LightSweepTextTemplate";
 import { lightSweepTextSchemaV1 } from "./LightSweepText/LightSweepText-v1/light-sweep-text-schema";
 import { lightSweepTextV1DurationFrames } from "./LightSweepText/LightSweepText-v1/light-sweep-text-config";
+import { TypewriterTextTemplateV1 } from "./TypewriterText/TypewriterText-v1/TypewriterTextTemplate";
+import { typewriterTextSchemaV1 } from "./TypewriterText/TypewriterText-v1/typewriter-text-schema";
+import { typewriterTextV1DurationFrames } from "./TypewriterText/TypewriterText-v1/typewriter-text-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -47,6 +50,7 @@ import {
   mergedNeonTextV1Patterns,
   mergedRainbowNeonTextV1Patterns,
   mergedSlideInCaptionV1Patterns,
+  mergedTypewriterTextV1Patterns,
   mergedWireTextV1Patterns,
 } from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
@@ -296,6 +300,23 @@ export const RemotionRoot: React.FC = () => {
             fps={FPS}
             durationInFrames={lightSweepTextV1DurationFrames}
             schema={lightSweepTextSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
+
+      {/* タイプライター（1 行・コード風） */}
+      {Object.entries(mergedTypewriterTextV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`TypewriterTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={TypewriterTextTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={typewriterTextV1DurationFrames}
+            schema={typewriterTextSchemaV1}
             defaultProps={patternProps}
           />
         ),

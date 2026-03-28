@@ -12,6 +12,7 @@ export type CompositionTextLocal = {
   wireTextV1Patterns?: Record<string, Record<string, unknown>>;
   rainbowNeonTextV1Patterns?: Record<string, Record<string, unknown>>;
   lightSweepTextV1Patterns?: Record<string, Record<string, unknown>>;
+  typewriterTextV1Patterns?: Record<string, Record<string, unknown>>;
   loadingIconV1Patterns?: Record<string, Record<string, unknown>>;
   locationV1?: Record<string, { locationName?: string }>;
   mapLocationPointsV1?: Record<
