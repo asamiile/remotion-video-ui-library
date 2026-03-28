@@ -40,6 +40,10 @@
     "codeLine": { "text": "console.log('sample');" },
     "jpComment": { "text": "// サンプル一行です" }
   },
+  "shakeTextV1Patterns": {
+    "trial": { "text": "試行錯誤（サンプル）" },
+    "subtle": { "text": "微シェイクの例" }
+  },
   "loadingIconV1Patterns": {
     "defaultWithText": { "text": "読み込み中（サンプル）…" },
     "largeWithText": { "text": "読み込み中（サンプル）…" },

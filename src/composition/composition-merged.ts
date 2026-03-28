@@ -7,6 +7,7 @@ import { wireTextV1Patterns } from "../WireText/WireText-v1/wire-text-config";
 import { rainbowNeonTextV1Patterns } from "../RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-config";
 import { lightSweepTextV1Patterns } from "../LightSweepText/LightSweepText-v1/light-sweep-text-config";
 import { typewriterTextV1Patterns } from "../TypewriterText/TypewriterText-v1/typewriter-text-config";
+import { shakeTextV1Patterns } from "../ShakeText/ShakeText-v1/shake-text-config";
 import { loadingIconV1Patterns } from "../LoadingIcon/LoadingIcon-v1/loading-icon-config";
 import {
   buildLocationConfigsFromCompositionKeys,
@@ -63,6 +64,11 @@ export const mergedTypewriterTextV1Patterns = shallowMergePatternRecord(
   typewriterTextV1Patterns,
   local.typewriterTextV1Patterns,
 ) as typeof typewriterTextV1Patterns;
+
+export const mergedShakeTextV1Patterns = shallowMergePatternRecord(
+  shakeTextV1Patterns,
+  local.shakeTextV1Patterns,
+) as typeof shakeTextV1Patterns;
 
 export const mergedLoadingIconV1Patterns = shallowMergePatternRecord(
   loadingIconV1Patterns,
