@@ -44,6 +44,9 @@
     "trial": { "text": "試行錯誤（サンプル）" },
     "subtle": { "text": "微シェイクの例" }
   },
+  "confettiPopTextV1Patterns": {
+    "richPop": { "text": "完成おめでとう（サンプル）" }
+  },
   "loadingIconV1Patterns": {
     "defaultWithText": { "text": "読み込み中（サンプル）…" },
     "largeWithText": { "text": "読み込み中（サンプル）…" },
