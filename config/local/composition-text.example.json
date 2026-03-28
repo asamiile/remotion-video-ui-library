@@ -32,6 +32,10 @@
   "rainbowNeonTextV1Patterns": {
     "roundedTube": { "text": "虹ネオン・太管" }
   },
+  "lightSweepTextV1Patterns": {
+    "complete": { "text": "処理完了（サンプル）" },
+    "rapid": { "text": "OK" }
+  },
   "loadingIconV1Patterns": {
     "defaultWithText": { "text": "読み込み中（サンプル）…" },
     "largeWithText": { "text": "読み込み中（サンプル）…" },
