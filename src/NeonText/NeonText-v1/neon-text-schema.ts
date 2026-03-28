@@ -19,10 +19,19 @@ export const neonTextSchemaV1 = z.object({
   shadowStrength: z.number().min(0.4).max(1.8).default(1),
 
   animationMode: z
-    .enum(["static", "pulse", "flicker", "breathe"])
+    .enum(["static", "pulse", "flicker", "breathe", "blink"])
     .default("pulse"),
   pulsePeriodFrames: z.number().min(20).default(90),
   breathePeriodFrames: z.number().min(40).default(140),
+
+  /** Lチカ（矩形波）: 1 周期のフレーム数（点灯＋消灯） */
+  blinkPeriodFrames: z.number().min(10).default(60),
+  /** 点灯時間の割合（0.5 = 50% デューティ） */
+  blinkDutyRatio: z.number().min(0.1).max(0.9).default(0.5),
+  /** 消灯時の文字・全体 opacity（0 に近いほどハード点滅） */
+  blinkDimOpacity: z.number().min(0).max(1).default(0.06),
+  /** 消灯時の発光（text-shadow）強度の倍率 */
+  blinkGlowOffMul: z.number().min(0).max(1).default(0.12),
 
   flickerStrength: z.number().min(0).max(0.45).default(0.12),
   randomSeed: z.string().default("neon-v1"),

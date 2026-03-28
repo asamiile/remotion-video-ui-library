@@ -41,6 +41,10 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
     animationMode,
     pulsePeriodFrames,
     breathePeriodFrames,
+    blinkPeriodFrames,
+    blinkDutyRatio,
+    blinkDimOpacity,
+    blinkGlowOffMul,
     flickerStrength,
     randomSeed,
     fadeInDuration,
@@ -68,15 +72,40 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
   }, [activeFrame, fadeInDuration]);
 
   const flickerMul = useMemo(() => {
-    if (flickerStrength <= 0) {
+    if (animationMode === "blink" || flickerStrength <= 0) {
       return 1;
     }
     const j = random(`${randomSeed}-n-${frame}`);
     return 1 - flickerStrength * j;
-  }, [flickerStrength, randomSeed, frame]);
+  }, [animationMode, flickerStrength, randomSeed, frame]);
+
+  const blinkState = useMemo(() => {
+    if (animationMode !== "blink" || activeFrame < 0) {
+      return { opacityMul: 1, glowMul: 1 };
+    }
+    const period = Math.max(10, blinkPeriodFrames);
+    const t = activeFrame % period;
+    const onFrames = Math.round(period * blinkDutyRatio);
+    const clampedOn = Math.min(Math.max(1, onFrames), period - 1);
+    const isOn = t < clampedOn;
+    return {
+      opacityMul: isOn ? 1 : blinkDimOpacity,
+      glowMul: isOn ? 1 : blinkGlowOffMul,
+    };
+  }, [
+    animationMode,
+    activeFrame,
+    blinkPeriodFrames,
+    blinkDutyRatio,
+    blinkDimOpacity,
+    blinkGlowOffMul,
+  ]);
 
   const pulseScale = useMemo(() => {
     if (activeFrame < 0) {
+      return 1;
+    }
+    if (animationMode === "blink") {
       return 1;
     }
     if (animationMode === "pulse") {
@@ -99,10 +128,17 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
     breathePeriodFrames,
   ]);
 
+  const shadowPulseScale = pulseScale * blinkState.glowMul;
+
   const textShadow = useMemo(
     () =>
-      buildNeonTextShadow(glowColor, haloColor, shadowStrength, pulseScale),
-    [glowColor, haloColor, shadowStrength, pulseScale],
+      buildNeonTextShadow(
+        glowColor,
+        haloColor,
+        shadowStrength,
+        shadowPulseScale,
+      ),
+    [glowColor, haloColor, shadowStrength, shadowPulseScale],
   );
 
   const labelStyle: React.CSSProperties = {
@@ -121,7 +157,7 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
     whiteSpace: "nowrap",
   };
 
-  const mountOpacity = fadeIn * flickerMul;
+  const mountOpacity = fadeIn * flickerMul * blinkState.opacityMul;
 
   return (
     <AbsoluteFill style={{ backgroundColor }}>
