@@ -27,6 +27,9 @@ import { slideInCaptionV1DurationFrames } from "./SlideInCaption/SlideInCaption-
 import { GlitchTextTemplateV1 } from "./GlitchText/GlitchText-v1/GlitchTextTemplate";
 import { glitchTextSchemaV1 } from "./GlitchText/GlitchText-v1/glitch-text-schema";
 import { glitchTextV1DurationFrames } from "./GlitchText/GlitchText-v1/glitch-text-config";
+import { WireTextTemplateV1 } from "./WireText/WireText-v1/WireTextTemplate";
+import { wireTextSchemaV1 } from "./WireText/WireText-v1/wire-text-schema";
+import { wireTextV1DurationFrames } from "./WireText/WireText-v1/wire-text-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -36,6 +39,7 @@ import {
   mergedMapLocationPointsV1,
   mergedNeonTextV1Patterns,
   mergedSlideInCaptionV1Patterns,
+  mergedWireTextV1Patterns,
 } from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
 
@@ -233,6 +237,23 @@ export const RemotionRoot: React.FC = () => {
             fps={FPS}
             durationInFrames={glitchTextV1DurationFrames}
             schema={glitchTextSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
+
+      {/* ワイヤー輪郭トレース（パス・トリミング） */}
+      {Object.entries(mergedWireTextV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`WireTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={WireTextTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={wireTextV1DurationFrames}
+            schema={wireTextSchemaV1}
             defaultProps={patternProps}
           />
         ),
