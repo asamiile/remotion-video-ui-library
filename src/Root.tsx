@@ -24,8 +24,12 @@ import { neonTextSchemaV1 } from "./NeonText/NeonText-v1/neon-text-schema";
 import { SlideInCaptionTemplateV1 } from "./SlideInCaption/SlideInCaption-v1/SlideInCaptionTemplate";
 import { slideInCaptionSchemaV1 } from "./SlideInCaption/SlideInCaption-v1/slide-in-caption-schema";
 import { slideInCaptionV1DurationFrames } from "./SlideInCaption/SlideInCaption-v1/slide-in-caption-config";
+import { GlitchTextTemplateV1 } from "./GlitchText/GlitchText-v1/GlitchTextTemplate";
+import { glitchTextSchemaV1 } from "./GlitchText/GlitchText-v1/glitch-text-schema";
+import { glitchTextV1DurationFrames } from "./GlitchText/GlitchText-v1/glitch-text-config";
 import {
   mergedDefaultIntroV1Props,
+  mergedGlitchTextV1Patterns,
   mergedLedTextV1Patterns,
   mergedLoadingIconV1Patterns,
   mergedLocationConfigsV1,
@@ -212,6 +216,23 @@ export const RemotionRoot: React.FC = () => {
             fps={FPS}
             durationInFrames={slideInCaptionV1DurationFrames}
             schema={slideInCaptionSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
+
+      {/* グリッチテキスト（テスター / 信号イメージ） */}
+      {Object.entries(mergedGlitchTextV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`GlitchTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={GlitchTextTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={glitchTextV1DurationFrames}
+            schema={glitchTextSchemaV1}
             defaultProps={patternProps}
           />
         ),

@@ -21,6 +21,10 @@
     "arduinoOrange": { "text": "2025/06/19 サンプル（オレンジ）" },
     "arduinoGreen": { "text": "2025/06/19 サンプル（グリーン）" }
   },
+  "glitchTextV1Patterns": {
+    "measuring": { "text": "測定中（サンプル）" },
+    "meterReadout": { "text": "測定中  —  0.00 V SAMPLE" }
+  },
   "loadingIconV1Patterns": {
     "defaultWithText": { "text": "読み込み中（サンプル）…" },
     "largeWithText": { "text": "読み込み中（サンプル）…" },
