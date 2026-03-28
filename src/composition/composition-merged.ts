@@ -1,6 +1,7 @@
 import { defaultIntroV1Props } from "../Intro/Intro-v1/intro-config";
 import { ledTextV1Patterns } from "../LedText/LedText-v1/led-text-config";
 import { neonTextV1Patterns } from "../NeonText/NeonText-v1/neon-text-config";
+import { slideInCaptionV1Patterns } from "../SlideInCaption/SlideInCaption-v1/slide-in-caption-config";
 import { loadingIconV1Patterns } from "../LoadingIcon/LoadingIcon-v1/loading-icon-config";
 import {
   buildLocationConfigsFromCompositionKeys,
@@ -27,6 +28,11 @@ export const mergedNeonTextV1Patterns = shallowMergePatternRecord(
   neonTextV1Patterns,
   local.neonTextV1Patterns,
 ) as typeof neonTextV1Patterns;
+
+export const mergedSlideInCaptionV1Patterns = shallowMergePatternRecord(
+  slideInCaptionV1Patterns,
+  local.slideInCaptionV1Patterns,
+) as typeof slideInCaptionV1Patterns;
 
 export const mergedLoadingIconV1Patterns = shallowMergePatternRecord(
   loadingIconV1Patterns,

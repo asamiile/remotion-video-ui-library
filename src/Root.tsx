@@ -21,6 +21,9 @@ import { LedTextTemplateV1 } from "./LedText/LedText-v1/LedTextTemplate";
 import { ledTextSchemaV1 } from "./LedText/LedText-v1/led-text-schema";
 import { NeonTextTemplateV1 } from "./NeonText/NeonText-v1/NeonTextTemplate";
 import { neonTextSchemaV1 } from "./NeonText/NeonText-v1/neon-text-schema";
+import { SlideInCaptionTemplateV1 } from "./SlideInCaption/SlideInCaption-v1/SlideInCaptionTemplate";
+import { slideInCaptionSchemaV1 } from "./SlideInCaption/SlideInCaption-v1/slide-in-caption-schema";
+import { slideInCaptionV1DurationFrames } from "./SlideInCaption/SlideInCaption-v1/slide-in-caption-config";
 import {
   mergedDefaultIntroV1Props,
   mergedLedTextV1Patterns,
@@ -28,6 +31,7 @@ import {
   mergedLocationConfigsV1,
   mergedMapLocationPointsV1,
   mergedNeonTextV1Patterns,
+  mergedSlideInCaptionV1Patterns,
 } from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
 
@@ -195,6 +199,23 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={patternProps}
         />
       ))}
+
+      {/* スライドイン＋マスク（左下キャプション） */}
+      {Object.entries(mergedSlideInCaptionV1Patterns).map(
+        ([patternId, patternProps]) => (
+          <Composition
+            key={patternId}
+            id={`SlideInCaptionV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
+            component={SlideInCaptionTemplateV1}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={slideInCaptionV1DurationFrames}
+            schema={slideInCaptionSchemaV1}
+            defaultProps={patternProps}
+          />
+        ),
+      )}
 
       {/* Intro コンポジション */}
       <Composition
