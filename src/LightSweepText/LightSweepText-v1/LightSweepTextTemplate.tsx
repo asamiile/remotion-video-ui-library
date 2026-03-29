@@ -8,10 +8,7 @@ import {
 } from "remotion";
 import { LightSweepTextSchemaV1Type } from "./light-sweep-text-schema";
 import "../../helpers/line-seed-jp";
-import {
-  resolveCompositionBackdropColor,
-  resolveCompositionVignetteOpacity,
-} from "../../helpers/transparent-composition-backdrop";
+import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 
 function pickSweepEasing(mode: LightSweepTextSchemaV1Type["sweepEasing"]) {
   if (mode === "linear") {
@@ -154,8 +151,10 @@ export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaV1Type> = (
     whiteSpace: "pre-line",
   };
 
-  const backdropColor = resolveCompositionBackdropColor(backgroundColor);
-  const vignette = resolveCompositionVignetteOpacity(vignetteOpacity);
+  const { backdropColor, vignette } = resolvedBackdropPair(
+    backgroundColor,
+    vignetteOpacity,
+  );
 
   return (
     <AbsoluteFill style={{ backgroundColor: backdropColor }}>

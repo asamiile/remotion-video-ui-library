@@ -10,10 +10,7 @@ import {
 import { NeonTextRainbowSchemaV1Type } from "./neon-text-rainbow-schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
-import {
-  resolveCompositionBackdropColor,
-  resolveCompositionVignetteOpacity,
-} from "../../helpers/transparent-composition-backdrop";
+import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 
 const VB_W = 1600;
 const CX = VB_W / 2;
@@ -213,8 +210,10 @@ export const NeonTextRainbowTemplateV1: React.FC<NeonTextRainbowSchemaV1Type> = 
   const showHalo = haloGlowBlur > 0 && haloOpacity > 0 && haloExtraWidth > 0;
   const showMainGlow = mainGlowBlur > 0;
 
-  const backdropColor = resolveCompositionBackdropColor(backgroundColor);
-  const vignette = resolveCompositionVignetteOpacity(vignetteOpacity);
+  const { backdropColor, vignette } = resolvedBackdropPair(
+    backgroundColor,
+    vignetteOpacity,
+  );
 
   return (
     <AbsoluteFill style={{ backgroundColor: backdropColor }}>

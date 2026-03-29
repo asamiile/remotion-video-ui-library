@@ -19,3 +19,14 @@ export function resolveCompositionVignetteOpacity(opacity: number): number {
   }
   return opacity;
 }
+
+/** Neon / Rainbow / LightSweep のように下敷き＋放射ビネットを併用するテンプレ向け */
+export function resolvedBackdropPair(
+  backgroundColor: string,
+  vignetteOpacity: number,
+): { backdropColor: string; vignette: number } {
+  return {
+    backdropColor: resolveCompositionBackdropColor(backgroundColor),
+    vignette: resolveCompositionVignetteOpacity(vignetteOpacity),
+  };
+}

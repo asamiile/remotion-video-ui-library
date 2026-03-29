@@ -95,23 +95,29 @@ echo -e "${YELLOW}🎬 Remotion Composition Rendering Script${NC}"
 echo "Output directory: $OUTPUT_DIR"
 echo ""
 
-# Intro コンポジションを書き出し
-render_intro() {
-  echo -e "${YELLOW}🎬 Rendering Intro composition...${NC}"
-  echo ""
-  echo -e "${YELLOW}→ Intro${NC}"
-  
-  npx remotion render src/index.ts "IntroV1" \
-    "$OUTPUT_DIR/Intro.mov" \
-    --concurrency=4 \
+# 1 本だけ ProRes 4444 書き出し（concurrency は第 3 引数、省略時は CONCURRENCY_TEXT_EFFECTS）
+render_one_prores_mov() {
+  local comp_id="$1"
+  local out_mov="$2"
+  local cc="${3:-$CONCURRENCY_TEXT_EFFECTS}"
+  npx remotion render src/index.ts "$comp_id" "$out_mov" \
+    --concurrency="$cc" \
     --network-timeout="$NETWORK_TIMEOUT" \
     --codec="$CODEC" \
     --prores-profile="$PRORES_PROFILE" \
     || {
-      echo -e "${RED}✗ Failed to render Intro${NC}"
+      echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
       return 1
     }
-  
+}
+
+# Intro コンポジションを書き出し
+render_intro() {
+  echo -e "${YELLOW}🎬 Rendering Intro composition...${NC}"
+  echo ""
+  echo -e "${YELLOW}→ IntroV1${NC}"
+
+  render_one_prores_mov "IntroV1" "$OUTPUT_DIR/Intro.mov" 4 || return 1
   echo -e "${GREEN}✓ Intro rendered${NC}"
   echo ""
   echo -e "${GREEN}✅ Intro composition rendered successfully!${NC}"
@@ -127,17 +133,8 @@ render_loadingicon() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    npx remotion render src/index.ts "$comp_id" \
-      "$OUTPUT_DIR/${comp_id}.mov" \
-      --concurrency="$CONCURRENCY_LOADINGICON" \
-      --network-timeout="$NETWORK_TIMEOUT" \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
-        return 1
-      }
-
+    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" "$CONCURRENCY_LOADINGICON" \
+      || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done < <(node "$SCRIPT_DIR/scripts/list-loading-icon-composition-ids.cjs")
 
@@ -153,16 +150,11 @@ render_location() {
     echo ""
     echo -e "${YELLOW}→ Location-${location}${NC}"
     
-    npx remotion render src/index.ts "LocationV1-${location}" \
+    render_one_prores_mov \
+      "LocationV1-${location}" \
       "$OUTPUT_DIR/LocationV1-${location}.mov" \
-      --concurrency="$CONCURRENCY_LOCATION" \
-      --network-timeout="$NETWORK_TIMEOUT" \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render Location-${location}${NC}"
-        return 1
-      }
+      "$CONCURRENCY_LOCATION" \
+      || return 1
     
     echo -e "${GREEN}✓ Location-${location} rendered${NC}"
   done
@@ -283,17 +275,8 @@ render_text_effects() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    npx remotion render src/index.ts "$comp_id" \
-      "$OUTPUT_DIR/${comp_id}.mov" \
-      --concurrency="$CONCURRENCY_TEXT_EFFECTS" \
-      --network-timeout="$NETWORK_TIMEOUT" \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
-        return 1
-      }
-
+    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+      || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done < <(node "$SCRIPT_DIR/scripts/list-text-v1-composition-ids.cjs")
 
@@ -310,17 +293,8 @@ render_text_effects_jp_samples() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    npx remotion render src/index.ts "$comp_id" \
-      "$OUTPUT_DIR/${comp_id}.mov" \
-      --concurrency="$CONCURRENCY_TEXT_EFFECTS" \
-      --network-timeout="$NETWORK_TIMEOUT" \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
-        return 1
-      }
-
+    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+      || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done
 
@@ -338,17 +312,8 @@ render_explicit_compositions() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    npx remotion render src/index.ts "$comp_id" \
-      "$OUTPUT_DIR/${comp_id}.mov" \
-      --concurrency="$CONCURRENCY_TEXT_EFFECTS" \
-      --network-timeout="$NETWORK_TIMEOUT" \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
-        return 1
-      }
-
+    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+      || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done
 
