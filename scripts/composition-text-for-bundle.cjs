@@ -104,15 +104,15 @@ function getLocationV1CompositionKeysForBundle(example, localOnly) {
   return Object.keys(example.locationV1 ?? {});
 }
 
-function readCompositionTextForBundle() {
+/**
+ * @param {string} root リポジトリルート（絶対パス）
+ */
+function readCompositionTextForBundleFromRoot(root) {
   const examplePath = path.join(
-    process.cwd(),
+    root,
     "config/local/composition-text.example.json",
   );
-  const localPath = path.join(
-    process.cwd(),
-    "config/local/composition-text.local.json",
-  );
+  const localPath = path.join(root, "config/local/composition-text.local.json");
   const example = readJsonIfExists(examplePath) ?? {};
   const localOnly = readJsonIfExists(localPath);
   const merged = localOnly
@@ -126,11 +126,18 @@ function readCompositionTextForBundle() {
       example,
       localOnly,
     ),
+    examplePath,
+    localPath,
   };
+}
+
+function readCompositionTextForBundle() {
+  return readCompositionTextForBundleFromRoot(process.cwd());
 }
 
 module.exports = {
   readCompositionTextForBundle,
+  readCompositionTextForBundleFromRoot,
   getLocationV1CompositionKeysForBundle,
   readJsonIfExists,
   deepMergeComposition,
