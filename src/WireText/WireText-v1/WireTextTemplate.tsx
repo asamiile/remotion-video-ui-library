@@ -8,6 +8,7 @@ import {
 } from "remotion";
 import { WireTextSchemaV1Type } from "./wire-text-schema";
 import "../../helpers/line-seed-jp";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const VB_W = 1600;
 /** GlitchText と同様に左下コンテナ内で文字列の左端から始まる */
@@ -204,7 +205,7 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
   const showGlow = wireGlowBlur > 0;
 
   return (
-    <AbsoluteFill style={{ backgroundColor }}>
+    <AbsoluteFill style={{ backgroundColor: resolveCompositionBackdropColor(backgroundColor) }}>
       <div
         style={{
           position: "absolute",

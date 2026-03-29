@@ -8,6 +8,10 @@ import {
 } from "remotion";
 import { NeonTextSchemaV1Type } from "./neon-text-schema";
 import "../../helpers/line-seed-jp";
+import {
+  resolveCompositionBackdropColor,
+  resolveCompositionVignetteOpacity,
+} from "../../helpers/transparent-composition-backdrop";
 
 function buildNeonTextShadow(
   glowColor: string,
@@ -184,14 +188,17 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
 
   const mountOpacity = fadeIn * flickerMul * blinkState.opacityMul;
 
+  const backdropColor = resolveCompositionBackdropColor(backgroundColor);
+  const vignette = resolveCompositionVignetteOpacity(vignetteOpacity);
+
   return (
-    <AbsoluteFill style={{ backgroundColor }}>
+    <AbsoluteFill style={{ backgroundColor: backdropColor }}>
       <div
         style={{
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
-          background: `radial-gradient(ellipse 68% 56% at 50% 48%, transparent 0%, rgba(0,0,0,${vignetteOpacity}) 100%)`,
+          background: `radial-gradient(ellipse 68% 56% at 50% 48%, transparent 0%, rgba(0,0,0,${vignette}) 100%)`,
         }}
       />
       <div

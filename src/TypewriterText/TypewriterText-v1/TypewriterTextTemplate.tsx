@@ -8,6 +8,7 @@ import {
 import { TypewriterTextSchemaV1Type } from "./typewriter-text-schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
   props,
@@ -102,7 +103,7 @@ export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
   };
 
   return (
-    <AbsoluteFill style={{ backgroundColor }}>
+    <AbsoluteFill style={{ backgroundColor: resolveCompositionBackdropColor(backgroundColor) }}>
       <div style={wrapStyle}>
         <p style={monoStyle}>
           <span>{visibleText}</span>

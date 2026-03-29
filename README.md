@@ -21,6 +21,7 @@ pnpm run dev
 
 ```console
 sh render.sh [サブコマンド]
+sh render.sh --transparent-bg NeonTextV1-LchikaOrangeJp   # 例: 下敷き色なし（透明）
 sh render.sh --with-canvas-bg AudioSpectrum   # 例: プレビュー背景を載せて書き出し
 ```
 
@@ -36,7 +37,8 @@ sh render.sh --with-canvas-bg AudioSpectrum   # 例: プレビュー背景を載
 
 | オプション | 説明 |
 |------------|------|
-| `--with-canvas-bg` | `REMOTION_CANVAS_BACKGROUND=1` 相当。[`composition-canvas-preview.ts`](./src/config/composition-canvas-preview.ts) の背景をレンダーにも反映。サブコマンドと併用可 |
+| `--transparent-bg` | `REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1`。Neon / Glitch 等テンプレの全画面 `backgroundColor` を `transparent` にし、放射ビネットもオフ（アルファの ProRes 向け）。`--with-canvas-bg` と併用可 |
+| `--with-canvas-bg` | 省略時は `render.sh` が `REMOTION_CANVAS_BACKGROUND=0` に固定（プレビュー背景を焼き込まない）。付けたときだけ [`composition-canvas-preview.ts`](./src/config/composition-canvas-preview.ts) の層をレンダーに反映。各コンポの `backgroundColor` とは別 |
 
 詳細は `render.sh` 先頭コメント。
 

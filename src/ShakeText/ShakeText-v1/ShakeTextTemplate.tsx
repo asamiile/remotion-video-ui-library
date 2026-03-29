@@ -10,6 +10,7 @@ import {
 import { ShakeTextSchemaV1Type } from "./shake-text-schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaV1Type> = (props) => {
   const frame = useCurrentFrame();
@@ -109,7 +110,7 @@ export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaV1Type> = (props) => {
   };
 
   return (
-    <AbsoluteFill style={{ backgroundColor }}>
+    <AbsoluteFill style={{ backgroundColor: resolveCompositionBackdropColor(backgroundColor) }}>
       <div
         style={{
           position: "absolute",
