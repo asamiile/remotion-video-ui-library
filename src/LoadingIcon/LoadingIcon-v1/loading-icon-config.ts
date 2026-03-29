@@ -11,7 +11,7 @@ export const defaultLoadingIconV1Props = {
   
   // テキスト設定
   showText: false,
-  text: "読み込みサンプル…",
+  text: "Loading (sample)…",
   textColor: "#DFE2D7",
   fontSize: 24,
   fontFamily: LINESEED_FONT,

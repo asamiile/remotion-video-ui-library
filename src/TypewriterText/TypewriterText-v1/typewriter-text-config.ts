@@ -10,13 +10,17 @@ const defaultTypewriterTextV1Props = {
   fontSize: 48,
   letterSpacing: "0.02em",
 
-  textColor: "#d8dee9",
-  cursorColor: "#58a6ff",
+  textColor: "#fff",
+  cursorColor: "#5045E6",
 
   typingStartFrame: 10,
   typingDurationFrames: 80,
 
   cursorChar: "|",
+  cursorGapEm: 0.26,
+  cursorHeightEm: 1.36,
+  cursorWidthEm: 0.088,
+  cursorVerticalAlignEm: -0.16,
   cursorBlinkPeriodFrames: 26,
   showCursorAfterComplete: true,
 

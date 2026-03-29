@@ -3,7 +3,7 @@ import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const glitchTextSchemaV1 = z.object({
-  text: z.string().default("測定中"),
+  text: z.string().default("MEASURING"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
   fontSize: z.number().min(16).max(160).default(48),

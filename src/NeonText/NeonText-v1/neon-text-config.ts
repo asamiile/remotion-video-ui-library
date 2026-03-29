@@ -6,10 +6,13 @@ export const defaultNeonTextV1Props = {
   fontWeight: "700" as const,
   fontSize: 48,
   letterSpacing: "0.14em",
+  lineHeight: 1.2,
 
   coreColor: "#fff5fb",
   glowColor: "#ff3ec9",
   haloColor: "#7c3aed",
+
+  neonFillMode: "solid" as const,
 
   tubeStrokeColor: "rgba(12, 0, 28, 0.5)",
   tubeStrokeWidth: 1.2,
@@ -36,6 +39,28 @@ export const defaultNeonTextV1Props = {
 
   backgroundColor: "#06060c",
   vignetteOpacity: 0.52,
+};
+
+/** Arduino D13 / L LED（オレンジ点滅）— lchikaOrange / lchikaOrangeJp 共通 */
+const lchikaOrangeBase = {
+  ...defaultNeonTextV1Props,
+  fontFamily: LINE_SEED_JP_FONT_FAMILY,
+  fontSize: 48,
+  coreColor: "#fff5e8",
+  glowColor: "#ffbf00",
+  haloColor: "#c2410c",
+  tubeStrokeColor: "rgba(0, 48, 52, 0.58)",
+  tubeStrokeWidth: 1.4,
+  animationMode: "blink" as const,
+  blinkPeriodFrames: 48,
+  blinkDutyRatio: 0.5,
+  blinkDimOpacity: 0.05,
+  blinkGlowOffMul: 0.1,
+  flickerStrength: 0,
+  shadowStrength: 1.15,
+  pulsePeriodFrames: 80,
+  backgroundColor: "#05484c",
+  vignetteOpacity: 0.48,
 };
 
 export const neonTextV1Patterns = {
@@ -73,9 +98,53 @@ export const neonTextV1Patterns = {
     shadowStrength: 1.15,
   },
 
+  /** pinkPulse の日本語版 */
+  pinkPulseJp: {
+    ...defaultNeonTextV1Props,
+    text: "サンプル オープン",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    animationMode: "pulse" as const,
+    glowColor: "#ff4bd4",
+    haloColor: "#a855f7",
+    letterSpacing: "0.12em",
+    randomSeed: "neon-pink-jp",
+  },
+
+  /** cyanFlicker の日本語版 */
+  cyanFlickerJp: {
+    ...defaultNeonTextV1Props,
+    text: "クール",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    coreColor: "#e8ffff",
+    glowColor: "#22d3ee",
+    haloColor: "#38bdf8",
+    tubeStrokeColor: "rgba(0, 40, 60, 0.55)",
+    animationMode: "flicker" as const,
+    flickerStrength: 0.18,
+    pulsePeriodFrames: 72,
+    letterSpacing: "0.12em",
+    randomSeed: "neon-cyan-jp",
+  },
+
+  /** greenBreathe の日本語版 */
+  greenBreatheJp: {
+    ...defaultNeonTextV1Props,
+    text: "サンプル バー",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    coreColor: "#eefff0",
+    glowColor: "#4ade80",
+    haloColor: "#16a34a",
+    tubeStrokeColor: "rgba(0, 28, 12, 0.5)",
+    animationMode: "breathe" as const,
+    breathePeriodFrames: 160,
+    shadowStrength: 1.15,
+    letterSpacing: "0.1em",
+    randomSeed: "neon-green-jp",
+  },
+
   jpStatic: {
     ...defaultNeonTextV1Props,
-    text: "ネオンサンプル",
+    text: "NEON SAMPLE",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,
     animationMode: "static" as const,
@@ -91,27 +160,18 @@ export const neonTextV1Patterns = {
    * Composition: NeonTextV1-LchikaOrange
    */
   lchikaOrange: {
-    ...defaultNeonTextV1Props,
-    text: "Lチカ",
-    fontFamily: LINE_SEED_JP_FONT_FAMILY,
-    fontSize: 48,
+    ...lchikaOrangeBase,
+    text: "L BLINK",
     letterSpacing: "0.22em",
-    coreColor: "#fff5e8",
-    glowColor: "#ffbf00",
-    haloColor: "#c2410c",
-    tubeStrokeColor: "rgba(0, 48, 52, 0.58)",
-    tubeStrokeWidth: 1.4,
-    animationMode: "blink" as const,
-    blinkPeriodFrames: 48,
-    blinkDutyRatio: 0.5,
-    blinkDimOpacity: 0.05,
-    blinkGlowOffMul: 0.1,
-    flickerStrength: 0,
-    shadowStrength: 1.15,
-    pulsePeriodFrames: 80,
     randomSeed: "neon-lchika-orange",
-    backgroundColor: "#05484c",
-    vignetteOpacity: 0.48,
+  },
+
+  /** lchikaOrange と同一見た目・カタカナ「エルチカ」表記用 */
+  lchikaOrangeJp: {
+    ...lchikaOrangeBase,
+    text: "エルチカ",
+    letterSpacing: "0.2em",
+    randomSeed: "neon-lchika-orange-jp",
   },
 
   /**

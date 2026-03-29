@@ -41,10 +41,11 @@ export const wireTextV1Patterns = {
     wireGlowBlur: 2,
   },
 
-  /** 日本語タイトル */
-  japaneseTitle: {
+  /** trace の日本語版 */
+  traceJp: {
     ...defaultWireTextV1Props,
     text: "測定ライン",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,
     letterSpacing: "0.1em",
     drawDurationFrames: 96,
@@ -61,5 +62,18 @@ export const wireTextV1Patterns = {
     fillEnabled: false,
     wireGlowBlur: 1.5,
     strokeWidth: 2.8,
+  },
+
+  /** outlineOnly の日本語版 */
+  outlineOnlyJp: {
+    ...defaultWireTextV1Props,
+    text: "輪郭のみ",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    fontSize: 48,
+    letterSpacing: "0.1em",
+    fillEnabled: false,
+    wireGlowBlur: 1.5,
+    strokeWidth: 2.8,
+    drawDurationFrames: 96,
   },
 };

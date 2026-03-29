@@ -1,17 +1,17 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 
-export const rainbowNeonTextSchemaV1 = z.object({
+export const neonTextRainbowSchemaV1 = z.object({
   text: z.string().default("NEON"),
-  fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
+  fontFamily: z.string().default(JETBRAINS_MONO_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
   fontSize: z.number().min(20).max(200).default(48),
   letterSpacing: z.string().default("0.08em"),
   lineHeight: z.number().min(1).max(2).default(1.15),
 
   /** 虹グラデが色相一周するまでのフレーム数（小さいほど速い循環） */
-  hueCycleFrames: z.number().min(18).default(120),
+  hueCycleFrames: z.number().min(18).default(72),
 
   /**
    * true: グラデが「青・緑」から「黄・赤系」へ徐々に移行する。
@@ -19,9 +19,9 @@ export const rainbowNeonTextSchemaV1 = z.object({
    */
   colorShiftEnabled: z.boolean().default(true),
   /** 移行が始まるフレーム（delay 後の相対フレーム） */
-  colorShiftStartFrame: z.number().min(0).default(72),
+  colorShiftStartFrame: z.number().min(0).default(48),
   /** 青緑→黄赤へ補間する長さ（フレーム）。0 なら開始フレームで一気に切り替え */
-  colorShiftDurationFrames: z.number().min(0).default(96),
+  colorShiftDurationFrames: z.number().min(0).default(48),
 
   /** メインのネオン管ストローク幅 */
   strokeWidth: z.number().min(0.5).max(24).default(5),
@@ -47,4 +47,4 @@ export const rainbowNeonTextSchemaV1 = z.object({
   vignetteOpacity: z.number().min(0).max(0.92).default(0.52),
 });
 
-export type RainbowNeonTextSchemaV1Type = z.infer<typeof rainbowNeonTextSchemaV1>;
+export type NeonTextRainbowSchemaV1Type = z.infer<typeof neonTextRainbowSchemaV1>;

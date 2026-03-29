@@ -7,6 +7,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { NeonTextSchemaV1Type } from "./neon-text-schema";
+import "../../helpers/line-seed-jp";
 
 function buildNeonTextShadow(
   glowColor: string,
@@ -32,9 +33,12 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
     fontWeight,
     fontSize,
     letterSpacing,
+    lineHeight,
     coreColor,
     glowColor,
     haloColor,
+    neonFillMode,
+    neonGradientStops,
     tubeStrokeColor,
     tubeStrokeWidth,
     shadowStrength,
@@ -130,15 +134,28 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
 
   const shadowPulseScale = pulseScale * blinkState.glowMul;
 
+  const useGradient =
+    neonFillMode === "gradient" &&
+    Array.isArray(neonGradientStops) &&
+    neonGradientStops.length >= 2;
+
+  const gradientCss = useGradient
+    ? `linear-gradient(to right, ${neonGradientStops!.join(", ")})`
+    : undefined;
+
+  const shadowGlowColor = useGradient ? neonGradientStops![0]! : glowColor;
+  const shadowHaloColor =
+    useGradient ? neonGradientStops![neonGradientStops!.length - 1]! : haloColor;
+
   const textShadow = useMemo(
     () =>
       buildNeonTextShadow(
-        glowColor,
-        haloColor,
+        shadowGlowColor,
+        shadowHaloColor,
         shadowStrength,
         shadowPulseScale,
       ),
-    [glowColor, haloColor, shadowStrength, shadowPulseScale],
+    [shadowGlowColor, shadowHaloColor, shadowStrength, shadowPulseScale],
   );
 
   const labelStyle: React.CSSProperties = {
@@ -148,8 +165,16 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
     fontWeight: fontWeight as string,
     fontSize,
     letterSpacing,
-    lineHeight: 1.15,
-    color: coreColor,
+    lineHeight,
+    ...(useGradient
+      ? {
+          backgroundImage: gradientCss,
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          color: "transparent",
+        }
+      : { color: coreColor }),
     WebkitTextStroke: `${tubeStrokeWidth}px ${tubeStrokeColor}`,
     paintOrder: "stroke fill",
     textShadow,
@@ -166,7 +191,7 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
-          background: `radial-gradient(ellipse 70% 55% at 50% 45%, transparent 0%, rgba(0,0,0,${vignetteOpacity}) 100%)`,
+          background: `radial-gradient(ellipse 68% 56% at 50% 48%, transparent 0%, rgba(0,0,0,${vignetteOpacity}) 100%)`,
         }}
       />
       <div
@@ -178,7 +203,15 @@ export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
           maxWidth: `${100 - paddingLeftPercent - 2}%`,
         }}
       >
-        <h1 style={labelStyle}>{text}</h1>
+        <div
+          style={{
+            position: "relative",
+            display: "inline-block",
+            isolation: "isolate",
+          }}
+        >
+          <h1 style={labelStyle}>{text}</h1>
+        </div>
       </div>
     </AbsoluteFill>
   );
