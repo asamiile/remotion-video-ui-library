@@ -11,6 +11,7 @@ import {
 import { ConfettiPopTextSchemaV1Type } from "./confetti-pop-text-schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const CONFETTI_PALETTE = [
   "#ff6b9d",
@@ -178,7 +179,7 @@ export const ConfettiPopTextTemplateV1: React.FC<ConfettiPopTextSchemaV1Type> = 
   };
 
   return (
-    <AbsoluteFill style={{ backgroundColor }}>
+    <AbsoluteFill style={{ backgroundColor: resolveCompositionBackdropColor(backgroundColor) }}>
       {flashOpacity > 0.005 ? (
         <div
           style={{

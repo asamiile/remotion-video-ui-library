@@ -8,6 +8,7 @@ import {
 } from "remotion";
 import { GlitchTextSchemaV1Type } from "./glitch-text-schema";
 import "../../helpers/line-seed-jp";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const GARBLE_POOL = "0123456789.-▯∞";
 
@@ -144,7 +145,7 @@ export const GlitchTextTemplateV1: React.FC<GlitchTextSchemaV1Type> = ({
   };
 
   return (
-    <AbsoluteFill style={{ backgroundColor }}>
+    <AbsoluteFill style={{ backgroundColor: resolveCompositionBackdropColor(backgroundColor) }}>
       <div
         style={{
           position: "absolute",
