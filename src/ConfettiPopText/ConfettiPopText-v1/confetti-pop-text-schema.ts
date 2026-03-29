@@ -1,11 +1,11 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 
 export const confettiPopTextSchemaV1 = z.object({
-  text: z.string().default("おめでとう！"),
+  text: z.string().default("Congratulations!"),
 
-  fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
+  fontFamily: z.string().default(JETBRAINS_MONO_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
   fontSize: z.number().min(28).max(120).default(48),
   letterSpacing: z.string().default("0.08em"),
@@ -24,7 +24,7 @@ export const confettiPopTextSchemaV1 = z.object({
   glowDurationFrames: z.number().min(0).default(26),
 
   /** 紙吹雪の数。0 で粒子のみオフ（フラッシュ・スプリング・グローはそのまま） */
-  particleCount: z.number().min(0).max(88).default(42),
+  particleCount: z.number().min(0).max(200).default(96),
   /** true で中心から円が広がる */
   showShockwaveRing: z.boolean().default(true),
 

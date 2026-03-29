@@ -46,8 +46,14 @@ Config.overrideWebpackConfig((currentConfig) => {
     ],
     enforce: "pre" as const,
   };
+  const canvasPreviewDefine = new webpack.DefinePlugin({
+    "process.env.REMOTION_CANVAS_BACKGROUND": JSON.stringify(
+      process.env.REMOTION_CANVAS_BACKGROUND ?? "0",
+    ),
+  });
   return {
     ...withTailwind,
+    plugins: [...(withTailwind.plugins ?? []), canvasPreviewDefine],
     module: {
       ...withTailwind.module,
       rules: [

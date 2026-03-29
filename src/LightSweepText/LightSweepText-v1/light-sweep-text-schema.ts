@@ -21,6 +21,11 @@ export const lightSweepTextSchemaV1 = z.object({
 
   /** ぼけ光の塊の幅（親テキスト幅に対する %） */
   sweepBandWidthPercent: z.number().min(12).max(88).default(44),
+  /**
+   * 光帯の傾き（deg）。負で左肩上がり（横移動と組み合わせて斜めスイープに見える）。
+   * 0 で従来どおり垂直な帯のみ。
+   */
+  sweepBandTiltDeg: z.number().min(-55).max(55).default(-20),
 
   /** 横切る光のぼかし（px）。大きいほど線が見えにくく拡散 */
   softGlowBlur: z.number().min(8).max(56).default(32),

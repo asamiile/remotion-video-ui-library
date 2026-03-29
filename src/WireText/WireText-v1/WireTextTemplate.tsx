@@ -10,10 +10,8 @@ import { WireTextSchemaV1Type } from "./wire-text-schema";
 import "../../helpers/line-seed-jp";
 
 const VB_W = 1600;
-const VB_H = 420;
 /** GlitchText と同様に左下コンテナ内で文字列の左端から始まる */
 const TX = 0;
-const CY = VB_H / 2;
 
 function estimateDashLength(
   lines: string[],
@@ -94,6 +92,20 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
   const lines = useMemo(() => text.split("\n"), [text]);
   const lineGapPx = svgFontSize * lineHeight;
   const startDy = -((lines.length - 1) / 2) * lineGapPx;
+
+  /**
+   * viewBox 高さを本文＋ストローク・グローにフィット（NeonTextRainbow と同趣旨）。
+   * 固定 420 だと meet 時に縦の余白やスケールが不自然になりやすい。
+   */
+  const { vbH, cy } = useMemo(() => {
+    const lineCount = Math.max(1, lines.length);
+    const lineBlock = lineCount * svgFontSize * lineHeight;
+    const pad =
+      strokeWidth + Math.min(36, 2.4 * wireGlowBlur);
+    const h = Math.ceil(lineBlock + pad);
+    const clamped = Math.min(520, Math.max(56, h));
+    return { vbH: clamped, cy: clamped / 2 };
+  }, [lines.length, svgFontSize, lineHeight, strokeWidth, wireGlowBlur]);
 
   const buildTspans = (keyPrefix: string) =>
     lines.map((line, i) => (
@@ -178,7 +190,7 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
 
   const textCommon: React.SVGTextElementAttributes<SVGTextElement> = {
     x: TX,
-    y: CY,
+    y: cy,
     textAnchor: "start",
     dominantBaseline: "middle",
     style: {
@@ -204,7 +216,7 @@ export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
         }}
       >
         <svg
-          viewBox={`0 0 ${VB_W} ${VB_H}`}
+          viewBox={`0 0 ${VB_W} ${vbH}`}
           preserveAspectRatio="xMidYMid meet"
           style={{
             display: "block",

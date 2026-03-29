@@ -3,7 +3,7 @@ import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 export const glitchTextV1DurationFrames = 360;
 
 export const defaultGlitchTextV1Props = {
-  text: "測定中",
+  text: "MEASURING",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
   fontSize: 48,
@@ -32,10 +32,10 @@ export const defaultGlitchTextV1Props = {
 };
 
 export const glitchTextV1Patterns = {
-  /** デジタルテスター「測定中」 */
+  /** デジタルテスター「測定中」相当（英語デフォルト） */
   measuring: {
     ...defaultGlitchTextV1Props,
-    text: "測定中",
+    text: "MEASURING",
     fontSize: 48,
     randomSeed: "glitch-measuring",
   },
@@ -43,7 +43,7 @@ export const glitchTextV1Patterns = {
   /** 数値読みがにじむイメージ */
   meterReadout: {
     ...defaultGlitchTextV1Props,
-    text: "測定中  —  12.48 V",
+    text: "READING  —  12.48 V",
     fontSize: 48,
     letterSpacing: "0.05em",
     strongGlitchProbability: 0.22,
@@ -61,5 +61,19 @@ export const glitchTextV1Patterns = {
     glitchSegmentFrames: 4,
     jitterPx: 3,
     randomSeed: "glitch-harsh",
+  },
+
+  /** harshSignal の日本語版 */
+  harshSignalJp: {
+    ...defaultGlitchTextV1Props,
+    text: "信号 不安定",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    fontSize: 48,
+    letterSpacing: "0.12em",
+    rgbOffsetMax: 12,
+    strongGlitchProbability: 0.32,
+    glitchSegmentFrames: 4,
+    jitterPx: 3,
+    randomSeed: "glitch-harsh-jp",
   },
 };

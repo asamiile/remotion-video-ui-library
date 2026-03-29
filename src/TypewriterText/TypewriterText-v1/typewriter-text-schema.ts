@@ -19,7 +19,16 @@ export const typewriterTextSchemaV1 = z.object({
   /** 全文が現れるまでのフレーム数 */
   typingDurationFrames: z.number().min(8).default(80),
 
+  /** 互換用（描画は縦バー。文字で出したい場合は将来拡張） */
   cursorChar: z.string().default("|"),
+  /** 本文右端とカーソルの間隔（em） */
+  cursorGapEm: z.number().min(0).max(1).default(0.26),
+  /** カーソル縦の長さ（1 = フォント 1em 相当） */
+  cursorHeightEm: z.number().min(0.85).max(2).default(1.36),
+  /** カーソル太さ（em。最小幅はテンプレで 2px） */
+  cursorWidthEm: z.number().min(0.02).max(0.25).default(0.088),
+  /** ベースライン調整（em、負でやや下げる） */
+  cursorVerticalAlignEm: z.number().min(-0.35).max(0.35).default(-0.16),
   /** 0 で点滅なし（常に表示） */
   cursorBlinkPeriodFrames: z.number().min(0).default(26),
   /** 全文表示後もカーソルを付ける */

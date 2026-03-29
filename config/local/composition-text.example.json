@@ -4,52 +4,6 @@
     "introTitle": "サンプルタイトル（例）",
     "introDescription": "こちらは composition-text のサンプル文言です。\nintro / パターン / 地点名は local で差し替えてください。"
   },
-  "ledTextV1Patterns": {
-    "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
-    "redScrollJp": { "text": "サンプル  ///  LED  ///  スクロール  ///  " }
-  },
-  "neonTextV1Patterns": {
-    "pinkPulse": { "text": "SAMPLE OPEN" },
-    "cyanFlicker": { "text": "SAMPLE NEON" },
-    "greenBreathe": { "text": "DEMO TEXT" },
-    "jpStatic": { "text": "ネオン表示サンプル" },
-    "lchikaOrange": { "text": "Lチカ · ORANGE" },
-    "lchikaGreen": { "text": "ON · GREEN" }
-  },
-  "slideInCaptionV1Patterns": {
-    "refWhite": { "text": "2025/06/19 サンプル · Arduino UNO" }
-  },
-  "glitchTextV1Patterns": {
-    "measuring": { "text": "測定中（サンプル）" },
-    "meterReadout": { "text": "測定中  —  0.00 V SAMPLE" }
-  },
-  "wireTextV1Patterns": {
-    "japaneseTitle": { "text": "ワイヤーサンプル" },
-    "trace": { "text": "HELLO WIRE" }
-  },
-  "rainbowNeonTextV1Patterns": {
-    "roundedTube": { "text": "虹ネオン・太管" }
-  },
-  "lightSweepTextV1Patterns": {
-    "complete": { "text": "処理完了（サンプル）" },
-    "rapid": { "text": "OK" }
-  },
-  "typewriterTextV1Patterns": {
-    "codeLine": { "text": "console.log('sample');" },
-    "jpComment": { "text": "// サンプル一行です" }
-  },
-  "shakeTextV1Patterns": {
-    "trial": { "text": "試行錯誤（サンプル）" },
-    "subtle": { "text": "微シェイクの例" }
-  },
-  "confettiPopTextV1Patterns": {
-    "richPop": { "text": "完成おめでとう（サンプル）" }
-  },
-  "loadingIconV1Patterns": {
-    "defaultWithText": { "text": "読み込み中（サンプル）…" },
-    "largeWithText": { "text": "読み込み中（サンプル）…" },
-    "customWithText": { "text": "読み込み中（サンプル）…" }
-  },
   "locationV1": {
     "SampleLocationA": { "locationName": "サンプル · 地点 A" },
     "SampleLocationB": { "locationName": "サンプル · 地点 B" }
@@ -65,5 +19,69 @@
       "latitude": 33.59135241138666,
       "longitude": 130.3994274097612
     }
+  },
+  "loadingIconV1Patterns": {
+    "defaultWithText": { "text": "Loading (sample)…" },
+    "largeWithText": { "text": "Loading (sample)…" },
+    "customWithText": { "text": "Loading (sample)…" }
+  },
+  "slideInCaptionV1Patterns": {
+    "refWhite": { "text": "2025/06/19 Electronics with Arduino UNO" },
+    "refWhiteJp": { "text": "サンプル キャプション" }
+  },
+  "neonTextV1Patterns": {
+    "pinkPulse": { "text": "SAMPLE OPEN" },
+    "cyanFlicker": { "text": "SAMPLE NEON" },
+    "greenBreathe": { "text": "DEMO TEXT" },
+    "pinkPulseJp": { "text": "サンプル オープン（例）" },
+    "cyanFlickerJp": { "text": "クール（例）" },
+    "greenBreatheJp": { "text": "サンプル バー（例）" },
+    "jpStatic": { "text": "NEON SAMPLE" },
+    "lchikaOrange": { "text": "L BLINK · ORANGE" },
+    "lchikaOrangeJp": { "text": "エルチカ（サンプル）" },
+    "lchikaGreen": { "text": "ON · GREEN" }
+  },
+  "glitchTextV1Patterns": {
+    "measuring": { "text": "MEASURING (sample)" },
+    "meterReadout": { "text": "READING  —  12.48 V SAMPLE" },
+    "harshSignal": { "text": "SIGNAL UNSTABLE（sample）" },
+    "harshSignalJp": { "text": "信号 不安定（サンプル）" }
+  },
+  "wireTextV1Patterns": {
+    "trace": { "text": "HELLO WIRE" },
+    "traceJp": { "text": "ワイヤーサンプル" },
+    "outlineOnly": { "text": "OUTLINE ONLY（サンプル）" },
+    "outlineOnlyJp": { "text": "輪郭のみ（サンプル）" }
+  },
+  "neonTextRainbowV1Patterns": {
+    "roundedTube": { "text": "TUBE NEON (sample)" },
+    "roundedTubeJp": { "text": "虹ネオン・太管（サンプル）" }
+  },
+  "lightSweepTextV1Patterns": {
+    "complete": { "text": "COMPLETE（サンプル）" },
+    "completeJp": { "text": "完了（サンプル）" },
+    "doneJp": { "text": "処理完了（サンプル）" },
+    "rapid": { "text": "OK" },
+    "rapidJp": { "text": "了解（サンプル）" }
+  },
+  "ledTextV1Patterns": {
+    "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
+    "redScrollJp": { "text": "サンプル  ///  LED  ///  スクロール  ///  " }
+  },
+  "typewriterTextV1Patterns": {
+    "codeLine": { "text": "console.log('sample');" },
+    "jpComment": { "text": "// サンプル一行です" }
+  },
+  "shakeTextV1Patterns": {
+    "trial": { "text": "Trial & error (sample)" },
+    "trialJp": { "text": "試行錯誤（サンプル）" },
+    "subtle": { "text": "Subtle shake (sample)" },
+    "subtleJp": { "text": "微シェイクの例" },
+    "intense": { "text": "RETRY · DEBUG (sample)" },
+    "intenseJp": { "text": "強めシェイク（日本語サンプル）" }
+  },
+  "confettiPopTextV1Patterns": {
+    "richPop": { "text": "Congrats! (sample)" },
+    "richPopJp": { "text": "完成おめでとう（サンプル）" }
   }
 }

@@ -4,7 +4,7 @@ import { neonTextV1Patterns } from "../NeonText/NeonText-v1/neon-text-config";
 import { slideInCaptionV1Patterns } from "../SlideInCaption/SlideInCaption-v1/slide-in-caption-config";
 import { glitchTextV1Patterns } from "../GlitchText/GlitchText-v1/glitch-text-config";
 import { wireTextV1Patterns } from "../WireText/WireText-v1/wire-text-config";
-import { rainbowNeonTextV1Patterns } from "../RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-config";
+import { neonTextRainbowV1Patterns } from "../NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-config";
 import { lightSweepTextV1Patterns } from "../LightSweepText/LightSweepText-v1/light-sweep-text-config";
 import { typewriterTextV1Patterns } from "../TypewriterText/TypewriterText-v1/typewriter-text-config";
 import { shakeTextV1Patterns } from "../ShakeText/ShakeText-v1/shake-text-config";
@@ -51,10 +51,10 @@ export const mergedWireTextV1Patterns = shallowMergePatternRecord(
   local.wireTextV1Patterns,
 ) as typeof wireTextV1Patterns;
 
-export const mergedRainbowNeonTextV1Patterns = shallowMergePatternRecord(
-  rainbowNeonTextV1Patterns,
-  local.rainbowNeonTextV1Patterns,
-) as typeof rainbowNeonTextV1Patterns;
+export const mergedNeonTextRainbowV1Patterns = shallowMergePatternRecord(
+  neonTextRainbowV1Patterns,
+  local.neonTextRainbowV1Patterns,
+) as typeof neonTextRainbowV1Patterns;
 
 export const mergedLightSweepTextV1Patterns = shallowMergePatternRecord(
   lightSweepTextV1Patterns,

@@ -1,7 +1,7 @@
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const defaultLedTextV1Props = {
-  text: "サンプル LED",
+  text: "SAMPLE LED",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
   fontSize: 48,

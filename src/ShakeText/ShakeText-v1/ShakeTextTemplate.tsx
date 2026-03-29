@@ -8,6 +8,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { ShakeTextSchemaV1Type } from "./shake-text-schema";
+import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 
 export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaV1Type> = (props) => {

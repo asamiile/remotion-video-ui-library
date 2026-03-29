@@ -30,9 +30,9 @@ import { glitchTextV1DurationFrames } from "./GlitchText/GlitchText-v1/glitch-te
 import { WireTextTemplateV1 } from "./WireText/WireText-v1/WireTextTemplate";
 import { wireTextSchemaV1 } from "./WireText/WireText-v1/wire-text-schema";
 import { wireTextV1DurationFrames } from "./WireText/WireText-v1/wire-text-config";
-import { RainbowNeonTextTemplateV1 } from "./RainbowNeonText/RainbowNeonText-v1/RainbowNeonTextTemplate";
-import { rainbowNeonTextSchemaV1 } from "./RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-schema";
-import { rainbowNeonTextV1DurationFrames } from "./RainbowNeonText/RainbowNeonText-v1/rainbow-neon-text-config";
+import { NeonTextRainbowTemplateV1 } from "./NeonTextRainbow/NeonTextRainbow-v1/NeonTextRainbowTemplate";
+import { neonTextRainbowSchemaV1 } from "./NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-schema";
+import { neonTextRainbowV1DurationFrames } from "./NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-config";
 import { LightSweepTextTemplateV1 } from "./LightSweepText/LightSweepText-v1/LightSweepTextTemplate";
 import { lightSweepTextSchemaV1 } from "./LightSweepText/LightSweepText-v1/light-sweep-text-schema";
 import { lightSweepTextV1DurationFrames } from "./LightSweepText/LightSweepText-v1/light-sweep-text-config";
@@ -54,7 +54,7 @@ import {
   mergedLocationConfigsV1,
   mergedMapLocationPointsV1,
   mergedNeonTextV1Patterns,
-  mergedRainbowNeonTextV1Patterns,
+  mergedNeonTextRainbowV1Patterns,
   mergedConfettiPopTextV1Patterns,
   mergedShakeTextV1Patterns,
   mergedSlideInCaptionV1Patterns,
@@ -62,13 +62,18 @@ import {
   mergedWireTextV1Patterns,
 } from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
+import { withCanvasPreview } from "./composition/with-canvas-preview";
+
+function capPattern(patternId: string) {
+  return patternId.charAt(0).toUpperCase() + patternId.slice(1);
+}
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
         id="MyComp"
-        component={MyComposition}
+        component={withCanvasPreview("MyComp", MyComposition)}
         durationInFrames={60}
         fps={30}
         width={1280}
@@ -78,7 +83,7 @@ export const RemotionRoot: React.FC = () => {
       {/* 仮置き画像 */}
       <Composition
         id="PlaceholderImageV1"
-        component={PlaceholderImageV1}
+        component={withCanvasPreview("PlaceholderImageV1", PlaceholderImageV1)}
         width={1920}
         height={1080}
         fps={FPS}
@@ -89,8 +94,11 @@ export const RemotionRoot: React.FC = () => {
       {Object.entries(mergedLoadingIconV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
-          id={`LoadingIconV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-          component={LoadingIconTemplateV1}
+          id={`LoadingIconV1-${capPattern(patternId)}`}
+          component={withCanvasPreview(
+            `LoadingIconV1-${capPattern(patternId)}`,
+            LoadingIconTemplateV1,
+          )}
           width={1920}
           height={1080}
           fps={FPS}
@@ -104,8 +112,11 @@ export const RemotionRoot: React.FC = () => {
       {Object.entries(audioSpectrumV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
-          id={`AudioSpectrumV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-          component={AudioSpectrumTemplateV1}
+          id={`AudioSpectrumV1-${capPattern(patternId)}`}
+          component={withCanvasPreview(
+            `AudioSpectrumV1-${capPattern(patternId)}`,
+            AudioSpectrumTemplateV1,
+          )}
           width={1920}
           height={1080}
           fps={FPS}
@@ -136,7 +147,10 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           key={audioFile.id}
           id={`AudioSpectrumV1-${audioFile.id}`}
-          component={AudioSpectrumTemplateV1}
+          component={withCanvasPreview(
+            `AudioSpectrumV1-${audioFile.id}`,
+            AudioSpectrumTemplateV1,
+          )}
           width={1920}
           height={1080}
           fps={FPS}
@@ -167,7 +181,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           key={location.id}
           id={`MiniMapV1-${location.id}`}
-          component={MiniMapTemplateV1}
+          component={withCanvasPreview(`MiniMapV1-${location.id}`, MiniMapTemplateV1)}
           width={1920}
           height={1080}
           fps={FPS}
@@ -185,7 +199,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           key={config.id}
           id={`LocationV1-${config.id}`}
-          component={LocationTemplateV1}
+          component={withCanvasPreview(`LocationV1-${config.id}`, LocationTemplateV1)}
           width={1920}
           height={1080}
           fps={FPS}
@@ -202,8 +216,11 @@ export const RemotionRoot: React.FC = () => {
       {Object.entries(mergedLedTextV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
-          id={`LedTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-          component={LedTextTemplateV1}
+          id={`LedTextV1-${capPattern(patternId)}`}
+          component={withCanvasPreview(
+            `LedTextV1-${capPattern(patternId)}`,
+            LedTextTemplateV1,
+          )}
           width={1920}
           height={1080}
           fps={FPS}
@@ -217,8 +234,11 @@ export const RemotionRoot: React.FC = () => {
       {Object.entries(mergedNeonTextV1Patterns).map(([patternId, patternProps]) => (
         <Composition
           key={patternId}
-          id={`NeonTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-          component={NeonTextTemplateV1}
+          id={`NeonTextV1-${capPattern(patternId)}`}
+          component={withCanvasPreview(
+            `NeonTextV1-${capPattern(patternId)}`,
+            NeonTextTemplateV1,
+          )}
           width={1920}
           height={1080}
           fps={FPS}
@@ -233,8 +253,11 @@ export const RemotionRoot: React.FC = () => {
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`SlideInCaptionV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={SlideInCaptionTemplateV1}
+            id={`SlideInCaptionV1-${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `SlideInCaptionV1-${capPattern(patternId)}`,
+              SlideInCaptionTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
@@ -250,8 +273,11 @@ export const RemotionRoot: React.FC = () => {
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`GlitchTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={GlitchTextTemplateV1}
+            id={`GlitchTextV1-${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `GlitchTextV1-${capPattern(patternId)}`,
+              GlitchTextTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
@@ -267,8 +293,11 @@ export const RemotionRoot: React.FC = () => {
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`WireTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={WireTextTemplateV1}
+            id={`WireTextV1-${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `WireTextV1-${capPattern(patternId)}`,
+              WireTextTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
@@ -280,17 +309,20 @@ export const RemotionRoot: React.FC = () => {
       )}
 
       {/* 虹色グラデ循環ネオン（チューブ） */}
-      {Object.entries(mergedRainbowNeonTextV1Patterns).map(
+      {Object.entries(mergedNeonTextRainbowV1Patterns).map(
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`RainbowNeonTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={RainbowNeonTextTemplateV1}
+            id={`NeonTextV1-Rainbow${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `NeonTextV1-Rainbow${capPattern(patternId)}`,
+              NeonTextRainbowTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
-            durationInFrames={rainbowNeonTextV1DurationFrames}
-            schema={rainbowNeonTextSchemaV1}
+            durationInFrames={neonTextRainbowV1DurationFrames}
+            schema={neonTextRainbowSchemaV1}
             defaultProps={patternProps}
           />
         ),
@@ -301,8 +333,11 @@ export const RemotionRoot: React.FC = () => {
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`LightSweepTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={LightSweepTextTemplateV1}
+            id={`LightSweepTextV1-${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `LightSweepTextV1-${capPattern(patternId)}`,
+              LightSweepTextTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
@@ -318,8 +353,11 @@ export const RemotionRoot: React.FC = () => {
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`TypewriterTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={TypewriterTextTemplateV1}
+            id={`TypewriterTextV1-${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `TypewriterTextV1-${capPattern(patternId)}`,
+              TypewriterTextTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
@@ -335,8 +373,11 @@ export const RemotionRoot: React.FC = () => {
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`ShakeTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={ShakeTextTemplateV1}
+            id={`ShakeTextV1-${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `ShakeTextV1-${capPattern(patternId)}`,
+              ShakeTextTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
@@ -352,8 +393,11 @@ export const RemotionRoot: React.FC = () => {
         ([patternId, patternProps]) => (
           <Composition
             key={patternId}
-            id={`ConfettiPopTextV1-${patternId.charAt(0).toUpperCase() + patternId.slice(1)}`}
-            component={ConfettiPopTextTemplateV1}
+            id={`ConfettiPopTextV1-${capPattern(patternId)}`}
+            component={withCanvasPreview(
+              `ConfettiPopTextV1-${capPattern(patternId)}`,
+              ConfettiPopTextTemplateV1,
+            )}
             width={1920}
             height={1080}
             fps={FPS}
@@ -367,7 +411,7 @@ export const RemotionRoot: React.FC = () => {
       {/* Intro コンポジション */}
       <Composition
         id="IntroV1"
-        component={IntroTemplateV1}
+        component={withCanvasPreview("IntroV1", IntroTemplateV1)}
         width={1920}
         height={1080}
         fps={FPS}

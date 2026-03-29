@@ -1,13 +1,12 @@
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const confettiPopTextV1DurationFrames = 210;
 
-const defaultConfettiPopTextV1Props = {
-  text: "おめでとう！",
-  fontFamily: LINE_SEED_JP_FONT_FAMILY,
+/** パターン共通（フォント・文言以外） */
+const confettiPopSharedV1 = {
   fontWeight: "700" as const,
   fontSize: 48,
-  letterSpacing: "0.08em",
   lineHeight: 1.2,
 
   textColor: "#fff8f0",
@@ -18,14 +17,12 @@ const defaultConfettiPopTextV1Props = {
 
   glowDurationFrames: 26,
 
-  particleCount: 42,
+  particleCount: 96,
   showShockwaveRing: true,
 
   particleLifeFrames: 100,
   particleSpread: 12,
   particleGravity: 0.42,
-
-  randomSeed: "confetti-pop-rich",
 
   fadeInDuration: 8,
   delayFrames: 0,
@@ -37,9 +34,21 @@ const defaultConfettiPopTextV1Props = {
 };
 
 export const confettiPopTextV1Patterns = {
-  /** フラッシュ・スプリング・紙吹雪・衝撃波リング */
+  /** 英字・JetBrains Mono */
   richPop: {
-    ...defaultConfettiPopTextV1Props,
+    ...confettiPopSharedV1,
+    text: "Congratulations!",
+    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+    letterSpacing: "0.06em",
+    randomSeed: "confetti-pop-rich-en",
+  },
+
+  /** 日本語・LINE Seed JP */
+  richPopJp: {
+    ...confettiPopSharedV1,
     text: "おめでとう！",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    letterSpacing: "0.08em",
+    randomSeed: "confetti-pop-rich-jp",
   },
 };

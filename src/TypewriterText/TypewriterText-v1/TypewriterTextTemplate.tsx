@@ -24,6 +24,10 @@ export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
     typingStartFrame,
     typingDurationFrames,
     cursorChar,
+    cursorGapEm,
+    cursorHeightEm,
+    cursorWidthEm,
+    cursorVerticalAlignEm,
     cursorBlinkPeriodFrames,
     showCursorAfterComplete,
     fadeInDuration,
@@ -86,14 +90,14 @@ export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
     textAlign: "left",
   };
 
-  const cursorStyle: React.CSSProperties = {
-    color: cursorColor,
-    /** LINE Seed は 400/700 のみロード。カーソルだけ 700 で確実にグリフを使う */
-    fontWeight: 700,
+  const cursorBarStyle: React.CSSProperties = {
     display: "inline-block",
-    transform: "scaleX(0.78)",
-    transformOrigin: "left 55%",
-    marginLeft: "0.03em",
+    width: `calc(max(2px, ${cursorWidthEm}em) + 2px)`,
+    height: `calc(${cursorHeightEm}em - 2px)`,
+    marginLeft: `${cursorGapEm}em`,
+    backgroundColor: cursorColor,
+    borderRadius: 2,
+    verticalAlign: `${cursorVerticalAlignEm}em`,
     userSelect: "none",
   };
 
@@ -102,7 +106,13 @@ export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
       <div style={wrapStyle}>
         <p style={monoStyle}>
           <span>{visibleText}</span>
-          {cursorVisible ? <span style={cursorStyle}>{cursorChar}</span> : null}
+          {cursorVisible ? (
+            <span
+              role="img"
+              aria-label={cursorChar}
+              style={cursorBarStyle}
+            />
+          ) : null}
         </p>
       </div>
     </AbsoluteFill>

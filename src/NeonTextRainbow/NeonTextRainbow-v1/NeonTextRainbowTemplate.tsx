@@ -7,13 +7,12 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { RainbowNeonTextSchemaV1Type } from "./rainbow-neon-text-schema";
+import { NeonTextRainbowSchemaV1Type } from "./neon-text-rainbow-schema";
+import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 
 const VB_W = 1600;
-const VB_H = 420;
 const CX = VB_W / 2;
-const CY = VB_H / 2;
 /** GlitchText と同様に左下コンテナ内で文字列の左端から始まる */
 const TX = 0;
 
@@ -63,7 +62,7 @@ const FULL_SPECTRUM_STOPS = [
   "#ff0080",
 ] as const;
 
-export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = (
+export const NeonTextRainbowTemplateV1: React.FC<NeonTextRainbowSchemaV1Type> = (
   props,
 ) => {
   const frame = useCurrentFrame();
@@ -107,6 +106,32 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
   const lines = useMemo(() => text.split("\n"), [text]);
   const lineGapPx = svgFontSize * lineHeight;
   const startDy = -((lines.length - 1) / 2) * lineGapPx;
+
+  /**
+   * viewBox 高さを本文＋縁・ハローにフィットさせる。
+   * 固定で 200/20 等にすると meet 時に SVG の画面高さが不自然（20px 級に潰れる等）になる。
+   */
+  const { vbH, cy } = useMemo(() => {
+    const lineCount = Math.max(1, lines.length);
+    const lineBlock = lineCount * svgFontSize * lineHeight;
+    const pad =
+      strokeWidth +
+      (haloExtraWidth > 0 ? haloExtraWidth * 0.45 : 0) +
+      innerStrokeWidth +
+      Math.min(36, 2.2 * mainGlowBlur + 1.4 * haloGlowBlur);
+    const h = Math.ceil(lineBlock + pad);
+    const clamped = Math.min(520, Math.max(56, h));
+    return { vbH: clamped, cy: clamped / 2 };
+  }, [
+    lines.length,
+    svgFontSize,
+    lineHeight,
+    strokeWidth,
+    haloExtraWidth,
+    innerStrokeWidth,
+    mainGlowBlur,
+    haloGlowBlur,
+  ]);
 
   const buildTspans = (keyPrefix: string) =>
     lines.map((line, i) => (
@@ -162,7 +187,7 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
 
   const textCommon: React.SVGTextElementAttributes<SVGTextElement> = {
     x: TX,
-    y: CY,
+    y: cy,
     textAnchor: "start",
     dominantBaseline: "middle",
     fill: "none",
@@ -178,9 +203,9 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
   const wide = VB_W;
   /** 基準は左上→右下の斜め（45°）。その後 rotate(angle) で中心回転 */
   const gx1 = CX - wide;
-  const gy1 = CY - wide;
+  const gy1 = cy - wide;
   const gx2 = CX + wide;
-  const gy2 = CY + wide;
+  const gy2 = cy + wide;
   const showHalo = haloGlowBlur > 0 && haloOpacity > 0 && haloExtraWidth > 0;
   const showMainGlow = mainGlowBlur > 0;
 
@@ -205,7 +230,7 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
         }}
       >
         <svg
-          viewBox={`0 0 ${VB_W} ${VB_H}`}
+          viewBox={`0 0 ${VB_W} ${vbH}`}
           preserveAspectRatio="xMidYMid meet"
           style={{
             display: "block",
@@ -223,7 +248,7 @@ export const RainbowNeonTextTemplateV1: React.FC<RainbowNeonTextSchemaV1Type> = 
               y1={gy1}
               x2={gx2}
               y2={gy2}
-              gradientTransform={`rotate(${angle} ${CX} ${CY})`}
+              gradientTransform={`rotate(${angle} ${CX} ${cy})`}
             >
               {gradientStops.map((s) => (
                 <stop key={s.offset} offset={s.offset} stopColor={s.stopColor} />

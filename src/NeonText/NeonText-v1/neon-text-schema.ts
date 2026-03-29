@@ -8,10 +8,20 @@ export const neonTextSchemaV1 = z.object({
   fontWeight: z.enum(["400", "700"]).default("700"),
   fontSize: z.number().min(24).max(220).default(48),
   letterSpacing: z.string().default("0.12em"),
+  /** LightSweep / Shake 等と揃えた行高（bottom 基準時の見え位置に効く） */
+  lineHeight: z.number().min(1).max(2).default(1.2),
 
   coreColor: zColor().default("#fff8f4"),
   glowColor: zColor().default("#ff2fd0"),
   haloColor: zColor().default("#9d4dff"),
+
+  /**
+   * gradient: 横方向 linear-gradient の塗り（添付のようなネオチューブ風）。
+   * solid のときは coreColor を使用。
+   */
+  neonFillMode: z.enum(["solid", "gradient"]).default("solid"),
+  /** gradient 時のストップ（左→右）。2〜8 色。未指定や不足時は solid にフォールバック */
+  neonGradientStops: z.array(zColor()).min(2).max(8).optional(),
 
   tubeStrokeColor: zColor().default("rgba(20, 0, 40, 0.45)"),
   tubeStrokeWidth: z.number().min(0).max(6).default(1),

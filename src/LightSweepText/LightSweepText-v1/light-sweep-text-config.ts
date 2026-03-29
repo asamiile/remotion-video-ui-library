@@ -10,14 +10,15 @@ const defaultLightSweepTextV1Props = {
   letterSpacing: "0.14em",
   lineHeight: 1.2,
 
-  baseTextColor: "#5ba3e8",
-  activeTextColor: "#d8ecff",
+  baseTextColor: "#5A85F3",
+  activeTextColor: "#F5FAFF",
 
   sweepStartFrame: 42,
   sweepDurationFrames: 14,
   sweepEasing: "easeOut" as const,
 
   sweepBandWidthPercent: 44,
+  sweepBandTiltDeg: -20,
   softGlowBlur: 32,
   softGlowOpacity: 0.52,
 
@@ -63,6 +64,32 @@ export const lightSweepTextV1Patterns = {
   rapid: {
     ...defaultLightSweepTextV1Props,
     text: "OK",
+    fontSize: 48,
+    sweepStartFrame: 36,
+    sweepDurationFrames: 9,
+    sweepEasing: "linear" as const,
+    sweepBandWidthPercent: 36,
+    softGlowBlur: 26,
+    softGlowOpacity: 0.48,
+  },
+
+  /** complete の日本語短文版 */
+  completeJp: {
+    ...defaultLightSweepTextV1Props,
+    text: "完了",
+    letterSpacing: "0.2em",
+    sweepStartFrame: 48,
+    sweepDurationFrames: 12,
+    sweepBandWidthPercent: 40,
+    softGlowBlur: 30,
+    softGlowOpacity: 0.5,
+  },
+
+  /** rapid の日本語短文版 */
+  rapidJp: {
+    ...defaultLightSweepTextV1Props,
+    text: "了解",
+    letterSpacing: "0.22em",
     fontSize: 48,
     sweepStartFrame: 36,
     sweepDurationFrames: 9,
