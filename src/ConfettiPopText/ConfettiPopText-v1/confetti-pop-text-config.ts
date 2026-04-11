@@ -1,7 +1,7 @@
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const confettiPopTextV1DurationFrames = 210;
+export const confettiPopTextV1DurationFrames = 600;
 
 /** パターン共通（フォント・文言以外） */
 const confettiPopSharedV1 = {

@@ -1,6 +1,6 @@
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const lightSweepTextV1DurationFrames = 210;
+export const lightSweepTextV1DurationFrames = 600;
 
 const defaultLightSweepTextV1Props = {
   text: "COMPLETE",
