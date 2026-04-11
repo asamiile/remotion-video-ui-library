@@ -1,7 +1,7 @@
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const shakeTextV1DurationFrames = 300;
+export const shakeTextV1DurationFrames = 600;
 
 /** 言語に依存しないパラメータ */
 const shakeTextSharedV1 = {
