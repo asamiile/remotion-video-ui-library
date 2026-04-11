@@ -2,6 +2,13 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const introSchemaV1 = z.object({
+  // シーン文言（サンプル）。上書きは config/local/composition-text.local.json
+  authorName: z.string().default("著者名プレビュー"),
+  introTitle: z.string().default("イントロタイトル（プレビュー）"),
+  introDescription: z
+    .string()
+    .default("説明文のプレビューです。\n改行を含められます。"),
+
   // 背景設定
   backgroundColor: zColor().default("#6B685C"),
   

@@ -1,16 +1,17 @@
 import React, { useMemo } from "react";
 import {
   AbsoluteFill,
-  useVideoConfig,
   useCurrentFrame,
   interpolate,
   Easing,
-  Sequence,
 } from "remotion";
 import { IntroSchemaV1Type } from "./intro-schema";
-import { introScenesV1 } from "./intro-config";
+import { IntroScene, introSceneTimingV1 } from "./intro-config";
 
 export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
+  authorName,
+  introTitle,
+  introDescription,
   backgroundColor,
   textColor,
   titleFontSize,
@@ -27,7 +28,21 @@ export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
   fadeOutDuration,
 }) => {
   const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
+
+  const introScenesV1: IntroScene[] = useMemo(
+    () => [
+      {
+        ...introSceneTimingV1[0],
+        centerText: introTitle,
+        bottomRightText: authorName,
+      },
+      {
+        ...introSceneTimingV1[1],
+        centerText: introDescription,
+      },
+    ],
+    [authorName, introTitle, introDescription],
+  );
 
   // シーンごとのレンダリング
   const renderScene = (sceneIndex: number) => {
@@ -51,13 +66,13 @@ export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
           easing: Easing.out(Easing.ease),
-        }
+        },
       );
     } else {
       // フェードアウト開始タイミング（秒指定）
       const fadeOutStartSeconds = scene.fadeOutStartSeconds ?? 8.5;
       const fadeOutStartProgress = (fadeOutStartSeconds * 30) / scene.duration;
-      
+
       if (sceneProgress > fadeOutStartProgress) {
         opacity = interpolate(
           sceneProgress,
@@ -67,7 +82,7 @@ export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
             easing: Easing.in(Easing.ease),
-          }
+          },
         );
       }
     }

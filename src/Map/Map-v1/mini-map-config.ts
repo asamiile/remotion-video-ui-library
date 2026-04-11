@@ -1,4 +1,4 @@
-// Mini Map用の地点設定
+// Mini Map 用の型とカメラ・UI デフォルト（地点ID・座標は composition-text の mapLocationPointsV1 で定義）
 export interface MapLocationPoint {
   id: string;
   name: string;
@@ -9,57 +9,18 @@ export interface MapLocationPoint {
   bearing?: number;
 }
 
-export const mapLocationPointsV1: MapLocationPoint[] = [
-  {
-    id: "TenjinBrickCross",
-    name: "天神ブリッククロス",
-    latitude: 33.59280493802063,
-    longitude: 130.40067973150843,
-  },
-  {
-    id: "OneFukuoka",
-    name: "ONE FUKUOKA BLDG",
-    latitude: 33.59135241138666,
-    longitude: 130.3994274097612,
-  },
-  {
-    id: "InabaConstruction",
-    name: "因幡町通り工事現場",
-    latitude: 33.59119047991814,
-    longitude: 130.40023221822273,
-  },
-  {
-    id: "TenjinBusinessCenter",
-    name: "天神ビジネスセンター",
-    latitude: 33.59150145919304,
-    longitude: 130.40061419235556,
-  },
-  {
-    id: "HurricSquare",
-    name: "ヒューリックスクエア福岡天神",
-    latitude: 33.59117379781744,
-    longitude: 130.39754663124276,
-  },
-  {
-    id: "DaimyoGardenCity",
-    name: "大名ガーデンシティ",
-    latitude: 33.59000266421397,
-    longitude: 130.39476381775071,
-  },
-];
-
 // デフォルトカメラ設定
 export const defaultMapCameraV1Config = {
   // 初期状态の値
   initialZoom: 4,
   initialPitch: 0,
   initialBearing: 0,
-  
+
   // アニメーション後の値
   targetZoom: 16,
   targetPitch: 0,
   targetBearing: 0,
-  
+
   cameraAnimationDuration: 120,
 };
 
@@ -73,7 +34,7 @@ export const mapboxMapV1Options = {
 
 // Mini Map デフォルトプロパティ
 export const defaultMiniMapV1Props = {
-  mapLocationId: "map-fukuoka-tenjin",
+  mapLocationId: "",
   width: 340,
   height: 340,
   positionX: 88,

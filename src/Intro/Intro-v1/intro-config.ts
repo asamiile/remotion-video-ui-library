@@ -2,10 +2,6 @@ import { msToFrame } from "../../helpers/ms-to-frame";
 // import { fontFamily as FONT_FAMILY_LINE_SEED } from "@remotion/google-fonts/LineSeedJP";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
 
-const AUTHOR_NAME = process.env.REMOTION_AUTHOR_NAME as string;
-const INTRO_TITLE = process.env.REMOTION_INTRO_TITLE as string;
-const INTRO_DESCRIPTION = (process.env.REMOTION_INTRO_DESCRIPTION as string).replace(/\\n/g, '\n');
-
 export interface IntroScene {
   id: string;
   centerText?: string;
@@ -13,31 +9,33 @@ export interface IntroScene {
   centerFontWeight?: "400" | "700";
   centerLineHeight?: number;
   bottomRightText?: string;
-  bottomRightFontSize?: number;  bottomRightBottom?: number;
+  bottomRightFontSize?: number;
+  bottomRightBottom?: number;
   bottomRightRight?: number;
   fadeOutStartSeconds?: number;
   duration: number;
 }
 
-export const introScenesV1: IntroScene[] = [
+/** シーンの尺・演出のみ。文言は IntroTemplate が props から合成する */
+export const introSceneTimingV1 = [
   {
     id: "scene1",
-    centerText: INTRO_TITLE,
-    centerFontWeight: "700",
-    bottomRightText: AUTHOR_NAME,
+    centerFontWeight: "700" as const,
     fadeOutStartSeconds: 6,
     duration: 300,
   },
   {
     id: "scene2",
-    centerText: INTRO_DESCRIPTION,
     fadeOutStartSeconds: 10,
     duration: 420,
   },
-];
+] as const;
 
 // デフォルトプロパティ
 export const defaultIntroV1Props = {
+  authorName: "著者名プレビュー",
+  introTitle: "イントロタイトル（プレビュー）",
+  introDescription: "説明文のプレビューです。\n改行を含められます。",
   backgroundColor: "#6B685C",
   textColor: "#DFE2D7",
   fontFamily: LINESEED_FONT,

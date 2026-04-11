@@ -5,10 +5,20 @@
  * All configuration options: https://remotion.dev/docs/config
  */
 
+import * as path from "node:path";
 import { Config } from "@remotion/cli/config";
-import { enableTailwind } from '@remotion/tailwind-v4';
+import { enableTailwind } from "@remotion/tailwind-v4";
 
-// Config.setVideoImageFormat("jpeg");
+// Remotion が remotion.config を CJS として読み込むため import.meta は使わない
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const nodeRequire: NodeRequire = require;
+
+const remotionCliRoot = path.dirname(
+  nodeRequire.resolve("@remotion/cli/package.json"),
+);
+const webpack = nodeRequire(
+  nodeRequire.resolve("webpack", { paths: [remotionCliRoot] }),
+) as typeof import("webpack");
 
 // Transparent background video export settings
 Config.setVideoImageFormat("png");
@@ -17,4 +27,42 @@ Config.setCodec("prores");
 Config.setProResProfile("4444");
 
 Config.setOverwriteOutput(true);
-Config.overrideWebpackConfig(enableTailwind);
+
+/**
+ * composition-text は `loaders/inject-composition-text.cjs` が各コンパイルで再読込する。
+ * （旧: remotion.config トップレベル + DefinePlugin だと Studio 起動後の local.json が反映されない）
+ */
+Config.overrideWebpackConfig((currentConfig) => {
+  const withTailwind = enableTailwind(currentConfig);
+  const compositionInjectRule = {
+    test: /inlined-composition-text\.ts$/,
+    use: [
+      {
+        loader: path.join(
+          process.cwd(),
+          "loaders/inject-composition-text.cjs",
+        ),
+      },
+    ],
+    enforce: "pre" as const,
+  };
+  const canvasPreviewDefine = new webpack.DefinePlugin({
+    "process.env.REMOTION_CANVAS_BACKGROUND": JSON.stringify(
+      process.env.REMOTION_CANVAS_BACKGROUND ?? "0",
+    ),
+    "process.env.REMOTION_TRANSPARENT_COMPOSITION_BACKDROP": JSON.stringify(
+      process.env.REMOTION_TRANSPARENT_COMPOSITION_BACKDROP ?? "0",
+    ),
+  });
+  return {
+    ...withTailwind,
+    plugins: [...(withTailwind.plugins ?? []), canvasPreviewDefine],
+    module: {
+      ...withTailwind.module,
+      rules: [
+        compositionInjectRule,
+        ...(withTailwind.module?.rules ?? []),
+      ],
+    },
+  };
+});

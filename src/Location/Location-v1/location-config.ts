@@ -1,34 +1,7 @@
-// 地名設定の配列
+// 地名テンプレの共通デフォルト（地点ID・表示名は composition-text の locationV1 で定義）
 import { msToFrame } from "../../helpers/ms-to-frame";
 // import { fontFamily as FONT_FAMILY_LINE_SEED } from "@remotion/google-fonts/LineSeedJP";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
-
-export const locationConfigsV1 = [
-  {
-    id: "TenjinBrickCross",
-    locationName: "天神ブリッククロス",
-  },
-  {
-    id: "OneFukuoka",
-    locationName: "ONE FUKUOKA BLDG",
-  },
-  {
-    id: "InabaConstruction",
-    locationName: "因幡町通り工事現場",
-  },
-  {
-    id: "TenjinBusinessCenter",
-    locationName: "天神ビジネスセンター",
-  },
-  {
-    id: "HurricSquare",
-    locationName: "ヒューリックスクエア福岡天神",
-  },
-  {
-    id: "DaimyoGardenCity",
-    locationName: "大名ガーデンシティ",
-  },
-];
 
 // 共通のデフォルトプロパティ
 export const defaultLocationV1Props = {
