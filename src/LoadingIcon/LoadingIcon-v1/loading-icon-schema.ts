@@ -10,7 +10,7 @@ export const loadingIconSchemaV1 = z.object({
   
   // テキスト設定
   showText: z.boolean().default(true),
-  text: z.string().default("Loading..."),
+  text: z.string().default("読み込みサンプル…"),
   textColor: zColor().default("#DFE2D7"),
   fontSize: z.number().min(10).max(60).default(18),
   fontFamily: z.string().default("'Line Seed JP_100'"),

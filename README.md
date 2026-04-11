@@ -1,35 +1,46 @@
-# Remotion video
+# Remotion Video UI Library
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
 
-Welcome to your Remotion project!
+Remotion ベースの動画 UI ライブラリです。
 
-## Commands
+## コマンド
 
 **Install Dependencies**
 
 ```console
-npm i
+pnpm i
 ```
 
-**Start Preview**
+**Start Preview**（Remotion Studio）
 
 ```console
-npm run dev
+pnpm run dev
 ```
 
-**Render video**
+**Render video** 
 
 ```console
-npx remotion render
+sh render.sh [サブコマンド]
+sh render.sh --transparent-bg NeonTextV1-LchikaOrangeJp   # 例: 下敷き色なし（透明）
+sh render.sh --with-canvas-bg AudioSpectrum   # 例: プレビュー背景を載せて書き出し
 ```
+
+| サブコマンド（バッチ） | 内容 |
+|--------------|------|
+| `Intro` | `IntroV1` → `Intro.mov` |
+| `LoadingIcon` | 全パターン（Default … CustomWithText など） |
+| `Location` | 地点一覧は `composition-text` と `scripts/list-location-v1-composition-ids.cjs` に同期 |
+| `MiniMap` | 各地点（**WebGL** 要・`--gl=angle`） |
+| `AudioSpectrum` | Simple / Detailed（pattern、`--mute-audio`） |
+| `AudioSpectrumFiles` | `public/audio/AudioSpectrum/` 内ファイルごと |
+| `all` | 上記を順に実行（**既定**） |
+
+| オプション | 説明 |
+|------------|------|
+| `--transparent-bg` | `REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1`。Neon / Glitch 等テンプレの全画面 `backgroundColor` を `transparent` にし、放射ビネットもオフ（アルファの ProRes 向け）。`--with-canvas-bg` と併用可 |
+| `--with-canvas-bg` | 省略時は `render.sh` が `REMOTION_CANVAS_BACKGROUND=0` に固定（プレビュー背景を焼き込まない）。付けたときだけ [`composition-canvas-preview.ts`](./src/config/composition-canvas-preview.ts) の層をレンダーに反映。各コンポの `backgroundColor` とは別 |
+
+詳細は `render.sh` 先頭コメント。
 
 **Upgrade Remotion**
 
@@ -37,18 +48,10 @@ npx remotion render
 npx remotion upgrade
 ```
 
-## Docs
+## Author
 
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
+[Asami.K](https://asami.tokyo/)
 
-## Help
+## Licence
 
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+[MIT](https://opensource.org/licenses/MIT)

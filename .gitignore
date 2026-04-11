@@ -1,7 +1,9 @@
 node_modules
 dist
+build
 .DS_Store
 .env
+config/local/*.local.json
 
 # Ignore the output video from Git but not videos you import into src/.
 out
