@@ -7,21 +7,14 @@
 # composition-text.local.json の *Patterns は Runtime で defaultProps を上書きするだけで、
 # 新しいコンポジション ID を増やすには *-config.ts と Root.tsx の登録が必要（JSON だけでは増えない）。
 #
-# 使用方法:
-#   chmod +x render.sh
-#   ./render.sh                  # すべてのコンポジションを書き出し（デフォルト）
-#   ./render.sh Intro            # Intro コンポジションを書き出し
-#   ./render.sh LoadingIcon      # LoadingIcon コンポジションを書き出し
-#   ./render.sh Location         # Location コンポジションを書き出し
-#   ./render.sh MiniMap          # MiniMap コンポジションを書き出し（WebGL required）
-#   ./render.sh AudioSpectrum    # AudioSpectrum パターンを書き出し
-#   ./render.sh AudioSpectrumFi  # AudioSpectrum（オーディオファイル別）を書き出し
-#   ./render.sh TextEffects      # LED / ネオン / グリッチ等のテキスト系パターンを一括書き出し
-#   ./render.sh TextEffectsJp    # 日本語サンプル代表 9 本だけ（下記 TEXT_EFFECTS_JP_SAMPLE_IDS）
-#   ./render.sh --transparent-bg NeonTextV1-…  # 各コンポの全画面下敷きを透明（アルファ書き出し向け）
-#   ./render.sh --with-canvas-bg AudioSpectrum  # プレビュー用キャンバス背景付き（環境変数と同効果）
-#   ./render.sh NeonTextV1-LchikaOrangeJp   # コンポジション ID を直接（複数可）
-#   ./render.sh all              # すべてのコンポジションを書き出し
+# 使用方法: chmod +x render.sh のうえ ./render.sh help を参照
+# （サブコマンド一覧はそこが正。ここで二重管理しない）。
+#
+# よく使う例:
+#   ./render.sh                                # すべて書き出し（デフォルト）
+#   ./render.sh OneTake                        # OneTakeのオンボーディング用コンポジションを書き出し
+#   ./render.sh NeonTextV1-LchikaOrangeJp      # コンポジション ID を直接指定（複数可）
+#   ./render.sh --transparent-bg NeonTextV1-…  # 全画面下敷きを透明化して書き出し（アルファ向け）
 
 set -e  # エラー時に停止
 
@@ -32,6 +25,7 @@ OUTPUT_DIR="$SCRIPT_DIR/out"
 CONCURRENCY_LOADINGICON=4
 CONCURRENCY_LOCATION=4
 CONCURRENCY_MINIMAP=2
+CONCURRENCY_AUDIOSPECTRUM=2
 CONCURRENCY_TEXT_EFFECTS=4
 NETWORK_TIMEOUT=60000
 CODEC="prores"
@@ -85,6 +79,14 @@ TEXT_EFFECTS_JP_SAMPLE_IDS=(
   "ConfettiPopTextV1-RichPopJp"
 )
 
+# OneTake（スマホ+PC連携アプリ）のオンボーディング用モーショングラフィック。
+# パターン展開ではなく固定の2本のみのため、他のテキスト系のような AST 列挙スクリプトは持たず、
+# Root.tsx の <Folder name="OneTake"> と同じIDをここで直接管理する（増えたらここに追加）。
+ONETAKE_COMPOSITION_IDS=(
+  "OneTake-OnboardingConnectV1"
+  "OneTake-OnboardingOperateV1"
+)
+
 # 色出力用
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -95,16 +97,24 @@ echo -e "${YELLOW}🎬 Remotion Composition Rendering Script${NC}"
 echo "Output directory: $OUTPUT_DIR"
 echo ""
 
-# 1 本だけ ProRes 4444 書き出し（concurrency は第 3 引数、省略時は CONCURRENCY_TEXT_EFFECTS）
+# 1 本だけ ProRes 4444 書き出し。
+# 引数: comp_id, out_mov, [concurrency=$CONCURRENCY_TEXT_EFFECTS], [network_timeout=$NETWORK_TIMEOUT], [追加フラグ...]
+# render_minimap（--gl=angle・長めのtimeout）や render_audiospectrum*（--mute-audio）は
+# ここに追加フラグを渡すだけで済ませ、CODEC/PRORES_PROFILE の書き出し設定を一箇所に集約する。
 render_one_prores_mov() {
   local comp_id="$1"
   local out_mov="$2"
   local cc="${3:-$CONCURRENCY_TEXT_EFFECTS}"
+  local timeout="${4:-$NETWORK_TIMEOUT}"
+  local shift_n=4
+  [ "$#" -lt "$shift_n" ] && shift_n="$#"
+  shift "$shift_n"
   npx remotion render src/index.ts "$comp_id" "$out_mov" \
     --concurrency="$cc" \
-    --network-timeout="$NETWORK_TIMEOUT" \
+    --network-timeout="$timeout" \
     --codec="$CODEC" \
     --prores-profile="$PRORES_PROFILE" \
+    "$@" \
     || {
       echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
       return 1
@@ -121,6 +131,24 @@ render_intro() {
   echo -e "${GREEN}✓ Intro rendered${NC}"
   echo ""
   echo -e "${GREEN}✅ Intro composition rendered successfully!${NC}"
+}
+
+# OneTake コンポジションを書き出し（ID は ONETAKE_COMPOSITION_IDS 参照）
+render_onetake() {
+  echo -e "${YELLOW}📱 Rendering OneTake compositions...${NC}"
+
+  local comp_id
+  for comp_id in "${ONETAKE_COMPOSITION_IDS[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+
+    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+      || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+
+  echo ""
+  echo -e "${GREEN}✅ All OneTake compositions rendered successfully!${NC}"
 }
 
 # LoadingIcon コンポジションを書き出し（ID は scripts/list-loading-icon-composition-ids.cjs が loading-icon-config.ts から列挙）
@@ -163,32 +191,40 @@ render_location() {
   echo -e "${GREEN}✅ All Location compositions rendered successfully!${NC}"
 }
 
-# MiniMap コンポジションを書き出し
+# MiniMap コンポジションを書き出し。対象地点は scripts/list-minimap-v1-composition-ids.cjs
+# （locationV1 全件ではなく、緯度経度が揃っている地点だけ — 揃っていない地点は
+# そもそも Root.tsx にコンポジションが登録されないため、$LOCATIONS をそのまま使うと
+# 「存在しないコンポジションを render しようとして失敗する」ことがある）
 render_minimap() {
   echo -e "${YELLOW}🗺️  Rendering MiniMap compositions (WebGL required - local only)...${NC}"
   echo -e "${YELLOW}⚠️  Note: WebGL may not work in all environments${NC}"
   echo ""
-  
-  for location in "${LOCATIONS[@]}"; do
+
+  local location has_any=0
+  while IFS= read -r location || [ -n "$location" ]; do
+    [ -z "$location" ] && continue
+    has_any=1
     echo ""
     echo -e "${YELLOW}→ MiniMap-${location}${NC}"
-    
-    npx remotion render src/index.ts "MiniMapV1-${location}" \
+
+    if ! render_one_prores_mov \
+      "MiniMapV1-${location}" \
       "$OUTPUT_DIR/MiniMapV1-${location}.mov" \
-      --concurrency="$CONCURRENCY_MINIMAP" \
-      --network-timeout=120000 \
-      --gl=angle \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render MiniMap-${location}${NC}"
-        echo -e "${YELLOW}💡 This is expected if WebGL is not available${NC}"
-        return 1
-      }
-    
+      "$CONCURRENCY_MINIMAP" \
+      120000 \
+      --gl=angle; then
+      echo -e "${YELLOW}💡 This is expected if WebGL is not available${NC}"
+      return 1
+    fi
+
     echo -e "${GREEN}✓ MiniMap-${location} rendered${NC}"
-  done
-  
+  done < <(node "$SCRIPT_DIR/scripts/list-minimap-v1-composition-ids.cjs")
+
+  if [ "$has_any" -eq 0 ]; then
+    echo -e "${YELLOW}⚠️  No locations have latitude/longitude set in mapLocationPointsV1 — nothing to render${NC}"
+    return 0
+  fi
+
   echo ""
   echo -e "${GREEN}✅ All MiniMap compositions rendered successfully!${NC}"
 }
@@ -206,17 +242,9 @@ render_audiospectrum() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    npx remotion render src/index.ts "$comp_id" \
-      "$OUTPUT_DIR/audio-spectrum-${suffix}.mov" \
-      --concurrency=2 \
-      --network-timeout="$NETWORK_TIMEOUT" \
-      --mute-audio \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
-        return 1
-      }
+    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/audio-spectrum-${suffix}.mov" \
+      "$CONCURRENCY_AUDIOSPECTRUM" "$NETWORK_TIMEOUT" --mute-audio \
+      || return 1
 
     echo -e "${GREEN}✓ audio-spectrum-${suffix}.mov rendered${NC}"
   done < <(node "$SCRIPT_DIR/scripts/list-audiospectrum-pattern-composition-ids.cjs")
@@ -241,16 +269,9 @@ render_audiospectrum_files() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    npx remotion render src/index.ts "$comp_id" \
-      "$OUTPUT_DIR/audio-spectrum-${suffix}.mov" \
-      --concurrency=2 \
-      --network-timeout="$NETWORK_TIMEOUT" \
-      --codec="$CODEC" \
-      --prores-profile="$PRORES_PROFILE" \
-      || {
-        echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
-        return 1
-      }
+    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/audio-spectrum-${suffix}.mov" \
+      "$CONCURRENCY_AUDIOSPECTRUM" "$NETWORK_TIMEOUT" \
+      || return 1
 
     echo -e "${GREEN}✓ audio-spectrum-${suffix}.mov rendered${NC}"
     file_count=$((file_count + 1))
@@ -348,6 +369,9 @@ main() {
     TextEffectsJp|texteffectsjp|jp-text-effects|text-effects-jp)
       render_text_effects_jp_samples
       ;;
+    OneTake|onetake)
+      render_onetake
+      ;;
     all)
       render_intro
       render_loadingicon
@@ -356,6 +380,7 @@ main() {
       render_audiospectrum
       render_audiospectrum_files
       render_text_effects
+      render_onetake
       ;;
     help|-h|--help)
       echo "Usage: $0 [--with-canvas-bg] [--transparent-bg] [Intro|…|all|<CompositionId>…]"
@@ -370,6 +395,7 @@ main() {
       echo "  AudioSpectrumFiles Render all AudioSpectrum compositions (audio files)"
       echo "  TextEffects        Render Led/Neon/Glitch/Wire/… pattern compositions"
       echo "  TextEffectsJp      Render fixed JP sample set (see TEXT_EFFECTS_JP_SAMPLE_IDS)"
+      echo "  OneTake            Render OneTake onboarding motion-graphic compositions"
       echo "  all                Render all compositions (default)"
       echo "  <CompositionId>    e.g. NeonTextV1-LchikaOrangeJp (複数並べ可; Studio の ID と一致)"
       exit 0
