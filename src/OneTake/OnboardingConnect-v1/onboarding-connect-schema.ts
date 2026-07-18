@@ -7,12 +7,11 @@ export const onboardingConnectSchemaV1 = z.object({
   backgroundColor: zColor().default("#060810"),
   vignetteOpacity: z.number().min(0).max(0.85).default(0.45),
 
-  /** Wi-Fiパルスが往復する「接続前」フェーズの長さ（フレーム数） */
-  pulsePhaseFrames: z.number().min(30).default(60),
-  /** 1回のパルスが端から端まで到達するのにかかるフレーム数 */
+  /** 双方向パルスが1往復するフレーム数（アプリ埋め込み時にシームレスループする前提のため、
+   *  コンポジション全体の尺はこの整数倍にすること） */
   pulsePeriodFrames: z.number().min(10).default(45),
-
-  fadeInDuration: z.number().min(0).default(15),
+  /** 1ループ中に一度だけ「ネオン管が点灯する」フリッカー演出が起きるフレーム位置 */
+  flickerTriggerFrame: z.number().min(0).default(6),
 });
 
 export type OnboardingConnectSchemaV1Type = z.infer<

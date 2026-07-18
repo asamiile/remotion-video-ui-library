@@ -9,11 +9,11 @@ export const APP_SURFACE = "#10131F";
 export const APP_SURFACE_ELEVATED = "#171B2D";
 export const APP_BORDER = "#242A42";
 
-const PHONE_WIDTH = 220;
-const PHONE_HEIGHT = 440;
-const LAPTOP_SCREEN_WIDTH = 440;
-const LAPTOP_SCREEN_HEIGHT = 280;
-const NEON_BORDER_WIDTH = 6;
+export const PHONE_WIDTH = 320;
+export const PHONE_HEIGHT = 640;
+export const LAPTOP_SCREEN_WIDTH = 640;
+export const LAPTOP_SCREEN_HEIGHT = 400;
+const NEON_BORDER_WIDTH = 8;
 
 /**
  * `NeonTextTemplate`の`buildNeonTextShadow`と同じ「コア＋複数ハロー」の考え方を
@@ -56,11 +56,11 @@ export function PhoneFrame({
         style={{
           position: "absolute",
           left: "50%",
-          top: 22,
+          top: 32,
           transform: "translateX(-50%)",
-          width: 44,
-          height: 6,
-          borderRadius: 3,
+          width: 64,
+          height: 8,
+          borderRadius: 4,
           background: color,
           boxShadow: `0 0 10px ${color}`,
         }}
@@ -97,14 +97,14 @@ export function LaptopFrame({
         }}
       >
         {/* ウィンドウ然としたUIに見せるための最小限のシャドウバー装飾 */}
-        <div style={{ position: "absolute", left: 18, top: 16, display: "flex", gap: 7 }}>
+        <div style={{ position: "absolute", left: 26, top: 22, display: "flex", gap: 10 }}>
           {[0, 1, 2].map((i) => (
             <div
               key={i}
               style={{
-                width: 9,
-                height: 9,
-                borderRadius: 5,
+                width: 13,
+                height: 13,
+                borderRadius: 7,
                 background: APP_BORDER,
               }}
             />

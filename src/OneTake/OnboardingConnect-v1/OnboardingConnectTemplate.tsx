@@ -1,23 +1,24 @@
 import React, { useMemo } from "react";
-import {
-  AbsoluteFill,
-  interpolate,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { OnboardingConnectSchemaV1Type } from "./onboarding-connect-schema";
 import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 import { CTA_FLICKER_CYCLE_MS, ctaFlickerAt } from "../onetake-flicker";
 import {
   APP_BORDER,
   LaptopFrame,
+  PHONE_WIDTH,
   PhoneFrame,
   neonBoxShadow,
 } from "../onetake-device-chrome";
 
+const PHONE_LEFT = 300;
+const PHONE_TOP = 220;
+const LAPTOP_LEFT = 1140;
+const LAPTOP_TOP = 340;
+
 /** スマホとPC、それぞれのシルエットの間の「Wi-Fiギャップ」座標（キャンバス 1920x1080 基準） */
-const GAP_LEFT_X = 780;
-const GAP_RIGHT_X = 1140;
+const GAP_LEFT_X = PHONE_LEFT + PHONE_WIDTH + 40;
+const GAP_RIGHT_X = LAPTOP_LEFT - 40;
 const GAP_Y = 540;
 /** 片方向あたりのパルス数（スマホ→PC、PC→スマホをそれぞれ独立に走らせる） */
 const PULSE_COUNT_PER_DIRECTION = 2;
@@ -32,7 +33,6 @@ function buildPulseTrain({
   reverse,
   color,
   size,
-  opacityMul,
   phaseOffset = 0,
 }: {
   frame: number;
@@ -41,7 +41,6 @@ function buildPulseTrain({
   reverse: boolean;
   color: string;
   size: number;
-  opacityMul: number;
   phaseOffset?: number;
 }): Pulse[] {
   return Array.from({ length: count }, (_, i) => {
@@ -51,7 +50,7 @@ function buildPulseTrain({
       ? GAP_RIGHT_X - t * (GAP_RIGHT_X - GAP_LEFT_X)
       : GAP_LEFT_X + t * (GAP_RIGHT_X - GAP_LEFT_X);
     const edgeFade = Math.sin(t * Math.PI); // 端でフェードイン・アウト
-    return { x, opacity: edgeFade * opacityMul, color, size };
+    return { x, opacity: edgeFade, color, size };
   });
 }
 
@@ -61,12 +60,12 @@ function PhoneTrackRowAccents({ color }: { color: string }) {
     <div
       style={{
         position: "absolute",
-        left: 26,
-        right: 26,
-        bottom: 40,
+        left: 38,
+        right: 38,
+        bottom: 58,
         display: "flex",
         flexDirection: "column",
-        gap: 16,
+        gap: 24,
       }}
     >
       {[true, false].map((armed, i) => (
@@ -80,17 +79,17 @@ function PhoneTrackRowAccents({ color }: { color: string }) {
         >
           <div
             style={{
-              width: 76,
-              height: 8,
-              borderRadius: 4,
+              width: 110,
+              height: 12,
+              borderRadius: 6,
               background: APP_BORDER,
             }}
           />
           <div
             style={{
-              width: 36,
-              height: 21,
-              borderRadius: 11,
+              width: 52,
+              height: 30,
+              borderRadius: 15,
               background: armed ? color : APP_BORDER,
               boxShadow: armed ? neonBoxShadow(color, 0.35) : undefined,
             }}
@@ -101,6 +100,16 @@ function PhoneTrackRowAccents({ color }: { color: string }) {
   );
 }
 
+/**
+ * スマホ+PCが常時つながっている状態をループ表示するための演出。
+ * アプリ側（expo-video）で`loop=true`再生する前提のため、フェードイン等
+ * 「一度きり」の要素は持たせず、frameの周期性だけで成立するようにしている:
+ * - 双方向パルスは`pulsePeriodFrames`の剰余で位置を決めるため、尺がその整数倍なら
+ *   ループ境界（最終フレーム→先頭フレーム）で見た目が完全に一致する。
+ * - フリッカーは`flickerTriggerFrame`前後だけの一時的な演出だが、発火前
+ *   （`frame < flickerTriggerFrame`）と発火後十分経過した状態は両方とも
+ *   「常時点灯」で同じ見た目になるため、ループ境界をまたいでも破綻しない。
+ */
 export const OnboardingConnectTemplateV1: React.FC<
   OnboardingConnectSchemaV1Type
 > = ({
@@ -108,52 +117,21 @@ export const OnboardingConnectTemplateV1: React.FC<
   laptopColor,
   backgroundColor,
   vignetteOpacity,
-  pulsePhaseFrames,
   pulsePeriodFrames,
-  fadeInDuration,
+  flickerTriggerFrame,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const sceneOpacity = interpolate(frame, [0, fadeInDuration], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // パルス（接続前）→ 常時点灯ライン（接続後）への切り替わりを10フレームでクロスフェード
-  const pulseOpacityMul = interpolate(
-    frame,
-    [pulsePhaseFrames - 10, pulsePhaseFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
-
-  const elapsedSinceResolveMs =
-    frame < pulsePhaseFrames
+  const elapsedSinceFlickerMs =
+    frame < flickerTriggerFrame
       ? -1
       : Math.min(
-          ((frame - pulsePhaseFrames) / fps) * 1000,
+          ((frame - flickerTriggerFrame) / fps) * 1000,
           CTA_FLICKER_CYCLE_MS,
         );
-  const flicker = ctaFlickerAt(elapsedSinceResolveMs);
-  const lineOpacityMul = 1 - pulseOpacityMul;
-  const lineOpacity = lineOpacityMul * flicker.opacity;
+  const flicker = ctaFlickerAt(elapsedSinceFlickerMs);
 
-  // フリッカーが収まりきってから、常時同期パルスをフェードインさせる
-  // （点灯演出の途中に重ねると視覚的にうるさくなるため）
-  const ambientPulseMul =
-    frame < pulsePhaseFrames
-      ? 0
-      : interpolate(
-          elapsedSinceResolveMs,
-          [CTA_FLICKER_CYCLE_MS - 200, CTA_FLICKER_CYCLE_MS],
-          [0, 1],
-          { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-        );
-
-  // 双方向であることを表現: スマホ→PC（cyan）とPC→スマホ（violet）のパルスを
-  // すれ違わせる。接続後も、ラインに沿ってパルスを流し続け「今も同期し続けて
-  // いる」ことを示す（接続完了＝通信が止まる、ではないことが伝わるように）。
   const pulses = useMemo(() => {
     const outbound = buildPulseTrain({
       frame,
@@ -161,8 +139,7 @@ export const OnboardingConnectTemplateV1: React.FC<
       periodFrames: pulsePeriodFrames,
       reverse: false,
       color: phoneColor,
-      size: 24,
-      opacityMul: pulseOpacityMul,
+      size: 18,
     });
     const inbound = buildPulseTrain({
       frame,
@@ -170,34 +147,13 @@ export const OnboardingConnectTemplateV1: React.FC<
       periodFrames: pulsePeriodFrames,
       reverse: true,
       color: laptopColor,
-      size: 24,
-      opacityMul: pulseOpacityMul,
+      size: 18,
       phaseOffset: pulsePeriodFrames / (PULSE_COUNT_PER_DIRECTION * 2),
     });
-    const ambientOutbound = buildPulseTrain({
-      frame,
-      count: PULSE_COUNT_PER_DIRECTION,
-      periodFrames: pulsePeriodFrames,
-      reverse: false,
-      color: phoneColor,
-      size: 18,
-      opacityMul: ambientPulseMul,
-    });
-    const ambientInbound = buildPulseTrain({
-      frame,
-      count: PULSE_COUNT_PER_DIRECTION,
-      periodFrames: pulsePeriodFrames,
-      reverse: true,
-      color: laptopColor,
-      size: 18,
-      opacityMul: ambientPulseMul,
-      phaseOffset: pulsePeriodFrames / (PULSE_COUNT_PER_DIRECTION * 2),
-    });
-    return [...outbound, ...inbound, ...ambientOutbound, ...ambientInbound];
-  }, [frame, pulseOpacityMul, ambientPulseMul, pulsePeriodFrames, phoneColor, laptopColor]);
+    return [...outbound, ...inbound];
+  }, [frame, pulsePeriodFrames, phoneColor, laptopColor]);
 
-  // 接続後はデバイス自体のグローも一段強くする（点灯フリッカーに合わせて底上げ）
-  const deviceGlowStrength = 1 + lineOpacityMul * 0.6 * flicker.brightness;
+  const deviceGlowStrength = 1 + (flicker.brightness - 1) * 0.5;
 
   const { backdropColor, vignette } = resolvedBackdropPair(
     backgroundColor,
@@ -205,9 +161,7 @@ export const OnboardingConnectTemplateV1: React.FC<
   );
 
   return (
-    <AbsoluteFill
-      style={{ backgroundColor: backdropColor, opacity: sceneOpacity }}
-    >
+    <AbsoluteFill style={{ backgroundColor: backdropColor }}>
       <div
         style={{
           position: "absolute",
@@ -217,12 +171,12 @@ export const OnboardingConnectTemplateV1: React.FC<
         }}
       />
 
-      <div style={{ position: "absolute", left: 520, top: 300 }}>
+      <div style={{ position: "absolute", left: PHONE_LEFT, top: PHONE_TOP }}>
         <PhoneFrame color={phoneColor} glowStrength={deviceGlowStrength}>
           <PhoneTrackRowAccents color={phoneColor} />
         </PhoneFrame>
       </div>
-      <div style={{ position: "absolute", left: 1160, top: 340 }}>
+      <div style={{ position: "absolute", left: LAPTOP_LEFT, top: LAPTOP_TOP }}>
         <LaptopFrame color={laptopColor} glowStrength={deviceGlowStrength} />
       </div>
 
@@ -252,7 +206,7 @@ export const OnboardingConnectTemplateV1: React.FC<
           height: 8,
           borderRadius: 4,
           background: `linear-gradient(90deg, ${phoneColor}, ${laptopColor})`,
-          opacity: lineOpacity,
+          opacity: flicker.opacity,
           filter: `brightness(${flicker.brightness})`,
           boxShadow: [
             neonBoxShadow(phoneColor, flicker.brightness * 0.6),
