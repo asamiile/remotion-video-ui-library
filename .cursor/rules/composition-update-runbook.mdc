@@ -28,13 +28,16 @@ alwaysApply: false
 4. **`src/Root.tsx`** で `Object.entries(merged*Patterns).map` により `<Composition>V1-*` を登録（`withCanvasPreview` / 尺 / schema / defaultProps）。
 5. **`config/local/composition-text.example.json`** に `*Patterns` ブロックを追加。
 6. **バッチ書き出し用**: `scripts/list-text-v1-composition-ids.cjs` の `families` に `{ idPrefix, file, exportName, join? }` を追加（Rainbow 相当なら `join: ""`）。
-7. `render.sh` に個別サブコマンドが必要なら追加（省略可能／`all` は既存の `render_text_effects` 等で吸収）。
+7. **`render.sh` への配線を省略しない**: `render_<family>()` 関数を追加し、`main()` の `case` と `all` の両方に必ず配線する（個別サブコマンドの追加自体は任意だが、`all` から書き出せない状態のまま放置しない）。パターン数が少なく固定リストで足りる場合は、AST 列挙スクリプトを新設せず `TEXT_EFFECTS_JP_SAMPLE_IDS` や `ONETAKE_COMPOSITION_IDS` のように `render.sh` 内の配列で管理してよい。
+   - **実例**: OneTake の2コンポジションを追加した際にこの手順を省略し、`render.sh`のどのサブコマンドからも書き出せない状態で気づかれず残っていた。
+   - 地点・座標のように「登録条件で絞り込まれる」ファミリー（例: MiniMap は `mapLocationPointsV1` に緯度経度が揃っている地点だけ）を追加・変更する場合、列挙スクリプトは `Root.tsx` の実際の登録条件と必ず一致させる。他ファミリーの列挙結果（例: `Location` 用の全地点リスト）を流用すると、存在しないコンポジションIDを render しようとして失敗する。
+   - **実例**: `render_minimap` が `render_location` と同じ地点リストを使い回していたため、緯度経度未設定の地点に対して `Error: Could not find composition with ID ...` で失敗していた（`scripts/list-minimap-v1-composition-ids.cjs` を新設して修正）。
 
 ## C. 地点（Location / MiniMap）
 
 1. **`composition-text.example.json`**（コミット用）およびユーザー側 **`composition-text.local.json`** の **`locationV1`** に地点 ID と `locationName`。
 2. **MiniMap 用**は同一 ID を **`mapLocationPointsV1`** に緯度経度などで定義。揃っている ID だけが `mergedMapLocationPointsV1` に載る。
-3. **`render.sh` の Location / MiniMap** は `scripts/list-location-v1-composition-ids.cjs` が `locationV1` キーを列挙（local 優先・仕様はスクリプト先頭コメント参照）。
+3. **`render.sh` の Location** は `scripts/list-location-v1-composition-ids.cjs` が `locationV1` キーを列挙（local 優先・仕様はスクリプト先頭コメント参照）。**MiniMap** は同じキー列を使い回さず `scripts/list-minimap-v1-composition-ids.cjs`（緯度経度が揃っている地点だけに絞り込み済み）を使う。
 
 ## D. LoadingIcon / AudioSpectrum（render 列挙）
 
@@ -60,6 +63,7 @@ node scripts/list-loading-icon-composition-ids.cjs
 node scripts/list-audiospectrum-pattern-composition-ids.cjs
 node scripts/list-audiospectrum-file-composition-ids.cjs
 node scripts/list-location-v1-composition-ids.cjs
+node scripts/list-minimap-v1-composition-ids.cjs
 ./render.sh TextEffects
 ./render.sh TextEffectsJp   # *Jp 代表サンプル固定リスト（render.sh 内 TEXT_EFFECTS_JP_SAMPLE_IDS）
 ./render.sh NeonTextV1-LchikaOrangeJp   # サブコマンド以外はコンポジション ID として順にレンダー（複数可）
@@ -75,6 +79,6 @@ node scripts/list-location-v1-composition-ids.cjs
 | マージ・地点キー | `src/composition/composition-merged.ts`, `merge-composition-local.ts` |
 | 型（JSON） | `src/composition/composition-text-local.ts` |
 | ビルド注入 | `remotion.config.ts` |
-| render 注記 | `render.sh` 先頭コメント |
+| render 注記・サブコマンド一覧の正 | `render.sh help`（`render.sh` 冒頭コメントは短い例のみで二重管理しない） |
 | local を触らないルール | `.cursor/rules/composition-text-local.mdc` |
 | config/local 概要 | `.cursor/skills/config-local-layout/SKILL.md` |
