@@ -35,6 +35,11 @@ const prefixLayers: { prefix: string; layer: CanvasPreviewLayer }[] = [
     prefix: "AudioSpectrumV1-",
     layer: { kind: "color", color: "#3a3630" },
   },
+  /** Background系は常時透明のため、実際に重ねる想定のOneTakeネイビーで確認できるようにする */
+  {
+    prefix: "Background-",
+    layer: { kind: "color", color: "#060810" },
+  },
   /** NeonText 系（虹チューブ） */
   {
     prefix: "NeonTextV1-Rainbow",
