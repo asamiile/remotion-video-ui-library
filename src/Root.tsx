@@ -11,6 +11,15 @@ import { miniMapSchemaV1 } from "./Map/Map-v1/mini-map-schema";
 import { defaultMiniMapV1Props } from "./Map/Map-v1/mini-map-config";
 import { LoadingIconTemplateV1 } from "./LoadingIcon/LoadingIcon-v1/LoadingIconTemplate";
 import { loadingIconSchemaV1 } from "./LoadingIcon/LoadingIcon-v1/loading-icon-schema";
+import { AmbientBlurOrbsTemplateV1 } from "./OneTake/Background/AmbientBlurOrbs-v1/AmbientBlurOrbsTemplate";
+import { ambientBlurOrbsSchemaV1 } from "./OneTake/Background/AmbientBlurOrbs-v1/ambient-blur-orbs-schema";
+import {
+  defaultAmbientBlurOrbsV1Props,
+  AMBIENT_BLUR_ORBS_V1_DURATION_FRAMES,
+} from "./OneTake/Background/AmbientBlurOrbs-v1/ambient-blur-orbs-config";
+import { ScanLineTemplateV1 } from "./OneTake/Background/ScanLine-v1/ScanLineTemplate";
+import { scanLineSchemaV1 } from "./OneTake/Background/ScanLine-v1/scan-line-schema";
+import { scanLineV1Patterns } from "./OneTake/Background/ScanLine-v1/scan-line-config";
 import { AudioSpectrumTemplateV1 } from "./AudioSpectrum/AudioSpectrum-v1/AudioSpectrumTemplate";
 import { audioSpectrumSchemaV1 } from "./AudioSpectrum/AudioSpectrum-v1/audio-spectrum-schema";
 import {
@@ -64,6 +73,12 @@ import {
 import { OneTakeLogoTemplateV1 } from "./OneTake/Logo/OneTakeLogo-v1/OneTakeLogoTemplate";
 import { oneTakeLogoSchemaV1 } from "./OneTake/Logo/OneTakeLogo-v1/onetake-logo-schema";
 import { oneTakeLogoV1Patterns } from "./OneTake/Logo/OneTakeLogo-v1/onetake-logo-config";
+import { OneTakeLogoTextTemplateV1 } from "./OneTake/Logo/OneTakeLogoText-v1/OneTakeLogoTextTemplate";
+import { oneTakeLogoTextSchemaV1 } from "./OneTake/Logo/OneTakeLogoText-v1/onetake-logo-text-schema";
+import {
+  defaultOneTakeLogoTextV1Props,
+  ONETAKE_LOGO_TEXT_V1_DURATION_FRAMES,
+} from "./OneTake/Logo/OneTakeLogoText-v1/onetake-logo-text-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -113,6 +128,7 @@ export const RemotionRoot: React.FC = () => {
           durationInFrames={1800}
         />
       </Folder>
+
 
       {/* LoadingIcon コンポジション */}
       <Folder name="Loading">
@@ -498,58 +514,113 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
 
-      {/* OneTake（スマホ+PC連携アプリ）のオンボーディング用モーショングラフィック */}
+      {/* OneTake（スマホ+PC連携アプリ）関連のモーショングラフィック */}
       <Folder name="OneTake">
-        <Composition
-          id="OneTake-OnboardingConnectV1"
-          component={withCanvasPreview(
-            "OneTake-OnboardingConnectV1",
-            OnboardingConnectTemplateV1,
+        {/* オンボーディング用 */}
+        <Folder name="Onboarding">
+          <Composition
+            id="OneTake-OnboardingConnectV1"
+            component={withCanvasPreview(
+              "OneTake-OnboardingConnectV1",
+              OnboardingConnectTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={ONBOARDING_CONNECT_V1_DURATION_FRAMES}
+            schema={onboardingConnectSchemaV1}
+            defaultProps={{ ...defaultOnboardingConnectV1Props }}
+          />
+          <Composition
+            id="OneTake-OnboardingOperateV1"
+            component={withCanvasPreview(
+              "OneTake-OnboardingOperateV1",
+              OnboardingOperateTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={ONBOARDING_OPERATE_V1_DURATION_FRAMES}
+            schema={onboardingOperateSchemaV1}
+            defaultProps={{ ...defaultOnboardingOperateV1Props }}
+          />
+        </Folder>
+
+        {/* ロゴの波打ちアニメーション */}
+        <Folder name="Logo">
+          {Object.entries(oneTakeLogoV1Patterns).map(
+            ([patternId, patternProps]) => (
+              <Composition
+                key={patternId}
+                id={`OneTake-LogoV1-${capPattern(patternId)}`}
+                component={withCanvasPreview(
+                  `OneTake-LogoV1-${capPattern(patternId)}`,
+                  OneTakeLogoTemplateV1,
+                )}
+                width={1024}
+                height={1024}
+                fps={FPS}
+                // シームレスループ前提のため、尺は各パターンの
+                // wavePeriodFrames*motionCyclesBeforeHold+holdFramesと一致させる
+                durationInFrames={
+                  patternProps.wavePeriodFrames *
+                    patternProps.motionCyclesBeforeHold +
+                  patternProps.holdFrames
+                }
+                schema={oneTakeLogoSchemaV1}
+                defaultProps={patternProps}
+              />
+            ),
           )}
-          width={1920}
-          height={1080}
-          fps={FPS}
-          durationInFrames={ONBOARDING_CONNECT_V1_DURATION_FRAMES}
-          schema={onboardingConnectSchemaV1}
-          defaultProps={{ ...defaultOnboardingConnectV1Props }}
-        />
-        <Composition
-          id="OneTake-OnboardingOperateV1"
-          component={withCanvasPreview(
-            "OneTake-OnboardingOperateV1",
-            OnboardingOperateTemplateV1,
+          <Composition
+            id="OneTake-LogoTextV1"
+            component={withCanvasPreview(
+              "OneTake-LogoTextV1",
+              OneTakeLogoTextTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={ONETAKE_LOGO_TEXT_V1_DURATION_FRAMES}
+            schema={oneTakeLogoTextSchemaV1}
+            defaultProps={{ ...defaultOneTakeLogoTextV1Props }}
+          />
+        </Folder>
+
+        {/* 動画の背景に重ねて使うアンビエントな装飾パーツ（常時透明背景） */}
+        <Folder name="Background">
+          <Composition
+            id="Background-AmbientBlurOrbsV1"
+            component={withCanvasPreview(
+              "Background-AmbientBlurOrbsV1",
+              AmbientBlurOrbsTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={AMBIENT_BLUR_ORBS_V1_DURATION_FRAMES}
+            schema={ambientBlurOrbsSchemaV1}
+            defaultProps={{ ...defaultAmbientBlurOrbsV1Props }}
+          />
+          {Object.entries(scanLineV1Patterns).map(
+            ([patternId, patternProps]) => (
+              <Composition
+                key={patternId}
+                id={`Background-ScanLineV1-${capPattern(patternId)}`}
+                component={withCanvasPreview(
+                  `Background-ScanLineV1-${capPattern(patternId)}`,
+                  ScanLineTemplateV1,
+                )}
+                width={1920}
+                height={1080}
+                fps={FPS}
+                durationInFrames={patternProps.scanPeriodFrames}
+                schema={scanLineSchemaV1}
+                defaultProps={patternProps}
+              />
+            ),
           )}
-          width={1920}
-          height={1080}
-          fps={FPS}
-          durationInFrames={ONBOARDING_OPERATE_V1_DURATION_FRAMES}
-          schema={onboardingOperateSchemaV1}
-          defaultProps={{ ...defaultOnboardingOperateV1Props }}
-        />
-        {Object.entries(oneTakeLogoV1Patterns).map(
-          ([patternId, patternProps]) => (
-            <Composition
-              key={patternId}
-              id={`OneTake-LogoV1-${capPattern(patternId)}`}
-              component={withCanvasPreview(
-                `OneTake-LogoV1-${capPattern(patternId)}`,
-                OneTakeLogoTemplateV1,
-              )}
-              width={1024}
-              height={1024}
-              fps={FPS}
-              // シームレスループ前提のため、尺は各パターンの
-              // wavePeriodFrames*motionCyclesBeforeHold+holdFramesと一致させる
-              durationInFrames={
-                patternProps.wavePeriodFrames *
-                  patternProps.motionCyclesBeforeHold +
-                patternProps.holdFrames
-              }
-              schema={oneTakeLogoSchemaV1}
-              defaultProps={patternProps}
-            />
-          ),
-        )}
+        </Folder>
       </Folder>
     </>
   );

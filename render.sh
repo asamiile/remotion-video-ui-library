@@ -79,17 +79,23 @@ TEXT_EFFECTS_JP_SAMPLE_IDS=(
   "ConfettiPopTextV1-RichPopJp"
 )
 
-# OneTake（スマホ+PC連携アプリ）のオンボーディング用モーショングラフィック。
-# パターン展開ではなく固定の2本のみのため、他のテキスト系のような AST 列挙スクリプトは持たず、
-# Root.tsx の <Folder name="OneTake"> と同じIDをここで直接管理する（増えたらここに追加）。
+# OneTake（スマホ+PC連携アプリ）のオンボーディング・ロゴ用モーショングラフィック
+# （Background配下は BACKGROUND_COMPOSITION_IDS で別管理）。
+# パターン展開はLogoのみのため、他のテキスト系のような AST 列挙スクリプトは持たず、
+# Root.tsx の <Folder name="OneTake"> 配下と同じIDをここで直接管理する（増えたらここに追加）。
 ONETAKE_COMPOSITION_IDS=(
   "OneTake-OnboardingConnectV1"
   "OneTake-OnboardingOperateV1"
-  "OneTake-LogoV1-Sync"
   "OneTake-LogoV1-Wave"
-  "OneTake-LogoV1-CenterOut"
-  "OneTake-LogoV1-Alternate"
-  "OneTake-LogoV1-Chase"
+  "OneTake-LogoTextV1"
+)
+
+# 動画の背景に重ねて使うアンビエントな装飾パーツ（常時透明背景、固定3本）。
+# Root.tsx の <Folder name="OneTake"><Folder name="Background"> と同じIDをここで直接管理する（増えたらここに追加）。
+BACKGROUND_COMPOSITION_IDS=(
+  "Background-AmbientBlurOrbsV1"
+  "Background-ScanLineV1-Clean"
+  "Background-ScanLineV1-Crt"
 )
 
 # 色出力用
@@ -102,10 +108,58 @@ echo -e "${YELLOW}🎬 Remotion Composition Rendering Script${NC}"
 echo "Output directory: $OUTPUT_DIR"
 echo ""
 
+# comp_id から、Root.tsx の <Folder> ネストと同じ相対パスを求める（out/ 配下の
+# ディレクトリ階層を Studio のフォルダ階層と一致させるため）。一致しないIDは
+# ""（=OUTPUT_DIR直下）にフォールバックする。NeonTextRainbowのIDは
+# `NeonTextV1-Rainbow*`（`NeonTextV1-`と前方一致してしまう）ため、
+# 先に判定する必要がある。新しいFolder/コンポジションを追加したらここにも追加する。
+resolve_output_subdir() {
+  local comp_id="$1"
+  case "$comp_id" in
+    NeonTextV1-Rainbow*) echo "Title/NeonTextRainbow" ;;
+    LedTextV1-*) echo "Title/LedText" ;;
+    NeonTextV1-*) echo "Title/NeonText" ;;
+    SlideInCaptionV1-*) echo "Title/SlideInCaption" ;;
+    GlitchTextV1-*) echo "Title/GlitchText" ;;
+    WireTextV1-*) echo "Title/WireText" ;;
+    LightSweepTextV1-*) echo "Title/LightSweepText" ;;
+    TypewriterTextV1-*) echo "Title/TypewriterText" ;;
+    ShakeTextV1-*) echo "Title/ShakeText" ;;
+    ConfettiPopTextV1-*) echo "Title/ConfettiPopText" ;;
+    LocationV1-*) echo "Title/Location" ;;
+    MiniMapV1-*) echo "Map" ;;
+    AudioSpectrumV1-*) echo "AudioSpectrum" ;;
+    LoadingIconV1-*) echo "Loading/Icon" ;;
+    OneTake-Onboarding*) echo "OneTake/Onboarding" ;;
+    OneTake-Logo*) echo "OneTake/Logo" ;;
+    Background-*) echo "OneTake/Background" ;;
+    IntroV1) echo "Intro" ;;
+    PlaceholderImageV1) echo "PlaceholderImage" ;;
+    *) echo "" ;;
+  esac
+}
+
+# comp_id（＋任意のファイル名。省略時は "${comp_id}.mov"）から出力先の
+# フルパスを組み立てる。resolve_output_subdir が返すディレクトリは
+# render_one_prores_mov が自動で作成する。
+output_path_for() {
+  local comp_id="$1"
+  local filename="${2:-${comp_id}.mov}"
+  local subdir
+  subdir="$(resolve_output_subdir "$comp_id")"
+  if [ -n "$subdir" ]; then
+    echo "$OUTPUT_DIR/$subdir/$filename"
+  else
+    echo "$OUTPUT_DIR/$filename"
+  fi
+}
+
 # 1 本だけ ProRes 4444 書き出し。
 # 引数: comp_id, out_mov, [concurrency=$CONCURRENCY_TEXT_EFFECTS], [network_timeout=$NETWORK_TIMEOUT], [追加フラグ...]
 # render_minimap（--gl=angle・長めのtimeout）や render_audiospectrum*（--mute-audio）は
 # ここに追加フラグを渡すだけで済ませ、CODEC/PRORES_PROFILE の書き出し設定を一箇所に集約する。
+# out_mov はネストしたパス（例: out/Title/NeonText/NeonTextV1-...mov）でもよく、
+# 親ディレクトリが無ければここで作成する。
 render_one_prores_mov() {
   local comp_id="$1"
   local out_mov="$2"
@@ -114,6 +168,7 @@ render_one_prores_mov() {
   local shift_n=4
   [ "$#" -lt "$shift_n" ] && shift_n="$#"
   shift "$shift_n"
+  mkdir -p "$(dirname "$out_mov")"
   npx remotion render src/index.ts "$comp_id" "$out_mov" \
     --concurrency="$cc" \
     --network-timeout="$timeout" \
@@ -132,7 +187,7 @@ render_intro() {
   echo ""
   echo -e "${YELLOW}→ IntroV1${NC}"
 
-  render_one_prores_mov "IntroV1" "$OUTPUT_DIR/Intro.mov" 4 || return 1
+  render_one_prores_mov "IntroV1" "$(output_path_for IntroV1 Intro.mov)" 4 || return 1
   echo -e "${GREEN}✓ Intro rendered${NC}"
   echo ""
   echo -e "${GREEN}✅ Intro composition rendered successfully!${NC}"
@@ -147,13 +202,32 @@ render_onetake() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
       || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done
 
   echo ""
   echo -e "${GREEN}✅ All OneTake compositions rendered successfully!${NC}"
+}
+
+# Background コンポジションを書き出し（ID は BACKGROUND_COMPOSITION_IDS 参照）。
+# 常時透明背景のパーツのため --transparent-bg は不要。
+render_background() {
+  echo -e "${YELLOW}✨ Rendering Background compositions...${NC}"
+
+  local comp_id
+  for comp_id in "${BACKGROUND_COMPOSITION_IDS[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
+      || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+
+  echo ""
+  echo -e "${GREEN}✅ All Background compositions rendered successfully!${NC}"
 }
 
 # LoadingIcon コンポジションを書き出し（ID は scripts/list-loading-icon-composition-ids.cjs が loading-icon-config.ts から列挙）
@@ -166,7 +240,7 @@ render_loadingicon() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" "$CONCURRENCY_LOADINGICON" \
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" "$CONCURRENCY_LOADINGICON" \
       || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done < <(node "$SCRIPT_DIR/scripts/list-loading-icon-composition-ids.cjs")
@@ -185,7 +259,7 @@ render_location() {
     
     render_one_prores_mov \
       "LocationV1-${location}" \
-      "$OUTPUT_DIR/LocationV1-${location}.mov" \
+      "$(output_path_for "LocationV1-${location}")" \
       "$CONCURRENCY_LOCATION" \
       || return 1
     
@@ -214,7 +288,7 @@ render_minimap() {
 
     if ! render_one_prores_mov \
       "MiniMapV1-${location}" \
-      "$OUTPUT_DIR/MiniMapV1-${location}.mov" \
+      "$(output_path_for "MiniMapV1-${location}")" \
       "$CONCURRENCY_MINIMAP" \
       120000 \
       --gl=angle; then
@@ -247,7 +321,7 @@ render_audiospectrum() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/audio-spectrum-${suffix}.mov" \
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id" "audio-spectrum-${suffix}.mov")" \
       "$CONCURRENCY_AUDIOSPECTRUM" "$NETWORK_TIMEOUT" --mute-audio \
       || return 1
 
@@ -274,7 +348,7 @@ render_audiospectrum_files() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/audio-spectrum-${suffix}.mov" \
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id" "audio-spectrum-${suffix}.mov")" \
       "$CONCURRENCY_AUDIOSPECTRUM" "$NETWORK_TIMEOUT" \
       || return 1
 
@@ -301,7 +375,7 @@ render_text_effects() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
       || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done < <(node "$SCRIPT_DIR/scripts/list-text-v1-composition-ids.cjs")
@@ -319,7 +393,7 @@ render_text_effects_jp_samples() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
       || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done
@@ -338,7 +412,7 @@ render_explicit_compositions() {
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
-    render_one_prores_mov "$comp_id" "$OUTPUT_DIR/${comp_id}.mov" \
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
       || return 1
     echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
   done
@@ -377,6 +451,9 @@ main() {
     OneTake|onetake)
       render_onetake
       ;;
+    Background|background)
+      render_background
+      ;;
     all)
       render_intro
       render_loadingicon
@@ -386,6 +463,7 @@ main() {
       render_audiospectrum_files
       render_text_effects
       render_onetake
+      render_background
       ;;
     help|-h|--help)
       echo "Usage: $0 [--with-canvas-bg] [--transparent-bg] [Intro|…|all|<CompositionId>…]"
@@ -401,6 +479,7 @@ main() {
       echo "  TextEffects        Render Led/Neon/Glitch/Wire/… pattern compositions"
       echo "  TextEffectsJp      Render fixed JP sample set (see TEXT_EFFECTS_JP_SAMPLE_IDS)"
       echo "  OneTake            Render OneTake onboarding motion-graphic compositions"
+      echo "  Background         Render ambient background overlay compositions (always transparent)"
       echo "  all                Render all compositions (default)"
       echo "  <CompositionId>    e.g. NeonTextV1-LchikaOrangeJp (複数並べ可; Studio の ID と一致)"
       exit 0

@@ -1,28 +1,10 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-/**
- * バーごとの位相のずらし方（パルスの伝わり方）。
- * - sync: 全バーが揃って呼吸するように拡縮
- * - wave: 左→右へ位相がずれ、波が伝っていくように見える
- * - centerOut: 中央バーを起点に外側へ位相がずれ、中心から広がるように見える
- * - alternate: 奇数/偶数バーが逆位相で交互に拡縮
- * - chase: 左のバーから右のバーへ順々に、素早く伸びてゆっくり戻る（`public/sownd wave.svg`参照）
- */
-export const PULSE_STYLES = [
-  "sync",
-  "wave",
-  "centerOut",
-  "alternate",
-  "chase",
-] as const;
-
 export const oneTakeLogoSchemaV1 = z.object({
   barColorTop: zColor().default("#EAFEFF"),
   barColorBottom: zColor().default("#37E9FF"),
   backgroundColor: zColor().default("#060810"),
-
-  pulseStyle: z.enum(PULSE_STYLES).default("wave"),
 
   /** 波が1周するフレーム数（アプリ埋め込み時にシームレスループする前提のため、
    *  コンポジション全体の尺はwavePeriodFrames*motionCyclesBeforeHold+holdFramesと一致させること） */
@@ -38,4 +20,3 @@ export const oneTakeLogoSchemaV1 = z.object({
 });
 
 export type OneTakeLogoSchemaV1Type = z.infer<typeof oneTakeLogoSchemaV1>;
-export type PulseStyleV1 = OneTakeLogoSchemaV1Type["pulseStyle"];
