@@ -49,18 +49,21 @@ import { shakeTextV1DurationFrames } from "./ShakeText/ShakeText-v1/shake-text-c
 import { ConfettiPopTextTemplateV1 } from "./ConfettiPopText/ConfettiPopText-v1/ConfettiPopTextTemplate";
 import { confettiPopTextSchemaV1 } from "./ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-schema";
 import { confettiPopTextV1DurationFrames } from "./ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config";
-import { OnboardingConnectTemplateV1 } from "./OneTake/OnboardingConnect-v1/OnboardingConnectTemplate";
-import { onboardingConnectSchemaV1 } from "./OneTake/OnboardingConnect-v1/onboarding-connect-schema";
+import { OnboardingConnectTemplateV1 } from "./OneTake/Onboarding/OnboardingConnect-v1/OnboardingConnectTemplate";
+import { onboardingConnectSchemaV1 } from "./OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-schema";
 import {
   defaultOnboardingConnectV1Props,
   ONBOARDING_CONNECT_V1_DURATION_FRAMES,
-} from "./OneTake/OnboardingConnect-v1/onboarding-connect-config";
-import { OnboardingOperateTemplateV1 } from "./OneTake/OnboardingOperate-v1/OnboardingOperateTemplate";
-import { onboardingOperateSchemaV1 } from "./OneTake/OnboardingOperate-v1/onboarding-operate-schema";
+} from "./OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-config";
+import { OnboardingOperateTemplateV1 } from "./OneTake/Onboarding/OnboardingOperate-v1/OnboardingOperateTemplate";
+import { onboardingOperateSchemaV1 } from "./OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-schema";
 import {
   defaultOnboardingOperateV1Props,
   ONBOARDING_OPERATE_V1_DURATION_FRAMES,
-} from "./OneTake/OnboardingOperate-v1/onboarding-operate-config";
+} from "./OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-config";
+import { OneTakeLogoTemplateV1 } from "./OneTake/Logo/OneTakeLogo-v1/OneTakeLogoTemplate";
+import { oneTakeLogoSchemaV1 } from "./OneTake/Logo/OneTakeLogo-v1/onetake-logo-schema";
+import { oneTakeLogoV1Patterns } from "./OneTake/Logo/OneTakeLogo-v1/onetake-logo-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -523,6 +526,30 @@ export const RemotionRoot: React.FC = () => {
           schema={onboardingOperateSchemaV1}
           defaultProps={{ ...defaultOnboardingOperateV1Props }}
         />
+        {Object.entries(oneTakeLogoV1Patterns).map(
+          ([patternId, patternProps]) => (
+            <Composition
+              key={patternId}
+              id={`OneTake-LogoV1-${capPattern(patternId)}`}
+              component={withCanvasPreview(
+                `OneTake-LogoV1-${capPattern(patternId)}`,
+                OneTakeLogoTemplateV1,
+              )}
+              width={1024}
+              height={1024}
+              fps={FPS}
+              // シームレスループ前提のため、尺は各パターンの
+              // wavePeriodFrames*motionCyclesBeforeHold+holdFramesと一致させる
+              durationInFrames={
+                patternProps.wavePeriodFrames *
+                  patternProps.motionCyclesBeforeHold +
+                patternProps.holdFrames
+              }
+              schema={oneTakeLogoSchemaV1}
+              defaultProps={patternProps}
+            />
+          ),
+        )}
       </Folder>
     </>
   );

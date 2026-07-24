@@ -85,6 +85,11 @@ TEXT_EFFECTS_JP_SAMPLE_IDS=(
 ONETAKE_COMPOSITION_IDS=(
   "OneTake-OnboardingConnectV1"
   "OneTake-OnboardingOperateV1"
+  "OneTake-LogoV1-Sync"
+  "OneTake-LogoV1-Wave"
+  "OneTake-LogoV1-CenterOut"
+  "OneTake-LogoV1-Alternate"
+  "OneTake-LogoV1-Chase"
 )
 
 # 色出力用
