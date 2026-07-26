@@ -21,9 +21,9 @@ const WAVEFORM_BAR_WIDTH = 14;
 const WAVEFORM_BAR_MAX_HEIGHT = 240;
 const WAVEFORM_FLAT_HEIGHT = 6;
 const WAVEFORM_FLAT_OPACITY = 0.3;
-/** タップからPC側の波形が反応し始めるまでの遅延（「即座に反映」感を残すごく短い遅延） */
+/** Delay from tap until the PC-side waveform starts reacting (kept very short to preserve an "instantly reflected" feel) */
 const RECORD_REACTION_DELAY_FRAMES = 6;
-/** タップからボタンの発光・波形が最大の勢いに達するまでのフレーム数 */
+/** Frames from tap until the button glow / waveform reach full intensity */
 const RAMP_UP_FRAMES = 16;
 
 function RecordButton({
@@ -133,10 +133,11 @@ function WaveformBars({
 }
 
 /**
- * タップ→録音開始→録音終了（待機に戻る）を1サイクルとしてループ表示する演出。
- * アプリ側（expo-video）で`loop=true`再生する前提のため、`resetStartFrame`から
- * 最終フレームにかけてボタンの発光・波形の勢いを`activity`で0まで減衰させ、
- * 先頭フレーム（タップ前の待機状態）とループ境界で一致するようにしている。
+ * Loops tap → recording starts → recording ends (back to idle) as one cycle.
+ * Assumes the app plays this with `loop=true` (expo-video), so from
+ * `resetStartFrame` to the last frame, `activity` decays the button glow and
+ * waveform intensity to 0, matching the idle state of the first frame
+ * (before the tap) at the loop boundary.
  */
 export const OnboardingOperateTemplateV1: React.FC<
   OnboardingOperateSchemaV1Type

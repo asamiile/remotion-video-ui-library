@@ -6,16 +6,18 @@ export const oneTakeLogoSchemaV1 = z.object({
   barColorBottom: zColor().default("#37E9FF"),
   backgroundColor: zColor().default("#060810"),
 
-  /** 波が1周するフレーム数（アプリ埋め込み時にシームレスループする前提のため、
-   *  コンポジション全体の尺はwavePeriodFrames*motionCyclesBeforeHold+holdFramesと一致させること） */
+  /** Frames for one full wave cycle. Assumes a seamless loop when embedded in
+   *  the app, so the composition's total duration must match
+   *  wavePeriodFrames*motionCyclesBeforeHold+holdFrames. */
   wavePeriodFrames: z.number().min(10).default(90),
-  /** 各バーの高さの振れ幅（1 = 高さの100%分揺れる） */
+  /** Amplitude of each bar's height swing (1 = swings by 100% of height) */
   waveAmplitude: z.number().min(0).max(1).default(0.22),
-  /** 静止に入るまでに再生する周期の数（例: 2なら2周期分再生してから静止する） */
+  /** Number of cycles played before holding still (e.g. 2 means play 2 full cycles, then hold) */
   motionCyclesBeforeHold: z.number().min(1).default(1),
-  /** 指定周期数の再生後、次の再生が始まるまで静止させるフレーム数。
-   *  frame=0とframe=wavePeriodFrames*Nの姿勢は数式上一致するため、この間ずっと
-   *  frame=0相当の姿勢で止めてもシームレスにループする。 */
+  /** Frames to hold still after the given number of cycles, before the next
+   *  playback starts. Since frame=0 and frame=wavePeriodFrames*N are
+   *  mathematically identical poses, holding at the frame=0 pose throughout
+   *  this period still loops seamlessly. */
   holdFrames: z.number().min(0).default(0),
 });
 

@@ -1,5 +1,6 @@
 /**
- * *-config.ts から export const のオブジェクトキー配列 / オブジェクト配列の id を取り出す（render 列挙用）。
+ * Extracts the object-key array (or the id of each object in an array) from an
+ * `export const` in a *-config.ts file, for use by the render enumeration scripts.
  */
 const fs = require("node:fs");
 const ts = require("typescript");
@@ -116,7 +117,7 @@ function requirePatternKeys(absPath, exportName) {
   const keys = extractObjectKeysFromExport(sf, exportName);
   if (!keys) {
     throw new Error(
-      `export const ${exportName} が ${absPath} に見つかりません`,
+      `export const ${exportName} was not found in ${absPath}`,
     );
   }
   return keys;
@@ -131,7 +132,7 @@ function requireArrayStringIds(absPath, exportName, idProperty = "id") {
   const ids = extractStringIdsFromExportedArray(sf, exportName, idProperty);
   if (!ids) {
     throw new Error(
-      `export const ${exportName}（配列）が ${absPath} に見つかりません`,
+      `export const ${exportName} (array) was not found in ${absPath}`,
     );
   }
   return ids;

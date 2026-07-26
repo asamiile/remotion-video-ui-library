@@ -1,6 +1,6 @@
 /**
- * example / local のマージ（remotion studio・bundle・inject loader と共通）
- * remotion.config / loaders から require する。
+ * Merges example / local composition text (shared by remotion studio, bundle, and the inject loader).
+ * Required from remotion.config / loaders.
  */
 "use strict";
 
@@ -105,7 +105,7 @@ function getLocationV1CompositionKeysForBundle(example, localOnly) {
 }
 
 /**
- * @param {string} root リポジトリルート（絶対パス）
+ * @param {string} root repository root (absolute path)
  */
 function readCompositionTextForBundleFromRoot(root) {
   const examplePath = path.join(

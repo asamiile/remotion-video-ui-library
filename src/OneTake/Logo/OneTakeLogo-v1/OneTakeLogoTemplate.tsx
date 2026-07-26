@@ -3,24 +3,28 @@ import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { OneTakeLogoSchemaV1Type } from "./onetake-logo-schema";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
-/** ロゴのバー構成比。実アイコン（OneTakeアプリ側 assets/icon.png）の生成比率と一致させている。 */
+/** Bar height ratios for the logo, matched to the generated proportions of the actual icon (OneTake app's assets/icon.png). */
 const BAR_RATIOS = [0.38, 0.7, 1.0, 0.62, 0.32];
 const VIEWBOX = 1024;
 const BAR_W = 76;
 const GAP = 48;
 const MAX_H = 560;
-/** 隣り合うバー間の位相差（rad）。バーごとにずらすことで、左→右へ波が伝っていくように見せる。 */
+/** Phase offset (rad) between adjacent bars; staggering each bar makes the wave appear to travel left-to-right. */
 const PHASE_STEP = Math.PI / 2.5;
 
 /**
- * OneTakeロゴの波打ちアニメーション。
- * アプリ側でloop再生する前提のため、フェードイン等「一度きり」の要素は持たせず、
- * 各バーの高さをsin波（frameの周期関数）だけで駆動している。尺を`wavePeriodFrames`と
- * 一致させておけば、最終フレーム→先頭フレームの位相が連続しシームレスにループする。
+ * OneTake logo's wave animation.
+ * Assumes the app plays it on a loop, so there are no "one-shot" elements like
+ * a fade-in — each bar's height is driven purely by a sine wave (a periodic
+ * function of frame). As long as the duration matches `wavePeriodFrames`, the
+ * phase is continuous across the last frame → first frame boundary, so the
+ * loop is seamless.
  *
- * `holdFrames > 0`の場合、`motionCyclesBeforeHold`周期分再生した後はframe=0相当の姿勢
- * （=周期の終わりと数式上一致する姿勢）で静止させ、その間だけ動きを止める。次周期の
- * 頭に戻ってもポーズが変わらないため、静止区間を挟んでもシームレスにループする。
+ * When `holdFrames > 0`, after playing `motionCyclesBeforeHold` cycles the
+ * animation holds at the frame=0-equivalent pose (mathematically identical to
+ * the end of a cycle) and pauses motion for that duration. Since the pose
+ * doesn't change when the next cycle starts, inserting a hold segment still
+ * loops seamlessly.
  */
 export const OneTakeLogoTemplateV1: React.FC<OneTakeLogoSchemaV1Type> = ({
   barColorTop,

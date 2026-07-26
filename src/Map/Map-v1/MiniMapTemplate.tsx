@@ -18,7 +18,6 @@ import {
 import { mergedMapLocationPointsV1 } from "../../composition/composition-merged";
 // import { PlaceholderImage } from "../PlaceholderImage";
 
-// Mapbox トークン設定
 mapboxgl.accessToken = process.env.REMOTION_MAPBOX_TOKEN as string;
 
 export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
@@ -46,16 +45,13 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
     delayRender("Mapbox tiles loading..."),
   );
 
-  // 地点情報の取得
   const locationPoint = useMemo(() => {
     return mergedMapLocationPointsV1.find((point) => point.id === mapLocationId);
   }, [mapLocationId]);
 
-  // フェードイン/アウトの計算
   const fadeProgress = useMemo(() => {
     if (frame < delayFrames) return 0;
 
-    // フェードイン期間
     if (frame < delayFrames + fadeInDuration) {
       return interpolate(
         frame,
@@ -69,10 +65,10 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
       );
     }
 
-    // フェードアウト期間
-    const fadeOutStartFrame = 8.5 * 30; // 8.5秒 = 255フレーム（30fps基準）
-    const fadeOutFrameDuration = 1.5 * 30; // 1.5秒 = 45フレーム（30fps基準）
-    
+    const fadeOutStartFrame = 8.5 * 30; // 8.5s = 255 frames (at 30fps)
+    const fadeOutFrameDuration = 1.5 * 30; // 1.5s = 45 frames (at 30fps)
+
+
     if (frame >= fadeOutStartFrame) {
       return interpolate(
         frame,
@@ -89,7 +85,6 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
     return 1;
   }, [frame, delayFrames, fadeInDuration]);
 
-  // マップ初期化
   useEffect(() => {
     console.log("MiniMapTemplate useEffect called", { 
       mapContainerCurrent: !!mapContainer.current, 
@@ -115,11 +110,9 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
       console.log("Map load event fired, rendering can begin");
       _map.on("load", () => {
         console.log("Map load event fired, rendering can begin");
-        continueRender(delayHandle); // Mapboxロード完了をRemotionに通知
-        
-        // マーカー（カスタムアイコン）の追加
+        continueRender(delayHandle); // Notify Remotion that Mapbox has finished loading
+
         if (showMarker) {
-          // カスタムマーカーアイコンを作成
           const canvas = document.createElement("canvas");
           canvas.width = defaultMiniMapV1Props.markerCanvasSize;
           canvas.height = defaultMiniMapV1Props.markerCanvasSize;
@@ -139,7 +132,6 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
             _map.addImage("marker-square", imageData);
           }
 
-          // マーカーソースとレイヤーを追加
           _map.addSource("marker", {
             type: "geojson",
             data: {
@@ -183,7 +175,6 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
     };
   }, [locationPoint, showMarker, markerColor, markerSize, delayHandle, continueRender]);
 
-  // カメラアニメーション
   useEffect(() => {
     if (!map.current || !enableCameraAnimation || !locationPoint) return;
 
@@ -227,7 +218,6 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
     fadeInDuration,
   ]);
 
-  // コンテナのレイアウト計算
   const containerStyle: React.CSSProperties = useMemo(
     () => ({
       position: "relative",
@@ -241,7 +231,6 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
     [width, height, borderRadius, boxShadow, fadeProgress]
   );
 
-  // コンテナを中央に配置するためのラッパースタイル
   const wrapperStyle: React.CSSProperties = useMemo(
     () => ({
       position: "absolute",
@@ -281,7 +270,6 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
 
   return (
     <AbsoluteFill>
-      {/* 背景画像 */}
       {/* <div
         style={{
           position: "absolute",
@@ -295,10 +283,8 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
         <PlaceholderImage />
       </div> */}
 
-      {/* Mini Map コンテナ */}
       <div style={wrapperStyle}>
         <div style={containerStyle}>
-          {/* Mapbox マップ */}
           <div
             ref={mapContainer}
             style={{

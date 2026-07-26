@@ -1,4 +1,4 @@
-// Mini Map 用の型とカメラ・UI デフォルト（地点ID・座標は composition-text の mapLocationPointsV1 で定義）
+// Types plus camera/UI defaults for Mini Map (location IDs/coordinates are defined in composition-text's mapLocationPointsV1)
 export interface MapLocationPoint {
   id: string;
   name: string;
@@ -9,14 +9,13 @@ export interface MapLocationPoint {
   bearing?: number;
 }
 
-// デフォルトカメラ設定
 export const defaultMapCameraV1Config = {
-  // 初期状态の値
+  // Initial values
   initialZoom: 4,
   initialPitch: 0,
   initialBearing: 0,
 
-  // アニメーション後の値
+  // Values after the animation
   targetZoom: 16,
   targetPitch: 0,
   targetBearing: 0,
@@ -24,7 +23,6 @@ export const defaultMapCameraV1Config = {
   cameraAnimationDuration: 120,
 };
 
-// Mapbox Map オプション
 export const mapboxMapV1Options = {
   style: "mapbox://styles/asamiile/cmli18nq5002t01skhqfk1rfu",
   interactive: false,
@@ -32,7 +30,6 @@ export const mapboxMapV1Options = {
   antialias: true,
 } as const;
 
-// Mini Map デフォルトプロパティ
 export const defaultMiniMapV1Props = {
   mapLocationId: "",
   width: 340,

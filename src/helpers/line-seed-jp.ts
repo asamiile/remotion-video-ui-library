@@ -1,11 +1,11 @@
 import { continueRender, delayRender } from "remotion";
 import { loadFont, fontFamily } from "@remotion/google-fonts/LINESeedJP";
 
-/** Studio / レンダで日本語テキストに使うフォントスタック（LINE Seed JP） */
+/** Font stack used for Japanese text in Studio / renders (LINE Seed JP) */
 export const LINE_SEED_JP_FONT_FAMILY = `'${fontFamily}', sans-serif`;
 
-// LINE Seed JP はチャンク键が [0]… のため subset 名（japanese 等）は使えない。
-// weights のみ指定すると各ウェイトの全チャンクが載り、ひらがな・漢字も含まれる。
+// LINE Seed JP's chunk keys are numeric ([0]...), so subset names like `japanese` don't work here.
+// Specifying only weights loads every chunk for each weight, which includes hiragana and kanji.
 const lineSeed = loadFont("normal", {
   weights: ["400", "700"],
   ignoreTooManyRequestsWarning: true,

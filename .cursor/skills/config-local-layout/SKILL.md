@@ -7,31 +7,31 @@ description: >-
   only. Use when adding render copy, local JSON, or restructuring config/local.
 ---
 
-# config/local（composition 文言）
+# config/local (composition copy)
 
-## 方針
+## Policy
 
-- **リポジトリ内の config**（`*-config.ts` / schema の default）は**サンプル文言のみ**。
-- **本番・個人用の文言**は **`config/local/composition-text.local.json`**（gitignore）。`composition-text.example.json` をコピーして作る。
-- **`remotion.config.ts`** がビルド開始時に `composition-text.local.json` を読み、`__COMPOSITION_TEXT_LOCAL__` として webpack に注入する。ファイルが無いときは `{}`。
-- マージは **`src/composition/composition-merged.ts`** → `Root.tsx` / `MiniMapTemplate` が参照。
+- **Config in the repo** (`*-config.ts` / schema defaults) holds **sample copy only**.
+- **Production / personal copy** goes in **`config/local/composition-text.local.json`** (gitignored). Create it by copying `composition-text.example.json`.
+- **`remotion.config.ts`** reads `composition-text.local.json` at the start of the build and injects it into webpack as `__COMPOSITION_TEXT_LOCAL__`. If the file doesn't exist, it injects `{}`.
+- Merging happens in **`src/composition/composition-merged.ts`**, which `Root.tsx` / `MiniMapTemplate` reference.
 
-## JSON のキー（省略可）
+## JSON Keys (all optional)
 
-| キー | 内容 |
+| Key | Content |
 |------|------|
 | `intro` | `authorName`, `introTitle`, `introDescription` |
-| `ledTextV1Patterns` | パターン ID → 部分 props（例: `text`） |
-| `neonTextV1Patterns` | 同上 |
-| `loadingIconV1Patterns` | 同上 |
-| `locationV1` | `地点ID` → `{ "locationName" }` |
-| `mapLocationPointsV1` | `地点ID` → `{ "name" }` |
+| `ledTextV1Patterns` | pattern ID → partial props (e.g. `text`) |
+| `neonTextV1Patterns` | same |
+| `loadingIconV1Patterns` | same |
+| `locationV1` | `locationId` → `{ "locationName" }` |
+| `mapLocationPointsV1` | `locationId` → `{ "name" }` |
 
-## エージェント向け
+## For Agents
 
-1. 新しい composition の「差し替え文言」を足すときは **`composition-text.example.json`** にキーを追加し、型 **`src/composition/composition-text-local.ts`** を更新。必要なら **`src/composition/composition-merged.ts`** でマージ処理を足す。
-2. `.gitignore` に `config/local/*.local.json` があること。
+1. When adding "override copy" for a new composition, add the key to **`composition-text.example.json`** and update the **`src/composition/composition-text-local.ts`** type. Add merge logic in **`src/composition/composition-merged.ts`** if needed.
+2. Make sure `config/local/*.local.json` is listed in `.gitignore`.
 
-## CLI で 1 コンポジションだけ上書きする場合
+## Overriding a Single Composition via the CLI
 
-統合 JSON とは別に、`--props` でその composition の props だけ渡す方法も可（Remotion ドキュメント参照）。
+Separately from the merged JSON, you can also pass just that composition's props via `--props` (see the Remotion docs).

@@ -16,16 +16,16 @@ const PHONE_TOP = 220;
 const LAPTOP_LEFT = 1140;
 const LAPTOP_TOP = 340;
 
-/** スマホとPC、それぞれのシルエットの間の「Wi-Fiギャップ」座標（キャンバス 1920x1080 基準） */
+/** "Wi-Fi gap" coordinates between the phone and laptop silhouettes (based on a 1920x1080 canvas) */
 const GAP_LEFT_X = PHONE_LEFT + PHONE_WIDTH + 40;
 const GAP_RIGHT_X = LAPTOP_LEFT - 40;
 const GAP_Y = 540;
-/** 片方向あたりのパルス数（スマホ→PC、PC→スマホをそれぞれ独立に走らせる） */
+/** Number of pulses per direction (phone→PC and PC→phone run independently) */
 const PULSE_COUNT_PER_DIRECTION = 2;
 
 type Pulse = { x: number; opacity: number; color: string; size: number };
 
-/** 指定方向に走るパルス列を1本分生成するヘルパー（往復どちらにも使う） */
+/** Helper that generates one pulse train traveling in the given direction (used for both directions) */
 function buildPulseTrain({
   frame,
   count,
@@ -49,12 +49,12 @@ function buildPulseTrain({
     const x = reverse
       ? GAP_RIGHT_X - t * (GAP_RIGHT_X - GAP_LEFT_X)
       : GAP_LEFT_X + t * (GAP_RIGHT_X - GAP_LEFT_X);
-    const edgeFade = Math.sin(t * Math.PI); // 端でフェードイン・アウト
+    const edgeFade = Math.sin(t * Math.PI); // fade in/out at each end
     return { x, opacity: edgeFade, color, size };
   });
 }
 
-/** 「アプリの画面」らしさを添えるための最小限のトラック行アクセント（フルUIの再現ではない） */
+/** Minimal track-row accents to sell the "app screen" look (not a full UI reproduction) */
 function PhoneTrackRowAccents({ color }: { color: string }) {
   return (
     <div
@@ -101,14 +101,17 @@ function PhoneTrackRowAccents({ color }: { color: string }) {
 }
 
 /**
- * スマホ+PCが常時つながっている状態をループ表示するための演出。
- * アプリ側（expo-video）で`loop=true`再生する前提のため、フェードイン等
- * 「一度きり」の要素は持たせず、frameの周期性だけで成立するようにしている:
- * - 双方向パルスは`pulsePeriodFrames`の剰余で位置を決めるため、尺がその整数倍なら
- *   ループ境界（最終フレーム→先頭フレーム）で見た目が完全に一致する。
- * - フリッカーは`flickerTriggerFrame`前後だけの一時的な演出だが、発火前
- *   （`frame < flickerTriggerFrame`）と発火後十分経過した状態は両方とも
- *   「常時点灯」で同じ見た目になるため、ループ境界をまたいでも破綻しない。
+ * Loops a "phone + PC always connected" state. Assumes the app plays this
+ * with `loop=true` (expo-video), so there are no "one-shot" elements like a
+ * fade-in — everything relies purely on frame periodicity:
+ * - The bidirectional pulses derive their position from frame modulo
+ *   `pulsePeriodFrames`, so as long as the duration is an integer multiple of
+ *   that, the look matches exactly at the loop boundary (last frame → first
+ *   frame).
+ * - The flicker is a one-off effect around `flickerTriggerFrame`, but since
+ *   both the state before it (`frame < flickerTriggerFrame`) and the state
+ *   well after it look like "always lit", crossing the loop boundary doesn't
+ *   break anything.
  */
 export const OnboardingConnectTemplateV1: React.FC<
   OnboardingConnectSchemaV1Type

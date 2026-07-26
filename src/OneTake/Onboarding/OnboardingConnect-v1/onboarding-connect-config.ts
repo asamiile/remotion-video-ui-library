@@ -8,5 +8,5 @@ export const defaultOnboardingConnectV1Props = {
   flickerTriggerFrame: 6,
 };
 
-/** シームレスループ前提。pulsePeriodFrames(45)の整数倍（2周期=3秒@30fps）。 */
+/** Assumes a seamless loop; an integer multiple of pulsePeriodFrames (45) — 2 cycles = 3s @ 30fps. */
 export const ONBOARDING_CONNECT_V1_DURATION_FRAMES = 90;
