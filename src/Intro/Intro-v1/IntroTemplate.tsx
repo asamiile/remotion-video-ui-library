@@ -44,20 +44,16 @@ export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
     [authorName, introTitle, introDescription],
   );
 
-  // シーンごとのレンダリング
   const renderScene = (sceneIndex: number) => {
     const scene = introScenesV1[sceneIndex];
     const sceneStartFrame = introScenesV1
       .slice(0, sceneIndex)
       .reduce((acc, s) => acc + s.duration, 0);
 
-    // フレーム内でのシーン進捗（0-1）
     const sceneProgress = Math.max(0, frame - sceneStartFrame) / scene.duration;
 
-    // フェードイン/アウトの計算
     let opacity = 1;
     if (sceneProgress < fadeInDuration / scene.duration) {
-      // フェードイン
       opacity = interpolate(
         sceneProgress,
         [0, fadeInDuration / scene.duration],
@@ -69,7 +65,7 @@ export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
         },
       );
     } else {
-      // フェードアウト開始タイミング（秒指定）
+      // Fade-out start timing, given in seconds
       const fadeOutStartSeconds = scene.fadeOutStartSeconds ?? 8.5;
       const fadeOutStartProgress = (fadeOutStartSeconds * 30) / scene.duration;
 
@@ -105,7 +101,6 @@ export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
           position: "relative",
         }}
       >
-        {/* 中央テキスト */}
         {scene.centerText && (
           <div
             style={{
@@ -124,7 +119,6 @@ export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
           </div>
         )}
 
-        {/* 右下テキスト */}
         {scene.bottomRightText && (
           <div
             style={{

@@ -6,21 +6,22 @@ import { CTA_FLICKER_CYCLE_MS, ctaFlickerAt } from "../../onetake-flicker";
 import "../../../helpers/jetbrains-mono";
 import "../../../helpers/space-grotesk";
 
-/** asami.tokyoの`Eyebrow`（`app/(onetake)/ui.tsx`）と同じ字間・装飾 */
+/** Same letter spacing/decoration as asami.tokyo's `Eyebrow` (`app/(onetake)/ui.tsx`) */
 const EYEBROW_LETTER_SPACING_PX = 1.5;
-/** asami.tokyoの`--onetake-text-glow-cyan`と同じテキストシャドウ */
+/** Same text shadow as asami.tokyo's `--onetake-text-glow-cyan` */
 const EYEBROW_TEXT_SHADOW = "0 0 12px rgba(55, 233, 255, .5)";
 
 /**
- * OneTakeのロゴ文字（eyebrow + title）。asami.tokyo LPのヒーロー見出し
- * （`OneTakeLP.tsx`の`<Eyebrow>{dict.lp.eyebrow}</Eyebrow>` + `<h1>`）を移植したもの。
+ * OneTake's logo text (eyebrow + title), ported from the asami.tokyo LP's hero
+ * heading (`<Eyebrow>{dict.lp.eyebrow}</Eyebrow>` + `<h1>` in `OneTakeLP.tsx`).
  *
- * eyebrowには、同LPの「Join the waitlist」ボタンのhoverアニメーション
- * （`cta-flicker`、ネオン管が点灯する演出）を移植して適用している。動画にhover状態は
- * 無いため、`flickerTriggerFrame`で一度だけ発火させ、その後は常時点灯の状態で
- * 落ち着く。発火前（`frame < flickerTriggerFrame`）と発火後十分経過した状態は
- * どちらも「常時点灯」で同じ見た目になるため、尺の最終フレーム→先頭フレームを
- * ループさせても破綻しない（OnboardingConnectV1と同じ考え方）。
+ * The eyebrow reuses that LP's "Join the waitlist" button hover animation
+ * (`cta-flicker`, a neon-tube-turning-on effect). Since video has no hover
+ * state, it fires once at `flickerTriggerFrame` and then settles into a
+ * steady "always lit" state. Because the state before the trigger
+ * (`frame < flickerTriggerFrame`) and the state well after it both look like
+ * "always lit", looping the last frame back to the first frame doesn't break
+ * anything (same reasoning as OnboardingConnectV1).
  */
 export const OneTakeLogoTextTemplateV1: React.FC<
   OneTakeLogoTextSchemaV1Type

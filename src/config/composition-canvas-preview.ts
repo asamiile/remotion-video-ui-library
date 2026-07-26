@@ -1,26 +1,25 @@
 /**
- * Studio プレビュー・または REMOTION_CANVAS_BACKGROUND=1 のレンダー時にだけ
- * CanvasPreviewShell が参照する、コンポジション別の背景。
+ * Per-composition backgrounds that CanvasPreviewShell reads only in the Studio preview,
+ * or during a render with REMOTION_CANVAS_BACKGROUND=1.
  *
- * - exact: Composition の id と完全一致
- * - prefix: id がその文字列で始まる場合（例: AudioSpectrum の全バリエーション）
- * - 画像: public/ 以下のパスを staticFile に渡す形式（例: canvas-preview/bg.jpg）
+ * - exact: matches the Composition's id exactly
+ * - prefix: matches when id starts with this string (e.g. all AudioSpectrum variants)
+ * - image: a path under public/ passed to staticFile (e.g. canvas-preview/bg.jpg)
  */
 
 export type CanvasPreviewLayer =
   | { kind: "color"; color: string }
   | {
       kind: "image";
-      /** `public/` からの相対（先頭スラッシュなし） */
+      /** Path relative to `public/` (no leading slash) */
       src: string;
       objectFit?: "cover" | "contain" | "fill";
     };
 
 const exactLayers: Partial<Record<string, CanvasPreviewLayer>> = {
-  MyComp: { kind: "color", color: "#111111" },
   PlaceholderImageV1: { kind: "color", color: "#1e1e1e" },
   /*
-  画像の例（ファイルを public/canvas-preview/bg.jpg に置いた場合）:
+  Image example (when the file is placed at public/canvas-preview/bg.jpg):
   AudioSpectrumV1-Detailed: {
     kind: "image",
     src: "canvas-preview/bg.jpg",
@@ -30,17 +29,17 @@ const exactLayers: Partial<Record<string, CanvasPreviewLayer>> = {
 };
 
 const prefixLayers: { prefix: string; layer: CanvasPreviewLayer }[] = [
-  /** スペクトラム周りが透けやすいため、系統のあるダークトーン */
+  /** The spectrum area tends to show through, so use a coordinated dark tone */
   {
     prefix: "AudioSpectrumV1-",
     layer: { kind: "color", color: "#3a3630" },
   },
-  /** Background系は常時透明のため、実際に重ねる想定のOneTakeネイビーで確認できるようにする */
+  /** Background compositions are always transparent, so preview against the OneTake navy they're actually composited over */
   {
     prefix: "Background-",
     layer: { kind: "color", color: "#060810" },
   },
-  /** NeonText 系（虹チューブ） */
+  /** NeonText family (rainbow tube) */
   {
     prefix: "NeonTextV1-Rainbow",
     layer: { kind: "color", color: "#0a0a0f" },

@@ -1,7 +1,7 @@
 import { continueRender, delayRender } from "remotion";
 import { loadFont, fontFamily } from "@remotion/google-fonts/SpaceGrotesk";
 
-/** OneTakeブランドの見出し用フォント（asami.tokyo LPの`--font-sans`と同じSpace Grotesk） */
+/** Heading font for the OneTake brand (same Space Grotesk as asami.tokyo LP's `--font-sans`) */
 export const SPACE_GROTESK_FONT_FAMILY = `'${fontFamily}', ui-sans-serif, sans-serif`;
 
 const spaceGrotesk = loadFont("normal", {

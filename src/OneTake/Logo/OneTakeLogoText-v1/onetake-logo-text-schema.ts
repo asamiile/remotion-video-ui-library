@@ -9,20 +9,21 @@ export const oneTakeLogoTextSchemaV1 = z.object({
 
   eyebrowFontSize: z.number().min(1).default(24),
   titleFontSize: z.number().min(1).default(48),
-  /** eyebrowとtitleの縦の間隔（px） */
+  /** Vertical spacing between eyebrow and title (px) */
   gapPx: z.number().min(0).default(20),
 
-  /** asami.tokyoの`--font-onetake-mono`（JetBrains Mono）と一致 */
+  /** Matches asami.tokyo's `--font-onetake-mono` (JetBrains Mono) */
   eyebrowFontFamily: z.string().default(JETBRAINS_MONO_FONT_FAMILY),
-  /** asami.tokyoの本文フォント`--font-sans`（Space Grotesk）と一致 */
+  /** Matches asami.tokyo's body font `--font-sans` (Space Grotesk) */
   titleFontFamily: z.string().default(SPACE_GROTESK_FONT_FAMILY),
 
   eyebrowColor: zColor().default("#37E9FF"),
   titleColor: zColor().default("#EEF1FC"),
   backgroundColor: zColor().default("#060810"),
 
-  /** eyebrowの「ネオン管が点灯する」演出（asami.tokyoの`Join the waitlist`ボタンの
-   *  hoverアニメーション`cta-flicker`を移植）が発火するフレーム */
+  /** Frame at which the eyebrow's "neon tube turning on" effect fires
+   *  (ported from asami.tokyo's `Join the waitlist` button hover animation
+   *  `cta-flicker`) */
   flickerTriggerFrame: z.number().min(0).default(15),
 });
 

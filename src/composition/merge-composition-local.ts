@@ -23,8 +23,8 @@ function isNonEmptyCompositionText(c: CompositionTextLocal): boolean {
 }
 
 /**
- * Studio / bundle: webpack ローダが差し込んだマージ結果（優先）。
- * 互換: DefinePlugin の JSON 文字列。
+ * Studio / bundle: the merged result injected by the webpack loader (preferred).
+ * Compat: a JSON string from DefinePlugin.
  */
 export function getCompositionTextFromEnv(): CompositionTextLocal {
   if (isNonEmptyCompositionText(__COMPOSITION_TEXT_INLINED__)) {
@@ -47,8 +47,8 @@ export function getCompositionTextFromEnv(): CompositionTextLocal {
 }
 
 /**
- * 1) インライン or DefinePlugin のマージ結果
- * 2) 空のとき import した example.json
+ * 1) The inline or DefinePlugin merge result
+ * 2) Falls back to the imported example.json when empty
  */
 export function getEffectiveCompositionText(): CompositionTextLocal {
   const fromEnv = getCompositionTextFromEnv();
@@ -74,7 +74,7 @@ export function shallowMergePatternRecord<
   return out;
 }
 
-/** インライン配列 → DefinePlugin → effective の locationV1 キー */
+/** locationV1 keys, in priority order: inline array -> DefinePlugin -> effective */
 export function getLocationV1CompositionKeys(): string[] {
   if (
     Array.isArray(__LOCATION_V1_KEYS_INLINED__) &&
@@ -109,7 +109,7 @@ export function buildLocationConfigsFromCompositionKeys(
   }));
 }
 
-/** 緯度経度が揃っている地点だけ（MiniMap 用） */
+/** Only locations with both latitude and longitude set (for MiniMap) */
 export function buildMapLocationPointsFromCompositionKeys(
   text: CompositionTextLocal,
   keys: string[],

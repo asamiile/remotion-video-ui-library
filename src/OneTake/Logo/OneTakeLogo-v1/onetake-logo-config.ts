@@ -1,10 +1,11 @@
 /**
- * `OnboardingOperateV1`の波形バー（`WaveformBars`）が4フレームごとに新しい値へ切り替わる
- * 速さに合わせたテンポ。1サイクル（4フレーム相当の1/4周期）×4=16フレームとしている。
+ * Tempo matched to `OnboardingOperateV1`'s waveform bars (`WaveformBars`),
+ * which switch to a new value every 4 frames. Set to 4 frames per
+ * quarter-cycle × 4 = 16 frames for one full cycle.
  */
 const WAVE_PERIOD_FRAMES_MATCHING_ONBOARDING_OPERATE = 16;
 
-/** 1周期再生後に静止させる長さ（1秒@30fps）。 */
+/** How long to hold still after one cycle finishes (1s @ 30fps). */
 const HOLD_FRAMES_ONE_SECOND = 15;
 
 export const defaultOneTakeLogoV1Props = {
@@ -19,12 +20,12 @@ export const defaultOneTakeLogoV1Props = {
 };
 
 /**
- * プリセット。各コンポジションの尺は自身の
- * `wavePeriodFrames * motionCyclesBeforeHold + holdFrames`と一致させる
- * （シームレスループ前提、Root.tsxでdurationInFramesに直接渡す）。
+ * Presets. Each composition's duration must match its own
+ * `wavePeriodFrames * motionCyclesBeforeHold + holdFrames` (assumes a
+ * seamless loop; passed directly to durationInFrames in Root.tsx).
  */
 export const oneTakeLogoV1Patterns = {
-  // 左→右へ位相がずれ、波が伝っていくように見える。2周期再生後、1秒静止してから繰り返す。
+  // Phase shifts left-to-right so the wave appears to travel across. Plays 2 cycles, holds for 1s, then repeats.
   wave: {
     ...defaultOneTakeLogoV1Props,
     waveAmplitude: 0.22,

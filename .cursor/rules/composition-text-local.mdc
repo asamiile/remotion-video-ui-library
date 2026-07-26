@@ -1,10 +1,10 @@
 ---
-description: config/local の *.local.json（特に composition-text.local.json）をエージェントが編集しない
+description: Agents must not edit config/local's *.local.json (especially composition-text.local.json)
 alwaysApply: true
 ---
 
-# `composition-text.local.json` を触らない
+# Don't touch `composition-text.local.json`
 
-- **`config/local/composition-text.local.json`** および同ディレクトリの **`config/local/*.local.json`** は、ユーザーの個人用・非コミット想定の設定のため、**エージェントは読み取り以外の操作（内容の変更・新規作成・削除・キーの付け替えなど）をしてはならない**。
-- 差し込み文言のテンプレやリポジトリ用のサンプルは **`config/local/composition-text.example.json`**、型やマージ処理は **`src/composition/`** 配下など、コミット対象のファイルだけを編集する。
-- **例外**: ユーザーがこのチャットで、対象パスと変更内容を明示して「local を更新して」と依頼したときのみ、その指示の範囲でよい。
+- **`config/local/composition-text.local.json`** and other **`config/local/*.local.json`** files in the same directory are personal, uncommitted, per-user settings. **Agents must not do anything beyond reading them (no editing content, creating new ones, deleting, or rekeying).**
+- Only edit committed files: the sample/template copy lives in **`config/local/composition-text.example.json`**, and the types/merge logic live under **`src/composition/`**.
+- **Exception**: only when the user explicitly asks in this chat to "update local," naming the target path and the change — and only within the scope of that instruction.

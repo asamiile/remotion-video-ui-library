@@ -83,5 +83,14 @@
   "confettiPopTextV1Patterns": {
     "richPop": { "text": "Congrats! (sample)" },
     "richPopJp": { "text": "完成おめでとう（サンプル）" }
+  },
+  "stackedRevealTextV1Patterns": {
+    "stacked": { "lines": ["SAMPLE LINE ONE", "SAMPLE LINE TWO "] },
+    "stackedJp": { "lines": ["サンプルテキストの", "サンプル行"] },
+    "climaxHaloJp": { "lines": ["サンプルテキストの", "サンプル"] }
+  },
+  "tornNoteCaptionV1Patterns": {
+    "note": { "text": "SAMPLE NOTE" },
+    "noteJp": { "text": "サンプルのテキスト" }
   }
 }

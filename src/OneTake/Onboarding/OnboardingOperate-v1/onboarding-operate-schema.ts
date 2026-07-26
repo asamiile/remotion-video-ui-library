@@ -6,9 +6,9 @@ export const onboardingOperateSchemaV1 = z.object({
   backgroundColor: zColor().default("#060810"),
   vignetteOpacity: z.number().min(0).max(0.85).default(0.45),
 
-  /** タップ（Recordボタン押下）が発生するフレーム */
+  /** Frame at which the tap (pressing the Record button) occurs */
   tapFrame: z.number().min(0).default(20),
-  /** 波形が縮んで待機状態に戻り始めるフレーム（ここからループ終端に向けて減衰する） */
+  /** Frame at which the waveform starts shrinking back to idle (decays from here toward the loop end) */
   resetStartFrame: z.number().min(0).default(65),
 });
 

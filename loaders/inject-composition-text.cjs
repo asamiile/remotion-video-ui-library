@@ -1,6 +1,7 @@
 /**
- * 各コンパイルのたびに composition-text を読み直し、HMR で local.json 変更を反映する。
- * root はリポジトリ直下（loaders/ の親）に固定し、process.cwd() 違いで欠落しないようにする。
+ * Re-reads composition-text on every compile so HMR picks up local.json changes.
+ * root is pinned to the repo root (the parent of loaders/) so it doesn't go missing
+ * when process.cwd() differs.
  */
 const path = require("node:path");
 const bundle = require("../scripts/composition-text-for-bundle.cjs");

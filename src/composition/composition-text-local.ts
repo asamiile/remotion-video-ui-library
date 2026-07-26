@@ -1,4 +1,4 @@
-/** config/local/composition-text.local.json の形（キーはすべて省略可） */
+/** Shape of config/local/composition-text.local.json (all keys optional) */
 export type CompositionTextLocal = {
   intro?: {
     authorName?: string;
@@ -16,6 +16,8 @@ export type CompositionTextLocal = {
   shakeTextV1Patterns?: Record<string, Record<string, unknown>>;
   confettiPopTextV1Patterns?: Record<string, Record<string, unknown>>;
   loadingIconV1Patterns?: Record<string, Record<string, unknown>>;
+  stackedRevealTextV1Patterns?: Record<string, Record<string, unknown>>;
+  tornNoteCaptionV1Patterns?: Record<string, Record<string, unknown>>;
   locationV1?: Record<string, { locationName?: string }>;
   mapLocationPointsV1?: Record<
     string,

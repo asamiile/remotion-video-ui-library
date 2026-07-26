@@ -7,10 +7,11 @@ export const onboardingConnectSchemaV1 = z.object({
   backgroundColor: zColor().default("#060810"),
   vignetteOpacity: z.number().min(0).max(0.85).default(0.45),
 
-  /** 双方向パルスが1往復するフレーム数（アプリ埋め込み時にシームレスループする前提のため、
-   *  コンポジション全体の尺はこの整数倍にすること） */
+  /** Frames for one round trip of the bidirectional pulse. Assumes a seamless
+   *  loop when embedded in the app, so the composition's total duration must
+   *  be an integer multiple of this value. */
   pulsePeriodFrames: z.number().min(10).default(45),
-  /** 1ループ中に一度だけ「ネオン管が点灯する」フリッカー演出が起きるフレーム位置 */
+  /** Frame position at which the "neon tube turning on" flicker effect fires once per loop */
   flickerTriggerFrame: z.number().min(0).default(6),
 });
 

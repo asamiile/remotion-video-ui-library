@@ -7,6 +7,7 @@ export const defaultOnboardingOperateV1Props = {
   resetStartFrame: 65,
 };
 
-/** シームレスループ前提。resetStartFrame〜終端で波形/グローが待機状態まで減衰し、
- *  最終フレームが先頭フレーム（待機状態）とほぼ一致するようにしている。 */
+/** Assumes a seamless loop. From resetStartFrame to the end, the waveform/glow
+ *  decay to the idle state, so the last frame nearly matches the first frame
+ *  (idle state). */
 export const ONBOARDING_OPERATE_V1_DURATION_FRAMES = 90;
