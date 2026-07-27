@@ -60,6 +60,7 @@ How to decide when it's unclear:
 ## Development Notes
 
 - **Do not use copyright-related notices or markings**, including copyright statements, © symbols, or attribution lines.
+- **Do not reference external sources in code**, such as comments indicating which video, article, tutorial, or project the composition was based on. Keep code self-contained without external attribution.
 - **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** See [.agents/rules/composition-text-local.md](../.agents/rules/composition-text-local.md) for the read-only policy and the narrow exception.
 - **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** Agents must treat these as read-only unless the user explicitly names a local target path and asks for that change in chat. Sample copy lives in `config/local/composition-text.example.json`; edit the committed types/merge logic under `src/composition/` instead. See [.agents/rules/composition-text-local.md](../.agents/rules/composition-text-local.md) for details.
 - **The procedure for adding a new composition/pattern** (adding to an existing family / adding a new family / the location, LoadingIcon, and AudioSpectrum enumeration mechanics) follows the runbook at [.agents/rules/composition-update-runbook.mdc](../.agents/rules/composition-update-runbook.mdc).
