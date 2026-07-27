@@ -126,6 +126,30 @@ import { letterboxOverlayV1Patterns } from "./Background/LetterboxOverlay-v1/let
 import { PosterizeGradeOverlayTemplateV1 } from "./Background/PosterizeGradeOverlay-v1/PosterizeGradeOverlayTemplate";
 import { posterizeGradeOverlaySchemaV1 } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-schema";
 import { posterizeGradeOverlayV1Patterns } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-config";
+import { EmblemMontageBlurTemplateV1 } from "./Background/EmblemMontageBlur-v1/EmblemMontageBlurTemplate";
+import { emblemMontageBlurSchemaV1 } from "./Background/EmblemMontageBlur-v1/emblem-montage-blur-schema";
+import { emblemMontageBlurV1Patterns } from "./Background/EmblemMontageBlur-v1/emblem-montage-blur-config";
+import { SunsetLensFlareOverlayTemplateV1 } from "./Background/SunsetLensFlareOverlay-v1/SunsetLensFlareOverlayTemplate";
+import { sunsetLensFlareOverlaySchemaV1 } from "./Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay-schema";
+import { sunsetLensFlareOverlayV1Patterns } from "./Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay-config";
+import { RackFocusBokehTransitionTemplateV1 } from "./Effect/RackFocusBokehTransition/RackFocusBokehTransition-v1/RackFocusBokehTransitionTemplate";
+import { rackFocusBokehTransitionSchemaV1 } from "./Effect/RackFocusBokehTransition/RackFocusBokehTransition-v1/rack-focus-bokeh-transition-schema";
+import {
+  defaultRackFocusBokehTransitionV1Props,
+  rackFocusBokehTransitionV1DurationFrames,
+} from "./Effect/RackFocusBokehTransition/RackFocusBokehTransition-v1/rack-focus-bokeh-transition-config";
+import { BurstTemplateV1 } from "./Effect/Burst/Burst-v1/BurstTemplate";
+import { burstSchemaV1 } from "./Effect/Burst/Burst-v1/burst-schema";
+import {
+  defaultBurstV1Props,
+  burstV1DurationFrames,
+} from "./Effect/Burst/Burst-v1/burst-config";
+import { BattleCalloutBannerTemplateV1 } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/BattleCalloutBannerTemplate";
+import { battleCalloutBannerSchemaV1 } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner-schema";
+import { battleCalloutBannerV1DurationFrames } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner-config";
+import { AsymmetricStatusPanelTemplateV1 } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/AsymmetricStatusPanelTemplate";
+import { asymmetricStatusPanelSchemaV1 } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel-schema";
+import { asymmetricStatusPanelV1DurationFrames } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -146,6 +170,8 @@ import {
   mergedTornNoteCaptionV1Patterns,
   mergedDistressedTitleCardV1Patterns,
   mergedSprayPaintTextV1Patterns,
+  mergedBattleCalloutBannerV1Patterns,
+  mergedAsymmetricStatusPanelV1Patterns,
 } from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
 import { withCanvasPreview } from "./composition/with-canvas-preview";
@@ -470,6 +496,26 @@ export const RemotionRoot: React.FC = () => {
             durationInFrames: 150,
           })}
         </Folder>
+
+        <Folder name="EmblemMontageBlur">
+          {renderPatternFamily({
+            patterns: emblemMontageBlurV1Patterns,
+            idPrefix: "Background-EmblemMontageBlurV1-",
+            Template: EmblemMontageBlurTemplateV1,
+            schema: emblemMontageBlurSchemaV1,
+            durationInFrames: 60,
+          })}
+        </Folder>
+
+        <Folder name="SunsetLensFlareOverlay">
+          {renderPatternFamily({
+            patterns: sunsetLensFlareOverlayV1Patterns,
+            idPrefix: "Background-SunsetLensFlareOverlayV1-",
+            Template: SunsetLensFlareOverlayTemplateV1,
+            schema: sunsetLensFlareOverlaySchemaV1,
+            durationInFrames: 60,
+          })}
+        </Folder>
       </Folder>
 
       <Folder name="Effect">
@@ -503,6 +549,61 @@ export const RemotionRoot: React.FC = () => {
             schema={inkRippleTransitionSchemaV1}
             defaultProps={{ ...defaultInkRippleTransitionV1Props }}
           />
+        </Folder>
+
+        <Folder name="RackFocusBokehTransition">
+          <Composition
+            id="RackFocusBokehTransitionV1"
+            component={withCanvasPreview(
+              "RackFocusBokehTransitionV1",
+              RackFocusBokehTransitionTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={rackFocusBokehTransitionV1DurationFrames}
+            schema={rackFocusBokehTransitionSchemaV1}
+            defaultProps={{ ...defaultRackFocusBokehTransitionV1Props }}
+          />
+        </Folder>
+
+        <Folder name="Burst">
+          <Composition
+            id="BurstV1"
+            component={withCanvasPreview(
+              "BurstV1",
+              BurstTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={burstV1DurationFrames}
+            schema={burstSchemaV1}
+            defaultProps={{ ...defaultBurstV1Props }}
+          />
+        </Folder>
+      </Folder>
+
+      {/* Game-style UI chrome mockups (a category expected to grow) */}
+      <Folder name="UI">
+        <Folder name="BattleCalloutBanner">
+          {renderPatternFamily({
+            patterns: mergedBattleCalloutBannerV1Patterns,
+            idPrefix: "BattleCalloutBannerV1-",
+            Template: BattleCalloutBannerTemplateV1,
+            schema: battleCalloutBannerSchemaV1,
+            durationInFrames: battleCalloutBannerV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="AsymmetricStatusPanel">
+          {renderPatternFamily({
+            patterns: mergedAsymmetricStatusPanelV1Patterns,
+            idPrefix: "AsymmetricStatusPanelV1-",
+            Template: AsymmetricStatusPanelTemplateV1,
+            schema: asymmetricStatusPanelSchemaV1,
+            durationInFrames: asymmetricStatusPanelV1DurationFrames,
+          })}
         </Folder>
       </Folder>
 

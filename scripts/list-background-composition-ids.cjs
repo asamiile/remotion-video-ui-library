@@ -35,6 +35,16 @@ const families = [
     file: "src/Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-config.ts",
     exportName: "posterizeGradeOverlayV1Patterns",
   },
+  {
+    idPrefix: "Background-EmblemMontageBlurV1",
+    file: "src/Background/EmblemMontageBlur-v1/emblem-montage-blur-config.ts",
+    exportName: "emblemMontageBlurV1Patterns",
+  },
+  {
+    idPrefix: "Background-SunsetLensFlareOverlayV1",
+    file: "src/Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay-config.ts",
+    exportName: "sunsetLensFlareOverlayV1Patterns",
+  },
 ];
 
 for (const id of fixedIds) {

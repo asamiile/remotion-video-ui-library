@@ -15,6 +15,8 @@ import { stackedRevealTextV1Patterns } from "../Text/StackedRevealText/StackedRe
 import { tornNoteCaptionV1Patterns } from "../Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config";
 import { distressedTitleCardV1Patterns } from "../Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config";
 import { sprayPaintTextV1Patterns } from "../Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config";
+import { battleCalloutBannerV1Patterns } from "../UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner-config";
+import { asymmetricStatusPanelV1Patterns } from "../UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel-config";
 import {
   buildLocationConfigsFromCompositionKeys,
   buildMapLocationPointsFromCompositionKeys,
@@ -110,6 +112,16 @@ export const mergedSprayPaintTextV1Patterns = shallowMergePatternRecord(
   sprayPaintTextV1Patterns,
   local.sprayPaintTextV1Patterns,
 ) as typeof sprayPaintTextV1Patterns;
+
+export const mergedBattleCalloutBannerV1Patterns = shallowMergePatternRecord(
+  battleCalloutBannerV1Patterns,
+  local.battleCalloutBannerV1Patterns,
+) as typeof battleCalloutBannerV1Patterns;
+
+export const mergedAsymmetricStatusPanelV1Patterns = shallowMergePatternRecord(
+  asymmetricStatusPanelV1Patterns,
+  local.asymmetricStatusPanelV1Patterns,
+) as typeof asymmetricStatusPanelV1Patterns;
 
 export const mergedLocationConfigsV1 =
   buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);
