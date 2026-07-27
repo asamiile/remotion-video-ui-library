@@ -17,8 +17,12 @@ export const defaultSprayPaintTextV1Props = {
   dripCount: 4,
   dripColor: undefined,
   dripMaxLengthPx: 60,
+  dripGrowFrames: 8,
 
-  fadeInFrames: 10,
+  revealFrames: 18,
+  oversprayCount: 14,
+  oversprayColor: undefined,
+
   delayFrames: 0,
   randomSeed: "spray-paint-v1",
 };
@@ -29,6 +33,11 @@ export const defaultSprayPaintTextV1Props = {
  * `wallGraffiti` is sized for placement over a background photo/illustration,
  * matching the source's technique of painting narration directly onto the
  * environment rather than as a floating subtitle.
+ *
+ * The left-to-right "spray pass" reveal (jagged wipe + trailing overspray
+ * specks) is an artistic embellishment added on top of the source analysis:
+ * in the actual PV the credit text is a hard cut to a fully-formed, static
+ * graphic with no reveal animation of its own.
  */
 export const sprayPaintTextV1Patterns = {
   /** Staff credit (English default) */
@@ -53,5 +62,7 @@ export const sprayPaintTextV1Patterns = {
     roughness: 7,
     dripCount: 6,
     dripMaxLengthPx: 100,
+    revealFrames: 24,
+    oversprayCount: 20,
   },
 };

@@ -20,8 +20,20 @@ export const sprayPaintTextSchemaV1 = z.object({
   dripCount: z.number().min(0).max(12).default(4),
   dripColor: zColor().optional(),
   dripMaxLengthPx: z.number().min(0).default(60),
+  /** Frames for a drip to grow to full length once the spray pass reaches it */
+  dripGrowFrames: z.number().min(1).default(8),
 
-  fadeInFrames: z.number().min(0).default(10),
+  /**
+   * Left-to-right "spray pass" reveal: a jagged wipe (reusing the roughness
+   * filter on its edge) sweeps across the text, with trailing overspray
+   * specks. This is an artistic embellishment, not something present in the
+   * source PV this component is modeled on (there, the credit text is a hard
+   * cut to a fully-formed, static graphic).
+   */
+  revealFrames: z.number().min(1).default(18),
+  oversprayCount: z.number().min(0).max(40).default(14),
+  oversprayColor: zColor().optional(),
+
   delayFrames: z.number().min(0).default(0),
   randomSeed: z.string().default("spray-paint-v1"),
 });
