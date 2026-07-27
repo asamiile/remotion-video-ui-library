@@ -9,6 +9,7 @@ export type CompositionTextLocal = {
   neonTextV1Patterns?: Record<string, Record<string, unknown>>;
   slideInCaptionV1Patterns?: Record<string, Record<string, unknown>>;
   glitchTextV1Patterns?: Record<string, Record<string, unknown>>;
+  glitchTextV1RandomPatterns?: Record<string, Record<string, unknown>>;
   wireTextV1Patterns?: Record<string, Record<string, unknown>>;
   neonTextRainbowV1Patterns?: Record<string, Record<string, unknown>>;
   lightSweepTextV1Patterns?: Record<string, Record<string, unknown>>;

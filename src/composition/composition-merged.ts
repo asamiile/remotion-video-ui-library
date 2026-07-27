@@ -3,6 +3,7 @@ import { ledTextV1Patterns } from "../Text/LedText/LedText-v1/led-text-config";
 import { neonTextV1Patterns } from "../Text/NeonText/NeonText-v1/neon-text-config";
 import { slideInCaptionV1Patterns } from "../Text/SlideInCaption/SlideInCaption-v1/slide-in-caption-config";
 import { glitchTextV1Patterns } from "../Text/GlitchText/GlitchText-v1/glitch-text-config";
+import { glitchTextV1RandomPatterns } from "../Text/GlitchText/GlitchText-v1/glitch-text-random-config";
 import { wireTextV1Patterns } from "../Text/WireText/WireText-v1/wire-text-config";
 import { neonTextRainbowV1Patterns } from "../Text/NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-config";
 import { lightSweepTextV1Patterns } from "../Text/LightSweepText/LightSweepText-v1/light-sweep-text-config";
@@ -53,6 +54,11 @@ export const mergedGlitchTextV1Patterns = shallowMergePatternRecord(
   glitchTextV1Patterns,
   local.glitchTextV1Patterns,
 ) as typeof glitchTextV1Patterns;
+
+export const mergedGlitchTextV1RandomPatterns = shallowMergePatternRecord(
+  glitchTextV1RandomPatterns,
+  local.glitchTextV1RandomPatterns,
+) as typeof glitchTextV1RandomPatterns;
 
 export const mergedWireTextV1Patterns = shallowMergePatternRecord(
   wireTextV1Patterns,
