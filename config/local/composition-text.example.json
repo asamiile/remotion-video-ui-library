@@ -47,6 +47,15 @@
     "harshSignal": { "text": "SIGNAL UNSTABLE（sample）" },
     "harshSignalJp": { "text": "信号 不安定" }
   },
+  "glitchTextV1RandomPatterns": {
+    "harshSignalRandom": {
+      "items": [
+        { "text": "System A" },
+        { "text": "System B" },
+        { "text": "Error 404" }
+      ]
+    }
+  },
   "wireTextV1Patterns": {
     "trace": { "text": "HELLO WIRE" },
     "traceJp": { "text": "ワイヤーサンプル" },

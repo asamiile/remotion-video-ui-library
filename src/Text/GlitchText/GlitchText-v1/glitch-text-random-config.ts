@@ -1,0 +1,105 @@
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../../helpers/jetbrains-mono";
+
+export const glitchTextV1RandomDurationFrames = 3200;
+
+export const defaultGlitchTextV1RandomProps = {
+  items: [],
+  fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+  fontSize: 32,
+  letterSpacing: "0.05em",
+
+  textColor: "#EEF1FC",
+  channelRColor: "rgba(255, 61, 158, 0.55)", // #FF3D9E (magenta)
+  channelBColor: "rgba(55, 233, 255, 0.55)", // #37E9FF (cyan)
+
+  rgbOffsetMax: 8,
+  strongGlitchProbability: 0.2,
+  glitchSegmentFrames: 5,
+  garbleRate: 0.42,
+  jitterPx: 2,
+
+  scanlineOpacity: 0.08,
+  backgroundColor: "#060810",
+
+  spawnIntervalFrames: 60,
+  glitchDelayFrames: 90,
+  displayDurationFrames: 300,
+  fadeOutDuration: 30,
+
+  randomSeed: "glitch-random-default",
+};
+
+export const glitchTextV1RandomPatterns = {
+  harshSignalRandom: {
+    ...defaultGlitchTextV1RandomProps,
+    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+    fontSize: 32,
+    letterSpacing: "0.05em",
+    textColor: "#EEF1FC",
+    channelRColor: "rgba(255, 61, 158, 0.55)",
+    channelBColor: "rgba(55, 233, 255, 0.55)",
+    rgbOffsetMax: 12,
+    strongGlitchProbability: 0.32,
+    glitchSegmentFrames: 4,
+    jitterPx: 3,
+    spawnIntervalFrames: 60,
+    glitchDelayFrames: 90,
+    displayDurationFrames: 300,
+    fadeOutDuration: 30,
+    randomSeed: "glitch-harsh-random",
+  },
+  variant2: {
+    ...defaultGlitchTextV1RandomProps,
+    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+    fontSize: 32,
+    letterSpacing: "0.05em",
+    textColor: "#EEF1FC",
+    channelRColor: "rgba(255, 61, 158, 0.55)",
+    channelBColor: "rgba(55, 233, 255, 0.55)",
+    rgbOffsetMax: 12,
+    strongGlitchProbability: 0.32,
+    glitchSegmentFrames: 4,
+    jitterPx: 3,
+    spawnIntervalFrames: 60,
+    glitchDelayFrames: 90,
+    displayDurationFrames: 300,
+    fadeOutDuration: 30,
+    randomSeed: "glitch-variant2",
+  },
+  variant3: {
+    ...defaultGlitchTextV1RandomProps,
+    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+    fontSize: 32,
+    letterSpacing: "0.05em",
+    textColor: "#EEF1FC",
+    channelRColor: "rgba(255, 61, 158, 0.55)",
+    channelBColor: "rgba(55, 233, 255, 0.55)",
+    rgbOffsetMax: 12,
+    strongGlitchProbability: 0.32,
+    glitchSegmentFrames: 4,
+    jitterPx: 3,
+    spawnIntervalFrames: 60,
+    glitchDelayFrames: 90,
+    displayDurationFrames: 300,
+    fadeOutDuration: 30,
+    randomSeed: "glitch-variant3",
+  },
+  variant4: {
+    ...defaultGlitchTextV1RandomProps,
+    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+    fontSize: 32,
+    letterSpacing: "0.05em",
+    textColor: "#EEF1FC",
+    channelRColor: "rgba(255, 61, 158, 0.55)",
+    channelBColor: "rgba(55, 233, 255, 0.55)",
+    rgbOffsetMax: 12,
+    strongGlitchProbability: 0.32,
+    glitchSegmentFrames: 4,
+    jitterPx: 3,
+    spawnIntervalFrames: 60,
+    glitchDelayFrames: 90,
+    displayDurationFrames: 300,
+    fadeOutDuration: 30,
+    randomSeed: "glitch-variant3",
+  },
+};

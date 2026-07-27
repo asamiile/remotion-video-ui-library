@@ -39,6 +39,9 @@ import { slideInCaptionV1DurationFrames } from "./Text/SlideInCaption/SlideInCap
 import { GlitchTextTemplateV1 } from "./Text/GlitchText/GlitchText-v1/GlitchTextTemplate";
 import { glitchTextSchemaV1 } from "./Text/GlitchText/GlitchText-v1/glitch-text-schema";
 import { glitchTextV1DurationFrames } from "./Text/GlitchText/GlitchText-v1/glitch-text-config";
+import { GlitchTextRandomTemplateV1 } from "./Text/GlitchText/GlitchText-v1/GlitchTextRandomTemplate";
+import { glitchTextRandomSchemaV1 } from "./Text/GlitchText/GlitchText-v1/glitch-text-random-schema";
+import { glitchTextV1RandomDurationFrames } from "./Text/GlitchText/GlitchText-v1/glitch-text-random-config";
 import { WireTextTemplateV1 } from "./Text/WireText/WireText-v1/WireTextTemplate";
 import { wireTextSchemaV1 } from "./Text/WireText/WireText-v1/wire-text-schema";
 import { wireTextV1DurationFrames } from "./Text/WireText/WireText-v1/wire-text-config";
@@ -150,6 +153,7 @@ import { asymmetricStatusPanelV1DurationFrames } from "./UI/AsymmetricStatusPane
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
+  mergedGlitchTextV1RandomPatterns,
   mergedLightSweepTextV1Patterns,
   mergedLedTextV1Patterns,
   mergedLoadingIconV1Patterns,
@@ -313,6 +317,24 @@ export const RemotionRoot: React.FC = () => {
             schema: glitchTextSchemaV1,
             durationInFrames: glitchTextV1DurationFrames,
           })}
+          {Object.entries(mergedGlitchTextV1RandomPatterns).map(
+            ([patternName, props]) => (
+              <Composition
+                key={`GlitchTextV1-Random-${patternName}`}
+                id={`GlitchTextV1-Random-${patternName}`}
+                component={withCanvasPreview(
+                  `GlitchTextV1-Random-${patternName}`,
+                  GlitchTextRandomTemplateV1
+                )}
+                width={1920}
+                height={1080}
+                fps={FPS}
+                durationInFrames={glitchTextV1RandomDurationFrames}
+                schema={glitchTextRandomSchemaV1}
+                defaultProps={props}
+              />
+            )
+          )}
         </Folder>
 
         <Folder name="WireText">

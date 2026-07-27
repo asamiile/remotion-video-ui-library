@@ -15,6 +15,6 @@ export const letterboxOverlayV1Patterns = {
   /** Bars slide in from the top/bottom edges */
   revealIn: {
     ...defaultLetterboxOverlayV1Props,
-    revealFrames: 15,
+    revealFrames: 30,
   },
 };

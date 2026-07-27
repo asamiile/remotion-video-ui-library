@@ -67,8 +67,9 @@ export function shallowMergePatternRecord<
   const out = { ...base };
   for (const key of Object.keys(patch) as (keyof T)[]) {
     const p = patch[key];
-    if (p && out[key]) {
-      out[key] = { ...out[key], ...p } as T[keyof T];
+    if (p) {
+      // Merge with existing pattern or add new pattern
+      out[key] = out[key] ? ({ ...out[key], ...p } as T[keyof T]) : (p as T[keyof T]);
     }
   }
   return out;
