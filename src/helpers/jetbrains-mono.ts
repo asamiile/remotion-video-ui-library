@@ -1,7 +1,7 @@
 import { continueRender, delayRender } from "remotion";
 import { loadFont, fontFamily } from "@remotion/google-fonts/JetBrainsMono";
 
-/** コード・タイプライター向け等幅（JetBrains Mono） */
+/** Monospace for code/typewriter use (JetBrains Mono) */
 export const JETBRAINS_MONO_FONT_FAMILY = `'${fontFamily}', ui-monospace, monospace`;
 
 const jb = loadFont("normal", {

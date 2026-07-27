@@ -1,12 +1,12 @@
 /**
- * composition-text の mapLocationPointsV1 のうち、緯度経度が揃っている地点だけを
- * stdout に出す。merge-composition-local.ts の buildMapLocationPointsFromCompositionKeys
- * と同じ絞り込み条件（composition-text-for-bundle.cjs の
- * hydrateLegacyMapPointsFromSampleIds 適用後の値に対して判定）。
+ * Prints to stdout only the locations in composition-text's mapLocationPointsV1 that have
+ * both latitude and longitude set. Same filtering condition as
+ * buildMapLocationPointsFromCompositionKeys in merge-composition-local.ts (evaluated against
+ * the value after composition-text-for-bundle.cjs's hydrateLegacyMapPointsFromSampleIds runs).
  *
- * locationV1 に地点があっても、緯度経度が未設定の地点は Root.tsx に
- * MiniMapV1-<id> コンポジションが登録されない。list-location-v1-composition-ids.cjs
- * （Location用、locationV1の全件）とは対象が異なるため使い回さないこと。
+ * A location can exist in locationV1 without a MiniMapV1-<id> composition being registered
+ * in Root.tsx if lat/lng aren't set. This targets a different set than
+ * list-location-v1-composition-ids.cjs (all of locationV1, for Location) — don't reuse one for the other.
  */
 const path = require("node:path");
 const bundle = require("./composition-text-for-bundle.cjs");

@@ -9,7 +9,7 @@ import * as path from "node:path";
 import { Config } from "@remotion/cli/config";
 import { enableTailwind } from "@remotion/tailwind-v4";
 
-// Remotion が remotion.config を CJS として読み込むため import.meta は使わない
+// Remotion loads remotion.config as CJS, so import.meta cannot be used here
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const nodeRequire: NodeRequire = require;
 
@@ -29,8 +29,9 @@ Config.setProResProfile("4444");
 Config.setOverwriteOutput(true);
 
 /**
- * composition-text は `loaders/inject-composition-text.cjs` が各コンパイルで再読込する。
- * （旧: remotion.config トップレベル + DefinePlugin だと Studio 起動後の local.json が反映されない）
+ * `loaders/inject-composition-text.cjs` reloads composition-text on every compile.
+ * (Previously this lived at the remotion.config top level via DefinePlugin, but that
+ * meant local.json edits made after Studio started were never picked up.)
  */
 Config.overrideWebpackConfig((currentConfig) => {
   const withTailwind = enableTailwind(currentConfig);
