@@ -24,14 +24,14 @@ description: >-
 | `ledTextV1Patterns` | pattern ID → partial props (e.g. `text`) |
 | `neonTextV1Patterns` | same |
 | `loadingIconV1Patterns` | same |
-| `codeStreamV1Patterns` | same, but split between horizontal/vertical presets |
+| `codeStreamV1Patterns` | same, but split between horizontal/vertical presets and `paragraphs` arrays |
 | `locationV1` | `locationId` → `{ "locationName" }` |
 | `mapLocationPointsV1` | `locationId` → `{ "name" }` |
 
 ## For Agents
 
 1. When adding "override copy" for a new composition, add the key to **`composition-text.example.json`** and update the **`src/composition/composition-text-local.ts`** type. Add merge logic in **`src/composition/composition-merged.ts`** if needed.
-2. `CodeStream` is defined in **`codeStreamV1Patterns`** and should be split into separate horizontal/vertical entries so each composition can be edited independently.
+2. `CodeStream` is defined in **`codeStreamV1Patterns`** and should be split into separate horizontal/vertical entries with `paragraphs` arrays so each composition can advance paragraph-by-paragraph.
 3. Keep this file focused on `config/local` wiring and the example/local split; use [.agents/rules/composition-text-local.md](./composition-text-local.md) for the personal-file policy.
 4. Make sure `config/local/*.local.json` is listed in `.gitignore`.
 
