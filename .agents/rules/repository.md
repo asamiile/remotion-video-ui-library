@@ -20,7 +20,6 @@
 /public                 … Static assets (audio, images, etc.)
 render.sh                … Batch rendering script (see README.md for details)
 remotion.config.ts        … Build configuration
-.cursor/                 … Cursor project rules & skills (auto-loaded from the repo root — do not move)
 ```
 
 **Core principle**: the directory hierarchy under `src/` must always match `Root.tsx`'s `<Folder>` nesting exactly. Looking at Studio's sidebar (Compositions panel) should tell you the corresponding `src/` path directly.
@@ -58,8 +57,8 @@ How to decide when it's unclear:
 
 ## Development Notes
 
-- **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** Agents must not modify, create, delete, or rekey these — read-only. Sample copy lives in `config/local/composition-text.example.json`; edit the committed types/merge logic under `src/composition/` instead. The only exception is when the user explicitly names the target path and the change in chat. See [.cursor/rules/composition-text-local.mdc](../.cursor/rules/composition-text-local.mdc) for details.
-- **The procedure for adding a new composition/pattern** (adding to an existing family / adding a new family / the location, LoadingIcon, and AudioSpectrum enumeration mechanics) follows the runbook at [.cursor/rules/composition-update-runbook.mdc](../.cursor/rules/composition-update-runbook.mdc).
-- **The layout of `config/local` and how it's injected at build time** (`remotion.config.ts` reads `composition-text.local.json` and injects it as `__COMPOSITION_TEXT_LOCAL__`) is documented in [.cursor/skills/config-local-layout/SKILL.md](../.cursor/skills/config-local-layout/SKILL.md).
+- **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** Agents must not modify, create, delete, or rekey these — read-only. Sample copy lives in `config/local/composition-text.example.json`; edit the committed types/merge logic under `src/composition/` instead. The only exception is when the user explicitly names the target path and the change in chat. See [.agents/rules/composition-text-local.mdc](../.agents/rules/composition-text-local.mdc) for details.
+- **The procedure for adding a new composition/pattern** (adding to an existing family / adding a new family / the location, LoadingIcon, and AudioSpectrum enumeration mechanics) follows the runbook at [.agents/rules/composition-update-runbook.mdc](../.agents/rules/composition-update-runbook.mdc).
+- **The layout of `config/local` and how it's injected at build time** (`remotion.config.ts` reads `composition-text.local.json` and injects it as `__COMPOSITION_TEXT_LOCAL__`) is documented in [.agents/config-local-layout/SKILL.md](../.agents/config-local-layout/SKILL.md).
 - **The contents of `src/composition/` are "shared infrastructure"**, distinct from the "feature categories" like `src/Text/` (the similar naming is easy to confuse). It is not a place to add individual compositions.
-- **Never move `.cursor/rules/` or `.cursor/skills/` under `.agents/`.** These are fixed, repo-root-relative paths that the Cursor editor auto-detects — not a naming convention specific to this repository. Moving them would break rule/skill loading for anyone using Cursor.
+- **Never move `.cursor/rules/` or `.agents/skills/` under `.agents/`.** These are fixed, repo-root-relative paths that the Cursor editor auto-detects — not a naming convention specific to this repository. Moving them would break rule/skill loading for anyone using Cursor.
