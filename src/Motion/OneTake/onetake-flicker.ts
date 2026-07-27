@@ -2,7 +2,7 @@ import {
   NEON_FLICKER_CYCLE_MS,
   neonFlickerAt,
   type NeonFlickerState,
-} from "../helpers/neon-flicker";
+} from "../../helpers/neon-flicker";
 
 /**
  * The curve used when porting the asami.tokyo LP's CTA hover neon-flicker

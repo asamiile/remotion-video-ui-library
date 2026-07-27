@@ -104,6 +104,17 @@
     "creditJp": { "text": "サンプルクレジット" },
     "wallGraffitiJp": { "text": "サンプル" }
   },
+  "oneTakeLogoTextV1": {
+    "eyebrowText": "DAW Remote Controller",
+    "titleText": "OneTake - Remote Control",
+    "eyebrowFontSize": 24,
+    "titleFontSize": 48,
+    "gapPx": 20,
+    "eyebrowColor": "#37E9FF",
+    "titleColor": "#EEF1FC",
+    "backgroundColor": "#060810",
+    "flickerTriggerFrame": 15
+  },
   "codeStreamV1Patterns": {
     "horizontal": {
       "paragraphs": [

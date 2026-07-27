@@ -17,6 +17,7 @@ import { distressedTitleCardV1Patterns } from "../Text/DistressedTitleCard/Distr
 import { sprayPaintTextV1Patterns } from "../Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config";
 import { battleCalloutBannerV1Patterns } from "../UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner-config";
 import { asymmetricStatusPanelV1Patterns } from "../UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel-config";
+import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle-v1/flicker-title-config";
 import {
   buildLocationConfigsFromCompositionKeys,
   buildMapLocationPointsFromCompositionKeys,
@@ -122,6 +123,11 @@ export const mergedAsymmetricStatusPanelV1Patterns = shallowMergePatternRecord(
   asymmetricStatusPanelV1Patterns,
   local.asymmetricStatusPanelV1Patterns,
 ) as typeof asymmetricStatusPanelV1Patterns;
+
+export const mergedOneTakeLogoTextV1Props = {
+  ...oneTakeLogoTextVariantProps,
+  ...(local.oneTakeLogoTextV1 || {}),
+};
 
 export const mergedLocationConfigsV1 =
   buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);

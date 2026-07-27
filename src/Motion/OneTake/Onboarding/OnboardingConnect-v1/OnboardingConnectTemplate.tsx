@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { OnboardingConnectSchemaV1Type } from "./onboarding-connect-schema";
-import { resolvedBackdropPair } from "../../../helpers/transparent-composition-backdrop";
+import { resolvedBackdropPair } from "../../../../helpers/transparent-composition-backdrop";
 import { CTA_FLICKER_CYCLE_MS, ctaFlickerAt } from "../../onetake-flicker";
 import {
   APP_BORDER,
