@@ -14,7 +14,7 @@ alwaysApply: false
 ## A. Adding one pattern to an existing family (LED / Neon / Glitch, etc.)
 
 1. Add an entry to `*Patterns` in **`src/<Feature>/<Feature>-v1/<feature>-config.ts`** (this is the canonical source for default copy and look).
-   Text-effect families (LED/Neon/Glitch, etc.) live under `src/Text/<Feature>/<Feature>-v1/…`, and LoadingIcon lives under `src/Loading/LoadingIcon-v1/…` (the directory hierarchy matches `Root.tsx`'s `<Folder>` nesting). See [.agents/repository.md](../../.agents/repository.md) for the criteria on where to place directories.
+   Text-effect families (LED/Neon/Glitch, etc.) live under `src/Text/<Feature>/<Feature>-v1/…`, and LoadingIcon lives under `src/Loading/LoadingIcon-v1/…` (the directory hierarchy matches `Root.tsx`'s `<Folder>` nesting). See [.agents/rules/repository.md](../../.agents/rules/repository.md) for the criteria on where to place directories.
 2. Add the same pattern-ID block to **`config/local/composition-text.example.json`** (sample copy, for documentation). Keep key names consistent with the config.
 3. If it needs to be reflected in types, add the key to the corresponding `*Patterns` type in **`src/composition/composition-text-local.ts`** (keeps types consistent for agents).
 4. **Agents must never edit `config/local/composition-text.local.json`** on their own (it's the user's personal file). The user writes production copy there themselves.
@@ -85,5 +85,3 @@ node scripts/list-onetake-composition-ids.cjs
 | Types (JSON) | `src/composition/composition-text-local.ts` |
 | Build-time injection | `remotion.config.ts` |
 | Canonical render notes / subcommand list | `render.sh help` (the header comment in `render.sh` is a short example only — not maintained as a second source of truth) |
-| Rule for not touching local | `.cursor/rules/composition-text-local.mdc` |
-| Overview of config/local | `.cursor/skills/config-local-layout/SKILL.md` |
