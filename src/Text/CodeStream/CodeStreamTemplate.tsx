@@ -88,6 +88,7 @@ export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateV1Props> = ({
   primaryColor,
   flickerProbability,
   flickerWindowMs,
+  endPaddingFrames,
 }) => {
   const frame = useCurrentFrame();
   const { width, height, fps } = useVideoConfig();
@@ -144,21 +145,29 @@ export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateV1Props> = ({
     (total, layout) => total + layout.cycleDistance,
     0,
   );
-  const motionPx =
-    totalCycleDistance > 0 ? (frame * speedPxPerFrame) % totalCycleDistance : 0;
+  const endPaddingPx = endPaddingFrames * speedPxPerFrame;
+  const totalScrollDistance = totalCycleDistance + endPaddingPx;
+  const rawMotionPx = frame * speedPxPerFrame;
+  const motionPx = Math.min(rawMotionPx, totalScrollDistance);
 
   let activeParagraphIndex = 0;
   let activeParagraphOffset = motionPx;
   let accumulatedDistance = 0;
 
-  for (let index = 0; index < paragraphLayouts.length; index += 1) {
-    const layout = paragraphLayouts[index];
-    if (motionPx < accumulatedDistance + layout.cycleDistance) {
-      activeParagraphIndex = index;
-      activeParagraphOffset = motionPx - accumulatedDistance;
-      break;
+  // If motion has exceeded the cycle distance, stay at the end
+  if (motionPx >= totalCycleDistance) {
+    activeParagraphIndex = paragraphLayouts.length > 0 ? paragraphLayouts.length - 1 : 0;
+    activeParagraphOffset = totalCycleDistance;
+  } else {
+    for (let index = 0; index < paragraphLayouts.length; index += 1) {
+      const layout = paragraphLayouts[index];
+      if (motionPx < accumulatedDistance + layout.cycleDistance) {
+        activeParagraphIndex = index;
+        activeParagraphOffset = motionPx - accumulatedDistance;
+        break;
+      }
+      accumulatedDistance += layout.cycleDistance;
     }
-    accumulatedDistance += layout.cycleDistance;
   }
 
   const activeLayout = paragraphLayouts[activeParagraphIndex] ?? paragraphLayouts[0];
@@ -278,7 +287,6 @@ export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateV1Props> = ({
                 width: panelWidthPx,
                 height: panel.panelHeightPx,
                 boxSizing: "border-box",
-                overflow: "hidden",
                 minWidth: 0,
                 minHeight: 0,
               }}

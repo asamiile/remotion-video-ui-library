@@ -63,27 +63,24 @@ import {
   defaultFlickerTitleV1Props,
   FLICKER_TITLE_V1_DURATION_FRAMES,
 } from "./Text/FlickerTitle-v1/flicker-title-config";
-import { OnboardingConnectTemplateV1 } from "./OneTake/Onboarding/OnboardingConnect-v1/OnboardingConnectTemplate";
-import { onboardingConnectSchemaV1 } from "./OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-schema";
+import { OnboardingConnectTemplateV1 } from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/OnboardingConnectTemplate";
+import { onboardingConnectSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-schema";
 import {
   defaultOnboardingConnectV1Props,
   ONBOARDING_CONNECT_V1_DURATION_FRAMES,
-} from "./OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-config";
-import { OnboardingOperateTemplateV1 } from "./OneTake/Onboarding/OnboardingOperate-v1/OnboardingOperateTemplate";
-import { onboardingOperateSchemaV1 } from "./OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-schema";
+} from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-config";
+import { OnboardingOperateTemplateV1 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/OnboardingOperateTemplate";
+import { onboardingOperateSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-schema";
 import {
   defaultOnboardingOperateV1Props,
   ONBOARDING_OPERATE_V1_DURATION_FRAMES,
-} from "./OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-config";
-import { OneTakeLogoTemplateV1 } from "./OneTake/Logo/OneTakeLogo-v1/OneTakeLogoTemplate";
-import { oneTakeLogoSchemaV1 } from "./OneTake/Logo/OneTakeLogo-v1/onetake-logo-schema";
-import { oneTakeLogoV1Patterns } from "./OneTake/Logo/OneTakeLogo-v1/onetake-logo-config";
-import { OneTakeLogoTextTemplateV1 } from "./OneTake/Logo/OneTakeLogoText-v1/OneTakeLogoTextTemplate";
-import { oneTakeLogoTextSchemaV1 } from "./OneTake/Logo/OneTakeLogoText-v1/onetake-logo-text-schema";
-import {
-  defaultOneTakeLogoTextV1Props,
-  ONETAKE_LOGO_TEXT_V1_DURATION_FRAMES,
-} from "./OneTake/Logo/OneTakeLogoText-v1/onetake-logo-text-config";
+} from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-config";
+import { OneTakeLogoTemplateV1 } from "./Logo/OneTake/OneTakeLogo-v1/OneTakeLogoTemplate";
+import { oneTakeLogoSchemaV1 } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo-schema";
+import { oneTakeLogoV1Patterns } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo-config";
+import { OneTakeLogoTextTemplateV1 } from "./Text/FlickerTitle-v1/OneTakeLogoTextTemplate";
+import { flickerTitleSchemaV1 } from "./Text/FlickerTitle-v1/flicker-title-schema";
+import { FLICKER_TITLE_V1_DURATION_FRAMES } from "./Text/FlickerTitle-v1/flicker-title-config";
 import { StackedRevealTextTemplateV1 } from "./Text/StackedRevealText/StackedRevealText-v1/StackedRevealTextTemplate";
 import { stackedRevealTextSchemaV1 } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-schema";
 import { stackedRevealTextV1DurationFrames } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-config";
@@ -172,6 +169,7 @@ import {
   mergedSprayPaintTextV1Patterns,
   mergedBattleCalloutBannerV1Patterns,
   mergedAsymmetricStatusPanelV1Patterns,
+  mergedOneTakeLogoTextV1Props,
 } from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
 import { withCanvasPreview } from "./composition/with-canvas-preview";
@@ -249,7 +247,7 @@ export const RemotionRoot: React.FC = () => {
             width={1920}
             height={1080}
             fps={FPS}
-            durationInFrames={1800}
+            durationInFrames={3200}
             schema={codeStreamSchemaV1}
             defaultProps={mergedCodeStreamV1Patterns.vertical ?? defaultCodeStreamVerticalV1Props}
           />
@@ -377,19 +375,35 @@ export const RemotionRoot: React.FC = () => {
           })}
         </Folder>
 
-        <Composition
-          id="FlickerTitleV1"
-          component={withCanvasPreview(
-            "FlickerTitleV1",
-            FlickerTitleTemplateV1,
-          )}
-          width={1920}
-          height={1080}
-          fps={FPS}
-          durationInFrames={FLICKER_TITLE_V1_DURATION_FRAMES}
-          schema={flickerTitleSchemaV1}
-          defaultProps={{ ...defaultFlickerTitleV1Props }}
-        />
+        <Folder name="FlickerTitle">
+          <Composition
+            id="FlickerTitleV1"
+            component={withCanvasPreview(
+              "FlickerTitleV1",
+              FlickerTitleTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={FLICKER_TITLE_V1_DURATION_FRAMES}
+            schema={flickerTitleSchemaV1}
+            defaultProps={{ ...defaultFlickerTitleV1Props }}
+          />
+
+          <Composition
+            id="OneTake-LogoTextV1"
+            component={withCanvasPreview(
+              "OneTake-LogoTextV1",
+              OneTakeLogoTextTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={FLICKER_TITLE_V1_DURATION_FRAMES}
+            schema={flickerTitleSchemaV1}
+            defaultProps={{ ...mergedOneTakeLogoTextV1Props }}
+          />
+        </Folder>
 
         <Folder name="StackedRevealText">
           {renderPatternFamily({
@@ -727,37 +741,41 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
 
-      <Folder name="OneTake">
-        <Folder name="Onboarding">
-          <Composition
-            id="OneTake-OnboardingConnectV1"
-            component={withCanvasPreview(
-              "OneTake-OnboardingConnectV1",
-              OnboardingConnectTemplateV1,
-            )}
-            width={1920}
-            height={1080}
-            fps={FPS}
-            durationInFrames={ONBOARDING_CONNECT_V1_DURATION_FRAMES}
-            schema={onboardingConnectSchemaV1}
-            defaultProps={{ ...defaultOnboardingConnectV1Props }}
-          />
-          <Composition
-            id="OneTake-OnboardingOperateV1"
-            component={withCanvasPreview(
-              "OneTake-OnboardingOperateV1",
-              OnboardingOperateTemplateV1,
-            )}
-            width={1920}
-            height={1080}
-            fps={FPS}
-            durationInFrames={ONBOARDING_OPERATE_V1_DURATION_FRAMES}
-            schema={onboardingOperateSchemaV1}
-            defaultProps={{ ...defaultOnboardingOperateV1Props }}
-          />
+      <Folder name="Motion">
+        <Folder name="OneTake">
+          <Folder name="Onboarding">
+            <Composition
+              id="OneTake-OnboardingConnectV1"
+              component={withCanvasPreview(
+                "OneTake-OnboardingConnectV1",
+                OnboardingConnectTemplateV1,
+              )}
+              width={1920}
+              height={1080}
+              fps={FPS}
+              durationInFrames={ONBOARDING_CONNECT_V1_DURATION_FRAMES}
+              schema={onboardingConnectSchemaV1}
+              defaultProps={{ ...defaultOnboardingConnectV1Props }}
+            />
+            <Composition
+              id="OneTake-OnboardingOperateV1"
+              component={withCanvasPreview(
+                "OneTake-OnboardingOperateV1",
+                OnboardingOperateTemplateV1,
+              )}
+              width={1920}
+              height={1080}
+              fps={FPS}
+              durationInFrames={ONBOARDING_OPERATE_V1_DURATION_FRAMES}
+              schema={onboardingOperateSchemaV1}
+              defaultProps={{ ...defaultOnboardingOperateV1Props }}
+            />
+          </Folder>
         </Folder>
+      </Folder>
 
-        <Folder name="Logo">
+      <Folder name="Logo">
+        <Folder name="OneTake">
           {renderPatternFamily({
             patterns: oneTakeLogoV1Patterns,
             idPrefix: "OneTake-LogoV1-",
@@ -772,19 +790,6 @@ export const RemotionRoot: React.FC = () => {
                 patternProps.motionCyclesBeforeHold +
               patternProps.holdFrames,
           })}
-          <Composition
-            id="OneTake-LogoTextV1"
-            component={withCanvasPreview(
-              "OneTake-LogoTextV1",
-              OneTakeLogoTextTemplateV1,
-            )}
-            width={1920}
-            height={1080}
-            fps={FPS}
-            durationInFrames={ONETAKE_LOGO_TEXT_V1_DURATION_FRAMES}
-            schema={oneTakeLogoTextSchemaV1}
-            defaultProps={{ ...defaultOneTakeLogoTextV1Props }}
-          />
         </Folder>
       </Folder>
 

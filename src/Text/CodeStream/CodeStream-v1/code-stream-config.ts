@@ -13,6 +13,7 @@ export const defaultCodeStreamHorizontalV1Props = {
 	primaryColor: "#eef1fc",
 	flickerProbability: 0.5,
 	flickerWindowMs: 900,
+	endPaddingFrames: 150,
 } as const;
 
 export const defaultCodeStreamVerticalV1Props = {
@@ -30,6 +31,7 @@ export const defaultCodeStreamVerticalV1Props = {
 	primaryColor: "#eef1fc",
 	flickerProbability: 0.5,
 	flickerWindowMs: 900,
+	endPaddingFrames: 150,
 } as const;
 
 export const codeStreamV1Patterns = {

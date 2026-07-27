@@ -32,6 +32,7 @@ export const codeStreamSchemaV1 = z.object({
   primaryColor: zColor().default("#eef1fc"),
   flickerProbability: z.number().min(0).max(1).default(0.3),
   flickerWindowMs: z.number().min(100).default(850),
+  endPaddingFrames: z.number().min(0).default(150),
 });
 
 export type CodeStreamSchemaV1Type = z.infer<typeof codeStreamSchemaV1>;
