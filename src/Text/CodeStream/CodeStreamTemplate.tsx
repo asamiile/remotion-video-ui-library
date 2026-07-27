@@ -288,7 +288,7 @@ export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateV1Props> = ({
           ))}
         </div>
       </div>
-      <div
+      {/* <div
         style={{
           position: "absolute",
           inset: 0,
@@ -296,18 +296,7 @@ export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateV1Props> = ({
             "linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.34))",
           pointerEvents: "none",
         }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 26px)",
-          opacity: 0.08,
-          pointerEvents: "none",
-          mixBlendMode: "screen",
-        }}
-      />
+      /> */}
     </AbsoluteFill>
   );
 };
