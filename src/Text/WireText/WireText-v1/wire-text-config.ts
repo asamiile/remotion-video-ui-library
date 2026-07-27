@@ -1,0 +1,79 @@
+import { LINE_SEED_JP_FONT_FAMILY } from "../../../helpers/line-seed-jp";
+
+export const wireTextV1DurationFrames = 320;
+
+export const defaultWireTextV1Props = {
+  text: "TRACE",
+  fontFamily: LINE_SEED_JP_FONT_FAMILY,
+  fontWeight: "700" as const,
+  fontSize: 48,
+  letterSpacing: "0.06em",
+  lineHeight: 1.15,
+
+  wireColor: "#7ae2ff",
+  strokeWidth: 2.2,
+  wireGlowBlur: 2.4,
+
+  fillEnabled: true,
+  fillColor: "rgba(230, 248, 255, 0.92)",
+  fillFadeInFrames: 18,
+  fillDelayAfterDrawFrames: 6,
+
+  drawDurationFrames: 78,
+  drawEasing: "easeOut" as const,
+
+  fadeInDuration: 12,
+  delayFrames: 0,
+
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
+
+  backgroundColor: "#0a1018",
+};
+
+export const wireTextV1Patterns = {
+  /** Latin script, thinner wire */
+  trace: {
+    ...defaultWireTextV1Props,
+    text: "WIRE TRACE",
+    fontSize: 48,
+    drawDurationFrames: 90,
+    wireGlowBlur: 2,
+  },
+
+  /** Japanese version of trace */
+  traceJp: {
+    ...defaultWireTextV1Props,
+    text: "測定ライン",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    fontSize: 48,
+    letterSpacing: "0.1em",
+    drawDurationFrames: 96,
+    wireColor: "#9cf0ff",
+    fillColor: "rgba(220, 245, 255, 0.9)",
+    wireGlowBlur: 3,
+  },
+
+  /** Outline only (fill effectively off) */
+  outlineOnly: {
+    ...defaultWireTextV1Props,
+    text: "OUTLINE ONLY",
+    fontSize: 48,
+    fillEnabled: false,
+    wireGlowBlur: 1.5,
+    strokeWidth: 2.8,
+  },
+
+  /** Japanese version of outlineOnly */
+  outlineOnlyJp: {
+    ...defaultWireTextV1Props,
+    text: "輪郭のみ",
+    fontFamily: LINE_SEED_JP_FONT_FAMILY,
+    fontSize: 48,
+    letterSpacing: "0.1em",
+    fillEnabled: false,
+    wireGlowBlur: 1.5,
+    strokeWidth: 2.8,
+    drawDurationFrames: 96,
+  },
+};

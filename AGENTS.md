@@ -1,19 +1,18 @@
 # AGENTS.md
 
-このリポジトリで作業するAIエージェント向けのガイドです。
+Guide for AI agents working in this repository.
 
-- リポジトリ構成・開発ルール: [.agents/repository.md](.agents/repository.md)
+- Repository structure & development rules: [.agents/rules/repository.md](.agents/rules/repository.md)
 
-## 概要
+## Overview
 
-Remotionベースの動画UIライブラリ。テキストエフェクト（Neon / Glitch / LED等）・ローディングアイコン・オーディオスペクトラム・地図アニメーション等のコンポジションをRemotion Studioでプレビューし、`render.sh`でMP4・透明背景ProRes等に書き出す。個人用の動画制作ツールキットであり、npmパッケージとして公開しているものではない。
+A Remotion-based video UI library. Text effects, Background, Effects, and other compositions are previewed in Remotion Studio and exported via `render.sh` to MP4, transparent-background ProRes, etc. It's a personal video-production toolkit, not something published as an npm package.
 
-## コマンド
+## Commands
 
-具体的なコマンド（プレビュー起動・レンダリング・Remotionアップグレード）は[README.md](README.md)を参照。
+For specific commands (starting the preview, rendering, upgrading Remotion), see [README.md](README.md).
 
-## Cursor向けの設定
+## Configuration
 
-- プロジェクトルール: [.cursor/rules/](.cursor/rules/)（`.mdc`）
-- スキル: [.cursor/skills/](.cursor/skills/)
-- Cursorがリポジトリルート起点で自動検出する規約のパスのため、**`.agents/`配下には移動しない**。
+- Project rules: [.agents/rules/](.agents/rules/)
+- Skills: [.agents/skills/](.agents/skills/)

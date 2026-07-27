@@ -16,7 +16,7 @@ export interface IntroScene {
   duration: number;
 }
 
-/** シーンの尺・演出のみ。文言は IntroTemplate が props から合成する */
+/** Only scene timing/staging here — the copy itself is composed by IntroTemplate from props */
 export const introSceneTimingV1 = [
   {
     id: "scene1",
@@ -31,7 +31,6 @@ export const introSceneTimingV1 = [
   },
 ] as const;
 
-// デフォルトプロパティ
 export const defaultIntroV1Props = {
   authorName: "著者名プレビュー",
   introTitle: "イントロタイトル（プレビュー）",

@@ -1,9 +1,9 @@
 /**
- * `render.sh --transparent-bg`（またはビルド時の DefinePlugin で
- * REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1）のとき、全画面の下敷き色を透明にし、
- * 放射ビネットも不透明度 0 にしてアルファが通りやすくする。
+ * When `render.sh --transparent-bg` is used (or REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1
+ * is set via the build-time DefinePlugin), makes the full-screen backdrop color transparent
+ * and drops the radial vignette's opacity to 0 so alpha passes through cleanly.
  *
- * composition-canvas-preview（Studio 用プレビュー底）とは別レイヤー。
+ * A separate layer from composition-canvas-preview (the Studio-only preview backdrop).
  */
 
 export function resolveCompositionBackdropColor(cssColor: string): string {
@@ -20,7 +20,7 @@ export function resolveCompositionVignetteOpacity(opacity: number): number {
   return opacity;
 }
 
-/** Neon / Rainbow / LightSweep のように下敷き＋放射ビネットを併用するテンプレ向け */
+/** For templates like Neon / Rainbow / LightSweep that use both a backdrop and a radial vignette */
 export function resolvedBackdropPair(
   backgroundColor: string,
   vignetteOpacity: number,

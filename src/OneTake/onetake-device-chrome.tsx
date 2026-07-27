@@ -1,9 +1,9 @@
 import React from "react";
 
 /**
- * OneTakeアプリの実際のデザイントークン（OneTakeリポジトリの
- * `app/src/theme/tokens.ts`）をミラーした値。別リポジトリのためimportはできず、
- * 値を直接複製している。トークン側を変更したときはここも追従させる。
+ * Values mirroring the OneTake app's actual design tokens (`app/src/theme/tokens.ts`
+ * in the OneTake repo). Since it's a separate repo, these can't be imported and are
+ * duplicated directly here — keep them in sync if the source tokens change.
  */
 export const APP_SURFACE = "#10131F";
 export const APP_SURFACE_ELEVATED = "#171B2D";
@@ -16,8 +16,9 @@ export const LAPTOP_SCREEN_HEIGHT = 400;
 const NEON_BORDER_WIDTH = 8;
 
 /**
- * `NeonTextTemplate`の`buildNeonTextShadow`と同じ「コア＋複数ハロー」の考え方を
- * 枠線（box-shadow）向けに移植したもの。単一のdrop-shadowより発光が厚くなる。
+ * Ports the same "core + multiple halos" idea as `NeonTextTemplate`'s
+ * `buildNeonTextShadow` to a border (box-shadow) use case — gives a thicker
+ * glow than a single drop-shadow.
  */
 export function neonBoxShadow(color: string, strength = 1): string {
   const s = strength;
@@ -96,7 +97,7 @@ export function LaptopFrame({
           overflow: "hidden",
         }}
       >
-        {/* ウィンドウ然としたUIに見せるための最小限のシャドウバー装飾 */}
+        {/* Minimal traffic-light-style dots to sell the "window" look */}
         <div style={{ position: "absolute", left: 26, top: 22, display: "flex", gap: 10 }}>
           {[0, 1, 2].map((i) => (
             <div

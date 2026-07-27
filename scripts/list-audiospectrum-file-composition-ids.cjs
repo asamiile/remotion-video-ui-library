@@ -1,6 +1,6 @@
 /**
- * audio-spectrum-config.ts の audioSpectrumAudioFilesV1 にある id ごとのコンポジション ID を出す。
- * （Root の AudioSpectrumV1-${audioFile.id} と一致）
+ * Prints a composition ID for each id in audioSpectrumAudioFilesV1 (audio-spectrum-config.ts).
+ * (Matches Root's AudioSpectrumV1-${audioFile.id})
  */
 const path = require("node:path");
 const { requireArrayStringIds } = require("./lib/ts-config-ast.cjs");
@@ -8,7 +8,7 @@ const { requireArrayStringIds } = require("./lib/ts-config-ast.cjs");
 const root = path.join(__dirname, "..");
 const configPath = path.join(
   root,
-  "src/AudioSpectrum/AudioSpectrum-v1/audio-spectrum-config.ts",
+  "src/Audio/AudioSpectrum-v1/audio-spectrum-config.ts",
 );
 
 const ids = requireArrayStringIds(configPath, "audioSpectrumAudioFilesV1");

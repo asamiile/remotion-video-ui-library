@@ -1,15 +1,19 @@
 import { defaultIntroV1Props } from "../Intro/Intro-v1/intro-config";
-import { ledTextV1Patterns } from "../LedText/LedText-v1/led-text-config";
-import { neonTextV1Patterns } from "../NeonText/NeonText-v1/neon-text-config";
-import { slideInCaptionV1Patterns } from "../SlideInCaption/SlideInCaption-v1/slide-in-caption-config";
-import { glitchTextV1Patterns } from "../GlitchText/GlitchText-v1/glitch-text-config";
-import { wireTextV1Patterns } from "../WireText/WireText-v1/wire-text-config";
-import { neonTextRainbowV1Patterns } from "../NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-config";
-import { lightSweepTextV1Patterns } from "../LightSweepText/LightSweepText-v1/light-sweep-text-config";
-import { typewriterTextV1Patterns } from "../TypewriterText/TypewriterText-v1/typewriter-text-config";
-import { shakeTextV1Patterns } from "../ShakeText/ShakeText-v1/shake-text-config";
-import { confettiPopTextV1Patterns } from "../ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config";
-import { loadingIconV1Patterns } from "../LoadingIcon/LoadingIcon-v1/loading-icon-config";
+import { ledTextV1Patterns } from "../Text/LedText/LedText-v1/led-text-config";
+import { neonTextV1Patterns } from "../Text/NeonText/NeonText-v1/neon-text-config";
+import { slideInCaptionV1Patterns } from "../Text/SlideInCaption/SlideInCaption-v1/slide-in-caption-config";
+import { glitchTextV1Patterns } from "../Text/GlitchText/GlitchText-v1/glitch-text-config";
+import { wireTextV1Patterns } from "../Text/WireText/WireText-v1/wire-text-config";
+import { neonTextRainbowV1Patterns } from "../Text/NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-config";
+import { lightSweepTextV1Patterns } from "../Text/LightSweepText/LightSweepText-v1/light-sweep-text-config";
+import { typewriterTextV1Patterns } from "../Text/TypewriterText/TypewriterText-v1/typewriter-text-config";
+import { shakeTextV1Patterns } from "../Text/ShakeText/ShakeText-v1/shake-text-config";
+import { confettiPopTextV1Patterns } from "../Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config";
+import { loadingIconV1Patterns } from "../Loading/LoadingIcon-v1/loading-icon-config";
+import { stackedRevealTextV1Patterns } from "../Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-config";
+import { tornNoteCaptionV1Patterns } from "../Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config";
+import { distressedTitleCardV1Patterns } from "../Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config";
+import { sprayPaintTextV1Patterns } from "../Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config";
 import {
   buildLocationConfigsFromCompositionKeys,
   buildMapLocationPointsFromCompositionKeys,
@@ -80,6 +84,26 @@ export const mergedLoadingIconV1Patterns = shallowMergePatternRecord(
   loadingIconV1Patterns,
   local.loadingIconV1Patterns,
 ) as typeof loadingIconV1Patterns;
+
+export const mergedStackedRevealTextV1Patterns = shallowMergePatternRecord(
+  stackedRevealTextV1Patterns,
+  local.stackedRevealTextV1Patterns,
+) as typeof stackedRevealTextV1Patterns;
+
+export const mergedTornNoteCaptionV1Patterns = shallowMergePatternRecord(
+  tornNoteCaptionV1Patterns,
+  local.tornNoteCaptionV1Patterns,
+) as typeof tornNoteCaptionV1Patterns;
+
+export const mergedDistressedTitleCardV1Patterns = shallowMergePatternRecord(
+  distressedTitleCardV1Patterns,
+  local.distressedTitleCardV1Patterns,
+) as typeof distressedTitleCardV1Patterns;
+
+export const mergedSprayPaintTextV1Patterns = shallowMergePatternRecord(
+  sprayPaintTextV1Patterns,
+  local.sprayPaintTextV1Patterns,
+) as typeof sprayPaintTextV1Patterns;
 
 export const mergedLocationConfigsV1 =
   buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);
