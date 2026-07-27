@@ -16,6 +16,7 @@ export type CompositionTextLocal = {
   shakeTextV1Patterns?: Record<string, Record<string, unknown>>;
   confettiPopTextV1Patterns?: Record<string, Record<string, unknown>>;
   loadingIconV1Patterns?: Record<string, Record<string, unknown>>;
+  codeStreamV1Patterns?: Record<string, Record<string, unknown>>;
   stackedRevealTextV1Patterns?: Record<string, Record<string, unknown>>;
   tornNoteCaptionV1Patterns?: Record<string, Record<string, unknown>>;
   distressedTitleCardV1Patterns?: Record<string, Record<string, unknown>>;

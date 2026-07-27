@@ -103,5 +103,66 @@
     "credit": { "text": "SAMPLE CREDIT" },
     "creditJp": { "text": "サンプルクレジット" },
     "wallGraffitiJp": { "text": "サンプル" }
+  },
+  "codeStreamV1Patterns": {
+    "horizontal": {
+      "paragraphs": [
+        [
+          {
+            "text": "// SAMPLE STREAM: INIT", "color": "#37e9ff"  
+          },          
+          "const streamId = \"demo-horizontal\";",
+          "const status = \"warming-up\";"
+        ],
+        [
+          "for (let i = 0; i < 3; i += 1) {",
+          "  queue.push(`sample-task-${i}`);",
+          "}"
+        ],
+        [
+          "const payload = {",
+          "  title: \"Sample Headline\",",
+          "  subtitle: \"replace me in local\"",
+          "};"
+        ],
+        [
+          "if (status === \"warming-up\") {",
+          "  logger.info(\"horizontal sample is active\");",
+          "}"
+        ],
+        [
+          "renderLine(\"SAMPLE LINE A\");",
+          "renderLine(\"SAMPLE LINE B\");",
+          "renderLine(\"SAMPLE LINE C\");"
+        ],
+        [
+          "// SAMPLE STREAM: DONE",
+          "const completed = true;",
+          "export { streamId, completed };"
+        ]
+      ]
+    },
+    "vertical": {
+      "paragraphs": [
+        [
+          "# SAMPLE VERTICAL BLOCK 01",
+          "version = \"v1-sample\"",
+          "mode = \"preview\"",
+          "accent = \"cyan\""
+        ],
+        [
+          "# SAMPLE VERTICAL BLOCK 02",
+          "items = [\"alpha\", \"beta\", \"gamma\"]",
+          "for item in items:",
+          "    print(\"sample:\", item)"
+        ],
+        [
+          "# SAMPLE VERTICAL BLOCK 03",
+          "title = \"CODE STREAM SAMPLE\"",
+          "note = \"edit this in composition-text.local.json\"",
+          "result = \"ok\""
+        ]
+      ]
+    }
   }
 }

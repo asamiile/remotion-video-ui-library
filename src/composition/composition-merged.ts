@@ -10,6 +10,7 @@ import { typewriterTextV1Patterns } from "../Text/TypewriterText/TypewriterText-
 import { shakeTextV1Patterns } from "../Text/ShakeText/ShakeText-v1/shake-text-config";
 import { confettiPopTextV1Patterns } from "../Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config";
 import { loadingIconV1Patterns } from "../Loading/LoadingIcon-v1/loading-icon-config";
+import { codeStreamV1Patterns } from "../Text/CodeStream/CodeStream-v1/code-stream-config";
 import { stackedRevealTextV1Patterns } from "../Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-config";
 import { tornNoteCaptionV1Patterns } from "../Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config";
 import { distressedTitleCardV1Patterns } from "../Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config";
@@ -84,6 +85,11 @@ export const mergedLoadingIconV1Patterns = shallowMergePatternRecord(
   loadingIconV1Patterns,
   local.loadingIconV1Patterns,
 ) as typeof loadingIconV1Patterns;
+
+export const mergedCodeStreamV1Patterns = shallowMergePatternRecord(
+  codeStreamV1Patterns,
+  local.codeStreamV1Patterns,
+) as typeof codeStreamV1Patterns;
 
 export const mergedStackedRevealTextV1Patterns = shallowMergePatternRecord(
   stackedRevealTextV1Patterns,

@@ -111,6 +111,12 @@ import {
 import { DistressedTitleCardTemplateV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/DistressedTitleCardTemplate";
 import { distressedTitleCardSchemaV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-schema";
 import { distressedTitleCardV1DurationFrames } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config";
+import { CodeStreamTemplateV1 } from "./Text/CodeStream/CodeStreamTemplate";
+import { codeStreamSchemaV1 } from "./Text/CodeStream/CodeStream-v1/code-stream-schema";
+import {
+  defaultCodeStreamHorizontalV1Props,
+  defaultCodeStreamVerticalV1Props,
+} from "./Text/CodeStream/CodeStream-v1/code-stream-config";
 import { SprayPaintTextTemplateV1 } from "./Text/SprayPaintText/SprayPaintText-v1/SprayPaintTextTemplate";
 import { sprayPaintTextSchemaV1 } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-schema";
 import { sprayPaintTextV1DurationFrames } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config";
@@ -131,6 +137,7 @@ import {
   mergedNeonTextV1Patterns,
   mergedNeonTextRainbowV1Patterns,
   mergedConfettiPopTextV1Patterns,
+  mergedCodeStreamV1Patterns,
   mergedShakeTextV1Patterns,
   mergedSlideInCaptionV1Patterns,
   mergedTypewriterTextV1Patterns,
@@ -198,6 +205,30 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Folder name="Text">
+        <Folder name="CodeStream">
+          <Composition
+            id="CodeStreamHorizontalV1"
+            component={withCanvasPreview("CodeStreamHorizontalV1", CodeStreamTemplateV1)}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={1800}
+            schema={codeStreamSchemaV1}
+            defaultProps={mergedCodeStreamV1Patterns.horizontal ?? defaultCodeStreamHorizontalV1Props}
+          />
+
+          <Composition
+            id="CodeStreamVerticalV1"
+            component={withCanvasPreview("CodeStreamVerticalV1", CodeStreamTemplateV1)}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={1800}
+            schema={codeStreamSchemaV1}
+            defaultProps={mergedCodeStreamV1Patterns.vertical ?? defaultCodeStreamVerticalV1Props}
+          />
+        </Folder>
+
         <Folder name="Location">
           {mergedLocationConfigsV1.map((config) => (
             <Composition
