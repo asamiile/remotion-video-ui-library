@@ -9,7 +9,7 @@ alwaysApply: false
 
 - **Pattern**: multiple variations of the same template (e.g. `pinkPulse` / `pinkPulseJp`). In `Root.tsx`, `*V1-${capPattern(id)}` becomes the composition ID.
 - **Canonical copy (structure)**: the keys of the `*Patterns` object in `src/**/<Name>-v1/*-config.ts`. Keys not present here cannot be added via `composition-text.local.json` alone (`shallowMergePatternRecord` only overwrites existing keys).
-- **Copy overrides**: `config/local/composition-text.local.json` (personal, gitignored by convention). `config/local/composition-text.example.json` is the sample committed to the repo.
+- **Copy overrides**: `config/local/composition-text.local.json` (personal, gitignored by convention). The read-only policy and the only exception live in [.agents/rules/composition-text-local.md](./composition-text-local.md).
 
 ## A. Adding one pattern to an existing family (LED / Neon / Glitch, etc.)
 
@@ -17,7 +17,7 @@ alwaysApply: false
    Text-effect families (LED/Neon/Glitch, etc.) live under `src/Text/<Feature>/<Feature>-v1/…`, and LoadingIcon lives under `src/Loading/LoadingIcon-v1/…` (the directory hierarchy matches `Root.tsx`'s `<Folder>` nesting). See [.agents/rules/repository.md](../../.agents/rules/repository.md) for the criteria on where to place directories.
 2. Add the same pattern-ID block to **`config/local/composition-text.example.json`** (sample copy, for documentation). Keep key names consistent with the config.
 3. If it needs to be reflected in types, add the key to the corresponding `*Patterns` type in **`src/composition/composition-text-local.ts`** (keeps types consistent for agents).
-4. **Agents must never edit `config/local/composition-text.local.json`** on their own (it's the user's personal file). The user writes production copy there themselves.
+4. **Agents must never edit `config/local/composition-text.local.json`** on their own (it's the user's personal file). See [.agents/rules/composition-text-local.md](./composition-text-local.md) for the narrow exception.
 5. **Leave `render.sh` alone in general.** `scripts/list-text-v1-composition-ids.cjs` (and similar scripts) read `*-config.ts` via AST, so ID enumeration follows automatically.
 6. Composition IDs must match **`Root.tsx`'s naming**. (Rainbow is the one exception: `NeonTextV1-Rainbow` + `capPattern`, concatenated without a hyphen.)
 
@@ -28,8 +28,9 @@ alwaysApply: false
 3. Add the JSON key type to **`src/composition/composition-text-local.ts`**.
 4. Register `<Composition>V1-*` in **`src/Root.tsx`** via `Object.entries(merged*Patterns).map` (`withCanvasPreview` / duration / schema / defaultProps).
 5. Add a `*Patterns` block to **`config/local/composition-text.example.json`**.
-6. **For batch export**: add `{ idPrefix, file, exportName, join? }` to `families` in `scripts/list-text-v1-composition-ids.cjs` (use `join: ""` for a Rainbow-style ID).
-7. **Never skip wiring up `render.sh`**: add a `render_<family>()` function, and always wire it into both the `case` in `main()` and `all` (adding a dedicated subcommand is optional, but never leave a family that `all` can't export). Prefer an AST-enumeration script (`scripts/list-<family>-composition-ids.cjs`, following the `families` array pattern in `scripts/list-text-v1-composition-ids.cjs` or `scripts/list-background-composition-ids.cjs`) over a hand-typed ID array whenever the family has a `*Patterns` record — a hand-typed array is another copy of the same information that can silently drift from `Root.tsx`. A fixed array (like `TEXT_EFFECTS_JP_SAMPLE_IDS`, a deliberately curated subset) is still fine for cases with no pattern family to enumerate, or where the list is intentionally partial.
+6. If the family is `CodeStream`, define separate `horizontal` and `vertical` entries under `codeStreamV1Patterns` so the two compositions can be tuned independently.
+7. **For batch export**: add `{ idPrefix, file, exportName, join? }` to `families` in `scripts/list-text-v1-composition-ids.cjs` (use `join: ""` for a Rainbow-style ID).
+8. **Never skip wiring up `render.sh`**: add a `render_<family>()` function, and always wire it into both the `case` in `main()` and `all` (adding a dedicated subcommand is optional, but never leave a family that `all` can't export). Prefer an AST-enumeration script (`scripts/list-<family>-composition-ids.cjs`, following the `families` array pattern in `scripts/list-text-v1-composition-ids.cjs` or `scripts/list-background-composition-ids.cjs`) over a hand-typed ID array whenever the family has a `*Patterns` record — a hand-typed array is another copy of the same information that can silently drift from `Root.tsx`. A fixed array (like `TEXT_EFFECTS_JP_SAMPLE_IDS`, a deliberately curated subset) is still fine for cases with no pattern family to enumerate, or where the list is intentionally partial.
    - **Real incident**: when two OneTake compositions were added, this step was skipped, and they went unnoticed as unexportable from any `render.sh` subcommand.
    - When adding/changing a family that's "filtered by a registration condition" tied to a location or coordinates (e.g. MiniMap only includes locations in `mapLocationPointsV1` that have both latitude and longitude set), the enumeration script must exactly match `Root.tsx`'s actual registration condition. Reusing another family's enumeration result (e.g. the full location list used for `Location`) will attempt to render composition IDs that don't exist and fail.
    - **Real incident**: `render_minimap` was reusing the same location list as `render_location`, so it failed with `Error: Could not find composition with ID ...` for locations without lat/lng set (fixed by creating a dedicated `scripts/list-minimap-v1-composition-ids.cjs`).

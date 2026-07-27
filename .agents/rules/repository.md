@@ -35,6 +35,8 @@ The leaf of each feature folder is normally one versioned subfolder containing t
   <feature>-schema.ts          … zod prop type definitions
 ```
 
+- When adding or refactoring a composition, keep the responsibilities split across `Template`, `config`, and `schema` files instead of inlining defaults or prop types into `Root.tsx`.
+
 ## The Four Places Under `src/`
 
 When adding a new composition, decide where to put `<Feature>-v1/` using the following criteria.
@@ -58,7 +60,8 @@ How to decide when it's unclear:
 ## Development Notes
 
 - **Do not use copyright-related notices or markings**, including copyright statements, © symbols, or attribution lines.
-- **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** Agents must not modify, create, delete, or rekey these — read-only. Sample copy lives in `config/local/composition-text.example.json`; edit the committed types/merge logic under `src/composition/` instead. The only exception is when the user explicitly names the target path and the change in chat. See [.agents/rules/composition-text-local.mdc](../.agents/rules/composition-text-local.mdc) for details.
+- **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** See [.agents/rules/composition-text-local.md](../.agents/rules/composition-text-local.md) for the read-only policy and the narrow exception.
+- **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** Agents must treat these as read-only unless the user explicitly names a local target path and asks for that change in chat. Sample copy lives in `config/local/composition-text.example.json`; edit the committed types/merge logic under `src/composition/` instead. See [.agents/rules/composition-text-local.md](../.agents/rules/composition-text-local.md) for details.
 - **The procedure for adding a new composition/pattern** (adding to an existing family / adding a new family / the location, LoadingIcon, and AudioSpectrum enumeration mechanics) follows the runbook at [.agents/rules/composition-update-runbook.mdc](../.agents/rules/composition-update-runbook.mdc).
 - **The layout of `config/local` and how it's injected at build time** (`remotion.config.ts` reads `composition-text.local.json` and injects it as `__COMPOSITION_TEXT_LOCAL__`) is documented in [.agents/config-local-layout/SKILL.md](../.agents/config-local-layout/SKILL.md).
 - **The contents of `src/composition/` are "shared infrastructure"**, distinct from the "feature categories" like `src/Text/` (the similar naming is easy to confuse). It is not a place to add individual compositions.
