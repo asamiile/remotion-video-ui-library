@@ -12,6 +12,8 @@ import { confettiPopTextV1Patterns } from "../Text/ConfettiPopText/ConfettiPopTe
 import { loadingIconV1Patterns } from "../Loading/LoadingIcon-v1/loading-icon-config";
 import { stackedRevealTextV1Patterns } from "../Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-config";
 import { tornNoteCaptionV1Patterns } from "../Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config";
+import { distressedTitleCardV1Patterns } from "../Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config";
+import { sprayPaintTextV1Patterns } from "../Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config";
 import {
   buildLocationConfigsFromCompositionKeys,
   buildMapLocationPointsFromCompositionKeys,
@@ -92,6 +94,16 @@ export const mergedTornNoteCaptionV1Patterns = shallowMergePatternRecord(
   tornNoteCaptionV1Patterns,
   local.tornNoteCaptionV1Patterns,
 ) as typeof tornNoteCaptionV1Patterns;
+
+export const mergedDistressedTitleCardV1Patterns = shallowMergePatternRecord(
+  distressedTitleCardV1Patterns,
+  local.distressedTitleCardV1Patterns,
+) as typeof distressedTitleCardV1Patterns;
+
+export const mergedSprayPaintTextV1Patterns = shallowMergePatternRecord(
+  sprayPaintTextV1Patterns,
+  local.sprayPaintTextV1Patterns,
+) as typeof sprayPaintTextV1Patterns;
 
 export const mergedLocationConfigsV1 =
   buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);

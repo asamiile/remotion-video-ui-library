@@ -12,15 +12,6 @@ export const defaultDuotoneGradeOverlayV1Props = {
   trackingBandHeightPx: 10,
 };
 
-/**
- * Grading overlay that reproduces the "duotone processing with magenta/green
- * chromatic aberration applied throughout the video" technique from the
- * HUNTER×HUNTER volume 38 PV analysis (video_analysis/). Always transparent
- * background, meant to be composited over other footage. Offsetting the two
- * `channelA/B` layers with mix-blend-mode: screen reproduces the aberration
- * fringing, `washColor` reproduces the overall tone, and `trackingNoiseEnabled`
- * reproduces the top/bottom noise bands.
- */
 export const duotoneGradeOverlayV1Patterns = {
   /** Magenta/green pairing close to the analyzed PV */
   magentaGreen: {

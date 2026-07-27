@@ -67,6 +67,16 @@ const families = [
     file: "src/Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config.ts",
     exportName: "tornNoteCaptionV1Patterns",
   },
+  {
+    idPrefix: "DistressedTitleCardV1",
+    file: "src/Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config.ts",
+    exportName: "distressedTitleCardV1Patterns",
+  },
+  {
+    idPrefix: "SprayPaintTextV1",
+    file: "src/Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config.ts",
+    exportName: "sprayPaintTextV1Patterns",
+  },
 ];
 
 for (const fam of families) {

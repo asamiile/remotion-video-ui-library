@@ -1,11 +1,5 @@
 import { LINE_SEED_JP_FONT_FAMILY } from "../../../helpers/line-seed-jp";
 
-/**
- * A shared duration sized for 3-4 lines * holdFramesPerLine plus a trailing
- * hold. This reproduces the "stack lines one by one, hard-cut to the next"
- * technique identified in the Hunter x Hunter volume 37/38 PV technique
- * analysis (video_analysis/).
- */
 export const stackedRevealTextV1DurationFrames = 210;
 
 export const defaultStackedRevealTextV1Props = {

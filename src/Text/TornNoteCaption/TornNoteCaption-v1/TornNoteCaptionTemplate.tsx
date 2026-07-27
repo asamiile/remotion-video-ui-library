@@ -4,14 +4,6 @@ import { TornNoteCaptionSchemaV1Type } from "./torn-note-caption-schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
-/**
- * A template reproducing the "torn-paper / Polaroid-style box: dialogue only,
- * set in black text on a tilted white rectangle, visually distinct from the
- * narration text" technique identified in the Hunter x Hunter volume 37 PV
- * technique analysis (video_analysis/). A clip-path notching the top-right
- * and bottom-left corners gives it a "torn paper" texture, plus a slight
- * rotation.
- */
 export const TornNoteCaptionTemplateV1: React.FC<
   TornNoteCaptionSchemaV1Type
 > = ({

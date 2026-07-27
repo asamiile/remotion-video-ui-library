@@ -4,13 +4,6 @@ import { StackedRevealTextSchemaV1Type } from "./stacked-reveal-text-schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
-/**
- * A template reproducing the "reveal one line at a time, hard-cut to the
- * next" technique identified in the Hunter x Hunter volume 37/38 PV technique
- * analysis (video_analysis/). Lines already shown stay on screen without
- * disappearing while the next line stacks on top. `haloEnabled` adds a
- * climax effect (a glow around the text).
- */
 export const StackedRevealTextTemplateV1: React.FC<
   StackedRevealTextSchemaV1Type
 > = ({
