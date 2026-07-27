@@ -164,5 +164,15 @@
         ]
       ]
     }
+  },
+  "battleCalloutBannerV1Patterns": {
+    "redBlack": { "text": "SAMPLE CALLOUT" },
+    "redBlackJp": { "text": "サンプルコールアウト" },
+    "oneTakeBrand": { "text": "SAMPLE SKILL" }
+  },
+  "asymmetricStatusPanelV1Patterns": {
+    "redBlack": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" },
+    "redBlackJp": { "characterName": "サンプル", "subtitleText": "サンプルガーディアン" },
+    "oneTakeBrand": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" }
   }
 }

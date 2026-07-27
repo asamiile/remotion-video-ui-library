@@ -91,6 +91,14 @@ INK_RIPPLE_TRANSITION_COMPOSITION_IDS=(
   "InkRippleTransitionV1"
 )
 
+RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS=(
+  "RackFocusBokehTransitionV1"
+)
+
+BURST_COMPOSITION_IDS=(
+  "BurstV1"
+)
+
 # For colored output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -125,6 +133,10 @@ resolve_output_subdir() {
     FlickerTitleV1*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridgeV1*) echo "Effect/GlitchTransitionBridge" ;;
     InkRippleTransitionV1*) echo "Effect/InkRippleTransition" ;;
+    RackFocusBokehTransitionV1*) echo "Effect/RackFocusBokehTransition" ;;
+    BurstV1*) echo "Effect/Burst" ;;
+    BattleCalloutBannerV1-*) echo "UI/BattleCalloutBanner" ;;
+    AsymmetricStatusPanelV1-*) echo "UI/AsymmetricStatusPanel" ;;
     LocationV1-*) echo "Text/Location" ;;
     MiniMapV1-*) echo "Map" ;;
     AudioSpectrumV1-*) echo "Audio" ;;
@@ -136,6 +148,8 @@ resolve_output_subdir() {
     Background-FilmGrainOverlayV1-*) echo "Background/FilmGrainOverlay" ;;
     Background-LetterboxOverlayV1-*) echo "Background/LetterboxOverlay" ;;
     Background-PosterizeGradeOverlayV1-*) echo "Background/PosterizeGradeOverlay" ;;
+    Background-EmblemMontageBlurV1-*) echo "Background/EmblemMontageBlur" ;;
+    Background-SunsetLensFlareOverlayV1-*) echo "Background/SunsetLensFlareOverlay" ;;
     Background-*) echo "Background" ;;
     IntroV1) echo "Intro" ;;
     PlaceholderImageV1) echo "Placeholder" ;;
@@ -272,6 +286,61 @@ render_ink_ripple_transition() {
 
   echo ""
   echo -e "${GREEN}✅ All InkRippleTransition compositions rendered successfully!${NC}"
+}
+
+# Render RackFocusBokehTransition compositions (see RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS for the ID list)
+render_rack_focus_bokeh_transition() {
+  echo -e "${YELLOW}✨ Rendering RackFocusBokehTransition compositions...${NC}"
+
+  local comp_id
+  for comp_id in "${RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
+      || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+
+  echo ""
+  echo -e "${GREEN}✅ All RackFocusBokehTransition compositions rendered successfully!${NC}"
+}
+
+# Render Burst compositions (see BURST_COMPOSITION_IDS for the ID list)
+render_burst() {
+  echo -e "${YELLOW}✨ Rendering Burst compositions...${NC}"
+
+  local comp_id
+  for comp_id in "${BURST_COMPOSITION_IDS[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
+      || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+
+  echo ""
+  echo -e "${GREEN}✅ All Burst compositions rendered successfully!${NC}"
+}
+
+# Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs from each UI *-config.ts)
+render_ui() {
+  echo -e "${YELLOW}✨ Rendering UI compositions...${NC}"
+
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    [ -z "$comp_id" ] && continue
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
+      || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done < <(node "$SCRIPT_DIR/scripts/list-ui-composition-ids.cjs")
+
+  echo ""
+  echo -e "${GREEN}✅ All UI compositions rendered successfully!${NC}"
 }
 
 # Render FlickerTitle compositions (see FLICKER_TITLE_COMPOSITION_IDS for the ID list)
@@ -507,6 +576,7 @@ check_output_dirs() {
     "list-audiospectrum-file-composition-ids.cjs:"
     "list-background-composition-ids.cjs:"
     "list-onetake-composition-ids.cjs:"
+    "list-ui-composition-ids.cjs:"
   )
   # Single fixed compositions with no pattern family, so no enumeration script exists.
   local fixed_ids=(
@@ -515,6 +585,8 @@ check_output_dirs() {
     "GlitchTransitionBridgeV1"
     "FlickerTitleV1"
     "InkRippleTransitionV1"
+    "RackFocusBokehTransitionV1"
+    "BurstV1"
   )
 
   local raw_id comp_id subdir missing=0 checked=0 entry script prefix
@@ -591,6 +663,15 @@ main() {
     InkRippleTransition|inkrippletransition)
       render_ink_ripple_transition
       ;;
+    RackFocusBokehTransition|rackfocusbokehtransition)
+      render_rack_focus_bokeh_transition
+      ;;
+    Burst|burst)
+      render_burst
+      ;;
+    UI|ui)
+      render_ui
+      ;;
     FlickerTitle|flickertitle)
       render_flicker_title
       ;;
@@ -607,6 +688,9 @@ main() {
       render_background
       render_glitch_transition_bridge
       render_ink_ripple_transition
+      render_rack_focus_bokeh_transition
+      render_burst
+      render_ui
       ;;
     check|Check)
       check_output_dirs
@@ -628,6 +712,9 @@ main() {
       echo "  Background         Render ambient background overlay compositions (always transparent)"
       echo "  GlitchTransitionBridge  Render the RGB-glitch scene-transition bumper"
       echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
+      echo "  RackFocusBokehTransition Render the rack-focus + bokeh scene-transition bumper"
+      echo "  Burst              Render the special-move impact burst"
+      echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel)"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"
       echo "  check              Verify every enumerated composition ID has a resolve_output_subdir() mapping (no rendering)"

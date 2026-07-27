@@ -21,6 +21,8 @@ export type CompositionTextLocal = {
   tornNoteCaptionV1Patterns?: Record<string, Record<string, unknown>>;
   distressedTitleCardV1Patterns?: Record<string, Record<string, unknown>>;
   sprayPaintTextV1Patterns?: Record<string, Record<string, unknown>>;
+  battleCalloutBannerV1Patterns?: Record<string, Record<string, unknown>>;
+  asymmetricStatusPanelV1Patterns?: Record<string, Record<string, unknown>>;
   locationV1?: Record<string, { locationName?: string }>;
   mapLocationPointsV1?: Record<
     string,
