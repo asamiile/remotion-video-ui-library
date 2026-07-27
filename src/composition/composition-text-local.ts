@@ -18,6 +18,8 @@ export type CompositionTextLocal = {
   loadingIconV1Patterns?: Record<string, Record<string, unknown>>;
   stackedRevealTextV1Patterns?: Record<string, Record<string, unknown>>;
   tornNoteCaptionV1Patterns?: Record<string, Record<string, unknown>>;
+  distressedTitleCardV1Patterns?: Record<string, Record<string, unknown>>;
+  sprayPaintTextV1Patterns?: Record<string, Record<string, unknown>>;
   locationV1?: Record<string, { locationName?: string }>;
   mapLocationPointsV1?: Record<
     string,

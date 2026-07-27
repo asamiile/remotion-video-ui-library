@@ -21,9 +21,9 @@
     }
   },
   "loadingIconV1Patterns": {
-    "defaultWithText": { "text": "Loading (sample)…" },
-    "largeWithText": { "text": "Loading (sample)…" },
-    "customWithText": { "text": "Loading (sample)…" }
+    "defaultWithText": { "text": "Loading …" },
+    "largeWithText": { "text": "Loading …" },
+    "customWithText": { "text": "Loading …" }
   },
   "slideInCaptionV1Patterns": {
     "refWhite": { "text": "2025/06/19 Electronics with Arduino UNO" },
@@ -38,31 +38,31 @@
     "greenBreatheJp": { "text": "サンプル バー（例）" },
     "jpStatic": { "text": "NEON SAMPLE" },
     "lchikaOrange": { "text": "L BLINK · ORANGE" },
-    "lchikaOrangeJp": { "text": "エルチカ（サンプル）" },
+    "lchikaOrangeJp": { "text": "エルチカ" },
     "lchikaGreen": { "text": "ON · GREEN" }
   },
   "glitchTextV1Patterns": {
-    "measuring": { "text": "MEASURING (sample)" },
+    "measuring": { "text": "MEASURING " },
     "meterReadout": { "text": "READING  —  12.48 V SAMPLE" },
     "harshSignal": { "text": "SIGNAL UNSTABLE（sample）" },
-    "harshSignalJp": { "text": "信号 不安定（サンプル）" }
+    "harshSignalJp": { "text": "信号 不安定" }
   },
   "wireTextV1Patterns": {
     "trace": { "text": "HELLO WIRE" },
     "traceJp": { "text": "ワイヤーサンプル" },
-    "outlineOnly": { "text": "OUTLINE ONLY（サンプル）" },
-    "outlineOnlyJp": { "text": "輪郭のみ（サンプル）" }
+    "outlineOnly": { "text": "OUTLINE ONLY" },
+    "outlineOnlyJp": { "text": "輪郭のみ" }
   },
   "neonTextRainbowV1Patterns": {
-    "roundedTube": { "text": "TUBE NEON (sample)" },
-    "roundedTubeJp": { "text": "虹ネオン・太管（サンプル）" }
+    "roundedTube": { "text": "TUBE NEON " },
+    "roundedTubeJp": { "text": "虹ネオン・太管" }
   },
   "lightSweepTextV1Patterns": {
-    "complete": { "text": "COMPLETE（サンプル）" },
-    "completeJp": { "text": "完了（サンプル）" },
-    "doneJp": { "text": "処理完了（サンプル）" },
+    "complete": { "text": "COMPLETE" },
+    "completeJp": { "text": "完了" },
+    "doneJp": { "text": "処理完了" },
     "rapid": { "text": "OK" },
-    "rapidJp": { "text": "了解（サンプル）" }
+    "rapidJp": { "text": "了解" }
   },
   "ledTextV1Patterns": {
     "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
@@ -73,16 +73,16 @@
     "jpComment": { "text": "// サンプル一行です" }
   },
   "shakeTextV1Patterns": {
-    "trial": { "text": "Trial & error (sample)" },
-    "trialJp": { "text": "試行錯誤（サンプル）" },
-    "subtle": { "text": "Subtle shake (sample)" },
+    "trial": { "text": "Trial & error " },
+    "trialJp": { "text": "試行錯誤" },
+    "subtle": { "text": "Subtle shake " },
     "subtleJp": { "text": "微シェイクの例" },
-    "intense": { "text": "RETRY · DEBUG (sample)" },
-    "intenseJp": { "text": "強めシェイク（日本語サンプル）" }
+    "intense": { "text": "RETRY · DEBUG " },
+    "intenseJp": { "text": "強めシェイク" }
   },
   "confettiPopTextV1Patterns": {
-    "richPop": { "text": "Congrats! (sample)" },
-    "richPopJp": { "text": "完成おめでとう（サンプル）" }
+    "richPop": { "text": "Congrats! " },
+    "richPopJp": { "text": "完成おめでとう" }
   },
   "stackedRevealTextV1Patterns": {
     "stacked": { "lines": ["SAMPLE LINE ONE", "SAMPLE LINE TWO "] },
@@ -92,5 +92,16 @@
   "tornNoteCaptionV1Patterns": {
     "note": { "text": "SAMPLE NOTE" },
     "noteJp": { "text": "サンプルのテキスト" }
+  },
+  "distressedTitleCardV1Patterns": {
+    "darkTitle": { "titleText": "SAMPLE TITLE" },
+    "darkTitleJp": { "titleText": "サンプルタイトル" },
+    "agedPaperChapter": { "titleText": "SAMPLE CHAPTER", "numberText": "01" },
+    "agedPaperChapterJp": { "titleText": "サンプルの章", "numberText": "01" }
+  },
+  "sprayPaintTextV1Patterns": {
+    "credit": { "text": "SAMPLE CREDIT" },
+    "creditJp": { "text": "サンプルクレジット" },
+    "wallGraffitiJp": { "text": "サンプル" }
   }
 }

@@ -3,12 +3,6 @@ import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { GlitchTransitionBridgeSchemaV1Type } from "./glitch-transition-bridge-schema";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
-/**
- * Short transition bridge reproducing "RGB-offset (chromatic aberration)
- * glitch + vertical light streaks" plus "a brief overlay of a geometric
- * line-art motif" from the HUNTER×HUNTER volume 37 PV analysis
- * (video_analysis/). Meant to be inserted at just one spot between hard cuts.
- */
 export const GlitchTransitionBridgeTemplateV1: React.FC<
   GlitchTransitionBridgeSchemaV1Type
 > = ({

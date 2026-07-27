@@ -25,6 +25,16 @@ const families = [
     file: "src/Background/FilmGrainOverlay-v1/film-grain-overlay-config.ts",
     exportName: "filmGrainOverlayV1Patterns",
   },
+  {
+    idPrefix: "Background-LetterboxOverlayV1",
+    file: "src/Background/LetterboxOverlay-v1/letterbox-overlay-config.ts",
+    exportName: "letterboxOverlayV1Patterns",
+  },
+  {
+    idPrefix: "Background-PosterizeGradeOverlayV1",
+    file: "src/Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-config.ts",
+    exportName: "posterizeGradeOverlayV1Patterns",
+  },
 ];
 
 for (const id of fixedIds) {

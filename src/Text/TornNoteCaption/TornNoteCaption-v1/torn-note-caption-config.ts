@@ -22,12 +22,6 @@ export const defaultTornNoteCaptionV1Props = {
   delayFrames: 0,
 };
 
-/**
- * A template reproducing the "torn-paper / Polaroid-style box: dialogue only,
- * set in black text on a tilted white rectangle, visually distinct from the
- * narration text" technique identified in the Hunter x Hunter volume 37 PV
- * technique analysis (video_analysis/).
- */
 export const tornNoteCaptionV1Patterns = {
   /** Dialogue / quote (English default) */
   note: {

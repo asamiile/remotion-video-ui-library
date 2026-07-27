@@ -2,17 +2,6 @@ import React, { useId, useMemo } from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { FilmGrainOverlaySchemaV1Type } from "./film-grain-overlay-schema";
 
-/**
- * Combines two techniques from the HUNTER×HUNTER volume 37/38 PV analysis
- * (video_analysis/) — "adding fine grain/dust at a single climactic moment"
- * (vol. 37) and "layering film scratches / grain noise more heavily over
- * flashback scenes" (vol. 38) — into one template with adjustable intensity.
- * Always transparent background, meant to be composited over other compositions.
- *
- * Grain is generated every frame via SVG `feTurbulence` (no image assets needed).
- * When `scratchCount` is above 0, vertical scratches are randomly added/removed
- * per time bucket to simulate film aging.
- */
 export const FilmGrainOverlayTemplateV1: React.FC<
   FilmGrainOverlaySchemaV1Type
 > = ({

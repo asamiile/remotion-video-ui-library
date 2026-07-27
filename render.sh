@@ -65,11 +65,8 @@ while IFS= read -r line || [ -n "$line" ]; do
   fi
 done < <(node "$SCRIPT_DIR/scripts/list-location-v1-composition-ids.cjs")
 
-# AudioSpectrum audio file location (used only for the missing-directory warning; the actual
-# composition list comes from audio-spectrum-config.ts)
 AUDIOSPECTRUM_AUDIO_DIR="$SCRIPT_DIR/public/audio/AudioSpectrum"
 
-# TextEffectsJp: representative *Jp sample per family (update only this array when adding/removing)
 TEXT_EFFECTS_JP_SAMPLE_IDS=(
   "NeonTextV1-LchikaOrangeJp"
   "SlideInCaptionV1-RefWhiteJp"
@@ -82,18 +79,16 @@ TEXT_EFFECTS_JP_SAMPLE_IDS=(
   "ConfettiPopTextV1-RichPopJp"
 )
 
-# RGB-glitch + vertical light-streak scene-transition bumper (technique modeled on the
-# HUNTER x HUNTER vol. 37 PV analysis). Fixed single composition with no pattern
-# variants, so it's managed here directly instead of via an AST enumeration script.
 GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS=(
   "GlitchTransitionBridgeV1"
 )
 
-# Two-line eyebrow+title heading with a light-up flicker reveal. Fixed single
-# composition with no pattern variants, so it's managed here directly instead of
-# via an AST enumeration script.
 FLICKER_TITLE_COMPOSITION_IDS=(
   "FlickerTitleV1"
+)
+
+INK_RIPPLE_TRANSITION_COMPOSITION_IDS=(
+  "InkRippleTransitionV1"
 )
 
 # For colored output
@@ -125,14 +120,22 @@ resolve_output_subdir() {
     ConfettiPopTextV1-*) echo "Text/ConfettiPopText" ;;
     StackedRevealTextV1-*) echo "Text/StackedRevealText" ;;
     TornNoteCaptionV1-*) echo "Text/TornNoteCaption" ;;
+    DistressedTitleCardV1-*) echo "Text/DistressedTitleCard" ;;
+    SprayPaintTextV1-*) echo "Text/SprayPaintText" ;;
     FlickerTitleV1*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridgeV1*) echo "Effect/GlitchTransitionBridge" ;;
+    InkRippleTransitionV1*) echo "Effect/InkRippleTransition" ;;
     LocationV1-*) echo "Text/Location" ;;
     MiniMapV1-*) echo "Map" ;;
     AudioSpectrumV1-*) echo "Audio" ;;
     LoadingIconV1-*) echo "Loading" ;;
     OneTake-Onboarding*) echo "OneTake/Onboarding" ;;
     OneTake-Logo*) echo "OneTake/Logo" ;;
+    Background-ScanLineV1-*) echo "Background/ScanLine" ;;
+    Background-DuotoneGradeOverlayV1-*) echo "Background/DuotoneGradeOverlay" ;;
+    Background-FilmGrainOverlayV1-*) echo "Background/FilmGrainOverlay" ;;
+    Background-LetterboxOverlayV1-*) echo "Background/LetterboxOverlay" ;;
+    Background-PosterizeGradeOverlayV1-*) echo "Background/PosterizeGradeOverlay" ;;
     Background-*) echo "Background" ;;
     IntroV1) echo "Intro" ;;
     PlaceholderImageV1) echo "Placeholder" ;;
@@ -251,6 +254,24 @@ render_glitch_transition_bridge() {
 
   echo ""
   echo -e "${GREEN}✅ All GlitchTransitionBridge compositions rendered successfully!${NC}"
+}
+
+# Render InkRippleTransition compositions (see INK_RIPPLE_TRANSITION_COMPOSITION_IDS for the ID list)
+render_ink_ripple_transition() {
+  echo -e "${YELLOW}✨ Rendering InkRippleTransition compositions...${NC}"
+
+  local comp_id
+  for comp_id in "${INK_RIPPLE_TRANSITION_COMPOSITION_IDS[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
+      || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+
+  echo ""
+  echo -e "${GREEN}✅ All InkRippleTransition compositions rendered successfully!${NC}"
 }
 
 # Render FlickerTitle compositions (see FLICKER_TITLE_COMPOSITION_IDS for the ID list)
@@ -493,6 +514,7 @@ check_output_dirs() {
     "PlaceholderImageV1"
     "GlitchTransitionBridgeV1"
     "FlickerTitleV1"
+    "InkRippleTransitionV1"
   )
 
   local raw_id comp_id subdir missing=0 checked=0 entry script prefix
@@ -566,6 +588,9 @@ main() {
     GlitchTransitionBridge|glitchtransitionbridge)
       render_glitch_transition_bridge
       ;;
+    InkRippleTransition|inkrippletransition)
+      render_ink_ripple_transition
+      ;;
     FlickerTitle|flickertitle)
       render_flicker_title
       ;;
@@ -581,6 +606,7 @@ main() {
       render_onetake
       render_background
       render_glitch_transition_bridge
+      render_ink_ripple_transition
       ;;
     check|Check)
       check_output_dirs
@@ -601,6 +627,7 @@ main() {
       echo "  OneTake            Render OneTake onboarding motion-graphic compositions"
       echo "  Background         Render ambient background overlay compositions (always transparent)"
       echo "  GlitchTransitionBridge  Render the RGB-glitch scene-transition bumper"
+      echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"
       echo "  check              Verify every enumerated composition ID has a resolve_output_subdir() mapping (no rendering)"

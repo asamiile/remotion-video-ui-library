@@ -102,6 +102,24 @@ import {
   defaultGlitchTransitionBridgeV1Props,
   glitchTransitionBridgeV1DurationFrames,
 } from "./Effect/GlitchTransitionBridge/GlitchTransitionBridge-v1/glitch-transition-bridge-config";
+import { InkRippleTransitionTemplateV1 } from "./Effect/InkRippleTransition/InkRippleTransition-v1/InkRippleTransitionTemplate";
+import { inkRippleTransitionSchemaV1 } from "./Effect/InkRippleTransition/InkRippleTransition-v1/ink-ripple-transition-schema";
+import {
+  defaultInkRippleTransitionV1Props,
+  inkRippleTransitionV1DurationFrames,
+} from "./Effect/InkRippleTransition/InkRippleTransition-v1/ink-ripple-transition-config";
+import { DistressedTitleCardTemplateV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/DistressedTitleCardTemplate";
+import { distressedTitleCardSchemaV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-schema";
+import { distressedTitleCardV1DurationFrames } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config";
+import { SprayPaintTextTemplateV1 } from "./Text/SprayPaintText/SprayPaintText-v1/SprayPaintTextTemplate";
+import { sprayPaintTextSchemaV1 } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-schema";
+import { sprayPaintTextV1DurationFrames } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config";
+import { LetterboxOverlayTemplateV1 } from "./Background/LetterboxOverlay-v1/LetterboxOverlayTemplate";
+import { letterboxOverlaySchemaV1 } from "./Background/LetterboxOverlay-v1/letterbox-overlay-schema";
+import { letterboxOverlayV1Patterns } from "./Background/LetterboxOverlay-v1/letterbox-overlay-config";
+import { PosterizeGradeOverlayTemplateV1 } from "./Background/PosterizeGradeOverlay-v1/PosterizeGradeOverlayTemplate";
+import { posterizeGradeOverlaySchemaV1 } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-schema";
+import { posterizeGradeOverlayV1Patterns } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-config";
 import {
   mergedDefaultIntroV1Props,
   mergedGlitchTextV1Patterns,
@@ -119,6 +137,8 @@ import {
   mergedWireTextV1Patterns,
   mergedStackedRevealTextV1Patterns,
   mergedTornNoteCaptionV1Patterns,
+  mergedDistressedTitleCardV1Patterns,
+  mergedSprayPaintTextV1Patterns,
 } from "./composition/composition-merged";
 import { FPS } from "./helpers/ms-to-frame";
 import { withCanvasPreview } from "./composition/with-canvas-preview";
@@ -177,25 +197,284 @@ function renderPatternFamily<Props extends Record<string, unknown>>({
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {/* Placeholder image */}
-      <Folder name="Placeholder">
+      <Folder name="Text">
+        <Folder name="Location">
+          {mergedLocationConfigsV1.map((config) => (
+            <Composition
+              key={config.id}
+              id={`LocationV1-${config.id}`}
+              component={withCanvasPreview(
+                `LocationV1-${config.id}`,
+                LocationTemplateV1,
+              )}
+              width={1920}
+              height={1080}
+              fps={FPS}
+              durationInFrames={1800}
+              schema={locationSchemaV1}
+              defaultProps={{
+                ...defaultLocationV1Props,
+                locationName: config.locationName,
+              }}
+            />
+          ))}
+        </Folder>
+
+        <Folder name="LedText">
+          {renderPatternFamily({
+            patterns: mergedLedTextV1Patterns,
+            idPrefix: "LedTextV1-",
+            Template: LedTextTemplateV1,
+            schema: ledTextSchemaV1,
+            durationInFrames: 540,
+          })}
+        </Folder>
+
+        <Folder name="NeonText">
+          {renderPatternFamily({
+            patterns: mergedNeonTextV1Patterns,
+            idPrefix: "NeonTextV1-",
+            Template: NeonTextTemplateV1,
+            schema: neonTextSchemaV1,
+            durationInFrames: 480,
+          })}
+        </Folder>
+
+        <Folder name="SlideInCaption">
+          {renderPatternFamily({
+            patterns: mergedSlideInCaptionV1Patterns,
+            idPrefix: "SlideInCaptionV1-",
+            Template: SlideInCaptionTemplateV1,
+            schema: slideInCaptionSchemaV1,
+            durationInFrames: slideInCaptionV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="GlitchText">
+          {renderPatternFamily({
+            patterns: mergedGlitchTextV1Patterns,
+            idPrefix: "GlitchTextV1-",
+            Template: GlitchTextTemplateV1,
+            schema: glitchTextSchemaV1,
+            durationInFrames: glitchTextV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="WireText">
+          {renderPatternFamily({
+            patterns: mergedWireTextV1Patterns,
+            idPrefix: "WireTextV1-",
+            Template: WireTextTemplateV1,
+            schema: wireTextSchemaV1,
+            durationInFrames: wireTextV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="NeonTextRainbow">
+          {renderPatternFamily({
+            patterns: mergedNeonTextRainbowV1Patterns,
+            idPrefix: "NeonTextV1-Rainbow",
+            Template: NeonTextRainbowTemplateV1,
+            schema: neonTextRainbowSchemaV1,
+            durationInFrames: neonTextRainbowV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="LightSweepText">
+          {renderPatternFamily({
+            patterns: mergedLightSweepTextV1Patterns,
+            idPrefix: "LightSweepTextV1-",
+            Template: LightSweepTextTemplateV1,
+            schema: lightSweepTextSchemaV1,
+            durationInFrames: lightSweepTextV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="TypewriterText">
+          {renderPatternFamily({
+            patterns: mergedTypewriterTextV1Patterns,
+            idPrefix: "TypewriterTextV1-",
+            Template: TypewriterTextTemplateV1,
+            schema: typewriterTextSchemaV1,
+            durationInFrames: typewriterTextV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="ShakeText">
+          {renderPatternFamily({
+            patterns: mergedShakeTextV1Patterns,
+            idPrefix: "ShakeTextV1-",
+            Template: ShakeTextTemplateV1,
+            schema: shakeTextSchemaV1,
+            durationInFrames: shakeTextV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="ConfettiPopText">
+          {renderPatternFamily({
+            patterns: mergedConfettiPopTextV1Patterns,
+            idPrefix: "ConfettiPopTextV1-",
+            Template: ConfettiPopTextTemplateV1,
+            schema: confettiPopTextSchemaV1,
+            durationInFrames: confettiPopTextV1DurationFrames,
+          })}
+        </Folder>
+
         <Composition
-          id="PlaceholderImageV1"
+          id="FlickerTitleV1"
           component={withCanvasPreview(
-            "PlaceholderImageV1",
-            PlaceholderImageV1,
+            "FlickerTitleV1",
+            FlickerTitleTemplateV1,
           )}
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={1800}
+          durationInFrames={FLICKER_TITLE_V1_DURATION_FRAMES}
+          schema={flickerTitleSchemaV1}
+          defaultProps={{ ...defaultFlickerTitleV1Props }}
         />
+
+        <Folder name="StackedRevealText">
+          {renderPatternFamily({
+            patterns: mergedStackedRevealTextV1Patterns,
+            idPrefix: "StackedRevealTextV1-",
+            Template: StackedRevealTextTemplateV1,
+            schema: stackedRevealTextSchemaV1,
+            durationInFrames: stackedRevealTextV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="TornNoteCaption">
+          {renderPatternFamily({
+            patterns: mergedTornNoteCaptionV1Patterns,
+            idPrefix: "TornNoteCaptionV1-",
+            Template: TornNoteCaptionTemplateV1,
+            schema: tornNoteCaptionSchemaV1,
+            durationInFrames: tornNoteCaptionV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="DistressedTitleCard">
+          {renderPatternFamily({
+            patterns: mergedDistressedTitleCardV1Patterns,
+            idPrefix: "DistressedTitleCardV1-",
+            Template: DistressedTitleCardTemplateV1,
+            schema: distressedTitleCardSchemaV1,
+            durationInFrames: distressedTitleCardV1DurationFrames,
+          })}
+        </Folder>
+
+        <Folder name="SprayPaintText">
+          {renderPatternFamily({
+            patterns: mergedSprayPaintTextV1Patterns,
+            idPrefix: "SprayPaintTextV1-",
+            Template: SprayPaintTextTemplateV1,
+            schema: sprayPaintTextSchemaV1,
+            durationInFrames: sprayPaintTextV1DurationFrames,
+          })}
+        </Folder>
       </Folder>
 
+      <Folder name="Background">
+        <Composition
+          id="Background-AmbientBlurOrbsV1"
+          component={withCanvasPreview(
+            "Background-AmbientBlurOrbsV1",
+            AmbientBlurOrbsTemplateV1,
+          )}
+          width={1920}
+          height={1080}
+          fps={FPS}
+          durationInFrames={AMBIENT_BLUR_ORBS_V1_DURATION_FRAMES}
+          schema={ambientBlurOrbsSchemaV1}
+          defaultProps={{ ...defaultAmbientBlurOrbsV1Props }}
+        />
 
-      {/* LoadingIcon compositions. A single feature with no siblings yet,
-          so it sits directly under Loading rather than getting its own
-          sub-Folder (same reasoning as Background/AmbientBlurOrbs-v1). */}
+        <Folder name="ScanLine">
+          {renderPatternFamily({
+            patterns: scanLineV1Patterns,
+            idPrefix: "Background-ScanLineV1-",
+            Template: ScanLineTemplateV1,
+            schema: scanLineSchemaV1,
+            durationInFrames: (patternProps) => patternProps.scanPeriodFrames,
+          })}
+        </Folder>
+
+        <Folder name="DuotoneGradeOverlay">
+          {renderPatternFamily({
+            patterns: duotoneGradeOverlayV1Patterns,
+            idPrefix: "Background-DuotoneGradeOverlayV1-",
+            Template: DuotoneGradeOverlayTemplateV1,
+            schema: duotoneGradeOverlaySchemaV1,
+            durationInFrames: 150,
+          })}          
+        </Folder>
+
+        <Folder name="FilmGrainOverlayV1">
+          {renderPatternFamily({
+            patterns: filmGrainOverlayV1Patterns,
+            idPrefix: "Background-FilmGrainOverlayV1-",
+            Template: FilmGrainOverlayTemplateV1,
+            schema: filmGrainOverlaySchemaV1,
+            durationInFrames: 150,
+          })}          
+        </Folder>
+
+        <Folder name="LetterboxOverlayV1">
+          {renderPatternFamily({
+            patterns: letterboxOverlayV1Patterns,
+            idPrefix: "Background-LetterboxOverlayV1-",
+            Template: LetterboxOverlayTemplateV1,
+            schema: letterboxOverlaySchemaV1,
+            durationInFrames: 90,
+          })}
+        </Folder>
+
+        <Folder name="PosterizeGradeOverlayV1">
+          {renderPatternFamily({
+            patterns: posterizeGradeOverlayV1Patterns,
+            idPrefix: "Background-PosterizeGradeOverlayV1-",
+            Template: PosterizeGradeOverlayTemplateV1,
+            schema: posterizeGradeOverlaySchemaV1,
+            durationInFrames: 150,
+          })}
+        </Folder>
+      </Folder>
+
+      <Folder name="Effect">
+        <Folder name="GlitchTransitionBridge">
+          <Composition
+            id="GlitchTransitionBridgeV1"
+            component={withCanvasPreview(
+              "GlitchTransitionBridgeV1",
+              GlitchTransitionBridgeTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={glitchTransitionBridgeV1DurationFrames}
+            schema={glitchTransitionBridgeSchemaV1}
+            defaultProps={{ ...defaultGlitchTransitionBridgeV1Props }}
+          />
+        </Folder>
+
+        <Folder name="InkRippleTransition">
+          <Composition
+            id="InkRippleTransitionV1"
+            component={withCanvasPreview(
+              "InkRippleTransitionV1",
+              InkRippleTransitionTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={inkRippleTransitionV1DurationFrames}
+            schema={inkRippleTransitionSchemaV1}
+            defaultProps={{ ...defaultInkRippleTransitionV1Props }}
+          />
+        </Folder>
+      </Folder>
+
       <Folder name="Loading">
         {renderPatternFamily({
           patterns: mergedLoadingIconV1Patterns,
@@ -206,7 +485,28 @@ export const RemotionRoot: React.FC = () => {
         })}
       </Folder>
 
-      {/* AudioSpectrum compositions (by pattern, and by audio file) */}
+      <Folder name="Map">
+        {mergedMapLocationPointsV1.map((location) => (
+          <Composition
+            key={location.id}
+            id={`MiniMapV1-${location.id}`}
+            component={withCanvasPreview(
+              `MiniMapV1-${location.id}`,
+              MiniMapTemplateV1,
+            )}
+            width={1920}
+            height={1080}
+            fps={FPS}
+            durationInFrames={1800}
+            schema={miniMapSchemaV1}
+            defaultProps={{
+              ...defaultMiniMapV1Props,
+              mapLocationId: location.id,
+            }}
+          />
+        ))}
+      </Folder>
+
       <Folder name="Audio">
         {Object.entries(audioSpectrumV1Patterns).map(
           ([patternId, patternProps]) => (
@@ -277,211 +577,6 @@ export const RemotionRoot: React.FC = () => {
         ))}
       </Folder>
 
-      {/* Mini Map compositions */}
-      <Folder name="Map">
-        {mergedMapLocationPointsV1.map((location) => (
-          <Composition
-            key={location.id}
-            id={`MiniMapV1-${location.id}`}
-            component={withCanvasPreview(
-              `MiniMapV1-${location.id}`,
-              MiniMapTemplateV1,
-            )}
-            width={1920}
-            height={1080}
-            fps={FPS}
-            durationInFrames={1800}
-            schema={miniMapSchemaV1}
-            defaultProps={{
-              ...defaultMiniMapV1Props,
-              mapLocationId: location.id,
-            }}
-          />
-        ))}
-      </Folder>
-
-      {/* Title compositions (text effects + location names). Same family
-          structure as render.sh TextEffects / scripts/list-text-v1-composition-ids.cjs,
-          plus Location */}
-      <Folder name="Text">
-        {/* Location name compositions */}
-        <Folder name="Location">
-          {mergedLocationConfigsV1.map((config) => (
-            <Composition
-              key={config.id}
-              id={`LocationV1-${config.id}`}
-              component={withCanvasPreview(
-                `LocationV1-${config.id}`,
-                LocationTemplateV1,
-              )}
-              width={1920}
-              height={1080}
-              fps={FPS}
-              durationInFrames={1800}
-              schema={locationSchemaV1}
-              defaultProps={{
-                ...defaultLocationV1Props,
-                locationName: config.locationName,
-              }}
-            />
-          ))}
-        </Folder>
-
-        {/* LED text compositions */}
-        <Folder name="LedText">
-          {renderPatternFamily({
-            patterns: mergedLedTextV1Patterns,
-            idPrefix: "LedTextV1-",
-            Template: LedTextTemplateV1,
-            schema: ledTextSchemaV1,
-            durationInFrames: 540,
-          })}
-        </Folder>
-
-        {/* Neon sign text compositions */}
-        <Folder name="NeonText">
-          {renderPatternFamily({
-            patterns: mergedNeonTextV1Patterns,
-            idPrefix: "NeonTextV1-",
-            Template: NeonTextTemplateV1,
-            schema: neonTextSchemaV1,
-            durationInFrames: 480,
-          })}
-        </Folder>
-
-        {/* Slide-in + mask (bottom-left caption) */}
-        <Folder name="SlideInCaption">
-          {renderPatternFamily({
-            patterns: mergedSlideInCaptionV1Patterns,
-            idPrefix: "SlideInCaptionV1-",
-            Template: SlideInCaptionTemplateV1,
-            schema: slideInCaptionSchemaV1,
-            durationInFrames: slideInCaptionV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Glitch text (tester / signal imagery) */}
-        <Folder name="GlitchText">
-          {renderPatternFamily({
-            patterns: mergedGlitchTextV1Patterns,
-            idPrefix: "GlitchTextV1-",
-            Template: GlitchTextTemplateV1,
-            schema: glitchTextSchemaV1,
-            durationInFrames: glitchTextV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Wire outline trace (path + trim) */}
-        <Folder name="WireText">
-          {renderPatternFamily({
-            patterns: mergedWireTextV1Patterns,
-            idPrefix: "WireTextV1-",
-            Template: WireTextTemplateV1,
-            schema: wireTextSchemaV1,
-            durationInFrames: wireTextV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Rainbow gradient cycling neon (tube) */}
-        <Folder name="NeonTextRainbow">
-          {renderPatternFamily({
-            patterns: mergedNeonTextRainbowV1Patterns,
-            idPrefix: "NeonTextV1-Rainbow",
-            Template: NeonTextRainbowTemplateV1,
-            schema: neonTextRainbowSchemaV1,
-            durationInFrames: neonTextRainbowV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Light sweep (completion / speed feel) */}
-        <Folder name="LightSweepText">
-          {renderPatternFamily({
-            patterns: mergedLightSweepTextV1Patterns,
-            idPrefix: "LightSweepTextV1-",
-            Template: LightSweepTextTemplateV1,
-            schema: lightSweepTextSchemaV1,
-            durationInFrames: lightSweepTextV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Typewriter (single line, code-style) */}
-        <Folder name="TypewriterText">
-          {renderPatternFamily({
-            patterns: mergedTypewriterTextV1Patterns,
-            idPrefix: "TypewriterTextV1-",
-            Template: TypewriterTextTemplateV1,
-            schema: typewriterTextSchemaV1,
-            durationInFrames: typewriterTextV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Shake (trial-and-error / jitter) */}
-        <Folder name="ShakeText">
-          {renderPatternFamily({
-            patterns: mergedShakeTextV1Patterns,
-            idPrefix: "ShakeTextV1-",
-            Template: ShakeTextTemplateV1,
-            schema: shakeTextSchemaV1,
-            durationInFrames: shakeTextV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Party popper / completion (confetti + ring) */}
-        <Folder name="ConfettiPopText">
-          {renderPatternFamily({
-            patterns: mergedConfettiPopTextV1Patterns,
-            idPrefix: "ConfettiPopTextV1-",
-            Template: ConfettiPopTextTemplateV1,
-            schema: confettiPopTextSchemaV1,
-            durationInFrames: confettiPopTextV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* eyebrow + title two-line heading. The eyebrow flickers on once,
-            neon-tube-ignition style (generic version of OneTake-LogoTextV1).
-            A single composition with no pattern family, so it sits directly
-            under Text like Background-AmbientBlurOrbsV1 does under Background,
-            rather than getting its own sub-Folder. */}
-        <Composition
-          id="FlickerTitleV1"
-          component={withCanvasPreview(
-            "FlickerTitleV1",
-            FlickerTitleTemplateV1,
-          )}
-          width={1920}
-          height={1080}
-          fps={FPS}
-          durationInFrames={FLICKER_TITLE_V1_DURATION_FRAMES}
-          schema={flickerTitleSchemaV1}
-          defaultProps={{ ...defaultFlickerTitleV1Props }}
-        />
-
-        {/* Stacked reveal (add one line at a time, hard cut / from an analysis
-            of HUNTER×HUNTER PV techniques) */}
-        <Folder name="StackedRevealText">
-          {renderPatternFamily({
-            patterns: mergedStackedRevealTextV1Patterns,
-            idPrefix: "StackedRevealTextV1-",
-            Template: StackedRevealTextTemplateV1,
-            schema: stackedRevealTextSchemaV1,
-            durationInFrames: stackedRevealTextV1DurationFrames,
-          })}
-        </Folder>
-
-        {/* Torn-paper / polaroid-style dialogue caption (from an analysis of
-            HUNTER×HUNTER PV techniques) */}
-        <Folder name="TornNoteCaption">
-          {renderPatternFamily({
-            patterns: mergedTornNoteCaptionV1Patterns,
-            idPrefix: "TornNoteCaptionV1-",
-            Template: TornNoteCaptionTemplateV1,
-            schema: tornNoteCaptionSchemaV1,
-            durationInFrames: tornNoteCaptionV1DurationFrames,
-          })}
-        </Folder>
-      </Folder>
-
-      {/* Intro compositions */}
       <Folder name="Intro">
         <Composition
           id="IntroV1"
@@ -500,9 +595,7 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
 
-      {/* Motion graphics for OneTake (phone + PC companion app) */}
       <Folder name="OneTake">
-        {/* For onboarding */}
         <Folder name="Onboarding">
           <Composition
             id="OneTake-OnboardingConnectV1"
@@ -532,7 +625,6 @@ export const RemotionRoot: React.FC = () => {
           />
         </Folder>
 
-        {/* Logo bar-wave animation */}
         <Folder name="Logo">
           {renderPatternFamily({
             patterns: oneTakeLogoV1Patterns,
@@ -564,70 +656,20 @@ export const RemotionRoot: React.FC = () => {
         </Folder>
       </Folder>
 
-      {/* Ambient decoration parts layered over video backgrounds (always transparent backdrop) */}
-      <Folder name="Background">
+      <Folder name="Placeholder">
         <Composition
-          id="Background-AmbientBlurOrbsV1"
+          id="PlaceholderImageV1"
           component={withCanvasPreview(
-            "Background-AmbientBlurOrbsV1",
-            AmbientBlurOrbsTemplateV1,
+            "PlaceholderImageV1",
+            PlaceholderImageV1,
           )}
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={AMBIENT_BLUR_ORBS_V1_DURATION_FRAMES}
-          schema={ambientBlurOrbsSchemaV1}
-          defaultProps={{ ...defaultAmbientBlurOrbsV1Props }}
+          durationInFrames={1800}
         />
-        {renderPatternFamily({
-          patterns: scanLineV1Patterns,
-          idPrefix: "Background-ScanLineV1-",
-          Template: ScanLineTemplateV1,
-          schema: scanLineSchemaV1,
-          durationInFrames: (patternProps) => patternProps.scanPeriodFrames,
-        })}
-
-        {/* Constant duotone chromatic-aberration grading (from an analysis of
-            HUNTER×HUNTER vol. 38 PV techniques) */}
-        {renderPatternFamily({
-          patterns: duotoneGradeOverlayV1Patterns,
-          idPrefix: "Background-DuotoneGradeOverlayV1-",
-          Template: DuotoneGradeOverlayTemplateV1,
-          schema: duotoneGradeOverlaySchemaV1,
-          durationInFrames: 150,
-        })}
-
-        {/* Climax/flashback particles and film scratches (from an analysis of
-            HUNTER×HUNTER PV techniques) */}
-        {renderPatternFamily({
-          patterns: filmGrainOverlayV1Patterns,
-          idPrefix: "Background-FilmGrainOverlayV1-",
-          Template: FilmGrainOverlayTemplateV1,
-          schema: filmGrainOverlaySchemaV1,
-          durationInFrames: 150,
-        })}
       </Folder>
 
-      {/* Scene-transition effects (a category expected to grow) */}
-      <Folder name="Effect">
-        {/* RGB glitch + vertical light-streak transition bridge (from an
-            analysis of HUNTER×HUNTER vol. 37 PV techniques) */}
-        <Folder name="GlitchTransitionBridge">
-          <Composition
-            id="GlitchTransitionBridgeV1"
-            component={withCanvasPreview(
-              "GlitchTransitionBridgeV1",
-              GlitchTransitionBridgeTemplateV1,
-            )}
-            width={1920}
-            height={1080}
-            fps={FPS}
-            durationInFrames={glitchTransitionBridgeV1DurationFrames}
-            schema={glitchTransitionBridgeSchemaV1}
-            defaultProps={{ ...defaultGlitchTransitionBridgeV1Props }}
-          />
-        </Folder>
-      </Folder>
     </>
   );
 };

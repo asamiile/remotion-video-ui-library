@@ -2,18 +2,6 @@ import React from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { DuotoneGradeOverlaySchemaV1Type } from "./duotone-grade-overlay-schema";
 
-/**
- * Grading overlay that reproduces the "duotone processing with magenta/green
- * chromatic aberration applied throughout the video" technique from the
- * HUNTER×HUNTER volume 38 PV analysis (video_analysis/). Always transparent
- * background, meant to be composited over other footage.
- *
- * A real chromatic aberration (color offset in the layer below) can't be
- * reproduced by an overlay alone, so this approximates the fringing by
- * offsetting two `channelA/B` color layers with mix-blend-mode: screen, and
- * approximates the overall tone with `washColor`. When exported over actual
- * footage, edges pick up color fringing the same way as with Neon/AmbientBlurOrbs.
- */
 export const DuotoneGradeOverlayTemplateV1: React.FC<
   DuotoneGradeOverlaySchemaV1Type
 > = ({
