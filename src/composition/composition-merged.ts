@@ -7,6 +7,7 @@ import { glitchTextV1RandomPatterns } from "../Text/GlitchText/GlitchText-v1/gli
 import { wireTextV1Patterns } from "../Text/WireText/WireText-v1/wire-text-config";
 import { neonTextRainbowV1Patterns } from "../Text/NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-config";
 import { lightSweepTextV1Patterns } from "../Text/LightSweepText/LightSweepText-v1/light-sweep-text-config";
+import { randomLinesV1Patterns } from "../Background/RandomLines/RandomLinesBackground-v1/random-lines-config";
 import { typewriterTextV1Patterns } from "../Text/TypewriterText/TypewriterText-v1/typewriter-text-config";
 import { shakeTextV1Patterns } from "../Text/ShakeText/ShakeText-v1/shake-text-config";
 import { confettiPopTextV1Patterns } from "../Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config";
@@ -74,6 +75,11 @@ export const mergedLightSweepTextV1Patterns = shallowMergePatternRecord(
   lightSweepTextV1Patterns,
   local.lightSweepTextV1Patterns,
 ) as typeof lightSweepTextV1Patterns;
+
+export const mergedRandomLinesV1Patterns = shallowMergePatternRecord(
+  randomLinesV1Patterns,
+  local.randomLinesBackgroundV1Patterns,
+) as typeof randomLinesV1Patterns;
 
 export const mergedTypewriterTextV1Patterns = shallowMergePatternRecord(
   typewriterTextV1Patterns,

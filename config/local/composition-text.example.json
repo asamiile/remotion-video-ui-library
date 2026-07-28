@@ -73,6 +73,10 @@
     "rapid": { "text": "OK" },
     "rapidJp": { "text": "了解" }
   },
+  "randomLinesBackgroundV1Patterns": {
+    "subtle": {},
+    "prominent": {}
+  },
   "ledTextV1Patterns": {
     "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
     "redScrollJp": { "text": "サンプル  ///  LED  ///  スクロール  ///  " }

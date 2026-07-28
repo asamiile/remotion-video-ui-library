@@ -51,6 +51,9 @@ import { neonTextRainbowV1DurationFrames } from "./Text/NeonTextRainbow/NeonText
 import { LightSweepTextTemplateV1 } from "./Text/LightSweepText/LightSweepText-v1/LightSweepTextTemplate";
 import { lightSweepTextSchemaV1 } from "./Text/LightSweepText/LightSweepText-v1/light-sweep-text-schema";
 import { lightSweepTextV1DurationFrames } from "./Text/LightSweepText/LightSweepText-v1/light-sweep-text-config";
+import { RandomLinesBackgroundV1 } from "./Background/RandomLines/RandomLinesBackground-v1/RandomLinesBackground";
+import { randomLinesSchemaV1 } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines-schema";
+import { randomLinesV1DurationFrames } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines-config";
 import { TypewriterTextTemplateV1 } from "./Text/TypewriterText/TypewriterText-v1/TypewriterTextTemplate";
 import { typewriterTextSchemaV1 } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-schema";
 import { typewriterTextV1DurationFrames } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-config";
@@ -155,6 +158,7 @@ import {
   mergedGlitchTextV1Patterns,
   mergedGlitchTextV1RandomPatterns,
   mergedLightSweepTextV1Patterns,
+  mergedRandomLinesV1Patterns,
   mergedLedTextV1Patterns,
   mergedLoadingIconV1Patterns,
   mergedLocationConfigsV1,
@@ -482,6 +486,27 @@ export const RemotionRoot: React.FC = () => {
           schema={ambientBlurOrbsSchemaV1}
           defaultProps={{ ...defaultAmbientBlurOrbsV1Props }}
         />
+
+        <Folder name="RandomLines">
+          {Object.entries(mergedRandomLinesV1Patterns).map(
+            ([patternName, props]) => (
+              <Composition
+                key={`RandomLinesBackground-${patternName}`}
+                id={`RandomLinesBackground-${patternName}`}
+                component={withCanvasPreview(
+                  `RandomLinesBackground-${patternName}`,
+                  RandomLinesBackgroundV1
+                )}
+                width={1920}
+                height={1080}
+                fps={FPS}
+                durationInFrames={randomLinesV1DurationFrames}
+                schema={randomLinesSchemaV1}
+                defaultProps={props}
+              />
+            )
+          )}
+        </Folder>
 
         <Folder name="ScanLine">
           {renderPatternFamily({
