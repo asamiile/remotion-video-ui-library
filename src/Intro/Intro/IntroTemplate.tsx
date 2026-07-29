@@ -32,7 +32,7 @@ export const IntroTemplate: React.FC<IntroSchemaType> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  const introScenesV1: IntroScene[] = useMemo(
+  const introScenes: IntroScene[] = useMemo(
     () => [
       {
         ...introSceneTiming[0],
@@ -48,8 +48,8 @@ export const IntroTemplate: React.FC<IntroSchemaType> = ({
   );
 
   const renderScene = (sceneIndex: number) => {
-    const scene = introScenesV1[sceneIndex];
-    const sceneStartFrame = introScenesV1
+    const scene = introScenes[sceneIndex];
+    const sceneStartFrame = introScenes
       .slice(0, sceneIndex)
       .reduce((acc, s) => acc + s.duration, 0);
 
@@ -143,7 +143,7 @@ export const IntroTemplate: React.FC<IntroSchemaType> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor }}>
-      {introScenesV1.map((_, index) => renderScene(index))}
+      {introScenes.map((_, index) => renderScene(index))}
     </AbsoluteFill>
   );
 };

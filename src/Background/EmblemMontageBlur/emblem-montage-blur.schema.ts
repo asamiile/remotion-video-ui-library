@@ -13,11 +13,11 @@ export const emblemMontageBlurSchema = z.object({
   blurMaxPx: z.number().min(0).default(8),
 
   fadeInFrames: z.number().min(0).default(20),
-  randomSeed: z.string().default("emblem-montage-v1"),
+  randomSeed: z.string().default("emblem-montage"),
 });
 
 export type EmblemMontageBlurSchemaType = z.infer<
-  typeof emblemMontageBlurSchemaV1
+  typeof emblemMontageBlurSchema
 >;
 
 
@@ -31,7 +31,7 @@ export const defaultEmblemMontageBlurProps = {
   blurMaxPx: 8,
 
   fadeInFrames: 20,
-  randomSeed: "emblem-montage-v1",
+  randomSeed: "emblem-montage",
 };
 export const emblemMontageBlurPatterns = {
   /** Cool neutral tones (English default) */

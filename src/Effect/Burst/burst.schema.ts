@@ -17,7 +17,7 @@ export const burstSchema = z.object({
   /** Frames for the lightning cracks to fade out (they appear immediately) */
   lightningDecayFrames: z.number().min(1).default(14),
 
-  randomSeed: z.string().default("burst-v1"),
+  randomSeed: z.string().default("burst"),
 });
 
 export type BurstSchemaType = z.infer<typeof burstSchema>;
@@ -34,6 +34,6 @@ export const defaultBurstProps = {
   popInFrames: 8,
   flashDecayFrames: 10,
   lightningDecayFrames: 14,
-  randomSeed: "burst-v1",
+  randomSeed: "burst",
 } as const;
 

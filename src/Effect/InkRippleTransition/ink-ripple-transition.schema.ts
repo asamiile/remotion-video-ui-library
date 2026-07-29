@@ -16,11 +16,11 @@ export const inkRippleTransitionSchema = z.object({
   /** Roughens the ring edges via an SVG turbulence displacement filter (ink-brush texture) */
   roughness: z.number().min(0).max(20).default(5),
 
-  randomSeed: z.string().default("ink-ripple-v1"),
+  randomSeed: z.string().default("ink-ripple"),
 });
 
 export type InkRippleTransitionSchemaType = z.infer<
-  typeof inkRippleTransitionSchemaV1
+  typeof inkRippleTransitionSchema
 >;
 
 export const inkRippleTransitionDurationFrames = 45;
@@ -34,6 +34,6 @@ export const defaultInkRippleTransitionProps = {
   maxRadiusPercent: 70,
   strokeWidthPx: 6,
   roughness: 5,
-  randomSeed: "ink-ripple-v1",
+  randomSeed: "ink-ripple",
 } as const;
 

@@ -12,7 +12,7 @@ export const letterboxOverlaySchema = z.object({
 });
 
 export type LetterboxOverlaySchemaType = z.infer<
-  typeof letterboxOverlaySchemaV1
+  typeof letterboxOverlaySchema
 >;
 
 

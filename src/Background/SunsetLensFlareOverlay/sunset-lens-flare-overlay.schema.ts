@@ -17,7 +17,7 @@ export const sunsetLensFlareOverlaySchema = z.object({
 });
 
 export type SunsetLensFlareOverlaySchemaType = z.infer<
-  typeof sunsetLensFlareOverlaySchemaV1
+  typeof sunsetLensFlareOverlaySchema
 >;
 
 

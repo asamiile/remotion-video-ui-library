@@ -19,18 +19,18 @@ export type CanvasPreviewLayer =
 const exactLayers: Partial<Record<string, CanvasPreviewLayer>> = {
   PlaceholderImage: { kind: "color", color: "#1e1e1e" },
   /** Screen/multiply-blend duotone wash is hard to read against the dark navy default; preview on white instead */
-  "Background-DuotoneGradeOverlayV1-CyanViolet": {
+  "Background-DuotoneGradeOverlay-CyanViolet": {
     kind: "color",
     color: "#ffffff",
   },
   /** Black bars barely read against the dark navy default; preview on white so the reveal-in motion is visible */
-  "Background-LetterboxOverlayV1-RevealIn": {
+  "Background-LetterboxOverlay-RevealIn": {
     kind: "color",
     color: "#ffffff",
   },
   /*
   Image example (when the file is placed at public/canvas-preview/bg.jpg):
-  AudioSpectrumV1-Detailed: {
+  AudioSpectrum-Detailed: {
     kind: "image",
     src: "canvas-preview/bg.jpg",
     objectFit: "cover",
@@ -41,7 +41,7 @@ const exactLayers: Partial<Record<string, CanvasPreviewLayer>> = {
 const prefixLayers: { prefix: string; layer: CanvasPreviewLayer }[] = [
   /** The spectrum area tends to show through, so use a coordinated dark tone */
   {
-    prefix: "AudioSpectrumV1-",
+    prefix: "AudioSpectrum-",
     layer: { kind: "color", color: "#3a3630" },
   },
   /** Background compositions are always transparent, so preview against the OneTake navy they're actually composited over */

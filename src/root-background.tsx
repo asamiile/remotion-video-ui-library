@@ -38,9 +38,9 @@ export function BackgroundFolder() {
   return (
     <Folder name="Background">
       <Composition
-        id="Background-AmbientBlurOrbsV1"
+        id="Background-AmbientBlurOrbs"
         component={withCanvasPreview(
-          "Background-AmbientBlurOrbsV1",
+          "Background-AmbientBlurOrbs",
           AmbientBlurOrbsTemplate,
         )}
         width={1920}
@@ -75,7 +75,7 @@ export function BackgroundFolder() {
       <Folder name="ScanLine">
         {renderPatternFamily({
           patterns: scanLinePatterns,
-          idPrefix: "Background-ScanLineV1-",
+          idPrefix: "Background-ScanLine-",
           Template: ScanLineTemplate,
           schema: scanLineSchema,
           durationInFrames: (patternProps) => patternProps.scanPeriodFrames,
@@ -85,37 +85,37 @@ export function BackgroundFolder() {
       <Folder name="DuotoneGradeOverlay">
         {renderPatternFamily({
           patterns: duotoneGradeOverlayPatterns,
-          idPrefix: "Background-DuotoneGradeOverlayV1-",
+          idPrefix: "Background-DuotoneGradeOverlay-",
           Template: DuotoneGradeOverlayTemplate,
           schema: duotoneGradeOverlaySchema,
           durationInFrames: 150,
         })}
       </Folder>
 
-      <Folder name="FilmGrainOverlayV1">
+      <Folder name="FilmGrainOverlay">
         {renderPatternFamily({
           patterns: filmGrainOverlayPatterns,
-          idPrefix: "Background-FilmGrainOverlayV1-",
+          idPrefix: "Background-FilmGrainOverlay-",
           Template: FilmGrainOverlayTemplate,
           schema: filmGrainOverlaySchema,
           durationInFrames: 150,
         })}
       </Folder>
 
-      <Folder name="LetterboxOverlayV1">
+      <Folder name="LetterboxOverlay">
         {renderPatternFamily({
           patterns: letterboxOverlayPatterns,
-          idPrefix: "Background-LetterboxOverlayV1-",
+          idPrefix: "Background-LetterboxOverlay-",
           Template: LetterboxOverlayTemplate,
           schema: letterboxOverlaySchema,
           durationInFrames: 90,
         })}
       </Folder>
 
-      <Folder name="PosterizeGradeOverlayV1">
+      <Folder name="PosterizeGradeOverlay">
         {renderPatternFamily({
           patterns: posterizeGradeOverlayPatterns,
-          idPrefix: "Background-PosterizeGradeOverlayV1-",
+          idPrefix: "Background-PosterizeGradeOverlay-",
           Template: PosterizeGradeOverlayTemplate,
           schema: posterizeGradeOverlaySchema,
           durationInFrames: 150,
@@ -125,7 +125,7 @@ export function BackgroundFolder() {
       <Folder name="EmblemMontageBlur">
         {renderPatternFamily({
           patterns: emblemMontageBlurPatterns,
-          idPrefix: "Background-EmblemMontageBlurV1-",
+          idPrefix: "Background-EmblemMontageBlur-",
           Template: EmblemMontageBlurTemplate,
           schema: emblemMontageBlurSchema,
           durationInFrames: 60,
@@ -135,7 +135,7 @@ export function BackgroundFolder() {
       <Folder name="SunsetLensFlareOverlay">
         {renderPatternFamily({
           patterns: sunsetLensFlareOverlayPatterns,
-          idPrefix: "Background-SunsetLensFlareOverlayV1-",
+          idPrefix: "Background-SunsetLensFlareOverlay-",
           Template: SunsetLensFlareOverlayTemplate,
           schema: sunsetLensFlareOverlaySchema,
           durationInFrames: 60,

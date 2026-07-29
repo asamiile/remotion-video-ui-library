@@ -16,7 +16,7 @@ export const onboardingConnectSchema = z.object({
 });
 
 export type OnboardingConnectSchemaType = z.infer<
-  typeof onboardingConnectSchemaV1
+  typeof onboardingConnectSchema
 >;
 
 export const onboardingConnectDurationFrames = 90;

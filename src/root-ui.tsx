@@ -19,7 +19,7 @@ export function UIFolder() {
       <Folder name="BattleCalloutBanner">
         {renderPatternFamily({
           patterns: mergedBattleCalloutBannerPatterns,
-          idPrefix: "BattleCalloutBannerV1-",
+          idPrefix: "BattleCalloutBanner-",
           Template: BattleCalloutBannerTemplate,
           schema: battleCalloutBannerSchema,
           durationInFrames: battleCalloutBannerDurationFrames,
@@ -29,7 +29,7 @@ export function UIFolder() {
       <Folder name="AsymmetricStatusPanel">
         {renderPatternFamily({
           patterns: mergedAsymmetricStatusPanelPatterns,
-          idPrefix: "AsymmetricStatusPanelV1-",
+          idPrefix: "AsymmetricStatusPanel-",
           Template: AsymmetricStatusPanelTemplate,
           schema: asymmetricStatusPanelSchema,
           durationInFrames: asymmetricStatusPanelDurationFrames,

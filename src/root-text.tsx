@@ -113,9 +113,9 @@ export function TextFolder() {
         {mergedLocationConfigs.map((config) => (
           <Composition
             key={config.id}
-            id={`LocationV1-${config.id}`}
+            id={`Location-${config.id}`}
             component={withCanvasPreview(
-              `LocationV1-${config.id}`,
+              `Location-${config.id}`,
               LocationTemplate,
             )}
             width={1920}
@@ -172,10 +172,10 @@ export function TextFolder() {
         {Object.entries(mergedGlitchTextRandomPatterns).map(
           ([patternName, props]) => (
             <Composition
-              key={`GlitchTextV1-Random-${patternName}`}
-              id={`GlitchTextV1-Random-${patternName}`}
+              key={`GlitchTextRandom-${patternName}`}
+              id={`GlitchTextRandom-${patternName}`}
               component={withCanvasPreview(
-                `GlitchTextV1-Random-${patternName}`,
+                `GlitchTextRandom-${patternName}`,
                 GlitchTextRandomTemplate
               )}
               width={1920}
@@ -271,7 +271,7 @@ export function TextFolder() {
         <Composition
           id="FlickerTitle"
           component={withCanvasPreview(
-            "FlickerTitleV1",
+            "FlickerTitle",
             FlickerTitleTemplate,
           )}
           width={1920}
@@ -285,7 +285,7 @@ export function TextFolder() {
         <Composition
           id="OneTake-LogoText"
           component={withCanvasPreview(
-            "OneTake-LogoTextV1",
+            "OneTake-LogoText",
             OneTakeLogoTextTemplate,
           )}
           width={1920}

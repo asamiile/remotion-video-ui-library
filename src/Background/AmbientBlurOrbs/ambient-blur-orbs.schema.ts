@@ -14,7 +14,7 @@ export const ambientBlurOrbsSchema = z.object({
 });
 
 export type AmbientBlurOrbsSchemaType = z.infer<
-  typeof ambientBlurOrbsSchemaV1
+  typeof ambientBlurOrbsSchema
 >;
 
 export const ambientBlurOrbsDurationFrames = 420;

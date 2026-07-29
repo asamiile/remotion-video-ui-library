@@ -42,9 +42,9 @@ export function OtherFolder() {
         {mergedMapLocationPoints.map((locationPoint) => (
           <Composition
             key={locationPoint.id}
-            id={`MiniMapV1-${locationPoint.id}`}
+            id={`MiniMap-${locationPoint.id}`}
             component={withCanvasPreview(
-              `MiniMapV1-${locationPoint.id}`,
+              `MiniMap-${locationPoint.id}`,
               MiniMapTemplate,
             )}
             width={1920}
@@ -65,10 +65,10 @@ export function OtherFolder() {
           <Folder name="Presets">
             {Object.entries(audioSpectrumPatterns).map(([patternName, props]) => (
               <Composition
-                key={`AudioSpectrumV1-${patternName}`}
-                id={`AudioSpectrumV1-${patternName}`}
+                key={`AudioSpectrum-${patternName}`}
+                id={`AudioSpectrum-${patternName}`}
                 component={withCanvasPreview(
-                  `AudioSpectrumV1-${patternName}`,
+                  `AudioSpectrum-${patternName}`,
                   AudioSpectrumTemplate,
                 )}
                 width={1920}

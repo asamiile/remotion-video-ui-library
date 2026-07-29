@@ -16,11 +16,11 @@ export const filmGrainOverlaySchema = z.object({
   /** How often (in frames) scratches are re-rolled, i.e. how often they appear/disappear */
   scratchFlickerEveryFrames: z.number().min(1).default(6),
 
-  randomSeed: z.string().default("film-grain-v1"),
+  randomSeed: z.string().default("film-grain"),
 });
 
 export type FilmGrainOverlaySchemaType = z.infer<
-  typeof filmGrainOverlaySchemaV1
+  typeof filmGrainOverlaySchema
 >;
 
 
@@ -34,7 +34,7 @@ export const defaultFilmGrainOverlayProps = {
   scratchOpacity: 0.35,
   scratchFlickerEveryFrames: 6,
 
-  randomSeed: "film-grain-v1",
+  randomSeed: "film-grain",
 };
 export const filmGrainOverlayPatterns = {
   /** Restrained grain for a single climactic moment (matches the vol. 37 PV) */
