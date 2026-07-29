@@ -1,34 +1,34 @@
 import { Composition, Folder } from "remotion";
 import { AmbientBlurOrbsTemplateV1 } from "./Background/AmbientBlurOrbs-v1/AmbientBlurOrbsTemplate";
-import { ambientBlurOrbsSchemaV1 } from "./Background/AmbientBlurOrbs-v1/ambient-blur-orbs-schema";
+import { ambientBlurOrbsSchemaV1 } from "./Background/AmbientBlurOrbs-v1/ambient-blur-orbs.schema";
 import {
   defaultAmbientBlurOrbsV1Props,
   AMBIENT_BLUR_ORBS_V1_DURATION_FRAMES,
-} from "./Background/AmbientBlurOrbs-v1/ambient-blur-orbs-config";
+} from "./Background/AmbientBlurOrbs-v1/ambient-blur-orbs.schema";
 import { ScanLineTemplateV1 } from "./Background/ScanLine-v1/ScanLineTemplate";
-import { scanLineSchemaV1 } from "./Background/ScanLine-v1/scan-line-schema";
-import { scanLineV1Patterns } from "./Background/ScanLine-v1/scan-line-config";
+import { scanLineSchemaV1 } from "./Background/ScanLine-v1/scan-line.schema";
+import { scanLineV1Patterns } from "./Background/ScanLine-v1/scan-line.schema";
 import { DuotoneGradeOverlayTemplateV1 } from "./Background/DuotoneGradeOverlay-v1/DuotoneGradeOverlayTemplate";
-import { duotoneGradeOverlaySchemaV1 } from "./Background/DuotoneGradeOverlay-v1/duotone-grade-overlay-schema";
-import { duotoneGradeOverlayV1Patterns } from "./Background/DuotoneGradeOverlay-v1/duotone-grade-overlay-config";
+import { duotoneGradeOverlaySchemaV1 } from "./Background/DuotoneGradeOverlay-v1/duotone-grade-overlay.schema";
+import { duotoneGradeOverlayV1Patterns } from "./Background/DuotoneGradeOverlay-v1/duotone-grade-overlay.schema";
 import { FilmGrainOverlayTemplateV1 } from "./Background/FilmGrainOverlay-v1/FilmGrainOverlayTemplate";
-import { filmGrainOverlaySchemaV1 } from "./Background/FilmGrainOverlay-v1/film-grain-overlay-schema";
-import { filmGrainOverlayV1Patterns } from "./Background/FilmGrainOverlay-v1/film-grain-overlay-config";
+import { filmGrainOverlaySchemaV1 } from "./Background/FilmGrainOverlay-v1/film-grain-overlay.schema";
+import { filmGrainOverlayV1Patterns } from "./Background/FilmGrainOverlay-v1/film-grain-overlay.schema";
 import { LetterboxOverlayTemplateV1 } from "./Background/LetterboxOverlay-v1/LetterboxOverlayTemplate";
-import { letterboxOverlaySchemaV1 } from "./Background/LetterboxOverlay-v1/letterbox-overlay-schema";
-import { letterboxOverlayV1Patterns } from "./Background/LetterboxOverlay-v1/letterbox-overlay-config";
+import { letterboxOverlaySchemaV1 } from "./Background/LetterboxOverlay-v1/letterbox-overlay.schema";
+import { letterboxOverlayV1Patterns } from "./Background/LetterboxOverlay-v1/letterbox-overlay.schema";
 import { PosterizeGradeOverlayTemplateV1 } from "./Background/PosterizeGradeOverlay-v1/PosterizeGradeOverlayTemplate";
-import { posterizeGradeOverlaySchemaV1 } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-schema";
-import { posterizeGradeOverlayV1Patterns } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-config";
+import { posterizeGradeOverlaySchemaV1 } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay.schema";
+import { posterizeGradeOverlayV1Patterns } from "./Background/PosterizeGradeOverlay-v1/posterize-grade-overlay.schema";
 import { EmblemMontageBlurTemplateV1 } from "./Background/EmblemMontageBlur-v1/EmblemMontageBlurTemplate";
-import { emblemMontageBlurSchemaV1 } from "./Background/EmblemMontageBlur-v1/emblem-montage-blur-schema";
-import { emblemMontageBlurV1Patterns } from "./Background/EmblemMontageBlur-v1/emblem-montage-blur-config";
+import { emblemMontageBlurSchemaV1 } from "./Background/EmblemMontageBlur-v1/emblem-montage-blur.schema";
+import { emblemMontageBlurV1Patterns } from "./Background/EmblemMontageBlur-v1/emblem-montage-blur.schema";
 import { SunsetLensFlareOverlayTemplateV1 } from "./Background/SunsetLensFlareOverlay-v1/SunsetLensFlareOverlayTemplate";
-import { sunsetLensFlareOverlaySchemaV1 } from "./Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay-schema";
-import { sunsetLensFlareOverlayV1Patterns } from "./Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay-config";
+import { sunsetLensFlareOverlaySchemaV1 } from "./Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay.schema";
+import { sunsetLensFlareOverlayV1Patterns } from "./Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay.schema";
 import { RandomLinesBackgroundV1 } from "./Background/RandomLines/RandomLinesBackground-v1/RandomLinesBackground";
-import { randomLinesSchemaV1 } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines-schema";
-import { randomLinesV1DurationFrames } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines-config";
+import { randomLinesSchemaV1 } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines.schema";
+import { randomLinesV1DurationFrames } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import { mergedRandomLinesV1Patterns } from "./composition/composition-merged";
 

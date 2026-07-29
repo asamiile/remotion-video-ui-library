@@ -1,19 +1,19 @@
 import { Composition, Folder } from "remotion";
 import { OnboardingConnectTemplateV1 } from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/OnboardingConnectTemplate";
-import { onboardingConnectSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-schema";
+import { onboardingConnectSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect.schema";
 import {
   defaultOnboardingConnectV1Props,
   ONBOARDING_CONNECT_V1_DURATION_FRAMES,
-} from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect-config";
+} from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect.schema";
 import { OnboardingOperateTemplateV1 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/OnboardingOperateTemplate";
-import { onboardingOperateSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-schema";
+import { onboardingOperateSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate.schema";
 import {
   defaultOnboardingOperateV1Props,
   ONBOARDING_OPERATE_V1_DURATION_FRAMES,
-} from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate-config";
+} from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate.schema";
 import { OneTakeLogoTemplateV1 } from "./Logo/OneTake/OneTakeLogo-v1/OneTakeLogoTemplate";
-import { oneTakeLogoSchemaV1 } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo-schema";
-import { oneTakeLogoV1Patterns } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo-config";
+import { oneTakeLogoSchemaV1 } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo.schema";
+import { oneTakeLogoV1Patterns } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 
 const FPS = 30;

@@ -1,10 +1,10 @@
 import { Composition, Folder } from "remotion";
 import { BattleCalloutBannerTemplateV1 } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/BattleCalloutBannerTemplate";
-import { battleCalloutBannerSchemaV1 } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner-schema";
-import { battleCalloutBannerV1DurationFrames } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner-config";
+import { battleCalloutBannerSchemaV1 } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner.schema";
+import { battleCalloutBannerV1DurationFrames } from "./UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner.schema";
 import { AsymmetricStatusPanelTemplateV1 } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/AsymmetricStatusPanelTemplate";
-import { asymmetricStatusPanelSchemaV1 } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel-schema";
-import { asymmetricStatusPanelV1DurationFrames } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel-config";
+import { asymmetricStatusPanelSchemaV1 } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel.schema";
+import { asymmetricStatusPanelV1DurationFrames } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
   mergedBattleCalloutBannerV1Patterns,
