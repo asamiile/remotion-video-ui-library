@@ -31,7 +31,7 @@ import { neonTextRainbowDurationFrames } from "./Text/NeonTextRainbow/neon-text-
 import { LightSweepTextTemplate } from "./Text/LightSweepText/LightSweepTextTemplate";
 import { lightSweepTextSchema } from "./Text/LightSweepText/light-sweep-text.schema";
 import { lightSweepTextDurationFrames } from "./Text/LightSweepText/light-sweep-text.schema";
-import { DottedLineMarkerTextV1 } from "./Text/DottedLineMarkerText/DottedLineMarkerText";
+import { DottedLineMarkerText } from "./Text/DottedLineMarkerText/DottedLineMarkerText";
 import { dottedLineMarkerTextSchema, dottedLineMarkerTextDurationFrames } from "./Text/DottedLineMarkerText/dotted-line-marker-text.schema";
 import { TypewriterTextTemplate } from "./Text/TypewriterText/TypewriterTextTemplate";
 import { typewriterTextSchema, typewriterTextDurationFrames } from "./Text/TypewriterText/typewriter-text.schema";
@@ -224,8 +224,8 @@ export function TextFolder() {
           ([patternName, props]) => (
             <Composition
               key={patternName}
-              id={`DottedLineMarkerTextV1-${patternName}`}
-              component={DottedLineMarkerTextV1}
+              id={`DottedLineMarkerText-${patternName}`}
+              component={DottedLineMarkerText}
               durationInFrames={dottedLineMarkerTextDurationFrames}
               width={1920}
               height={1080}
