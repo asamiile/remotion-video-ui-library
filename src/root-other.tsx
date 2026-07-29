@@ -89,7 +89,7 @@ export function OtherFolder() {
 
       <Folder name="Intro">
         <Composition
-          id="IntroV1"
+          id="Intro"
           component={IntroTemplate}
           width={1920}
           height={1080}

@@ -87,8 +87,8 @@ export function TextFolder() {
     <Folder name="Text">
       <Folder name="CodeStream">
         <Composition
-          id="CodeStreamHorizontalV1"
-          component={withCanvasPreview("CodeStreamHorizontalV1", CodeStreamTemplate)}
+          id="CodeStreamHorizontal"
+          component={withCanvasPreview("CodeStreamHorizontal", CodeStreamTemplate)}
           width={1920}
           height={1080}
           fps={FPS}
@@ -98,8 +98,8 @@ export function TextFolder() {
         />
 
         <Composition
-          id="CodeStreamVerticalV1"
-          component={withCanvasPreview("CodeStreamVerticalV1", CodeStreamTemplate)}
+          id="CodeStreamVertical"
+          component={withCanvasPreview("CodeStreamVertical", CodeStreamTemplate)}
           width={1920}
           height={1080}
           fps={FPS}
@@ -134,7 +134,7 @@ export function TextFolder() {
       <Folder name="LedText">
         {renderPatternFamily({
           patterns: mergedLedTextPatterns,
-          idPrefix: "LedTextV1-",
+          idPrefix: "LedText-",
           Template: LedTextTemplate,
           schema: ledTextSchema,
           durationInFrames: 540,
@@ -144,7 +144,7 @@ export function TextFolder() {
       <Folder name="NeonText">
         {renderPatternFamily({
           patterns: mergedNeonTextPatterns,
-          idPrefix: "NeonTextV1-",
+          idPrefix: "NeonText-",
           Template: NeonTextTemplate,
           schema: neonTextSchema,
           durationInFrames: 480,
@@ -154,7 +154,7 @@ export function TextFolder() {
       <Folder name="SlideInCaption">
         {renderPatternFamily({
           patterns: mergedSlideInCaptionPatterns,
-          idPrefix: "SlideInCaptionV1-",
+          idPrefix: "SlideInCaption-",
           Template: SlideInCaptionTemplate,
           schema: slideInCaptionSchema,
           durationInFrames: slideInCaptionDurationFrames,
@@ -164,7 +164,7 @@ export function TextFolder() {
       <Folder name="GlitchText">
         {renderPatternFamily({
           patterns: mergedGlitchTextPatterns,
-          idPrefix: "GlitchTextV1-",
+          idPrefix: "GlitchText-",
           Template: GlitchTextTemplate,
           schema: glitchTextSchema,
           durationInFrames: glitchTextDurationFrames,
@@ -192,7 +192,7 @@ export function TextFolder() {
       <Folder name="WireText">
         {renderPatternFamily({
           patterns: mergedWireTextPatterns,
-          idPrefix: "WireTextV1-",
+          idPrefix: "WireText-",
           Template: WireTextTemplate,
           schema: wireTextSchema,
           durationInFrames: wireTextDurationFrames,
@@ -202,7 +202,7 @@ export function TextFolder() {
       <Folder name="NeonTextRainbow">
         {renderPatternFamily({
           patterns: mergedNeonTextRainbowPatterns,
-          idPrefix: "NeonTextV1-Rainbow",
+          idPrefix: "NeonText-Rainbow",
           Template: NeonTextRainbowTemplate,
           schema: neonTextRainbowSchema,
           durationInFrames: neonTextRainbowDurationFrames,
@@ -212,7 +212,7 @@ export function TextFolder() {
       <Folder name="LightSweepText">
         {renderPatternFamily({
           patterns: mergedLightSweepTextPatterns,
-          idPrefix: "LightSweepTextV1-",
+          idPrefix: "LightSweepText-",
           Template: LightSweepTextTemplate,
           schema: lightSweepTextSchema,
           durationInFrames: lightSweepTextDurationFrames,
@@ -240,7 +240,7 @@ export function TextFolder() {
       <Folder name="TypewriterText">
         {renderPatternFamily({
           patterns: mergedTypewriterTextPatterns,
-          idPrefix: "TypewriterTextV1-",
+          idPrefix: "TypewriterText-",
           Template: TypewriterTextTemplate,
           schema: typewriterTextSchema,
           durationInFrames: typewriterTextDurationFrames,
@@ -250,7 +250,7 @@ export function TextFolder() {
       <Folder name="ShakeText">
         {renderPatternFamily({
           patterns: mergedShakeTextPatterns,
-          idPrefix: "ShakeTextV1-",
+          idPrefix: "ShakeText-",
           Template: ShakeTextTemplate,
           schema: shakeTextSchema,
           durationInFrames: shakeTextDurationFrames,
@@ -260,7 +260,7 @@ export function TextFolder() {
       <Folder name="ConfettiPopText">
         {renderPatternFamily({
           patterns: mergedConfettiPopTextPatterns,
-          idPrefix: "ConfettiPopTextV1-",
+          idPrefix: "ConfettiPopText-",
           Template: ConfettiPopTextTemplate,
           schema: confettiPopTextSchema,
           durationInFrames: confettiPopTextDurationFrames,
@@ -269,7 +269,7 @@ export function TextFolder() {
 
       <Folder name="FlickerTitle">
         <Composition
-          id="FlickerTitleV1"
+          id="FlickerTitle"
           component={withCanvasPreview(
             "FlickerTitleV1",
             FlickerTitleTemplate,
@@ -283,7 +283,7 @@ export function TextFolder() {
         />
 
         <Composition
-          id="OneTake-LogoTextV1"
+          id="OneTake-LogoText"
           component={withCanvasPreview(
             "OneTake-LogoTextV1",
             OneTakeLogoTextTemplate,
@@ -300,7 +300,7 @@ export function TextFolder() {
       <Folder name="StackedRevealText">
         {renderPatternFamily({
           patterns: mergedStackedRevealTextPatterns,
-          idPrefix: "StackedRevealTextV1-",
+          idPrefix: "StackedRevealText-",
           Template: StackedRevealTextTemplate,
           schema: stackedRevealTextSchema,
           durationInFrames: stackedRevealTextDurationFrames,
@@ -310,7 +310,7 @@ export function TextFolder() {
       <Folder name="TornNoteCaption">
         {renderPatternFamily({
           patterns: mergedTornNoteCaptionPatterns,
-          idPrefix: "TornNoteCaptionV1-",
+          idPrefix: "TornNoteCaption-",
           Template: TornNoteCaptionTemplate,
           schema: tornNoteCaptionSchema,
           durationInFrames: tornNoteCaptionDurationFrames,
@@ -320,7 +320,7 @@ export function TextFolder() {
       <Folder name="DistressedTitleCard">
         {renderPatternFamily({
           patterns: mergedDistressedTitleCardPatterns,
-          idPrefix: "DistressedTitleCardV1-",
+          idPrefix: "DistressedTitleCard-",
           Template: DistressedTitleCardTemplate,
           schema: distressedTitleCardSchema,
           durationInFrames: distressedTitleCardDurationFrames,
@@ -330,7 +330,7 @@ export function TextFolder() {
       <Folder name="SprayPaintText">
         {renderPatternFamily({
           patterns: mergedSprayPaintTextPatterns,
-          idPrefix: "SprayPaintTextV1-",
+          idPrefix: "SprayPaintText-",
           Template: SprayPaintTextTemplate,
           schema: sprayPaintTextSchema,
           durationInFrames: sprayPaintTextDurationFrames,
