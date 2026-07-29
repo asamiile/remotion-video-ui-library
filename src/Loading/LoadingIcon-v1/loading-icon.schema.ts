@@ -36,8 +36,7 @@ export const defaultLoadingIconV1Props = {
   text: "Loading (sample)…",
   textColor: "#DFE2D7",
   fontSize: 24,
-  fontFamily: LINESEED_FONT,
-  // fontFamily: FONT_FAMILY_LINE_SEED,
+  fontFamily: "'Line Seed JP_100'",
   fontWeight: "400" as const,
 
   positionX: 94,
