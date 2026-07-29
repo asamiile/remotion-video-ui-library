@@ -63,7 +63,7 @@ import {
   mergedNeonTextPatterns,
   mergedSlideInCaptionPatterns,
   mergedGlitchTextPatterns,
-  mergedGlitchTextV1RandomPatterns,
+  mergedGlitchTextRandomPatterns,
   mergedWireTextPatterns,
   mergedNeonTextRainbowPatterns,
   mergedLightSweepTextPatterns,
@@ -169,7 +169,7 @@ export function TextFolder() {
           schema: glitchTextSchemaV1,
           durationInFrames: glitchTextV1DurationFrames,
         })}
-        {Object.entries(mergedGlitchTextV1RandomPatterns).map(
+        {Object.entries(mergedGlitchTextRandomPatterns).map(
           ([patternName, props]) => (
             <Composition
               key={`GlitchTextV1-Random-${patternName}`}
