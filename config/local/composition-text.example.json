@@ -178,7 +178,7 @@
       "paragraphs": [
         [
           "# SAMPLE VERTICAL BLOCK 01",
-          "version = \"v1-sample\"",
+          "version = \"sample\"",
           "mode = \"preview\"",
           "accent = \"cyan\""
         ],
