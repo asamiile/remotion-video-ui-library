@@ -39,6 +39,7 @@ export const slideInCaptionSchemaV1 = z.object({
 
 export type SlideInCaptionSchemaV1Type = z.infer<typeof slideInCaptionSchemaV1>;
 
+export const slideInCaptionV1DurationFrames = 150;
 
 export const defaultSlideInCaptionV1Props = {
   text: "",

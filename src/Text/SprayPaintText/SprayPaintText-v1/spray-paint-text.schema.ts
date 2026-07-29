@@ -42,6 +42,7 @@ export type SprayPaintTextSchemaV1Type = z.infer<
   typeof sprayPaintTextSchemaV1
 >;
 
+export const sprayPaintTextV1DurationFrames = 150;
 
 export const defaultSprayPaintTextV1Props = {
   text: "SOUND DESIGN",

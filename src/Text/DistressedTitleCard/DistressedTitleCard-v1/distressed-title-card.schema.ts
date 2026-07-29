@@ -41,6 +41,7 @@ export type DistressedTitleCardSchemaV1Type = z.infer<
   typeof distressedTitleCardSchemaV1
 >;
 
+export const distressedTitleCardV1DurationFrames = 180;
 
 export const defaultDistressedTitleCardV1Props = {
   variant: "darkTitle" as const,

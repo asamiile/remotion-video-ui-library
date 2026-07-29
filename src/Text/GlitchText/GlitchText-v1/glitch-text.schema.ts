@@ -39,6 +39,8 @@ export const glitchTextSchemaV1 = z.object({
 
 export type GlitchTextSchemaV1Type = z.infer<typeof glitchTextSchemaV1>;
 
+export const glitchTextV1DurationFrames = 150;
+
 
 export const defaultGlitchTextV1Props = {
   text: "MEASURING",
