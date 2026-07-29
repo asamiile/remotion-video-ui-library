@@ -16,3 +16,17 @@ export const ambientBlurOrbsSchemaV1 = z.object({
 export type AmbientBlurOrbsSchemaV1Type = z.infer<
   typeof ambientBlurOrbsSchemaV1
 >;
+
+export const ambientBlurOrbsV1DurationFrames = 420;
+
+export const defaultAmbientBlurOrbsV1Props = {
+  topLeftColor: "#37E9FF",
+  bottomRightColor: "#FF3D9E",
+  orbOpacity: 0.24,
+  blurPx: 100,
+  driftPeriodFrames: 420,
+} as const;
+
+export const ambientBlurOrbsV1Patterns = {
+  default: defaultAmbientBlurOrbsV1Props,
+} as const;

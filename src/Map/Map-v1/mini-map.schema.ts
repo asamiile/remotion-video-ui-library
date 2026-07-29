@@ -24,3 +24,33 @@ export const miniMapSchemaV1 = z.object({
 });
 
 export type MiniMapSchemaV1Type = z.infer<typeof miniMapSchemaV1>;
+
+export const miniMapV1DurationFrames = 3000;
+
+export const defaultMiniMapV1Props = {
+  mapLocationId: "",
+  width: 340,
+  height: 340,
+  positionX: 88,
+  positionY: 80,
+  enableCameraAnimation: true,
+  showMarker: true,
+  markerColor: "#B27873",
+  markerSize: 12,
+  markerCanvasSize: 24,
+  markerStrokeColor: "#B27873",
+  markerStrokeWidth: 1,
+  markerIconRotate: 45,
+  markerIconOpacity: 0.9,
+  fadeInDuration: 30,
+  fadeOutDuration: 30,
+  delayFrames: 0,
+  borderRadius: 0,
+  border: "4px solid #C3C0BB",
+  padding: "2px",
+  boxShadow: "0px 4px 12px 8px rgba(107, 99, 84, 0.25)",
+} as const;
+
+export const miniMapV1Patterns = {
+  default: defaultMiniMapV1Props,
+} as const;

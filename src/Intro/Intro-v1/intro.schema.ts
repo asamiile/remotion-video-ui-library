@@ -29,3 +29,28 @@ export const introSchemaV1 = z.object({
 });
 
 export type IntroSchemaV1Type = z.infer<typeof introSchemaV1>;
+
+import { msToFrame } from "../../helpers/ms-to-frame";
+const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
+
+export const introV1DurationFrames = 720;
+
+export const defaultIntroV1Props = {
+  authorName: "著者名プレビュー",
+  introTitle: "イントロタイトル（プレビュー）",
+  introDescription: "説明文のプレビューです。\n改行を含められます。",
+  backgroundColor: "#6B685C",
+  textColor: "#DFE2D7",
+  fontFamily: LINESEED_FONT,
+  titleFontSize: 76,
+  titleFontWeight: "700" as const,
+  titleLineHeight: 1.6,
+  descriptionFontSize: 52,
+  descriptionFontWeight: "400" as const,
+  descriptionLineHeight: 1.8,
+  bottomRightFontSize: 48,
+  bottomRightBottom: 72,
+  bottomRightRight: 100,
+  fadeInDuration: msToFrame(4000),
+  fadeOutDuration: msToFrame(2000),
+} as const;

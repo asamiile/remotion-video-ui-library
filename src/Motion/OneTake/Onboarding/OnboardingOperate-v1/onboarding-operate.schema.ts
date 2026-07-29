@@ -15,3 +15,17 @@ export const onboardingOperateSchemaV1 = z.object({
 export type OnboardingOperateSchemaV1Type = z.infer<
   typeof onboardingOperateSchemaV1
 >;
+
+export const onboardingOperateV1DurationFrames = 90;
+
+export const defaultOnboardingOperateV1Props = {
+  recordColor: "#FF3D9E",
+  backgroundColor: "#060810",
+  vignetteOpacity: 0.45,
+  tapFrame: 20,
+  resetStartFrame: 65,
+} as const;
+
+export const onboardingOperateV1Patterns = {
+  default: defaultOnboardingOperateV1Props,
+} as const;
