@@ -10,7 +10,7 @@ const EYEBROW_LETTER_SPACING_PX = 1.5;
  * Two-line title card: eyebrow + title, with a flicker-in effect
  * (`helpers/neon-flicker.ts`) applied to the eyebrow. This is a generalized
  * version of the title-card pattern (the OneTake-brand-specific parts of
- * `OneTake-LogoTextV1` have been factored out into neutral defaults here;
+ * `OneTake-LogoText` have been factored out into neutral defaults here;
  * that original family itself is left unchanged). It deliberately avoids
  * neon-sign-style glow shadows or highly saturated colors — text, font, and
  * color all use neutral defaults in the schema.
