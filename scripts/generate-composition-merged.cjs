@@ -177,10 +177,10 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
       exportLines.push("");
     } else if (family.type === "locationAndMap") {
       // Location and Map exports
-      exportLines.push("export const mergedLocationConfigsV1 =");
+      exportLines.push("export const mergedLocationConfigs =");
       exportLines.push("  buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);");
       exportLines.push("");
-      exportLines.push("export const mergedMapLocationPointsV1 =");
+      exportLines.push("export const mergedMapLocationPoints =");
       exportLines.push("  buildMapLocationPointsFromCompositionKeys(local, locationV1CompositionKeys);");
       exportLines.push("");
     }

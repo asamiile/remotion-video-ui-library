@@ -116,9 +116,9 @@ export const mergedOneTakeLogoTextV1Props = {
   ...(local.oneTakeLogoTextV1 || {}),
 };
 
-export const mergedLocationConfigsV1 =
+export const mergedLocationConfigs =
   buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);
 
-export const mergedMapLocationPointsV1 =
+export const mergedMapLocationPoints =
   buildMapLocationPointsFromCompositionKeys(local, locationV1CompositionKeys);
 
