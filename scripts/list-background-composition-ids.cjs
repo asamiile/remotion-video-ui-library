@@ -1,5 +1,5 @@
 // Background composition IDs (uses the same capPattern as Root.tsx). Enumerated
-// from each *-config.ts, the same approach as list-text-v1-composition-ids.cjs.
+// from each *.schema.ts, the same approach as list-text-v1-composition-ids.cjs.
 // AmbientBlurOrbsV1 has no pattern family (single fixed composition), so it's
 // printed directly instead of read via AST.
 const path = require("node:path");
