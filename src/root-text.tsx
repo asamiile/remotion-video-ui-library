@@ -1,11 +1,11 @@
 import { Composition, Folder } from "remotion";
 import { CodeStreamTemplateV1 } from "./Text/CodeStream/CodeStreamTemplate";
-import { codeStreamSchemaV1 } from "./Text/CodeStream/code-stream.schema";
+import { codeStreamSchema } from "./Text/CodeStream/code-stream.schema";
 import {
   mergedCodeStreamPatterns,
-  defaultCodeStreamHorizontalV1Props,
-  defaultCodeStreamVerticalV1Props,
-} from "./composition/composition-merged-text";
+  defaultCodeStreamHorizontalProps,
+  defaultCodeStreamVerticalProps,
+} from "./Text/CodeStream/code-stream.schema";
 import { LocationTemplateV1 } from "./Text/Location/LocationTemplate";
 import { locationSchemaV1 } from "./Text/Location/location.schema";
 import { defaultLocationV1Props } from "./Text/Location/location.schema";
@@ -93,8 +93,8 @@ export function TextFolder() {
           height={1080}
           fps={FPS}
           durationInFrames={1800}
-          schema={codeStreamSchemaV1}
-          defaultProps={mergedCodeStreamPatterns.horizontal ?? defaultCodeStreamHorizontalV1Props}
+          schema={codeStreamSchema}
+          defaultProps={mergedCodeStreamPatterns.horizontal ?? defaultCodeStreamHorizontalProps}
         />
 
         <Composition
@@ -104,8 +104,8 @@ export function TextFolder() {
           height={1080}
           fps={FPS}
           durationInFrames={3200}
-          schema={codeStreamSchemaV1}
-          defaultProps={mergedCodeStreamPatterns.vertical ?? defaultCodeStreamVerticalV1Props}
+          schema={codeStreamSchema}
+          defaultProps={mergedCodeStreamPatterns.vertical ?? defaultCodeStreamVerticalProps}
         />
       </Folder>
 
