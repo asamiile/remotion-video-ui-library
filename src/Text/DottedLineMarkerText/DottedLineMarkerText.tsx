@@ -132,7 +132,7 @@ const DottedLineRow: React.FC<{
   );
 };
 
-export const DottedLineMarkerTextV1: React.FC<DottedLineMarkerTextSchemaType> =
+export const DottedLineMarkerText: React.FC<DottedLineMarkerTextSchemaType> =
   ({
     fontSize,
     textColor,

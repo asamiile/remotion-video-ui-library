@@ -186,7 +186,7 @@ const RandomLine: React.FC<{
   );
 };
 
-export const RandomLinesBackgroundV1: React.FC<RandomLinesSchemaType> = ({
+export const RandomLinesBackground: React.FC<RandomLinesSchemaType> = ({
   lineCount,
   lineHeight,
   spawnIntervalFrames,
