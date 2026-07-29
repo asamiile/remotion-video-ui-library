@@ -64,7 +64,7 @@ const FULL_SPECTRUM_STOPS = [
   "#ff0080",
 ] as const;
 
-export const NeonTextRainbowTemplateV1: React.FC<NeonTextRainbowSchemaType> = (
+export const NeonTextRainbowTemplate: React.FC<NeonTextRainbowSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

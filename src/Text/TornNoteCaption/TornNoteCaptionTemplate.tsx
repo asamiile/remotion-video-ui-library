@@ -4,7 +4,7 @@ import { TornNoteCaptionSchemaType } from "./torn-note-caption.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const TornNoteCaptionTemplateV1: React.FC<
+export const TornNoteCaptionTemplate: React.FC<
   TornNoteCaptionSchemaType
 > = ({
   text,

@@ -6,7 +6,7 @@ import { resolveCompositionBackdropColor } from "../../helpers/transparent-compo
 
 const PANEL_CUT_PX = 36;
 
-export const AsymmetricStatusPanelTemplateV1: React.FC<
+export const AsymmetricStatusPanelTemplate: React.FC<
   AsymmetricStatusPanelSchemaType
 > = ({
   characterName,

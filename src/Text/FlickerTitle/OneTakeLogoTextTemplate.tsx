@@ -23,7 +23,7 @@ const EYEBROW_TEXT_SHADOW = "0 0 12px rgba(55, 233, 255, .5)";
  * "always lit", looping the last frame back to the first frame doesn't break
  * anything (same reasoning as OnboardingConnectV1).
  */
-export const OneTakeLogoTextTemplateV1: React.FC<
+export const OneTakeLogoTextTemplate: React.FC<
   OneTakeLogoTextSchemaType
 > = ({
   eyebrowText,

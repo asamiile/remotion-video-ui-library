@@ -54,7 +54,7 @@ function glowDriftAt(progress: number): { tx: number; ty: number; scale: number 
  * `driftPeriodFrames` (= 14s @ 30fps) makes the last frame → first frame loop
  * seamless.
  */
-export const AmbientBlurOrbsTemplateV1: React.FC<
+export const AmbientBlurOrbsTemplate: React.FC<
   AmbientBlurOrbsSchemaType
 > = ({ topLeftColor, bottomRightColor, orbOpacity, blurPx, driftPeriodFrames }) => {
   const frame = useCurrentFrame();

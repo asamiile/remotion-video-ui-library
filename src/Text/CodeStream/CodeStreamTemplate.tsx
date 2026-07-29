@@ -74,7 +74,7 @@ function CodeLine({
   );
 }
 
-export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateProps> = ({
+export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
   direction,
   paragraphs,
   lines,

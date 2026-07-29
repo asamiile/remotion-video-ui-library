@@ -1,23 +1,23 @@
 import { Composition, Folder } from "remotion";
-import { GlitchTransitionBridgeTemplateV1 } from "./Effect/GlitchTransitionBridge/GlitchTransitionBridgeTemplate";
+import { GlitchTransitionBridgeTemplate } from "./Effect/GlitchTransitionBridge/GlitchTransitionBridgeTemplate";
 import { glitchTransitionBridgeSchema } from "./Effect/GlitchTransitionBridge/glitch-transition-bridge.schema";
 import {
   defaultGlitchTransitionBridgeProps,
   glitchTransitionBridgeDurationFrames,
 } from "./Effect/GlitchTransitionBridge/glitch-transition-bridge.schema";
-import { InkRippleTransitionTemplateV1 } from "./Effect/InkRippleTransition/InkRippleTransitionTemplate";
+import { InkRippleTransitionTemplate } from "./Effect/InkRippleTransition/InkRippleTransitionTemplate";
 import { inkRippleTransitionSchema } from "./Effect/InkRippleTransition/ink-ripple-transition.schema";
 import {
   defaultInkRippleTransitionProps,
   inkRippleTransitionDurationFrames,
 } from "./Effect/InkRippleTransition/ink-ripple-transition.schema";
-import { RackFocusBokehTransitionTemplateV1 } from "./Effect/RackFocusBokehTransition/RackFocusBokehTransitionTemplate";
+import { RackFocusBokehTransitionTemplate } from "./Effect/RackFocusBokehTransition/RackFocusBokehTransitionTemplate";
 import { rackFocusBokehTransitionSchema } from "./Effect/RackFocusBokehTransition/rack-focus-bokeh-transition.schema";
 import {
   defaultRackFocusBokehTransitionProps,
   rackFocusBokehTransitionDurationFrames,
 } from "./Effect/RackFocusBokehTransition/rack-focus-bokeh-transition.schema";
-import { BurstTemplateV1 } from "./Effect/Burst/BurstTemplate";
+import { BurstTemplate } from "./Effect/Burst/BurstTemplate";
 import { burstSchema } from "./Effect/Burst/burst.schema";
 import {
   defaultBurstProps,
@@ -34,7 +34,7 @@ export function EffectFolder() {
         id="GlitchTransitionBridge"
         component={withCanvasPreview(
           "GlitchTransitionBridge",
-          GlitchTransitionBridgeTemplateV1,
+          GlitchTransitionBridgeTemplate,
         )}
         width={1920}
         height={1080}
@@ -48,7 +48,7 @@ export function EffectFolder() {
         id="InkRippleTransition"
         component={withCanvasPreview(
           "InkRippleTransition",
-          InkRippleTransitionTemplateV1,
+          InkRippleTransitionTemplate,
         )}
         width={1920}
         height={1080}
@@ -62,7 +62,7 @@ export function EffectFolder() {
         id="RackFocusBokehTransition"
         component={withCanvasPreview(
           "RackFocusBokehTransition",
-          RackFocusBokehTransitionTemplateV1,
+          RackFocusBokehTransitionTemplate,
         )}
         width={1920}
         height={1080}
@@ -76,7 +76,7 @@ export function EffectFolder() {
         id="Burst"
         component={withCanvasPreview(
           "Burst",
-          BurstTemplateV1,
+          BurstTemplate,
         )}
         width={1920}
         height={1080}

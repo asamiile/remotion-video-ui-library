@@ -26,7 +26,7 @@ function buildNeonTextShadow(
   ].join(", ");
 }
 
-export const NeonTextTemplateV1: React.FC<NeonTextSchemaType> = (props) => {
+export const NeonTextTemplate: React.FC<NeonTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const {
     text,

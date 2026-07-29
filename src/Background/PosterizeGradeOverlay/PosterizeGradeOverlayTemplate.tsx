@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill } from "remotion";
 import { PosterizeGradeOverlaySchemaType } from "./posterize-grade-overlay.schema";
 
-export const PosterizeGradeOverlayTemplateV1: React.FC<
+export const PosterizeGradeOverlayTemplate: React.FC<
   PosterizeGradeOverlaySchemaType
 > = ({
   washColor,

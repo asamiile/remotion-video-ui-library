@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { AbsoluteFill } from "remotion";
 import { SunsetLensFlareOverlaySchemaType } from "./sunset-lens-flare-overlay.schema";
 
-export const SunsetLensFlareOverlayTemplateV1: React.FC<
+export const SunsetLensFlareOverlayTemplate: React.FC<
   SunsetLensFlareOverlaySchemaType
 > = ({
   flareColor,

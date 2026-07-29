@@ -3,7 +3,7 @@ import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { GlitchTransitionBridgeSchemaType } from "./glitch-transition-bridge.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const GlitchTransitionBridgeTemplateV1: React.FC<
+export const GlitchTransitionBridgeTemplate: React.FC<
   GlitchTransitionBridgeSchemaType
 > = ({
   backgroundColor,

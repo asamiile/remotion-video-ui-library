@@ -24,7 +24,7 @@ const OVERSPRAY_WINDOW_FRAMES = 7;
  * artistic embellishment: the source PV this is modeled on hard-cuts to a
  * fully-formed, static credit graphic with no reveal animation of its own.
  */
-export const SprayPaintTextTemplateV1: React.FC<
+export const SprayPaintTextTemplate: React.FC<
   SprayPaintTextSchemaType
 > = ({
   text,

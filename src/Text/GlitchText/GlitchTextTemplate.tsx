@@ -28,7 +28,7 @@ function garbleChars(text: string, seed: string, rate: number): string {
     .join("");
 }
 
-export const GlitchTextTemplateV1: React.FC<GlitchTextSchemaType> = ({
+export const GlitchTextTemplate: React.FC<GlitchTextSchemaType> = ({
   text,
   fontFamily,
   fontWeight,

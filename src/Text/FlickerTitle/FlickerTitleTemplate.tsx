@@ -21,7 +21,7 @@ const EYEBROW_LETTER_SPACING_PX = 1.5;
  * both render as the same steady "lit" look, looping the last frame back to
  * the first frame doesn't produce a visible seam.
  */
-export const FlickerTitleTemplateV1: React.FC<FlickerTitleSchemaType> = ({
+export const FlickerTitleTemplate: React.FC<FlickerTitleSchemaType> = ({
   eyebrowText,
   titleText,
   eyebrowFontSize,

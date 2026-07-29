@@ -10,7 +10,7 @@ import {
 import { RackFocusBokehTransitionSchemaType } from "./rack-focus-bokeh-transition.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const RackFocusBokehTransitionTemplateV1: React.FC<
+export const RackFocusBokehTransitionTemplate: React.FC<
   RackFocusBokehTransitionSchemaType
 > = ({
   backgroundColor,
