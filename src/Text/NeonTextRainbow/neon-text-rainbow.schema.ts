@@ -86,7 +86,7 @@ export const neonTextRainbowPatterns = {
   /**
    * Leans into a rounded-tube look: thicker stroke, thicker core, layered
    * glow, relatively fast hue cycling.
-   * Composition: NeonTextV1-RainbowRoundedtube
+   * Composition: NeonText-RainbowRoundedTube
    */
   roundedTube: {
     ...defaultNeonTextRainbowProps,
@@ -108,7 +108,7 @@ export const neonTextRainbowPatterns = {
 
   /**
    * Same settings as roundedTube, using LINE Seed JP (for Japanese text)
-   * Composition: NeonTextV1-RainbowRoundedtubejp
+   * Composition: NeonText-RainbowRoundedTubeJp
    */
   roundedTubeJp: {
     ...defaultNeonTextRainbowProps,
