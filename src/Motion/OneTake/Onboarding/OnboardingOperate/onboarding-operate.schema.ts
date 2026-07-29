@@ -26,6 +26,3 @@ export const defaultOnboardingOperateV1Props = {
   resetStartFrame: 65,
 } as const;
 
-export const onboardingOperateV1Patterns = {
-  default: defaultOnboardingOperateV1Props,
-} as const;

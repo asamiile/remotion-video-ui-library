@@ -35,8 +35,6 @@ export const miniMapSchemaV1 = z.object({
 
 export type MiniMapSchemaV1Type = z.infer<typeof miniMapSchemaV1>;
 
-export const miniMapV1DurationFrames = 3000;
-
 export const defaultMiniMapV1Props = {
   mapLocationId: "",
   width: 340,
@@ -61,6 +59,3 @@ export const defaultMiniMapV1Props = {
   boxShadow: "0px 4px 12px 8px rgba(107, 99, 84, 0.25)",
 } as const;
 
-export const miniMapV1Patterns = {
-  default: defaultMiniMapV1Props,
-} as const;

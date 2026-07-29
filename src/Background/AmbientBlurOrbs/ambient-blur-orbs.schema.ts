@@ -27,6 +27,3 @@ export const defaultAmbientBlurOrbsV1Props = {
   driftPeriodFrames: 420,
 } as const;
 
-export const ambientBlurOrbsV1Patterns = {
-  default: defaultAmbientBlurOrbsV1Props,
-} as const;

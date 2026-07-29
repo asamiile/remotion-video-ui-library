@@ -37,6 +37,3 @@ export const defaultInkRippleTransitionV1Props = {
   randomSeed: "ink-ripple-v1",
 } as const;
 
-export const inkRippleTransitionV1Patterns = {
-  default: defaultInkRippleTransitionV1Props,
-} as const;

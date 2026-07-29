@@ -37,6 +37,3 @@ export const defaultBurstV1Props = {
   randomSeed: "burst-v1",
 } as const;
 
-export const burstV1Patterns = {
-  default: defaultBurstV1Props,
-} as const;

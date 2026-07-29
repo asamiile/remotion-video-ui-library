@@ -30,6 +30,3 @@ export const defaultOnboardingConnectV1Props = {
   flickerTriggerFrame: 6,
 } as const;
 
-export const onboardingConnectV1Patterns = {
-  default: defaultOnboardingConnectV1Props,
-} as const;

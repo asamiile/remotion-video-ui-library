@@ -1,0 +1,285 @@
+=== src/Audio/AudioSpectrum/audio-spectrum.schema.ts ===
+const audioSpectrumSchemaV1
+type AudioSpectrumSchemaV1Type
+const defaultAudioSpectrumV1Props
+const audioSpectrumV1Patterns
+
+=== src/Background/AmbientBlurOrbs/ambient-blur-orbs.schema.ts ===
+const ambientBlurOrbsSchemaV1
+type AmbientBlurOrbsSchemaV1Type
+const ambientBlurOrbsV1DurationFrames
+const defaultAmbientBlurOrbsV1Props
+const ambientBlurOrbsV1Patterns
+
+=== src/Background/DuotoneGradeOverlay/duotone-grade-overlay.schema.ts ===
+const duotoneGradeOverlaySchemaV1
+type DuotoneGradeOverlaySchemaV1Type
+const defaultDuotoneGradeOverlayV1Props
+const duotoneGradeOverlayV1Patterns
+
+=== src/Background/EmblemMontageBlur/emblem-montage-blur.schema.ts ===
+const emblemMontageBlurSchemaV1
+type EmblemMontageBlurSchemaV1Type
+const defaultEmblemMontageBlurV1Props
+const emblemMontageBlurV1Patterns
+
+=== src/Background/FilmGrainOverlay/film-grain-overlay.schema.ts ===
+const filmGrainOverlaySchemaV1
+type FilmGrainOverlaySchemaV1Type
+const defaultFilmGrainOverlayV1Props
+const filmGrainOverlayV1Patterns
+
+=== src/Background/LetterboxOverlay/letterbox-overlay.schema.ts ===
+const letterboxOverlaySchemaV1
+type LetterboxOverlaySchemaV1Type
+const defaultLetterboxOverlayV1Props
+const letterboxOverlayV1Patterns
+
+=== src/Background/PosterizeGradeOverlay/posterize-grade-overlay.schema.ts ===
+const posterizeGradeOverlaySchemaV1
+type PosterizeGradeOverlaySchemaV1Type
+const defaultPosterizeGradeOverlayV1Props
+const posterizeGradeOverlayV1Patterns
+
+=== src/Background/RandomLinesBackground/random-lines.schema.ts ===
+const randomLinesSchemaV1
+type RandomLinesSchemaV1Type
+const randomLinesV1DurationFrames
+const defaultRandomLinesV1Props
+const randomLinesV1Patterns
+
+=== src/Background/ScanLine/scan-line.schema.ts ===
+const SCAN_STYLES
+const scanLineSchemaV1
+type ScanLineSchemaV1Type
+const defaultScanLineV1Props
+const scanLineV1Patterns
+
+=== src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts ===
+const sunsetLensFlareOverlaySchemaV1
+type SunsetLensFlareOverlaySchemaV1Type
+const defaultSunsetLensFlareOverlayV1Props
+const sunsetLensFlareOverlayV1Patterns
+
+=== src/Effect/Burst/burst.schema.ts ===
+const burstSchemaV1
+type BurstSchemaV1Type
+const burstV1DurationFrames
+const defaultBurstV1Props
+const burstV1Patterns
+
+=== src/Effect/GlitchTransitionBridge/glitch-transition-bridge.schema.ts ===
+const glitchTransitionBridgeSchemaV1
+type GlitchTransitionBridgeSchemaV1Type
+const glitchTransitionBridgeV1DurationFrames
+const defaultGlitchTransitionBridgeV1Props
+const glitchTransitionBridgeV1Patterns
+
+=== src/Effect/InkRippleTransition/ink-ripple-transition.schema.ts ===
+const inkRippleTransitionSchemaV1
+type InkRippleTransitionSchemaV1Type
+const inkRippleTransitionV1DurationFrames
+const defaultInkRippleTransitionV1Props
+const inkRippleTransitionV1Patterns
+
+=== src/Effect/RackFocusBokehTransition/rack-focus-bokeh-transition.schema.ts ===
+const rackFocusBokehTransitionSchemaV1
+type RackFocusBokehTransitionSchemaV1Type
+const rackFocusBokehTransitionV1DurationFrames
+const defaultRackFocusBokehTransitionV1Props
+const rackFocusBokehTransitionV1Patterns
+
+=== src/Intro/Intro/intro.schema.ts ===
+const introSchemaV1
+type IntroSchemaV1Type
+interface IntroScene
+const introSceneTimingV1
+const introV1DurationFrames
+const defaultIntroV1Props
+
+=== src/Loading/LoadingIcon/loading-icon.schema.ts ===
+const loadingIconSchemaV1
+type LoadingIconSchemaV1Type
+const defaultLoadingIconV1Props
+const loadingIconV1Patterns
+
+=== src/Logo/OneTake/OneTakeLogo/onetake-logo.schema.ts ===
+const oneTakeLogoSchemaV1
+type OneTakeLogoSchemaV1Type
+const defaultOneTakeLogoV1Props
+const oneTakeLogoV1Patterns
+
+=== src/Map/Map/mini-map.schema.ts ===
+interface MapLocationPoint
+const miniMapSchemaV1
+type MiniMapSchemaV1Type
+const miniMapV1DurationFrames
+const defaultMiniMapV1Props
+const miniMapV1Patterns
+
+=== src/Motion/OneTake/Onboarding/OnboardingConnect/onboarding-connect.schema.ts ===
+const onboardingConnectSchemaV1
+type OnboardingConnectSchemaV1Type
+const onboardingConnectV1DurationFrames
+const defaultOnboardingConnectV1Props
+const onboardingConnectV1Patterns
+
+=== src/Motion/OneTake/Onboarding/OnboardingOperate/onboarding-operate.schema.ts ===
+const onboardingOperateSchemaV1
+type OnboardingOperateSchemaV1Type
+const onboardingOperateV1DurationFrames
+const defaultOnboardingOperateV1Props
+const onboardingOperateV1Patterns
+
+=== src/Text/CodeStream/code-stream.schema.ts ===
+const codeStreamDirectionSchema
+const codeStreamLineSchema
+const codeStreamParagraphSchema
+const codeStreamSchemaV1
+type CodeStreamSchemaV1Type
+type CodeStreamLineV1Type
+const codeStreamV1DurationFrames
+const defaultCodeStreamHorizontalV1Props
+const defaultCodeStreamVerticalV1Props
+const codeStreamV1Patterns
+
+=== src/Text/ConfettiPopText/confetti-pop-text.schema.ts ===
+const confettiPopTextSchemaV1
+type ConfettiPopTextSchemaV1Type
+const confettiPopTextV1DurationFrames
+const defaultConfettiPopTextV1Props
+const confettiPopTextV1Patterns
+
+=== src/Text/DistressedTitleCard/distressed-title-card.schema.ts ===
+const DISTRESSED_TITLE_CARD_VARIANTS
+const distressedTitleCardSchemaV1
+type DistressedTitleCardSchemaV1Type
+const distressedTitleCardV1DurationFrames
+const defaultDistressedTitleCardV1Props
+const distressedTitleCardV1Patterns
+
+=== src/Text/DottedLineMarkerText/dotted-line-marker-text.schema.ts ===
+const dottedLineMarkerTextSchemaV1
+type DottedLineMarkerTextSchemaV1Type
+const dottedLineMarkerTextV1DurationFrames
+const defaultDottedLineMarkerTextV1Props: DottedLineMarkerTextSchemaV1Type
+const dottedLineMarkerV1Patterns
+
+=== src/Text/FlickerTitle/flicker-title.schema.ts ===
+const flickerTitleSchemaV1
+type FlickerTitleSchemaV1Type
+const flickerTitleV1DurationFrames
+const defaultFlickerTitleV1Props
+const oneTakeLogoTextVariantProps
+
+=== src/Text/GlitchText/glitch-text-random.schema.ts ===
+const glitchTextRandomSchemaV1
+type GlitchTextRandomSchemaV1Type
+const glitchTextV1RandomDurationFrames
+const defaultGlitchTextV1RandomProps
+const glitchTextV1RandomPatterns
+
+=== src/Text/GlitchText/glitch-text.schema.ts ===
+const glitchTextSchemaV1
+type GlitchTextSchemaV1Type
+const glitchTextV1DurationFrames
+const defaultGlitchTextV1Props
+const glitchTextV1Patterns
+
+=== src/Text/LedText/led-text.schema.ts ===
+const ledTextSchemaV1
+type LedTextSchemaV1Type
+const defaultLedTextV1Props
+const ledTextV1Patterns
+
+=== src/Text/LightSweepText/light-sweep-text.schema.ts ===
+const lightSweepTextSchemaV1
+type LightSweepTextSchemaV1Type
+const lightSweepTextV1DurationFrames
+const defaultLightSweepTextV1Props
+const lightSweepTextV1Patterns
+
+=== src/Text/Location/location.schema.ts ===
+const locationSchemaV1
+type LocationSchemaV1Type
+const locationV1DurationFrames
+const defaultLocationV1Props
+const locationV1Patterns
+
+=== src/Text/NeonText/neon-text.schema.ts ===
+const neonTextSchemaV1
+type NeonTextSchemaV1Type
+const defaultNeonTextV1Props
+const neonTextV1Patterns
+
+=== src/Text/NeonTextRainbow/neon-text-rainbow.schema.ts ===
+const neonTextRainbowSchemaV1
+type NeonTextRainbowSchemaV1Type
+const neonTextRainbowV1DurationFrames
+const defaultNeonTextRainbowV1Props
+const neonTextRainbowV1Patterns
+
+=== src/Text/ShakeText/shake-text.schema.ts ===
+const shakeTextSchemaV1
+type ShakeTextSchemaV1Type
+const shakeTextV1DurationFrames
+const defaultShakeTextV1Props
+const shakeTextV1Patterns
+
+=== src/Text/SlideInCaption/slide-in-caption.schema.ts ===
+const slideInCaptionSchemaV1
+type SlideInCaptionSchemaV1Type
+const slideInCaptionV1DurationFrames
+const defaultSlideInCaptionV1Props
+const slideInCaptionV1Patterns
+
+=== src/Text/SprayPaintText/spray-paint-text.schema.ts ===
+const sprayPaintTextSchemaV1
+type SprayPaintTextSchemaV1Type
+const sprayPaintTextV1DurationFrames
+const defaultSprayPaintTextV1Props
+const sprayPaintTextV1Patterns
+
+=== src/Text/StackedRevealText/stacked-reveal-text.schema.ts ===
+const STACKED_REVEAL_ORIENTATIONS
+const stackedRevealTextSchemaV1
+type StackedRevealTextSchemaV1Type
+const stackedRevealTextV1DurationFrames
+const defaultStackedRevealTextV1Props
+const stackedRevealTextV1Patterns
+
+=== src/Text/TornNoteCaption/torn-note-caption.schema.ts ===
+const tornNoteCaptionSchemaV1
+type TornNoteCaptionSchemaV1Type
+const tornNoteCaptionV1DurationFrames
+const defaultTornNoteCaptionV1Props
+const tornNoteCaptionV1Patterns
+
+=== src/Text/TypewriterText/typewriter-text.schema.ts ===
+const typewriterTextSchemaV1
+type TypewriterTextSchemaV1Type
+const typewriterTextV1DurationFrames
+const defaultTypewriterTextV1Props
+const typewriterTextV1Patterns
+
+=== src/Text/WireText/wire-text.schema.ts ===
+const wireTextSchemaV1
+type WireTextSchemaV1Type
+const wireTextV1DurationFrames
+const defaultWireTextV1Props
+const wireTextV1Patterns
+
+=== src/UI/AsymmetricStatusPanel/asymmetric-status-panel.schema.ts ===
+const asymmetricStatusPanelSchemaV1
+type AsymmetricStatusPanelSchemaV1Type
+const asymmetricStatusPanelV1DurationFrames
+const defaultAsymmetricStatusPanelV1Props
+const asymmetricStatusPanelV1Patterns
+
+=== src/UI/BattleCalloutBanner/battle-callout-banner.schema.ts ===
+const battleCalloutBannerSchemaV1
+type BattleCalloutBannerSchemaV1Type
+const battleCalloutBannerV1DurationFrames
+const defaultBattleCalloutBannerV1Props
+const battleCalloutBannerV1Patterns
+
