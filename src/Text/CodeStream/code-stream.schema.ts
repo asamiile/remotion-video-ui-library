@@ -38,8 +38,6 @@ export const codeStreamSchemaV1 = z.object({
 export type CodeStreamSchemaV1Type = z.infer<typeof codeStreamSchemaV1>;
 export type CodeStreamLineV1Type = z.infer<typeof codeStreamLineSchema>;
 
-export const codeStreamV1DurationFrames = 3000;
-
 export const defaultCodeStreamHorizontalV1Props = {
   direction: "horizontal",
   paragraphs: [[""]],

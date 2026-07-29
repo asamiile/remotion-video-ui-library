@@ -61,8 +61,6 @@ export const introSceneTimingV1 = [
   },
 ] as const;
 
-export const introV1DurationFrames = 720;
-
 export const defaultIntroV1Props = {
   authorName: "著者名プレビュー",
   introTitle: "イントロタイトル（プレビュー）",

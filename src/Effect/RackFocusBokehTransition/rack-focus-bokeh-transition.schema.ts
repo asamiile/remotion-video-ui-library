@@ -37,6 +37,3 @@ export const defaultRackFocusBokehTransitionV1Props = {
   randomSeed: "rack-focus-bokeh-v1",
 } as const;
 
-export const rackFocusBokehTransitionV1Patterns = {
-  default: defaultRackFocusBokehTransitionV1Props,
-} as const;

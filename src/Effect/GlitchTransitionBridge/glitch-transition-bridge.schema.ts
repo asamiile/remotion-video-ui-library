@@ -35,6 +35,3 @@ export const defaultGlitchTransitionBridgeV1Props = {
   randomSeed: "glitch-bridge-v1",
 } as const;
 
-export const glitchTransitionBridgeV1Patterns = {
-  default: defaultGlitchTransitionBridgeV1Props,
-} as const;
