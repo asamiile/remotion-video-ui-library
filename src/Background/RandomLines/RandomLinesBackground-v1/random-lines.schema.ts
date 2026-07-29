@@ -18,6 +18,24 @@ export const randomLinesSchemaV1 = z.object({
 
 export type RandomLinesSchemaV1Type = z.infer<typeof randomLinesSchemaV1>;
 
+export const randomLinesV1DurationFrames = 3000;
+
+export const defaultRandomLinesV1Props = {
+  lineCount: 3,
+  lineHeight: 1,
+  spawnIntervalFrames: 45,
+  displayDurationFrames: 90,
+  fadeInDuration: 15,
+  fadeOutDuration: 15,
+  lineColor: "#EEF1FC",
+  backgroundColor: "#060810",
+  lineOpacity: 0.7,
+  displayAreaHeightPx: 600,
+  minLineSpacingPx: 50,
+  maxConcurrentLines: 3,
+  randomSeed: "random-lines-default",
+} as const;
+
 export const randomLinesV1Patterns = {
   subtle: {
     ...defaultRandomLinesV1Props,
