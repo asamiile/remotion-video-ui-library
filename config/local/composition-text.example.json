@@ -4,11 +4,11 @@
     "introTitle": "サンプルタイトル（例）",
     "introDescription": "こちらは composition-text のサンプル文言です。\nintro / パターン / 地点名は local で差し替えてください。"
   },
-  "locationV1": {
+  "location": {
     "SampleLocationA": { "locationName": "サンプル · 地点 A" },
     "SampleLocationB": { "locationName": "サンプル · 地点 B" }
   },
-  "mapLocationPointsV1": {
+  "mapLocationPoints": {
     "SampleLocationA": {
       "name": "サンプル · 地点 A",
       "latitude": 33.59280493802063,
@@ -125,7 +125,7 @@
     "creditJp": { "text": "サンプルクレジット" },
     "wallGraffitiJp": { "text": "サンプル" }
   },
-  "oneTakeLogoTextV1": {
+  "oneTakeLogoText": {
     "eyebrowText": "DAW Remote Controller",
     "titleText": "OneTake - Remote Control",
     "eyebrowFontSize": 24,

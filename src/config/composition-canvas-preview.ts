@@ -17,7 +17,7 @@ export type CanvasPreviewLayer =
     };
 
 const exactLayers: Partial<Record<string, CanvasPreviewLayer>> = {
-  PlaceholderImageV1: { kind: "color", color: "#1e1e1e" },
+  PlaceholderImage: { kind: "color", color: "#1e1e1e" },
   /** Screen/multiply-blend duotone wash is hard to read against the dark navy default; preview on white instead */
   "Background-DuotoneGradeOverlayV1-CyanViolet": {
     kind: "color",
