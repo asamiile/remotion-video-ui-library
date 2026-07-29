@@ -29,7 +29,7 @@ export const locationSchemaV1 = z.object({
 
 export type LocationSchemaV1Type = z.infer<typeof locationSchemaV1>;
 
-import { msToFrame } from "../../../helpers/ms-to-frame";
+import { msToFrame } from "../../helpers/ms-to-frame";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
 
 export const locationV1DurationFrames = 90;

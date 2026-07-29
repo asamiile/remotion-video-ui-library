@@ -6,9 +6,9 @@ import {
   defaultCodeStreamHorizontalV1Props,
   defaultCodeStreamVerticalV1Props,
 } from "./composition/composition-merged";
-import { LocationTemplateV1 } from "./Text/Location/Location-v1/LocationTemplate";
-import { locationSchemaV1 } from "./Text/Location/Location-v1/location.schema";
-import { defaultLocationV1Props } from "./Text/Location/Location-v1/location.schema";
+import { LocationTemplateV1 } from "./Text/Location-v1/LocationTemplate";
+import { locationSchemaV1 } from "./Text/Location-v1/location.schema";
+import { defaultLocationV1Props } from "./Text/Location-v1/location.schema";
 import { LedTextTemplateV1 } from "./Text/LedText/LedText-v1/LedTextTemplate";
 import { ledTextSchemaV1 } from "./Text/LedText/LedText-v1/led-text.schema";
 import { NeonTextTemplateV1 } from "./Text/NeonText/NeonText-v1/NeonTextTemplate";
@@ -16,12 +16,12 @@ import { neonTextSchemaV1 } from "./Text/NeonText/NeonText-v1/neon-text.schema";
 import { SlideInCaptionTemplateV1 } from "./Text/SlideInCaption/SlideInCaption-v1/SlideInCaptionTemplate";
 import { slideInCaptionSchemaV1 } from "./Text/SlideInCaption/SlideInCaption-v1/slide-in-caption.schema";
 import { slideInCaptionV1DurationFrames } from "./Text/SlideInCaption/SlideInCaption-v1/slide-in-caption.schema";
-import { GlitchTextTemplateV1 } from "./Text/GlitchText/GlitchText-v1/GlitchTextTemplate";
-import { glitchTextSchemaV1 } from "./Text/GlitchText/GlitchText-v1/glitch-text.schema";
-import { glitchTextV1DurationFrames } from "./Text/GlitchText/GlitchText-v1/glitch-text.schema";
-import { GlitchTextRandomTemplateV1 } from "./Text/GlitchText/GlitchText-v1/GlitchTextRandomTemplate";
-import { glitchTextRandomSchemaV1 } from "./Text/GlitchText/GlitchText-v1/glitch-text-random.schema";
-import { glitchTextV1RandomDurationFrames } from "./Text/GlitchText/GlitchText-v1/glitch-text-random.schema";
+import { GlitchTextTemplateV1 } from "./Text/GlitchText-v1/GlitchTextTemplate";
+import { glitchTextSchemaV1 } from "./Text/GlitchText-v1/glitch-text.schema";
+import { glitchTextV1DurationFrames } from "./Text/GlitchText-v1/glitch-text.schema";
+import { GlitchTextRandomTemplateV1 } from "./Text/GlitchText-v1/GlitchTextRandomTemplate";
+import { glitchTextRandomSchemaV1 } from "./Text/GlitchText-v1/glitch-text-random.schema";
+import { glitchTextV1RandomDurationFrames } from "./Text/GlitchText-v1/glitch-text-random.schema";
 import { WireTextTemplateV1 } from "./Text/WireText/WireText-v1/WireTextTemplate";
 import { wireTextSchemaV1 } from "./Text/WireText/WireText-v1/wire-text.schema";
 import { wireTextV1DurationFrames } from "./Text/WireText/WireText-v1/wire-text.schema";

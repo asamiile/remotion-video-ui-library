@@ -8,9 +8,9 @@ import {
   useVideoConfig,
 } from "remotion";
 import { GlitchTextRandomSchemaV1Type } from "./glitch-text-random.schema";
-import "../../../helpers/line-seed-jp";
-import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../../helpers/jetbrains-mono";
+import "../../helpers/line-seed-jp";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 
 const GARBLE_POOL = "0123456789._-#@*$%▯∞";
 
