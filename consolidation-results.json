@@ -8,8 +8,8 @@
         "audio-spectrum-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Audio/AudioSpectrum-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Audio/AudioSpectrum-v1/audio-spectrum.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Audio/AudioSpectrum",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Audio/AudioSpectrum/audio-spectrum.schema.ts"
       }
     },
     {
@@ -20,8 +20,8 @@
         "duotone-grade-overlay-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/DuotoneGradeOverlay-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/DuotoneGradeOverlay-v1/duotone-grade-overlay.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/DuotoneGradeOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/DuotoneGradeOverlay/duotone-grade-overlay.schema.ts"
       }
     },
     {
@@ -32,8 +32,8 @@
         "emblem-montage-blur-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/EmblemMontageBlur-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/EmblemMontageBlur-v1/emblem-montage-blur.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/EmblemMontageBlur",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/EmblemMontageBlur/emblem-montage-blur.schema.ts"
       }
     },
     {
@@ -44,8 +44,8 @@
         "film-grain-overlay-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/FilmGrainOverlay-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/FilmGrainOverlay-v1/film-grain-overlay.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/FilmGrainOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/FilmGrainOverlay/film-grain-overlay.schema.ts"
       }
     },
     {
@@ -56,8 +56,8 @@
         "letterbox-overlay-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/LetterboxOverlay-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/LetterboxOverlay-v1/letterbox-overlay.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/LetterboxOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/LetterboxOverlay/letterbox-overlay.schema.ts"
       }
     },
     {
@@ -68,8 +68,8 @@
         "posterize-grade-overlay-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/PosterizeGradeOverlay-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/PosterizeGradeOverlay-v1/posterize-grade-overlay.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/PosterizeGradeOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/PosterizeGradeOverlay/posterize-grade-overlay.schema.ts"
       }
     },
     {
@@ -80,8 +80,8 @@
         "random-lines-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/RandomLines/RandomLinesBackground-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/RandomLines/RandomLinesBackground-v1/random-lines.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/RandomLines/RandomLinesBackground",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/RandomLines/RandomLinesBackground/random-lines.schema.ts"
       }
     },
     {
@@ -92,8 +92,8 @@
         "scan-line-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/ScanLine-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/ScanLine-v1/scan-line.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/ScanLine",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/ScanLine/scan-line.schema.ts"
       }
     },
     {
@@ -104,8 +104,8 @@
         "sunset-lens-flare-overlay-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/SunsetLensFlareOverlay-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/SunsetLensFlareOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts"
       }
     },
     {
@@ -116,8 +116,8 @@
         "loading-icon-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Loading/LoadingIcon-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Loading/LoadingIcon-v1/loading-icon.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Loading/LoadingIcon",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Loading/LoadingIcon/loading-icon.schema.ts"
       }
     },
     {
@@ -128,8 +128,8 @@
         "onetake-logo-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Logo/OneTake/OneTakeLogo-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Logo/OneTake/OneTakeLogo-v1/onetake-logo.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Logo/OneTake/OneTakeLogo",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Logo/OneTake/OneTakeLogo/onetake-logo.schema.ts"
       }
     },
     {
@@ -140,8 +140,8 @@
         "confetti-pop-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ConfettiPopText/ConfettiPopText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ConfettiPopText/ConfettiPopText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ConfettiPopText/ConfettiPopText/confetti-pop-text.schema.ts"
       }
     },
     {
@@ -152,8 +152,8 @@
         "distressed-title-card-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/DistressedTitleCard/DistressedTitleCard-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/DistressedTitleCard/DistressedTitleCard",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/DistressedTitleCard/DistressedTitleCard/distressed-title-card.schema.ts"
       }
     },
     {
@@ -164,8 +164,8 @@
         "glitch-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText-v1/glitch-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText/glitch-text.schema.ts"
       }
     },
     {
@@ -176,8 +176,8 @@
         "glitch-text-random-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText-v1/glitch-text-random.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText/glitch-text-random.schema.ts"
       }
     },
     {
@@ -188,8 +188,8 @@
         "led-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LedText/LedText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LedText/LedText-v1/led-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LedText/LedText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LedText/LedText/led-text.schema.ts"
       }
     },
     {
@@ -200,8 +200,8 @@
         "light-sweep-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LightSweepText/LightSweepText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LightSweepText/LightSweepText-v1/light-sweep-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LightSweepText/LightSweepText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LightSweepText/LightSweepText/light-sweep-text.schema.ts"
       }
     },
     {
@@ -212,8 +212,8 @@
         "neon-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonText/NeonText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonText/NeonText-v1/neon-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonText/NeonText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonText/NeonText/neon-text.schema.ts"
       }
     },
     {
@@ -224,8 +224,8 @@
         "neon-text-rainbow-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonTextRainbow/NeonTextRainbow-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonTextRainbow/NeonTextRainbow",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonTextRainbow/NeonTextRainbow/neon-text-rainbow.schema.ts"
       }
     },
     {
@@ -236,8 +236,8 @@
         "shake-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ShakeText/ShakeText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ShakeText/ShakeText-v1/shake-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ShakeText/ShakeText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ShakeText/ShakeText/shake-text.schema.ts"
       }
     },
     {
@@ -248,8 +248,8 @@
         "slide-in-caption-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SlideInCaption/SlideInCaption-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SlideInCaption/SlideInCaption-v1/slide-in-caption.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SlideInCaption/SlideInCaption",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SlideInCaption/SlideInCaption/slide-in-caption.schema.ts"
       }
     },
     {
@@ -260,8 +260,8 @@
         "spray-paint-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SprayPaintText/SprayPaintText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SprayPaintText/SprayPaintText-v1/spray-paint-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SprayPaintText/SprayPaintText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SprayPaintText/SprayPaintText/spray-paint-text.schema.ts"
       }
     },
     {
@@ -272,8 +272,8 @@
         "wire-text-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/WireText/WireText-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/WireText/WireText-v1/wire-text.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/WireText/WireText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/WireText/WireText/wire-text.schema.ts"
       }
     },
     {
@@ -284,8 +284,8 @@
         "asymmetric-status-panel-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/AsymmetricStatusPanel/AsymmetricStatusPanel",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/AsymmetricStatusPanel/AsymmetricStatusPanel/asymmetric-status-panel.schema.ts"
       }
     },
     {
@@ -296,8 +296,8 @@
         "battle-callout-banner-schema.ts"
       ],
       "pathInfo": {
-        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/BattleCalloutBanner/BattleCalloutBanner-v1",
-        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner.schema.ts"
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/BattleCalloutBanner/BattleCalloutBanner",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/BattleCalloutBanner/BattleCalloutBanner/battle-callout-banner.schema.ts"
       }
     }
   ],
