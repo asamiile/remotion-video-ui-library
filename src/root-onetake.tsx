@@ -3,13 +3,13 @@ import { OnboardingConnectTemplateV1 } from "./Motion/OneTake/Onboarding/Onboard
 import { onboardingConnectSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect.schema";
 import {
   defaultOnboardingConnectV1Props,
-  ONBOARDING_CONNECT_V1_DURATION_FRAMES,
+  onboardingConnectV1DurationFrames,
 } from "./Motion/OneTake/Onboarding/OnboardingConnect-v1/onboarding-connect.schema";
 import { OnboardingOperateTemplateV1 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/OnboardingOperateTemplate";
 import { onboardingOperateSchemaV1 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate.schema";
 import {
   defaultOnboardingOperateV1Props,
-  ONBOARDING_OPERATE_V1_DURATION_FRAMES,
+  onboardingOperateV1DurationFrames,
 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate.schema";
 import { OneTakeLogoTemplateV1 } from "./Logo/OneTake/OneTakeLogo-v1/OneTakeLogoTemplate";
 import { oneTakeLogoSchemaV1 } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo.schema";
@@ -33,7 +33,7 @@ export function OneTakeFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={ONBOARDING_CONNECT_V1_DURATION_FRAMES}
+              durationInFrames={onboardingConnectV1DurationFrames}
               schema={onboardingConnectSchemaV1}
               defaultProps={{ ...defaultOnboardingConnectV1Props }}
             />
@@ -47,7 +47,7 @@ export function OneTakeFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={ONBOARDING_OPERATE_V1_DURATION_FRAMES}
+              durationInFrames={onboardingOperateV1DurationFrames}
               schema={onboardingOperateSchemaV1}
               defaultProps={{ ...defaultOnboardingOperateV1Props }}
             />

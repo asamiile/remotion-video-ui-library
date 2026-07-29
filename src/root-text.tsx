@@ -43,7 +43,7 @@ import { confettiPopTextSchemaV1 } from "./Text/ConfettiPopText/ConfettiPopText-
 import { confettiPopTextV1DurationFrames } from "./Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text.schema";
 import { FlickerTitleTemplateV1 } from "./Text/FlickerTitle-v1/FlickerTitleTemplate";
 import { flickerTitleSchemaV1 } from "./Text/FlickerTitle-v1/flicker-title.schema";
-import { defaultFlickerTitleV1Props, FLICKER_TITLE_V1_DURATION_FRAMES } from "./Text/FlickerTitle-v1/flicker-title.schema";
+import { defaultFlickerTitleV1Props, flickerTitleV1DurationFrames } from "./Text/FlickerTitle-v1/flicker-title.schema";
 import { OneTakeLogoTextTemplateV1 } from "./Text/FlickerTitle-v1/OneTakeLogoTextTemplate";
 import { StackedRevealTextTemplateV1 } from "./Text/StackedRevealText/StackedRevealText-v1/StackedRevealTextTemplate";
 import { stackedRevealTextSchemaV1 } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.schema";
@@ -276,7 +276,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={FLICKER_TITLE_V1_DURATION_FRAMES}
+          durationInFrames={flickerTitleV1DurationFrames}
           schema={flickerTitleSchemaV1}
           defaultProps={{ ...defaultFlickerTitleV1Props }}
         />
@@ -290,7 +290,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={FLICKER_TITLE_V1_DURATION_FRAMES}
+          durationInFrames={flickerTitleV1DurationFrames}
           schema={flickerTitleSchemaV1}
           defaultProps={{ ...mergedOneTakeLogoTextV1Props }}
         />
