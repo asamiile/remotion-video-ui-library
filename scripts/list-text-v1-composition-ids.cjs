@@ -44,12 +44,12 @@ const families = [
   },
   {
     idPrefix: "DottedLineMarkerTextV1",
-    file: "src/Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text.composition.ts",
+    file: "src/Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text.schema.ts",
     exportName: "dottedLineMarkerV1Patterns",
   },
   {
     idPrefix: "TypewriterTextV1",
-    file: "src/Text/TypewriterText/TypewriterText-v1/typewriter-text.composition.ts",
+    file: "src/Text/TypewriterText/TypewriterText-v1/typewriter-text.schema.ts",
     exportName: "typewriterTextV1Patterns",
   },
   {
@@ -64,17 +64,17 @@ const families = [
   },
   {
     idPrefix: "CodeStreamV1",
-    file: "src/Text/CodeStream/CodeStream-v1/code-stream.composition.ts",
+    file: "src/Text/CodeStream/CodeStream-v1/code-stream.schema.ts",
     exportName: "codeStreamV1Patterns",
   },
   {
     idPrefix: "StackedRevealTextV1",
-    file: "src/Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.composition.ts",
+    file: "src/Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.schema.ts",
     exportName: "stackedRevealTextV1Patterns",
   },
   {
     idPrefix: "TornNoteCaptionV1",
-    file: "src/Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption.composition.ts",
+    file: "src/Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption.schema.ts",
     exportName: "tornNoteCaptionV1Patterns",
   },
   {
