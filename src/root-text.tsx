@@ -32,8 +32,7 @@ import { LightSweepTextTemplateV1 } from "./Text/LightSweepText/LightSweepText-v
 import { lightSweepTextSchemaV1 } from "./Text/LightSweepText/LightSweepText-v1/light-sweep-text-schema";
 import { lightSweepTextV1DurationFrames } from "./Text/LightSweepText/LightSweepText-v1/light-sweep-text-config";
 import { DottedLineMarkerTextV1 } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/DottedLineMarkerText";
-import { dottedLineMarkerTextSchemaV1 } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text-schema";
-import { dottedLineMarkerTextV1DurationFrames } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text-config";
+import { dottedLineMarkerTextSchemaV1, dottedLineMarkerTextV1DurationFrames } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text.composition";
 import { TypewriterTextTemplateV1 } from "./Text/TypewriterText/TypewriterText-v1/TypewriterTextTemplate";
 import { typewriterTextSchemaV1 } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-schema";
 import { typewriterTextV1DurationFrames } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-config";
