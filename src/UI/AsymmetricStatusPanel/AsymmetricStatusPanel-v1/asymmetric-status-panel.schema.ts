@@ -52,6 +52,27 @@ export const defaultAsymmetricStatusPanelV1Props = {
 
   stats: [
     { label: "STR", value: 40 },
+    { label: "MAG", value: 54 },
+    { label: "END", value: 48 },
+    { label: "AGI", value: 50 },
+    { label: "LUK", value: 82 },
+  ],
+
+  skillColors: ["#ff8a3d", "#37e9ff", "#9c7bff"],
+
+  fontFamily: LINE_SEED_JP_FONT_FAMILY,
+  monoFontFamily: JETBRAINS_MONO_FONT_FAMILY,
+
+  panelColor: "#c81e2c",
+  accentColor: "#eef1fc",
+  textColor: "#eef1fc",
+  barTrackColor: "#242a42",
+  backgroundColor: "#060810",
+
+  popInFrames: 10,
+  delayFrames: 0,
+} as const;
+
 export const asymmetricStatusPanelV1Patterns = {
   /** Red/black/white, matching the source's panel language (English default) */
   redBlack: {
