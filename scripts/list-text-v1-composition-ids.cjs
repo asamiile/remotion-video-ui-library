@@ -49,7 +49,7 @@ const families = [
   },
   {
     idPrefix: "TypewriterTextV1",
-    file: "src/Text/TypewriterText/TypewriterText-v1/typewriter-text-config.ts",
+    file: "src/Text/TypewriterText/TypewriterText-v1/typewriter-text.composition.ts",
     exportName: "typewriterTextV1Patterns",
   },
   {
@@ -63,13 +63,18 @@ const families = [
     exportName: "confettiPopTextV1Patterns",
   },
   {
+    idPrefix: "CodeStreamV1",
+    file: "src/Text/CodeStream/CodeStream-v1/code-stream.composition.ts",
+    exportName: "codeStreamV1Patterns",
+  },
+  {
     idPrefix: "StackedRevealTextV1",
-    file: "src/Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-config.ts",
+    file: "src/Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.composition.ts",
     exportName: "stackedRevealTextV1Patterns",
   },
   {
     idPrefix: "TornNoteCaptionV1",
-    file: "src/Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config.ts",
+    file: "src/Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption.composition.ts",
     exportName: "tornNoteCaptionV1Patterns",
   },
   {
