@@ -19,7 +19,7 @@ import {
   mergedLoadingIconV1Patterns,
   mergedMapLocationPointsV1,
   mergedDefaultIntroV1Props,
-} from "./composition/composition-merged";
+} from "./composition/composition-merged-other";
 
 const FPS = 30;
 
