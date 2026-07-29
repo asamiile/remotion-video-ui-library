@@ -26,7 +26,7 @@ export const shakeTextSchema = z.object({
   /** Shake multiplier during a burst */
   burstIntensityMul: z.number().min(1).max(3).default(1.75),
 
-  randomSeed: z.string().default("shake-v1"),
+  randomSeed: z.string().default("shake"),
 
   /** Frames over which the shake decays to 0 near the end. 0 disables decay */
   settleDurationFrames: z.number().min(0).default(45),
@@ -57,7 +57,7 @@ export const defaultShakeTextProps = {
   burstSegmentFrames: 3,
   burstProbability: 0.42,
   burstIntensityMul: 1.75,
-  randomSeed: "shake-v1",
+  randomSeed: "shake",
   settleDurationFrames: 45,
   fadeInDuration: 18,
   delayFrames: 0,
@@ -86,7 +86,7 @@ export const shakeTextPatterns = {
     ...enTypography,
     text: "Trial and error…",
     letterSpacing: "0.05em",
-    randomSeed: "shake-v1-trial-en",
+    randomSeed: "shake-trial-en",
     settleDurationFrames: 50,
   },
   /** Japanese font (LINE Seed) - Composition: ShakeText-TrialJp */
@@ -94,7 +94,7 @@ export const shakeTextPatterns = {
     ...shakeTextShared,
     ...jpTypography,
     text: "試行錯誤中…",
-    randomSeed: "shake-v1-trial-jp",
+    randomSeed: "shake-trial-jp",
     settleDurationFrames: 50,
   },
 
@@ -110,7 +110,7 @@ export const shakeTextPatterns = {
     burstProbability: 0.28,
     burstIntensityMul: 1.45,
     settleDurationFrames: 36,
-    randomSeed: "shake-v1-subtle-en",
+    randomSeed: "shake-subtle-en",
   },
   /** Japanese font - Composition: ShakeText-SubtleJp */
   subtleJp: {
@@ -122,7 +122,7 @@ export const shakeTextPatterns = {
     burstProbability: 0.28,
     burstIntensityMul: 1.45,
     settleDurationFrames: 36,
-    randomSeed: "shake-v1-subtle-jp",
+    randomSeed: "shake-subtle-jp",
   },
 
   // --- Intense ---
@@ -137,7 +137,7 @@ export const shakeTextPatterns = {
     burstProbability: 0.52,
     burstIntensityMul: 2,
     settleDurationFrames: 40,
-    randomSeed: "shake-v1-intense-en",
+    randomSeed: "shake-intense-en",
   },
   /** Japanese */
   intenseJp: {
@@ -151,6 +151,6 @@ export const shakeTextPatterns = {
     burstProbability: 0.52,
     burstIntensityMul: 2,
     settleDurationFrames: 40,
-    randomSeed: "shake-v1-intense-jp",
+    randomSeed: "shake-intense-jp",
   },
 };

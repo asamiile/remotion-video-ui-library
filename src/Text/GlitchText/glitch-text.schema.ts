@@ -32,7 +32,7 @@ export const glitchTextSchema = z.object({
   paddingLeftPercent: z.number().min(0).max(30).default(3.2),
   paddingBottomPercent: z.number().min(0).max(30).default(3.2),
 
-  randomSeed: z.string().default("glitch-v1"),
+  randomSeed: z.string().default("glitch"),
   fadeInDuration: z.number().min(0).default(20),
   delayFrames: z.number().min(0).default(0),
 });

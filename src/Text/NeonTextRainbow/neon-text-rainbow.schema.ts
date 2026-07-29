@@ -73,7 +73,7 @@ export const defaultNeonTextRainbowProps = {
   pulsePeriodFrames: 90,
   breathePeriodFrames: 180,
   shadowStrength: 1,
-  randomSeed: "neon-rainbow-v1",
+  randomSeed: "neon-rainbow",
   fadeInDuration: 15,
   delayFrames: 0,
   paddingLeftPercent: 3.2,
