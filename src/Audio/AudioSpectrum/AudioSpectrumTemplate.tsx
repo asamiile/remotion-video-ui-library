@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, Audio, staticFile, Sequence } from "remotion";
 import { useWindowedAudioData, visualizeAudio } from "@remotion/media-utils";
 import { AudioSpectrumSchemaType } from "./audio-spectrum.schema";
+import { SpectrumVisualizer } from "./SpectrumVisualizer";
 import { PlaceholderImage } from "../../Placeholder/PlaceholderImage/PlaceholderImage";
 
 export const AudioSpectrumTemplate: React.FC<AudioSpectrumSchemaType> = ({
@@ -30,7 +31,7 @@ export const AudioSpectrumTemplate: React.FC<AudioSpectrumSchemaType> = ({
 
   const frequencyData = useMemo(() => {
     if (!audioData) return null;
-    
+
     return visualizeAudio({
       fps,
       frame,
@@ -58,20 +59,6 @@ export const AudioSpectrumTemplate: React.FC<AudioSpectrumSchemaType> = ({
     [positionX, positionY]
   );
 
-  const barsContainerStyle: React.CSSProperties = useMemo(
-    () => ({
-      display: "flex",
-      alignItems: "flex-end",
-      justifyContent: "center",
-      gap: `${barGap}px`,
-      height: "140px",
-      width: "auto",
-      padding: "16px",
-      backgroundColor: "rgba(107, 99, 84, 0.25)",
-    }),
-    [barGap]
-  );
-
   return (
     <AbsoluteFill>
       {/* <div
@@ -93,28 +80,16 @@ export const AudioSpectrumTemplate: React.FC<AudioSpectrumSchemaType> = ({
       </Sequence> */}
 
       <div style={containerStyle}>
-        <div style={barsContainerStyle}>
-          {frequencyData && frequencyData.length > 0 ? (
-            frequencyData.map((frequency, index) => {
-              const maxBarHeight = 280;
-              const barHeight = Math.max(1, frequency * maxBarHeight * sensitivity);
-              
-              return (
-                <div
-                  key={index}
-                  style={{
-                    width: `${barWidth}px`,
-                    height: `${barHeight}px`,
-                    backgroundColor: barColor,
-                    boxShadow: "0px 4px 20px rgba(107, 99, 84, 0.25)",
-                  }}
-                />
-              );
-            })
-          ) : (
-            <div>Loading audio...</div>
-          )}
-        </div>
+        <SpectrumVisualizer
+          frequencyData={frequencyData}
+          barCount={barCount}
+          barColor={barColor}
+          barWidth={barWidth}
+          barGap={barGap}
+          containerHeight={140}
+          sensitivity={sensitivity}
+          smoothing={smoothing}
+        />
       </div>
     </AbsoluteFill>
   );
