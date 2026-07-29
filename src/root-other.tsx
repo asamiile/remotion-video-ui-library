@@ -16,11 +16,11 @@ import { introSceneTimingV1 } from "./Intro/Intro/intro.schema";
 import { PlaceholderImageV1 } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
-  mergedLoadingIconV1Patterns,
-  mergedDefaultIntroV1Props,
+  mergedLoadingIconPatterns,
+  mergedDefaultIntroProps,
 } from "./composition/composition-merged-other";
 import {
-  mergedMapLocationPointsV1,
+  mergedMapLocationPoints,
 } from "./composition/composition-merged-text";
 
 const FPS = 30;
@@ -30,7 +30,7 @@ export function OtherFolder() {
     <>
       <Folder name="Loading">
         {renderPatternFamily({
-          patterns: mergedLoadingIconV1Patterns,
+          patterns: mergedLoadingIconPatterns,
           idPrefix: "LoadingIconV1-",
           Template: LoadingIconTemplateV1,
           schema: loadingIconSchemaV1,
@@ -39,7 +39,7 @@ export function OtherFolder() {
       </Folder>
 
       <Folder name="Map">
-        {mergedMapLocationPointsV1.map((locationPoint) => (
+        {mergedMapLocationPoints.map((locationPoint) => (
           <Composition
             key={locationPoint.id}
             id={`MiniMapV1-${locationPoint.id}`}
@@ -96,7 +96,7 @@ export function OtherFolder() {
           fps={FPS}
           durationInFrames={3600}
           schema={introSchemaV1}
-          defaultProps={mergedDefaultIntroV1Props}
+          defaultProps={mergedDefaultIntroProps}
         />
       </Folder>
 
