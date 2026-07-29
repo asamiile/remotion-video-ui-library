@@ -1,6 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../../helpers/jetbrains-mono";
+import { LINE_SEED_JP_FONT_FAMILY } from "../../../helpers/line-seed-jp";
 
 export const confettiPopTextSchemaV1 = z.object({
   text: z.string().default("Congratulations!"),
