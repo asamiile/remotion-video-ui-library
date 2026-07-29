@@ -1,5 +1,5 @@
 // UI composition IDs (uses the same capPattern as Root.tsx). Enumerated
-// from each *-config.ts, the same approach as list-text-v1-composition-ids.cjs.
+// from each .schema.ts, the same approach as list-text-composition-ids.cjs.
 const path = require("node:path");
 const { capPattern, requirePatternKeys } = require("./lib/ts-config-ast.cjs");
 
@@ -7,14 +7,14 @@ const root = path.join(__dirname, "..");
 
 const families = [
   {
-    idPrefix: "BattleCalloutBannerV1",
-    file: "src/UI/BattleCalloutBanner/BattleCalloutBanner-v1/battle-callout-banner-config.ts",
-    exportName: "battleCalloutBannerV1Patterns",
+    idPrefix: "BattleCalloutBanner",
+    file: "src/UI/BattleCalloutBanner/battle-callout-banner.schema.ts",
+    exportName: "battleCalloutBannerPatterns",
   },
   {
-    idPrefix: "AsymmetricStatusPanelV1",
-    file: "src/UI/AsymmetricStatusPanel/AsymmetricStatusPanel-v1/asymmetric-status-panel-config.ts",
-    exportName: "asymmetricStatusPanelV1Patterns",
+    idPrefix: "AsymmetricStatusPanel",
+    file: "src/UI/AsymmetricStatusPanel/asymmetric-status-panel.schema.ts",
+    exportName: "asymmetricStatusPanelPatterns",
   },
 ];
 

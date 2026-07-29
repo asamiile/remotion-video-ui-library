@@ -1,6 +1,6 @@
 /**
- * Prints a composition ID for each id in audioSpectrumAudioFilesV1 (audio-spectrum-config.ts).
- * (Matches Root's AudioSpectrumV1-${audioFile.id})
+ * Prints a composition ID for each id in audioSpectrumAudioFiles (audio-spectrum.schema.ts).
+ * (Matches Root's AudioSpectrum-${audioFile.id})
  */
 const path = require("node:path");
 const { requireArrayStringIds } = require("./lib/ts-config-ast.cjs");
@@ -8,10 +8,10 @@ const { requireArrayStringIds } = require("./lib/ts-config-ast.cjs");
 const root = path.join(__dirname, "..");
 const configPath = path.join(
   root,
-  "src/Audio/AudioSpectrum-v1/audio-spectrum-config.ts",
+  "src/Audio/AudioSpectrum/audio-spectrum.schema.ts",
 );
 
-const ids = requireArrayStringIds(configPath, "audioSpectrumAudioFilesV1");
+const ids = requireArrayStringIds(configPath, "audioSpectrumAudioFiles");
 for (const id of ids) {
-  process.stdout.write(`AudioSpectrumV1-${id}\n`);
+  process.stdout.write(`AudioSpectrum-${id}\n`);
 }
