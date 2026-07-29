@@ -1,6 +1,6 @@
 import { Composition, Folder } from "remotion";
-import { CodeStreamTemplateV1 } from "./Text/CodeStream/CodeStream/CodeStreamTemplate";
-import { codeStreamSchemaV1 } from "./Text/CodeStream/CodeStream/code-stream.schema";
+import { CodeStreamTemplateV1 } from "./Text/CodeStream/CodeStreamTemplate";
+import { codeStreamSchemaV1 } from "./Text/CodeStream/code-stream.schema";
 import {
   mergedCodeStreamV1Patterns,
   defaultCodeStreamHorizontalV1Props,

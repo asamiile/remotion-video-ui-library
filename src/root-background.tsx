@@ -26,9 +26,9 @@ import { emblemMontageBlurV1Patterns } from "./Background/EmblemMontageBlur/embl
 import { SunsetLensFlareOverlayTemplateV1 } from "./Background/SunsetLensFlareOverlay/SunsetLensFlareOverlayTemplate";
 import { sunsetLensFlareOverlaySchemaV1 } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
 import { sunsetLensFlareOverlayV1Patterns } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
-import { RandomLinesBackgroundV1 } from "./Background/RandomLines/RandomLinesBackground/RandomLinesBackground";
-import { randomLinesSchemaV1 } from "./Background/RandomLines/RandomLinesBackground/random-lines.schema";
-import { randomLinesV1DurationFrames } from "./Background/RandomLines/RandomLinesBackground/random-lines.schema";
+import { RandomLinesBackgroundV1 } from "./Background/RandomLinesBackground/RandomLinesBackground";
+import { randomLinesSchemaV1 } from "./Background/RandomLinesBackground/random-lines.schema";
+import { randomLinesV1DurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import { mergedRandomLinesV1Patterns } from "./composition/composition-merged";
 
