@@ -99,6 +99,28 @@ export const defaultNeonTextV1Props = {
   backgroundColor: "#06060c",
   vignetteOpacity: 0.52,
 };
+
+const lchikaOrangeBase = {
+  ...defaultNeonTextV1Props,
+  fontFamily: LINE_SEED_JP_FONT_FAMILY,
+  fontSize: 48,
+  coreColor: "#fff5e8",
+  glowColor: "#ffbf00",
+  haloColor: "#c2410c",
+  tubeStrokeColor: "rgba(0, 48, 52, 0.58)",
+  tubeStrokeWidth: 1.4,
+  animationMode: "blink" as const,
+  blinkPeriodFrames: 48,
+  blinkDutyRatio: 0.5,
+  blinkDimOpacity: 0.05,
+  blinkGlowOffMul: 0.1,
+  flickerStrength: 0,
+  shadowStrength: 1.15,
+  pulsePeriodFrames: 80,
+  backgroundColor: "#05484c",
+  vignetteOpacity: 0.48,
+};
+
 export const neonTextV1Patterns = {
   pinkPulse: {
     ...defaultNeonTextV1Props,
