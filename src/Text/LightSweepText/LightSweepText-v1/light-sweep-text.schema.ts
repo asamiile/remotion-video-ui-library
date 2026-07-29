@@ -48,6 +48,34 @@ export const lightSweepTextSchemaV1 = z.object({
 
 export type LightSweepTextSchemaV1Type = z.infer<typeof lightSweepTextSchemaV1>;
 
+export const lightSweepTextV1DurationFrames = 120;
+
+export const defaultLightSweepTextV1Props = {
+  text: "COMPLETE",
+  fontFamily: LINE_SEED_JP_FONT_FAMILY,
+  fontWeight: "700" as const,
+  fontSize: 48,
+  letterSpacing: "0.14em",
+  lineHeight: 1.2,
+  baseTextColor: "#5ba3e8",
+  activeTextColor: "#d8ecff",
+  sweepStartFrame: 42,
+  sweepDurationFrames: 14,
+  sweepEasing: "easeOut" as const,
+  sweepBandWidthPercent: 44,
+  sweepBandTiltDeg: -20,
+  softGlowBlur: 32,
+  softGlowOpacity: 0.52,
+  completionGlowFrames: 16,
+  completionGlowStrength: 1.15,
+  fadeInDuration: 14,
+  delayFrames: 0,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
+  backgroundColor: "#05080f",
+  vignetteOpacity: 0.55,
+} as const;
+
 export const lightSweepTextV1Patterns = {
   /** Processing complete - quick sweep */
   complete: {

@@ -45,6 +45,42 @@ export const confettiPopTextSchemaV1 = z.object({
 
 export type ConfettiPopTextSchemaV1Type = z.infer<typeof confettiPopTextSchemaV1>;
 
+import { LINE_SEED_JP_FONT_FAMILY } from "../../../helpers/line-seed-jp";
+
+export const confettiPopTextV1DurationFrames = 180;
+
+export const defaultConfettiPopTextV1Props = {
+  text: "Congratulations!",
+  fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+  fontWeight: "700" as const,
+  fontSize: 48,
+  letterSpacing: "0.08em",
+  lineHeight: 1.2,
+  textColor: "#fff8f0",
+  burstFrame: 22,
+  flashPeakOpacity: 0.48,
+  flashDurationFrames: 6,
+  glowDurationFrames: 26,
+  particleCount: 96,
+  showShockwaveRing: true,
+  particleLifeFrames: 100,
+  particleSpread: 12,
+  particleGravity: 0.42,
+  randomSeed: "confetti-pop-rich",
+  fadeInDuration: 8,
+  delayFrames: 0,
+  paddingLeftPercent: 3.2,
+  paddingBottomPercent: 3.2,
+  backgroundColor: "#1a1428",
+} as const;
+
+const confettiPopSharedV1 = {
+  ...defaultConfettiPopTextV1Props,
+  fontSize: 48,
+  burstFrame: 22,
+  particleCount: 96,
+};
+
 export const confettiPopTextV1Patterns = {
   /** Latin script - JetBrains Mono */
   richPop: {
