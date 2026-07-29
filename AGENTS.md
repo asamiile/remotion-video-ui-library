@@ -7,6 +7,7 @@ Guide for AI agents working in this repository.
 	- [.agents/rules/composition-update-runbook.md](.agents/rules/composition-update-runbook.md) - how to add or update compositions and render coverage
 	- [.agents/rules/config-local-layout.md](.agents/rules/config-local-layout.md) - how `config/local` is wired and what belongs in `*.example.json` vs `*.local.json`
 	- [.agents/rules/composition-text-local.md](.agents/rules/composition-text-local.md) - read-only policy for personal `composition-text.local.json` and the few exceptions
+	- [.agents/rules/agent-tool-usage.md](.agents/rules/agent-tool-usage.md) - token-efficient Read/Edit usage guidance for AI agents
 
 ## Overview
 
