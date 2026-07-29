@@ -52,6 +52,9 @@ const families = [
   { type: "pattern", file: "UI/BattleCalloutBanner/battle-callout-banner.schema", export: "battleCalloutBannerV1Patterns", category: "ui" },
   { type: "pattern", file: "UI/AsymmetricStatusPanel/asymmetric-status-panel.schema", export: "asymmetricStatusPanelV1Patterns", category: "ui" },
 
+  // Other compositions
+  { type: "pattern", file: "Loading/LoadingIcon/loading-icon.schema", export: "loadingIconV1Patterns", category: "other" },
+
   // Special: oneTakeLogo props (goes to 'text' because it's used by root-text.tsx)
   { type: "oneTakeLogo", file: "Text/FlickerTitle/flicker-title.schema", export: "oneTakeLogoTextVariantProps", category: "text" },
 
