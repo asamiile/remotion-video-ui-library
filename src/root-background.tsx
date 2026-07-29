@@ -1,34 +1,34 @@
 import { Composition, Folder } from "remotion";
 import { AmbientBlurOrbsTemplateV1 } from "./Background/AmbientBlurOrbs/AmbientBlurOrbsTemplate";
-import { ambientBlurOrbsSchemaV1 } from "./Background/AmbientBlurOrbs/ambient-blur-orbs.schema";
+import { ambientBlurOrbsSchema } from "./Background/AmbientBlurOrbs/ambient-blur-orbs.schema";
 import {
-  defaultAmbientBlurOrbsV1Props,
-  ambientBlurOrbsV1DurationFrames,
+  defaultAmbientBlurOrbsProps,
+  ambientBlurOrbsDurationFrames,
 } from "./Background/AmbientBlurOrbs/ambient-blur-orbs.schema";
 import { ScanLineTemplateV1 } from "./Background/ScanLine/ScanLineTemplate";
-import { scanLineSchemaV1 } from "./Background/ScanLine/scan-line.schema";
-import { scanLineV1Patterns } from "./Background/ScanLine/scan-line.schema";
+import { scanLineSchema } from "./Background/ScanLine/scan-line.schema";
+import { scanLinePatterns } from "./Background/ScanLine/scan-line.schema";
 import { DuotoneGradeOverlayTemplateV1 } from "./Background/DuotoneGradeOverlay/DuotoneGradeOverlayTemplate";
-import { duotoneGradeOverlaySchemaV1 } from "./Background/DuotoneGradeOverlay/duotone-grade-overlay.schema";
-import { duotoneGradeOverlayV1Patterns } from "./Background/DuotoneGradeOverlay/duotone-grade-overlay.schema";
+import { duotoneGradeOverlaySchema } from "./Background/DuotoneGradeOverlay/duotone-grade-overlay.schema";
+import { duotoneGradeOverlayPatterns } from "./Background/DuotoneGradeOverlay/duotone-grade-overlay.schema";
 import { FilmGrainOverlayTemplateV1 } from "./Background/FilmGrainOverlay/FilmGrainOverlayTemplate";
-import { filmGrainOverlaySchemaV1 } from "./Background/FilmGrainOverlay/film-grain-overlay.schema";
-import { filmGrainOverlayV1Patterns } from "./Background/FilmGrainOverlay/film-grain-overlay.schema";
+import { filmGrainOverlaySchema } from "./Background/FilmGrainOverlay/film-grain-overlay.schema";
+import { filmGrainOverlayPatterns } from "./Background/FilmGrainOverlay/film-grain-overlay.schema";
 import { LetterboxOverlayTemplateV1 } from "./Background/LetterboxOverlay/LetterboxOverlayTemplate";
-import { letterboxOverlaySchemaV1 } from "./Background/LetterboxOverlay/letterbox-overlay.schema";
-import { letterboxOverlayV1Patterns } from "./Background/LetterboxOverlay/letterbox-overlay.schema";
+import { letterboxOverlaySchema } from "./Background/LetterboxOverlay/letterbox-overlay.schema";
+import { letterboxOverlayPatterns } from "./Background/LetterboxOverlay/letterbox-overlay.schema";
 import { PosterizeGradeOverlayTemplateV1 } from "./Background/PosterizeGradeOverlay/PosterizeGradeOverlayTemplate";
-import { posterizeGradeOverlaySchemaV1 } from "./Background/PosterizeGradeOverlay/posterize-grade-overlay.schema";
-import { posterizeGradeOverlayV1Patterns } from "./Background/PosterizeGradeOverlay/posterize-grade-overlay.schema";
+import { posterizeGradeOverlaySchema } from "./Background/PosterizeGradeOverlay/posterize-grade-overlay.schema";
+import { posterizeGradeOverlayPatterns } from "./Background/PosterizeGradeOverlay/posterize-grade-overlay.schema";
 import { EmblemMontageBlurTemplateV1 } from "./Background/EmblemMontageBlur/EmblemMontageBlurTemplate";
-import { emblemMontageBlurSchemaV1 } from "./Background/EmblemMontageBlur/emblem-montage-blur.schema";
-import { emblemMontageBlurV1Patterns } from "./Background/EmblemMontageBlur/emblem-montage-blur.schema";
+import { emblemMontageBlurSchema } from "./Background/EmblemMontageBlur/emblem-montage-blur.schema";
+import { emblemMontageBlurPatterns } from "./Background/EmblemMontageBlur/emblem-montage-blur.schema";
 import { SunsetLensFlareOverlayTemplateV1 } from "./Background/SunsetLensFlareOverlay/SunsetLensFlareOverlayTemplate";
-import { sunsetLensFlareOverlaySchemaV1 } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
-import { sunsetLensFlareOverlayV1Patterns } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
+import { sunsetLensFlareOverlaySchema } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
+import { sunsetLensFlareOverlayPatterns } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
 import { RandomLinesBackgroundV1 } from "./Background/RandomLinesBackground/RandomLinesBackground";
-import { randomLinesSchemaV1 } from "./Background/RandomLinesBackground/random-lines.schema";
-import { randomLinesV1DurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
+import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
+import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import { mergedRandomLinesPatterns } from "./composition/composition-merged-background";
 
@@ -46,9 +46,9 @@ export function BackgroundFolder() {
         width={1920}
         height={1080}
         fps={FPS}
-        durationInFrames={ambientBlurOrbsV1DurationFrames}
-        schema={ambientBlurOrbsSchemaV1}
-        defaultProps={{ ...defaultAmbientBlurOrbsV1Props }}
+        durationInFrames={ambientBlurOrbsDurationFrames}
+        schema={ambientBlurOrbsSchema}
+        defaultProps={{ ...defaultAmbientBlurOrbsProps }}
       />
 
       <Folder name="RandomLines">
@@ -64,8 +64,8 @@ export function BackgroundFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={randomLinesV1DurationFrames}
-              schema={randomLinesSchemaV1}
+              durationInFrames={randomLinesDurationFrames}
+              schema={randomLinesSchema}
               defaultProps={props}
             />
           )
@@ -74,70 +74,70 @@ export function BackgroundFolder() {
 
       <Folder name="ScanLine">
         {renderPatternFamily({
-          patterns: scanLineV1Patterns,
+          patterns: scanLinePatterns,
           idPrefix: "Background-ScanLineV1-",
           Template: ScanLineTemplateV1,
-          schema: scanLineSchemaV1,
+          schema: scanLineSchema,
           durationInFrames: (patternProps) => patternProps.scanPeriodFrames,
         })}
       </Folder>
 
       <Folder name="DuotoneGradeOverlay">
         {renderPatternFamily({
-          patterns: duotoneGradeOverlayV1Patterns,
+          patterns: duotoneGradeOverlayPatterns,
           idPrefix: "Background-DuotoneGradeOverlayV1-",
           Template: DuotoneGradeOverlayTemplateV1,
-          schema: duotoneGradeOverlaySchemaV1,
+          schema: duotoneGradeOverlaySchema,
           durationInFrames: 150,
         })}
       </Folder>
 
       <Folder name="FilmGrainOverlayV1">
         {renderPatternFamily({
-          patterns: filmGrainOverlayV1Patterns,
+          patterns: filmGrainOverlayPatterns,
           idPrefix: "Background-FilmGrainOverlayV1-",
           Template: FilmGrainOverlayTemplateV1,
-          schema: filmGrainOverlaySchemaV1,
+          schema: filmGrainOverlaySchema,
           durationInFrames: 150,
         })}
       </Folder>
 
       <Folder name="LetterboxOverlayV1">
         {renderPatternFamily({
-          patterns: letterboxOverlayV1Patterns,
+          patterns: letterboxOverlayPatterns,
           idPrefix: "Background-LetterboxOverlayV1-",
           Template: LetterboxOverlayTemplateV1,
-          schema: letterboxOverlaySchemaV1,
+          schema: letterboxOverlaySchema,
           durationInFrames: 90,
         })}
       </Folder>
 
       <Folder name="PosterizeGradeOverlayV1">
         {renderPatternFamily({
-          patterns: posterizeGradeOverlayV1Patterns,
+          patterns: posterizeGradeOverlayPatterns,
           idPrefix: "Background-PosterizeGradeOverlayV1-",
           Template: PosterizeGradeOverlayTemplateV1,
-          schema: posterizeGradeOverlaySchemaV1,
+          schema: posterizeGradeOverlaySchema,
           durationInFrames: 150,
         })}
       </Folder>
 
       <Folder name="EmblemMontageBlur">
         {renderPatternFamily({
-          patterns: emblemMontageBlurV1Patterns,
+          patterns: emblemMontageBlurPatterns,
           idPrefix: "Background-EmblemMontageBlurV1-",
           Template: EmblemMontageBlurTemplateV1,
-          schema: emblemMontageBlurSchemaV1,
+          schema: emblemMontageBlurSchema,
           durationInFrames: 60,
         })}
       </Folder>
 
       <Folder name="SunsetLensFlareOverlay">
         {renderPatternFamily({
-          patterns: sunsetLensFlareOverlayV1Patterns,
+          patterns: sunsetLensFlareOverlayPatterns,
           idPrefix: "Background-SunsetLensFlareOverlayV1-",
           Template: SunsetLensFlareOverlayTemplateV1,
-          schema: sunsetLensFlareOverlaySchemaV1,
+          schema: sunsetLensFlareOverlaySchema,
           durationInFrames: 60,
         })}
       </Folder>
