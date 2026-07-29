@@ -20,8 +20,8 @@ import { GlitchTextTemplateV1 } from "./Text/GlitchText/GlitchTextTemplate";
 import { glitchTextSchemaV1 } from "./Text/GlitchText/glitch-text.schema";
 import { glitchTextV1DurationFrames } from "./Text/GlitchText/glitch-text.schema";
 import { GlitchTextRandomTemplateV1 } from "./Text/GlitchText/GlitchTextRandomTemplate";
-import { glitchTextRandomSchemaV1 } from "./Text/GlitchText/glitch-text-random.schema";
-import { glitchTextV1RandomDurationFrames } from "./Text/GlitchText/glitch-text-random.schema";
+import { glitchTextRandomSchema } from "./Text/GlitchText/glitch-text-random.schema";
+import { glitchTextRandomDurationFrames } from "./Text/GlitchText/glitch-text-random.schema";
 import { WireTextTemplateV1 } from "./Text/WireText/WireTextTemplate";
 import { wireTextSchemaV1 } from "./Text/WireText/wire-text.schema";
 import { wireTextV1DurationFrames } from "./Text/WireText/wire-text.schema";
@@ -181,8 +181,8 @@ export function TextFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={glitchTextV1RandomDurationFrames}
-              schema={glitchTextRandomSchemaV1}
+              durationInFrames={glitchTextRandomDurationFrames}
+              schema={glitchTextRandomSchema}
               defaultProps={props}
             />
           )

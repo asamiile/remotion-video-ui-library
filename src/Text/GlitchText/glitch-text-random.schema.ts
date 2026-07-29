@@ -91,7 +91,7 @@ export const glitchTextRandomPatterns = {
     randomSeed: "glitch-harsh-random",
   },
   variant2: {
-    ...defaultGlitchTextV1RandomProps,
+    ...defaultGlitchTextRandomProps,
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     fontSize: 32,
     letterSpacing: "0.05em",
@@ -109,7 +109,7 @@ export const glitchTextRandomPatterns = {
     randomSeed: "glitch-variant2",
   },
   variant3: {
-    ...defaultGlitchTextV1RandomProps,
+    ...defaultGlitchTextRandomProps,
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     fontSize: 32,
     letterSpacing: "0.05em",
@@ -127,7 +127,7 @@ export const glitchTextRandomPatterns = {
     randomSeed: "glitch-variant3",
   },
   variant4: {
-    ...defaultGlitchTextV1RandomProps,
+    ...defaultGlitchTextRandomProps,
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     fontSize: 32,
     letterSpacing: "0.05em",
