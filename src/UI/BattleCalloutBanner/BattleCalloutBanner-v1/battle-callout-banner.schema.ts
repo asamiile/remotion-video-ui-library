@@ -31,6 +31,7 @@ export type BattleCalloutBannerSchemaV1Type = z.infer<
   typeof battleCalloutBannerSchemaV1
 >;
 
+export const battleCalloutBannerV1DurationFrames = 150;
 
 export const defaultBattleCalloutBannerV1Props = {
   text: "ALL-OUT ATTACK!",

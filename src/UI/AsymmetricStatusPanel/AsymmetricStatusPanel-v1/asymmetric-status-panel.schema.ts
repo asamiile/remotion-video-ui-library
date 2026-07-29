@@ -43,6 +43,7 @@ export type AsymmetricStatusPanelSchemaV1Type = z.infer<
   typeof asymmetricStatusPanelSchemaV1
 >;
 
+export const asymmetricStatusPanelV1DurationFrames = 150;
 
 export const defaultAsymmetricStatusPanelV1Props = {
   characterName: "PROTAGONIST",
