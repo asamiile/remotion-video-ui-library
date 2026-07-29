@@ -7,7 +7,7 @@ import { defaultMiniMapProps } from "./Map/Map/mini-map.schema";
 import { AudioSpectrumTemplateV1 } from "./Audio/AudioSpectrum/AudioSpectrumTemplate";
 import { audioSpectrumSchema } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import {
-  audioSpectrumV1Patterns,
+  audioSpectrumPatterns,
   defaultAudioSpectrumProps,
 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import { IntroTemplateV1 } from "./Intro/Intro/IntroTemplate";
@@ -63,7 +63,7 @@ export function OtherFolder() {
       <Folder name="Audio">
         <Folder name="AudioSpectrum">
           <Folder name="Presets">
-            {Object.entries(audioSpectrumV1Patterns).map(([patternName, props]) => (
+            {Object.entries(audioSpectrumPatterns).map(([patternName, props]) => (
               <Composition
                 key={`AudioSpectrumV1-${patternName}`}
                 id={`AudioSpectrumV1-${patternName}`}
