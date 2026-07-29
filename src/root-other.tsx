@@ -13,6 +13,8 @@ import {
 import { IntroTemplate } from "./Intro/Intro/IntroTemplate";
 import { introSchema } from "./Intro/Intro/intro.schema";
 import { introSceneTiming } from "./Intro/Intro/intro.schema";
+import { AngstAnimationTemplate } from "./Effects/AngstAnimation/AngstAnimationTemplate";
+import { angstAnimationSchema, defaultAngstAnimationProps } from "./Effects/AngstAnimation/angst-animation.schema";
 import { PlaceholderImage } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
@@ -107,6 +109,22 @@ export function OtherFolder() {
           height={1080}
           fps={FPS}
           durationInFrames={1}
+        />
+      </Folder>
+
+      <Folder name="Effects">
+        <Composition
+          id="AngstAnimation"
+          component={withCanvasPreview(
+            "AngstAnimation",
+            AngstAnimationTemplate,
+          )}
+          width={1920}
+          height={1080}
+          fps={FPS}
+          durationInFrames={900}
+          schema={angstAnimationSchema}
+          defaultProps={defaultAngstAnimationProps}
         />
       </Folder>
     </>

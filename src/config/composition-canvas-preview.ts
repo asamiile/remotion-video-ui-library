@@ -54,6 +54,11 @@ const prefixLayers: { prefix: string; layer: CanvasPreviewLayer }[] = [
     prefix: "NeonText-Rainbow",
     layer: { kind: "color", color: "#0a0a0f" },
   },
+  /** Effects compositions */
+  {
+    prefix: "Angst",
+    layer: { kind: "color", color: "#060810" },
+  },
 ];
 
 export function resolveCanvasPreviewLayer(
