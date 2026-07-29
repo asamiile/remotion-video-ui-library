@@ -4,7 +4,7 @@ export const randomLinesV1DurationFrames = 3200;
 
 export const defaultRandomLinesV1Props: RandomLinesSchemaV1Type = {
   lineCount: 3,
-  lineHeight: 1,
+  lineHeight: 3,
   spawnIntervalFrames: 45,
   displayDurationFrames: 90,
   fadeInDuration: 15,
@@ -14,6 +14,7 @@ export const defaultRandomLinesV1Props: RandomLinesSchemaV1Type = {
   lineOpacity: 0.7,
   displayAreaHeightPx: 600,
   minLineSpacingPx: 50,
+  maxConcurrentLines: 3,
   randomSeed: "random-lines-default",
 };
 
@@ -26,6 +27,7 @@ export const randomLinesV1Patterns = {
     lineOpacity: 0.5,
     displayAreaHeightPx: 600,
     minLineSpacingPx: 50,
+    maxConcurrentLines: 2,
     randomSeed: "random-lines-subtle",
   },
   prominent: {
@@ -36,6 +38,7 @@ export const randomLinesV1Patterns = {
     lineOpacity: 0.8,
     displayAreaHeightPx: 600,
     minLineSpacingPx: 50,
+    maxConcurrentLines: 5,
     randomSeed: "random-lines-prominent",
   },
 };

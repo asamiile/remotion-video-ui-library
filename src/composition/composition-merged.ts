@@ -8,6 +8,7 @@ import { wireTextV1Patterns } from "../Text/WireText/WireText-v1/wire-text-confi
 import { neonTextRainbowV1Patterns } from "../Text/NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-config";
 import { lightSweepTextV1Patterns } from "../Text/LightSweepText/LightSweepText-v1/light-sweep-text-config";
 import { randomLinesV1Patterns } from "../Background/RandomLines/RandomLinesBackground-v1/random-lines-config";
+import { dottedLineMarkerV1Patterns } from "../Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text-config";
 import { typewriterTextV1Patterns } from "../Text/TypewriterText/TypewriterText-v1/typewriter-text-config";
 import { shakeTextV1Patterns } from "../Text/ShakeText/ShakeText-v1/shake-text-config";
 import { confettiPopTextV1Patterns } from "../Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config";
@@ -80,6 +81,11 @@ export const mergedRandomLinesV1Patterns = shallowMergePatternRecord(
   randomLinesV1Patterns,
   local.randomLinesBackgroundV1Patterns,
 ) as typeof randomLinesV1Patterns;
+
+export const mergedDottedLineMarkerV1Patterns = shallowMergePatternRecord(
+  dottedLineMarkerV1Patterns,
+  local.dottedLineMarkerTextV1Patterns,
+) as typeof dottedLineMarkerV1Patterns;
 
 export const mergedTypewriterTextV1Patterns = shallowMergePatternRecord(
   typewriterTextV1Patterns,

@@ -33,6 +33,7 @@ const generateActiveLines = (
   randomSeed: string,
   displayAreaHeightPx: number,
   minLineSpacingPx: number,
+  maxConcurrentLines: number,
   height: number
 ): ActiveLine[] => {
   const active: ActiveLine[] = [];
@@ -85,8 +86,13 @@ const generateActiveLines = (
         attempts++;
       }
 
-      // Include fade-out duration in active check
-      if (yPosition !== null && actualSpawnFrame <= frame && fadeOutEnd > frame) {
+      // Include fade-out duration in active check and check max concurrent limit
+      if (
+        yPosition !== null &&
+        actualSpawnFrame <= frame &&
+        fadeOutEnd > frame &&
+        active.length < maxConcurrentLines
+      ) {
         active.push({
           id: `line-${lineIndex}`,
           yPosition,
@@ -192,6 +198,7 @@ export const RandomLinesBackgroundV1: React.FC<RandomLinesSchemaV1Type> = ({
   lineOpacity,
   displayAreaHeightPx,
   minLineSpacingPx,
+  maxConcurrentLines,
   randomSeed,
 }) => {
   const frame = useCurrentFrame();
@@ -209,6 +216,7 @@ export const RandomLinesBackgroundV1: React.FC<RandomLinesSchemaV1Type> = ({
         randomSeed,
         displayAreaHeightPx,
         minLineSpacingPx,
+        maxConcurrentLines,
         height
       ),
     [
@@ -221,6 +229,7 @@ export const RandomLinesBackgroundV1: React.FC<RandomLinesSchemaV1Type> = ({
       randomSeed,
       displayAreaHeightPx,
       minLineSpacingPx,
+      maxConcurrentLines,
       height,
     ]
   );

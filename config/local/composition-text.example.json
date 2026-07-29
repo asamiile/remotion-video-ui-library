@@ -77,6 +77,14 @@
     "subtle": {},
     "prominent": {}
   },
+  "dottedLineMarkerTextV1Patterns": {
+    "default": {
+      "items": [
+        { "leftText": "Requirement", "rightText": "01" },
+        { "leftText": "Specification", "rightText": "02" }
+      ]
+    }
+  },
   "ledTextV1Patterns": {
     "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
     "redScrollJp": { "text": "サンプル  ///  LED  ///  スクロール  ///  " }

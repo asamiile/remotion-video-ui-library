@@ -14,6 +14,7 @@ export type CompositionTextLocal = {
   neonTextRainbowV1Patterns?: Record<string, Record<string, unknown>>;
   lightSweepTextV1Patterns?: Record<string, Record<string, unknown>>;
   randomLinesBackgroundV1Patterns?: Record<string, Record<string, unknown>>;
+  dottedLineMarkerTextV1Patterns?: Record<string, Record<string, unknown>>;
   typewriterTextV1Patterns?: Record<string, Record<string, unknown>>;
   shakeTextV1Patterns?: Record<string, Record<string, unknown>>;
   confettiPopTextV1Patterns?: Record<string, Record<string, unknown>>;
