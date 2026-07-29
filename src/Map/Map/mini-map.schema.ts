@@ -10,6 +10,23 @@ export interface MapLocationPoint {
   bearing?: number;
 }
 
+export const defaultMapCameraConfig = {
+  initialZoom: 4,
+  initialPitch: 0,
+  initialBearing: 0,
+  targetZoom: 16,
+  targetPitch: 0,
+  targetBearing: 0,
+  cameraAnimationDuration: 120,
+};
+
+export const mapboxMapOptions = {
+  style: "mapbox://styles/asamiinae/cmli18nq5002t01skhqfk1rfu",
+  interactive: false,
+  fadeDuration: 0,
+  antialias: true,
+} as const;
+
 export const miniMapSchema = z.object({
   mapLocationId: z.string().default(""),
 
