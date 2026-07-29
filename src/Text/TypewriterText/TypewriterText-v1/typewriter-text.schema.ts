@@ -48,7 +48,7 @@ export type TypewriterTextSchemaV1Type = z.infer<typeof typewriterTextSchemaV1>;
 
 export const typewriterTextV1DurationFrames = 200;
 
-const defaultTypewriterTextV1Props = {
+export const defaultTypewriterTextV1Props = {
   text: 'const ready = true;',
   fontFamily: JETBRAINS_MONO_FONT_FAMILY,
   fontWeight: "400" as const,

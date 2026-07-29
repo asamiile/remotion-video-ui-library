@@ -18,3 +18,18 @@ export const onboardingConnectSchemaV1 = z.object({
 export type OnboardingConnectSchemaV1Type = z.infer<
   typeof onboardingConnectSchemaV1
 >;
+
+export const onboardingConnectV1DurationFrames = 90;
+
+export const defaultOnboardingConnectV1Props = {
+  phoneColor: "#37E9FF",
+  laptopColor: "#9C7BFF",
+  backgroundColor: "#060810",
+  vignetteOpacity: 0.45,
+  pulsePeriodFrames: 45,
+  flickerTriggerFrame: 6,
+} as const;
+
+export const onboardingConnectV1Patterns = {
+  default: defaultOnboardingConnectV1Props,
+} as const;
