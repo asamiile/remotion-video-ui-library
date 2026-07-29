@@ -5,7 +5,7 @@ import {
   mergedCodeStreamV1Patterns,
   defaultCodeStreamHorizontalV1Props,
   defaultCodeStreamVerticalV1Props,
-} from "./composition/composition-merged";
+} from "./composition/composition-merged-text";
 import { LocationTemplateV1 } from "./Text/Location/LocationTemplate";
 import { locationSchemaV1 } from "./Text/Location/location.schema";
 import { defaultLocationV1Props } from "./Text/Location/location.schema";
@@ -76,7 +76,7 @@ import {
   mergedDistressedTitleCardV1Patterns,
   mergedSprayPaintTextV1Patterns,
   mergedOneTakeLogoTextV1Props,
-} from "./composition/composition-merged";
+} from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 
 const FPS = 30;

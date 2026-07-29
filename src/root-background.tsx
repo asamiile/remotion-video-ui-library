@@ -30,7 +30,7 @@ import { RandomLinesBackgroundV1 } from "./Background/RandomLinesBackground/Rand
 import { randomLinesSchemaV1 } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesV1DurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
-import { mergedRandomLinesV1Patterns } from "./composition/composition-merged";
+import { mergedRandomLinesV1Patterns } from "./composition/composition-merged-background";
 
 const FPS = 30;
 

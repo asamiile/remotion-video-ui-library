@@ -9,7 +9,7 @@ import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-he
 import {
   mergedBattleCalloutBannerV1Patterns,
   mergedAsymmetricStatusPanelV1Patterns,
-} from "./composition/composition-merged";
+} from "./composition/composition-merged-ui";
 
 const FPS = 30;
 

@@ -27,7 +27,7 @@ const mapboxMapV1Options = {
   fadeDuration: 0,
   antialias: true,
 } as const;
-import { mergedMapLocationPointsV1 } from "../../composition/composition-merged";
+import { mergedMapLocationPointsV1 } from "../../composition/composition-merged-other";
 // import { PlaceholderImage } from "../PlaceholderImage";
 
 mapboxgl.accessToken = process.env.REMOTION_MAPBOX_TOKEN as string;
