@@ -12,38 +12,38 @@ const fixedIds = ["Background-AmbientBlurOrbsV1"];
 const families = [
   {
     idPrefix: "Background-ScanLineV1",
-    file: "src/Background/ScanLine-v1/scan-line-config.ts",
-    exportName: "scanLineV1Patterns",
+    file: "src/Background/ScanLine/scan-line.schema.ts",
+    exportName: "scanLinePatterns",
   },
   {
     idPrefix: "Background-DuotoneGradeOverlayV1",
-    file: "src/Background/DuotoneGradeOverlay-v1/duotone-grade-overlay-config.ts",
-    exportName: "duotoneGradeOverlayV1Patterns",
+    file: "src/Background/DuotoneGradeOverlay/duotone-grade-overlay.schema.ts",
+    exportName: "duotoneGradeOverlayPatterns",
   },
   {
     idPrefix: "Background-FilmGrainOverlayV1",
-    file: "src/Background/FilmGrainOverlay-v1/film-grain-overlay-config.ts",
-    exportName: "filmGrainOverlayV1Patterns",
+    file: "src/Background/FilmGrainOverlay/film-grain-overlay.schema.ts",
+    exportName: "filmGrainOverlayPatterns",
   },
   {
     idPrefix: "Background-LetterboxOverlayV1",
-    file: "src/Background/LetterboxOverlay-v1/letterbox-overlay-config.ts",
-    exportName: "letterboxOverlayV1Patterns",
+    file: "src/Background/LetterboxOverlay/letterbox-overlay.schema.ts",
+    exportName: "letterboxOverlayPatterns",
   },
   {
     idPrefix: "Background-PosterizeGradeOverlayV1",
-    file: "src/Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-config.ts",
-    exportName: "posterizeGradeOverlayV1Patterns",
+    file: "src/Background/PosterizeGradeOverlay/posterize-grade-overlay.schema.ts",
+    exportName: "posterizeGradeOverlayPatterns",
   },
   {
     idPrefix: "Background-EmblemMontageBlurV1",
-    file: "src/Background/EmblemMontageBlur-v1/emblem-montage-blur-config.ts",
-    exportName: "emblemMontageBlurV1Patterns",
+    file: "src/Background/EmblemMontageBlur/emblem-montage-blur.schema.ts",
+    exportName: "emblemMontageBlurPatterns",
   },
   {
     idPrefix: "Background-SunsetLensFlareOverlayV1",
-    file: "src/Background/SunsetLensFlareOverlay-v1/sunset-lens-flare-overlay-config.ts",
-    exportName: "sunsetLensFlareOverlayV1Patterns",
+    file: "src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts",
+    exportName: "sunsetLensFlareOverlayPatterns",
   },
 ];
 
