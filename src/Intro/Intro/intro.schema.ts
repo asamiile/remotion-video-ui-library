@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const introSchemaV1 = z.object({
+export const introSchema = z.object({
   // Scene copy (sample values); overridden via config/local/composition-text.local.json
   authorName: z.string().default("著者名プレビュー"),
   introTitle: z.string().default("イントロタイトル（プレビュー）"),
@@ -28,7 +28,7 @@ export const introSchemaV1 = z.object({
   fadeOutDuration: z.number().min(1).default(30), // frames
 });
 
-export type IntroSchemaV1Type = z.infer<typeof introSchemaV1>;
+export type IntroSchemaType = z.infer<typeof introSchema>;
 
 export interface IntroScene {
   id: string;
@@ -61,7 +61,7 @@ export const introSceneTimingV1 = [
   },
 ] as const;
 
-export const defaultIntroV1Props = {
+export const defaultIntroProps = {
   authorName: "著者名プレビュー",
   introTitle: "イントロタイトル（プレビュー）",
   introDescription: "説明文のプレビューです。\n改行を含められます。",

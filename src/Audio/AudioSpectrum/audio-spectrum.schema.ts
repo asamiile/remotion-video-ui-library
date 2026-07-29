@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const audioSpectrumSchemaV1 = z.object({
+export const audioSpectrumSchema = z.object({
   audioFile: z.string().default("audio.mp3"), // path relative to public/
   audioOffsetInSeconds: z.number().default(0),
   barCount: z.number().min(8).max(128).default(32),
@@ -17,10 +17,10 @@ export const audioSpectrumSchemaV1 = z.object({
 
 });
 
-export type AudioSpectrumSchemaV1Type = z.infer<typeof audioSpectrumSchemaV1>;
+export type AudioSpectrumSchemaType = z.infer<typeof audioSpectrumSchema>;
 
 
-export const defaultAudioSpectrumV1Props = {
+export const defaultAudioSpectrumProps = {
   audioOffsetInSeconds: 0,
 
   barCount: 32,
@@ -34,14 +34,14 @@ export const defaultAudioSpectrumV1Props = {
   positionX: 84,
   positionY: 10,
 };
-export const audioSpectrumV1Patterns = {
+export const audioSpectrumPatterns = {
   simple: {
-    ...defaultAudioSpectrumV1Props,
+    ...defaultAudioSpectrumProps,
     barCount: 16,
   },
 
   detailed: {
-    ...defaultAudioSpectrumV1Props,
+    ...defaultAudioSpectrumProps,
     barCount: 32,
     barWidth: 12,
     barGap: 2,

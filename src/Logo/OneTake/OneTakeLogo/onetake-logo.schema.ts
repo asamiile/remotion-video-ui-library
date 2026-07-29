@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const oneTakeLogoSchemaV1 = z.object({
+export const oneTakeLogoSchema = z.object({
   barColorTop: zColor().default("#EAFEFF"),
   barColorBottom: zColor().default("#37E9FF"),
   backgroundColor: zColor().default("#060810"),
@@ -21,12 +21,12 @@ export const oneTakeLogoSchemaV1 = z.object({
   holdFrames: z.number().min(0).default(0),
 });
 
-export type OneTakeLogoSchemaV1Type = z.infer<typeof oneTakeLogoSchemaV1>;
+export type OneTakeLogoSchemaType = z.infer<typeof oneTakeLogoSchema>;
 
 const WAVE_PERIOD_FRAMES_MATCHING_ONBOARDING_OPERATE = 16;
 const HOLD_FRAMES_ONE_SECOND = 15;
 
-export const defaultOneTakeLogoV1Props = {
+export const defaultOneTakeLogoProps = {
   barColorTop: "#EAFEFF",
   barColorBottom: "#37E9FF",
   backgroundColor: "#060810",
@@ -36,10 +36,10 @@ export const defaultOneTakeLogoV1Props = {
   motionCyclesBeforeHold: 1,
   holdFrames: 0,
 };
-export const oneTakeLogoV1Patterns = {
+export const oneTakeLogoPatterns = {
   // Phase shifts left-to-right so the wave appears to travel across. Plays 2 cycles, holds for 1s, then repeats.
   wave: {
-    ...defaultOneTakeLogoV1Props,
+    ...defaultOneTakeLogoProps,
     waveAmplitude: 0.22,
     motionCyclesBeforeHold: 2,
     holdFrames: HOLD_FRAMES_ONE_SECOND,

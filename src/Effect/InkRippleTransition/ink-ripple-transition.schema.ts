@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const inkRippleTransitionSchemaV1 = z.object({
+export const inkRippleTransitionSchema = z.object({
   backgroundColor: zColor().default("#060810"),
   ringColor: zColor().default("#eef1fc"),
 
@@ -19,13 +19,13 @@ export const inkRippleTransitionSchemaV1 = z.object({
   randomSeed: z.string().default("ink-ripple-v1"),
 });
 
-export type InkRippleTransitionSchemaV1Type = z.infer<
+export type InkRippleTransitionSchemaType = z.infer<
   typeof inkRippleTransitionSchemaV1
 >;
 
-export const inkRippleTransitionV1DurationFrames = 45;
+export const inkRippleTransitionDurationFrames = 45;
 
-export const defaultInkRippleTransitionV1Props = {
+export const defaultInkRippleTransitionProps = {
   backgroundColor: "#060810",
   ringColor: "#eef1fc",
   ringCount: 3,

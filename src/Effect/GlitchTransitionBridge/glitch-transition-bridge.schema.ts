@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const glitchTransitionBridgeSchemaV1 = z.object({
+export const glitchTransitionBridgeSchema = z.object({
   backgroundColor: zColor().default("#060810"),
 
   streakCount: z.number().min(1).max(20).default(6),
@@ -17,13 +17,13 @@ export const glitchTransitionBridgeSchemaV1 = z.object({
   randomSeed: z.string().default("glitch-bridge-v1"),
 });
 
-export type GlitchTransitionBridgeSchemaV1Type = z.infer<
+export type GlitchTransitionBridgeSchemaType = z.infer<
   typeof glitchTransitionBridgeSchemaV1
 >;
 
-export const glitchTransitionBridgeV1DurationFrames = 15;
+export const glitchTransitionBridgeDurationFrames = 15;
 
-export const defaultGlitchTransitionBridgeV1Props = {
+export const defaultGlitchTransitionBridgeProps = {
   backgroundColor: "#060810",
   streakCount: 6,
   streakBaseColor: "#eef1fc",

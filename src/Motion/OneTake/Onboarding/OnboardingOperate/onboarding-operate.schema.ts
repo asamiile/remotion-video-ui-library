@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const onboardingOperateSchemaV1 = z.object({
+export const onboardingOperateSchema = z.object({
   recordColor: zColor().default("#FF3D9E"),
   backgroundColor: zColor().default("#060810"),
   vignetteOpacity: z.number().min(0).max(0.85).default(0.45),
@@ -12,13 +12,13 @@ export const onboardingOperateSchemaV1 = z.object({
   resetStartFrame: z.number().min(0).default(65),
 });
 
-export type OnboardingOperateSchemaV1Type = z.infer<
+export type OnboardingOperateSchemaType = z.infer<
   typeof onboardingOperateSchemaV1
 >;
 
-export const onboardingOperateV1DurationFrames = 90;
+export const onboardingOperateDurationFrames = 90;
 
-export const defaultOnboardingOperateV1Props = {
+export const defaultOnboardingOperateProps = {
   recordColor: "#FF3D9E",
   backgroundColor: "#060810",
   vignetteOpacity: 0.45,

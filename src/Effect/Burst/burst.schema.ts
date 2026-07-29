@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const burstSchemaV1 = z.object({
+export const burstSchema = z.object({
   backgroundColor: zColor().default("#c81e2c"),
   inkColor: zColor().default("#0a0a0f"),
   flashColor: zColor().default("#ffffff"),
@@ -20,11 +20,11 @@ export const burstSchemaV1 = z.object({
   randomSeed: z.string().default("burst-v1"),
 });
 
-export type BurstSchemaV1Type = z.infer<typeof burstSchemaV1>;
+export type BurstSchemaType = z.infer<typeof burstSchema>;
 
-export const burstV1DurationFrames = 30;
+export const burstDurationFrames = 30;
 
-export const defaultBurstV1Props = {
+export const defaultBurstProps = {
   backgroundColor: "#c81e2c",
   inkColor: "#0a0a0f",
   flashColor: "#ffffff",

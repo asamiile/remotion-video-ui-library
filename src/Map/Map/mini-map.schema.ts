@@ -10,7 +10,7 @@ export interface MapLocationPoint {
   bearing?: number;
 }
 
-export const miniMapSchemaV1 = z.object({
+export const miniMapSchema = z.object({
   mapLocationId: z.string().default(""),
 
   width: z.number().min(100).max(1920).default(400),
@@ -33,9 +33,9 @@ export const miniMapSchemaV1 = z.object({
   boxShadow: z.string().default("0px 4px 12px rgba(0, 0, 0, 0.15)"),
 });
 
-export type MiniMapSchemaV1Type = z.infer<typeof miniMapSchemaV1>;
+export type MiniMapSchemaType = z.infer<typeof miniMapSchema>;
 
-export const defaultMiniMapV1Props = {
+export const defaultMiniMapProps = {
   mapLocationId: "",
   width: 340,
   height: 340,
