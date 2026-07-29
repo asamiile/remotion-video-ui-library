@@ -1,9 +1,9 @@
 import { Composition, Folder } from "remotion";
 import { BattleCalloutBannerTemplateV1 } from "./UI/BattleCalloutBanner/BattleCalloutBannerTemplate";
-import { battleCalloutBannerSchemaV1 } from "./UI/BattleCalloutBanner/battle-callout-banner.schema";
+import { battleCalloutBannerSchema } from "./UI/BattleCalloutBanner/battle-callout-banner.schema";
 import { battleCalloutBannerV1DurationFrames } from "./UI/BattleCalloutBanner/battle-callout-banner.schema";
 import { AsymmetricStatusPanelTemplateV1 } from "./UI/AsymmetricStatusPanel/AsymmetricStatusPanelTemplate";
-import { asymmetricStatusPanelSchemaV1 } from "./UI/AsymmetricStatusPanel/asymmetric-status-panel.schema";
+import { asymmetricStatusPanelSchema } from "./UI/AsymmetricStatusPanel/asymmetric-status-panel.schema";
 import { asymmetricStatusPanelV1DurationFrames } from "./UI/AsymmetricStatusPanel/asymmetric-status-panel.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
@@ -21,7 +21,7 @@ export function UIFolder() {
           patterns: mergedBattleCalloutBannerPatterns,
           idPrefix: "BattleCalloutBannerV1-",
           Template: BattleCalloutBannerTemplateV1,
-          schema: battleCalloutBannerSchemaV1,
+          schema: battleCalloutBannerSchema,
           durationInFrames: battleCalloutBannerV1DurationFrames,
         })}
       </Folder>
@@ -31,7 +31,7 @@ export function UIFolder() {
           patterns: mergedAsymmetricStatusPanelPatterns,
           idPrefix: "AsymmetricStatusPanelV1-",
           Template: AsymmetricStatusPanelTemplateV1,
-          schema: asymmetricStatusPanelSchemaV1,
+          schema: asymmetricStatusPanelSchema,
           durationInFrames: asymmetricStatusPanelV1DurationFrames,
         })}
       </Folder>
