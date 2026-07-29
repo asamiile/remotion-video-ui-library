@@ -42,21 +42,21 @@ import { ConfettiPopTextTemplateV1 } from "./Text/ConfettiPopText/ConfettiPopTex
 import { confettiPopTextSchemaV1 } from "./Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text.schema";
 import { confettiPopTextV1DurationFrames } from "./Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text.schema";
 import { FlickerTitleTemplateV1 } from "./Text/FlickerTitle-v1/FlickerTitleTemplate";
-import { flickerTitleSchemaV1 } from "./Text/FlickerTitle-v1/flicker-title-schema";
-import { defaultFlickerTitleV1Props, FLICKER_TITLE_V1_DURATION_FRAMES } from "./Text/FlickerTitle-v1/flicker-title-config";
+import { flickerTitleSchemaV1 } from "./Text/FlickerTitle-v1/flicker-title.schema";
+import { defaultFlickerTitleV1Props, FLICKER_TITLE_V1_DURATION_FRAMES } from "./Text/FlickerTitle-v1/flicker-title.schema";
 import { OneTakeLogoTextTemplateV1 } from "./Text/FlickerTitle-v1/OneTakeLogoTextTemplate";
 import { StackedRevealTextTemplateV1 } from "./Text/StackedRevealText/StackedRevealText-v1/StackedRevealTextTemplate";
 import { stackedRevealTextSchemaV1 } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.schema";
-import { stackedRevealTextV1DurationFrames } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-config";
+import { stackedRevealTextV1DurationFrames } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.schema";
 import { TornNoteCaptionTemplateV1 } from "./Text/TornNoteCaption/TornNoteCaption-v1/TornNoteCaptionTemplate";
 import { tornNoteCaptionSchemaV1 } from "./Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption.schema";
-import { tornNoteCaptionV1DurationFrames } from "./Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config";
+import { tornNoteCaptionV1DurationFrames } from "./Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption.schema";
 import { DistressedTitleCardTemplateV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/DistressedTitleCardTemplate";
-import { distressedTitleCardSchemaV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-schema";
-import { distressedTitleCardV1DurationFrames } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config";
+import { distressedTitleCardSchemaV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card.schema";
+import { distressedTitleCardV1DurationFrames } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card.schema";
 import { SprayPaintTextTemplateV1 } from "./Text/SprayPaintText/SprayPaintText-v1/SprayPaintTextTemplate";
-import { sprayPaintTextSchemaV1 } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-schema";
-import { sprayPaintTextV1DurationFrames } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config";
+import { sprayPaintTextSchemaV1 } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text.schema";
+import { sprayPaintTextV1DurationFrames } from "./Text/SprayPaintText/SprayPaintText-v1/spray-paint-text.schema";
 import {
   mergedLocationConfigsV1,
   mergedLedTextV1Patterns,
