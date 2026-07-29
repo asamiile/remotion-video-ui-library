@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame } from "remotion";
-import { EmblemMontageBlurSchemaV1Type } from "./emblem-montage-blur.schema";
+import { EmblemMontageBlurSchemaType } from "./emblem-montage-blur.schema";
 
 /** A simple 5-point star, as a clip-path polygon (percentages of its own box) */
 const STAR_CLIP_PATH =
   "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)";
 
 export const EmblemMontageBlurTemplateV1: React.FC<
-  EmblemMontageBlurSchemaV1Type
+  EmblemMontageBlurSchemaType
 > = ({
   emblemCount,
   colors,

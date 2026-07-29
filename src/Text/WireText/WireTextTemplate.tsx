@@ -6,7 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { WireTextSchemaV1Type } from "./wire-text.schema";
+import { WireTextSchemaType } from "./wire-text.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
@@ -30,7 +30,7 @@ function estimateDashLength(
   return Math.max(sum, 480);
 }
 
-function pickDrawEasing(mode: WireTextSchemaV1Type["drawEasing"]) {
+function pickDrawEasing(mode: WireTextSchemaType["drawEasing"]) {
   if (mode === "linear") {
     return Easing.linear;
   }
@@ -40,7 +40,7 @@ function pickDrawEasing(mode: WireTextSchemaV1Type["drawEasing"]) {
   return Easing.out(Easing.cubic);
 }
 
-export const WireTextTemplateV1: React.FC<WireTextSchemaV1Type> = (props) => {
+export const WireTextTemplateV1: React.FC<WireTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const { width: compositionWidth } = useVideoConfig();
   const filterId = useId().replace(/:/g, "");

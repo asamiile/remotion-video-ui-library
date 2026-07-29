@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const tornNoteCaptionSchemaV1 = z.object({
+export const tornNoteCaptionSchema = z.object({
   text: z.string().default("I WILL NOT GIVE IN"),
 
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
@@ -27,13 +27,13 @@ export const tornNoteCaptionSchemaV1 = z.object({
   delayFrames: z.number().min(0).default(0),
 });
 
-export type TornNoteCaptionSchemaV1Type = z.infer<
+export type TornNoteCaptionSchemaType = z.infer<
   typeof tornNoteCaptionSchemaV1
 >;
 
-export const tornNoteCaptionV1DurationFrames = 150;
+export const tornNoteCaptionDurationFrames = 150;
 
-export const defaultTornNoteCaptionV1Props = {
+export const defaultTornNoteCaptionProps = {
   text: "I WILL NOT GIVE IN",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -53,17 +53,17 @@ export const defaultTornNoteCaptionV1Props = {
   delayFrames: 0,
 };
 
-export const tornNoteCaptionV1Patterns = {
+export const tornNoteCaptionPatterns = {
   /** Dialogue / quote (English default) */
   note: {
-    ...defaultTornNoteCaptionV1Props,
+    ...defaultTornNoteCaptionProps,
     text: "I WILL NOT GIVE IN",
     rotationDeg: -4,
   },
 
   /** Dialogue / quote (Japanese sample) */
   noteJp: {
-    ...defaultTornNoteCaptionV1Props,
+    ...defaultTornNoteCaptionProps,
     text: "これは僕の選択だ（サンプル）",
     rotationDeg: 3,
   },

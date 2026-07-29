@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const dottedLineMarkerTextSchemaV1 = z.object({
+export const dottedLineMarkerTextSchema = z.object({
   fontSize: z.number().min(12).max(64).default(32),
   textColor: z.string().default("#EEF1FC"),
   backgroundColor: z.string().default("#060810"),
@@ -14,13 +14,13 @@ export const dottedLineMarkerTextSchemaV1 = z.object({
     .default([]),
 });
 
-export type DottedLineMarkerTextSchemaV1Type = z.infer<
-  typeof dottedLineMarkerTextSchemaV1
+export type DottedLineMarkerTextSchemaType = z.infer<
+  typeof dottedLineMarkerTextSchema
 >;
 
-export const dottedLineMarkerTextV1DurationFrames = 3000;
+export const dottedLineMarkerTextDurationFrames = 3000;
 
-export const defaultDottedLineMarkerTextV1Props: DottedLineMarkerTextSchemaV1Type =
+export const defaultDottedLineMarkerTextProps: DottedLineMarkerTextSchemaType =
   {
     fontSize: 24,
     textColor: "#EEF1FC",
@@ -28,9 +28,9 @@ export const defaultDottedLineMarkerTextV1Props: DottedLineMarkerTextSchemaV1Typ
     items: [],
   };
 
-export const dottedLineMarkerV1Patterns = {
+export const dottedLineMarkerPatterns = {
   default: {
-    ...defaultDottedLineMarkerTextV1Props,
+    ...defaultDottedLineMarkerTextProps,
     randomSeed: "dotted-line-marker-default",
   },
 };

@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const wireTextSchemaV1 = z.object({
+export const wireTextSchema = z.object({
   text: z.string().default("WIRE"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
@@ -37,11 +37,11 @@ export const wireTextSchemaV1 = z.object({
   backgroundColor: zColor().default("#0a1018"),
 });
 
-export type WireTextSchemaV1Type = z.infer<typeof wireTextSchemaV1>;
+export type WireTextSchemaType = z.infer<typeof wireTextSchema>;
 
-export const wireTextV1DurationFrames = 180;
+export const wireTextDurationFrames = 180;
 
-export const defaultWireTextV1Props = {
+export const defaultWireTextProps = {
   text: "TRACE",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -69,10 +69,10 @@ export const defaultWireTextV1Props = {
 
   backgroundColor: "#0a1018",
 };
-export const wireTextV1Patterns = {
+export const wireTextPatterns = {
   /** Latin script, thinner wire */
   trace: {
-    ...defaultWireTextV1Props,
+    ...defaultWireTextProps,
     text: "WIRE TRACE",
     fontSize: 48,
     drawDurationFrames: 90,
@@ -81,7 +81,7 @@ export const wireTextV1Patterns = {
 
   /** Japanese version of trace */
   traceJp: {
-    ...defaultWireTextV1Props,
+    ...defaultWireTextProps,
     text: "測定ライン",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,
@@ -94,7 +94,7 @@ export const wireTextV1Patterns = {
 
   /** Outline only (fill effectively off) */
   outlineOnly: {
-    ...defaultWireTextV1Props,
+    ...defaultWireTextProps,
     text: "OUTLINE ONLY",
     fontSize: 48,
     fillEnabled: false,
@@ -104,7 +104,7 @@ export const wireTextV1Patterns = {
 
   /** Japanese version of outlineOnly */
   outlineOnlyJp: {
-    ...defaultWireTextV1Props,
+    ...defaultWireTextProps,
     text: "輪郭のみ",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,

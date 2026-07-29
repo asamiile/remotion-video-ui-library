@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const ledTextSchemaV1 = z.object({
+export const ledTextSchema = z.object({
   text: z.string().default("サンプル LED"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
@@ -42,10 +42,10 @@ export const ledTextSchemaV1 = z.object({
   scanlinesOpacity: z.number().min(0).max(0.25).default(0.055),
 });
 
-export type LedTextSchemaV1Type = z.infer<typeof ledTextSchemaV1>;
+export type LedTextSchemaType = z.infer<typeof ledTextSchema>;
 
 
-export const defaultLedTextV1Props = {
+export const defaultLedTextProps = {
   text: "SAMPLE LED",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -84,9 +84,9 @@ export const defaultLedTextV1Props = {
 
   scanlinesOpacity: 0.06,
 };
-export const ledTextV1Patterns = {
+export const ledTextPatterns = {
   redScroll: {
-    ...defaultLedTextV1Props,
+    ...defaultLedTextProps,
     text: "SAMPLE  ///  SCROLL  ///  TEXT  ///  ",
     fontSize: 48,
     cellSize: 9,
@@ -99,7 +99,7 @@ export const ledTextV1Patterns = {
   },
 
   redScrollJp: {
-    ...defaultLedTextV1Props,
+    ...defaultLedTextProps,
     text: "サンプル  ///  スクロール  ///  テキスト  ///  ",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,

@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const neonTextSchemaV1 = z.object({
+export const neonTextSchema = z.object({
   text: z.string().default("SAMPLE"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
@@ -56,10 +56,10 @@ export const neonTextSchemaV1 = z.object({
   vignetteOpacity: z.number().min(0).max(0.85).default(0.55),
 });
 
-export type NeonTextSchemaV1Type = z.infer<typeof neonTextSchemaV1>;
+export type NeonTextSchemaType = z.infer<typeof neonTextSchema>;
 
 
-export const defaultNeonTextV1Props = {
+export const defaultNeonTextProps = {
   text: "SAMPLE",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -101,7 +101,7 @@ export const defaultNeonTextV1Props = {
 };
 
 const lchikaOrangeBase = {
-  ...defaultNeonTextV1Props,
+  ...defaultNeonTextProps,
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontSize: 48,
   coreColor: "#fff5e8",
@@ -121,9 +121,9 @@ const lchikaOrangeBase = {
   vignetteOpacity: 0.48,
 };
 
-export const neonTextV1Patterns = {
+export const neonTextPatterns = {
   pinkPulse: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "SAMPLE OPEN",
     animationMode: "pulse" as const,
     glowColor: "#ff4bd4",
@@ -132,7 +132,7 @@ export const neonTextV1Patterns = {
   },
 
   cyanFlicker: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "SAMPLE",
     coreColor: "#e8ffff",
     glowColor: "#22d3ee",
@@ -145,7 +145,7 @@ export const neonTextV1Patterns = {
   },
 
   greenBreathe: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "SAMPLE BAR",
     coreColor: "#eefff0",
     glowColor: "#4ade80",
@@ -158,7 +158,7 @@ export const neonTextV1Patterns = {
 
   /** Japanese version of pinkPulse */
   pinkPulseJp: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "サンプル オープン",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     animationMode: "pulse" as const,
@@ -170,7 +170,7 @@ export const neonTextV1Patterns = {
 
   /** Japanese version of cyanFlicker */
   cyanFlickerJp: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "クール",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     coreColor: "#e8ffff",
@@ -186,7 +186,7 @@ export const neonTextV1Patterns = {
 
   /** Japanese version of greenBreathe */
   greenBreatheJp: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "サンプル バー",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     coreColor: "#eefff0",
@@ -201,7 +201,7 @@ export const neonTextV1Patterns = {
   },
 
   jpStatic: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "NEON SAMPLE",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,
@@ -237,7 +237,7 @@ export const neonTextV1Patterns = {
    * Composition: NeonTextV1-LchikaGreen
    */
   lchikaGreen: {
-    ...defaultNeonTextV1Props,
+    ...defaultNeonTextProps,
     text: "ON",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,

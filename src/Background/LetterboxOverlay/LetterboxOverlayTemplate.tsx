@@ -1,9 +1,9 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { LetterboxOverlaySchemaV1Type } from "./letterbox-overlay.schema";
+import { LetterboxOverlaySchemaType } from "./letterbox-overlay.schema";
 
 export const LetterboxOverlayTemplateV1: React.FC<
-  LetterboxOverlaySchemaV1Type
+  LetterboxOverlaySchemaType
 > = ({ barColor, barHeightPercent, revealFrames, delayFrames }) => {
   const frame = useCurrentFrame();
   const activeFrame = frame - delayFrames;

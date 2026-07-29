@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const lightSweepTextSchemaV1 = z.object({
+export const lightSweepTextSchema = z.object({
   text: z.string().default("COMPLETE"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
@@ -46,11 +46,11 @@ export const lightSweepTextSchemaV1 = z.object({
   vignetteOpacity: z.number().min(0).max(0.9).default(0.55),
 });
 
-export type LightSweepTextSchemaV1Type = z.infer<typeof lightSweepTextSchemaV1>;
+export type LightSweepTextSchemaType = z.infer<typeof lightSweepTextSchema>;
 
-export const lightSweepTextV1DurationFrames = 120;
+export const lightSweepTextDurationFrames = 120;
 
-export const defaultLightSweepTextV1Props = {
+export const defaultLightSweepTextProps = {
   text: "COMPLETE",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -76,10 +76,10 @@ export const defaultLightSweepTextV1Props = {
   vignetteOpacity: 0.55,
 } as const;
 
-export const lightSweepTextV1Patterns = {
+export const lightSweepTextPatterns = {
   /** Processing complete - quick sweep */
   complete: {
-    ...defaultLightSweepTextV1Props,
+    ...defaultLightSweepTextProps,
     text: "COMPLETE",
     sweepStartFrame: 48,
     sweepDurationFrames: 12,
@@ -90,7 +90,7 @@ export const lightSweepTextV1Patterns = {
 
   /** Japanese - slightly longer afterglow */
   doneJp: {
-    ...defaultLightSweepTextV1Props,
+    ...defaultLightSweepTextProps,
     text: "処理完了",
     fontSize: 48,
     letterSpacing: "0.18em",
@@ -103,7 +103,7 @@ export const lightSweepTextV1Patterns = {
 
   /** Fast sweep (crisp/snappy feel) */
   rapid: {
-    ...defaultLightSweepTextV1Props,
+    ...defaultLightSweepTextProps,
     text: "OK",
     fontSize: 48,
     sweepStartFrame: 36,
@@ -116,7 +116,7 @@ export const lightSweepTextV1Patterns = {
 
   /** Short Japanese version of complete */
   completeJp: {
-    ...defaultLightSweepTextV1Props,
+    ...defaultLightSweepTextProps,
     text: "完了",
     letterSpacing: "0.2em",
     sweepStartFrame: 48,
@@ -128,7 +128,7 @@ export const lightSweepTextV1Patterns = {
 
   /** Short Japanese version of rapid */
   rapidJp: {
-    ...defaultLightSweepTextV1Props,
+    ...defaultLightSweepTextProps,
     text: "了解",
     letterSpacing: "0.22em",
     fontSize: 48,

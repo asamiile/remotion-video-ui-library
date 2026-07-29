@@ -8,7 +8,7 @@ import { z } from "zod";
  */
 export const SCAN_STYLES = ["clean", "crt"] as const;
 
-export const scanLineSchemaV1 = z.object({
+export const scanLineSchema = z.object({
   scanColor: zColor().default("#37E9FF"),
   /** Height of the scan light band (px) */
   bandHeight: z.number().min(10).default(160),
@@ -20,10 +20,10 @@ export const scanLineSchemaV1 = z.object({
   scanPeriodFrames: z.number().min(10).default(150),
 });
 
-export type ScanLineSchemaV1Type = z.infer<typeof scanLineSchemaV1>;
+export type ScanLineSchemaType = z.infer<typeof scanLineSchema>;
 
 
-export const defaultScanLineV1Props = {
+export const defaultScanLineProps = {
   scanColor: "#37E9FF",
   bandHeight: 160,
 
@@ -31,17 +31,17 @@ export const defaultScanLineV1Props = {
 
   scanPeriodFrames: 150,
 };
-export const scanLineV1Patterns = {
+export const scanLinePatterns = {
   // A plain scan line: just a single-color glow band sweeping across.
   clean: {
-    ...defaultScanLineV1Props,
+    ...defaultScanLineProps,
     scanStyle: "clean" as const,
   },
 
   // CRT-TV-style scan: raster lines across the whole screen plus an electron-beam band.
   // Color matches OneTake's body text color (--color-onetake-text).
   crt: {
-    ...defaultScanLineV1Props,
+    ...defaultScanLineProps,
     scanStyle: "crt" as const,
     scanColor: "#EEF1FC",
     bandHeight: 60,

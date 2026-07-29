@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const randomLinesSchemaV1 = z.object({
+export const randomLinesSchema = z.object({
   lineCount: z.number().min(1).max(10).default(3),
   lineHeight: z.number().min(1).max(4).default(1),
   spawnIntervalFrames: z.number().min(10).default(45),
@@ -16,11 +16,11 @@ export const randomLinesSchemaV1 = z.object({
   randomSeed: z.string().default("random-lines-default"),
 });
 
-export type RandomLinesSchemaV1Type = z.infer<typeof randomLinesSchemaV1>;
+export type RandomLinesSchemaType = z.infer<typeof randomLinesSchema>;
 
-export const randomLinesV1DurationFrames = 3000;
+export const randomLinesDurationFrames = 3000;
 
-export const defaultRandomLinesV1Props = {
+export const defaultRandomLinesProps = {
   lineCount: 3,
   lineHeight: 1,
   spawnIntervalFrames: 45,
@@ -36,9 +36,9 @@ export const defaultRandomLinesV1Props = {
   randomSeed: "random-lines-default",
 } as const;
 
-export const randomLinesV1Patterns = {
+export const randomLinesPatterns = {
   subtle: {
-    ...defaultRandomLinesV1Props,
+    ...defaultRandomLinesProps,
     lineCount: 2,
     displayDurationFrames: 120,
     fadeOutDuration: 30,
@@ -49,7 +49,7 @@ export const randomLinesV1Patterns = {
     randomSeed: "random-lines-subtle",
   },
   prominent: {
-    ...defaultRandomLinesV1Props,
+    ...defaultRandomLinesProps,
     lineCount: 5,
     displayDurationFrames: 60,
     fadeOutDuration: 15,

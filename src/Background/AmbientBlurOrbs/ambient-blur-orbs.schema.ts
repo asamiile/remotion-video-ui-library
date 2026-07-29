@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const ambientBlurOrbsSchemaV1 = z.object({
+export const ambientBlurOrbsSchema = z.object({
   topLeftColor: zColor().default("#37E9FF"),
   bottomRightColor: zColor().default("#FF3D9E"),
   orbOpacity: z.number().min(0).max(1).default(0.24),
@@ -13,13 +13,13 @@ export const ambientBlurOrbsSchemaV1 = z.object({
   driftPeriodFrames: z.number().min(10).default(420),
 });
 
-export type AmbientBlurOrbsSchemaV1Type = z.infer<
+export type AmbientBlurOrbsSchemaType = z.infer<
   typeof ambientBlurOrbsSchemaV1
 >;
 
-export const ambientBlurOrbsV1DurationFrames = 420;
+export const ambientBlurOrbsDurationFrames = 420;
 
-export const defaultAmbientBlurOrbsV1Props = {
+export const defaultAmbientBlurOrbsProps = {
   topLeftColor: "#37E9FF",
   bottomRightColor: "#FF3D9E",
   orbOpacity: 0.24,

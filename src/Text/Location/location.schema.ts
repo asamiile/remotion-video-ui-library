@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const locationSchemaV1 = z.object({
+export const locationSchema = z.object({
   locationName: z.string().default("Tokyo"),
   fontSize: z.number().min(10).max(200).default(60),
   textColor: zColor().default("rgba(255, 255, 255, 1)"),
@@ -27,12 +27,12 @@ export const locationSchemaV1 = z.object({
   circleSize: z.number().default(16), // circle size (px)
 });
 
-export type LocationSchemaV1Type = z.infer<typeof locationSchemaV1>;
+export type LocationSchemaType = z.infer<typeof locationSchema>;
 
 import { msToFrame } from "../../helpers/ms-to-frame";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
 
-export const defaultLocationV1Props = {
+export const defaultLocationProps = {
   fontSize: 36,
   textColor: "rgb(195, 192, 187)",
   backgroundColor: "rgb(195, 192, 187)",

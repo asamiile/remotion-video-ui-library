@@ -4,7 +4,7 @@ import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
 export const STACKED_REVEAL_ORIENTATIONS = ["vertical", "horizontal"] as const;
 
-export const stackedRevealTextSchemaV1 = z.object({
+export const stackedRevealTextSchema = z.object({
   /** One entry per line. Lines already shown stay on screen while the next line stacks on top */
   lines: z.array(z.string()).default(["MEASURING", "THE GAP"]),
 
@@ -36,13 +36,13 @@ export const stackedRevealTextSchemaV1 = z.object({
   delayFrames: z.number().min(0).default(0),
 });
 
-export type StackedRevealTextSchemaV1Type = z.infer<
+export type StackedRevealTextSchemaType = z.infer<
   typeof stackedRevealTextSchemaV1
 >;
 
-export const stackedRevealTextV1DurationFrames = 210;
+export const stackedRevealTextDurationFrames = 210;
 
-export const defaultStackedRevealTextV1Props = {
+export const defaultStackedRevealTextProps = {
   lines: ["MEASURING", "THE GAP", "BETWEEN IDEA AND SHIP"],
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -66,17 +66,17 @@ export const defaultStackedRevealTextV1Props = {
   delayFrames: 0,
 };
 
-export const stackedRevealTextV1Patterns = {
+export const stackedRevealTextPatterns = {
   /** Filled text (normal), horizontal, short fade close to a hard cut (English default) */
   stacked: {
-    ...defaultStackedRevealTextV1Props,
+    ...defaultStackedRevealTextProps,
     lines: ["MEASURING", "THE GAP", "BETWEEN IDEA AND SHIP"],
     orientation: "horizontal" as const,
   },
 
   /** Vertical writing mode, stacked reveal (Japanese sample). Newer lines stack toward the left */
   stackedJp: {
-    ...defaultStackedRevealTextV1Props,
+    ...defaultStackedRevealTextProps,
     lines: ["サンプルの", "見出し行が", "積み上がる例"],
     orientation: "vertical" as const,
     letterSpacing: "0.12em",
@@ -84,7 +84,7 @@ export const stackedRevealTextV1Patterns = {
 
   /** Climax effect (Japanese sample): wraps the text in a glow (halo) */
   climaxHaloJp: {
-    ...defaultStackedRevealTextV1Props,
+    ...defaultStackedRevealTextProps,
     lines: ["ここが山場", "という例（サンプル）"],
     orientation: "vertical" as const,
     letterSpacing: "0.12em",

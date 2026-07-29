@@ -3,7 +3,7 @@ import { z } from "zod";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const typewriterTextSchemaV1 = z.object({
+export const typewriterTextSchema = z.object({
   /** Assumes a single line (newlines are treated as just another character) */
   text: z.string().default('const ready = true;'),
 
@@ -44,11 +44,11 @@ export const typewriterTextSchemaV1 = z.object({
   backgroundColor: zColor().default("#0d1117"),
 });
 
-export type TypewriterTextSchemaV1Type = z.infer<typeof typewriterTextSchemaV1>;
+export type TypewriterTextSchemaType = z.infer<typeof typewriterTextSchema>;
 
-export const typewriterTextV1DurationFrames = 200;
+export const typewriterTextDurationFrames = 200;
 
-export const defaultTypewriterTextV1Props = {
+export const defaultTypewriterTextProps = {
   text: 'const ready = true;',
   fontFamily: JETBRAINS_MONO_FONT_FAMILY,
   fontWeight: "400" as const,
@@ -78,17 +78,17 @@ export const defaultTypewriterTextV1Props = {
   backgroundColor: "#0d1117",
 };
 
-export const typewriterTextV1Patterns = {
+export const typewriterTextPatterns = {
   /** A single TypeScript-style line */
   codeLine: {
-    ...defaultTypewriterTextV1Props,
+    ...defaultTypewriterTextProps,
     text: 'const ready = true;',
     typingDurationFrames: 72,
   },
 
   /** A shell command */
   npmScript: {
-    ...defaultTypewriterTextV1Props,
+    ...defaultTypewriterTextProps,
     text: "npm run build && echo 'done'",
     fontSize: 48,
     typingDurationFrames: 96,
@@ -96,7 +96,7 @@ export const typewriterTextV1Patterns = {
 
   /** A Japanese comment line (swaps the monospace font for LINE Seed) */
   jpComment: {
-    ...defaultTypewriterTextV1Props,
+    ...defaultTypewriterTextProps,
     text: "// 処理が完了しました",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontWeight: "700" as const,

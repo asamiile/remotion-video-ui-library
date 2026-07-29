@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { NeonTextSchemaV1Type } from "./neon-text.schema";
+import { NeonTextSchemaType } from "./neon-text.schema";
 import "../../helpers/line-seed-jp";
 import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 
@@ -26,7 +26,7 @@ function buildNeonTextShadow(
   ].join(", ");
 }
 
-export const NeonTextTemplateV1: React.FC<NeonTextSchemaV1Type> = (props) => {
+export const NeonTextTemplateV1: React.FC<NeonTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const {
     text,

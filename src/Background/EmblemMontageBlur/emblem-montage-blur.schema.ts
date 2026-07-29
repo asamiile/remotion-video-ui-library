@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const emblemMontageBlurSchemaV1 = z.object({
+export const emblemMontageBlurSchema = z.object({
   emblemCount: z.number().min(1).max(20).default(6),
   colors: z
     .array(zColor())
@@ -16,12 +16,12 @@ export const emblemMontageBlurSchemaV1 = z.object({
   randomSeed: z.string().default("emblem-montage-v1"),
 });
 
-export type EmblemMontageBlurSchemaV1Type = z.infer<
+export type EmblemMontageBlurSchemaType = z.infer<
   typeof emblemMontageBlurSchemaV1
 >;
 
 
-export const defaultEmblemMontageBlurV1Props = {
+export const defaultEmblemMontageBlurProps = {
   emblemCount: 6,
   colors: ["#eef1fc", "#7c86a8", "#37e9ff"],
 
@@ -33,16 +33,16 @@ export const defaultEmblemMontageBlurV1Props = {
   fadeInFrames: 20,
   randomSeed: "emblem-montage-v1",
 };
-export const emblemMontageBlurV1Patterns = {
+export const emblemMontageBlurPatterns = {
   /** Cool neutral tones (English default) */
   cool: {
-    ...defaultEmblemMontageBlurV1Props,
+    ...defaultEmblemMontageBlurProps,
     colors: ["#eef1fc", "#7c86a8", "#37e9ff"],
   },
 
   /** OneTake brand colors */
   oneTakeBrand: {
-    ...defaultEmblemMontageBlurV1Props,
+    ...defaultEmblemMontageBlurProps,
     colors: ["#37e9ff", "#ff3d9e", "#9c7bff"],
   },
 };

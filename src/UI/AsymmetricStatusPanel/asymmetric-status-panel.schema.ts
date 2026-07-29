@@ -9,7 +9,7 @@ const statSchema = z.object({
   value: z.number().min(0).max(100),
 });
 
-export const asymmetricStatusPanelSchemaV1 = z.object({
+export const asymmetricStatusPanelSchema = z.object({
   characterName: z.string().default("PROTAGONIST"),
   subtitleText: z.string().default(""),
   level: z.number().min(0).default(38),
@@ -39,13 +39,13 @@ export const asymmetricStatusPanelSchemaV1 = z.object({
   delayFrames: z.number().min(0).default(0),
 });
 
-export type AsymmetricStatusPanelSchemaV1Type = z.infer<
+export type AsymmetricStatusPanelSchemaType = z.infer<
   typeof asymmetricStatusPanelSchemaV1
 >;
 
-export const asymmetricStatusPanelV1DurationFrames = 150;
+export const asymmetricStatusPanelDurationFrames = 150;
 
-export const defaultAsymmetricStatusPanelV1Props = {
+export const defaultAsymmetricStatusPanelProps = {
   characterName: "PROTAGONIST",
   subtitleText: "",
   level: 38,
@@ -74,16 +74,16 @@ export const defaultAsymmetricStatusPanelV1Props = {
   delayFrames: 0,
 } as const;
 
-export const asymmetricStatusPanelV1Patterns = {
+export const asymmetricStatusPanelPatterns = {
   /** Red/black/white, matching the source's panel language (English default) */
   redBlack: {
-    ...defaultAsymmetricStatusPanelV1Props,
+    ...defaultAsymmetricStatusPanelProps,
     characterName: "PROTAGONIST",
   },
 
   /** Same layout, Japanese sample name */
   redBlackJp: {
-    ...defaultAsymmetricStatusPanelV1Props,
+    ...defaultAsymmetricStatusPanelProps,
     characterName: "主人公",
     stats: [
       { label: "力", value: 40 },
@@ -96,7 +96,7 @@ export const asymmetricStatusPanelV1Patterns = {
 
   /** OneTake brand colors instead of the source's red accent */
   oneTakeBrand: {
-    ...defaultAsymmetricStatusPanelV1Props,
+    ...defaultAsymmetricStatusPanelProps,
     panelColor: "#242a42",
     accentColor: "#37e9ff",
     skillColors: ["#37e9ff", "#ff3d9e", "#9c7bff"],

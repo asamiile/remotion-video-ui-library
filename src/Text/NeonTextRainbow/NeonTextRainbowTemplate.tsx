@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { NeonTextRainbowSchemaV1Type } from "./neon-text-rainbow.schema";
+import { NeonTextRainbowSchemaType } from "./neon-text-rainbow.schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
@@ -64,7 +64,7 @@ const FULL_SPECTRUM_STOPS = [
   "#ff0080",
 ] as const;
 
-export const NeonTextRainbowTemplateV1: React.FC<NeonTextRainbowSchemaV1Type> = (
+export const NeonTextRainbowTemplateV1: React.FC<NeonTextRainbowSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

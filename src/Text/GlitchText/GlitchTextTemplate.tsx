@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { GlitchTextSchemaV1Type } from "./glitch-text.schema";
+import { GlitchTextSchemaType } from "./glitch-text.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
@@ -28,7 +28,7 @@ function garbleChars(text: string, seed: string, rate: number): string {
     .join("");
 }
 
-export const GlitchTextTemplateV1: React.FC<GlitchTextSchemaV1Type> = ({
+export const GlitchTextTemplateV1: React.FC<GlitchTextSchemaType> = ({
   text,
   fontFamily,
   fontWeight,

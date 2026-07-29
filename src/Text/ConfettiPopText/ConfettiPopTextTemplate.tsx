@@ -8,7 +8,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { ConfettiPopTextSchemaV1Type } from "./confetti-pop-text.schema";
+import { ConfettiPopTextSchemaType } from "./confetti-pop-text.schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
@@ -50,7 +50,7 @@ function buildParticles(
   }));
 }
 
-export const ConfettiPopTextTemplateV1: React.FC<ConfettiPopTextSchemaV1Type> = (
+export const ConfettiPopTextTemplateV1: React.FC<ConfettiPopTextSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

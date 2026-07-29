@@ -8,10 +8,10 @@ import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker";
 import type {
   CodeStreamLineV1Type,
-  CodeStreamSchemaV1Type,
+  CodeStreamSchemaType,
 } from "./code-stream.schema";
 
-export type CodeStreamTemplateV1Props = CodeStreamSchemaV1Type;
+export type CodeStreamTemplateV1Props = CodeStreamSchemaType;
 
 function hashString(input: string): number {
   let hash = 2166136261;

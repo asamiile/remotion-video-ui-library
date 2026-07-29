@@ -8,7 +8,7 @@ export const DISTRESSED_TITLE_CARD_VARIANTS = [
   "agedPaperChapter",
 ] as const;
 
-export const distressedTitleCardSchemaV1 = z.object({
+export const distressedTitleCardSchema = z.object({
   /** darkTitle: black bg, white distressed opening title. agedPaperChapter: cream paper bg, chapter number + title */
   variant: z.enum(DISTRESSED_TITLE_CARD_VARIANTS).default("darkTitle"),
 
@@ -37,13 +37,13 @@ export const distressedTitleCardSchemaV1 = z.object({
   delayFrames: z.number().min(0).default(0),
 });
 
-export type DistressedTitleCardSchemaV1Type = z.infer<
+export type DistressedTitleCardSchemaType = z.infer<
   typeof distressedTitleCardSchemaV1
 >;
 
-export const distressedTitleCardV1DurationFrames = 180;
+export const distressedTitleCardDurationFrames = 180;
 
-export const defaultDistressedTitleCardV1Props = {
+export const defaultDistressedTitleCardProps = {
   variant: "darkTitle" as const,
   titleText: "25TH ANNIVERSARY",
   numberText: "01",
@@ -67,17 +67,17 @@ export const defaultDistressedTitleCardV1Props = {
   fadeInFrames: 12,
   delayFrames: 0,
 };
-export const distressedTitleCardV1Patterns = {
+export const distressedTitleCardPatterns = {
   /** Opening title: black bg, distressed white title (English default) */
   darkTitle: {
-    ...defaultDistressedTitleCardV1Props,
+    ...defaultDistressedTitleCardProps,
     variant: "darkTitle" as const,
     titleText: "25TH ANNIVERSARY",
   },
 
   /** Opening title (Japanese sample) */
   darkTitleJp: {
-    ...defaultDistressedTitleCardV1Props,
+    ...defaultDistressedTitleCardProps,
     variant: "darkTitle" as const,
     titleText: "25周年記念",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
@@ -85,7 +85,7 @@ export const distressedTitleCardV1Patterns = {
 
   /** Chapter card: aged paper bg + gradient chapter number (English sample) */
   agedPaperChapter: {
-    ...defaultDistressedTitleCardV1Props,
+    ...defaultDistressedTitleCardProps,
     variant: "agedPaperChapter" as const,
     titleText: "THE BEGINNING",
     numberText: "01",
@@ -93,7 +93,7 @@ export const distressedTitleCardV1Patterns = {
 
   /** Chapter card (Japanese sample) */
   agedPaperChapterJp: {
-    ...defaultDistressedTitleCardV1Props,
+    ...defaultDistressedTitleCardProps,
     variant: "agedPaperChapter" as const,
     titleText: "はじまりの章",
     numberText: "01",

@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
-import { SlideInCaptionSchemaV1Type } from "./slide-in-caption.schema";
+import { SlideInCaptionSchemaType } from "./slide-in-caption.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const SlideInCaptionTemplateV1: React.FC<SlideInCaptionSchemaV1Type> = ({
+export const SlideInCaptionTemplateV1: React.FC<SlideInCaptionSchemaType> = ({
   text,
   fontFamily,
   fontWeight,

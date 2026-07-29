@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import { LocationSchemaV1Type } from "./location.schema";
+import { LocationSchemaType } from "./location.schema";
 import { PlaceholderImageV1 } from "../../../Placeholder/PlaceholderImage/PlaceholderImage";
 
 const createAnimationProgress = (
@@ -21,7 +21,7 @@ const createAnimationProgress = (
   );
 };
 
-export const LocationTemplateV1: React.FC<LocationSchemaV1Type> = ({
+export const LocationTemplateV1: React.FC<LocationSchemaType> = ({
   locationName,
   fontSize,
   textColor,

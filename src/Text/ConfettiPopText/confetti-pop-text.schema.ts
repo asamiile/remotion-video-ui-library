@@ -3,7 +3,7 @@ import { z } from "zod";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const confettiPopTextSchemaV1 = z.object({
+export const confettiPopTextSchema = z.object({
   text: z.string().default("Congratulations!"),
 
   fontFamily: z.string().default(JETBRAINS_MONO_FONT_FAMILY),
@@ -44,13 +44,13 @@ export const confettiPopTextSchemaV1 = z.object({
   backgroundColor: zColor().default("#1a1428"),
 });
 
-export type ConfettiPopTextSchemaV1Type = z.infer<typeof confettiPopTextSchemaV1>;
+export type ConfettiPopTextSchemaType = z.infer<typeof confettiPopTextSchema>;
 
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const confettiPopTextV1DurationFrames = 180;
+export const confettiPopTextDurationFrames = 180;
 
-export const defaultConfettiPopTextV1Props = {
+export const defaultConfettiPopTextProps = {
   text: "Congratulations!",
   fontFamily: JETBRAINS_MONO_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -76,13 +76,13 @@ export const defaultConfettiPopTextV1Props = {
 } as const;
 
 const confettiPopSharedV1 = {
-  ...defaultConfettiPopTextV1Props,
+  ...defaultConfettiPopTextProps,
   fontSize: 48,
   burstFrame: 22,
   particleCount: 96,
 };
 
-export const confettiPopTextV1Patterns = {
+export const confettiPopTextPatterns = {
   /** Latin script - JetBrains Mono */
   richPop: {
     ...confettiPopSharedV1,
