@@ -14,11 +14,11 @@ export const glitchTransitionBridgeSchema = z.object({
   lineArtEnabled: z.boolean().default(true),
   lineArtColor: zColor().default("#7c86a8"),
 
-  randomSeed: z.string().default("glitch-bridge-v1"),
+  randomSeed: z.string().default("glitch-bridge"),
 });
 
 export type GlitchTransitionBridgeSchemaType = z.infer<
-  typeof glitchTransitionBridgeSchemaV1
+  typeof glitchTransitionBridgeSchema
 >;
 
 export const glitchTransitionBridgeDurationFrames = 15;
@@ -32,6 +32,6 @@ export const defaultGlitchTransitionBridgeProps = {
   streakChannelShiftPx: 4,
   lineArtEnabled: true,
   lineArtColor: "#7c86a8",
-  randomSeed: "glitch-bridge-v1",
+  randomSeed: "glitch-bridge",
 } as const;
 

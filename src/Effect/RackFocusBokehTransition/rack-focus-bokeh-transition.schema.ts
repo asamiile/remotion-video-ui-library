@@ -16,11 +16,11 @@ export const rackFocusBokehTransitionSchema = z.object({
   rampFrames: z.number().min(1).default(10),
   holdFrames: z.number().min(0).default(6),
 
-  randomSeed: z.string().default("rack-focus-bokeh-v1"),
+  randomSeed: z.string().default("rack-focus-bokeh"),
 });
 
 export type RackFocusBokehTransitionSchemaType = z.infer<
-  typeof rackFocusBokehTransitionSchemaV1
+  typeof rackFocusBokehTransitionSchema
 >;
 
 export const rackFocusBokehTransitionDurationFrames = 52;
@@ -34,6 +34,6 @@ export const defaultRackFocusBokehTransitionProps = {
   blurMaxPx: 24,
   rampFrames: 10,
   holdFrames: 6,
-  randomSeed: "rack-focus-bokeh-v1",
+  randomSeed: "rack-focus-bokeh",
 } as const;
 

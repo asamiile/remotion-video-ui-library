@@ -38,7 +38,7 @@ export const distressedTitleCardSchema = z.object({
 });
 
 export type DistressedTitleCardSchemaType = z.infer<
-  typeof distressedTitleCardSchemaV1
+  typeof distressedTitleCardSchema
 >;
 
 export const distressedTitleCardDurationFrames = 180;

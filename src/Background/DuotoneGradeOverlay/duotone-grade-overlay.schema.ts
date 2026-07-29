@@ -21,7 +21,7 @@ export const duotoneGradeOverlaySchema = z.object({
 });
 
 export type DuotoneGradeOverlaySchemaType = z.infer<
-  typeof duotoneGradeOverlaySchemaV1
+  typeof duotoneGradeOverlaySchema
 >;
 
 

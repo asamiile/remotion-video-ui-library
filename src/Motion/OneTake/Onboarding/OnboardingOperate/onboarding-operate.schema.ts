@@ -13,7 +13,7 @@ export const onboardingOperateSchema = z.object({
 });
 
 export type OnboardingOperateSchemaType = z.infer<
-  typeof onboardingOperateSchemaV1
+  typeof onboardingOperateSchema
 >;
 
 export const onboardingOperateDurationFrames = 90;

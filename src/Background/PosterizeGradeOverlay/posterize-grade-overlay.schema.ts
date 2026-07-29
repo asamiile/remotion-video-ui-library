@@ -16,7 +16,7 @@ export const posterizeGradeOverlaySchema = z.object({
 });
 
 export type PosterizeGradeOverlaySchemaType = z.infer<
-  typeof posterizeGradeOverlaySchemaV1
+  typeof posterizeGradeOverlaySchema
 >;
 
 
