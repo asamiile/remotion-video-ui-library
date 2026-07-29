@@ -68,7 +68,7 @@ export const defaultGlitchTextRandomProps = {
   glitchDelayFrames: 90,
   displayDurationFrames: 300,
   fadeOutDuration: 30,
-  randomSeed: "glitch-random-v1",
+  randomSeed: "glitch-random",
 } as const;
 
 export const glitchTextRandomPatterns = {
