@@ -21,10 +21,10 @@ import {
   shallowMergePatternRecord,
   buildLocationConfigsFromCompositionKeys,
   buildMapLocationPointsFromCompositionKeys,
-  getLocationV1CompositionKeys,
+  getLocationCompositionKeys,
 } from "./merge-composition-local";
 const local = getEffectiveCompositionText();
-const locationV1CompositionKeys = getLocationV1CompositionKeys();
+const locationCompositionKeys = getLocationCompositionKeys();
 
 export const mergedLedTextPatterns = shallowMergePatternRecord(
   ledTextPatterns,
@@ -113,12 +113,12 @@ export const mergedSprayPaintTextPatterns = shallowMergePatternRecord(
 
 export const mergedOneTakeLogoTextProps = {
   ...oneTakeLogoTextVariantProps,
-  ...(local.oneTakeLogoTextV1 || {}),
+  ...(local.oneTakeLogoText || {}),
 };
 
 export const mergedLocationConfigs =
-  buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);
+  buildLocationConfigsFromCompositionKeys(local, locationCompositionKeys);
 
 export const mergedMapLocationPoints =
-  buildMapLocationPointsFromCompositionKeys(local, locationV1CompositionKeys);
+  buildMapLocationPointsFromCompositionKeys(local, locationCompositionKeys);
 

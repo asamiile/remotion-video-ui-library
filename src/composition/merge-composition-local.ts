@@ -3,11 +3,11 @@ import type { MapLocationPoint } from "../Map/Map/mini-map.schema";
 import compositionTextExample from "../../config/local/composition-text.example.json";
 import {
   __COMPOSITION_TEXT_INLINED__,
-  __LOCATION_V1_KEYS_INLINED__,
+  __LOCATION_KEYS_INLINED__,
 } from "./inlined-composition-text";
 
 const ENV_KEY = "REMOTION_COMPOSITION_TEXT_LOCAL_JSON" as const;
-const LOCATION_V1_KEYS_ENV = "REMOTION_LOCATION_V1_COMPOSITION_KEYS_JSON" as const;
+const LOCATION_KEYS_ENV = "REMOTION_LOCATION_COMPOSITION_KEYS_JSON" as const;
 
 function isNonEmptyCompositionText(c: CompositionTextLocal): boolean {
   return Object.keys(c).some((key) => {
@@ -76,19 +76,19 @@ export function shallowMergePatternRecord<
 }
 
 /** location keys, in priority order: inline array -> DefinePlugin -> effective */
-export function getLocationV1CompositionKeys(): string[] {
+export function getLocationCompositionKeys(): string[] {
   if (
-    Array.isArray(__LOCATION_V1_KEYS_INLINED__) &&
-    __LOCATION_V1_KEYS_INLINED__.length > 0
+    Array.isArray(__LOCATION_KEYS_INLINED__) &&
+    __LOCATION_KEYS_INLINED__.length > 0
   ) {
-    return __LOCATION_V1_KEYS_INLINED__;
+    return __LOCATION_KEYS_INLINED__;
   }
   try {
     const raw =
       typeof process !== "undefined" &&
       process.env &&
-      typeof process.env[LOCATION_V1_KEYS_ENV] === "string"
-        ? process.env[LOCATION_V1_KEYS_ENV]
+      typeof process.env[LOCATION_KEYS_ENV] === "string"
+        ? process.env[LOCATION_KEYS_ENV]
         : undefined;
     if (raw) {
       return JSON.parse(raw) as string[];

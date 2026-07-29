@@ -3,11 +3,11 @@
 # Remotion composition rendering script
 #
 # Source of truth for enumeration: pattern-based compositions come from each
-# src/**/-*-config.ts (scripts list-*.cjs reads the keys via TypeScript AST).
+# src/**/*.schema.ts (scripts list-*.cjs reads the keys via TypeScript AST).
 # Locations come from the location key in config/local/composition-text.local.json
 # (falls back to example if absent). The *Patterns in composition-text.local.json only
 # override defaultProps at runtime — adding a new composition ID still requires
-# registering it in *-config.ts and Root.tsx (JSON alone won't add one).
+# registering it in .schema.ts and Root.tsx (JSON alone won't add one).
 #
 # Usage: chmod +x render.sh, then see ./render.sh help
 # (the subcommand list there is authoritative — not duplicated here).
@@ -63,7 +63,7 @@ while IFS= read -r line || [ -n "$line" ]; do
   if [ -n "$line" ]; then
     LOCATIONS+=("$line")
   fi
-done < <(node "$SCRIPT_DIR/scripts/list-location-v1-composition-ids.cjs")
+done < <(node "$SCRIPT_DIR/scripts/list-location-composition-ids.cjs")
 
 AUDIOSPECTRUM_AUDIO_DIR="$SCRIPT_DIR/public/audio/AudioSpectrum"
 
@@ -335,7 +335,7 @@ render_location() {
   echo -e "${GREEN}✅ All Location compositions rendered successfully!${NC}"
 }
 
-# Render MiniMap compositions. Target locations come from scripts/list-minimap-v1-composition-ids.cjs
+# Render MiniMap compositions. Target locations come from scripts/list-minimap-composition-ids.cjs
 # (only locations with both lat/lng set, not all of location — locations missing
 # either aren't registered as compositions in Root.tsx at all, so reusing $LOCATIONS
 # as-is would try to render compositions that don't exist and fail)
@@ -362,7 +362,7 @@ render_minimap() {
     fi
 
     echo -e "${GREEN}✓ MiniMap-${location} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-minimap-v1-composition-ids.cjs")
+  done < <(node "$SCRIPT_DIR/scripts/list-minimap-composition-ids.cjs")
 
   if [ "$has_any" -eq 0 ]; then
     echo -e "${YELLOW}⚠️  No locations have latitude/longitude set in mapLocationPoints — nothing to render${NC}"
@@ -432,7 +432,7 @@ render_audiospectrum_files() {
 
 # LED / Neon / Glitch / Wire and other text-effect families
 render_text_effects() {
-  render_from_list_script "✨ Rendering text-effect compositions (Led / Neon / Glitch / …)" "scripts/list-text-v1-composition-ids.cjs"
+  render_from_list_script "✨ Rendering text-effect compositions (Led / Neon / Glitch / …)" "scripts/list-text-composition-ids.cjs"
 }
 
 # Japanese sample set only (TEXT_EFFECTS_JP_SAMPLE_IDS)
@@ -484,14 +484,14 @@ check_output_dirs() {
   echo -e "${YELLOW}🔍 Checking resolve_output_subdir() coverage...${NC}"
   echo ""
 
-  # script:prefix pairs. list-location-v1 and list-minimap-v1 print bare location
+  # script:prefix pairs. list-location and list-minimap print bare location
   # IDs (not full composition IDs) — render_location/render_minimap prefix them with
   # "Location-"/"MiniMap-" themselves, so this check must do the same.
   local list_scripts=(
-    "list-text-v1-composition-ids.cjs:"
+    "list-text-composition-ids.cjs:"
     "list-loading-icon-composition-ids.cjs:"
-    "list-location-v1-composition-ids.cjs:Location-"
-    "list-minimap-v1-composition-ids.cjs:MiniMap-"
+    "list-location-composition-ids.cjs:Location-"
+    "list-minimap-composition-ids.cjs:MiniMap-"
     "list-audiospectrum-pattern-composition-ids.cjs:"
     "list-audiospectrum-file-composition-ids.cjs:"
     "list-background-composition-ids.cjs:"

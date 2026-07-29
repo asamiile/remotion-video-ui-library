@@ -129,7 +129,7 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
     if (hasLocationAndMap) {
       helperImports.push("buildLocationConfigsFromCompositionKeys");
       helperImports.push("buildMapLocationPointsFromCompositionKeys");
-      helperImports.push("getLocationV1CompositionKeys");
+      helperImports.push("getLocationCompositionKeys");
     }
 
     imports.push(
@@ -148,7 +148,7 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
     if (!localSetup.length) {
       localSetup.push("const local = getEffectiveCompositionText();");
     }
-    localSetup.push("const locationV1CompositionKeys = getLocationV1CompositionKeys();");
+    localSetup.push("const locationCompositionKeys = getLocationCompositionKeys();");
   }
 
   // Generate exports
@@ -172,16 +172,16 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
     } else if (family.type === "special" && family.export === "mergedOneTakeLogoTextProps") {
       exportLines.push("export const mergedOneTakeLogoTextProps = {");
       exportLines.push("  ...oneTakeLogoTextVariantProps,");
-      exportLines.push("  ...(local.oneTakeLogoTextV1 || {}),");
+      exportLines.push("  ...(local.oneTakeLogoText || {}),");
       exportLines.push("};");
       exportLines.push("");
     } else if (family.type === "locationAndMap") {
       // Location and Map exports
       exportLines.push("export const mergedLocationConfigs =");
-      exportLines.push("  buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);");
+      exportLines.push("  buildLocationConfigsFromCompositionKeys(local, locationCompositionKeys);");
       exportLines.push("");
       exportLines.push("export const mergedMapLocationPoints =");
-      exportLines.push("  buildMapLocationPointsFromCompositionKeys(local, locationV1CompositionKeys);");
+      exportLines.push("  buildMapLocationPointsFromCompositionKeys(local, locationCompositionKeys);");
       exportLines.push("");
     }
   }

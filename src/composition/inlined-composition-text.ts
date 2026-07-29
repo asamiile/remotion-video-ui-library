@@ -7,4 +7,4 @@ import type { CompositionTextLocal } from "./composition-text-local";
 export const __COMPOSITION_TEXT_INLINED__: CompositionTextLocal =
   {} as CompositionTextLocal;
 
-export const __LOCATION_V1_KEYS_INLINED__: string[] = [];
+export const __LOCATION_KEYS_INLINED__: string[] = [];
