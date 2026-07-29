@@ -1,6 +1,6 @@
 import { Composition, Folder } from "remotion";
 import { CodeStreamTemplateV1 } from "./Text/CodeStream/CodeStreamTemplate";
-import { codeStreamSchemaV1 } from "./Text/CodeStream/CodeStream-v1/code-stream-schema";
+import { codeStreamSchemaV1 } from "./Text/CodeStream/CodeStream-v1/code-stream.schema";
 import {
   mergedCodeStreamV1Patterns,
   defaultCodeStreamHorizontalV1Props,
@@ -32,10 +32,9 @@ import { LightSweepTextTemplateV1 } from "./Text/LightSweepText/LightSweepText-v
 import { lightSweepTextSchemaV1 } from "./Text/LightSweepText/LightSweepText-v1/light-sweep-text-schema";
 import { lightSweepTextV1DurationFrames } from "./Text/LightSweepText/LightSweepText-v1/light-sweep-text-config";
 import { DottedLineMarkerTextV1 } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/DottedLineMarkerText";
-import { dottedLineMarkerTextSchemaV1, dottedLineMarkerTextV1DurationFrames } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text.composition";
+import { dottedLineMarkerTextSchemaV1, dottedLineMarkerTextV1DurationFrames } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text.schema";
 import { TypewriterTextTemplateV1 } from "./Text/TypewriterText/TypewriterText-v1/TypewriterTextTemplate";
-import { typewriterTextSchemaV1 } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-schema";
-import { typewriterTextV1DurationFrames } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-config";
+import { typewriterTextSchemaV1, typewriterTextV1DurationFrames } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text.schema";
 import { ShakeTextTemplateV1 } from "./Text/ShakeText/ShakeText-v1/ShakeTextTemplate";
 import { shakeTextSchemaV1 } from "./Text/ShakeText/ShakeText-v1/shake-text-schema";
 import { shakeTextV1DurationFrames } from "./Text/ShakeText/ShakeText-v1/shake-text-config";
@@ -47,10 +46,10 @@ import { flickerTitleSchemaV1 } from "./Text/FlickerTitle-v1/flicker-title-schem
 import { defaultFlickerTitleV1Props, FLICKER_TITLE_V1_DURATION_FRAMES } from "./Text/FlickerTitle-v1/flicker-title-config";
 import { OneTakeLogoTextTemplateV1 } from "./Text/FlickerTitle-v1/OneTakeLogoTextTemplate";
 import { StackedRevealTextTemplateV1 } from "./Text/StackedRevealText/StackedRevealText-v1/StackedRevealTextTemplate";
-import { stackedRevealTextSchemaV1 } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-schema";
+import { stackedRevealTextSchemaV1 } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.schema";
 import { stackedRevealTextV1DurationFrames } from "./Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text-config";
 import { TornNoteCaptionTemplateV1 } from "./Text/TornNoteCaption/TornNoteCaption-v1/TornNoteCaptionTemplate";
-import { tornNoteCaptionSchemaV1 } from "./Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-schema";
+import { tornNoteCaptionSchemaV1 } from "./Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption.schema";
 import { tornNoteCaptionV1DurationFrames } from "./Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption-config";
 import { DistressedTitleCardTemplateV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/DistressedTitleCardTemplate";
 import { distressedTitleCardSchemaV1 } from "./Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-schema";
