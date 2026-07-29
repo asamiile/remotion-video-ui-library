@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const onboardingConnectSchemaV1 = z.object({
+export const onboardingConnectSchema = z.object({
   phoneColor: zColor().default("#37E9FF"),
   laptopColor: zColor().default("#9C7BFF"),
   backgroundColor: zColor().default("#060810"),
@@ -15,13 +15,13 @@ export const onboardingConnectSchemaV1 = z.object({
   flickerTriggerFrame: z.number().min(0).default(6),
 });
 
-export type OnboardingConnectSchemaV1Type = z.infer<
+export type OnboardingConnectSchemaType = z.infer<
   typeof onboardingConnectSchemaV1
 >;
 
-export const onboardingConnectV1DurationFrames = 90;
+export const onboardingConnectDurationFrames = 90;
 
-export const defaultOnboardingConnectV1Props = {
+export const defaultOnboardingConnectProps = {
   phoneColor: "#37E9FF",
   laptopColor: "#9C7BFF",
   backgroundColor: "#060810",

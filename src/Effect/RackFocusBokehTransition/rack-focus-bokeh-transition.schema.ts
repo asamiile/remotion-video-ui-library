@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const rackFocusBokehTransitionSchemaV1 = z.object({
+export const rackFocusBokehTransitionSchema = z.object({
   backgroundColor: zColor().default("#060810"),
   bokehColors: z
     .array(zColor())
@@ -19,13 +19,13 @@ export const rackFocusBokehTransitionSchemaV1 = z.object({
   randomSeed: z.string().default("rack-focus-bokeh-v1"),
 });
 
-export type RackFocusBokehTransitionSchemaV1Type = z.infer<
+export type RackFocusBokehTransitionSchemaType = z.infer<
   typeof rackFocusBokehTransitionSchemaV1
 >;
 
-export const rackFocusBokehTransitionV1DurationFrames = 52;
+export const rackFocusBokehTransitionDurationFrames = 52;
 
-export const defaultRackFocusBokehTransitionV1Props = {
+export const defaultRackFocusBokehTransitionProps = {
   backgroundColor: "#060810",
   bokehColors: ["#eef1fc", "#37e9ff", "#ff8a3d"],
   bokehCount: 10,
