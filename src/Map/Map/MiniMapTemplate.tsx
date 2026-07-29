@@ -27,7 +27,7 @@ const mapboxMapV1Options = {
   fadeDuration: 0,
   antialias: true,
 } as const;
-import { mergedMapLocationPointsV1 } from "../../composition/composition-merged-other";
+import { mergedMapLocationPoints } from "../../composition/composition-merged-text";
 // import { PlaceholderImage } from "../PlaceholderImage";
 
 mapboxgl.accessToken = process.env.REMOTION_MAPBOX_TOKEN as string;
@@ -58,7 +58,7 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
   );
 
   const locationPoint = useMemo(() => {
-    return mergedMapLocationPointsV1.find((point) => point.id === mapLocationId);
+    return mergedMapLocationPoints.find((point) => point.id === mapLocationId);
   }, [mapLocationId]);
 
   const fadeProgress = useMemo(() => {

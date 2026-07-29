@@ -7,7 +7,7 @@ import {
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker";
 import type {
-  CodeStreamLineV1Type,
+  CodeStreamLineType,
   CodeStreamSchemaType,
 } from "./code-stream.schema";
 
@@ -22,7 +22,7 @@ function hashString(input: string): number {
   return hash >>> 0;
 }
 
-function resolveLine(line: CodeStreamLineV1Type): { text: string; color?: string } {
+function resolveLine(line: CodeStreamLineType): { text: string; color?: string } {
   if (typeof line === "string") {
     return { text: line };
   }
@@ -93,7 +93,7 @@ export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
   const frame = useCurrentFrame();
   const { width, height, fps } = useVideoConfig();
 
-  const paragraphSource: ReadonlyArray<ReadonlyArray<CodeStreamLineV1Type>> = useMemo(() => {
+  const paragraphSource: ReadonlyArray<ReadonlyArray<CodeStreamLineType>> = useMemo(() => {
     if (paragraphs && paragraphs.length > 0) {
       return paragraphs;
     }
@@ -106,7 +106,7 @@ export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
   const panelWidthPx = Math.max(0, width - panelPaddingPx * 2);
   const verticalLineGapPx = Math.round(lineHeight * 0.4);
   const paragraphLayouts: Array<{
-    paragraphLines: ReadonlyArray<CodeStreamLineV1Type>;
+    paragraphLines: ReadonlyArray<CodeStreamLineType>;
     panelHeightPx: number;
     cycleDistance: number;
   }> = useMemo(() => {
@@ -190,7 +190,7 @@ export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
     hasNextParagraph && activeTrailingEdge <= nextRevealStartPx;
 
   const buildContent = (
-    paragraphLines: ReadonlyArray<CodeStreamLineV1Type>,
+    paragraphLines: ReadonlyArray<CodeStreamLineType>,
     panelKey: string,
   ) =>
     paragraphLines.map((line, index) => {
