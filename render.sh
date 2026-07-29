@@ -3,11 +3,11 @@
 # Remotion composition rendering script
 #
 # Source of truth for enumeration: pattern-based compositions come from each
-# src/**/-*-config.ts (scripts list-*.cjs reads the keys via TypeScript AST).
-# Locations come from the locationV1 key in config/local/composition-text.local.json
+# src/**/*.schema.ts (scripts list-*.cjs reads the keys via TypeScript AST).
+# Locations come from the location key in config/local/composition-text.local.json
 # (falls back to example if absent). The *Patterns in composition-text.local.json only
 # override defaultProps at runtime — adding a new composition ID still requires
-# registering it in *-config.ts and Root.tsx (JSON alone won't add one).
+# registering it in .schema.ts and Root.tsx (JSON alone won't add one).
 #
 # Usage: chmod +x render.sh, then see ./render.sh help
 # (the subcommand list there is authoritative — not duplicated here).
@@ -15,8 +15,8 @@
 # Common examples:
 #   ./render.sh                                # render everything (default)
 #   ./render.sh OneTake                        # render OneTake onboarding compositions
-#   ./render.sh NeonTextV1-LchikaOrangeJp      # render specific composition ID(s) directly
-#   ./render.sh --transparent-bg NeonTextV1-…  # render with the full-screen backdrop made transparent (for alpha)
+#   ./render.sh NeonText-LchikaOrangeJp      # render specific composition ID(s) directly
+#   ./render.sh --transparent-bg NeonText-…  # render with the full-screen backdrop made transparent (for alpha)
 
 set -e  # stop on error
 
@@ -57,38 +57,46 @@ for arg in "$@"; do
 done
 set -- "${FILTERED_ARGS[@]}"
 
-# List of locations (kept in sync with locationV1 in composition-text.example.json / composition-text.local.json)
+# List of locations (kept in sync with location in composition-text.example.json / composition-text.local.json)
 LOCATIONS=()
 while IFS= read -r line || [ -n "$line" ]; do
   if [ -n "$line" ]; then
     LOCATIONS+=("$line")
   fi
-done < <(node "$SCRIPT_DIR/scripts/list-location-v1-composition-ids.cjs")
+done < <(node "$SCRIPT_DIR/scripts/list-location-composition-ids.cjs")
 
 AUDIOSPECTRUM_AUDIO_DIR="$SCRIPT_DIR/public/audio/AudioSpectrum"
 
 TEXT_EFFECTS_JP_SAMPLE_IDS=(
-  "NeonTextV1-LchikaOrangeJp"
-  "SlideInCaptionV1-RefWhiteJp"
-  "GlitchTextV1-HarshSignalJp"
-  "WireTextV1-TraceJp"
-  "NeonTextV1-RainbowRoundedTubeJp"
-  "LightSweepTextV1-RapidJp"
-  "TypewriterTextV1-JpComment"
-  "ShakeTextV1-TrialJp"
-  "ConfettiPopTextV1-RichPopJp"
+  "NeonText-LchikaOrangeJp"
+  "SlideInCaption-RefWhiteJp"
+  "GlitchText-HarshSignalJp"
+  "WireText-TraceJp"
+  "NeonText-RainbowRoundedTubeJp"
+  "LightSweepText-RapidJp"
+  "TypewriterText-JpComment"
+  "ShakeText-TrialJp"
+  "ConfettiPopText-RichPopJp"
 )
 
 GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS=(
-  "GlitchTransitionBridgeV1"
+  "GlitchTransitionBridge"
 )
 
 FLICKER_TITLE_COMPOSITION_IDS=(
-  "FlickerTitleV1"
+  "FlickerTitle"
 )
 
 INK_RIPPLE_TRANSITION_COMPOSITION_IDS=(
-  "InkRippleTransitionV1"
+  "InkRippleTransition"
+)
+
+RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS=(
+  "RackFocusBokehTransition"
+)
+
+BURST_COMPOSITION_IDS=(
+  "Burst"
 )
 
 # For colored output
@@ -104,41 +112,47 @@ echo ""
 # Derive the relative path matching Root.tsx's <Folder> nesting from comp_id, so the
 # out/ directory layout mirrors the Studio folder hierarchy. IDs that match nothing
 # fall back to "" (directly under OUTPUT_DIR). NeonTextRainbow's ID also matches the
-# `NeonTextV1-*` prefix, so its case must be checked first. Add new Folders/compositions here too.
+# `NeonText-*` prefix, so its case must be checked first. Add new Folders/compositions here too.
 resolve_output_subdir() {
   local comp_id="$1"
   case "$comp_id" in
-    NeonTextV1-Rainbow*) echo "Text/NeonTextRainbow" ;;
-    LedTextV1-*) echo "Text/LedText" ;;
-    NeonTextV1-*) echo "Text/NeonText" ;;
-    SlideInCaptionV1-*) echo "Text/SlideInCaption" ;;
-    GlitchTextV1-*) echo "Text/GlitchText" ;;
-    WireTextV1-*) echo "Text/WireText" ;;
-    LightSweepTextV1-*) echo "Text/LightSweepText" ;;
-    TypewriterTextV1-*) echo "Text/TypewriterText" ;;
-    ShakeTextV1-*) echo "Text/ShakeText" ;;
-    ConfettiPopTextV1-*) echo "Text/ConfettiPopText" ;;
-    StackedRevealTextV1-*) echo "Text/StackedRevealText" ;;
-    TornNoteCaptionV1-*) echo "Text/TornNoteCaption" ;;
-    DistressedTitleCardV1-*) echo "Text/DistressedTitleCard" ;;
-    SprayPaintTextV1-*) echo "Text/SprayPaintText" ;;
-    FlickerTitleV1*) echo "Text/FlickerTitle" ;;
-    GlitchTransitionBridgeV1*) echo "Effect/GlitchTransitionBridge" ;;
-    InkRippleTransitionV1*) echo "Effect/InkRippleTransition" ;;
-    LocationV1-*) echo "Text/Location" ;;
-    MiniMapV1-*) echo "Map" ;;
-    AudioSpectrumV1-*) echo "Audio" ;;
-    LoadingIconV1-*) echo "Loading" ;;
+    NeonText-Rainbow*) echo "Text/NeonTextRainbow" ;;
+    LedText-*) echo "Text/LedText" ;;
+    NeonText-*) echo "Text/NeonText" ;;
+    SlideInCaption-*) echo "Text/SlideInCaption" ;;
+    GlitchText-*) echo "Text/GlitchText" ;;
+    WireText-*) echo "Text/WireText" ;;
+    LightSweepText-*) echo "Text/LightSweepText" ;;
+    TypewriterText-*) echo "Text/TypewriterText" ;;
+    ShakeText-*) echo "Text/ShakeText" ;;
+    ConfettiPopText-*) echo "Text/ConfettiPopText" ;;
+    StackedRevealText-*) echo "Text/StackedRevealText" ;;
+    TornNoteCaption-*) echo "Text/TornNoteCaption" ;;
+    DistressedTitleCard-*) echo "Text/DistressedTitleCard" ;;
+    SprayPaintText-*) echo "Text/SprayPaintText" ;;
+    FlickerTitle*) echo "Text/FlickerTitle" ;;
+    GlitchTransitionBridge*) echo "Effect/GlitchTransitionBridge" ;;
+    InkRippleTransition*) echo "Effect/InkRippleTransition" ;;
+    RackFocusBokehTransition*) echo "Effect/RackFocusBokehTransition" ;;
+    Burst*) echo "Effect/Burst" ;;
+    BattleCalloutBanner-*) echo "UI/BattleCalloutBanner" ;;
+    AsymmetricStatusPanel-*) echo "UI/AsymmetricStatusPanel" ;;
+    Location-*) echo "Text/Location" ;;
+    MiniMap-*) echo "Map" ;;
+    AudioSpectrum-*) echo "Audio" ;;
+    LoadingIcon-*) echo "Loading" ;;
     OneTake-Onboarding*) echo "OneTake/Onboarding" ;;
     OneTake-Logo*) echo "OneTake/Logo" ;;
-    Background-ScanLineV1-*) echo "Background/ScanLine" ;;
-    Background-DuotoneGradeOverlayV1-*) echo "Background/DuotoneGradeOverlay" ;;
-    Background-FilmGrainOverlayV1-*) echo "Background/FilmGrainOverlay" ;;
-    Background-LetterboxOverlayV1-*) echo "Background/LetterboxOverlay" ;;
-    Background-PosterizeGradeOverlayV1-*) echo "Background/PosterizeGradeOverlay" ;;
+    Background-ScanLine-*) echo "Background/ScanLine" ;;
+    Background-DuotoneGradeOverlay-*) echo "Background/DuotoneGradeOverlay" ;;
+    Background-FilmGrainOverlay-*) echo "Background/FilmGrainOverlay" ;;
+    Background-LetterboxOverlay-*) echo "Background/LetterboxOverlay" ;;
+    Background-PosterizeGradeOverlay-*) echo "Background/PosterizeGradeOverlay" ;;
+    Background-EmblemMontageBlur-*) echo "Background/EmblemMontageBlur" ;;
+    Background-SunsetLensFlareOverlay-*) echo "Background/SunsetLensFlareOverlay" ;;
     Background-*) echo "Background" ;;
-    IntroV1) echo "Intro" ;;
-    PlaceholderImageV1) echo "Placeholder" ;;
+    Intro) echo "Intro" ;;
+    PlaceholderImage) echo "Placeholder" ;;
     *) echo "" ;;
   esac
 }
@@ -162,7 +176,7 @@ output_path_for() {
 # Args: comp_id, out_mov, [concurrency=$CONCURRENCY_TEXT_EFFECTS], [network_timeout=$NETWORK_TIMEOUT], [extra flags...]
 # render_minimap (--gl=angle, longer timeout) and render_audiospectrum* (--mute-audio) just
 # pass their extra flags through here, keeping the CODEC/PRORES_PROFILE export settings centralized.
-# out_mov may be a nested path (e.g. out/Text/NeonText/NeonTextV1-...mov); the parent
+# out_mov may be a nested path (e.g. out/Text/NeonText/NeonText-...mov); the parent
 # directory is created here if it doesn't exist.
 render_one_prores_mov() {
   local comp_id="$1"
@@ -185,111 +199,100 @@ render_one_prores_mov() {
     }
 }
 
+# Render a fixed composition ID (pattern: fixed ID array, single render per ID)
+# Args: label (emoji + text), array_name (e.g., GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS)
+render_fixed_id_family() {
+  local label="$1"
+  local array_name="$2"
+  # Get array values via indirect expansion
+  local array=("${!array_name}")
+
+  echo -e "${YELLOW}${label}...${NC}"
+
+  local comp_id
+  for comp_id in "${array[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+
+  echo ""
+  echo -e "${GREEN}✅ ${label%\.\.\.*} rendered successfully!${NC}"
+}
+
+# Render compositions from a Node enumeration script
+# Args: label (emoji + text), script_path (relative to SCRIPT_DIR)
+render_from_list_script() {
+  local label="$1"
+  local script="$2"
+
+  echo -e "${YELLOW}${label}...${NC}"
+
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    [ -z "$comp_id" ] && continue
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done < <(node "$SCRIPT_DIR/$script")
+
+  echo ""
+  echo -e "${GREEN}✅ ${label%\.\.\.*} rendered successfully!${NC}"
+}
+
 # Render the Intro composition
 render_intro() {
   echo -e "${YELLOW}🎬 Rendering Intro composition...${NC}"
   echo ""
-  echo -e "${YELLOW}→ IntroV1${NC}"
+  echo -e "${YELLOW}→ Intro${NC}"
 
-  render_one_prores_mov "IntroV1" "$(output_path_for IntroV1 Intro.mov)" 4 || return 1
+  render_one_prores_mov "Intro" "$(output_path_for Intro Intro.mov)" 4 || return 1
   echo -e "${GREEN}✓ Intro rendered${NC}"
   echo ""
   echo -e "${GREEN}✅ Intro composition rendered successfully!${NC}"
 }
 
-# Render OneTake compositions (IDs enumerated by scripts/list-onetake-composition-ids.cjs
-# from onetake-logo-config.ts, plus the fixed Onboarding/LogoText IDs that have no pattern family)
+# Render OneTake compositions (IDs enumerated by scripts/list-onetake-composition-ids.cjs)
 render_onetake() {
-  echo -e "${YELLOW}📱 Rendering OneTake compositions...${NC}"
-
-  local comp_id
-  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    [ -z "$comp_id" ] && continue
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-onetake-composition-ids.cjs")
-
-  echo ""
-  echo -e "${GREEN}✅ All OneTake compositions rendered successfully!${NC}"
+  render_from_list_script "📱 Rendering OneTake compositions" "scripts/list-onetake-composition-ids.cjs"
 }
 
-# Render Background compositions (IDs enumerated by scripts/list-background-composition-ids.cjs
-# from each Background *-config.ts, plus the fixed AmbientBlurOrbs ID that has no pattern family).
+# Render Background compositions (IDs enumerated by scripts/list-background-composition-ids.cjs).
 # These parts are always transparent already, so --transparent-bg isn't needed.
 render_background() {
-  echo -e "${YELLOW}✨ Rendering Background compositions...${NC}"
-
-  local comp_id
-  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    [ -z "$comp_id" ] && continue
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-background-composition-ids.cjs")
-
-  echo ""
-  echo -e "${GREEN}✅ All Background compositions rendered successfully!${NC}"
+  render_from_list_script "✨ Rendering Background compositions" "scripts/list-background-composition-ids.cjs"
 }
 
-# Render GlitchTransitionBridge compositions (see GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS for the ID list)
+# Render GlitchTransitionBridge compositions
 render_glitch_transition_bridge() {
-  echo -e "${YELLOW}✨ Rendering GlitchTransitionBridge compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All GlitchTransitionBridge compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering GlitchTransitionBridge compositions" GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS
 }
 
-# Render InkRippleTransition compositions (see INK_RIPPLE_TRANSITION_COMPOSITION_IDS for the ID list)
+# Render InkRippleTransition compositions
 render_ink_ripple_transition() {
-  echo -e "${YELLOW}✨ Rendering InkRippleTransition compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${INK_RIPPLE_TRANSITION_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All InkRippleTransition compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering InkRippleTransition compositions" INK_RIPPLE_TRANSITION_COMPOSITION_IDS
 }
 
-# Render FlickerTitle compositions (see FLICKER_TITLE_COMPOSITION_IDS for the ID list)
+# Render RackFocusBokehTransition compositions
+render_rack_focus_bokeh_transition() {
+  render_fixed_id_family "✨ Rendering RackFocusBokehTransition compositions" RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS
+}
+
+# Render Burst compositions
+render_burst() {
+  render_fixed_id_family "✨ Rendering Burst compositions" BURST_COMPOSITION_IDS
+}
+
+# Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs)
+render_ui() {
+  render_from_list_script "✨ Rendering UI compositions" "scripts/list-ui-composition-ids.cjs"
+}
+
+# Render FlickerTitle compositions
 render_flicker_title() {
-  echo -e "${YELLOW}✨ Rendering FlickerTitle compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${FLICKER_TITLE_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All FlickerTitle compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering FlickerTitle compositions" FLICKER_TITLE_COMPOSITION_IDS
 }
 
 # Render LoadingIcon compositions (IDs enumerated by scripts/list-loading-icon-composition-ids.cjs from loading-icon-config.ts)
@@ -320,8 +323,8 @@ render_location() {
     echo -e "${YELLOW}→ Location-${location}${NC}"
     
     render_one_prores_mov \
-      "LocationV1-${location}" \
-      "$(output_path_for "LocationV1-${location}")" \
+      "Location-${location}" \
+      "$(output_path_for "Location-${location}")" \
       "$CONCURRENCY_LOCATION" \
       || return 1
     
@@ -332,8 +335,8 @@ render_location() {
   echo -e "${GREEN}✅ All Location compositions rendered successfully!${NC}"
 }
 
-# Render MiniMap compositions. Target locations come from scripts/list-minimap-v1-composition-ids.cjs
-# (only locations with both lat/lng set, not all of locationV1 — locations missing
+# Render MiniMap compositions. Target locations come from scripts/list-minimap-composition-ids.cjs
+# (only locations with both lat/lng set, not all of location — locations missing
 # either aren't registered as compositions in Root.tsx at all, so reusing $LOCATIONS
 # as-is would try to render compositions that don't exist and fail)
 render_minimap() {
@@ -349,8 +352,8 @@ render_minimap() {
     echo -e "${YELLOW}→ MiniMap-${location}${NC}"
 
     if ! render_one_prores_mov \
-      "MiniMapV1-${location}" \
-      "$(output_path_for "MiniMapV1-${location}")" \
+      "MiniMap-${location}" \
+      "$(output_path_for "MiniMap-${location}")" \
       "$CONCURRENCY_MINIMAP" \
       120000 \
       --gl=angle; then
@@ -359,10 +362,10 @@ render_minimap() {
     fi
 
     echo -e "${GREEN}✓ MiniMap-${location} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-minimap-v1-composition-ids.cjs")
+  done < <(node "$SCRIPT_DIR/scripts/list-minimap-composition-ids.cjs")
 
   if [ "$has_any" -eq 0 ]; then
-    echo -e "${YELLOW}⚠️  No locations have latitude/longitude set in mapLocationPointsV1 — nothing to render${NC}"
+    echo -e "${YELLOW}⚠️  No locations have latitude/longitude set in mapLocationPoints — nothing to render${NC}"
     return 0
   fi
 
@@ -379,7 +382,7 @@ render_audiospectrum() {
   local comp_id suffix
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
     [ -z "$comp_id" ] && continue
-    suffix="${comp_id#AudioSpectrumV1-}"
+    suffix="${comp_id#AudioSpectrum-}"
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
@@ -394,7 +397,7 @@ render_audiospectrum() {
   echo -e "${GREEN}✅ All AudioSpectrum compositions rendered successfully!${NC}"
 }
 
-# AudioSpectrum compositions, one per id registered in audioSpectrumAudioFilesV1 — same source Root uses (scripts/list-audiospectrum-file-composition-ids.cjs)
+# AudioSpectrum compositions, one per id registered in audioSpectrumAudioFiles — same source Root uses (scripts/list-audiospectrum-file-composition-ids.cjs)
 render_audiospectrum_files() {
   echo -e "${YELLOW}🎵 Rendering AudioSpectrum compositions (audio files)...${NC}"
 
@@ -406,7 +409,7 @@ render_audiospectrum_files() {
   local comp_id suffix file_count=0
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
     [ -z "$comp_id" ] && continue
-    suffix="${comp_id#AudioSpectrumV1-}"
+    suffix="${comp_id#AudioSpectrum-}"
     echo ""
     echo -e "${YELLOW}→ ${comp_id}${NC}"
 
@@ -419,7 +422,7 @@ render_audiospectrum_files() {
   done < <(node "$SCRIPT_DIR/scripts/list-audiospectrum-file-composition-ids.cjs")
 
   if [ "$file_count" -eq 0 ]; then
-    echo -e "${YELLOW}⚠️  No entries in audioSpectrumAudioFilesV1 (audio-spectrum-config.ts)${NC}"
+    echo -e "${YELLOW}⚠️  No entries in audioSpectrumAudioFiles (audio-spectrum-config.ts)${NC}"
     return 0
   fi
 
@@ -427,23 +430,9 @@ render_audiospectrum_files() {
   echo -e "${GREEN}✅ All AudioSpectrum file compositions rendered successfully! ($file_count files)${NC}"
 }
 
-# LED / Neon / Glitch / Wire and other text-effect families (kept in sync between the patterns registered in Root.tsx and scripts/list-text-v1-composition-ids.cjs)
+# LED / Neon / Glitch / Wire and other text-effect families
 render_text_effects() {
-  echo -e "${YELLOW}✨ Rendering text-effect compositions (Led / Neon / Glitch / …)…${NC}"
-
-  local comp_id
-  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    [ -z "$comp_id" ] && continue
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-text-v1-composition-ids.cjs")
-
-  echo ""
-  echo -e "${GREEN}✅ All text-effect compositions rendered successfully!${NC}"
+  render_from_list_script "✨ Rendering text-effect compositions (Led / Neon / Glitch / …)" "scripts/list-text-composition-ids.cjs"
 }
 
 # Japanese sample set only (TEXT_EFFECTS_JP_SAMPLE_IDS)
@@ -495,26 +484,29 @@ check_output_dirs() {
   echo -e "${YELLOW}🔍 Checking resolve_output_subdir() coverage...${NC}"
   echo ""
 
-  # script:prefix pairs. list-location-v1 and list-minimap-v1 print bare location
+  # script:prefix pairs. list-location and list-minimap print bare location
   # IDs (not full composition IDs) — render_location/render_minimap prefix them with
-  # "LocationV1-"/"MiniMapV1-" themselves, so this check must do the same.
+  # "Location-"/"MiniMap-" themselves, so this check must do the same.
   local list_scripts=(
-    "list-text-v1-composition-ids.cjs:"
+    "list-text-composition-ids.cjs:"
     "list-loading-icon-composition-ids.cjs:"
-    "list-location-v1-composition-ids.cjs:LocationV1-"
-    "list-minimap-v1-composition-ids.cjs:MiniMapV1-"
+    "list-location-composition-ids.cjs:Location-"
+    "list-minimap-composition-ids.cjs:MiniMap-"
     "list-audiospectrum-pattern-composition-ids.cjs:"
     "list-audiospectrum-file-composition-ids.cjs:"
     "list-background-composition-ids.cjs:"
     "list-onetake-composition-ids.cjs:"
+    "list-ui-composition-ids.cjs:"
   )
   # Single fixed compositions with no pattern family, so no enumeration script exists.
   local fixed_ids=(
-    "IntroV1"
-    "PlaceholderImageV1"
-    "GlitchTransitionBridgeV1"
-    "FlickerTitleV1"
-    "InkRippleTransitionV1"
+    "Intro"
+    "PlaceholderImage"
+    "GlitchTransitionBridge"
+    "FlickerTitle"
+    "InkRippleTransition"
+    "RackFocusBokehTransition"
+    "Burst"
   )
 
   local raw_id comp_id subdir missing=0 checked=0 entry script prefix
@@ -591,6 +583,15 @@ main() {
     InkRippleTransition|inkrippletransition)
       render_ink_ripple_transition
       ;;
+    RackFocusBokehTransition|rackfocusbokehtransition)
+      render_rack_focus_bokeh_transition
+      ;;
+    Burst|burst)
+      render_burst
+      ;;
+    UI|ui)
+      render_ui
+      ;;
     FlickerTitle|flickertitle)
       render_flicker_title
       ;;
@@ -607,6 +608,9 @@ main() {
       render_background
       render_glitch_transition_bridge
       render_ink_ripple_transition
+      render_rack_focus_bokeh_transition
+      render_burst
+      render_ui
       ;;
     check|Check)
       check_output_dirs
@@ -628,10 +632,13 @@ main() {
       echo "  Background         Render ambient background overlay compositions (always transparent)"
       echo "  GlitchTransitionBridge  Render the RGB-glitch scene-transition bumper"
       echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
+      echo "  RackFocusBokehTransition Render the rack-focus + bokeh scene-transition bumper"
+      echo "  Burst              Render the special-move impact burst"
+      echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel)"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"
       echo "  check              Verify every enumerated composition ID has a resolve_output_subdir() mapping (no rendering)"
-      echo "  <CompositionId>    e.g. NeonTextV1-LchikaOrangeJp (multiple allowed; must match the ID shown in Studio)"
+      echo "  <CompositionId>    e.g. NeonText-LchikaOrangeJp (multiple allowed; must match the ID shown in Studio)"
       exit 0
       ;;
     *)

@@ -21,16 +21,19 @@ description: >-
 | Key | Content |
 |------|------|
 | `intro` | `authorName`, `introTitle`, `introDescription` |
-| `ledTextV1Patterns` | pattern ID → partial props (e.g. `text`) |
-| `neonTextV1Patterns` | same |
-| `loadingIconV1Patterns` | same |
-| `locationV1` | `locationId` → `{ "locationName" }` |
-| `mapLocationPointsV1` | `locationId` → `{ "name" }` |
+| `ledTextPatterns` | pattern ID → partial props (e.g. `text`) |
+| `neonTextPatterns` | same |
+| `loadingIconPatterns` | same |
+| `codeStreamPatterns` | same, but split between horizontal/vertical presets and `paragraphs` arrays |
+| `location` | `locationId` → `{ "locationName" }` |
+| `mapLocationPoints` | `locationId` → `{ "name" }` |
 
 ## For Agents
 
 1. When adding "override copy" for a new composition, add the key to **`composition-text.example.json`** and update the **`src/composition/composition-text-local.ts`** type. Add merge logic in **`src/composition/composition-merged.ts`** if needed.
-2. Make sure `config/local/*.local.json` is listed in `.gitignore`.
+2. `CodeStream` is defined in **`codeStreamPatterns`** and should be split into separate horizontal/vertical entries with `paragraphs` arrays so each composition can advance paragraph-by-paragraph.
+3. Keep this file focused on `config/local` wiring and the example/local split; use [.agents/rules/composition-text-local.md](./composition-text-local.md) for the personal-file policy.
+4. Make sure `config/local/*.local.json` is listed in `.gitignore`.
 
 ## Overriding a Single Composition via the CLI
 

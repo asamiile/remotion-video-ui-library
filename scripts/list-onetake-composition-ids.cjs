@@ -1,5 +1,5 @@
 // OneTake composition IDs (uses the same capPattern as Root.tsx). Enumerated
-// from each *-config.ts, the same approach as list-text-v1-composition-ids.cjs.
+// from each schema.ts, the same approach as list-text-composition-ids.cjs.
 // Onboarding and LogoText have no pattern family (single fixed compositions),
 // so they're printed directly instead of read via AST.
 const path = require("node:path");
@@ -8,15 +8,15 @@ const { capPattern, requirePatternKeys } = require("./lib/ts-config-ast.cjs");
 const root = path.join(__dirname, "..");
 
 const fixedIds = [
-  "OneTake-OnboardingConnectV1",
-  "OneTake-OnboardingOperateV1",
+  "OneTake-OnboardingConnect",
+  "OneTake-OnboardingOperate",
 ];
 
 const families = [
   {
-    idPrefix: "OneTake-LogoV1",
-    file: "src/OneTake/Logo/OneTakeLogo-v1/onetake-logo-config.ts",
-    exportName: "oneTakeLogoV1Patterns",
+    idPrefix: "OneTake-Logo",
+    file: "src/Logo/OneTake/OneTakeLogo/onetake-logo.schema.ts",
+    exportName: "oneTakeLogoPatterns",
   },
 ];
 
@@ -32,6 +32,6 @@ for (const fam of families) {
   }
 }
 
-// OneTake-LogoTextV1 has no pattern family; print after Logo's enumerated IDs to
+// OneTake-LogoText has no pattern family; print after Logo's enumerated IDs to
 // match the order Root.tsx registers them in (Logo patterns, then LogoText).
-process.stdout.write("OneTake-LogoTextV1\n");
+process.stdout.write("OneTake-LogoText\n");

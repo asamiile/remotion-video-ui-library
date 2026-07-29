@@ -4,11 +4,11 @@
     "introTitle": "サンプルタイトル（例）",
     "introDescription": "こちらは composition-text のサンプル文言です。\nintro / パターン / 地点名は local で差し替えてください。"
   },
-  "locationV1": {
+  "location": {
     "SampleLocationA": { "locationName": "サンプル · 地点 A" },
     "SampleLocationB": { "locationName": "サンプル · 地点 B" }
   },
-  "mapLocationPointsV1": {
+  "mapLocationPoints": {
     "SampleLocationA": {
       "name": "サンプル · 地点 A",
       "latitude": 33.59280493802063,
@@ -20,16 +20,16 @@
       "longitude": 130.3994274097612
     }
   },
-  "loadingIconV1Patterns": {
+  "loadingIconPatterns": {
     "defaultWithText": { "text": "Loading …" },
     "largeWithText": { "text": "Loading …" },
     "customWithText": { "text": "Loading …" }
   },
-  "slideInCaptionV1Patterns": {
+  "slideInCaptionPatterns": {
     "refWhite": { "text": "2025/06/19 Electronics with Arduino UNO" },
     "refWhiteJp": { "text": "サンプル キャプション" }
   },
-  "neonTextV1Patterns": {
+  "neonTextPatterns": {
     "pinkPulse": { "text": "SAMPLE OPEN" },
     "cyanFlicker": { "text": "SAMPLE NEON" },
     "greenBreathe": { "text": "DEMO TEXT" },
@@ -41,38 +41,59 @@
     "lchikaOrangeJp": { "text": "エルチカ" },
     "lchikaGreen": { "text": "ON · GREEN" }
   },
-  "glitchTextV1Patterns": {
+  "glitchTextPatterns": {
     "measuring": { "text": "MEASURING " },
     "meterReadout": { "text": "READING  —  12.48 V SAMPLE" },
     "harshSignal": { "text": "SIGNAL UNSTABLE（sample）" },
     "harshSignalJp": { "text": "信号 不安定" }
   },
-  "wireTextV1Patterns": {
+  "glitchTextRandomPatterns": {
+    "harshSignalRandom": {
+      "items": [
+        { "text": "System A" },
+        { "text": "System B" },
+        { "text": "Error 404" }
+      ]
+    }
+  },
+  "wireTextPatterns": {
     "trace": { "text": "HELLO WIRE" },
     "traceJp": { "text": "ワイヤーサンプル" },
     "outlineOnly": { "text": "OUTLINE ONLY" },
     "outlineOnlyJp": { "text": "輪郭のみ" }
   },
-  "neonTextRainbowV1Patterns": {
+  "neonTextRainbowPatterns": {
     "roundedTube": { "text": "TUBE NEON " },
     "roundedTubeJp": { "text": "虹ネオン・太管" }
   },
-  "lightSweepTextV1Patterns": {
+  "lightSweepTextPatterns": {
     "complete": { "text": "COMPLETE" },
     "completeJp": { "text": "完了" },
     "doneJp": { "text": "処理完了" },
     "rapid": { "text": "OK" },
     "rapidJp": { "text": "了解" }
   },
-  "ledTextV1Patterns": {
+  "randomLinesBackgroundPatterns": {
+    "subtle": {},
+    "prominent": {}
+  },
+  "dottedLineMarkerTextPatterns": {
+    "default": {
+      "items": [
+        { "leftText": "Requirement", "rightText": "01" },
+        { "leftText": "Specification", "rightText": "02" }
+      ]
+    }
+  },
+  "ledTextPatterns": {
     "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
     "redScrollJp": { "text": "サンプル  ///  LED  ///  スクロール  ///  " }
   },
-  "typewriterTextV1Patterns": {
+  "typewriterTextPatterns": {
     "codeLine": { "text": "console.log('sample');" },
     "jpComment": { "text": "// サンプル一行です" }
   },
-  "shakeTextV1Patterns": {
+  "shakeTextPatterns": {
     "trial": { "text": "Trial & error " },
     "trialJp": { "text": "試行錯誤" },
     "subtle": { "text": "Subtle shake " },
@@ -80,28 +101,110 @@
     "intense": { "text": "RETRY · DEBUG " },
     "intenseJp": { "text": "強めシェイク" }
   },
-  "confettiPopTextV1Patterns": {
+  "confettiPopTextPatterns": {
     "richPop": { "text": "Congrats! " },
     "richPopJp": { "text": "完成おめでとう" }
   },
-  "stackedRevealTextV1Patterns": {
+  "stackedRevealTextPatterns": {
     "stacked": { "lines": ["SAMPLE LINE ONE", "SAMPLE LINE TWO "] },
     "stackedJp": { "lines": ["サンプルテキストの", "サンプル行"] },
     "climaxHaloJp": { "lines": ["サンプルテキストの", "サンプル"] }
   },
-  "tornNoteCaptionV1Patterns": {
+  "tornNoteCaptionPatterns": {
     "note": { "text": "SAMPLE NOTE" },
     "noteJp": { "text": "サンプルのテキスト" }
   },
-  "distressedTitleCardV1Patterns": {
+  "distressedTitleCardPatterns": {
     "darkTitle": { "titleText": "SAMPLE TITLE" },
     "darkTitleJp": { "titleText": "サンプルタイトル" },
     "agedPaperChapter": { "titleText": "SAMPLE CHAPTER", "numberText": "01" },
     "agedPaperChapterJp": { "titleText": "サンプルの章", "numberText": "01" }
   },
-  "sprayPaintTextV1Patterns": {
+  "sprayPaintTextPatterns": {
     "credit": { "text": "SAMPLE CREDIT" },
     "creditJp": { "text": "サンプルクレジット" },
     "wallGraffitiJp": { "text": "サンプル" }
+  },
+  "oneTakeLogoText": {
+    "eyebrowText": "DAW Remote Controller",
+    "titleText": "OneTake - Remote Control",
+    "eyebrowFontSize": 24,
+    "titleFontSize": 48,
+    "gapPx": 20,
+    "eyebrowColor": "#37E9FF",
+    "titleColor": "#EEF1FC",
+    "backgroundColor": "#060810",
+    "flickerTriggerFrame": 15
+  },
+  "codeStreamPatterns": {
+    "horizontal": {
+      "paragraphs": [
+        [
+          {
+            "text": "// SAMPLE STREAM: INIT", "color": "#37e9ff"  
+          },          
+          "const streamId = \"demo-horizontal\";",
+          "const status = \"warming-up\";"
+        ],
+        [
+          "for (let i = 0; i < 3; i += 1) {",
+          "  queue.push(`sample-task-${i}`);",
+          "}"
+        ],
+        [
+          "const payload = {",
+          "  title: \"Sample Headline\",",
+          "  subtitle: \"replace me in local\"",
+          "};"
+        ],
+        [
+          "if (status === \"warming-up\") {",
+          "  logger.info(\"horizontal sample is active\");",
+          "}"
+        ],
+        [
+          "renderLine(\"SAMPLE LINE A\");",
+          "renderLine(\"SAMPLE LINE B\");",
+          "renderLine(\"SAMPLE LINE C\");"
+        ],
+        [
+          "// SAMPLE STREAM: DONE",
+          "const completed = true;",
+          "export { streamId, completed };"
+        ]
+      ]
+    },
+    "vertical": {
+      "paragraphs": [
+        [
+          "# SAMPLE VERTICAL BLOCK 01",
+          "version = \"sample\"",
+          "mode = \"preview\"",
+          "accent = \"cyan\""
+        ],
+        [
+          "# SAMPLE VERTICAL BLOCK 02",
+          "items = [\"alpha\", \"beta\", \"gamma\"]",
+          "for item in items:",
+          "    print(\"sample:\", item)"
+        ],
+        [
+          "# SAMPLE VERTICAL BLOCK 03",
+          "title = \"CODE STREAM SAMPLE\"",
+          "note = \"edit this in composition-text.local.json\"",
+          "result = \"ok\""
+        ]
+      ]
+    }
+  },
+  "battleCalloutBannerPatterns": {
+    "redBlack": { "text": "SAMPLE CALLOUT" },
+    "redBlackJp": { "text": "サンプルコールアウト" },
+    "oneTakeBrand": { "text": "SAMPLE SKILL" }
+  },
+  "asymmetricStatusPanelPatterns": {
+    "redBlack": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" },
+    "redBlackJp": { "characterName": "サンプル", "subtitleText": "サンプルガーディアン" },
+    "oneTakeBrand": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" }
   }
 }

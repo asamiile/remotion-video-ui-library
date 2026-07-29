@@ -1,0 +1,350 @@
+{
+  "success": [
+    {
+      "component": "Audio",
+      "newFile": "audio-spectrum.schema.ts",
+      "oldFiles": [
+        "audio-spectrum-config.ts",
+        "audio-spectrum-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Audio/AudioSpectrum",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Audio/AudioSpectrum/audio-spectrum.schema.ts"
+      }
+    },
+    {
+      "component": "Background",
+      "newFile": "duotone-grade-overlay.schema.ts",
+      "oldFiles": [
+        "duotone-grade-overlay-config.ts",
+        "duotone-grade-overlay-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/DuotoneGradeOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/DuotoneGradeOverlay/duotone-grade-overlay.schema.ts"
+      }
+    },
+    {
+      "component": "Background",
+      "newFile": "emblem-montage-blur.schema.ts",
+      "oldFiles": [
+        "emblem-montage-blur-config.ts",
+        "emblem-montage-blur-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/EmblemMontageBlur",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/EmblemMontageBlur/emblem-montage-blur.schema.ts"
+      }
+    },
+    {
+      "component": "Background",
+      "newFile": "film-grain-overlay.schema.ts",
+      "oldFiles": [
+        "film-grain-overlay-config.ts",
+        "film-grain-overlay-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/FilmGrainOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/FilmGrainOverlay/film-grain-overlay.schema.ts"
+      }
+    },
+    {
+      "component": "Background",
+      "newFile": "letterbox-overlay.schema.ts",
+      "oldFiles": [
+        "letterbox-overlay-config.ts",
+        "letterbox-overlay-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/LetterboxOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/LetterboxOverlay/letterbox-overlay.schema.ts"
+      }
+    },
+    {
+      "component": "Background",
+      "newFile": "posterize-grade-overlay.schema.ts",
+      "oldFiles": [
+        "posterize-grade-overlay-config.ts",
+        "posterize-grade-overlay-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/PosterizeGradeOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/PosterizeGradeOverlay/posterize-grade-overlay.schema.ts"
+      }
+    },
+    {
+      "component": "RandomLines",
+      "newFile": "random-lines.schema.ts",
+      "oldFiles": [
+        "random-lines-config.ts",
+        "random-lines-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/RandomLines/RandomLinesBackground",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/RandomLines/RandomLinesBackground/random-lines.schema.ts"
+      }
+    },
+    {
+      "component": "Background",
+      "newFile": "scan-line.schema.ts",
+      "oldFiles": [
+        "scan-line-config.ts",
+        "scan-line-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/ScanLine",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/ScanLine/scan-line.schema.ts"
+      }
+    },
+    {
+      "component": "Background",
+      "newFile": "sunset-lens-flare-overlay.schema.ts",
+      "oldFiles": [
+        "sunset-lens-flare-overlay-config.ts",
+        "sunset-lens-flare-overlay-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/SunsetLensFlareOverlay",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts"
+      }
+    },
+    {
+      "component": "Loading",
+      "newFile": "loading-icon.schema.ts",
+      "oldFiles": [
+        "loading-icon-config.ts",
+        "loading-icon-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Loading/LoadingIcon",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Loading/LoadingIcon/loading-icon.schema.ts"
+      }
+    },
+    {
+      "component": "OneTake",
+      "newFile": "onetake-logo.schema.ts",
+      "oldFiles": [
+        "onetake-logo-config.ts",
+        "onetake-logo-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Logo/OneTake/OneTakeLogo",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Logo/OneTake/OneTakeLogo/onetake-logo.schema.ts"
+      }
+    },
+    {
+      "component": "ConfettiPopText",
+      "newFile": "confetti-pop-text.schema.ts",
+      "oldFiles": [
+        "confetti-pop-text-config.ts",
+        "confetti-pop-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ConfettiPopText/ConfettiPopText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ConfettiPopText/ConfettiPopText/confetti-pop-text.schema.ts"
+      }
+    },
+    {
+      "component": "DistressedTitleCard",
+      "newFile": "distressed-title-card.schema.ts",
+      "oldFiles": [
+        "distressed-title-card-config.ts",
+        "distressed-title-card-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/DistressedTitleCard/DistressedTitleCard",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/DistressedTitleCard/DistressedTitleCard/distressed-title-card.schema.ts"
+      }
+    },
+    {
+      "component": "GlitchText",
+      "newFile": "glitch-text.schema.ts",
+      "oldFiles": [
+        "glitch-text-config.ts",
+        "glitch-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText/glitch-text.schema.ts"
+      }
+    },
+    {
+      "component": "GlitchText",
+      "newFile": "glitch-text-random.schema.ts",
+      "oldFiles": [
+        "glitch-text-random-config.ts",
+        "glitch-text-random-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/GlitchText/GlitchText/glitch-text-random.schema.ts"
+      }
+    },
+    {
+      "component": "LedText",
+      "newFile": "led-text.schema.ts",
+      "oldFiles": [
+        "led-text-config.ts",
+        "led-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LedText/LedText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LedText/LedText/led-text.schema.ts"
+      }
+    },
+    {
+      "component": "LightSweepText",
+      "newFile": "light-sweep-text.schema.ts",
+      "oldFiles": [
+        "light-sweep-text-config.ts",
+        "light-sweep-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LightSweepText/LightSweepText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/LightSweepText/LightSweepText/light-sweep-text.schema.ts"
+      }
+    },
+    {
+      "component": "NeonText",
+      "newFile": "neon-text.schema.ts",
+      "oldFiles": [
+        "neon-text-config.ts",
+        "neon-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonText/NeonText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonText/NeonText/neon-text.schema.ts"
+      }
+    },
+    {
+      "component": "NeonTextRainbow",
+      "newFile": "neon-text-rainbow.schema.ts",
+      "oldFiles": [
+        "neon-text-rainbow-config.ts",
+        "neon-text-rainbow-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonTextRainbow/NeonTextRainbow",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/NeonTextRainbow/NeonTextRainbow/neon-text-rainbow.schema.ts"
+      }
+    },
+    {
+      "component": "ShakeText",
+      "newFile": "shake-text.schema.ts",
+      "oldFiles": [
+        "shake-text-config.ts",
+        "shake-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ShakeText/ShakeText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/ShakeText/ShakeText/shake-text.schema.ts"
+      }
+    },
+    {
+      "component": "SlideInCaption",
+      "newFile": "slide-in-caption.schema.ts",
+      "oldFiles": [
+        "slide-in-caption-config.ts",
+        "slide-in-caption-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SlideInCaption/SlideInCaption",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SlideInCaption/SlideInCaption/slide-in-caption.schema.ts"
+      }
+    },
+    {
+      "component": "SprayPaintText",
+      "newFile": "spray-paint-text.schema.ts",
+      "oldFiles": [
+        "spray-paint-text-config.ts",
+        "spray-paint-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SprayPaintText/SprayPaintText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/SprayPaintText/SprayPaintText/spray-paint-text.schema.ts"
+      }
+    },
+    {
+      "component": "WireText",
+      "newFile": "wire-text.schema.ts",
+      "oldFiles": [
+        "wire-text-config.ts",
+        "wire-text-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/WireText/WireText",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/Text/WireText/WireText/wire-text.schema.ts"
+      }
+    },
+    {
+      "component": "AsymmetricStatusPanel",
+      "newFile": "asymmetric-status-panel.schema.ts",
+      "oldFiles": [
+        "asymmetric-status-panel-config.ts",
+        "asymmetric-status-panel-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/AsymmetricStatusPanel/AsymmetricStatusPanel",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/AsymmetricStatusPanel/AsymmetricStatusPanel/asymmetric-status-panel.schema.ts"
+      }
+    },
+    {
+      "component": "BattleCalloutBanner",
+      "newFile": "battle-callout-banner.schema.ts",
+      "oldFiles": [
+        "battle-callout-banner-config.ts",
+        "battle-callout-banner-schema.ts"
+      ],
+      "pathInfo": {
+        "dir": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/BattleCalloutBanner/BattleCalloutBanner",
+        "newSchemaPath": "/Users/asami/develop/art/remotion-video-ui-library/src/UI/BattleCalloutBanner/BattleCalloutBanner/battle-callout-banner.schema.ts"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "component": "Background",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "Burst",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "GlitchTransitionBridge",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "InkRippleTransition",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "RackFocusBokehTransition",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "Intro",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "Map",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "Onboarding",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "Onboarding",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "Text",
+      "error": "No Patterns exports found"
+    },
+    {
+      "component": "Location",
+      "error": "No Patterns exports found"
+    }
+  ]
+}

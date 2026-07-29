@@ -15,13 +15,13 @@ module.exports = function injectCompositionTextLoader() {
   this.addDependency(localPath);
 
   try {
-    const { merged, locationV1CompositionKeys } =
+    const { merged, locationCompositionKeys } =
       bundle.readCompositionTextForBundleFromRoot(root);
 
     const code =
       `export const __COMPOSITION_TEXT_INLINED__ = ${JSON.stringify(merged)};\n` +
-      `export const __LOCATION_V1_KEYS_INLINED__ = ${JSON.stringify(
-        locationV1CompositionKeys,
+      `export const __LOCATION_KEYS_INLINED__ = ${JSON.stringify(
+        locationCompositionKeys,
       )};\n`;
     done(null, code);
   } catch (err) {

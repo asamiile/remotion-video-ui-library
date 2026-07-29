@@ -1,39 +1,49 @@
 // Background composition IDs (uses the same capPattern as Root.tsx). Enumerated
-// from each *-config.ts, the same approach as list-text-v1-composition-ids.cjs.
-// AmbientBlurOrbsV1 has no pattern family (single fixed composition), so it's
+// from each *.schema.ts, the same approach as list-text-composition-ids.cjs.
+// AmbientBlurOrbs has no pattern family (single fixed composition), so it's
 // printed directly instead of read via AST.
 const path = require("node:path");
 const { capPattern, requirePatternKeys } = require("./lib/ts-config-ast.cjs");
 
 const root = path.join(__dirname, "..");
 
-const fixedIds = ["Background-AmbientBlurOrbsV1"];
+const fixedIds = ["Background-AmbientBlurOrbs"];
 
 const families = [
   {
-    idPrefix: "Background-ScanLineV1",
-    file: "src/Background/ScanLine-v1/scan-line-config.ts",
-    exportName: "scanLineV1Patterns",
+    idPrefix: "Background-ScanLine",
+    file: "src/Background/ScanLine/scan-line.schema.ts",
+    exportName: "scanLinePatterns",
   },
   {
-    idPrefix: "Background-DuotoneGradeOverlayV1",
-    file: "src/Background/DuotoneGradeOverlay-v1/duotone-grade-overlay-config.ts",
-    exportName: "duotoneGradeOverlayV1Patterns",
+    idPrefix: "Background-DuotoneGradeOverlay",
+    file: "src/Background/DuotoneGradeOverlay/duotone-grade-overlay.schema.ts",
+    exportName: "duotoneGradeOverlayPatterns",
   },
   {
-    idPrefix: "Background-FilmGrainOverlayV1",
-    file: "src/Background/FilmGrainOverlay-v1/film-grain-overlay-config.ts",
-    exportName: "filmGrainOverlayV1Patterns",
+    idPrefix: "Background-FilmGrainOverlay",
+    file: "src/Background/FilmGrainOverlay/film-grain-overlay.schema.ts",
+    exportName: "filmGrainOverlayPatterns",
   },
   {
-    idPrefix: "Background-LetterboxOverlayV1",
-    file: "src/Background/LetterboxOverlay-v1/letterbox-overlay-config.ts",
-    exportName: "letterboxOverlayV1Patterns",
+    idPrefix: "Background-LetterboxOverlay",
+    file: "src/Background/LetterboxOverlay/letterbox-overlay.schema.ts",
+    exportName: "letterboxOverlayPatterns",
   },
   {
-    idPrefix: "Background-PosterizeGradeOverlayV1",
-    file: "src/Background/PosterizeGradeOverlay-v1/posterize-grade-overlay-config.ts",
-    exportName: "posterizeGradeOverlayV1Patterns",
+    idPrefix: "Background-PosterizeGradeOverlay",
+    file: "src/Background/PosterizeGradeOverlay/posterize-grade-overlay.schema.ts",
+    exportName: "posterizeGradeOverlayPatterns",
+  },
+  {
+    idPrefix: "Background-EmblemMontageBlur",
+    file: "src/Background/EmblemMontageBlur/emblem-montage-blur.schema.ts",
+    exportName: "emblemMontageBlurPatterns",
+  },
+  {
+    idPrefix: "Background-SunsetLensFlareOverlay",
+    file: "src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts",
+    exportName: "sunsetLensFlareOverlayPatterns",
   },
 ];
 

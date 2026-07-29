@@ -20,15 +20,15 @@ pnpm run dev
 
 ```console
 sh render.sh [subcommand]
-sh render.sh --transparent-bg NeonTextV1-LchikaOrangeJp   # e.g. no backdrop color (transparent)
+sh render.sh --transparent-bg NeonText-LchikaOrangeJp   # e.g. no backdrop color (transparent)
 sh render.sh --with-canvas-bg AudioSpectrum   # e.g. bake in the preview backdrop when exporting
 ```
 
 | Subcommand (batch) | Description |
 |--------------|------|
-| `Intro` | `IntroV1` → `Intro.mov` |
+| `Intro` | `Intro` → `Intro.mov` |
 | `LoadingIcon` | All patterns (Default … CustomWithText, etc.) |
-| `Location` | The location list is kept in sync with `composition-text` and `scripts/list-location-v1-composition-ids.cjs` |
+| `Location` | The location list is kept in sync with `composition-text` and `scripts/list-location-composition-ids.cjs` |
 | `MiniMap` | Each location (requires **WebGL** / `--gl=angle`) |
 | `AudioSpectrum` | Simple / Detailed (pattern, `--mute-audio`) |
 | `AudioSpectrumFiles` | One per file under `public/audio/AudioSpectrum/` |
