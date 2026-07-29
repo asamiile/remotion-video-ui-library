@@ -47,7 +47,7 @@ export interface IntroScene {
 import { msToFrame } from "../../helpers/ms-to-frame";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
 
-export const introSceneTimingV1 = [
+export const introSceneTiming = [
   {
     id: "scene1",
     centerFontWeight: "700" as const,
