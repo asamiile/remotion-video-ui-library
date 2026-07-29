@@ -42,7 +42,7 @@ export const glitchTextRandomSchema = z.object({
   /** Fade-out duration (frames) */
   fadeOutDuration: z.number().min(10).default(30),
 
-  randomSeed: z.string().default("glitch-random-v1"),
+  randomSeed: z.string().default("glitch-random"),
 });
 
 export type GlitchTextRandomSchemaType = z.infer<typeof glitchTextRandomSchema>;

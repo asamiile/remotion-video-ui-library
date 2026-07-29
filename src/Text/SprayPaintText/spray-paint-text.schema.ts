@@ -35,7 +35,7 @@ export const sprayPaintTextSchema = z.object({
   oversprayColor: zColor().optional(),
 
   delayFrames: z.number().min(0).default(0),
-  randomSeed: z.string().default("spray-paint-v1"),
+  randomSeed: z.string().default("spray-paint"),
 });
 
 export type SprayPaintTextSchemaType = z.infer<
@@ -66,7 +66,7 @@ export const defaultSprayPaintTextProps = {
   oversprayColor: undefined,
 
   delayFrames: 0,
-  randomSeed: "spray-paint-v1",
+  randomSeed: "spray-paint",
 };
 export const sprayPaintTextPatterns = {
   /** Staff credit (English default) */

@@ -44,7 +44,7 @@ export const neonTextSchema = z.object({
   blinkGlowOffMul: z.number().min(0).max(1).default(0.12),
 
   flickerStrength: z.number().min(0).max(0.45).default(0.12),
-  randomSeed: z.string().default("neon-v1"),
+  randomSeed: z.string().default("neon"),
 
   fadeInDuration: z.number().min(0).default(30),
   delayFrames: z.number().min(0).default(0),

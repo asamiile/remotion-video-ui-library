@@ -27,7 +27,7 @@ export const ledTextSchema = z.object({
   scrollGapCells: z.number().min(0).default(6),
 
   flickerStrength: z.number().min(0).max(0.35).default(0.07),
-  randomSeed: z.string().default("led-v1"),
+  randomSeed: z.string().default("led"),
 
   fadeInDuration: z.number().min(0).default(24),
   delayFrames: z.number().min(0).default(0),
@@ -70,7 +70,7 @@ export const defaultLedTextProps = {
   scrollGapCells: 8,
 
   flickerStrength: 0.06,
-  randomSeed: "led-v1-default",
+  randomSeed: "led-default",
 
   fadeInDuration: 24,
   delayFrames: 6,
