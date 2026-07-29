@@ -11,9 +11,9 @@ import {
   defaultOnboardingOperateV1Props,
   onboardingOperateV1DurationFrames,
 } from "./Motion/OneTake/Onboarding/OnboardingOperate-v1/onboarding-operate.schema";
-import { OneTakeLogoTemplateV1 } from "./Logo/OneTake/OneTakeLogo-v1/OneTakeLogoTemplate";
-import { oneTakeLogoSchemaV1 } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo.schema";
-import { oneTakeLogoV1Patterns } from "./Logo/OneTake/OneTakeLogo-v1/onetake-logo.schema";
+import { OneTakeLogoTemplateV1 } from "./Logo/OneTake/OneTakeLogo/OneTakeLogoTemplate";
+import { oneTakeLogoSchemaV1 } from "./Logo/OneTake/OneTakeLogo/onetake-logo.schema";
+import { oneTakeLogoV1Patterns } from "./Logo/OneTake/OneTakeLogo/onetake-logo.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 
 const FPS = 30;
