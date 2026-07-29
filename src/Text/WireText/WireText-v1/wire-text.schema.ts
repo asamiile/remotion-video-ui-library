@@ -39,6 +39,7 @@ export const wireTextSchemaV1 = z.object({
 
 export type WireTextSchemaV1Type = z.infer<typeof wireTextSchemaV1>;
 
+export const wireTextV1DurationFrames = 180;
 
 export const defaultWireTextV1Props = {
   text: "TRACE",
