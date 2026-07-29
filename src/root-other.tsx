@@ -13,10 +13,6 @@ import {
 import { IntroTemplate } from "./Intro/Intro/IntroTemplate";
 import { introSchema } from "./Intro/Intro/intro.schema";
 import { introSceneTiming } from "./Intro/Intro/intro.schema";
-import { AngstAnimationTemplate } from "./Background/AngstAnimation/AngstAnimationTemplate";
-import { angstAnimationSchema, defaultAngstAnimationProps } from "./Background/AngstAnimation/angst-animation.schema";
-import { AngstAnimationMultiShapeTemplate } from "./Background/AngstAnimation/AngstAnimationMultiShapeTemplate";
-import { angstAnimationMultiShapeSchema, defaultAngstAnimationMultiShapeProps } from "./Background/AngstAnimation/angst-animation-multi-shape.schema";
 import { PlaceholderImage } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
@@ -114,34 +110,6 @@ export function OtherFolder() {
         />
       </Folder>
 
-      <Folder name="Effects">
-        <Composition
-          id="AngstAnimation"
-          component={withCanvasPreview(
-            "AngstAnimation",
-            AngstAnimationTemplate,
-          )}
-          width={1920}
-          height={1080}
-          fps={FPS}
-          durationInFrames={900}
-          schema={angstAnimationSchema}
-          defaultProps={defaultAngstAnimationProps}
-        />
-        <Composition
-          id="AngstAnimationMultiShape"
-          component={withCanvasPreview(
-            "AngstAnimationMultiShape",
-            AngstAnimationMultiShapeTemplate,
-          )}
-          width={1920}
-          height={1080}
-          fps={FPS}
-          durationInFrames={900}
-          schema={angstAnimationMultiShapeSchema}
-          defaultProps={defaultAngstAnimationMultiShapeProps}
-        />
-      </Folder>
     </>
   );
 }
