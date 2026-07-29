@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { OneTakeLogoSchemaV1Type } from "./onetake-logo-schema";
+import { OneTakeLogoSchemaV1Type } from "./onetake-logo.schema";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 /** Bar height ratios for the logo, matched to the generated proportions of the actual icon (OneTake app's assets/icon.png). */

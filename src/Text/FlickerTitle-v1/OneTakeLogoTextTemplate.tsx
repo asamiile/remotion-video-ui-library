@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
-import { OneTakeLogoTextSchemaV1Type } from "./onetake-logo-text-schema";
+import { OneTakeLogoTextSchemaV1Type } from "./onetake-logo-text.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import { CTA_FLICKER_CYCLE_MS, ctaFlickerAt } from "../../Motion/OneTake/onetake-flicker";
 import "../../helpers/jetbrains-mono";

@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { LedTextSchemaV1Type } from "./led-text-schema";
+import { LedTextSchemaV1Type } from "./led-text.schema";
 import { rasterizeTextToGrid } from "./rasterize-text-to-grid";
 
 type LedDotMatrixBlockProps = {

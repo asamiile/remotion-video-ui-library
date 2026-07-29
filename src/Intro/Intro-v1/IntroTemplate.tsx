@@ -5,8 +5,11 @@ import {
   interpolate,
   Easing,
 } from "remotion";
-import { IntroSchemaV1Type } from "./intro-schema";
-import { IntroScene, introSceneTimingV1 } from "./intro-config";
+import {
+  IntroSchemaV1Type,
+  IntroScene,
+  introSceneTimingV1,
+} from "./intro.schema";
 
 export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
   authorName,

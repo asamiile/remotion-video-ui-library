@@ -6,7 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { OnboardingOperateSchemaV1Type } from "./onboarding-operate-schema";
+import { OnboardingOperateSchemaV1Type } from "./onboarding-operate.schema";
 import { resolvedBackdropPair } from "../../../../helpers/transparent-composition-backdrop";
 import { LaptopFrame, PhoneFrame, neonBoxShadow } from "../../onetake-device-chrome";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { TornNoteCaptionSchemaV1Type } from "./torn-note-caption-schema";
+import { TornNoteCaptionSchemaV1Type } from "./torn-note-caption.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

@@ -9,7 +9,7 @@ import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker
 import type {
   CodeStreamLineV1Type,
   CodeStreamSchemaV1Type,
-} from "./CodeStream-v1/code-stream-schema";
+} from "./CodeStream-v1/code-stream.schema";
 
 export type CodeStreamTemplateV1Props = CodeStreamSchemaV1Type;
 

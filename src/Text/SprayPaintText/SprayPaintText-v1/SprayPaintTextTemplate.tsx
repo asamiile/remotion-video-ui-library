@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { SprayPaintTextSchemaV1Type } from "./spray-paint-text-schema";
+import { SprayPaintTextSchemaV1Type } from "./spray-paint-text.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
-import { FlickerTitleSchemaV1Type } from "./flicker-title-schema";
+import { FlickerTitleSchemaV1Type } from "./flicker-title.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker";
 

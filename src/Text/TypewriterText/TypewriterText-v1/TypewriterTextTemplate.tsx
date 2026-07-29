@@ -5,7 +5,7 @@ import {
   interpolate,
   useCurrentFrame,
 } from "remotion";
-import { TypewriterTextSchemaV1Type } from "./typewriter-text-schema";
+import { TypewriterTextSchemaV1Type } from "./typewriter-text.schema";
 import "../../../helpers/jetbrains-mono";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";

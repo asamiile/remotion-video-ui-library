@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Easing, useCurrentFrame } from "remotion";
-import { AmbientBlurOrbsSchemaV1Type } from "./ambient-blur-orbs-schema";
+import { AmbientBlurOrbsSchemaV1Type } from "./ambient-blur-orbs.schema";
 
 /**
  * Circle layout reproducing asami.tokyo's (OneTake LP) `GlowField` (`hero`

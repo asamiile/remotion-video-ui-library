@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame } from "remotion";
-import { EmblemMontageBlurSchemaV1Type } from "./emblem-montage-blur-schema";
+import { EmblemMontageBlurSchemaV1Type } from "./emblem-montage-blur.schema";
 
 /** A simple 5-point star, as a clip-path polygon (percentages of its own box) */
 const STAR_CLIP_PATH =

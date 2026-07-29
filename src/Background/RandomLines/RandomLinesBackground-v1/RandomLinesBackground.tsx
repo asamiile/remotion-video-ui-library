@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { RandomLinesSchemaV1Type } from "./random-lines-schema";
+import { RandomLinesSchemaV1Type } from "./random-lines.schema";
 
 interface ActiveLine {
   id: string;

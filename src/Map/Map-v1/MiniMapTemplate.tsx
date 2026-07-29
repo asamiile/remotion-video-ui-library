@@ -9,12 +9,24 @@ import {
 } from "remotion";
 import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MiniMapSchemaV1Type } from "./mini-map-schema";
-import {
-  defaultMapCameraV1Config,
-  mapboxMapV1Options,
-  defaultMiniMapV1Props,
-} from "./mini-map-config";
+import { MiniMapSchemaV1Type, defaultMiniMapV1Props } from "./mini-map.schema";
+
+const defaultMapCameraV1Config = {
+  initialZoom: 4,
+  initialPitch: 0,
+  initialBearing: 0,
+  targetZoom: 16,
+  targetPitch: 0,
+  targetBearing: 0,
+  cameraAnimationDuration: 120,
+};
+
+const mapboxMapV1Options = {
+  style: "mapbox://styles/asamiinae/cmli18nq5002t01skhqfk1rfu",
+  interactive: false,
+  fadeDuration: 0,
+  antialias: true,
+} as const;
 import { mergedMapLocationPointsV1 } from "../../composition/composition-merged";
 // import { PlaceholderImage } from "../PlaceholderImage";
 

@@ -1,5 +1,5 @@
 import type { CompositionTextLocal } from "./composition-text-local";
-import type { MapLocationPoint } from "../Map/Map-v1/mini-map-config";
+import type { MapLocationPoint } from "../Map/Map-v1/mini-map.schema";
 import compositionTextExample from "../../config/local/composition-text.example.json";
 import {
   __COMPOSITION_TEXT_INLINED__,

@@ -30,8 +30,36 @@ export const introSchemaV1 = z.object({
 
 export type IntroSchemaV1Type = z.infer<typeof introSchemaV1>;
 
+export interface IntroScene {
+  id: string;
+  centerText?: string;
+  centerFontSize?: number;
+  centerFontWeight?: "400" | "700";
+  centerLineHeight?: number;
+  bottomRightText?: string;
+  bottomRightFontSize?: number;
+  bottomRightBottom?: number;
+  bottomRightRight?: number;
+  fadeOutStartSeconds?: number;
+  duration: number;
+}
+
 import { msToFrame } from "../../helpers/ms-to-frame";
 const LINESEED_FONT = "'Line Seed JP_100', sans-serif";
+
+export const introSceneTimingV1 = [
+  {
+    id: "scene1",
+    centerFontWeight: "700" as const,
+    fadeOutStartSeconds: 6,
+    duration: 300,
+  },
+  {
+    id: "scene2",
+    fadeOutStartSeconds: 10,
+    duration: 420,
+  },
+] as const;
 
 export const introV1DurationFrames = 720;
 

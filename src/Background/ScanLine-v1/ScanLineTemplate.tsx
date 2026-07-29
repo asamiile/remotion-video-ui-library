@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
-import { ScanLineSchemaV1Type } from "./scan-line-schema";
+import { ScanLineSchemaV1Type } from "./scan-line.schema";
 
 /** For crt style: spacing between raster lines (px) and their thickness (px) */
 const CRT_RASTER_GAP_PX = 3;

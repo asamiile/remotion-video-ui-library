@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { BurstSchemaV1Type } from "./burst-schema";
+import { BurstSchemaV1Type } from "./burst.schema";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 function jaggedBlobPoints(

@@ -1,6 +1,6 @@
 import React, { useId, useMemo } from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
-import { FilmGrainOverlaySchemaV1Type } from "./film-grain-overlay-schema";
+import { FilmGrainOverlaySchemaV1Type } from "./film-grain-overlay.schema";
 
 export const FilmGrainOverlayTemplateV1: React.FC<
   FilmGrainOverlaySchemaV1Type

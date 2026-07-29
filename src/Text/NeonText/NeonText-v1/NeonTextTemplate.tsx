@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { NeonTextSchemaV1Type } from "./neon-text-schema";
+import { NeonTextSchemaV1Type } from "./neon-text.schema";
 import "../../../helpers/line-seed-jp";
 import { resolvedBackdropPair } from "../../../helpers/transparent-composition-backdrop";
 

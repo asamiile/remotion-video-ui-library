@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
-import { GlitchTransitionBridgeSchemaV1Type } from "./glitch-transition-bridge-schema";
+import { GlitchTransitionBridgeSchemaV1Type } from "./glitch-transition-bridge.schema";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 export const GlitchTransitionBridgeTemplateV1: React.FC<
