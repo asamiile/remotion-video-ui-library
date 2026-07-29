@@ -51,7 +51,7 @@ const prefixLayers: { prefix: string; layer: CanvasPreviewLayer }[] = [
   },
   /** NeonText family (rainbow tube) */
   {
-    prefix: "NeonTextV1-Rainbow",
+    prefix: "NeonText-Rainbow",
     layer: { kind: "color", color: "#0a0a0f" },
   },
 ];

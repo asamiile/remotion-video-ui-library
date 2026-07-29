@@ -66,7 +66,7 @@ export const defaultShakeTextProps = {
   backgroundColor: "#0c1016",
 } as const;
 
-const shakeTextSharedV1 = {
+const shakeTextShared = {
   ...defaultShakeTextProps,
 };
 
@@ -80,18 +80,18 @@ const jpTypography = {
 
 export const shakeTextPatterns = {
   // --- Standard (trial-and-error style) ---
-  /** English font (JetBrains Mono) - Composition: ShakeTextV1-Trial */
+  /** English font (JetBrains Mono) - Composition: ShakeText-Trial */
   trial: {
-    ...shakeTextSharedV1,
+    ...shakeTextShared,
     ...enTypography,
     text: "Trial and error…",
     letterSpacing: "0.05em",
     randomSeed: "shake-v1-trial-en",
     settleDurationFrames: 50,
   },
-  /** Japanese font (LINE Seed) - Composition: ShakeTextV1-TrialJp */
+  /** Japanese font (LINE Seed) - Composition: ShakeText-TrialJp */
   trialJp: {
-    ...shakeTextSharedV1,
+    ...shakeTextShared,
     ...jpTypography,
     text: "試行錯誤中…",
     randomSeed: "shake-v1-trial-jp",
@@ -99,9 +99,9 @@ export const shakeTextPatterns = {
   },
 
   // --- Subtle jitter ---
-  /** English font - Composition: ShakeTextV1-Subtle */
+  /** English font - Composition: ShakeText-Subtle */
   subtle: {
-    ...shakeTextSharedV1,
+    ...shakeTextShared,
     ...enTypography,
     text: "Fine-tuning…",
     letterSpacing: "0.05em",
@@ -112,9 +112,9 @@ export const shakeTextPatterns = {
     settleDurationFrames: 36,
     randomSeed: "shake-v1-subtle-en",
   },
-  /** Japanese font - Composition: ShakeTextV1-SubtleJp */
+  /** Japanese font - Composition: ShakeText-SubtleJp */
   subtleJp: {
-    ...shakeTextSharedV1,
+    ...shakeTextShared,
     ...jpTypography,
     text: "調整しています",
     jitterMaxPx: 2.5,
