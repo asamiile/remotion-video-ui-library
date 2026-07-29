@@ -75,7 +75,7 @@ export const defaultConfettiPopTextProps = {
   backgroundColor: "#1a1428",
 } as const;
 
-const confettiPopSharedV1 = {
+const confettiPopShared = {
   ...defaultConfettiPopTextProps,
   fontSize: 48,
   burstFrame: 22,
@@ -85,7 +85,7 @@ const confettiPopSharedV1 = {
 export const confettiPopTextPatterns = {
   /** Latin script - JetBrains Mono */
   richPop: {
-    ...confettiPopSharedV1,
+    ...confettiPopShared,
     text: "Congratulations!",
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     letterSpacing: "0.06em",
@@ -94,7 +94,7 @@ export const confettiPopTextPatterns = {
 
   /** Japanese - LINE Seed JP */
   richPopJp: {
-    ...confettiPopSharedV1,
+    ...confettiPopShared,
     text: "おめでとう！",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     letterSpacing: "0.08em",

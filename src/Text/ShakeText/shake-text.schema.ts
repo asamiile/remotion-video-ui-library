@@ -128,7 +128,7 @@ export const shakeTextPatterns = {
   // --- Intense ---
   /** English */
   intense: {
-    ...shakeTextSharedV1,
+    ...shakeTextShared,
     ...enTypography,
     text: "RETRY · DEBUG",
     letterSpacing: "0.12em",
@@ -141,7 +141,7 @@ export const shakeTextPatterns = {
   },
   /** Japanese */
   intenseJp: {
-    ...shakeTextSharedV1,
+    ...shakeTextShared,
     ...jpTypography,
     text: "再試行 · デバッグ",
     letterSpacing: "0.1em",
