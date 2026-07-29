@@ -25,7 +25,7 @@ export function OneTakeFolder() {
         <Folder name="OneTake">
           <Folder name="Onboarding">
             <Composition
-              id="OneTake-OnboardingConnectV1"
+              id="OneTake-OnboardingConnect"
               component={withCanvasPreview(
                 "OneTake-OnboardingConnectV1",
                 OnboardingConnectTemplate,
@@ -39,7 +39,7 @@ export function OneTakeFolder() {
             />
 
             <Composition
-              id="OneTake-OnboardingOperateV1"
+              id="OneTake-OnboardingOperate"
               component={withCanvasPreview(
                 "OneTake-OnboardingOperateV1",
                 OnboardingOperateTemplate,
