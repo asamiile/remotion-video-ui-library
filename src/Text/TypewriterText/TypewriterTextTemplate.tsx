@@ -5,12 +5,12 @@ import {
   interpolate,
   useCurrentFrame,
 } from "remotion";
-import { TypewriterTextSchemaV1Type } from "./typewriter-text.schema";
+import { TypewriterTextSchemaType } from "./typewriter-text.schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaV1Type> = (
+export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

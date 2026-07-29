@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { GlitchTextRandomSchemaV1Type } from "./glitch-text-random.schema";
+import { GlitchTextRandomSchemaType } from "./glitch-text-random.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
@@ -337,7 +337,7 @@ const GlitchItem: React.FC<{
   );
 };
 
-export const GlitchTextRandomTemplateV1: React.FC<GlitchTextRandomSchemaV1Type> = ({
+export const GlitchTextRandomTemplateV1: React.FC<GlitchTextRandomSchemaType> = ({
   items,
   fontFamily,
   fontSize,

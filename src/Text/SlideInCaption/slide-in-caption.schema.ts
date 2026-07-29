@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const slideInCaptionSchemaV1 = z.object({
+export const slideInCaptionSchema = z.object({
   text: z.string().default(""),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
@@ -37,11 +37,11 @@ export const slideInCaptionSchemaV1 = z.object({
   slideInDurationFrames: z.number().min(8).default(52),
 });
 
-export type SlideInCaptionSchemaV1Type = z.infer<typeof slideInCaptionSchemaV1>;
+export type SlideInCaptionSchemaType = z.infer<typeof slideInCaptionSchema>;
 
-export const slideInCaptionV1DurationFrames = 150;
+export const slideInCaptionDurationFrames = 150;
 
-export const defaultSlideInCaptionV1Props = {
+export const defaultSlideInCaptionProps = {
   text: "",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -64,10 +64,10 @@ export const defaultSlideInCaptionV1Props = {
   delayFrames: 6,
   slideInDurationFrames: 48,
 };
-export const slideInCaptionV1Patterns = {
+export const slideInCaptionPatterns = {
   /** Reference look: white text on black background */
   refWhite: {
-    ...defaultSlideInCaptionV1Props,
+    ...defaultSlideInCaptionProps,
     text: "2025/06/19 Electronics with Arduino UNO",
     fontSize: 48,
     fontWeight: "700" as const,
@@ -75,7 +75,7 @@ export const slideInCaptionV1Patterns = {
 
   /** Same family as refWhite, with wider letter spacing for Japanese captions */
   refWhiteJp: {
-    ...defaultSlideInCaptionV1Props,
+    ...defaultSlideInCaptionProps,
     text: "2025/06/19 サンプル · スライドインキャプション",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,

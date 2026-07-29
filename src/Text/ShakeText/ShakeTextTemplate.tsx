@@ -7,12 +7,12 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { ShakeTextSchemaV1Type } from "./shake-text.schema";
+import { ShakeTextSchemaType } from "./shake-text.schema";
 import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaV1Type> = (props) => {
+export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const {

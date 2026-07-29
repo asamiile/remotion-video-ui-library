@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const filmGrainOverlaySchemaV1 = z.object({
+export const filmGrainOverlaySchema = z.object({
   /** baseFrequency for the SVG feTurbulence; higher values make the grain finer */
   grainScale: z.number().min(0.05).max(2).default(0.9),
   /** Overall opacity of the grain overlay */
@@ -19,12 +19,12 @@ export const filmGrainOverlaySchemaV1 = z.object({
   randomSeed: z.string().default("film-grain-v1"),
 });
 
-export type FilmGrainOverlaySchemaV1Type = z.infer<
+export type FilmGrainOverlaySchemaType = z.infer<
   typeof filmGrainOverlaySchemaV1
 >;
 
 
-export const defaultFilmGrainOverlayV1Props = {
+export const defaultFilmGrainOverlayProps = {
   grainScale: 0.9,
   grainOpacity: 0.12,
   grainUpdateEveryFrames: 2,
@@ -36,17 +36,17 @@ export const defaultFilmGrainOverlayV1Props = {
 
   randomSeed: "film-grain-v1",
 };
-export const filmGrainOverlayV1Patterns = {
+export const filmGrainOverlayPatterns = {
   /** Restrained grain for a single climactic moment (matches the vol. 37 PV) */
   subtle: {
-    ...defaultFilmGrainOverlayV1Props,
+    ...defaultFilmGrainOverlayProps,
     grainOpacity: 0.12,
     scratchCount: 0,
   },
 
   /** For flashback scenes: heavier grain plus film scratches (matches the vol. 38 PV) */
   heavyDegraded: {
-    ...defaultFilmGrainOverlayV1Props,
+    ...defaultFilmGrainOverlayProps,
     grainOpacity: 0.28,
     grainScale: 1.1,
     scratchCount: 6,

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const flickerTitleSchemaV1 = z.object({
+export const flickerTitleSchema = z.object({
   eyebrowText: z.string().default("EYEBROW LABEL"),
   titleText: z.string().default("Your Title Here"),
 
@@ -23,14 +23,14 @@ export const flickerTitleSchemaV1 = z.object({
   flickerTriggerFrame: z.number().min(0).default(15),
 });
 
-export type FlickerTitleSchemaV1Type = z.infer<typeof flickerTitleSchemaV1>;
+export type FlickerTitleSchemaType = z.infer<typeof flickerTitleSchema>;
 
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/space-grotesk";
 
-export const flickerTitleV1DurationFrames = 90;
+export const flickerTitleDurationFrames = 90;
 
-export const defaultFlickerTitleV1Props = {
+export const defaultFlickerTitleProps = {
   eyebrowText: "EYEBROW LABEL",
   titleText: "Your Title Here",
   eyebrowFontSize: 24,

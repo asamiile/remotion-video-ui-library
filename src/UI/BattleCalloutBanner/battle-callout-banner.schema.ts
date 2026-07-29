@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const battleCalloutBannerSchemaV1 = z.object({
+export const battleCalloutBannerSchema = z.object({
   text: z.string().default("ALL-OUT ATTACK!"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontSize: z.number().min(16).max(120).default(44),
@@ -27,13 +27,13 @@ export const battleCalloutBannerSchemaV1 = z.object({
   delayFrames: z.number().min(0).default(0),
 });
 
-export type BattleCalloutBannerSchemaV1Type = z.infer<
+export type BattleCalloutBannerSchemaType = z.infer<
   typeof battleCalloutBannerSchemaV1
 >;
 
-export const battleCalloutBannerV1DurationFrames = 150;
+export const battleCalloutBannerDurationFrames = 150;
 
-export const defaultBattleCalloutBannerV1Props = {
+export const defaultBattleCalloutBannerProps = {
   text: "ALL-OUT ATTACK!",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontSize: 44,
@@ -55,10 +55,10 @@ export const defaultBattleCalloutBannerV1Props = {
   popInFrames: 8,
   delayFrames: 0,
 };
-export const battleCalloutBannerV1Patterns = {
+export const battleCalloutBannerPatterns = {
   /** Red/black/white, matching the source's panel language (English default) */
   redBlack: {
-    ...defaultBattleCalloutBannerV1Props,
+    ...defaultBattleCalloutBannerProps,
     text: "ALL-OUT ATTACK!",
     borderColor: "#eef1fc",
     avatarColor: "#c81e2c",
@@ -66,7 +66,7 @@ export const battleCalloutBannerV1Patterns = {
 
   /** Same layout, Japanese sample text */
   redBlackJp: {
-    ...defaultBattleCalloutBannerV1Props,
+    ...defaultBattleCalloutBannerProps,
     text: "総攻撃タイム！",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     avatarColor: "#c81e2c",
@@ -74,7 +74,7 @@ export const battleCalloutBannerV1Patterns = {
 
   /** OneTake brand colors instead of the source's red accent */
   oneTakeBrand: {
-    ...defaultBattleCalloutBannerV1Props,
+    ...defaultBattleCalloutBannerProps,
     text: "SKILL GET!",
     borderColor: "#37e9ff",
     avatarColor: "#ff3d9e",

@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const glitchTextSchemaV1 = z.object({
+export const glitchTextSchema = z.object({
   text: z.string().default("MEASURING"),
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
@@ -37,12 +37,12 @@ export const glitchTextSchemaV1 = z.object({
   delayFrames: z.number().min(0).default(0),
 });
 
-export type GlitchTextSchemaV1Type = z.infer<typeof glitchTextSchemaV1>;
+export type GlitchTextSchemaType = z.infer<typeof glitchTextSchema>;
 
-export const glitchTextV1DurationFrames = 150;
+export const glitchTextDurationFrames = 150;
 
 
-export const defaultGlitchTextV1Props = {
+export const defaultGlitchTextProps = {
   text: "MEASURING",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -70,10 +70,10 @@ export const defaultGlitchTextV1Props = {
   fadeInDuration: 20,
   delayFrames: 0,
 };
-export const glitchTextV1Patterns = {
+export const glitchTextPatterns = {
   /** Equivalent to a digital tester's "measuring" state (English default) */
   measuring: {
-    ...defaultGlitchTextV1Props,
+    ...defaultGlitchTextProps,
     text: "MEASURING",
     fontSize: 48,
     randomSeed: "glitch-measuring",
@@ -81,7 +81,7 @@ export const glitchTextV1Patterns = {
 
   /** Meant to evoke a numeric readout smearing/bleeding */
   meterReadout: {
-    ...defaultGlitchTextV1Props,
+    ...defaultGlitchTextProps,
     text: "READING  —  12.48 V",
     fontSize: 48,
     letterSpacing: "0.05em",
@@ -92,7 +92,7 @@ export const glitchTextV1Patterns = {
 
   /** Stronger distortion */
   harshSignal: {
-    ...defaultGlitchTextV1Props,
+    ...defaultGlitchTextProps,
     text: "SIGNAL  UNSTABLE",
     fontSize: 48,
     rgbOffsetMax: 12,
@@ -104,7 +104,7 @@ export const glitchTextV1Patterns = {
 
   /** Japanese version of harshSignal */
   harshSignalJp: {
-    ...defaultGlitchTextV1Props,
+    ...defaultGlitchTextProps,
     text: "信号 不安定",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,

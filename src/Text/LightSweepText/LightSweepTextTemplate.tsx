@@ -6,11 +6,11 @@ import {
   interpolateColors,
   useCurrentFrame,
 } from "remotion";
-import { LightSweepTextSchemaV1Type } from "./light-sweep-text.schema";
+import { LightSweepTextSchemaType } from "./light-sweep-text.schema";
 import "../../helpers/line-seed-jp";
 import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 
-function pickSweepEasing(mode: LightSweepTextSchemaV1Type["sweepEasing"]) {
+function pickSweepEasing(mode: LightSweepTextSchemaType["sweepEasing"]) {
   if (mode === "linear") {
     return Easing.linear;
   }
@@ -20,7 +20,7 @@ function pickSweepEasing(mode: LightSweepTextSchemaV1Type["sweepEasing"]) {
   return Easing.out(Easing.cubic);
 }
 
-export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaV1Type> = (
+export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

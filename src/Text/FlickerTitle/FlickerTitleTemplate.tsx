@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
-import { FlickerTitleSchemaV1Type } from "./flicker-title.schema";
+import { FlickerTitleSchemaType } from "./flicker-title.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker";
 
@@ -21,7 +21,7 @@ const EYEBROW_LETTER_SPACING_PX = 1.5;
  * both render as the same steady "lit" look, looping the last frame back to
  * the first frame doesn't produce a visible seam.
  */
-export const FlickerTitleTemplateV1: React.FC<FlickerTitleSchemaV1Type> = ({
+export const FlickerTitleTemplateV1: React.FC<FlickerTitleSchemaType> = ({
   eyebrowText,
   titleText,
   eyebrowFontSize,

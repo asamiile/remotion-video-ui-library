@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const posterizeGradeOverlaySchemaV1 = z.object({
+export const posterizeGradeOverlaySchema = z.object({
   /** Single-hue wash applied over the footage (mix-blend-mode: color) */
   washColor: zColor().default("#b91c2c"),
   washOpacity: z.number().min(0).max(1).default(0.55),
@@ -15,12 +15,12 @@ export const posterizeGradeOverlaySchemaV1 = z.object({
   vignetteOpacity: z.number().min(0).max(1).default(0),
 });
 
-export type PosterizeGradeOverlaySchemaV1Type = z.infer<
+export type PosterizeGradeOverlaySchemaType = z.infer<
   typeof posterizeGradeOverlaySchemaV1
 >;
 
 
-export const defaultPosterizeGradeOverlayV1Props = {
+export const defaultPosterizeGradeOverlayProps = {
   washColor: "#b91c2c",
   washOpacity: 0.55,
 
@@ -30,9 +30,9 @@ export const defaultPosterizeGradeOverlayV1Props = {
   vignetteColor: "#000000",
   vignetteOpacity: 0,
 };
-export const posterizeGradeOverlayV1Patterns = {
+export const posterizeGradeOverlayPatterns = {
   redFlat: {
-    ...defaultPosterizeGradeOverlayV1Props,
+    ...defaultPosterizeGradeOverlayProps,
     washColor: "#c81e2c",
     washOpacity: 0.6,
     desaturateFirst: true,
@@ -40,7 +40,7 @@ export const posterizeGradeOverlayV1Patterns = {
   },
 
   beige: {
-    ...defaultPosterizeGradeOverlayV1Props,
+    ...defaultPosterizeGradeOverlayProps,
     washColor: "#c9a876",
     washOpacity: 0.35,
     desaturateFirst: true,
@@ -48,7 +48,7 @@ export const posterizeGradeOverlayV1Patterns = {
   },
 
   navyRed: {
-    ...defaultPosterizeGradeOverlayV1Props,
+    ...defaultPosterizeGradeOverlayProps,
     washColor: "#1c2a4a",
     washOpacity: 0.55,
     desaturateFirst: true,
@@ -58,7 +58,7 @@ export const posterizeGradeOverlayV1Patterns = {
   },
 
   teal: {
-    ...defaultPosterizeGradeOverlayV1Props,
+    ...defaultPosterizeGradeOverlayProps,
     washColor: "#1f6f6a",
     washOpacity: 0.5,
     desaturateFirst: true,

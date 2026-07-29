@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Easing, useCurrentFrame } from "remotion";
-import { AmbientBlurOrbsSchemaV1Type } from "./ambient-blur-orbs.schema";
+import { AmbientBlurOrbsSchemaType } from "./ambient-blur-orbs.schema";
 
 /**
  * Circle layout reproducing asami.tokyo's (OneTake LP) `GlowField` (`hero`
@@ -55,7 +55,7 @@ function glowDriftAt(progress: number): { tx: number; ty: number; scale: number 
  * seamless.
  */
 export const AmbientBlurOrbsTemplateV1: React.FC<
-  AmbientBlurOrbsSchemaV1Type
+  AmbientBlurOrbsSchemaType
 > = ({ topLeftColor, bottomRightColor, orbOpacity, blurPx, driftPeriodFrames }) => {
   const frame = useCurrentFrame();
   const colors = { topLeftColor, bottomRightColor };

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const neonTextRainbowSchemaV1 = z.object({
+export const neonTextRainbowSchema = z.object({
   text: z.string().default("NEON"),
   fontFamily: z.string().default(JETBRAINS_MONO_FONT_FAMILY),
   fontWeight: z.enum(["400", "700"]).default("700"),
@@ -48,11 +48,11 @@ export const neonTextRainbowSchemaV1 = z.object({
   vignetteOpacity: z.number().min(0).max(0.92).default(0.52),
 });
 
-export type NeonTextRainbowSchemaV1Type = z.infer<typeof neonTextRainbowSchemaV1>;
+export type NeonTextRainbowSchemaType = z.infer<typeof neonTextRainbowSchema>;
 
-export const neonTextRainbowV1DurationFrames = 3000;
+export const neonTextRainbowDurationFrames = 3000;
 
-export const defaultNeonTextRainbowV1Props = {
+export const defaultNeonTextRainbowProps = {
   text: "NEON",
   fontFamily: JETBRAINS_MONO_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -82,14 +82,14 @@ export const defaultNeonTextRainbowV1Props = {
   vignetteOpacity: 0.52,
 } as const;
 
-export const neonTextRainbowV1Patterns = {
+export const neonTextRainbowPatterns = {
   /**
    * Leans into a rounded-tube look: thicker stroke, thicker core, layered
    * glow, relatively fast hue cycling.
    * Composition: NeonTextV1-RainbowRoundedtube
    */
   roundedTube: {
-    ...defaultNeonTextRainbowV1Props,
+    ...defaultNeonTextRainbowProps,
     text: "TUBE NEON",
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     fontSize: 48,
@@ -111,7 +111,7 @@ export const neonTextRainbowV1Patterns = {
    * Composition: NeonTextV1-RainbowRoundedtubejp
    */
   roundedTubeJp: {
-    ...defaultNeonTextRainbowV1Props,
+    ...defaultNeonTextRainbowProps,
     text: "虹ネオン・太管",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,
     fontSize: 48,

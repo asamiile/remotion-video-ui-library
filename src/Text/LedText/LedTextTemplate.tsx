@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { LedTextSchemaV1Type } from "./led-text.schema";
+import { LedTextSchemaType } from "./led-text.schema";
 import { rasterizeTextToGrid } from "./rasterize-text-to-grid";
 
 type LedDotMatrixBlockProps = {
@@ -145,7 +145,7 @@ const LedScrollGapStrip: React.FC<{
   );
 };
 
-export const LedTextTemplateV1: React.FC<LedTextSchemaV1Type> = (props) => {
+export const LedTextTemplateV1: React.FC<LedTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const {
     text,

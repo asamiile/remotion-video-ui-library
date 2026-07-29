@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const duotoneGradeOverlaySchemaV1 = z.object({
+export const duotoneGradeOverlaySchema = z.object({
   /** One chromatic-aberration channel (e.g. magenta-ish) */
   channelAColor: zColor().default("#ff3d9e"),
   /** The other chromatic-aberration channel (e.g. cyan/green-ish) */
@@ -20,12 +20,12 @@ export const duotoneGradeOverlaySchemaV1 = z.object({
   trackingBandHeightPx: z.number().min(2).default(10),
 });
 
-export type DuotoneGradeOverlaySchemaV1Type = z.infer<
+export type DuotoneGradeOverlaySchemaType = z.infer<
   typeof duotoneGradeOverlaySchemaV1
 >;
 
 
-export const defaultDuotoneGradeOverlayV1Props = {
+export const defaultDuotoneGradeOverlayProps = {
   channelAColor: "#ff3d9e",
   channelBColor: "#37e9ff",
   channelShiftPx: 3,
@@ -38,10 +38,10 @@ export const defaultDuotoneGradeOverlayV1Props = {
   trackingNoiseOpacity: 0.5,
   trackingBandHeightPx: 10,
 };
-export const duotoneGradeOverlayV1Patterns = {
+export const duotoneGradeOverlayPatterns = {
   /** Magenta/green pairing close to the analyzed PV */
   magentaGreen: {
-    ...defaultDuotoneGradeOverlayV1Props,
+    ...defaultDuotoneGradeOverlayProps,
     channelAColor: "#ff3d9e",
     channelBColor: "#37e9ff",
     trackingNoiseEnabled: true,
@@ -49,7 +49,7 @@ export const duotoneGradeOverlayV1Patterns = {
 
   /** Example swapped to OneTake's brand colors (cyan/violet) */
   cyanViolet: {
-    ...defaultDuotoneGradeOverlayV1Props,
+    ...defaultDuotoneGradeOverlayProps,
     channelAColor: "#37e9ff",
     channelBColor: "#9c7bff",
     washColor: "#060810",

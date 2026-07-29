@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 
-export const sprayPaintTextSchemaV1 = z.object({
+export const sprayPaintTextSchema = z.object({
   text: z.string().default("SOUND DESIGN"),
 
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
@@ -38,13 +38,13 @@ export const sprayPaintTextSchemaV1 = z.object({
   randomSeed: z.string().default("spray-paint-v1"),
 });
 
-export type SprayPaintTextSchemaV1Type = z.infer<
+export type SprayPaintTextSchemaType = z.infer<
   typeof sprayPaintTextSchemaV1
 >;
 
-export const sprayPaintTextV1DurationFrames = 150;
+export const sprayPaintTextDurationFrames = 150;
 
-export const defaultSprayPaintTextV1Props = {
+export const defaultSprayPaintTextProps = {
   text: "SOUND DESIGN",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -68,24 +68,24 @@ export const defaultSprayPaintTextV1Props = {
   delayFrames: 0,
   randomSeed: "spray-paint-v1",
 };
-export const sprayPaintTextV1Patterns = {
+export const sprayPaintTextPatterns = {
   /** Staff credit (English default) */
   credit: {
-    ...defaultSprayPaintTextV1Props,
+    ...defaultSprayPaintTextProps,
     text: "SOUND DESIGN",
     roughness: 4,
   },
 
   /** Staff credit (Japanese sample) */
   creditJp: {
-    ...defaultSprayPaintTextV1Props,
+    ...defaultSprayPaintTextProps,
     text: "サウンドデザイン",
     roughness: 4,
   },
 
   /** Environmental "painted on the wall" narration line (Japanese sample) */
   wallGraffitiJp: {
-    ...defaultSprayPaintTextV1Props,
+    ...defaultSprayPaintTextProps,
     text: "諦めない",
     fontSize: 88,
     roughness: 7,

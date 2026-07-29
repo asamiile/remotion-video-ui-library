@@ -3,7 +3,7 @@ import { z } from "zod";
 import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 
-export const shakeTextSchemaV1 = z.object({
+export const shakeTextSchema = z.object({
   text: z.string().default("試行錯誤中…"),
 
   fontFamily: z.string().default(LINE_SEED_JP_FONT_FAMILY),
@@ -40,11 +40,11 @@ export const shakeTextSchemaV1 = z.object({
   backgroundColor: zColor().default("#0c1016"),
 });
 
-export type ShakeTextSchemaV1Type = z.infer<typeof shakeTextSchemaV1>;
+export type ShakeTextSchemaType = z.infer<typeof shakeTextSchema>;
 
-export const shakeTextV1DurationFrames = 180;
+export const shakeTextDurationFrames = 180;
 
-export const defaultShakeTextV1Props = {
+export const defaultShakeTextProps = {
   text: "試行錯誤中…",
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
   fontWeight: "700" as const,
@@ -67,7 +67,7 @@ export const defaultShakeTextV1Props = {
 } as const;
 
 const shakeTextSharedV1 = {
-  ...defaultShakeTextV1Props,
+  ...defaultShakeTextProps,
 };
 
 const enTypography = {
@@ -78,7 +78,7 @@ const jpTypography = {
   fontFamily: LINE_SEED_JP_FONT_FAMILY,
 };
 
-export const shakeTextV1Patterns = {
+export const shakeTextPatterns = {
   // --- Standard (trial-and-error style) ---
   /** English font (JetBrains Mono) - Composition: ShakeTextV1-Trial */
   trial: {

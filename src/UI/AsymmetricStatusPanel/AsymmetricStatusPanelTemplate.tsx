@@ -1,13 +1,13 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { AsymmetricStatusPanelSchemaV1Type } from "./asymmetric-status-panel.schema";
+import { AsymmetricStatusPanelSchemaType } from "./asymmetric-status-panel.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const PANEL_CUT_PX = 36;
 
 export const AsymmetricStatusPanelTemplateV1: React.FC<
-  AsymmetricStatusPanelSchemaV1Type
+  AsymmetricStatusPanelSchemaType
 > = ({
   characterName,
   subtitleText,

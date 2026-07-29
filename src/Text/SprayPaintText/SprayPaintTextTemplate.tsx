@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { SprayPaintTextSchemaV1Type } from "./spray-paint-text.schema";
+import { SprayPaintTextSchemaType } from "./spray-paint-text.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
@@ -25,7 +25,7 @@ const OVERSPRAY_WINDOW_FRAMES = 7;
  * fully-formed, static credit graphic with no reveal animation of its own.
  */
 export const SprayPaintTextTemplateV1: React.FC<
-  SprayPaintTextSchemaV1Type
+  SprayPaintTextSchemaType
 > = ({
   text,
   fontFamily,

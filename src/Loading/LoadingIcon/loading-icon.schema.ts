@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
-export const loadingIconSchemaV1 = z.object({
+export const loadingIconSchema = z.object({
   size: z.number().min(50).max(300).default(150),
   lightColor: zColor().default("#DFE2D7"),
   darkColor: zColor().default("#6B685C"),
@@ -23,10 +23,10 @@ export const loadingIconSchemaV1 = z.object({
   delayFrames: z.number().min(0).default(0), // delay before starting, in frames
 });
 
-export type LoadingIconSchemaV1Type = z.infer<typeof loadingIconSchemaV1>;
+export type LoadingIconSchemaType = z.infer<typeof loadingIconSchema>;
 
 
-export const defaultLoadingIconV1Props = {
+export const defaultLoadingIconProps = {
   size: 150,
   lightColor: "#DFE2D7",
   darkColor: "#6B685C",
@@ -47,24 +47,24 @@ export const defaultLoadingIconV1Props = {
   fadeOutDuration: 30,
   delayFrames: 0,
 };
-export const loadingIconV1Patterns = {
+export const loadingIconPatterns = {
   // Default size (100px) - no text
   default: {
-    ...defaultLoadingIconV1Props,
+    ...defaultLoadingIconProps,
     size: 100,
     showText: false,
   },
 
   // Large size (150px) - no text
   large: {
-    ...defaultLoadingIconV1Props,
+    ...defaultLoadingIconProps,
     size: 150,
     showText: false,
   },
 
   // Custom color pattern - no text
   custom: {
-    ...defaultLoadingIconV1Props,
+    ...defaultLoadingIconProps,
     size: 120,
     lightColor: "#FF6B9D",
     darkColor: "#C20039",
@@ -73,21 +73,21 @@ export const loadingIconV1Patterns = {
 
   // Default size (100px) - with text
   defaultWithText: {
-    ...defaultLoadingIconV1Props,
+    ...defaultLoadingIconProps,
     size: 100,
     showText: true,
   },
 
   // Large size (150px) - with text
   largeWithText: {
-    ...defaultLoadingIconV1Props,
+    ...defaultLoadingIconProps,
     size: 150,
     showText: true,
   },
 
   // Custom color pattern - with text
   customWithText: {
-    ...defaultLoadingIconV1Props,
+    ...defaultLoadingIconProps,
     size: 120,
     lightColor: "#FF6B9D",
     darkColor: "#C20039",

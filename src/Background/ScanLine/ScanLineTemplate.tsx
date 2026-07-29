@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
-import { ScanLineSchemaV1Type } from "./scan-line.schema";
+import { ScanLineSchemaType } from "./scan-line.schema";
 
 /** For crt style: spacing between raster lines (px) and their thickness (px) */
 const CRT_RASTER_GAP_PX = 3;
@@ -49,7 +49,7 @@ function ScanBand({
  * (refresh flicker) is applied, but since its period is an integer fraction
  * of scanPeriodFrames, it doesn't break the seamless loop.
  */
-export const ScanLineTemplateV1: React.FC<ScanLineSchemaV1Type> = ({
+export const ScanLineTemplateV1: React.FC<ScanLineSchemaType> = ({
   scanColor,
   bandHeight,
   scanStyle,
