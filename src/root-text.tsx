@@ -2,7 +2,7 @@ import { Composition, Folder } from "remotion";
 import { CodeStreamTemplateV1 } from "./Text/CodeStream/CodeStreamTemplate";
 import { codeStreamSchemaV1 } from "./Text/CodeStream/code-stream.schema";
 import {
-  mergedCodeStreamV1Patterns,
+  mergedCodeStreamPatterns,
   defaultCodeStreamHorizontalV1Props,
   defaultCodeStreamVerticalV1Props,
 } from "./composition/composition-merged-text";
@@ -58,24 +58,25 @@ import { SprayPaintTextTemplateV1 } from "./Text/SprayPaintText/SprayPaintTextTe
 import { sprayPaintTextSchemaV1 } from "./Text/SprayPaintText/spray-paint-text.schema";
 import { sprayPaintTextV1DurationFrames } from "./Text/SprayPaintText/spray-paint-text.schema";
 import {
-  mergedLocationConfigsV1,
-  mergedLedTextV1Patterns,
-  mergedNeonTextV1Patterns,
-  mergedSlideInCaptionV1Patterns,
-  mergedGlitchTextV1Patterns,
+  mergedLocationConfigs,
+  mergedLedTextPatterns,
+  mergedNeonTextPatterns,
+  mergedSlideInCaptionPatterns,
+  mergedGlitchTextPatterns,
   mergedGlitchTextV1RandomPatterns,
-  mergedWireTextV1Patterns,
-  mergedNeonTextRainbowV1Patterns,
-  mergedLightSweepTextV1Patterns,
-  mergedDottedLineMarkerV1Patterns,
-  mergedTypewriterTextV1Patterns,
-  mergedShakeTextV1Patterns,
-  mergedConfettiPopTextV1Patterns,
-  mergedStackedRevealTextV1Patterns,
-  mergedTornNoteCaptionV1Patterns,
-  mergedDistressedTitleCardV1Patterns,
-  mergedSprayPaintTextV1Patterns,
-  mergedOneTakeLogoTextV1Props,
+  mergedWireTextPatterns,
+  mergedNeonTextRainbowPatterns,
+  mergedLightSweepTextPatterns,
+  mergedDottedLineMarkerPatterns,
+  mergedTypewriterTextPatterns,
+  mergedShakeTextPatterns,
+  mergedConfettiPopTextPatterns,
+  mergedCodeStreamPatterns,
+  mergedStackedRevealTextPatterns,
+  mergedTornNoteCaptionPatterns,
+  mergedDistressedTitleCardPatterns,
+  mergedSprayPaintTextPatterns,
+  mergedOneTakeLogoTextProps,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 
@@ -93,7 +94,7 @@ export function TextFolder() {
           fps={FPS}
           durationInFrames={1800}
           schema={codeStreamSchemaV1}
-          defaultProps={mergedCodeStreamV1Patterns.horizontal ?? defaultCodeStreamHorizontalV1Props}
+          defaultProps={mergedCodeStreamPatterns.horizontal ?? defaultCodeStreamHorizontalV1Props}
         />
 
         <Composition
@@ -104,12 +105,12 @@ export function TextFolder() {
           fps={FPS}
           durationInFrames={3200}
           schema={codeStreamSchemaV1}
-          defaultProps={mergedCodeStreamV1Patterns.vertical ?? defaultCodeStreamVerticalV1Props}
+          defaultProps={mergedCodeStreamPatterns.vertical ?? defaultCodeStreamVerticalV1Props}
         />
       </Folder>
 
       <Folder name="Location">
-        {mergedLocationConfigsV1.map((config) => (
+        {mergedLocationConfigs.map((config) => (
           <Composition
             key={config.id}
             id={`LocationV1-${config.id}`}
@@ -132,7 +133,7 @@ export function TextFolder() {
 
       <Folder name="LedText">
         {renderPatternFamily({
-          patterns: mergedLedTextV1Patterns,
+          patterns: mergedLedTextPatterns,
           idPrefix: "LedTextV1-",
           Template: LedTextTemplateV1,
           schema: ledTextSchemaV1,
@@ -142,7 +143,7 @@ export function TextFolder() {
 
       <Folder name="NeonText">
         {renderPatternFamily({
-          patterns: mergedNeonTextV1Patterns,
+          patterns: mergedNeonTextPatterns,
           idPrefix: "NeonTextV1-",
           Template: NeonTextTemplateV1,
           schema: neonTextSchemaV1,
@@ -152,7 +153,7 @@ export function TextFolder() {
 
       <Folder name="SlideInCaption">
         {renderPatternFamily({
-          patterns: mergedSlideInCaptionV1Patterns,
+          patterns: mergedSlideInCaptionPatterns,
           idPrefix: "SlideInCaptionV1-",
           Template: SlideInCaptionTemplateV1,
           schema: slideInCaptionSchemaV1,
@@ -162,7 +163,7 @@ export function TextFolder() {
 
       <Folder name="GlitchText">
         {renderPatternFamily({
-          patterns: mergedGlitchTextV1Patterns,
+          patterns: mergedGlitchTextPatterns,
           idPrefix: "GlitchTextV1-",
           Template: GlitchTextTemplateV1,
           schema: glitchTextSchemaV1,
@@ -190,7 +191,7 @@ export function TextFolder() {
 
       <Folder name="WireText">
         {renderPatternFamily({
-          patterns: mergedWireTextV1Patterns,
+          patterns: mergedWireTextPatterns,
           idPrefix: "WireTextV1-",
           Template: WireTextTemplateV1,
           schema: wireTextSchemaV1,
@@ -200,7 +201,7 @@ export function TextFolder() {
 
       <Folder name="NeonTextRainbow">
         {renderPatternFamily({
-          patterns: mergedNeonTextRainbowV1Patterns,
+          patterns: mergedNeonTextRainbowPatterns,
           idPrefix: "NeonTextV1-Rainbow",
           Template: NeonTextRainbowTemplateV1,
           schema: neonTextRainbowSchemaV1,
@@ -210,7 +211,7 @@ export function TextFolder() {
 
       <Folder name="LightSweepText">
         {renderPatternFamily({
-          patterns: mergedLightSweepTextV1Patterns,
+          patterns: mergedLightSweepTextPatterns,
           idPrefix: "LightSweepTextV1-",
           Template: LightSweepTextTemplateV1,
           schema: lightSweepTextSchemaV1,
@@ -219,7 +220,7 @@ export function TextFolder() {
       </Folder>
 
       <Folder name="DottedLineMarkerText">
-        {Object.entries(mergedDottedLineMarkerV1Patterns).map(
+        {Object.entries(mergedDottedLineMarkerPatterns).map(
           ([patternName, props]) => (
             <Composition
               key={patternName}
@@ -238,7 +239,7 @@ export function TextFolder() {
 
       <Folder name="TypewriterText">
         {renderPatternFamily({
-          patterns: mergedTypewriterTextV1Patterns,
+          patterns: mergedTypewriterTextPatterns,
           idPrefix: "TypewriterTextV1-",
           Template: TypewriterTextTemplateV1,
           schema: typewriterTextSchemaV1,
@@ -248,7 +249,7 @@ export function TextFolder() {
 
       <Folder name="ShakeText">
         {renderPatternFamily({
-          patterns: mergedShakeTextV1Patterns,
+          patterns: mergedShakeTextPatterns,
           idPrefix: "ShakeTextV1-",
           Template: ShakeTextTemplateV1,
           schema: shakeTextSchemaV1,
@@ -258,7 +259,7 @@ export function TextFolder() {
 
       <Folder name="ConfettiPopText">
         {renderPatternFamily({
-          patterns: mergedConfettiPopTextV1Patterns,
+          patterns: mergedConfettiPopTextPatterns,
           idPrefix: "ConfettiPopTextV1-",
           Template: ConfettiPopTextTemplateV1,
           schema: confettiPopTextSchemaV1,
@@ -292,13 +293,13 @@ export function TextFolder() {
           fps={FPS}
           durationInFrames={flickerTitleV1DurationFrames}
           schema={flickerTitleSchemaV1}
-          defaultProps={{ ...mergedOneTakeLogoTextV1Props }}
+          defaultProps={{ ...mergedOneTakeLogoTextProps }}
         />
       </Folder>
 
       <Folder name="StackedRevealText">
         {renderPatternFamily({
-          patterns: mergedStackedRevealTextV1Patterns,
+          patterns: mergedStackedRevealTextPatterns,
           idPrefix: "StackedRevealTextV1-",
           Template: StackedRevealTextTemplateV1,
           schema: stackedRevealTextSchemaV1,
@@ -308,7 +309,7 @@ export function TextFolder() {
 
       <Folder name="TornNoteCaption">
         {renderPatternFamily({
-          patterns: mergedTornNoteCaptionV1Patterns,
+          patterns: mergedTornNoteCaptionPatterns,
           idPrefix: "TornNoteCaptionV1-",
           Template: TornNoteCaptionTemplateV1,
           schema: tornNoteCaptionSchemaV1,
@@ -318,7 +319,7 @@ export function TextFolder() {
 
       <Folder name="DistressedTitleCard">
         {renderPatternFamily({
-          patterns: mergedDistressedTitleCardV1Patterns,
+          patterns: mergedDistressedTitleCardPatterns,
           idPrefix: "DistressedTitleCardV1-",
           Template: DistressedTitleCardTemplateV1,
           schema: distressedTitleCardSchemaV1,
@@ -328,7 +329,7 @@ export function TextFolder() {
 
       <Folder name="SprayPaintText">
         {renderPatternFamily({
-          patterns: mergedSprayPaintTextV1Patterns,
+          patterns: mergedSprayPaintTextPatterns,
           idPrefix: "SprayPaintTextV1-",
           Template: SprayPaintTextTemplateV1,
           schema: sprayPaintTextSchemaV1,

@@ -7,8 +7,8 @@ import { asymmetricStatusPanelSchemaV1 } from "./UI/AsymmetricStatusPanel/asymme
 import { asymmetricStatusPanelV1DurationFrames } from "./UI/AsymmetricStatusPanel/asymmetric-status-panel.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
-  mergedBattleCalloutBannerV1Patterns,
-  mergedAsymmetricStatusPanelV1Patterns,
+  mergedBattleCalloutBannerPatterns,
+  mergedAsymmetricStatusPanelPatterns,
 } from "./composition/composition-merged-ui";
 
 const FPS = 30;
@@ -18,7 +18,7 @@ export function UIFolder() {
     <Folder name="UI">
       <Folder name="BattleCalloutBanner">
         {renderPatternFamily({
-          patterns: mergedBattleCalloutBannerV1Patterns,
+          patterns: mergedBattleCalloutBannerPatterns,
           idPrefix: "BattleCalloutBannerV1-",
           Template: BattleCalloutBannerTemplateV1,
           schema: battleCalloutBannerSchemaV1,
@@ -28,7 +28,7 @@ export function UIFolder() {
 
       <Folder name="AsymmetricStatusPanel">
         {renderPatternFamily({
-          patterns: mergedAsymmetricStatusPanelV1Patterns,
+          patterns: mergedAsymmetricStatusPanelPatterns,
           idPrefix: "AsymmetricStatusPanelV1-",
           Template: AsymmetricStatusPanelTemplateV1,
           schema: asymmetricStatusPanelSchemaV1,
