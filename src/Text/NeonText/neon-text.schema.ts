@@ -215,7 +215,7 @@ export const neonTextPatterns = {
 
   /**
    * Modeled on the Arduino D13 / L LED - amber-to-orange only, square-wave blink.
-   * Composition: NeonTextV1-LchikaOrange
+   * Composition: NeonText-LchikaOrange
    */
   lchikaOrange: {
     ...lchikaOrangeBase,
@@ -234,7 +234,7 @@ export const neonTextPatterns = {
 
   /**
    * Modeled on the Arduino power ON LED - lime green only, steady on (static).
-   * Composition: NeonTextV1-LchikaGreen
+   * Composition: NeonText-LchikaGreen
    */
   lchikaGreen: {
     ...defaultNeonTextProps,
