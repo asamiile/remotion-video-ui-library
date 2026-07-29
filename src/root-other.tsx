@@ -1,18 +1,18 @@
 import { Composition, Folder } from "remotion";
 import { LoadingIconTemplateV1 } from "./Loading/LoadingIcon/LoadingIconTemplate";
-import { loadingIconSchemaV1 } from "./Loading/LoadingIcon/loading-icon.schema";
+import { loadingIconSchema } from "./Loading/LoadingIcon/loading-icon.schema";
 import { MiniMapTemplateV1 } from "./Map/Map/MiniMapTemplate";
-import { miniMapSchemaV1 } from "./Map/Map/mini-map.schema";
+import { miniMapSchema } from "./Map/Map/mini-map.schema";
 import { defaultMiniMapProps } from "./Map/Map/mini-map.schema";
 import { AudioSpectrumTemplateV1 } from "./Audio/AudioSpectrum/AudioSpectrumTemplate";
-import { audioSpectrumSchemaV1 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
+import { audioSpectrumSchema } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import {
   audioSpectrumV1Patterns,
   defaultAudioSpectrumProps,
 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import { IntroTemplateV1 } from "./Intro/Intro/IntroTemplate";
-import { introSchemaV1 } from "./Intro/Intro/intro.schema";
-import { introSceneTimingV1 } from "./Intro/Intro/intro.schema";
+import { introSchema } from "./Intro/Intro/intro.schema";
+import { introSceneTiming } from "./Intro/Intro/intro.schema";
 import { PlaceholderImageV1 } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
@@ -33,7 +33,7 @@ export function OtherFolder() {
           patterns: mergedLoadingIconPatterns,
           idPrefix: "LoadingIconV1-",
           Template: LoadingIconTemplateV1,
-          schema: loadingIconSchemaV1,
+          schema: loadingIconSchema,
           durationInFrames: 300,
         })}
       </Folder>
@@ -51,7 +51,7 @@ export function OtherFolder() {
             height={1080}
             fps={FPS}
             durationInFrames={1800}
-            schema={miniMapSchemaV1}
+            schema={miniMapSchema}
             defaultProps={{
               ...defaultMiniMapProps,
               locationPoint,
@@ -75,7 +75,7 @@ export function OtherFolder() {
                 height={1080}
                 fps={FPS}
                 durationInFrames={1800}
-                schema={audioSpectrumSchemaV1}
+                schema={audioSpectrumSchema}
                 defaultProps={{
                   ...defaultAudioSpectrumProps,
                   ...props,
@@ -95,7 +95,7 @@ export function OtherFolder() {
           height={1080}
           fps={FPS}
           durationInFrames={3600}
-          schema={introSchemaV1}
+          schema={introSchema}
           defaultProps={mergedDefaultIntroProps}
         />
       </Folder>
