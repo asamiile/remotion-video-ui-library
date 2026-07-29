@@ -1,4 +1,4 @@
-// Text-effect composition IDs (uses the same capPattern as Root.tsx). Enumerated from each *-config.ts.
+// Text-effect composition IDs (uses the same capPattern as Root.tsx). Enumerated from each schema.ts.
 // composition-text.local.json only overrides copy — it's not the source of truth for IDs.
 const path = require("node:path");
 const { capPattern, requirePatternKeys } = require("./lib/ts-config-ast.cjs");
@@ -8,84 +8,84 @@ const root = path.join(__dirname, "..");
 const families = [
   {
     idPrefix: "LedTextV1",
-    file: "src/Text/LedText/LedText-v1/led-text-schema.ts",
-    exportName: "ledTextV1Patterns",
+    file: "src/Text/LedText/led-text.schema.ts",
+    exportName: "ledTextPatterns",
   },
   {
     idPrefix: "NeonTextV1",
-    file: "src/Text/NeonText/NeonText-v1/neon-text-schema.ts",
-    exportName: "neonTextV1Patterns",
+    file: "src/Text/NeonText/neon-text.schema.ts",
+    exportName: "neonTextPatterns",
   },
   {
     idPrefix: "SlideInCaptionV1",
-    file: "src/Text/SlideInCaption/SlideInCaption-v1/slide-in-caption-schema.ts",
-    exportName: "slideInCaptionV1Patterns",
+    file: "src/Text/SlideInCaption/slide-in-caption.schema.ts",
+    exportName: "slideInCaptionPatterns",
   },
   {
     idPrefix: "GlitchTextV1",
-    file: "src/Text/GlitchText/GlitchText-v1/glitch-text-schema.ts",
-    exportName: "glitchTextV1Patterns",
+    file: "src/Text/GlitchText/glitch-text.schema.ts",
+    exportName: "glitchTextPatterns",
   },
   {
     idPrefix: "WireTextV1",
-    file: "src/Text/WireText/WireText-v1/wire-text-schema.ts",
-    exportName: "wireTextV1Patterns",
+    file: "src/Text/WireText/wire-text.schema.ts",
+    exportName: "wireTextPatterns",
   },
   {
     idPrefix: "NeonTextV1-Rainbow",
-    file: "src/Text/NeonTextRainbow/NeonTextRainbow-v1/neon-text-rainbow-schema.ts",
-    exportName: "neonTextRainbowV1Patterns",
+    file: "src/Text/NeonTextRainbow/neon-text-rainbow.schema.ts",
+    exportName: "neonTextRainbowPatterns",
     join: "",
   },
   {
     idPrefix: "LightSweepTextV1",
-    file: "src/Text/LightSweepText/LightSweepText-v1/light-sweep-text-schema.ts",
-    exportName: "lightSweepTextV1Patterns",
+    file: "src/Text/LightSweepText/light-sweep-text.schema.ts",
+    exportName: "lightSweepTextPatterns",
   },
   {
     idPrefix: "DottedLineMarkerTextV1",
-    file: "src/Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text.schema.ts",
-    exportName: "dottedLineMarkerV1Patterns",
+    file: "src/Text/DottedLineMarkerText/dotted-line-marker-text.schema.ts",
+    exportName: "dottedLineMarkerPatterns",
   },
   {
     idPrefix: "TypewriterTextV1",
-    file: "src/Text/TypewriterText/TypewriterText-v1/typewriter-text.schema.ts",
-    exportName: "typewriterTextV1Patterns",
+    file: "src/Text/TypewriterText/typewriter-text.schema.ts",
+    exportName: "typewriterTextPatterns",
   },
   {
     idPrefix: "ShakeTextV1",
-    file: "src/Text/ShakeText/ShakeText-v1/shake-text-config.ts",
-    exportName: "shakeTextV1Patterns",
+    file: "src/Text/ShakeText/shake-text.schema.ts",
+    exportName: "shakeTextPatterns",
   },
   {
     idPrefix: "ConfettiPopTextV1",
-    file: "src/Text/ConfettiPopText/ConfettiPopText-v1/confetti-pop-text-config.ts",
-    exportName: "confettiPopTextV1Patterns",
+    file: "src/Text/ConfettiPopText/confetti-pop-text.schema.ts",
+    exportName: "confettiPopTextPatterns",
   },
   {
     idPrefix: "CodeStreamV1",
-    file: "src/Text/CodeStream/CodeStream-v1/code-stream.schema.ts",
-    exportName: "codeStreamV1Patterns",
+    file: "src/Text/CodeStream/code-stream.schema.ts",
+    exportName: "codeStreamPatterns",
   },
   {
     idPrefix: "StackedRevealTextV1",
-    file: "src/Text/StackedRevealText/StackedRevealText-v1/stacked-reveal-text.schema.ts",
-    exportName: "stackedRevealTextV1Patterns",
+    file: "src/Text/StackedRevealText/stacked-reveal-text.schema.ts",
+    exportName: "stackedRevealTextPatterns",
   },
   {
     idPrefix: "TornNoteCaptionV1",
-    file: "src/Text/TornNoteCaption/TornNoteCaption-v1/torn-note-caption.schema.ts",
-    exportName: "tornNoteCaptionV1Patterns",
+    file: "src/Text/TornNoteCaption/torn-note-caption.schema.ts",
+    exportName: "tornNoteCaptionPatterns",
   },
   {
     idPrefix: "DistressedTitleCardV1",
-    file: "src/Text/DistressedTitleCard/DistressedTitleCard-v1/distressed-title-card-config.ts",
-    exportName: "distressedTitleCardV1Patterns",
+    file: "src/Text/DistressedTitleCard/distressed-title-card.schema.ts",
+    exportName: "distressedTitleCardPatterns",
   },
   {
     idPrefix: "SprayPaintTextV1",
-    file: "src/Text/SprayPaintText/SprayPaintText-v1/spray-paint-text-config.ts",
-    exportName: "sprayPaintTextV1Patterns",
+    file: "src/Text/SprayPaintText/spray-paint-text.schema.ts",
+    exportName: "sprayPaintTextPatterns",
   },
 ];
 
