@@ -31,9 +31,9 @@ export function EffectFolder() {
   return (
     <Folder name="Effect">
       <Composition
-        id="GlitchTransitionBridgeV1"
+        id="GlitchTransitionBridge"
         component={withCanvasPreview(
-          "GlitchTransitionBridgeV1",
+          "GlitchTransitionBridge",
           GlitchTransitionBridgeTemplateV1,
         )}
         width={1920}
@@ -45,9 +45,9 @@ export function EffectFolder() {
       />
 
       <Composition
-        id="InkRippleTransitionV1"
+        id="InkRippleTransition"
         component={withCanvasPreview(
-          "InkRippleTransitionV1",
+          "InkRippleTransition",
           InkRippleTransitionTemplateV1,
         )}
         width={1920}
@@ -59,9 +59,9 @@ export function EffectFolder() {
       />
 
       <Composition
-        id="RackFocusBokehTransitionV1"
+        id="RackFocusBokehTransition"
         component={withCanvasPreview(
-          "RackFocusBokehTransitionV1",
+          "RackFocusBokehTransition",
           RackFocusBokehTransitionTemplateV1,
         )}
         width={1920}
@@ -73,9 +73,9 @@ export function EffectFolder() {
       />
 
       <Composition
-        id="BurstV1"
+        id="Burst"
         component={withCanvasPreview(
-          "BurstV1",
+          "Burst",
           BurstTemplateV1,
         )}
         width={1920}
