@@ -7,13 +7,13 @@ import { glitchTextV1RandomPatterns } from "../Text/GlitchText/glitch-text-rando
 import { wireTextV1Patterns } from "../Text/WireText/wire-text.schema";
 import { neonTextRainbowV1Patterns } from "../Text/NeonTextRainbow/neon-text-rainbow.schema";
 import { lightSweepTextV1Patterns } from "../Text/LightSweepText/light-sweep-text.schema";
-import { randomLinesV1Patterns } from "../Background/RandomLines/RandomLinesBackground/random-lines.schema";
+import { randomLinesV1Patterns } from "../Background/RandomLinesBackground/random-lines.schema";
 import { dottedLineMarkerV1Patterns } from "../Text/DottedLineMarkerText/dotted-line-marker-text.schema";
 import { typewriterTextV1Patterns } from "../Text/TypewriterText/typewriter-text.schema";
 import { shakeTextV1Patterns } from "../Text/ShakeText/shake-text.schema";
 import { confettiPopTextV1Patterns } from "../Text/ConfettiPopText/confetti-pop-text.schema";
 import { loadingIconV1Patterns } from "../Loading/LoadingIcon/loading-icon.schema";
-import { codeStreamV1Patterns } from "../Text/CodeStream/CodeStream/code-stream.schema";
+import { codeStreamV1Patterns } from "../Text/CodeStream/code-stream.schema";
 import { stackedRevealTextV1Patterns } from "../Text/StackedRevealText/stacked-reveal-text.schema";
 import { tornNoteCaptionV1Patterns } from "../Text/TornNoteCaption/torn-note-caption.schema";
 import { distressedTitleCardV1Patterns } from "../Text/DistressedTitleCard/distressed-title-card.schema";

@@ -199,6 +199,49 @@ render_one_prores_mov() {
     }
 }
 
+# Render a fixed composition ID (pattern: fixed ID array, single render per ID)
+# Args: label (emoji + text), array_name (e.g., GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS)
+render_fixed_id_family() {
+  local label="$1"
+  local array_name="$2"
+  # Get array values via indirect expansion
+  local array=("${!array_name}")
+
+  echo -e "${YELLOW}${label}...${NC}"
+
+  local comp_id
+  for comp_id in "${array[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+
+  echo ""
+  echo -e "${GREEN}✅ ${label%\.\.\.*} rendered successfully!${NC}"
+}
+
+# Render compositions from a Node enumeration script
+# Args: label (emoji + text), script_path (relative to SCRIPT_DIR)
+render_from_list_script() {
+  local label="$1"
+  local script="$2"
+
+  echo -e "${YELLOW}${label}...${NC}"
+
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    [ -z "$comp_id" ] && continue
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done < <(node "$SCRIPT_DIR/$script")
+
+  echo ""
+  echo -e "${GREEN}✅ ${label%\.\.\.*} rendered successfully!${NC}"
+}
+
 # Render the Intro composition
 render_intro() {
   echo -e "${YELLOW}🎬 Rendering Intro composition...${NC}"
@@ -211,154 +254,45 @@ render_intro() {
   echo -e "${GREEN}✅ Intro composition rendered successfully!${NC}"
 }
 
-# Render OneTake compositions (IDs enumerated by scripts/list-onetake-composition-ids.cjs
-# from onetake-logo-config.ts, plus the fixed Onboarding/LogoText IDs that have no pattern family)
+# Render OneTake compositions (IDs enumerated by scripts/list-onetake-composition-ids.cjs)
 render_onetake() {
-  echo -e "${YELLOW}📱 Rendering OneTake compositions...${NC}"
-
-  local comp_id
-  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    [ -z "$comp_id" ] && continue
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-onetake-composition-ids.cjs")
-
-  echo ""
-  echo -e "${GREEN}✅ All OneTake compositions rendered successfully!${NC}"
+  render_from_list_script "📱 Rendering OneTake compositions" "scripts/list-onetake-composition-ids.cjs"
 }
 
-# Render Background compositions (IDs enumerated by scripts/list-background-composition-ids.cjs
-# from each Background *-config.ts, plus the fixed AmbientBlurOrbs ID that has no pattern family).
+# Render Background compositions (IDs enumerated by scripts/list-background-composition-ids.cjs).
 # These parts are always transparent already, so --transparent-bg isn't needed.
 render_background() {
-  echo -e "${YELLOW}✨ Rendering Background compositions...${NC}"
-
-  local comp_id
-  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    [ -z "$comp_id" ] && continue
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-background-composition-ids.cjs")
-
-  echo ""
-  echo -e "${GREEN}✅ All Background compositions rendered successfully!${NC}"
+  render_from_list_script "✨ Rendering Background compositions" "scripts/list-background-composition-ids.cjs"
 }
 
-# Render GlitchTransitionBridge compositions (see GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS for the ID list)
+# Render GlitchTransitionBridge compositions
 render_glitch_transition_bridge() {
-  echo -e "${YELLOW}✨ Rendering GlitchTransitionBridge compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All GlitchTransitionBridge compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering GlitchTransitionBridge compositions" GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS
 }
 
-# Render InkRippleTransition compositions (see INK_RIPPLE_TRANSITION_COMPOSITION_IDS for the ID list)
+# Render InkRippleTransition compositions
 render_ink_ripple_transition() {
-  echo -e "${YELLOW}✨ Rendering InkRippleTransition compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${INK_RIPPLE_TRANSITION_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All InkRippleTransition compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering InkRippleTransition compositions" INK_RIPPLE_TRANSITION_COMPOSITION_IDS
 }
 
-# Render RackFocusBokehTransition compositions (see RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS for the ID list)
+# Render RackFocusBokehTransition compositions
 render_rack_focus_bokeh_transition() {
-  echo -e "${YELLOW}✨ Rendering RackFocusBokehTransition compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All RackFocusBokehTransition compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering RackFocusBokehTransition compositions" RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS
 }
 
-# Render Burst compositions (see BURST_COMPOSITION_IDS for the ID list)
+# Render Burst compositions
 render_burst() {
-  echo -e "${YELLOW}✨ Rendering Burst compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${BURST_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All Burst compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering Burst compositions" BURST_COMPOSITION_IDS
 }
 
-# Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs from each UI *-config.ts)
+# Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs)
 render_ui() {
-  echo -e "${YELLOW}✨ Rendering UI compositions...${NC}"
-
-  local comp_id
-  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    [ -z "$comp_id" ] && continue
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-ui-composition-ids.cjs")
-
-  echo ""
-  echo -e "${GREEN}✅ All UI compositions rendered successfully!${NC}"
+  render_from_list_script "✨ Rendering UI compositions" "scripts/list-ui-composition-ids.cjs"
 }
 
-# Render FlickerTitle compositions (see FLICKER_TITLE_COMPOSITION_IDS for the ID list)
+# Render FlickerTitle compositions
 render_flicker_title() {
-  echo -e "${YELLOW}✨ Rendering FlickerTitle compositions...${NC}"
-
-  local comp_id
-  for comp_id in "${FLICKER_TITLE_COMPOSITION_IDS[@]}"; do
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done
-
-  echo ""
-  echo -e "${GREEN}✅ All FlickerTitle compositions rendered successfully!${NC}"
+  render_fixed_id_family "✨ Rendering FlickerTitle compositions" FLICKER_TITLE_COMPOSITION_IDS
 }
 
 # Render LoadingIcon compositions (IDs enumerated by scripts/list-loading-icon-composition-ids.cjs from loading-icon-config.ts)
@@ -496,23 +430,9 @@ render_audiospectrum_files() {
   echo -e "${GREEN}✅ All AudioSpectrum file compositions rendered successfully! ($file_count files)${NC}"
 }
 
-# LED / Neon / Glitch / Wire and other text-effect families (kept in sync between the patterns registered in Root.tsx and scripts/list-text-v1-composition-ids.cjs)
+# LED / Neon / Glitch / Wire and other text-effect families
 render_text_effects() {
-  echo -e "${YELLOW}✨ Rendering text-effect compositions (Led / Neon / Glitch / …)…${NC}"
-
-  local comp_id
-  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    [ -z "$comp_id" ] && continue
-    echo ""
-    echo -e "${YELLOW}→ ${comp_id}${NC}"
-
-    render_one_prores_mov "$comp_id" "$(output_path_for "$comp_id")" \
-      || return 1
-    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
-  done < <(node "$SCRIPT_DIR/scripts/list-text-v1-composition-ids.cjs")
-
-  echo ""
-  echo -e "${GREEN}✅ All text-effect compositions rendered successfully!${NC}"
+  render_from_list_script "✨ Rendering text-effect compositions (Led / Neon / Glitch / …)" "scripts/list-text-v1-composition-ids.cjs"
 }
 
 # Japanese sample set only (TEXT_EFFECTS_JP_SAMPLE_IDS)
