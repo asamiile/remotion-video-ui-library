@@ -54,6 +54,9 @@ import { lightSweepTextV1DurationFrames } from "./Text/LightSweepText/LightSweep
 import { RandomLinesBackgroundV1 } from "./Background/RandomLines/RandomLinesBackground-v1/RandomLinesBackground";
 import { randomLinesSchemaV1 } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines-schema";
 import { randomLinesV1DurationFrames } from "./Background/RandomLines/RandomLinesBackground-v1/random-lines-config";
+import { DottedLineMarkerTextV1 } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/DottedLineMarkerText";
+import { dottedLineMarkerTextSchemaV1 } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text-schema";
+import { dottedLineMarkerTextV1DurationFrames } from "./Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text-config";
 import { TypewriterTextTemplateV1 } from "./Text/TypewriterText/TypewriterText-v1/TypewriterTextTemplate";
 import { typewriterTextSchemaV1 } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-schema";
 import { typewriterTextV1DurationFrames } from "./Text/TypewriterText/TypewriterText-v1/typewriter-text-config";
@@ -159,6 +162,7 @@ import {
   mergedGlitchTextV1RandomPatterns,
   mergedLightSweepTextV1Patterns,
   mergedRandomLinesV1Patterns,
+  mergedDottedLineMarkerV1Patterns,
   mergedLedTextV1Patterns,
   mergedLoadingIconV1Patterns,
   mergedLocationConfigsV1,
@@ -369,6 +373,24 @@ export const RemotionRoot: React.FC = () => {
             schema: lightSweepTextSchemaV1,
             durationInFrames: lightSweepTextV1DurationFrames,
           })}
+        </Folder>
+
+        <Folder name="DottedLineMarkerText">
+          {Object.entries(mergedDottedLineMarkerV1Patterns).map(
+            ([patternName, props]) => (
+              <Composition
+                key={patternName}
+                id={`DottedLineMarkerTextV1-${patternName}`}
+                component={DottedLineMarkerTextV1}
+                durationInFrames={dottedLineMarkerTextV1DurationFrames}
+                width={1920}
+                height={1080}
+                fps={30}
+                schema={dottedLineMarkerTextSchemaV1}
+                defaultProps={props}
+              />
+            )
+          )}
         </Folder>
 
         <Folder name="TypewriterText">

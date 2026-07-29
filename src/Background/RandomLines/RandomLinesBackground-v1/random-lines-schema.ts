@@ -12,6 +12,7 @@ export const randomLinesSchemaV1 = z.object({
   lineOpacity: z.number().min(0).max(1).default(0.7),
   displayAreaHeightPx: z.number().min(100).max(1080).default(600),
   minLineSpacingPx: z.number().min(0).max(200).default(50),
+  maxConcurrentLines: z.number().min(1).max(10).default(3),
   randomSeed: z.string().default("random-lines-default"),
 });
 
