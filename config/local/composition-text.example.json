@@ -20,16 +20,16 @@
       "longitude": 130.3994274097612
     }
   },
-  "loadingIconV1Patterns": {
+  "loadingIconPatterns": {
     "defaultWithText": { "text": "Loading …" },
     "largeWithText": { "text": "Loading …" },
     "customWithText": { "text": "Loading …" }
   },
-  "slideInCaptionV1Patterns": {
+  "slideInCaptionPatterns": {
     "refWhite": { "text": "2025/06/19 Electronics with Arduino UNO" },
     "refWhiteJp": { "text": "サンプル キャプション" }
   },
-  "neonTextV1Patterns": {
+  "neonTextPatterns": {
     "pinkPulse": { "text": "SAMPLE OPEN" },
     "cyanFlicker": { "text": "SAMPLE NEON" },
     "greenBreathe": { "text": "DEMO TEXT" },
@@ -41,13 +41,13 @@
     "lchikaOrangeJp": { "text": "エルチカ" },
     "lchikaGreen": { "text": "ON · GREEN" }
   },
-  "glitchTextV1Patterns": {
+  "glitchTextPatterns": {
     "measuring": { "text": "MEASURING " },
     "meterReadout": { "text": "READING  —  12.48 V SAMPLE" },
     "harshSignal": { "text": "SIGNAL UNSTABLE（sample）" },
     "harshSignalJp": { "text": "信号 不安定" }
   },
-  "glitchTextV1RandomPatterns": {
+  "glitchTextRandomPatterns": {
     "harshSignalRandom": {
       "items": [
         { "text": "System A" },
@@ -56,28 +56,28 @@
       ]
     }
   },
-  "wireTextV1Patterns": {
+  "wireTextPatterns": {
     "trace": { "text": "HELLO WIRE" },
     "traceJp": { "text": "ワイヤーサンプル" },
     "outlineOnly": { "text": "OUTLINE ONLY" },
     "outlineOnlyJp": { "text": "輪郭のみ" }
   },
-  "neonTextRainbowV1Patterns": {
+  "neonTextRainbowPatterns": {
     "roundedTube": { "text": "TUBE NEON " },
     "roundedTubeJp": { "text": "虹ネオン・太管" }
   },
-  "lightSweepTextV1Patterns": {
+  "lightSweepTextPatterns": {
     "complete": { "text": "COMPLETE" },
     "completeJp": { "text": "完了" },
     "doneJp": { "text": "処理完了" },
     "rapid": { "text": "OK" },
     "rapidJp": { "text": "了解" }
   },
-  "randomLinesBackgroundV1Patterns": {
+  "randomLinesBackgroundPatterns": {
     "subtle": {},
     "prominent": {}
   },
-  "dottedLineMarkerTextV1Patterns": {
+  "dottedLineMarkerTextPatterns": {
     "default": {
       "items": [
         { "leftText": "Requirement", "rightText": "01" },
@@ -85,15 +85,15 @@
       ]
     }
   },
-  "ledTextV1Patterns": {
+  "ledTextPatterns": {
     "redScroll": { "text": "SAMPLE  ///  LED  ///  SCROLL  ///  " },
     "redScrollJp": { "text": "サンプル  ///  LED  ///  スクロール  ///  " }
   },
-  "typewriterTextV1Patterns": {
+  "typewriterTextPatterns": {
     "codeLine": { "text": "console.log('sample');" },
     "jpComment": { "text": "// サンプル一行です" }
   },
-  "shakeTextV1Patterns": {
+  "shakeTextPatterns": {
     "trial": { "text": "Trial & error " },
     "trialJp": { "text": "試行錯誤" },
     "subtle": { "text": "Subtle shake " },
@@ -101,26 +101,26 @@
     "intense": { "text": "RETRY · DEBUG " },
     "intenseJp": { "text": "強めシェイク" }
   },
-  "confettiPopTextV1Patterns": {
+  "confettiPopTextPatterns": {
     "richPop": { "text": "Congrats! " },
     "richPopJp": { "text": "完成おめでとう" }
   },
-  "stackedRevealTextV1Patterns": {
+  "stackedRevealTextPatterns": {
     "stacked": { "lines": ["SAMPLE LINE ONE", "SAMPLE LINE TWO "] },
     "stackedJp": { "lines": ["サンプルテキストの", "サンプル行"] },
     "climaxHaloJp": { "lines": ["サンプルテキストの", "サンプル"] }
   },
-  "tornNoteCaptionV1Patterns": {
+  "tornNoteCaptionPatterns": {
     "note": { "text": "SAMPLE NOTE" },
     "noteJp": { "text": "サンプルのテキスト" }
   },
-  "distressedTitleCardV1Patterns": {
+  "distressedTitleCardPatterns": {
     "darkTitle": { "titleText": "SAMPLE TITLE" },
     "darkTitleJp": { "titleText": "サンプルタイトル" },
     "agedPaperChapter": { "titleText": "SAMPLE CHAPTER", "numberText": "01" },
     "agedPaperChapterJp": { "titleText": "サンプルの章", "numberText": "01" }
   },
-  "sprayPaintTextV1Patterns": {
+  "sprayPaintTextPatterns": {
     "credit": { "text": "SAMPLE CREDIT" },
     "creditJp": { "text": "サンプルクレジット" },
     "wallGraffitiJp": { "text": "サンプル" }
@@ -136,7 +136,7 @@
     "backgroundColor": "#060810",
     "flickerTriggerFrame": 15
   },
-  "codeStreamV1Patterns": {
+  "codeStreamPatterns": {
     "horizontal": {
       "paragraphs": [
         [
@@ -197,12 +197,12 @@
       ]
     }
   },
-  "battleCalloutBannerV1Patterns": {
+  "battleCalloutBannerPatterns": {
     "redBlack": { "text": "SAMPLE CALLOUT" },
     "redBlackJp": { "text": "サンプルコールアウト" },
     "oneTakeBrand": { "text": "SAMPLE SKILL" }
   },
-  "asymmetricStatusPanelV1Patterns": {
+  "asymmetricStatusPanelPatterns": {
     "redBlack": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" },
     "redBlackJp": { "characterName": "サンプル", "subtitleText": "サンプルガーディアン" },
     "oneTakeBrand": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" }
