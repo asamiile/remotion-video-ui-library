@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { ShakeTextSchemaV1Type } from "./shake-text-schema";
+import { ShakeTextSchemaV1Type } from "./shake-text.schema";
 import "../../../helpers/jetbrains-mono";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";

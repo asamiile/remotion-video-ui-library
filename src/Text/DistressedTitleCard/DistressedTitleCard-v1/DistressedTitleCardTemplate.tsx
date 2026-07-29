@@ -1,6 +1,6 @@
 import React, { useId } from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { DistressedTitleCardSchemaV1Type } from "./distressed-title-card-schema";
+import { DistressedTitleCardSchemaV1Type } from "./distressed-title-card.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

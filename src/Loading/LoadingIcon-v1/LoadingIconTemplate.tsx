@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import { LoadingIconSchemaV1Type } from "./loading-icon-schema";
+import { LoadingIconSchemaV1Type } from "./loading-icon.schema";
 import { LoadingIconV1 } from "./LoadingIcon";
 
 export const LoadingIconTemplateV1: React.FC<LoadingIconSchemaV1Type> = ({

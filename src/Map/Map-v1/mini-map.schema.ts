@@ -1,5 +1,15 @@
 import { z } from "zod";
 
+export interface MapLocationPoint {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  zoom?: number;
+  pitch?: number;
+  bearing?: number;
+}
+
 export const miniMapSchemaV1 = z.object({
   mapLocationId: z.string().default(""),
 

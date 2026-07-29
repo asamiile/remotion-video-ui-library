@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
-import { DuotoneGradeOverlaySchemaV1Type } from "./duotone-grade-overlay-schema";
+import { DuotoneGradeOverlaySchemaV1Type } from "./duotone-grade-overlay.schema";
 
 export const DuotoneGradeOverlayTemplateV1: React.FC<
   DuotoneGradeOverlaySchemaV1Type

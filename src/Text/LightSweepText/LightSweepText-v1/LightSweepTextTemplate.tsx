@@ -6,7 +6,7 @@ import {
   interpolateColors,
   useCurrentFrame,
 } from "remotion";
-import { LightSweepTextSchemaV1Type } from "./light-sweep-text-schema";
+import { LightSweepTextSchemaV1Type } from "./light-sweep-text.schema";
 import "../../../helpers/line-seed-jp";
 import { resolvedBackdropPair } from "../../../helpers/transparent-composition-backdrop";
 

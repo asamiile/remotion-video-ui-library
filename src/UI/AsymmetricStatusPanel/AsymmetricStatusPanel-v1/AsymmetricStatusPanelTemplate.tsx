@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { AsymmetricStatusPanelSchemaV1Type } from "./asymmetric-status-panel-schema";
+import { AsymmetricStatusPanelSchemaV1Type } from "./asymmetric-status-panel.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

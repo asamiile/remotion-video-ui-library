@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { StackedRevealTextSchemaV1Type } from "./stacked-reveal-text-schema";
+import { StackedRevealTextSchemaV1Type } from "./stacked-reveal-text.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

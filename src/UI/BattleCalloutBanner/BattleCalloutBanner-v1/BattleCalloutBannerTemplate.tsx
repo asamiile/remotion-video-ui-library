@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { BattleCalloutBannerSchemaV1Type } from "./battle-callout-banner-schema";
+import { BattleCalloutBannerSchemaV1Type } from "./battle-callout-banner.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

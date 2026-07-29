@@ -6,7 +6,7 @@ import {
   random,
   useCurrentFrame,
 } from "remotion";
-import { GlitchTextSchemaV1Type } from "./glitch-text-schema";
+import { GlitchTextSchemaV1Type } from "./glitch-text.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

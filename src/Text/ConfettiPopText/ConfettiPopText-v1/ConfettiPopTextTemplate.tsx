@@ -8,7 +8,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { ConfettiPopTextSchemaV1Type } from "./confetti-pop-text-schema";
+import { ConfettiPopTextSchemaV1Type } from "./confetti-pop-text.schema";
 import "../../../helpers/jetbrains-mono";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";

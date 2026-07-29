@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { GlitchTextRandomSchemaV1Type } from "./glitch-text-random-schema";
+import { GlitchTextRandomSchemaV1Type } from "./glitch-text-random.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../../helpers/jetbrains-mono";

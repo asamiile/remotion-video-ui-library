@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
-import { SlideInCaptionSchemaV1Type } from "./slide-in-caption-schema";
+import { SlideInCaptionSchemaV1Type } from "./slide-in-caption.schema";
 import "../../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 

@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { NeonTextRainbowSchemaV1Type } from "./neon-text-rainbow-schema";
+import { NeonTextRainbowSchemaV1Type } from "./neon-text-rainbow.schema";
 import "../../../helpers/jetbrains-mono";
 import "../../../helpers/line-seed-jp";
 import { resolvedBackdropPair } from "../../../helpers/transparent-composition-backdrop";
