@@ -1,28 +1,28 @@
 import { Composition, Folder } from "remotion";
-import { GlitchTransitionBridgeTemplate } from "./Effect/GlitchTransitionBridge/GlitchTransitionBridgeTemplate";
-import { glitchTransitionBridgeSchema } from "./Effect/GlitchTransitionBridge/glitch-transition-bridge.schema";
+import { GlitchTransitionBridgeTemplate } from "./Effects/GlitchTransitionBridge/GlitchTransitionBridgeTemplate";
+import { glitchTransitionBridgeSchema } from "./Effects/GlitchTransitionBridge/glitch-transition-bridge.schema";
 import {
   defaultGlitchTransitionBridgeProps,
   glitchTransitionBridgeDurationFrames,
-} from "./Effect/GlitchTransitionBridge/glitch-transition-bridge.schema";
-import { InkRippleTransitionTemplate } from "./Effect/InkRippleTransition/InkRippleTransitionTemplate";
-import { inkRippleTransitionSchema } from "./Effect/InkRippleTransition/ink-ripple-transition.schema";
+} from "./Effects/GlitchTransitionBridge/glitch-transition-bridge.schema";
+import { InkRippleTransitionTemplate } from "./Effects/InkRippleTransition/InkRippleTransitionTemplate";
+import { inkRippleTransitionSchema } from "./Effects/InkRippleTransition/ink-ripple-transition.schema";
 import {
   defaultInkRippleTransitionProps,
   inkRippleTransitionDurationFrames,
-} from "./Effect/InkRippleTransition/ink-ripple-transition.schema";
-import { RackFocusBokehTransitionTemplate } from "./Effect/RackFocusBokehTransition/RackFocusBokehTransitionTemplate";
-import { rackFocusBokehTransitionSchema } from "./Effect/RackFocusBokehTransition/rack-focus-bokeh-transition.schema";
+} from "./Effects/InkRippleTransition/ink-ripple-transition.schema";
+import { RackFocusBokehTransitionTemplate } from "./Effects/RackFocusBokehTransition/RackFocusBokehTransitionTemplate";
+import { rackFocusBokehTransitionSchema } from "./Effects/RackFocusBokehTransition/rack-focus-bokeh-transition.schema";
 import {
   defaultRackFocusBokehTransitionProps,
   rackFocusBokehTransitionDurationFrames,
-} from "./Effect/RackFocusBokehTransition/rack-focus-bokeh-transition.schema";
-import { BurstTemplate } from "./Effect/Burst/BurstTemplate";
-import { burstSchema } from "./Effect/Burst/burst.schema";
+} from "./Effects/RackFocusBokehTransition/rack-focus-bokeh-transition.schema";
+import { BurstTemplate } from "./Effects/Burst/BurstTemplate";
+import { burstSchema } from "./Effects/Burst/burst.schema";
 import {
   defaultBurstProps,
   burstDurationFrames,
-} from "./Effect/Burst/burst.schema";
+} from "./Effects/Burst/burst.schema";
 import { withCanvasPreview } from "./helpers/composition-helpers";
 
 const FPS = 30;

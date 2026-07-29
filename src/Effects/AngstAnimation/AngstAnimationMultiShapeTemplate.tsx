@@ -1,7 +1,7 @@
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { useMemo } from "react";
 
-interface AngstAnimationProps {}
+interface AngstAnimationMultiShapeProps {}
 
 interface CurveSegment {
   id: number;
@@ -25,7 +25,7 @@ function generateSpiralsWithNoise(seed: number): CurveSegment[] {
   const curves: CurveSegment[] = [];
   const centerX = 1920 / 2;
   const centerY = 1080 / 2;
-  const spiralCount = 16; // 増加させてより複雑に
+  const spiralCount = 16;
   const basePointsPerSpiral = 32;
 
   for (let s = 0; s < spiralCount; s++) {
@@ -35,15 +35,13 @@ function generateSpiralsWithNoise(seed: number): CurveSegment[] {
     const offset3 = (offset2 * 7919) % 100000;
     const offset0 = (offset3 * 7919) % 100000;
 
-    // より大きなバリエーション
     const phaseOffset = (offset1 / 100000) * Math.PI * 2;
-    const freqA = (offset2 / 100000) * 11 + 1; // 1-12（より広い範囲）
+    const freqA = (offset2 / 100000) * 11 + 1;
     const freqB = (offset3 / 100000) * 11 + 1;
-    const freqVariation = (offset0 / 100000) * 3 - 1.5; // -1.5 to 1.5の変動
-    const radiusBase = (offset1 / 100000) * 180 + 100; // 100-280（より変動）
-    const zScale = (offset2 / 100000) * 0.8 + 0.2; // 0.2-1.0（より変動）
+    const freqVariation = (offset0 / 100000) * 3 - 1.5;
+    const radiusBase = (offset1 / 100000) * 180 + 100;
+    const zScale = (offset2 / 100000) * 0.8 + 0.2;
 
-    // ウェイポイント数をランダムに変更
     const pointsPerSpiral = Math.floor((offset3 / 100000) * 30 + basePointsPerSpiral);
 
     const points: Array<{ x: number; y: number }> = [];
@@ -52,7 +50,6 @@ function generateSpiralsWithNoise(seed: number): CurveSegment[] {
       const t = p / pointsPerSpiral;
       const tNoise = pseudoNoise(t * 10 + offset1 / 100000, s * 3, offset2 / 100000);
 
-      // より複雑な角度計算
       const angle =
         t * Math.PI * 4 +
         freqVariation * Math.sin(t * Math.PI * 2) +
@@ -62,22 +59,19 @@ function generateSpiralsWithNoise(seed: number): CurveSegment[] {
       const y3d = Math.sin(freqB * angle + phaseOffset) * radiusBase;
       const z3d = (t * 2 - 1) * radiusBase * zScale;
 
-      // ノイズを大幅に増加（40 → 80）
       const noiseScale = 20;
       const noiseFactor = (pseudoNoise(x3d / noiseScale, y3d / noiseScale, z3d / noiseScale) - 0.5) * 2;
       const noiseX = noiseFactor * 80;
       const noiseY =
         (pseudoNoise(y3d / noiseScale, z3d / noiseScale, x3d / noiseScale) - 0.5) * 2 * 80;
 
-      // 非線形な変形を追加
       const distortionX = Math.sin(t * Math.PI * 3 + offset1 / 100000) * 30;
       const distortionY = Math.cos(t * Math.PI * 2.5 + offset2 / 100000) * 30;
 
-      // 楕円形の制約（横長）
-      const ellipseX = x3d * 1.4; // X軸を1.4倍（横長に）
-      const ellipseY = y3d * 0.8; // Y軸を0.8倍（縦を短く）
+      const ellipseX = x3d * 1.4;
+      const ellipseY = y3d * 0.8;
       const distFromCenter = Math.sqrt(ellipseX * ellipseX + ellipseY * ellipseY);
-      const maxRadius = 420; // サイズを大きく
+      const maxRadius = 420;
       const constraintFactor = distFromCenter > maxRadius ? maxRadius / distFromCenter : 1;
 
       const x = ellipseX * constraintFactor + noiseX + distortionX;
@@ -89,7 +83,6 @@ function generateSpiralsWithNoise(seed: number): CurveSegment[] {
       });
     }
 
-    // アニメーションパラメータ
     const offset4 = (offset0 * 7919) % 100000;
     const offset5 = (offset4 * 7919) % 100000;
     const offset6 = (offset5 * 7919) % 100000;
@@ -150,17 +143,62 @@ function generateBezierPathData(points: Array<{ x: number; y: number }>): string
   return path;
 }
 
-export function AngstAnimationTemplate(
-  props: AngstAnimationProps
+function renderCurves(
+  curves: CurveSegment[],
+  time: number,
+  centerX: number,
+  centerY: number
+) {
+  return curves.map((curve) => {
+    const offsetX = Math.sin(time * curve.animationSpeed + curve.phaseX) * curve.amplitudeX;
+    const offsetY = Math.cos(time * curve.animationSpeed + curve.phaseY) * curve.amplitudeY;
+
+    const animatedPoints = curve.points.map((point) => {
+      return {
+        x: point.x + offsetX,
+        y: point.y + offsetY,
+      };
+    });
+
+    const pulseFactor =
+      Math.sin(time * curve.animationSpeed * 0.5 + curve.phaseX) * 0.3 + 0.7;
+    const animatedOpacity = curve.opacity * pulseFactor;
+
+    return (
+      <path
+        key={curve.id}
+        d={generateBezierPathData(animatedPoints)}
+        stroke="#EEF1FC"
+        strokeWidth="4"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity={animatedOpacity}
+        filter="url(#glow)"
+      />
+    );
+  });
+}
+
+export function AngstAnimationMultiShapeTemplate(
+  props: AngstAnimationMultiShapeProps
 ): React.ReactElement {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
   const time = frame / fps;
 
-  const curves = useMemo(() => generateSpiralsWithNoise(12345), []);
+  const shapes = useMemo(() => [
+    generateSpiralsWithNoise(12345),
+    generateSpiralsWithNoise(23456),
+    generateSpiralsWithNoise(34567),
+    generateSpiralsWithNoise(45678),
+  ], []);
 
   const centerX = 1920 / 2;
   const centerY = 1080 / 2;
+
+  const shapeIndex = Math.floor((time % 1) * 4);
+  const currentShape = shapes[shapeIndex];
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#060810" }}>
@@ -184,35 +222,7 @@ export function AngstAnimationTemplate(
           </filter>
         </defs>
 
-        {curves.map((curve) => {
-          const offsetX = Math.sin(time * curve.animationSpeed + curve.phaseX) * curve.amplitudeX;
-          const offsetY = Math.cos(time * curve.animationSpeed + curve.phaseY) * curve.amplitudeY;
-
-          const animatedPoints = curve.points.map((point) => {
-            return {
-              x: point.x + offsetX,
-              y: point.y + offsetY,
-            };
-          });
-
-          const pulseFactor =
-            Math.sin(time * curve.animationSpeed * 0.5 + curve.phaseX) * 0.3 + 0.7;
-          const animatedOpacity = curve.opacity * pulseFactor;
-
-          return (
-            <path
-              key={curve.id}
-              d={generateBezierPathData(animatedPoints)}
-              stroke="#EEF1FC"
-              strokeWidth="4"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              opacity={animatedOpacity}
-              filter="url(#glow)"
-            />
-          );
-        })}
+        {renderCurves(currentShape, time, centerX, centerY)}
       </svg>
     </AbsoluteFill>
   );
