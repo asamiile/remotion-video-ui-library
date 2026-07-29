@@ -35,7 +35,7 @@ The leaf of each feature folder normally contains three files (no version suffix
   <feature>.config.ts       … defaultProps and `*Patterns` (canonical default copy / look)
 ```
 
-Version information is preserved in **type names** (`CodeStreamTemplateV1`, `ledTextV1Patterns`), not folder names, to reduce visual clutter in the IDE hierarchy. When adding or refactoring a composition, keep the responsibilities split across `Template`, `schema`, and `config` files instead of inlining defaults or prop types into `Root.tsx`.
+Keep the responsibilities split across `Template`, `schema`, and `config` files instead of inlining defaults or prop types into `Root.tsx`. Type names and folder names follow a unified naming convention without version suffixes.
 
 ## The Four Places Under `src/`
 
