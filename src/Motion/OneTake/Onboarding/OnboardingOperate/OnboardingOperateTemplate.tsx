@@ -6,7 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { OnboardingOperateSchemaV1Type } from "./onboarding-operate.schema";
+import { OnboardingOperateSchemaType } from "./onboarding-operate.schema";
 import { resolvedBackdropPair } from "../../../../helpers/transparent-composition-backdrop";
 import { LaptopFrame, PhoneFrame, neonBoxShadow } from "../../onetake-device-chrome";
 
@@ -140,7 +140,7 @@ function WaveformBars({
  * (before the tap) at the loop boundary.
  */
 export const OnboardingOperateTemplateV1: React.FC<
-  OnboardingOperateSchemaV1Type
+  OnboardingOperateSchemaType
 > = ({ recordColor, backgroundColor, vignetteOpacity, tapFrame, resetStartFrame }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();

@@ -3,12 +3,12 @@ import { LoadingIconTemplateV1 } from "./Loading/LoadingIcon/LoadingIconTemplate
 import { loadingIconSchemaV1 } from "./Loading/LoadingIcon/loading-icon.schema";
 import { MiniMapTemplateV1 } from "./Map/Map/MiniMapTemplate";
 import { miniMapSchemaV1 } from "./Map/Map/mini-map.schema";
-import { defaultMiniMapV1Props } from "./Map/Map/mini-map.schema";
+import { defaultMiniMapProps } from "./Map/Map/mini-map.schema";
 import { AudioSpectrumTemplateV1 } from "./Audio/AudioSpectrum/AudioSpectrumTemplate";
 import { audioSpectrumSchemaV1 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import {
   audioSpectrumV1Patterns,
-  defaultAudioSpectrumV1Props,
+  defaultAudioSpectrumProps,
 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import { IntroTemplateV1 } from "./Intro/Intro/IntroTemplate";
 import { introSchemaV1 } from "./Intro/Intro/intro.schema";
@@ -53,7 +53,7 @@ export function OtherFolder() {
             durationInFrames={1800}
             schema={miniMapSchemaV1}
             defaultProps={{
-              ...defaultMiniMapV1Props,
+              ...defaultMiniMapProps,
               locationPoint,
             }}
           />
@@ -77,7 +77,7 @@ export function OtherFolder() {
                 durationInFrames={1800}
                 schema={audioSpectrumSchemaV1}
                 defaultProps={{
-                  ...defaultAudioSpectrumV1Props,
+                  ...defaultAudioSpectrumProps,
                   ...props,
                   audioFileName: "sample.wav",
                 }}

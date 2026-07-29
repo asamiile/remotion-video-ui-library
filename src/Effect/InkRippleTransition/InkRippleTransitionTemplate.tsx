@@ -1,10 +1,10 @@
 import React, { useId } from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { InkRippleTransitionSchemaV1Type } from "./ink-ripple-transition.schema";
+import { InkRippleTransitionSchemaType } from "./ink-ripple-transition.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const InkRippleTransitionTemplateV1: React.FC<
-  InkRippleTransitionSchemaV1Type
+  InkRippleTransitionSchemaType
 > = ({
   backgroundColor,
   ringColor,

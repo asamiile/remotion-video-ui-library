@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { BurstSchemaV1Type } from "./burst.schema";
+import { BurstSchemaType } from "./burst.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 function jaggedBlobPoints(
@@ -27,7 +27,7 @@ function jaggedBlobPoints(
 }
 
 export const BurstTemplateV1: React.FC<
-  BurstSchemaV1Type
+  BurstSchemaType
 > = ({
   backgroundColor,
   inkColor,

@@ -9,7 +9,7 @@ import {
 } from "remotion";
 import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MiniMapSchemaV1Type, defaultMiniMapV1Props } from "./mini-map.schema";
+import { MiniMapSchemaType, defaultMiniMapProps } from "./mini-map.schema";
 
 const defaultMapCameraV1Config = {
   initialZoom: 4,
@@ -32,7 +32,7 @@ import { mergedMapLocationPointsV1 } from "../../composition/composition-merged-
 
 mapboxgl.accessToken = process.env.REMOTION_MAPBOX_TOKEN as string;
 
-export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
+export const MiniMapTemplateV1: React.FC<MiniMapSchemaType> = ({
   mapLocationId,
   width,
   height,
@@ -126,20 +126,20 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
 
         if (showMarker) {
           const canvas = document.createElement("canvas");
-          canvas.width = defaultMiniMapV1Props.markerCanvasSize;
-          canvas.height = defaultMiniMapV1Props.markerCanvasSize;
+          canvas.width = defaultMiniMapProps.markerCanvasSize;
+          canvas.height = defaultMiniMapProps.markerCanvasSize;
           const ctx = canvas.getContext("2d");
           if (ctx) {
             ctx.fillStyle = markerColor;
-            ctx.fillRect(0, 0, defaultMiniMapV1Props.markerCanvasSize, defaultMiniMapV1Props.markerCanvasSize);
-            ctx.strokeStyle = defaultMiniMapV1Props.markerStrokeColor;
-            ctx.lineWidth = defaultMiniMapV1Props.markerStrokeWidth;
-            ctx.strokeRect(0, 0, defaultMiniMapV1Props.markerCanvasSize, defaultMiniMapV1Props.markerCanvasSize);
+            ctx.fillRect(0, 0, defaultMiniMapProps.markerCanvasSize, defaultMiniMapProps.markerCanvasSize);
+            ctx.strokeStyle = defaultMiniMapProps.markerStrokeColor;
+            ctx.lineWidth = defaultMiniMapProps.markerStrokeWidth;
+            ctx.strokeRect(0, 0, defaultMiniMapProps.markerCanvasSize, defaultMiniMapProps.markerCanvasSize);
             const imageData = ctx.getImageData(
               0,
               0,
-              defaultMiniMapV1Props.markerCanvasSize,
-              defaultMiniMapV1Props.markerCanvasSize
+              defaultMiniMapProps.markerCanvasSize,
+              defaultMiniMapProps.markerCanvasSize
             );
             _map.addImage("marker-square", imageData);
           }
@@ -163,11 +163,11 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
             layout: {
               "icon-image": "marker-square",
               "icon-size": markerSize / 10,
-              "icon-rotate": defaultMiniMapV1Props.markerIconRotate,
+              "icon-rotate": defaultMiniMapProps.markerIconRotate,
               "icon-allow-overlap": true,
             },
             paint: {
-              "icon-opacity": defaultMiniMapV1Props.markerIconOpacity,
+              "icon-opacity": defaultMiniMapProps.markerIconOpacity,
             },
           });
         }
@@ -249,8 +249,8 @@ export const MiniMapTemplateV1: React.FC<MiniMapSchemaV1Type> = ({
       left: `${positionX}%`,
       top: `${positionY}%`,
       transform: "translate(-50%, -50%)",
-      border: defaultMiniMapV1Props.border,
-      padding: defaultMiniMapV1Props.padding,
+      border: defaultMiniMapProps.border,
+      padding: defaultMiniMapProps.padding,
       borderRadius: `${borderRadius}px`,
       opacity: fadeProgress,
     }),

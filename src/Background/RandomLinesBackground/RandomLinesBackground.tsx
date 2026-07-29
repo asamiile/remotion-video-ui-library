@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { RandomLinesSchemaV1Type } from "./random-lines.schema";
+import { RandomLinesSchemaType } from "./random-lines.schema";
 
 interface ActiveLine {
   id: string;
@@ -186,7 +186,7 @@ const RandomLine: React.FC<{
   );
 };
 
-export const RandomLinesBackgroundV1: React.FC<RandomLinesSchemaV1Type> = ({
+export const RandomLinesBackgroundV1: React.FC<RandomLinesSchemaType> = ({
   lineCount,
   lineHeight,
   spawnIntervalFrames,
