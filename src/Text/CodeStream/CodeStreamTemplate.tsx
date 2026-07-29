@@ -11,7 +11,7 @@ import type {
   CodeStreamSchemaType,
 } from "./code-stream.schema";
 
-export type CodeStreamTemplateV1Props = CodeStreamSchemaType;
+export type CodeStreamTemplateProps = CodeStreamSchemaType;
 
 function hashString(input: string): number {
   let hash = 2166136261;
@@ -74,7 +74,7 @@ function CodeLine({
   );
 }
 
-export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateV1Props> = ({
+export const CodeStreamTemplateV1: React.FC<CodeStreamTemplateProps> = ({
   direction,
   paragraphs,
   lines,

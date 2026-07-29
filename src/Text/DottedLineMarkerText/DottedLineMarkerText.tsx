@@ -4,7 +4,7 @@ import {
   useCurrentFrame,
   interpolate,
 } from "remotion";
-import { DottedLineMarkerTextSchemaV1Type } from "./dotted-line-marker-text.schema";
+import { DottedLineMarkerTextSchemaType } from "./dotted-line-marker-text.schema";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 
 const DottedLineRow: React.FC<{
@@ -132,7 +132,7 @@ const DottedLineRow: React.FC<{
   );
 };
 
-export const DottedLineMarkerTextV1: React.FC<DottedLineMarkerTextSchemaV1Type> =
+export const DottedLineMarkerTextV1: React.FC<DottedLineMarkerTextSchemaType> =
   ({
     fontSize,
     textColor,

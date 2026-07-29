@@ -6,12 +6,12 @@ import {
   Easing,
 } from "remotion";
 import {
-  IntroSchemaV1Type,
+  IntroSchemaType,
   IntroScene,
   introSceneTimingV1,
 } from "./intro.schema";
 
-export const IntroTemplateV1: React.FC<IntroSchemaV1Type> = ({
+export const IntroTemplateV1: React.FC<IntroSchemaType> = ({
   authorName,
   introTitle,
   introDescription,

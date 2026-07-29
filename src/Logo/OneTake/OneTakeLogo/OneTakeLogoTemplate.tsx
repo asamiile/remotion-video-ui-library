@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { OneTakeLogoSchemaV1Type } from "./onetake-logo.schema";
+import { OneTakeLogoSchemaType } from "./onetake-logo.schema";
 import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 /** Bar height ratios for the logo, matched to the generated proportions of the actual icon (OneTake app's assets/icon.png). */
@@ -26,7 +26,7 @@ const PHASE_STEP = Math.PI / 2.5;
  * doesn't change when the next cycle starts, inserting a hold segment still
  * loops seamlessly.
  */
-export const OneTakeLogoTemplateV1: React.FC<OneTakeLogoSchemaV1Type> = ({
+export const OneTakeLogoTemplateV1: React.FC<OneTakeLogoSchemaType> = ({
   barColorTop,
   barColorBottom,
   backgroundColor,
