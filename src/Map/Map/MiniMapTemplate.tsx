@@ -31,6 +31,7 @@ import { mergedMapLocationPoints } from "../../composition/composition-merged-te
 // import { PlaceholderImage } from "../PlaceholderImage";
 
 mapboxgl.accessToken = process.env.REMOTION_MAPBOX_TOKEN as string;
+console.log("Mapbox token loaded:", !!process.env.REMOTION_MAPBOX_TOKEN, "Token starts with:", process.env.REMOTION_MAPBOX_TOKEN?.substring(0, 10));
 
 export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
   mapLocationId,
