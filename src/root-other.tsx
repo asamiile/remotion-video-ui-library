@@ -17,9 +17,11 @@ import { PlaceholderImageV1 } from "./Placeholder/PlaceholderImage/PlaceholderIm
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
   mergedLoadingIconV1Patterns,
-  mergedMapLocationPointsV1,
   mergedDefaultIntroV1Props,
 } from "./composition/composition-merged-other";
+import {
+  mergedMapLocationPointsV1,
+} from "./composition/composition-merged-text";
 
 const FPS = 30;
 
