@@ -37,7 +37,7 @@ export const stackedRevealTextSchema = z.object({
 });
 
 export type StackedRevealTextSchemaType = z.infer<
-  typeof stackedRevealTextSchemaV1
+  typeof stackedRevealTextSchema
 >;
 
 export const stackedRevealTextDurationFrames = 210;

@@ -28,7 +28,7 @@ export const battleCalloutBannerSchema = z.object({
 });
 
 export type BattleCalloutBannerSchemaType = z.infer<
-  typeof battleCalloutBannerSchemaV1
+  typeof battleCalloutBannerSchema
 >;
 
 export const battleCalloutBannerDurationFrames = 150;

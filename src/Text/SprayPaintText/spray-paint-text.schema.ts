@@ -39,7 +39,7 @@ export const sprayPaintTextSchema = z.object({
 });
 
 export type SprayPaintTextSchemaType = z.infer<
-  typeof sprayPaintTextSchemaV1
+  typeof sprayPaintTextSchema
 >;
 
 export const sprayPaintTextDurationFrames = 150;
