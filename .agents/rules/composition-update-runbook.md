@@ -24,7 +24,11 @@ alwaysApply: false
 ## B. Adding a new "family" (a new group of `<Composition>V1-*`)
 
 1. Add the template, schema, and `**-config.ts**` (`*Patterns`).
-2. Wire up `shallowMergePatternRecord` and the `local` block in **`src/composition/composition-merged.ts`**.
+2. **Add the family to `scripts/generate-composition-merged.cjs`** (the `families` array). Then regenerate:
+   ```bash
+   npm run generate:merged-composition
+   ```
+   This auto-generates `src/composition/composition-merged.ts` instead of hand-editing it. If you need a custom `localName` (e.g. `randomLinesV1Patterns` export but `randomLinesBackgroundV1Patterns` local override), pass it in the family definition: `{ type: "pattern", ..., localName: "customNameV1Patterns" }`. Check the generated output to ensure it matches the canonical source and types.
 3. Add the JSON key type to **`src/composition/composition-text-local.ts`**.
 4. Register `<Composition>V1-*` in **`src/Root.tsx`** via `Object.entries(merged*Patterns).map` (`withCanvasPreview` / duration / schema / defaultProps).
 5. Add a `*Patterns` block to **`config/local/composition-text.example.json`**.
