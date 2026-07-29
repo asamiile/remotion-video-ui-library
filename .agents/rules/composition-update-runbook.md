@@ -8,13 +8,13 @@ alwaysApply: false
 ## Terminology
 
 - **Pattern**: multiple variations of the same template (e.g. `pinkPulse` / `pinkPulseJp`). In `Root.tsx`, `*-${capPattern(id)}` becomes the composition ID.
-- **Canonical copy (structure)**: the keys of the `*Patterns` object in `src/**/<Name>-v1/*-schema.ts`. Keys not present here cannot be added via `composition-text.local.json` alone (`shallowMergePatternRecord` only overwrites existing keys).
+- **Canonical copy (structure)**: the keys of the `*Patterns` object in `src/**/<Name>/<ComponentName>.schema.ts`. Keys not present here cannot be added via `composition-text.local.json` alone (`shallowMergePatternRecord` only overwrites existing keys).
 - **Copy overrides**: `config/local/composition-text.local.json` (personal, gitignored by convention). The read-only policy and the only exception live in [.agents/rules/composition-text-local.md](./composition-text-local.md).
 
 ## A. Adding one pattern to an existing family (LED / Neon / Glitch, etc.)
 
-1. Add an entry to `*Patterns` in **`src/<Feature>/<feature>.schema.ts`** (this is the canonical source for default copy and look).
-   Text-effect families (LED/Neon/Glitch, etc.) live under `src/Text/<Feature>/<Feature>-v1/…`, and LoadingIcon lives under `src/Loading/LoadingIcon-v1/…` (the directory hierarchy matches `Root.tsx`'s `<Folder>` nesting). See [.agents/rules/repository.md](../../.agents/rules/repository.md) for the criteria on where to place directories.
+1. Add an entry to `*Patterns` in **`src/<Feature>/<ComponentName>/<component-name>.schema.ts`** (this is the canonical source for default copy and look).
+   Text-effect families (LED/Neon/Glitch, etc.) live under `src/Text/<Feature>/<ComponentName>/…`, and LoadingIcon lives under `src/Loading/LoadingIcon/…` (the directory hierarchy matches `Root.tsx`'s `<Folder>` nesting). See [.agents/rules/repository.md](../../.agents/rules/repository.md) for the criteria on where to place directories.
 2. Add the same pattern-ID block to **`config/local/composition-text.example.json`** (sample copy, for documentation). Keep key names consistent with the config.
 3. If it needs to be reflected in types, add the key to the corresponding `*Patterns` type in **`src/composition/composition-text-local.ts`** (keeps types consistent for agents).
 4. **Agents must never edit `config/local/composition-text.local.json`** on their own (it's the user's personal file). See [.agents/rules/composition-text-local.md](./composition-text-local.md) for the narrow exception.
