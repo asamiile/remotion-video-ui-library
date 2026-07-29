@@ -1,47 +1,47 @@
 // Background composition IDs (uses the same capPattern as Root.tsx). Enumerated
-// from each *.schema.ts, the same approach as list-text-v1-composition-ids.cjs.
-// AmbientBlurOrbsV1 has no pattern family (single fixed composition), so it's
+// from each *.schema.ts, the same approach as list-text-composition-ids.cjs.
+// AmbientBlurOrbs has no pattern family (single fixed composition), so it's
 // printed directly instead of read via AST.
 const path = require("node:path");
 const { capPattern, requirePatternKeys } = require("./lib/ts-config-ast.cjs");
 
 const root = path.join(__dirname, "..");
 
-const fixedIds = ["Background-AmbientBlurOrbsV1"];
+const fixedIds = ["Background-AmbientBlurOrbs"];
 
 const families = [
   {
-    idPrefix: "Background-ScanLineV1",
+    idPrefix: "Background-ScanLine",
     file: "src/Background/ScanLine/scan-line.schema.ts",
     exportName: "scanLinePatterns",
   },
   {
-    idPrefix: "Background-DuotoneGradeOverlayV1",
+    idPrefix: "Background-DuotoneGradeOverlay",
     file: "src/Background/DuotoneGradeOverlay/duotone-grade-overlay.schema.ts",
     exportName: "duotoneGradeOverlayPatterns",
   },
   {
-    idPrefix: "Background-FilmGrainOverlayV1",
+    idPrefix: "Background-FilmGrainOverlay",
     file: "src/Background/FilmGrainOverlay/film-grain-overlay.schema.ts",
     exportName: "filmGrainOverlayPatterns",
   },
   {
-    idPrefix: "Background-LetterboxOverlayV1",
+    idPrefix: "Background-LetterboxOverlay",
     file: "src/Background/LetterboxOverlay/letterbox-overlay.schema.ts",
     exportName: "letterboxOverlayPatterns",
   },
   {
-    idPrefix: "Background-PosterizeGradeOverlayV1",
+    idPrefix: "Background-PosterizeGradeOverlay",
     file: "src/Background/PosterizeGradeOverlay/posterize-grade-overlay.schema.ts",
     exportName: "posterizeGradeOverlayPatterns",
   },
   {
-    idPrefix: "Background-EmblemMontageBlurV1",
+    idPrefix: "Background-EmblemMontageBlur",
     file: "src/Background/EmblemMontageBlur/emblem-montage-blur.schema.ts",
     exportName: "emblemMontageBlurPatterns",
   },
   {
-    idPrefix: "Background-SunsetLensFlareOverlayV1",
+    idPrefix: "Background-SunsetLensFlareOverlay",
     file: "src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts",
     exportName: "sunsetLensFlareOverlayPatterns",
   },
