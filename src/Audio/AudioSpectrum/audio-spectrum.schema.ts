@@ -21,6 +21,7 @@ export type AudioSpectrumSchemaType = z.infer<typeof audioSpectrumSchema>;
 
 
 export const defaultAudioSpectrumProps = {
+  audioFile: "audio.mp3",
   audioOffsetInSeconds: 0,
 
   barCount: 32,

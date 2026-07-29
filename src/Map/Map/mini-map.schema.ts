@@ -21,7 +21,7 @@ export const defaultMapCameraConfig = {
 };
 
 export const mapboxMapOptions = {
-  style: "mapbox://styles/asamiinae/cmli18nq5002t01skhqfk1rfu",
+  style: "mapbox://styles/asamiile/cmli18nq5002t01skhqfk1rfu",
   interactive: false,
   fadeDuration: 0,
   antialias: true,
