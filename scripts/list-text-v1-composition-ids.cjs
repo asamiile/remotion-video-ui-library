@@ -43,6 +43,11 @@ const families = [
     exportName: "lightSweepTextV1Patterns",
   },
   {
+    idPrefix: "DottedLineMarkerTextV1",
+    file: "src/Text/DottedLineMarkerText/DottedLineMarkerText-v1/dotted-line-marker-text.composition.ts",
+    exportName: "dottedLineMarkerV1Patterns",
+  },
+  {
     idPrefix: "TypewriterTextV1",
     file: "src/Text/TypewriterText/TypewriterText-v1/typewriter-text-config.ts",
     exportName: "typewriterTextV1Patterns",
