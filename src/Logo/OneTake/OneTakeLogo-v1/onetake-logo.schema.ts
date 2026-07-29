@@ -23,6 +23,8 @@ export const oneTakeLogoSchemaV1 = z.object({
 
 export type OneTakeLogoSchemaV1Type = z.infer<typeof oneTakeLogoSchemaV1>;
 
+const WAVE_PERIOD_FRAMES_MATCHING_ONBOARDING_OPERATE = 16;
+const HOLD_FRAMES_ONE_SECOND = 15;
 
 export const defaultOneTakeLogoV1Props = {
   barColorTop: "#EAFEFF",
