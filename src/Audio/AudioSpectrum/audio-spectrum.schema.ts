@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const audioSpectrumSchema = z.object({
-  audioFile: z.string().default("audio.mp3"), // path relative to public/
+  audioFile: z.string().default("audio/AudioSpectrum/dialogue.wav"), // path relative to public/
   audioOffsetInSeconds: z.number().default(0),
   barCount: z.number().min(8).max(128).default(32),
   barColor: zColor().default("#DFE2D7"),
@@ -21,7 +21,7 @@ export type AudioSpectrumSchemaType = z.infer<typeof audioSpectrumSchema>;
 
 
 export const defaultAudioSpectrumProps = {
-  audioFile: "audio.mp3",
+  audioFile: "audio/AudioSpectrum/dialogue.wav",
   audioOffsetInSeconds: 0,
 
   barCount: 32,
