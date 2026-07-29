@@ -79,7 +79,7 @@ export function OtherFolder() {
                 defaultProps={{
                   ...defaultAudioSpectrumProps,
                   ...props,
-                  audioFileName: "sample.wav",
+                  audioFile: "sample.wav",
                 }}
               />
             ))}

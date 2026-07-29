@@ -8,7 +8,7 @@ import {
 import {
   IntroSchemaType,
   IntroScene,
-  introSceneTimingV1,
+  introSceneTiming,
 } from "./intro.schema";
 
 export const IntroTemplate: React.FC<IntroSchemaType> = ({
@@ -35,12 +35,12 @@ export const IntroTemplate: React.FC<IntroSchemaType> = ({
   const introScenesV1: IntroScene[] = useMemo(
     () => [
       {
-        ...introSceneTimingV1[0],
+        ...introSceneTiming[0],
         centerText: introTitle,
         bottomRightText: authorName,
       },
       {
-        ...introSceneTimingV1[1],
+        ...introSceneTiming[1],
         centerText: introDescription,
       },
     ],
