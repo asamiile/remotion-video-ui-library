@@ -3,7 +3,7 @@ import { AmbientBlurOrbsTemplateV1 } from "./Background/AmbientBlurOrbs-v1/Ambie
 import { ambientBlurOrbsSchemaV1 } from "./Background/AmbientBlurOrbs-v1/ambient-blur-orbs.schema";
 import {
   defaultAmbientBlurOrbsV1Props,
-  AMBIENT_BLUR_ORBS_V1_DURATION_FRAMES,
+  ambientBlurOrbsV1DurationFrames,
 } from "./Background/AmbientBlurOrbs-v1/ambient-blur-orbs.schema";
 import { ScanLineTemplateV1 } from "./Background/ScanLine-v1/ScanLineTemplate";
 import { scanLineSchemaV1 } from "./Background/ScanLine-v1/scan-line.schema";
@@ -46,7 +46,7 @@ export function BackgroundFolder() {
         width={1920}
         height={1080}
         fps={FPS}
-        durationInFrames={AMBIENT_BLUR_ORBS_V1_DURATION_FRAMES}
+        durationInFrames={ambientBlurOrbsV1DurationFrames}
         schema={ambientBlurOrbsSchemaV1}
         defaultProps={{ ...defaultAmbientBlurOrbsV1Props }}
       />
