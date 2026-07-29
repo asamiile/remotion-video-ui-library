@@ -33,7 +33,8 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "generate:merged-composition": "node scripts/generate-composition-merged.cjs > src/composition/composition-merged.ts"
   },
   "sideEffects": [
     "*.css"
