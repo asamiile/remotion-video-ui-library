@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 
-export const glitchTextRandomSchemaV1 = z.object({
+export const glitchTextRandomSchema = z.object({
   items: z
     .array(
       z.object({
@@ -45,11 +45,11 @@ export const glitchTextRandomSchemaV1 = z.object({
   randomSeed: z.string().default("glitch-random-v1"),
 });
 
-export type GlitchTextRandomSchemaV1Type = z.infer<typeof glitchTextRandomSchemaV1>;
+export type GlitchTextRandomSchemaType = z.infer<typeof glitchTextRandomSchema>;
 
-export const glitchTextV1RandomDurationFrames = 3000;
+export const glitchTextRandomDurationFrames = 3000;
 
-export const defaultGlitchTextV1RandomProps = {
+export const defaultGlitchTextRandomProps = {
   items: [],
   fontFamily: JETBRAINS_MONO_FONT_FAMILY,
   fontSize: 32,
@@ -71,9 +71,9 @@ export const defaultGlitchTextV1RandomProps = {
   randomSeed: "glitch-random-v1",
 } as const;
 
-export const glitchTextV1RandomPatterns = {
+export const glitchTextRandomPatterns = {
   harshSignalRandom: {
-    ...defaultGlitchTextV1RandomProps,
+    ...defaultGlitchTextRandomProps,
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     fontSize: 32,
     letterSpacing: "0.05em",
