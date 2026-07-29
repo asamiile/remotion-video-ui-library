@@ -21,7 +21,7 @@ const EYEBROW_TEXT_SHADOW = "0 0 12px rgba(55, 233, 255, .5)";
  * steady "always lit" state. Because the state before the trigger
  * (`frame < flickerTriggerFrame`) and the state well after it both look like
  * "always lit", looping the last frame back to the first frame doesn't break
- * anything (same reasoning as OnboardingConnectV1).
+ * anything (same reasoning as OnboardingConnect).
  */
 export const OneTakeLogoTextTemplate: React.FC<
   OneTakeLogoTextSchemaType
