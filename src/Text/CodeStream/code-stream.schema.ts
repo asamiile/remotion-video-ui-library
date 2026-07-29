@@ -16,7 +16,7 @@ export const codeStreamParagraphSchema = z
   .min(1)
   .readonly();
 
-export const codeStreamSchemaV1 = z.object({
+export const codeStreamSchema = z.object({
   direction: codeStreamDirectionSchema,
   paragraphs: z.array(codeStreamParagraphSchema).min(1).readonly().optional(),
   lines: z.array(codeStreamLineSchema).min(1).readonly().optional(),
@@ -35,10 +35,10 @@ export const codeStreamSchemaV1 = z.object({
   endPaddingFrames: z.number().min(0).default(150),
 });
 
-export type CodeStreamSchemaV1Type = z.infer<typeof codeStreamSchemaV1>;
-export type CodeStreamLineV1Type = z.infer<typeof codeStreamLineSchema>;
+export type CodeStreamSchemaType = z.infer<typeof codeStreamSchema>;
+export type CodeStreamLineType = z.infer<typeof codeStreamLineSchema>;
 
-export const defaultCodeStreamHorizontalV1Props = {
+export const defaultCodeStreamHorizontalProps = {
   direction: "horizontal",
   paragraphs: [[""]],
   accentEvery: 3,
@@ -56,7 +56,7 @@ export const defaultCodeStreamHorizontalV1Props = {
   endPaddingFrames: 150,
 } as const;
 
-export const defaultCodeStreamVerticalV1Props = {
+export const defaultCodeStreamVerticalProps = {
   direction: "vertical",
   paragraphs: [[""]],
   accentEvery: 2,
@@ -74,7 +74,7 @@ export const defaultCodeStreamVerticalV1Props = {
   endPaddingFrames: 150,
 } as const;
 
-export const codeStreamV1Patterns = {
-  horizontal: defaultCodeStreamHorizontalV1Props,
-  vertical: defaultCodeStreamVerticalV1Props,
+export const codeStreamPatterns = {
+  horizontal: defaultCodeStreamHorizontalProps,
+  vertical: defaultCodeStreamVerticalProps,
 } as const;
