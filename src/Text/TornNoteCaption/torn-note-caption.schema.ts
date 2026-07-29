@@ -28,7 +28,7 @@ export const tornNoteCaptionSchema = z.object({
 });
 
 export type TornNoteCaptionSchemaType = z.infer<
-  typeof tornNoteCaptionSchemaV1
+  typeof tornNoteCaptionSchema
 >;
 
 export const tornNoteCaptionDurationFrames = 150;

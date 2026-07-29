@@ -40,7 +40,7 @@ export const asymmetricStatusPanelSchema = z.object({
 });
 
 export type AsymmetricStatusPanelSchemaType = z.infer<
-  typeof asymmetricStatusPanelSchemaV1
+  typeof asymmetricStatusPanelSchema
 >;
 
 export const asymmetricStatusPanelDurationFrames = 150;

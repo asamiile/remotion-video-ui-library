@@ -75,7 +75,7 @@ export function shallowMergePatternRecord<
   return out;
 }
 
-/** locationV1 keys, in priority order: inline array -> DefinePlugin -> effective */
+/** location keys, in priority order: inline array -> DefinePlugin -> effective */
 export function getLocationV1CompositionKeys(): string[] {
   if (
     Array.isArray(__LOCATION_V1_KEYS_INLINED__) &&
@@ -96,14 +96,14 @@ export function getLocationV1CompositionKeys(): string[] {
   } catch {
     /* fall through */
   }
-  return Object.keys(getEffectiveCompositionText().locationV1 ?? {});
+  return Object.keys(getEffectiveCompositionText().location ?? {});
 }
 
 export function buildLocationConfigsFromCompositionKeys(
   text: CompositionTextLocal,
   keys: string[],
 ): { id: string; locationName: string }[] {
-  const block = text.locationV1 ?? {};
+  const block = text.location ?? {};
   return keys.map((id) => ({
     id,
     locationName: block[id]?.locationName ?? id,
@@ -115,8 +115,8 @@ export function buildMapLocationPointsFromCompositionKeys(
   text: CompositionTextLocal,
   keys: string[],
 ): MapLocationPoint[] {
-  const mapBlock = text.mapLocationPointsV1 ?? {};
-  const locBlock = text.locationV1 ?? {};
+  const mapBlock = text.mapLocationPoints ?? {};
+  const locBlock = text.location ?? {};
   const out: MapLocationPoint[] = [];
   for (const id of keys) {
     const row = mapBlock[id];
