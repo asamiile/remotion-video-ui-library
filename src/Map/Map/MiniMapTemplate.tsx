@@ -9,24 +9,7 @@ import {
 } from "remotion";
 import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MiniMapSchemaType, defaultMiniMapProps } from "./mini-map.schema";
-
-const defaultMapCameraV1Config = {
-  initialZoom: 4,
-  initialPitch: 0,
-  initialBearing: 0,
-  targetZoom: 16,
-  targetPitch: 0,
-  targetBearing: 0,
-  cameraAnimationDuration: 120,
-};
-
-const mapboxMapV1Options = {
-  style: "mapbox://styles/asamiinae/cmli18nq5002t01skhqfk1rfu",
-  interactive: false,
-  fadeDuration: 0,
-  antialias: true,
-} as const;
+import { MiniMapSchemaType, defaultMiniMapProps, defaultMapCameraConfig, mapboxMapOptions } from "./mini-map.schema";
 import { mergedMapLocationPoints } from "../../composition/composition-merged-text";
 // import { PlaceholderImage } from "../PlaceholderImage";
 
@@ -113,11 +96,11 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
       console.log("Creating Mapbox map...");
       const _map = new Map({
         container: mapContainer.current,
-        ...mapboxMapV1Options,
+        ...mapboxMapOptions,
         center: [locationPoint.longitude, locationPoint.latitude],
-        zoom: locationPoint.zoom || defaultMapCameraV1Config.initialZoom,
-        pitch: locationPoint.pitch || defaultMapCameraV1Config.initialPitch,
-        bearing: locationPoint.bearing || defaultMapCameraV1Config.initialBearing,
+        zoom: locationPoint.zoom || defaultMapCameraConfig.initialZoom,
+        pitch: locationPoint.pitch || defaultMapCameraConfig.initialPitch,
+        bearing: locationPoint.bearing || defaultMapCameraConfig.initialBearing,
       });
 
       console.log("Map load event fired, rendering can begin");
@@ -192,7 +175,7 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
     if (!map.current || !enableCameraAnimation || !locationPoint) return;
 
     const animationStartFrame = delayFrames + fadeInDuration;
-    const animationEndFrame = animationStartFrame + defaultMapCameraV1Config.cameraAnimationDuration;
+    const animationEndFrame = animationStartFrame + defaultMapCameraConfig.cameraAnimationDuration;
 
     if (frame >= animationStartFrame && frame < animationEndFrame) {
       const progress = interpolate(
@@ -207,14 +190,14 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
       );
 
       const currentZoom =
-        (locationPoint.zoom || defaultMapCameraV1Config.initialZoom) +
-        (defaultMapCameraV1Config.targetZoom - (locationPoint.zoom || defaultMapCameraV1Config.initialZoom)) * progress;
+        (locationPoint.zoom || defaultMapCameraConfig.initialZoom) +
+        (defaultMapCameraConfig.targetZoom - (locationPoint.zoom || defaultMapCameraConfig.initialZoom)) * progress;
       const currentPitch =
-        (locationPoint.pitch || defaultMapCameraV1Config.initialPitch) +
-        (defaultMapCameraV1Config.targetPitch - (locationPoint.pitch || defaultMapCameraV1Config.initialPitch)) * progress;
+        (locationPoint.pitch || defaultMapCameraConfig.initialPitch) +
+        (defaultMapCameraConfig.targetPitch - (locationPoint.pitch || defaultMapCameraConfig.initialPitch)) * progress;
       const currentBearing =
-        (locationPoint.bearing || defaultMapCameraV1Config.initialBearing) +
-        (defaultMapCameraV1Config.targetBearing - (locationPoint.bearing || defaultMapCameraV1Config.initialBearing)) * progress;
+        (locationPoint.bearing || defaultMapCameraConfig.initialBearing) +
+        (defaultMapCameraConfig.targetBearing - (locationPoint.bearing || defaultMapCameraConfig.initialBearing)) * progress;
 
       map.current.flyTo({
         zoom: currentZoom,

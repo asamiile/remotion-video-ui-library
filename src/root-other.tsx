@@ -79,7 +79,6 @@ export function OtherFolder() {
                 defaultProps={{
                   ...defaultAudioSpectrumProps,
                   ...props,
-                  audioFile: "AudioSpectrum/dialogue.wav",
                 }}
               />
             ))}
