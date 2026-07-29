@@ -24,36 +24,36 @@ const COMPOSITION_DIR = path.join(SRC, "composition");
 
 const families = [
   // Special: intro (goes to 'other')
-  { type: "intro", file: "Intro/Intro/intro.schema", export: "defaultIntroV1Props", category: "other" },
+  { type: "intro", file: "Intro/Intro/intro.schema", export: "defaultIntroProps", category: "other" },
 
   // Text compositions
-  { type: "pattern", file: "Text/LedText/led-text.schema", export: "ledTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/NeonText/neon-text.schema", export: "neonTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/SlideInCaption/slide-in-caption.schema", export: "slideInCaptionV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/GlitchText/glitch-text.schema", export: "glitchTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/GlitchText/glitch-text-random.schema", export: "glitchTextV1RandomPatterns", category: "text" },
-  { type: "pattern", file: "Text/WireText/wire-text.schema", export: "wireTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/NeonTextRainbow/neon-text-rainbow.schema", export: "neonTextRainbowV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/LightSweepText/light-sweep-text.schema", export: "lightSweepTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/DottedLineMarkerText/dotted-line-marker-text.schema", export: "dottedLineMarkerV1Patterns", localName: "dottedLineMarkerTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/TypewriterText/typewriter-text.schema", export: "typewriterTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/ShakeText/shake-text.schema", export: "shakeTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/ConfettiPopText/confetti-pop-text.schema", export: "confettiPopTextV1Patterns", category: "text" },
+  { type: "pattern", file: "Text/LedText/led-text.schema", export: "ledTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/NeonText/neon-text.schema", export: "neonTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/SlideInCaption/slide-in-caption.schema", export: "slideInCaptionPatterns", category: "text" },
+  { type: "pattern", file: "Text/GlitchText/glitch-text.schema", export: "glitchTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/GlitchText/glitch-text-random.schema", export: "glitchTextRandomPatterns", category: "text" },
+  { type: "pattern", file: "Text/WireText/wire-text.schema", export: "wireTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/NeonTextRainbow/neon-text-rainbow.schema", export: "neonTextRainbowPatterns", category: "text" },
+  { type: "pattern", file: "Text/LightSweepText/light-sweep-text.schema", export: "lightSweepTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/DottedLineMarkerText/dotted-line-marker-text.schema", export: "dottedLineMarkerPatterns", localName: "dottedLineMarkerTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/TypewriterText/typewriter-text.schema", export: "typewriterTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/ShakeText/shake-text.schema", export: "shakeTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/ConfettiPopText/confetti-pop-text.schema", export: "confettiPopTextPatterns", category: "text" },
   { type: "pattern", file: "Text/CodeStream/code-stream.schema", export: "codeStreamPatterns", category: "text" },
-  { type: "pattern", file: "Text/StackedRevealText/stacked-reveal-text.schema", export: "stackedRevealTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/TornNoteCaption/torn-note-caption.schema", export: "tornNoteCaptionV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/DistressedTitleCard/distressed-title-card.schema", export: "distressedTitleCardV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/SprayPaintText/spray-paint-text.schema", export: "sprayPaintTextV1Patterns", category: "text" },
+  { type: "pattern", file: "Text/StackedRevealText/stacked-reveal-text.schema", export: "stackedRevealTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/TornNoteCaption/torn-note-caption.schema", export: "tornNoteCaptionPatterns", category: "text" },
+  { type: "pattern", file: "Text/DistressedTitleCard/distressed-title-card.schema", export: "distressedTitleCardPatterns", category: "text" },
+  { type: "pattern", file: "Text/SprayPaintText/spray-paint-text.schema", export: "sprayPaintTextPatterns", category: "text" },
 
   // Background composition
-  { type: "pattern", file: "Background/RandomLinesBackground/random-lines.schema", export: "randomLinesV1Patterns", localName: "randomLinesBackgroundV1Patterns", category: "background" },
+  { type: "pattern", file: "Background/RandomLinesBackground/random-lines.schema", export: "randomLinesPatterns", localName: "randomLinesBackgroundPatterns", category: "background" },
 
   // UI compositions
-  { type: "pattern", file: "UI/BattleCalloutBanner/battle-callout-banner.schema", export: "battleCalloutBannerV1Patterns", category: "ui" },
-  { type: "pattern", file: "UI/AsymmetricStatusPanel/asymmetric-status-panel.schema", export: "asymmetricStatusPanelV1Patterns", category: "ui" },
+  { type: "pattern", file: "UI/BattleCalloutBanner/battle-callout-banner.schema", export: "battleCalloutBannerPatterns", category: "ui" },
+  { type: "pattern", file: "UI/AsymmetricStatusPanel/asymmetric-status-panel.schema", export: "asymmetricStatusPanelPatterns", category: "ui" },
 
   // Other compositions
-  { type: "pattern", file: "Loading/LoadingIcon/loading-icon.schema", export: "loadingIconV1Patterns", category: "other" },
+  { type: "pattern", file: "Loading/LoadingIcon/loading-icon.schema", export: "loadingIconPatterns", category: "other" },
 
   // Special: oneTakeLogo props (goes to 'text' because it's used by root-text.tsx)
   { type: "oneTakeLogo", file: "Text/FlickerTitle/flicker-title.schema", export: "oneTakeLogoTextVariantProps", category: "text" },
@@ -83,7 +83,7 @@ for (const family of families) {
 byCategory.text.push({
   type: "special",
   category: "text",
-  export: "mergedOneTakeLogoTextV1Props",
+  export: "mergedOneTakeLogoTextProps",
 });
 
 byCategory.text.push({
@@ -154,8 +154,8 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
   // Generate exports
   for (const family of categorizedFamilies) {
     if (family.type === "intro") {
-      exportLines.push("export const mergedDefaultIntroV1Props = {");
-      exportLines.push("  ...defaultIntroV1Props,");
+      exportLines.push("export const mergedDefaultIntroProps = {");
+      exportLines.push("  ...defaultIntroProps,");
       exportLines.push("  ...local.intro,");
       exportLines.push("};");
       exportLines.push("");
@@ -169,8 +169,8 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
       exportLines.push(`  local.${localName},`);
       exportLines.push(`) as typeof ${family.export};`);
       exportLines.push("");
-    } else if (family.type === "special" && family.export === "mergedOneTakeLogoTextV1Props") {
-      exportLines.push("export const mergedOneTakeLogoTextV1Props = {");
+    } else if (family.type === "special" && family.export === "mergedOneTakeLogoTextProps") {
+      exportLines.push("export const mergedOneTakeLogoTextProps = {");
       exportLines.push("  ...oneTakeLogoTextVariantProps,");
       exportLines.push("  ...(local.oneTakeLogoTextV1 || {}),");
       exportLines.push("};");
