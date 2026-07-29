@@ -8,7 +8,6 @@ import { AudioSpectrumTemplateV1 } from "./Audio/AudioSpectrum-v1/AudioSpectrumT
 import { audioSpectrumSchemaV1 } from "./Audio/AudioSpectrum-v1/audio-spectrum.schema";
 import {
   audioSpectrumV1Patterns,
-  audioSpectrumAudioFilesV1,
   defaultAudioSpectrumV1Props,
 } from "./Audio/AudioSpectrum-v1/audio-spectrum.schema";
 import { IntroTemplateV1 } from "./Intro/Intro-v1/IntroTemplate";
@@ -79,28 +78,6 @@ export function OtherFolder() {
                   ...defaultAudioSpectrumV1Props,
                   ...props,
                   audioFileName: "sample.wav",
-                }}
-              />
-            ))}
-          </Folder>
-
-          <Folder name="AudioFiles">
-            {audioSpectrumAudioFilesV1.map((audioFile) => (
-              <Composition
-                key={audioFile.id}
-                id={`AudioSpectrumV1-${audioFile.id}`}
-                component={withCanvasPreview(
-                  `AudioSpectrumV1-${audioFile.id}`,
-                  AudioSpectrumTemplateV1,
-                )}
-                width={1920}
-                height={1080}
-                fps={FPS}
-                durationInFrames={1800}
-                schema={audioSpectrumSchemaV1}
-                defaultProps={{
-                  ...defaultAudioSpectrumV1Props,
-                  audioFileName: audioFile.fileName,
                 }}
               />
             ))}
