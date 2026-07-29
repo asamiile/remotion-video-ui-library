@@ -13,10 +13,10 @@ import {
 import { IntroTemplate } from "./Intro/Intro/IntroTemplate";
 import { introSchema } from "./Intro/Intro/intro.schema";
 import { introSceneTiming } from "./Intro/Intro/intro.schema";
-import { AngstAnimationTemplate } from "./Effects/AngstAnimation/AngstAnimationTemplate";
-import { angstAnimationSchema, defaultAngstAnimationProps } from "./Effects/AngstAnimation/angst-animation.schema";
-import { AngstAnimationMultiShapeTemplate } from "./Effects/AngstAnimation/AngstAnimationMultiShapeTemplate";
-import { angstAnimationMultiShapeSchema, defaultAngstAnimationMultiShapeProps } from "./Effects/AngstAnimation/angst-animation-multi-shape.schema";
+import { AngstAnimationTemplate } from "./Background/AngstAnimation/AngstAnimationTemplate";
+import { angstAnimationSchema, defaultAngstAnimationProps } from "./Background/AngstAnimation/angst-animation.schema";
+import { AngstAnimationMultiShapeTemplate } from "./Background/AngstAnimation/AngstAnimationMultiShapeTemplate";
+import { angstAnimationMultiShapeSchema, defaultAngstAnimationMultiShapeProps } from "./Background/AngstAnimation/angst-animation-multi-shape.schema";
 import { PlaceholderImage } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
