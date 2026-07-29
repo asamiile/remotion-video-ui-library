@@ -4,7 +4,7 @@ import { SlideInCaptionSchemaType } from "./slide-in-caption.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const SlideInCaptionTemplateV1: React.FC<SlideInCaptionSchemaType> = ({
+export const SlideInCaptionTemplate: React.FC<SlideInCaptionSchemaType> = ({
   text,
   fontFamily,
   fontWeight,

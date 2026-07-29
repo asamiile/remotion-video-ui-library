@@ -1,6 +1,6 @@
 import { Img, staticFile } from "remotion";
 
-export const PlaceholderImageV1: React.FC = () => {
+export const PlaceholderImage: React.FC = () => {
   return (
     <div
       style={{

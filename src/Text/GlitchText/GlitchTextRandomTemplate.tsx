@@ -337,7 +337,7 @@ const GlitchItem: React.FC<{
   );
 };
 
-export const GlitchTextRandomTemplateV1: React.FC<GlitchTextRandomSchemaType> = ({
+export const GlitchTextRandomTemplate: React.FC<GlitchTextRandomSchemaType> = ({
   items,
   fontFamily,
   fontSize,

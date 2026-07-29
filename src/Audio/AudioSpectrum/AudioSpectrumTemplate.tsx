@@ -2,9 +2,9 @@ import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, Audio, staticFile, Sequence } from "remotion";
 import { useWindowedAudioData, visualizeAudio } from "@remotion/media-utils";
 import { AudioSpectrumSchemaType } from "./audio-spectrum.schema";
-import { PlaceholderImageV1 } from "../../Placeholder/PlaceholderImage/PlaceholderImage";
+import { PlaceholderImage } from "../../Placeholder/PlaceholderImage/PlaceholderImage";
 
-export const AudioSpectrumTemplateV1: React.FC<AudioSpectrumSchemaType> = ({
+export const AudioSpectrumTemplate: React.FC<AudioSpectrumSchemaType> = ({
   audioFile,
   audioOffsetInSeconds = 0,
   barCount,
@@ -84,7 +84,7 @@ export const AudioSpectrumTemplateV1: React.FC<AudioSpectrumSchemaType> = ({
           zIndex: 0,
         }}
       >
-        <PlaceholderImageV1 />
+        <PlaceholderImage />
       </div> */}
 
       {/* Audio element kept commented out for verifying playback sync during development */}

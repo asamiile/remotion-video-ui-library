@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { DuotoneGradeOverlaySchemaType } from "./duotone-grade-overlay.schema";
 
-export const DuotoneGradeOverlayTemplateV1: React.FC<
+export const DuotoneGradeOverlayTemplate: React.FC<
   DuotoneGradeOverlaySchemaType
 > = ({
   channelAColor,

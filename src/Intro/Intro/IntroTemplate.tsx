@@ -11,7 +11,7 @@ import {
   introSceneTimingV1,
 } from "./intro.schema";
 
-export const IntroTemplateV1: React.FC<IntroSchemaType> = ({
+export const IntroTemplate: React.FC<IntroSchemaType> = ({
   authorName,
   introTitle,
   introDescription,

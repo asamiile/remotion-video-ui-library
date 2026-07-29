@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { LoadingIconSchemaType } from "./loading-icon.schema";
 import { LoadingIconV1 } from "./LoadingIcon";
 
-export const LoadingIconTemplateV1: React.FC<LoadingIconSchemaType> = ({
+export const LoadingIconTemplate: React.FC<LoadingIconSchemaType> = ({
   size,
   lightColor,
   darkColor,
@@ -82,7 +82,7 @@ export const LoadingIconTemplateV1: React.FC<LoadingIconSchemaType> = ({
           zIndex: 0,
         }}
       >
-        <PlaceholderImageV1 />
+        <PlaceholderImage />
       </div> */}
 
       <div style={containerStyle}>

@@ -10,7 +10,7 @@ import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const TypewriterTextTemplateV1: React.FC<TypewriterTextSchemaType> = (
+export const TypewriterTextTemplate: React.FC<TypewriterTextSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

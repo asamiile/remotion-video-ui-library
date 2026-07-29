@@ -4,7 +4,7 @@ import { DistressedTitleCardSchemaType } from "./distressed-title-card.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const DistressedTitleCardTemplateV1: React.FC<
+export const DistressedTitleCardTemplate: React.FC<
   DistressedTitleCardSchemaType
 > = ({
   variant,

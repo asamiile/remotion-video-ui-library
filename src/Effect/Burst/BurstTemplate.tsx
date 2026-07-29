@@ -26,7 +26,7 @@ function jaggedBlobPoints(
     .join(" ");
 }
 
-export const BurstTemplateV1: React.FC<
+export const BurstTemplate: React.FC<
   BurstSchemaType
 > = ({
   backgroundColor,

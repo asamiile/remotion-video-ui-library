@@ -26,7 +26,7 @@ const PHASE_STEP = Math.PI / 2.5;
  * doesn't change when the next cycle starts, inserting a hold segment still
  * loops seamlessly.
  */
-export const OneTakeLogoTemplateV1: React.FC<OneTakeLogoSchemaType> = ({
+export const OneTakeLogoTemplate: React.FC<OneTakeLogoSchemaType> = ({
   barColorTop,
   barColorBottom,
   backgroundColor,

@@ -40,7 +40,7 @@ function pickDrawEasing(mode: WireTextSchemaType["drawEasing"]) {
   return Easing.out(Easing.cubic);
 }
 
-export const WireTextTemplateV1: React.FC<WireTextSchemaType> = (props) => {
+export const WireTextTemplate: React.FC<WireTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const { width: compositionWidth } = useVideoConfig();
   const filterId = useId().replace(/:/g, "");

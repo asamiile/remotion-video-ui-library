@@ -113,7 +113,7 @@ function PhoneTrackRowAccents({ color }: { color: string }) {
  *   well after it look like "always lit", crossing the loop boundary doesn't
  *   break anything.
  */
-export const OnboardingConnectTemplateV1: React.FC<
+export const OnboardingConnectTemplate: React.FC<
   OnboardingConnectSchemaType
 > = ({
   phoneColor,

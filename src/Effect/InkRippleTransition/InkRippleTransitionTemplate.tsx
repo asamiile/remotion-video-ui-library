@@ -3,7 +3,7 @@ import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { InkRippleTransitionSchemaType } from "./ink-ripple-transition.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const InkRippleTransitionTemplateV1: React.FC<
+export const InkRippleTransitionTemplate: React.FC<
   InkRippleTransitionSchemaType
 > = ({
   backgroundColor,

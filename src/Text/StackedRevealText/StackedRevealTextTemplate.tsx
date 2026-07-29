@@ -4,7 +4,7 @@ import { StackedRevealTextSchemaType } from "./stacked-reveal-text.schema";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const StackedRevealTextTemplateV1: React.FC<
+export const StackedRevealTextTemplate: React.FC<
   StackedRevealTextSchemaType
 > = ({
   lines,

@@ -20,7 +20,7 @@ function pickSweepEasing(mode: LightSweepTextSchemaType["sweepEasing"]) {
   return Easing.out(Easing.cubic);
 }
 
-export const LightSweepTextTemplateV1: React.FC<LightSweepTextSchemaType> = (
+export const LightSweepTextTemplate: React.FC<LightSweepTextSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

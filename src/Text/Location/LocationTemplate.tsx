@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { LocationSchemaType } from "./location.schema";
-import { PlaceholderImageV1 } from "../../../Placeholder/PlaceholderImage/PlaceholderImage";
+import { PlaceholderImage } from "../../../Placeholder/PlaceholderImage/PlaceholderImage";
 
 const createAnimationProgress = (
   frame: number,
@@ -21,7 +21,7 @@ const createAnimationProgress = (
   );
 };
 
-export const LocationTemplateV1: React.FC<LocationSchemaType> = ({
+export const LocationTemplate: React.FC<LocationSchemaType> = ({
   locationName,
   fontSize,
   textColor,
@@ -150,7 +150,7 @@ export const LocationTemplateV1: React.FC<LocationSchemaType> = ({
           zIndex: 0,
         }}
       >
-        <PlaceholderImageV1 />
+        <PlaceholderImage />
       </div> */}
 
       <div style={textContainerStyle}>

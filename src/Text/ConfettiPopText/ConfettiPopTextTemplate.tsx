@@ -50,7 +50,7 @@ function buildParticles(
   }));
 }
 
-export const ConfettiPopTextTemplateV1: React.FC<ConfettiPopTextSchemaType> = (
+export const ConfettiPopTextTemplate: React.FC<ConfettiPopTextSchemaType> = (
   props,
 ) => {
   const frame = useCurrentFrame();

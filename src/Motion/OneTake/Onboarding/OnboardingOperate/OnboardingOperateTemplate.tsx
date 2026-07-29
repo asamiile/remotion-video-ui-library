@@ -139,7 +139,7 @@ function WaveformBars({
  * waveform intensity to 0, matching the idle state of the first frame
  * (before the tap) at the loop boundary.
  */
-export const OnboardingOperateTemplateV1: React.FC<
+export const OnboardingOperateTemplate: React.FC<
   OnboardingOperateSchemaType
 > = ({ recordColor, backgroundColor, vignetteOpacity, tapFrame, resetStartFrame }) => {
   const frame = useCurrentFrame();

@@ -145,7 +145,7 @@ const LedScrollGapStrip: React.FC<{
   );
 };
 
-export const LedTextTemplateV1: React.FC<LedTextSchemaType> = (props) => {
+export const LedTextTemplate: React.FC<LedTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const {
     text,

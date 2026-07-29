@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { LetterboxOverlaySchemaType } from "./letterbox-overlay.schema";
 
-export const LetterboxOverlayTemplateV1: React.FC<
+export const LetterboxOverlayTemplate: React.FC<
   LetterboxOverlaySchemaType
 > = ({ barColor, barHeightPercent, revealFrames, delayFrames }) => {
   const frame = useCurrentFrame();

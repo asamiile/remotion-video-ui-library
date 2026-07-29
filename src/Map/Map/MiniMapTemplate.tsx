@@ -32,7 +32,7 @@ import { mergedMapLocationPointsV1 } from "../../composition/composition-merged-
 
 mapboxgl.accessToken = process.env.REMOTION_MAPBOX_TOKEN as string;
 
-export const MiniMapTemplateV1: React.FC<MiniMapSchemaType> = ({
+export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
   mapLocationId,
   width,
   height,

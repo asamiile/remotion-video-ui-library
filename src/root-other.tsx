@@ -1,19 +1,19 @@
 import { Composition, Folder } from "remotion";
-import { LoadingIconTemplateV1 } from "./Loading/LoadingIcon/LoadingIconTemplate";
+import { LoadingIconTemplate } from "./Loading/LoadingIcon/LoadingIconTemplate";
 import { loadingIconSchema } from "./Loading/LoadingIcon/loading-icon.schema";
-import { MiniMapTemplateV1 } from "./Map/Map/MiniMapTemplate";
+import { MiniMapTemplate } from "./Map/Map/MiniMapTemplate";
 import { miniMapSchema } from "./Map/Map/mini-map.schema";
 import { defaultMiniMapProps } from "./Map/Map/mini-map.schema";
-import { AudioSpectrumTemplateV1 } from "./Audio/AudioSpectrum/AudioSpectrumTemplate";
+import { AudioSpectrumTemplate } from "./Audio/AudioSpectrum/AudioSpectrumTemplate";
 import { audioSpectrumSchema } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import {
   audioSpectrumPatterns,
   defaultAudioSpectrumProps,
 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
-import { IntroTemplateV1 } from "./Intro/Intro/IntroTemplate";
+import { IntroTemplate } from "./Intro/Intro/IntroTemplate";
 import { introSchema } from "./Intro/Intro/intro.schema";
 import { introSceneTiming } from "./Intro/Intro/intro.schema";
-import { PlaceholderImageV1 } from "./Placeholder/PlaceholderImage/PlaceholderImage";
+import { PlaceholderImage } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
   mergedLoadingIconPatterns,
@@ -31,8 +31,8 @@ export function OtherFolder() {
       <Folder name="Loading">
         {renderPatternFamily({
           patterns: mergedLoadingIconPatterns,
-          idPrefix: "LoadingIconV1-",
-          Template: LoadingIconTemplateV1,
+          idPrefix: "LoadingIcon-",
+          Template: LoadingIconTemplate,
           schema: loadingIconSchema,
           durationInFrames: 300,
         })}
@@ -45,7 +45,7 @@ export function OtherFolder() {
             id={`MiniMapV1-${locationPoint.id}`}
             component={withCanvasPreview(
               `MiniMapV1-${locationPoint.id}`,
-              MiniMapTemplateV1,
+              MiniMapTemplate,
             )}
             width={1920}
             height={1080}
@@ -69,7 +69,7 @@ export function OtherFolder() {
                 id={`AudioSpectrumV1-${patternName}`}
                 component={withCanvasPreview(
                   `AudioSpectrumV1-${patternName}`,
-                  AudioSpectrumTemplateV1,
+                  AudioSpectrumTemplate,
                 )}
                 width={1920}
                 height={1080}
@@ -90,7 +90,7 @@ export function OtherFolder() {
       <Folder name="Intro">
         <Composition
           id="IntroV1"
-          component={IntroTemplateV1}
+          component={IntroTemplate}
           width={1920}
           height={1080}
           fps={FPS}
@@ -102,8 +102,8 @@ export function OtherFolder() {
 
       <Folder name="Placeholder">
         <Composition
-          id="PlaceholderImageV1"
-          component={PlaceholderImageV1}
+          id="PlaceholderImage"
+          component={PlaceholderImage}
           width={1920}
           height={1080}
           fps={FPS}

@@ -49,7 +49,7 @@ function ScanBand({
  * (refresh flicker) is applied, but since its period is an integer fraction
  * of scanPeriodFrames, it doesn't break the seamless loop.
  */
-export const ScanLineTemplateV1: React.FC<ScanLineSchemaType> = ({
+export const ScanLineTemplate: React.FC<ScanLineSchemaType> = ({
   scanColor,
   bandHeight,
   scanStyle,

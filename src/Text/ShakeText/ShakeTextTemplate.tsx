@@ -12,7 +12,7 @@ import "../../helpers/jetbrains-mono";
 import "../../helpers/line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-export const ShakeTextTemplateV1: React.FC<ShakeTextSchemaType> = (props) => {
+export const ShakeTextTemplate: React.FC<ShakeTextSchemaType> = (props) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const {
