@@ -76,16 +76,16 @@ for (const family of families) {
   byCategory[cat].push(family);
 }
 
-// Special handling: merge location/map handling into 'other' category
+// Special handling: merge location/map handling into 'text' category (Location is a Text composition)
 byCategory.text.push({
   type: "special",
   category: "text",
   export: "mergedOneTakeLogoTextV1Props",
 });
 
-byCategory.other.push({
+byCategory.text.push({
   type: "locationAndMap",
-  category: "other",
+  category: "text",
 });
 
 // Validation

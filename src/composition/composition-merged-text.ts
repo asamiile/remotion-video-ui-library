@@ -19,8 +19,12 @@ import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.
 import {
   getEffectiveCompositionText,
   shallowMergePatternRecord,
+  buildLocationConfigsFromCompositionKeys,
+  buildMapLocationPointsFromCompositionKeys,
+  getLocationV1CompositionKeys,
 } from "./merge-composition-local";
 const local = getEffectiveCompositionText();
+const locationV1CompositionKeys = getLocationV1CompositionKeys();
 
 export const mergedLedTextV1Patterns = shallowMergePatternRecord(
   ledTextV1Patterns,
@@ -111,4 +115,10 @@ export const mergedOneTakeLogoTextV1Props = {
   ...oneTakeLogoTextVariantProps,
   ...(local.oneTakeLogoTextV1 || {}),
 };
+
+export const mergedLocationConfigsV1 =
+  buildLocationConfigsFromCompositionKeys(local, locationV1CompositionKeys);
+
+export const mergedMapLocationPointsV1 =
+  buildMapLocationPointsFromCompositionKeys(local, locationV1CompositionKeys);
 
