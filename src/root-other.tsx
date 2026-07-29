@@ -1,19 +1,19 @@
 import { Composition, Folder } from "remotion";
-import { LoadingIconTemplateV1 } from "./Loading/LoadingIcon-v1/LoadingIconTemplate";
-import { loadingIconSchemaV1 } from "./Loading/LoadingIcon-v1/loading-icon.schema";
-import { MiniMapTemplateV1 } from "./Map/Map-v1/MiniMapTemplate";
-import { miniMapSchemaV1 } from "./Map/Map-v1/mini-map.schema";
-import { defaultMiniMapV1Props } from "./Map/Map-v1/mini-map.schema";
-import { AudioSpectrumTemplateV1 } from "./Audio/AudioSpectrum-v1/AudioSpectrumTemplate";
-import { audioSpectrumSchemaV1 } from "./Audio/AudioSpectrum-v1/audio-spectrum.schema";
+import { LoadingIconTemplateV1 } from "./Loading/LoadingIcon/LoadingIconTemplate";
+import { loadingIconSchemaV1 } from "./Loading/LoadingIcon/loading-icon.schema";
+import { MiniMapTemplateV1 } from "./Map/Map/MiniMapTemplate";
+import { miniMapSchemaV1 } from "./Map/Map/mini-map.schema";
+import { defaultMiniMapV1Props } from "./Map/Map/mini-map.schema";
+import { AudioSpectrumTemplateV1 } from "./Audio/AudioSpectrum/AudioSpectrumTemplate";
+import { audioSpectrumSchemaV1 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import {
   audioSpectrumV1Patterns,
   defaultAudioSpectrumV1Props,
-} from "./Audio/AudioSpectrum-v1/audio-spectrum.schema";
-import { IntroTemplateV1 } from "./Intro/Intro-v1/IntroTemplate";
-import { introSchemaV1 } from "./Intro/Intro-v1/intro.schema";
-import { introSceneTimingV1 } from "./Intro/Intro-v1/intro.schema";
-import { PlaceholderImageV1 } from "./Placeholder/PlaceholderImage-v1/PlaceholderImage";
+} from "./Audio/AudioSpectrum/audio-spectrum.schema";
+import { IntroTemplateV1 } from "./Intro/Intro/IntroTemplate";
+import { introSchemaV1 } from "./Intro/Intro/intro.schema";
+import { introSceneTimingV1 } from "./Intro/Intro/intro.schema";
+import { PlaceholderImageV1 } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
   mergedLoadingIconV1Patterns,
