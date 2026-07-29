@@ -39,7 +39,7 @@ const families = [
   { type: "pattern", file: "Text/TypewriterText/typewriter-text.schema", export: "typewriterTextV1Patterns", category: "text" },
   { type: "pattern", file: "Text/ShakeText/shake-text.schema", export: "shakeTextV1Patterns", category: "text" },
   { type: "pattern", file: "Text/ConfettiPopText/confetti-pop-text.schema", export: "confettiPopTextV1Patterns", category: "text" },
-  { type: "pattern", file: "Text/CodeStream/code-stream.schema", export: "codeStreamV1Patterns", category: "text" },
+  { type: "pattern", file: "Text/CodeStream/code-stream.schema", export: "codeStreamPatterns", category: "text" },
   { type: "pattern", file: "Text/StackedRevealText/stacked-reveal-text.schema", export: "stackedRevealTextV1Patterns", category: "text" },
   { type: "pattern", file: "Text/TornNoteCaption/torn-note-caption.schema", export: "tornNoteCaptionV1Patterns", category: "text" },
   { type: "pattern", file: "Text/DistressedTitleCard/distressed-title-card.schema", export: "distressedTitleCardV1Patterns", category: "text" },

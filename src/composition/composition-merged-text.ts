@@ -10,7 +10,7 @@ import { dottedLineMarkerV1Patterns } from "../Text/DottedLineMarkerText/dotted-
 import { typewriterTextV1Patterns } from "../Text/TypewriterText/typewriter-text.schema";
 import { shakeTextV1Patterns } from "../Text/ShakeText/shake-text.schema";
 import { confettiPopTextV1Patterns } from "../Text/ConfettiPopText/confetti-pop-text.schema";
-import { codeStreamV1Patterns } from "../Text/CodeStream/code-stream.schema";
+import { codeStreamPatterns } from "../Text/CodeStream/code-stream.schema";
 import { stackedRevealTextV1Patterns } from "../Text/StackedRevealText/stacked-reveal-text.schema";
 import { tornNoteCaptionV1Patterns } from "../Text/TornNoteCaption/torn-note-caption.schema";
 import { distressedTitleCardV1Patterns } from "../Text/DistressedTitleCard/distressed-title-card.schema";
@@ -86,10 +86,10 @@ export const mergedConfettiPopTextV1Patterns = shallowMergePatternRecord(
   local.confettiPopTextV1Patterns,
 ) as typeof confettiPopTextV1Patterns;
 
-export const mergedCodeStreamV1Patterns = shallowMergePatternRecord(
-  codeStreamV1Patterns,
-  local.codeStreamV1Patterns,
-) as typeof codeStreamV1Patterns;
+export const mergedCodeStreamPatterns = shallowMergePatternRecord(
+  codeStreamPatterns,
+  local.codeStreamPatterns,
+) as typeof codeStreamPatterns;
 
 export const mergedStackedRevealTextV1Patterns = shallowMergePatternRecord(
   stackedRevealTextV1Patterns,
