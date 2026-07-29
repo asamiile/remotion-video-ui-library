@@ -9,7 +9,7 @@ All Remotion compositions in this repository follow a unified file structure. Ea
 
 ## Standard structure for each component
 
-File: `src/<Folder>/<ComponentName>-v1/<component-name>.schema.ts`
+File: `src/<Folder>/<ComponentName>/<component-name>.schema.ts`
 
 ```typescript
 import { z } from "zod";
@@ -17,20 +17,20 @@ import { zColor } from "@remotion/zod-types";
 // ... other imports as needed
 
 // 1. Zod schema definition
-export const componentSchemaV1 = z.object({
+export const componentSchema = z.object({
   prop1: z.string().default("default value"),
   prop2: z.number().min(0).max(100).default(50),
   // ... all props with sensible Zod validators and defaults
 });
 
 // 2. TypeScript type export
-export type ComponentSchemaV1Type = z.infer<typeof componentSchemaV1>;
+export type ComponentSchemaType = z.infer<typeof componentSchema>;
 
 // 3. Duration constant (frames, typically at 30fps)
-export const componentV1DurationFrames = 3000;
+export const componentDurationFrames = 3000;
 
 // 4. Default props (plain JS object matching schema)
-export const defaultComponentV1Props = {
+export const defaultComponentProps = {
   prop1: "default value",
   prop2: 50,
   // ... copy all schema field defaults
@@ -38,14 +38,14 @@ export const defaultComponentV1Props = {
 
 // 5. Pattern family (if multiple variants exist)
 // Single variant (most common):
-export const componentV1Patterns = {
-  default: defaultComponentV1Props,
+export const componentPatterns = {
+  default: defaultComponentProps,
 } as const;
 
 // Multiple variants (e.g., CodeStream horizontal/vertical):
-export const codeStreamV1Patterns = {
-  horizontal: defaultCodeStreamHorizontalV1Props,
-  vertical: defaultCodeStreamVerticalV1Props,
+export const codeStreamPatterns = {
+  horizontal: defaultCodeStreamHorizontalProps,
+  vertical: defaultCodeStreamVerticalProps,
 } as const;
 ```
 
@@ -56,9 +56,9 @@ export const codeStreamV1Patterns = {
   - ❌ `led-text-schema.ts` / `led-text-config.ts`
   - ✅ `code-stream.schema.ts`
 
-- **Patterns export:** Every schema file exports a `*V1Patterns` object. For single-variant components, export `{ default: defaultComponentV1Props }`. For multi-variant components, list all variants as keys.
+- **Patterns export:** Every schema file exports a `*Patterns` object. For single-variant components, export `{ default: defaultComponentProps }`. For multi-variant components, list all variants as keys.
 
-- **Duration:** Store duration as an integer constant (`*V1DurationFrames`), not baked into the schema. Remotion and render.sh scripts depend on this consistent naming.
+- **Duration:** Store duration as an integer constant (`*DurationFrames`), not baked into the schema. Remotion and render.sh scripts depend on this consistent naming.
 
 - **Default props:** Must be `as const` to preserve type narrowness. Keep field order and names exactly aligned with the Zod schema.
 
@@ -73,7 +73,7 @@ After unification:
 
 1. **Update** `scripts/generate-composition-merged.cjs` families array to reference the new `.schema.ts` file:
    ```js
-   { type: "pattern", file: "Text/ComponentName/ComponentName-v1/component-name.schema", export: "componentNameV1Patterns" }
+   { type: "pattern", file: "Text/ComponentName/ComponentName/component-name.schema", export: "componentNamePatterns" }
    ```
    (Note: omit the `.ts` extension; the script appends it).
 
