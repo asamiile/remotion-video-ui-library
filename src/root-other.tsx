@@ -54,7 +54,7 @@ export function OtherFolder() {
             schema={miniMapSchema}
             defaultProps={{
               ...defaultMiniMapProps,
-              locationPoint,
+              mapLocationId: locationPoint.id,
             }}
           />
         ))}
