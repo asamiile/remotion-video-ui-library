@@ -72,7 +72,7 @@ export const defaultGlitchTextRandomProps = {
 } as const;
 
 export const glitchTextRandomPatterns = {
-  harshSignalRandom: {
+  "harshSignalRandom-01": {
     ...defaultGlitchTextRandomProps,
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     fontSize: 32,
@@ -90,7 +90,7 @@ export const glitchTextRandomPatterns = {
     fadeOutDuration: 30,
     randomSeed: "glitch-harsh-random",
   },
-  variant2: {
+  "harshSignalRandom-02": {
     ...defaultGlitchTextRandomProps,
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
     fontSize: 32,
@@ -107,41 +107,5 @@ export const glitchTextRandomPatterns = {
     displayDurationFrames: 300,
     fadeOutDuration: 30,
     randomSeed: "glitch-variant2",
-  },
-  variant3: {
-    ...defaultGlitchTextRandomProps,
-    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
-    fontSize: 32,
-    letterSpacing: "0.05em",
-    textColor: "#EEF1FC",
-    channelRColor: "rgba(255, 61, 158, 0.55)",
-    channelBColor: "rgba(55, 233, 255, 0.55)",
-    rgbOffsetMax: 12,
-    strongGlitchProbability: 0.32,
-    glitchSegmentFrames: 4,
-    jitterPx: 3,
-    spawnIntervalFrames: 60,
-    glitchDelayFrames: 90,
-    displayDurationFrames: 300,
-    fadeOutDuration: 30,
-    randomSeed: "glitch-variant3",
-  },
-  variant4: {
-    ...defaultGlitchTextRandomProps,
-    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
-    fontSize: 32,
-    letterSpacing: "0.05em",
-    textColor: "#EEF1FC",
-    channelRColor: "rgba(255, 61, 158, 0.55)",
-    channelBColor: "rgba(55, 233, 255, 0.55)",
-    rgbOffsetMax: 12,
-    strongGlitchProbability: 0.32,
-    glitchSegmentFrames: 4,
-    jitterPx: 3,
-    spawnIntervalFrames: 60,
-    glitchDelayFrames: 90,
-    displayDurationFrames: 300,
-    fadeOutDuration: 30,
-    randomSeed: "glitch-variant3",
   },
 };

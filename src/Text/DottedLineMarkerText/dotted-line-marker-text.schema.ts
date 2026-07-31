@@ -29,8 +29,12 @@ export const defaultDottedLineMarkerTextProps: DottedLineMarkerTextSchemaType =
   };
 
 export const dottedLineMarkerPatterns = {
-  default: {
+  "01": {
     ...defaultDottedLineMarkerTextProps,
-    randomSeed: "dotted-line-marker-default",
+    randomSeed: "dotted-line-marker-01",
+  },
+  "02": {
+    ...defaultDottedLineMarkerTextProps,
+    randomSeed: "dotted-line-marker-02",
   },
 };

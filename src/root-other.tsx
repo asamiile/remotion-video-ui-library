@@ -109,6 +109,7 @@ export function OtherFolder() {
           durationInFrames={1}
         />
       </Folder>
+
     </>
   );
 }

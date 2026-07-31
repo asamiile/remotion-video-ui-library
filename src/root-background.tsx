@@ -29,6 +29,10 @@ import { sunsetLensFlareOverlayPatterns } from "./Background/SunsetLensFlareOver
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
+import { AngstAnimationTemplate } from "./Background/AngstAnimation/AngstAnimationTemplate";
+import { angstAnimationSchema, defaultAngstAnimationProps } from "./Background/AngstAnimation/angst-animation.schema";
+import { AngstAnimationMultiShapeTemplate } from "./Background/AngstAnimation/AngstAnimationMultiShapeTemplate";
+import { angstAnimationMultiShapeSchema, defaultAngstAnimationMultiShapeProps } from "./Background/AngstAnimation/angst-animation-multi-shape.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import { mergedRandomLinesPatterns } from "./composition/composition-merged-background";
 
@@ -140,6 +144,35 @@ export function BackgroundFolder() {
           schema: sunsetLensFlareOverlaySchema,
           durationInFrames: 60,
         })}
+      </Folder>
+
+      <Folder name="AngstAnimation">
+        <Composition
+          id="AngstAnimation"
+          component={withCanvasPreview(
+            "AngstAnimation",
+            AngstAnimationTemplate,
+          )}
+          width={1920}
+          height={1080}
+          fps={FPS}
+          durationInFrames={900}
+          schema={angstAnimationSchema}
+          defaultProps={defaultAngstAnimationProps}
+        />
+        <Composition
+          id="AngstAnimationMultiShape"
+          component={withCanvasPreview(
+            "AngstAnimationMultiShape",
+            AngstAnimationMultiShapeTemplate,
+          )}
+          width={1920}
+          height={1080}
+          fps={FPS}
+          durationInFrames={900}
+          schema={angstAnimationMultiShapeSchema}
+          defaultProps={defaultAngstAnimationMultiShapeProps}
+        />
       </Folder>
     </Folder>
   );
