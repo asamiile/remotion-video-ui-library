@@ -48,7 +48,7 @@
     "harshSignalJp": { "text": "信号 不安定" }
   },
   "glitchTextRandomPatterns": {
-    "harshSignalRandom": {
+    "harshSignalRandom-01": {
       "items": [
         { "text": "System A" },
         { "text": "System B" },
@@ -78,7 +78,7 @@
     "prominent": {}
   },
   "dottedLineMarkerTextPatterns": {
-    "default": {
+    "01": {
       "items": [
         { "leftText": "Requirement", "rightText": "01" },
         { "leftText": "Specification", "rightText": "02" }
