@@ -146,6 +146,7 @@ resolve_output_subdir() {
     CinematicPresentsCredit-*) echo "Text/CinematicPresentsCredit" ;;
     InterviewQuestionCaption-*) echo "Text/InterviewQuestionCaption" ;;
     AnnouncementEndCard-*) echo "Text/AnnouncementEndCard" ;;
+    EmergingNoiseTitle-*) echo "Text/EmergingNoiseTitle" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge*) echo "Effect/GlitchTransitionBridge" ;;
     InkRippleTransition*) echo "Effect/InkRippleTransition" ;;
@@ -175,6 +176,9 @@ resolve_output_subdir() {
     Background-AgedParchmentOverlay-*) echo "Background/AgedParchmentOverlay" ;;
     Background-StarfieldPlanetSilhouette-*) echo "Background/StarfieldPlanetSilhouette" ;;
     Background-SilhouetteDreamBackdrop-*) echo "Background/SilhouetteDreamBackdrop" ;;
+    Background-CodeNoiseWall-*) echo "Background/CodeNoiseWall" ;;
+    Background-ParticleTerrainMesh-*) echo "Background/ParticleTerrainMesh" ;;
+    Background-InterlaceGlowBand-*) echo "Background/InterlaceGlowBand" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
     PlaceholderImage) echo "Placeholder" ;;

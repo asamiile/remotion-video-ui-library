@@ -52,6 +52,7 @@ const families = [
   { type: "pattern", file: "Text/CinematicPresentsCredit/cinematic-presents-credit.schema", export: "cinematicPresentsCreditPatterns", category: "text" },
   { type: "pattern", file: "Text/InterviewQuestionCaption/interview-question-caption.schema", export: "interviewQuestionCaptionPatterns", category: "text" },
   { type: "pattern", file: "Text/AnnouncementEndCard/announcement-end-card.schema", export: "announcementEndCardPatterns", category: "text" },
+  { type: "pattern", file: "Text/EmergingNoiseTitle/emerging-noise-title.schema", export: "emergingNoiseTitlePatterns", category: "text" },
 
   // Background composition
   { type: "pattern", file: "Background/RandomLinesBackground/random-lines.schema", export: "randomLinesPatterns", localName: "randomLinesBackgroundPatterns", category: "background" },

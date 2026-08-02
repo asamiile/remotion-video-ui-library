@@ -32,6 +32,7 @@ export type CompositionTextLocal = {
   cinematicPresentsCreditPatterns?: Record<string, Record<string, unknown>>;
   interviewQuestionCaptionPatterns?: Record<string, Record<string, unknown>>;
   announcementEndCardPatterns?: Record<string, Record<string, unknown>>;
+  emergingNoiseTitlePatterns?: Record<string, Record<string, unknown>>;
   battleCalloutBannerPatterns?: Record<string, Record<string, unknown>>;
   asymmetricStatusPanelPatterns?: Record<string, Record<string, unknown>>;
   framedFootageWindowPatterns?: Record<string, Record<string, unknown>>;

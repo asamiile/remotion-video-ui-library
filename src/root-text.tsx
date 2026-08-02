@@ -79,6 +79,9 @@ import { interviewQuestionCaptionDurationFrames } from "./Text/InterviewQuestion
 import { AnnouncementEndCardTemplate } from "./Text/AnnouncementEndCard/AnnouncementEndCardTemplate";
 import { announcementEndCardSchema } from "./Text/AnnouncementEndCard/announcement-end-card.schema";
 import { announcementEndCardDurationFrames } from "./Text/AnnouncementEndCard/announcement-end-card.schema";
+import { EmergingNoiseTitleTemplate } from "./Text/EmergingNoiseTitle/EmergingNoiseTitleTemplate";
+import { emergingNoiseTitleSchema } from "./Text/EmergingNoiseTitle/emerging-noise-title.schema";
+import { emergingNoiseTitleDurationFrames } from "./Text/EmergingNoiseTitle/emerging-noise-title.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -106,6 +109,7 @@ import {
   mergedCinematicPresentsCreditPatterns,
   mergedInterviewQuestionCaptionPatterns,
   mergedAnnouncementEndCardPatterns,
+  mergedEmergingNoiseTitlePatterns,
   mergedOneTakeLogoTextProps,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
@@ -445,6 +449,16 @@ export function TextFolder() {
           Template: AnnouncementEndCardTemplate,
           schema: announcementEndCardSchema,
           durationInFrames: announcementEndCardDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="EmergingNoiseTitle">
+        {renderPatternFamily({
+          patterns: mergedEmergingNoiseTitlePatterns,
+          idPrefix: "EmergingNoiseTitle-",
+          Template: EmergingNoiseTitleTemplate,
+          schema: emergingNoiseTitleSchema,
+          durationInFrames: emergingNoiseTitleDurationFrames,
         })}
       </Folder>
     </Folder>

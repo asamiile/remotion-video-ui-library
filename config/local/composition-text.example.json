@@ -267,5 +267,9 @@
   "waveAnnouncementBannerPatterns": {
     "pinkWave": { "bannerText": "SAMPLE LIMITED EDITION" },
     "pinkWaveJp": { "bannerText": "サンプル初回限定版" }
+  },
+  "emergingNoiseTitlePatterns": {
+    "buildUp": { "text": "SAMPLE TITLE", "wordFragments": ["ALE", "AIR", "AN"] },
+    "buildUpJp": { "text": "サンプルタイトル", "wordFragments": ["サン", "プル", "タイ"] }
   }
 }

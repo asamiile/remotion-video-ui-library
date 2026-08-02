@@ -127,6 +127,11 @@ const families = [
     file: "src/Text/AnnouncementEndCard/announcement-end-card.schema.ts",
     exportName: "announcementEndCardPatterns",
   },
+  {
+    idPrefix: "EmergingNoiseTitle",
+    file: "src/Text/EmergingNoiseTitle/emerging-noise-title.schema.ts",
+    exportName: "emergingNoiseTitlePatterns",
+  },
 ];
 
 for (const fam of families) {

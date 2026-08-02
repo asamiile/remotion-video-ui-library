@@ -60,6 +60,21 @@ const families = [
     file: "src/Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema.ts",
     exportName: "silhouetteDreamBackdropPatterns",
   },
+  {
+    idPrefix: "Background-CodeNoiseWall",
+    file: "src/Background/CodeNoiseWall/code-noise-wall.schema.ts",
+    exportName: "codeNoiseWallPatterns",
+  },
+  {
+    idPrefix: "Background-ParticleTerrainMesh",
+    file: "src/Background/ParticleTerrainMesh/particle-terrain-mesh.schema.ts",
+    exportName: "particleTerrainMeshPatterns",
+  },
+  {
+    idPrefix: "Background-InterlaceGlowBand",
+    file: "src/Background/InterlaceGlowBand/interlace-glow-band.schema.ts",
+    exportName: "interlaceGlowBandPatterns",
+  },
 ];
 
 for (const id of fixedIds) {

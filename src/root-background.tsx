@@ -35,6 +35,15 @@ import { starfieldPlanetSilhouettePatterns } from "./Background/StarfieldPlanetS
 import { SilhouetteDreamBackdropTemplate } from "./Background/SilhouetteDreamBackdrop/SilhouetteDreamBackdropTemplate";
 import { silhouetteDreamBackdropSchema } from "./Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema";
 import { silhouetteDreamBackdropPatterns } from "./Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema";
+import { CodeNoiseWallTemplate } from "./Background/CodeNoiseWall/CodeNoiseWallTemplate";
+import { codeNoiseWallSchema } from "./Background/CodeNoiseWall/code-noise-wall.schema";
+import { codeNoiseWallPatterns } from "./Background/CodeNoiseWall/code-noise-wall.schema";
+import { ParticleTerrainMeshTemplate } from "./Background/ParticleTerrainMesh/ParticleTerrainMeshTemplate";
+import { particleTerrainMeshSchema } from "./Background/ParticleTerrainMesh/particle-terrain-mesh.schema";
+import { particleTerrainMeshPatterns } from "./Background/ParticleTerrainMesh/particle-terrain-mesh.schema";
+import { InterlaceGlowBandTemplate } from "./Background/InterlaceGlowBand/InterlaceGlowBandTemplate";
+import { interlaceGlowBandSchema } from "./Background/InterlaceGlowBand/interlace-glow-band.schema";
+import { interlaceGlowBandPatterns } from "./Background/InterlaceGlowBand/interlace-glow-band.schema";
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
@@ -181,6 +190,36 @@ export function BackgroundFolder() {
           idPrefix: "Background-SilhouetteDreamBackdrop-",
           Template: SilhouetteDreamBackdropTemplate,
           schema: silhouetteDreamBackdropSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="CodeNoiseWall">
+        {renderPatternFamily({
+          patterns: codeNoiseWallPatterns,
+          idPrefix: "Background-CodeNoiseWall-",
+          Template: CodeNoiseWallTemplate,
+          schema: codeNoiseWallSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="ParticleTerrainMesh">
+        {renderPatternFamily({
+          patterns: particleTerrainMeshPatterns,
+          idPrefix: "Background-ParticleTerrainMesh-",
+          Template: ParticleTerrainMeshTemplate,
+          schema: particleTerrainMeshSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="InterlaceGlowBand">
+        {renderPatternFamily({
+          patterns: interlaceGlowBandPatterns,
+          idPrefix: "Background-InterlaceGlowBand-",
+          Template: InterlaceGlowBandTemplate,
+          schema: interlaceGlowBandSchema,
           durationInFrames: 150,
         })}
       </Folder>

@@ -23,6 +23,7 @@ import { diegeticMaterialCreditPatterns } from "../Text/DiegeticMaterialCredit/d
 import { cinematicPresentsCreditPatterns } from "../Text/CinematicPresentsCredit/cinematic-presents-credit.schema";
 import { interviewQuestionCaptionPatterns } from "../Text/InterviewQuestionCaption/interview-question-caption.schema";
 import { announcementEndCardPatterns } from "../Text/AnnouncementEndCard/announcement-end-card.schema";
+import { emergingNoiseTitlePatterns } from "../Text/EmergingNoiseTitle/emerging-noise-title.schema";
 import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.schema";
 import {
   getEffectiveCompositionText,
@@ -158,6 +159,11 @@ export const mergedAnnouncementEndCardPatterns = shallowMergePatternRecord(
   announcementEndCardPatterns,
   local.announcementEndCardPatterns,
 ) as typeof announcementEndCardPatterns;
+
+export const mergedEmergingNoiseTitlePatterns = shallowMergePatternRecord(
+  emergingNoiseTitlePatterns,
+  local.emergingNoiseTitlePatterns,
+) as typeof emergingNoiseTitlePatterns;
 
 export const mergedOneTakeLogoTextProps = {
   ...oneTakeLogoTextVariantProps,
