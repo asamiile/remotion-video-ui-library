@@ -55,4 +55,28 @@ export const duotoneGradeOverlayPatterns = {
     washColor: "#060810",
     trackingNoiseEnabled: false,
   },
+
+  /** Cold blue-violet dramatic tone for moody, tense scenes */
+  coldViolet: {
+    ...defaultDuotoneGradeOverlayProps,
+    channelAColor: "#5b6dff",
+    channelBColor: "#37e9ff",
+    channelShiftPx: 2,
+    channelOpacity: 0.2,
+    washColor: "#1c1f4a",
+    washOpacity: 0.32,
+    trackingNoiseEnabled: false,
+  },
+
+  /** High-contrast red emphasis for a single shocking beat */
+  shockRed: {
+    ...defaultDuotoneGradeOverlayProps,
+    channelAColor: "#ff1f3d",
+    channelBColor: "#ff1f3d",
+    channelShiftPx: 0,
+    channelOpacity: 0,
+    washColor: "#3d0006",
+    washOpacity: 0.4,
+    trackingNoiseEnabled: false,
+  },
 };

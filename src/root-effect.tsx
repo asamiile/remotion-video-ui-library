@@ -23,6 +23,18 @@ import {
   defaultBurstProps,
   burstDurationFrames,
 } from "./Effects/Burst/burst.schema";
+import { ShatterCrackTransitionTemplate } from "./Effects/ShatterCrackTransition/ShatterCrackTransitionTemplate";
+import { shatterCrackTransitionSchema } from "./Effects/ShatterCrackTransition/shatter-crack-transition.schema";
+import {
+  defaultShatterCrackTransitionProps,
+  shatterCrackTransitionDurationFrames,
+} from "./Effects/ShatterCrackTransition/shatter-crack-transition.schema";
+import { ZoomBlurTransitionTemplate } from "./Effects/ZoomBlurTransition/ZoomBlurTransitionTemplate";
+import { zoomBlurTransitionSchema } from "./Effects/ZoomBlurTransition/zoom-blur-transition.schema";
+import {
+  defaultZoomBlurTransitionProps,
+  zoomBlurTransitionDurationFrames,
+} from "./Effects/ZoomBlurTransition/zoom-blur-transition.schema";
 import { withCanvasPreview } from "./helpers/composition-helpers";
 
 const FPS = 30;
@@ -84,6 +96,34 @@ export function EffectFolder() {
         durationInFrames={burstDurationFrames}
         schema={burstSchema}
         defaultProps={{ ...defaultBurstProps }}
+      />
+
+      <Composition
+        id="ShatterCrackTransition"
+        component={withCanvasPreview(
+          "ShatterCrackTransition",
+          ShatterCrackTransitionTemplate,
+        )}
+        width={1920}
+        height={1080}
+        fps={FPS}
+        durationInFrames={shatterCrackTransitionDurationFrames}
+        schema={shatterCrackTransitionSchema}
+        defaultProps={{ ...defaultShatterCrackTransitionProps }}
+      />
+
+      <Composition
+        id="ZoomBlurTransition"
+        component={withCanvasPreview(
+          "ZoomBlurTransition",
+          ZoomBlurTransitionTemplate,
+        )}
+        width={1920}
+        height={1080}
+        fps={FPS}
+        durationInFrames={zoomBlurTransitionDurationFrames}
+        schema={zoomBlurTransitionSchema}
+        defaultProps={{ ...defaultZoomBlurTransitionProps }}
       />
     </Folder>
   );

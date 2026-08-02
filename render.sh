@@ -99,6 +99,14 @@ BURST_COMPOSITION_IDS=(
   "Burst"
 )
 
+SHATTER_CRACK_TRANSITION_COMPOSITION_IDS=(
+  "ShatterCrackTransition"
+)
+
+ZOOM_BLUR_TRANSITION_COMPOSITION_IDS=(
+  "ZoomBlurTransition"
+)
+
 # For colored output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -130,13 +138,28 @@ resolve_output_subdir() {
     TornNoteCaption-*) echo "Text/TornNoteCaption" ;;
     DistressedTitleCard-*) echo "Text/DistressedTitleCard" ;;
     SprayPaintText-*) echo "Text/SprayPaintText" ;;
+    ChromaticLogoText-*) echo "Text/ChromaticLogoText" ;;
+    RubyWordplayText-*) echo "Text/RubyWordplayText" ;;
+    PedigreeCreditText-*) echo "Text/PedigreeCreditText" ;;
+    ChapterTitleCard-*) echo "Text/ChapterTitleCard" ;;
+    DiegeticMaterialCredit-*) echo "Text/DiegeticMaterialCredit" ;;
+    CinematicPresentsCredit-*) echo "Text/CinematicPresentsCredit" ;;
+    InterviewQuestionCaption-*) echo "Text/InterviewQuestionCaption" ;;
+    AnnouncementEndCard-*) echo "Text/AnnouncementEndCard" ;;
+    EmergingNoiseTitle-*) echo "Text/EmergingNoiseTitle" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge*) echo "Effect/GlitchTransitionBridge" ;;
     InkRippleTransition*) echo "Effect/InkRippleTransition" ;;
     RackFocusBokehTransition*) echo "Effect/RackFocusBokehTransition" ;;
     Burst*) echo "Effect/Burst" ;;
+    ShatterCrackTransition*) echo "Effect/ShatterCrackTransition" ;;
+    ZoomBlurTransition*) echo "Effect/ZoomBlurTransition" ;;
     BattleCalloutBanner-*) echo "UI/BattleCalloutBanner" ;;
     AsymmetricStatusPanel-*) echo "UI/AsymmetricStatusPanel" ;;
+    FramedFootageWindow-*) echo "UI/FramedFootageWindow" ;;
+    LowerThirdTopicLabel-*) echo "UI/LowerThirdTopicLabel" ;;
+    CircularNeonLogoFrame-*) echo "UI/CircularNeonLogoFrame" ;;
+    WaveAnnouncementBanner-*) echo "UI/WaveAnnouncementBanner" ;;
     Location-*) echo "Text/Location" ;;
     MiniMap-*) echo "Map" ;;
     AudioSpectrum-*) echo "Audio" ;;
@@ -150,6 +173,15 @@ resolve_output_subdir() {
     Background-PosterizeGradeOverlay-*) echo "Background/PosterizeGradeOverlay" ;;
     Background-EmblemMontageBlur-*) echo "Background/EmblemMontageBlur" ;;
     Background-SunsetLensFlareOverlay-*) echo "Background/SunsetLensFlareOverlay" ;;
+    Background-AgedParchmentOverlay-*) echo "Background/AgedParchmentOverlay" ;;
+    Background-StarfieldPlanetSilhouette-*) echo "Background/StarfieldPlanetSilhouette" ;;
+    Background-SilhouetteDreamBackdrop-*) echo "Background/SilhouetteDreamBackdrop" ;;
+    Background-CodeNoiseWall-*) echo "Background/CodeNoiseWall" ;;
+    Background-ParticleTerrainMesh-*) echo "Background/ParticleTerrainMesh" ;;
+    Background-InterlaceGlowBand-*) echo "Background/InterlaceGlowBand" ;;
+    Background-WaveInterferenceLines-*) echo "Background/WaveInterferenceLines" ;;
+    Background-StripeWaveField-*) echo "Background/StripeWaveField" ;;
+    Background-HalftoneWaveform-*) echo "Background/HalftoneWaveform" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
     PlaceholderImage) echo "Placeholder" ;;
@@ -283,6 +315,16 @@ render_rack_focus_bokeh_transition() {
 # Render Burst compositions
 render_burst() {
   render_fixed_id_family "✨ Rendering Burst compositions" BURST_COMPOSITION_IDS
+}
+
+# Render ShatterCrackTransition compositions
+render_shatter_crack_transition() {
+  render_fixed_id_family "✨ Rendering ShatterCrackTransition compositions" SHATTER_CRACK_TRANSITION_COMPOSITION_IDS
+}
+
+# Render ZoomBlurTransition compositions
+render_zoom_blur_transition() {
+  render_fixed_id_family "✨ Rendering ZoomBlurTransition compositions" ZOOM_BLUR_TRANSITION_COMPOSITION_IDS
 }
 
 # Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs)
@@ -589,6 +631,12 @@ main() {
     Burst|burst)
       render_burst
       ;;
+    ShatterCrackTransition|shattercracktransition)
+      render_shatter_crack_transition
+      ;;
+    ZoomBlurTransition|zoomblurtransition)
+      render_zoom_blur_transition
+      ;;
     UI|ui)
       render_ui
       ;;
@@ -610,6 +658,8 @@ main() {
       render_ink_ripple_transition
       render_rack_focus_bokeh_transition
       render_burst
+      render_shatter_crack_transition
+      render_zoom_blur_transition
       render_ui
       ;;
     check|Check)
@@ -634,7 +684,9 @@ main() {
       echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
       echo "  RackFocusBokehTransition Render the rack-focus + bokeh scene-transition bumper"
       echo "  Burst              Render the special-move impact burst"
-      echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel)"
+      echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
+      echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
+      echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel, framed window, lower-third label)"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"
       echo "  check              Verify every enumerated composition ID has a resolve_output_subdir() mapping (no rendering)"

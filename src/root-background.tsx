@@ -26,6 +26,33 @@ import { emblemMontageBlurPatterns } from "./Background/EmblemMontageBlur/emblem
 import { SunsetLensFlareOverlayTemplate } from "./Background/SunsetLensFlareOverlay/SunsetLensFlareOverlayTemplate";
 import { sunsetLensFlareOverlaySchema } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
 import { sunsetLensFlareOverlayPatterns } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
+import { AgedParchmentOverlayTemplate } from "./Background/AgedParchmentOverlay/AgedParchmentOverlayTemplate";
+import { agedParchmentOverlaySchema } from "./Background/AgedParchmentOverlay/aged-parchment-overlay.schema";
+import { agedParchmentOverlayPatterns } from "./Background/AgedParchmentOverlay/aged-parchment-overlay.schema";
+import { StarfieldPlanetSilhouetteTemplate } from "./Background/StarfieldPlanetSilhouette/StarfieldPlanetSilhouetteTemplate";
+import { starfieldPlanetSilhouetteSchema } from "./Background/StarfieldPlanetSilhouette/starfield-planet-silhouette.schema";
+import { starfieldPlanetSilhouettePatterns } from "./Background/StarfieldPlanetSilhouette/starfield-planet-silhouette.schema";
+import { SilhouetteDreamBackdropTemplate } from "./Background/SilhouetteDreamBackdrop/SilhouetteDreamBackdropTemplate";
+import { silhouetteDreamBackdropSchema } from "./Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema";
+import { silhouetteDreamBackdropPatterns } from "./Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema";
+import { CodeNoiseWallTemplate } from "./Background/CodeNoiseWall/CodeNoiseWallTemplate";
+import { codeNoiseWallSchema } from "./Background/CodeNoiseWall/code-noise-wall.schema";
+import { codeNoiseWallPatterns } from "./Background/CodeNoiseWall/code-noise-wall.schema";
+import { ParticleTerrainMeshTemplate } from "./Background/ParticleTerrainMesh/ParticleTerrainMeshTemplate";
+import { particleTerrainMeshSchema } from "./Background/ParticleTerrainMesh/particle-terrain-mesh.schema";
+import { particleTerrainMeshPatterns } from "./Background/ParticleTerrainMesh/particle-terrain-mesh.schema";
+import { InterlaceGlowBandTemplate } from "./Background/InterlaceGlowBand/InterlaceGlowBandTemplate";
+import { interlaceGlowBandSchema } from "./Background/InterlaceGlowBand/interlace-glow-band.schema";
+import { interlaceGlowBandPatterns } from "./Background/InterlaceGlowBand/interlace-glow-band.schema";
+import { WaveInterferenceLinesTemplate } from "./Background/WaveInterferenceLines/WaveInterferenceLinesTemplate";
+import { waveInterferenceLinesSchema } from "./Background/WaveInterferenceLines/wave-interference-lines.schema";
+import { waveInterferenceLinesPatterns } from "./Background/WaveInterferenceLines/wave-interference-lines.schema";
+import { StripeWaveFieldTemplate } from "./Background/StripeWaveField/StripeWaveFieldTemplate";
+import { stripeWaveFieldSchema } from "./Background/StripeWaveField/stripe-wave-field.schema";
+import { stripeWaveFieldPatterns } from "./Background/StripeWaveField/stripe-wave-field.schema";
+import { HalftoneWaveformTemplate } from "./Background/HalftoneWaveform/HalftoneWaveformTemplate";
+import { halftoneWaveformSchema } from "./Background/HalftoneWaveform/halftone-waveform.schema";
+import { halftoneWaveformPatterns } from "./Background/HalftoneWaveform/halftone-waveform.schema";
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
@@ -143,6 +170,96 @@ export function BackgroundFolder() {
           Template: SunsetLensFlareOverlayTemplate,
           schema: sunsetLensFlareOverlaySchema,
           durationInFrames: 60,
+        })}
+      </Folder>
+
+      <Folder name="AgedParchmentOverlay">
+        {renderPatternFamily({
+          patterns: agedParchmentOverlayPatterns,
+          idPrefix: "Background-AgedParchmentOverlay-",
+          Template: AgedParchmentOverlayTemplate,
+          schema: agedParchmentOverlaySchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="StarfieldPlanetSilhouette">
+        {renderPatternFamily({
+          patterns: starfieldPlanetSilhouettePatterns,
+          idPrefix: "Background-StarfieldPlanetSilhouette-",
+          Template: StarfieldPlanetSilhouetteTemplate,
+          schema: starfieldPlanetSilhouetteSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="SilhouetteDreamBackdrop">
+        {renderPatternFamily({
+          patterns: silhouetteDreamBackdropPatterns,
+          idPrefix: "Background-SilhouetteDreamBackdrop-",
+          Template: SilhouetteDreamBackdropTemplate,
+          schema: silhouetteDreamBackdropSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="CodeNoiseWall">
+        {renderPatternFamily({
+          patterns: codeNoiseWallPatterns,
+          idPrefix: "Background-CodeNoiseWall-",
+          Template: CodeNoiseWallTemplate,
+          schema: codeNoiseWallSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="ParticleTerrainMesh">
+        {renderPatternFamily({
+          patterns: particleTerrainMeshPatterns,
+          idPrefix: "Background-ParticleTerrainMesh-",
+          Template: ParticleTerrainMeshTemplate,
+          schema: particleTerrainMeshSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="InterlaceGlowBand">
+        {renderPatternFamily({
+          patterns: interlaceGlowBandPatterns,
+          idPrefix: "Background-InterlaceGlowBand-",
+          Template: InterlaceGlowBandTemplate,
+          schema: interlaceGlowBandSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="WaveInterferenceLines">
+        {renderPatternFamily({
+          patterns: waveInterferenceLinesPatterns,
+          idPrefix: "Background-WaveInterferenceLines-",
+          Template: WaveInterferenceLinesTemplate,
+          schema: waveInterferenceLinesSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="StripeWaveField">
+        {renderPatternFamily({
+          patterns: stripeWaveFieldPatterns,
+          idPrefix: "Background-StripeWaveField-",
+          Template: StripeWaveFieldTemplate,
+          schema: stripeWaveFieldSchema,
+          durationInFrames: 200,
+        })}
+      </Folder>
+
+      <Folder name="HalftoneWaveform">
+        {renderPatternFamily({
+          patterns: halftoneWaveformPatterns,
+          idPrefix: "Background-HalftoneWaveform-",
+          Template: HalftoneWaveformTemplate,
+          schema: halftoneWaveformSchema,
+          durationInFrames: 150,
         })}
       </Folder>
 

@@ -45,6 +45,51 @@ const families = [
     file: "src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts",
     exportName: "sunsetLensFlareOverlayPatterns",
   },
+  {
+    idPrefix: "Background-AgedParchmentOverlay",
+    file: "src/Background/AgedParchmentOverlay/aged-parchment-overlay.schema.ts",
+    exportName: "agedParchmentOverlayPatterns",
+  },
+  {
+    idPrefix: "Background-StarfieldPlanetSilhouette",
+    file: "src/Background/StarfieldPlanetSilhouette/starfield-planet-silhouette.schema.ts",
+    exportName: "starfieldPlanetSilhouettePatterns",
+  },
+  {
+    idPrefix: "Background-SilhouetteDreamBackdrop",
+    file: "src/Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema.ts",
+    exportName: "silhouetteDreamBackdropPatterns",
+  },
+  {
+    idPrefix: "Background-CodeNoiseWall",
+    file: "src/Background/CodeNoiseWall/code-noise-wall.schema.ts",
+    exportName: "codeNoiseWallPatterns",
+  },
+  {
+    idPrefix: "Background-ParticleTerrainMesh",
+    file: "src/Background/ParticleTerrainMesh/particle-terrain-mesh.schema.ts",
+    exportName: "particleTerrainMeshPatterns",
+  },
+  {
+    idPrefix: "Background-InterlaceGlowBand",
+    file: "src/Background/InterlaceGlowBand/interlace-glow-band.schema.ts",
+    exportName: "interlaceGlowBandPatterns",
+  },
+  {
+    idPrefix: "Background-WaveInterferenceLines",
+    file: "src/Background/WaveInterferenceLines/wave-interference-lines.schema.ts",
+    exportName: "waveInterferenceLinesPatterns",
+  },
+  {
+    idPrefix: "Background-StripeWaveField",
+    file: "src/Background/StripeWaveField/stripe-wave-field.schema.ts",
+    exportName: "stripeWaveFieldPatterns",
+  },
+  {
+    idPrefix: "Background-HalftoneWaveform",
+    file: "src/Background/HalftoneWaveform/halftone-waveform.schema.ts",
+    exportName: "halftoneWaveformPatterns",
+  },
 ];
 
 for (const id of fixedIds) {

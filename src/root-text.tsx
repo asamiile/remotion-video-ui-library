@@ -2,7 +2,6 @@ import { Composition, Folder } from "remotion";
 import { CodeStreamTemplate } from "./Text/CodeStream/CodeStreamTemplate";
 import { codeStreamSchema } from "./Text/CodeStream/code-stream.schema";
 import {
-  mergedCodeStreamPatterns,
   defaultCodeStreamHorizontalProps,
   defaultCodeStreamVerticalProps,
 } from "./Text/CodeStream/code-stream.schema";
@@ -57,6 +56,32 @@ import { distressedTitleCardDurationFrames } from "./Text/DistressedTitleCard/di
 import { SprayPaintTextTemplate } from "./Text/SprayPaintText/SprayPaintTextTemplate";
 import { sprayPaintTextSchema } from "./Text/SprayPaintText/spray-paint-text.schema";
 import { sprayPaintTextDurationFrames } from "./Text/SprayPaintText/spray-paint-text.schema";
+import { ChromaticLogoTextTemplate } from "./Text/ChromaticLogoText/ChromaticLogoTextTemplate";
+import { chromaticLogoTextSchema } from "./Text/ChromaticLogoText/chromatic-logo-text.schema";
+import { chromaticLogoTextDurationFrames } from "./Text/ChromaticLogoText/chromatic-logo-text.schema";
+import { RubyWordplayTextTemplate } from "./Text/RubyWordplayText/RubyWordplayTextTemplate";
+import { rubyWordplayTextSchema } from "./Text/RubyWordplayText/ruby-wordplay-text.schema";
+import { rubyWordplayTextDurationFrames } from "./Text/RubyWordplayText/ruby-wordplay-text.schema";
+import { PedigreeCreditTextTemplate } from "./Text/PedigreeCreditText/PedigreeCreditTextTemplate";
+import { pedigreeCreditTextSchema } from "./Text/PedigreeCreditText/pedigree-credit-text.schema";
+import { pedigreeCreditTextDurationFrames } from "./Text/PedigreeCreditText/pedigree-credit-text.schema";
+import { ChapterTitleCardTemplate } from "./Text/ChapterTitleCard/ChapterTitleCardTemplate";
+import { chapterTitleCardSchema } from "./Text/ChapterTitleCard/chapter-title-card.schema";
+import { chapterTitleCardDurationFrames } from "./Text/ChapterTitleCard/chapter-title-card.schema";
+import { DiegeticMaterialCreditTemplate } from "./Text/DiegeticMaterialCredit/DiegeticMaterialCreditTemplate";
+import { diegeticMaterialCreditSchema } from "./Text/DiegeticMaterialCredit/diegetic-material-credit.schema";
+import { diegeticMaterialCreditDurationFrames } from "./Text/DiegeticMaterialCredit/diegetic-material-credit.schema";
+import { CinematicPresentsCreditTemplate } from "./Text/CinematicPresentsCredit/CinematicPresentsCreditTemplate";
+import { cinematicPresentsCreditSchema } from "./Text/CinematicPresentsCredit/cinematic-presents-credit.schema";
+import { InterviewQuestionCaptionTemplate } from "./Text/InterviewQuestionCaption/InterviewQuestionCaptionTemplate";
+import { interviewQuestionCaptionSchema } from "./Text/InterviewQuestionCaption/interview-question-caption.schema";
+import { interviewQuestionCaptionDurationFrames } from "./Text/InterviewQuestionCaption/interview-question-caption.schema";
+import { AnnouncementEndCardTemplate } from "./Text/AnnouncementEndCard/AnnouncementEndCardTemplate";
+import { announcementEndCardSchema } from "./Text/AnnouncementEndCard/announcement-end-card.schema";
+import { announcementEndCardDurationFrames } from "./Text/AnnouncementEndCard/announcement-end-card.schema";
+import { EmergingNoiseTitleTemplate } from "./Text/EmergingNoiseTitle/EmergingNoiseTitleTemplate";
+import { emergingNoiseTitleSchema } from "./Text/EmergingNoiseTitle/emerging-noise-title.schema";
+import { emergingNoiseTitleDurationFrames } from "./Text/EmergingNoiseTitle/emerging-noise-title.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -76,6 +101,15 @@ import {
   mergedTornNoteCaptionPatterns,
   mergedDistressedTitleCardPatterns,
   mergedSprayPaintTextPatterns,
+  mergedChromaticLogoTextPatterns,
+  mergedRubyWordplayTextPatterns,
+  mergedPedigreeCreditTextPatterns,
+  mergedChapterTitleCardPatterns,
+  mergedDiegeticMaterialCreditPatterns,
+  mergedCinematicPresentsCreditPatterns,
+  mergedInterviewQuestionCaptionPatterns,
+  mergedAnnouncementEndCardPatterns,
+  mergedEmergingNoiseTitlePatterns,
   mergedOneTakeLogoTextProps,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
@@ -334,6 +368,97 @@ export function TextFolder() {
           Template: SprayPaintTextTemplate,
           schema: sprayPaintTextSchema,
           durationInFrames: sprayPaintTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="ChromaticLogoText">
+        {renderPatternFamily({
+          patterns: mergedChromaticLogoTextPatterns,
+          idPrefix: "ChromaticLogoText-",
+          Template: ChromaticLogoTextTemplate,
+          schema: chromaticLogoTextSchema,
+          durationInFrames: chromaticLogoTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="RubyWordplayText">
+        {renderPatternFamily({
+          patterns: mergedRubyWordplayTextPatterns,
+          idPrefix: "RubyWordplayText-",
+          Template: RubyWordplayTextTemplate,
+          schema: rubyWordplayTextSchema,
+          durationInFrames: rubyWordplayTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="PedigreeCreditText">
+        {renderPatternFamily({
+          patterns: mergedPedigreeCreditTextPatterns,
+          idPrefix: "PedigreeCreditText-",
+          Template: PedigreeCreditTextTemplate,
+          schema: pedigreeCreditTextSchema,
+          durationInFrames: pedigreeCreditTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="ChapterTitleCard">
+        {renderPatternFamily({
+          patterns: mergedChapterTitleCardPatterns,
+          idPrefix: "ChapterTitleCard-",
+          Template: ChapterTitleCardTemplate,
+          schema: chapterTitleCardSchema,
+          durationInFrames: chapterTitleCardDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="DiegeticMaterialCredit">
+        {renderPatternFamily({
+          patterns: mergedDiegeticMaterialCreditPatterns,
+          idPrefix: "DiegeticMaterialCredit-",
+          Template: DiegeticMaterialCreditTemplate,
+          schema: diegeticMaterialCreditSchema,
+          durationInFrames: diegeticMaterialCreditDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="CinematicPresentsCredit">
+        {renderPatternFamily({
+          patterns: mergedCinematicPresentsCreditPatterns,
+          idPrefix: "CinematicPresentsCredit-",
+          Template: CinematicPresentsCreditTemplate,
+          schema: cinematicPresentsCreditSchema,
+          durationInFrames: (patternProps) =>
+            patternProps.lines.length * patternProps.perLineHoldFrames,
+        })}
+      </Folder>
+
+      <Folder name="InterviewQuestionCaption">
+        {renderPatternFamily({
+          patterns: mergedInterviewQuestionCaptionPatterns,
+          idPrefix: "InterviewQuestionCaption-",
+          Template: InterviewQuestionCaptionTemplate,
+          schema: interviewQuestionCaptionSchema,
+          durationInFrames: interviewQuestionCaptionDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="AnnouncementEndCard">
+        {renderPatternFamily({
+          patterns: mergedAnnouncementEndCardPatterns,
+          idPrefix: "AnnouncementEndCard-",
+          Template: AnnouncementEndCardTemplate,
+          schema: announcementEndCardSchema,
+          durationInFrames: announcementEndCardDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="EmergingNoiseTitle">
+        {renderPatternFamily({
+          patterns: mergedEmergingNoiseTitlePatterns,
+          idPrefix: "EmergingNoiseTitle-",
+          Template: EmergingNoiseTitleTemplate,
+          schema: emergingNoiseTitleSchema,
+          durationInFrames: emergingNoiseTitleDurationFrames,
         })}
       </Folder>
     </Folder>

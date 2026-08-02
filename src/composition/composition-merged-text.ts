@@ -15,6 +15,15 @@ import { stackedRevealTextPatterns } from "../Text/StackedRevealText/stacked-rev
 import { tornNoteCaptionPatterns } from "../Text/TornNoteCaption/torn-note-caption.schema";
 import { distressedTitleCardPatterns } from "../Text/DistressedTitleCard/distressed-title-card.schema";
 import { sprayPaintTextPatterns } from "../Text/SprayPaintText/spray-paint-text.schema";
+import { chromaticLogoTextPatterns } from "../Text/ChromaticLogoText/chromatic-logo-text.schema";
+import { rubyWordplayTextPatterns } from "../Text/RubyWordplayText/ruby-wordplay-text.schema";
+import { pedigreeCreditTextPatterns } from "../Text/PedigreeCreditText/pedigree-credit-text.schema";
+import { chapterTitleCardPatterns } from "../Text/ChapterTitleCard/chapter-title-card.schema";
+import { diegeticMaterialCreditPatterns } from "../Text/DiegeticMaterialCredit/diegetic-material-credit.schema";
+import { cinematicPresentsCreditPatterns } from "../Text/CinematicPresentsCredit/cinematic-presents-credit.schema";
+import { interviewQuestionCaptionPatterns } from "../Text/InterviewQuestionCaption/interview-question-caption.schema";
+import { announcementEndCardPatterns } from "../Text/AnnouncementEndCard/announcement-end-card.schema";
+import { emergingNoiseTitlePatterns } from "../Text/EmergingNoiseTitle/emerging-noise-title.schema";
 import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.schema";
 import {
   getEffectiveCompositionText,
@@ -110,6 +119,51 @@ export const mergedSprayPaintTextPatterns = shallowMergePatternRecord(
   sprayPaintTextPatterns,
   local.sprayPaintTextPatterns,
 ) as typeof sprayPaintTextPatterns;
+
+export const mergedChromaticLogoTextPatterns = shallowMergePatternRecord(
+  chromaticLogoTextPatterns,
+  local.chromaticLogoTextPatterns,
+) as typeof chromaticLogoTextPatterns;
+
+export const mergedRubyWordplayTextPatterns = shallowMergePatternRecord(
+  rubyWordplayTextPatterns,
+  local.rubyWordplayTextPatterns,
+) as typeof rubyWordplayTextPatterns;
+
+export const mergedPedigreeCreditTextPatterns = shallowMergePatternRecord(
+  pedigreeCreditTextPatterns,
+  local.pedigreeCreditTextPatterns,
+) as typeof pedigreeCreditTextPatterns;
+
+export const mergedChapterTitleCardPatterns = shallowMergePatternRecord(
+  chapterTitleCardPatterns,
+  local.chapterTitleCardPatterns,
+) as typeof chapterTitleCardPatterns;
+
+export const mergedDiegeticMaterialCreditPatterns = shallowMergePatternRecord(
+  diegeticMaterialCreditPatterns,
+  local.diegeticMaterialCreditPatterns,
+) as typeof diegeticMaterialCreditPatterns;
+
+export const mergedCinematicPresentsCreditPatterns = shallowMergePatternRecord(
+  cinematicPresentsCreditPatterns,
+  local.cinematicPresentsCreditPatterns,
+) as typeof cinematicPresentsCreditPatterns;
+
+export const mergedInterviewQuestionCaptionPatterns = shallowMergePatternRecord(
+  interviewQuestionCaptionPatterns,
+  local.interviewQuestionCaptionPatterns,
+) as typeof interviewQuestionCaptionPatterns;
+
+export const mergedAnnouncementEndCardPatterns = shallowMergePatternRecord(
+  announcementEndCardPatterns,
+  local.announcementEndCardPatterns,
+) as typeof announcementEndCardPatterns;
+
+export const mergedEmergingNoiseTitlePatterns = shallowMergePatternRecord(
+  emergingNoiseTitlePatterns,
+  local.emergingNoiseTitlePatterns,
+) as typeof emergingNoiseTitlePatterns;
 
 export const mergedOneTakeLogoTextProps = {
   ...oneTakeLogoTextVariantProps,

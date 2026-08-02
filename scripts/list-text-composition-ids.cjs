@@ -87,6 +87,51 @@ const families = [
     file: "src/Text/SprayPaintText/spray-paint-text.schema.ts",
     exportName: "sprayPaintTextPatterns",
   },
+  {
+    idPrefix: "ChromaticLogoText",
+    file: "src/Text/ChromaticLogoText/chromatic-logo-text.schema.ts",
+    exportName: "chromaticLogoTextPatterns",
+  },
+  {
+    idPrefix: "RubyWordplayText",
+    file: "src/Text/RubyWordplayText/ruby-wordplay-text.schema.ts",
+    exportName: "rubyWordplayTextPatterns",
+  },
+  {
+    idPrefix: "PedigreeCreditText",
+    file: "src/Text/PedigreeCreditText/pedigree-credit-text.schema.ts",
+    exportName: "pedigreeCreditTextPatterns",
+  },
+  {
+    idPrefix: "ChapterTitleCard",
+    file: "src/Text/ChapterTitleCard/chapter-title-card.schema.ts",
+    exportName: "chapterTitleCardPatterns",
+  },
+  {
+    idPrefix: "DiegeticMaterialCredit",
+    file: "src/Text/DiegeticMaterialCredit/diegetic-material-credit.schema.ts",
+    exportName: "diegeticMaterialCreditPatterns",
+  },
+  {
+    idPrefix: "CinematicPresentsCredit",
+    file: "src/Text/CinematicPresentsCredit/cinematic-presents-credit.schema.ts",
+    exportName: "cinematicPresentsCreditPatterns",
+  },
+  {
+    idPrefix: "InterviewQuestionCaption",
+    file: "src/Text/InterviewQuestionCaption/interview-question-caption.schema.ts",
+    exportName: "interviewQuestionCaptionPatterns",
+  },
+  {
+    idPrefix: "AnnouncementEndCard",
+    file: "src/Text/AnnouncementEndCard/announcement-end-card.schema.ts",
+    exportName: "announcementEndCardPatterns",
+  },
+  {
+    idPrefix: "EmergingNoiseTitle",
+    file: "src/Text/EmergingNoiseTitle/emerging-noise-title.schema.ts",
+    exportName: "emergingNoiseTitlePatterns",
+  },
 ];
 
 for (const fam of families) {

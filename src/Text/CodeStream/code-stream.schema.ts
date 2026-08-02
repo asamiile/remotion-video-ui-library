@@ -77,4 +77,4 @@ export const defaultCodeStreamVerticalProps = {
 export const codeStreamPatterns = {
   horizontal: defaultCodeStreamHorizontalProps,
   vertical: defaultCodeStreamVerticalProps,
-} as const;
+};

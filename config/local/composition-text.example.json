@@ -206,5 +206,70 @@
     "redBlack": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" },
     "redBlackJp": { "characterName": "サンプル", "subtitleText": "サンプルガーディアン" },
     "oneTakeBrand": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" }
+  },
+  "chromaticLogoTextPatterns": {
+    "studioMark": { "text": "SAMPLE MARK" },
+    "studioMarkJp": { "text": "サンプルマーク" }
+  },
+  "rubyWordplayTextPatterns": {
+    "doubleMeaning": { "baseText": "現実", "rubyText": "メタファー" },
+    "doubleMeaningAlt": { "baseText": "境界", "rubyText": "ボーダー" }
+  },
+  "pedigreeCreditTextPatterns": {
+    "staffCredit": { "lines": ["FROM THE TEAM BEHIND", "SAMPLE PROJECT ONE / TWO / THREE"] },
+    "staffCreditJp": { "lines": ["サンプル作品のスタッフが贈る"] }
+  },
+  "chapterTitleCardPatterns": {
+    "mintBand": { "numberText": "No.001", "headingText": "SAMPLE TOPIC", "subtitleText": "A short one-line description goes here." },
+    "mintBandJp": { "numberText": "No.001", "headingText": "サンプルトピック", "subtitleText": "ここに一行程度の説明文が入ります。" }
+  },
+  "framedFootageWindowPatterns": {
+    "diagramWindow": { "placeholderLabelText": "FOOTAGE" },
+    "diagramWindowJp": { "placeholderLabelText": "映像" }
+  },
+  "lowerThirdTopicLabelPatterns": {
+    "explainerBar": { "labelText": "TOPIC", "captionText": "A short caption describing what's on screen goes here." },
+    "explainerBarJp": { "labelText": "トピック", "captionText": "ここに画面の内容を説明する短いキャプションが入ります。" }
+  },
+  "diegeticMaterialCreditPatterns": {
+    "lipstickScript": { "creditName": "SAMPLE NAME", "roleLabel": "SAMPLE ROLE" },
+    "brassEngraved": { "creditName": "SAMPLE NAME", "roleLabel": "SAMPLE ROLE" },
+    "bloodGraffiti": { "creditName": "SAMPLE NAME", "roleLabel": "SAMPLE ROLE" }
+  },
+  "cinematicPresentsCreditPatterns": {
+    "threeCard": {
+      "lines": [
+        { "text": "SAMPLE STUDIO PRESENTS", "fontSize": 32 },
+        { "text": "A SAMPLE STUDIO PRODUCTION", "fontSize": 32 },
+        { "text": "SAMPLE TITLE", "fontSize": 64 }
+      ]
+    },
+    "threeCardJp": {
+      "lines": [
+        { "text": "サンプルスタジオ提供", "fontSize": 32 },
+        { "text": "サンプルスタジオ制作", "fontSize": 32 },
+        { "text": "サンプルタイトル", "fontSize": 64 }
+      ]
+    }
+  },
+  "interviewQuestionCaptionPatterns": {
+    "streetQuestion": { "questionText": "SAMPLE QUESTION TEXT?" },
+    "streetQuestionJp": { "questionText": "サンプルの質問文？" }
+  },
+  "announcementEndCardPatterns": {
+    "releaseCard": { "titleText": "SAMPLE TITLE", "catchphraseText": "A sample one-line genre catchphrase" },
+    "releaseCardJp": { "titleText": "サンプルタイトル", "catchphraseText": "ここに一言ジャンルコピーが入ります" }
+  },
+  "circularNeonLogoFramePatterns": {
+    "cyanRingPinkLogo": { "logoText": "SAMPLE" },
+    "cyanRingPinkLogoJp": { "logoText": "サンプル" }
+  },
+  "waveAnnouncementBannerPatterns": {
+    "pinkWave": { "bannerText": "SAMPLE LIMITED EDITION" },
+    "pinkWaveJp": { "bannerText": "サンプル初回限定版" }
+  },
+  "emergingNoiseTitlePatterns": {
+    "buildUp": { "text": "SAMPLE TITLE", "wordFragments": ["ALE", "AIR", "AN"] },
+    "buildUpJp": { "text": "サンプルタイトル", "wordFragments": ["サン", "プル", "タイ"] }
   }
 }
