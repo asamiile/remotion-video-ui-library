@@ -15,6 +15,10 @@ import { stackedRevealTextPatterns } from "../Text/StackedRevealText/stacked-rev
 import { tornNoteCaptionPatterns } from "../Text/TornNoteCaption/torn-note-caption.schema";
 import { distressedTitleCardPatterns } from "../Text/DistressedTitleCard/distressed-title-card.schema";
 import { sprayPaintTextPatterns } from "../Text/SprayPaintText/spray-paint-text.schema";
+import { chromaticLogoTextPatterns } from "../Text/ChromaticLogoText/chromatic-logo-text.schema";
+import { rubyWordplayTextPatterns } from "../Text/RubyWordplayText/ruby-wordplay-text.schema";
+import { pedigreeCreditTextPatterns } from "../Text/PedigreeCreditText/pedigree-credit-text.schema";
+import { chapterTitleCardPatterns } from "../Text/ChapterTitleCard/chapter-title-card.schema";
 import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.schema";
 import {
   getEffectiveCompositionText,
@@ -110,6 +114,26 @@ export const mergedSprayPaintTextPatterns = shallowMergePatternRecord(
   sprayPaintTextPatterns,
   local.sprayPaintTextPatterns,
 ) as typeof sprayPaintTextPatterns;
+
+export const mergedChromaticLogoTextPatterns = shallowMergePatternRecord(
+  chromaticLogoTextPatterns,
+  local.chromaticLogoTextPatterns,
+) as typeof chromaticLogoTextPatterns;
+
+export const mergedRubyWordplayTextPatterns = shallowMergePatternRecord(
+  rubyWordplayTextPatterns,
+  local.rubyWordplayTextPatterns,
+) as typeof rubyWordplayTextPatterns;
+
+export const mergedPedigreeCreditTextPatterns = shallowMergePatternRecord(
+  pedigreeCreditTextPatterns,
+  local.pedigreeCreditTextPatterns,
+) as typeof pedigreeCreditTextPatterns;
+
+export const mergedChapterTitleCardPatterns = shallowMergePatternRecord(
+  chapterTitleCardPatterns,
+  local.chapterTitleCardPatterns,
+) as typeof chapterTitleCardPatterns;
 
 export const mergedOneTakeLogoTextProps = {
   ...oneTakeLogoTextVariantProps,

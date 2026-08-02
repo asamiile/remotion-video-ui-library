@@ -87,6 +87,26 @@ const families = [
     file: "src/Text/SprayPaintText/spray-paint-text.schema.ts",
     exportName: "sprayPaintTextPatterns",
   },
+  {
+    idPrefix: "ChromaticLogoText",
+    file: "src/Text/ChromaticLogoText/chromatic-logo-text.schema.ts",
+    exportName: "chromaticLogoTextPatterns",
+  },
+  {
+    idPrefix: "RubyWordplayText",
+    file: "src/Text/RubyWordplayText/ruby-wordplay-text.schema.ts",
+    exportName: "rubyWordplayTextPatterns",
+  },
+  {
+    idPrefix: "PedigreeCreditText",
+    file: "src/Text/PedigreeCreditText/pedigree-credit-text.schema.ts",
+    exportName: "pedigreeCreditTextPatterns",
+  },
+  {
+    idPrefix: "ChapterTitleCard",
+    file: "src/Text/ChapterTitleCard/chapter-title-card.schema.ts",
+    exportName: "chapterTitleCardPatterns",
+  },
 ];
 
 for (const fam of families) {

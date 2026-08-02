@@ -45,6 +45,11 @@ const families = [
     file: "src/Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema.ts",
     exportName: "sunsetLensFlareOverlayPatterns",
   },
+  {
+    idPrefix: "Background-AgedParchmentOverlay",
+    file: "src/Background/AgedParchmentOverlay/aged-parchment-overlay.schema.ts",
+    exportName: "agedParchmentOverlayPatterns",
+  },
 ];
 
 for (const id of fixedIds) {

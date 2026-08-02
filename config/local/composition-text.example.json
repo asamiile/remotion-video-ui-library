@@ -206,5 +206,29 @@
     "redBlack": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" },
     "redBlackJp": { "characterName": "サンプル", "subtitleText": "サンプルガーディアン" },
     "oneTakeBrand": { "characterName": "SAMPLE", "subtitleText": "SAMPLE GUARDIAN" }
+  },
+  "chromaticLogoTextPatterns": {
+    "studioMark": { "text": "SAMPLE MARK" },
+    "studioMarkJp": { "text": "サンプルマーク" }
+  },
+  "rubyWordplayTextPatterns": {
+    "doubleMeaning": { "baseText": "現実", "rubyText": "メタファー" },
+    "doubleMeaningAlt": { "baseText": "境界", "rubyText": "ボーダー" }
+  },
+  "pedigreeCreditTextPatterns": {
+    "staffCredit": { "lines": ["FROM THE TEAM BEHIND", "SAMPLE PROJECT ONE / TWO / THREE"] },
+    "staffCreditJp": { "lines": ["サンプル作品のスタッフが贈る"] }
+  },
+  "chapterTitleCardPatterns": {
+    "mintBand": { "numberText": "No.001", "headingText": "SAMPLE TOPIC", "subtitleText": "A short one-line description goes here." },
+    "mintBandJp": { "numberText": "No.001", "headingText": "サンプルトピック", "subtitleText": "ここに一行程度の説明文が入ります。" }
+  },
+  "framedFootageWindowPatterns": {
+    "diagramWindow": { "placeholderLabelText": "FOOTAGE" },
+    "diagramWindowJp": { "placeholderLabelText": "映像" }
+  },
+  "lowerThirdTopicLabelPatterns": {
+    "explainerBar": { "labelText": "TOPIC", "captionText": "A short caption describing what's on screen goes here." },
+    "explainerBarJp": { "labelText": "トピック", "captionText": "ここに画面の内容を説明する短いキャプションが入ります。" }
   }
 }

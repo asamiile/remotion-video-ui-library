@@ -16,6 +16,16 @@ const families = [
     file: "src/UI/AsymmetricStatusPanel/asymmetric-status-panel.schema.ts",
     exportName: "asymmetricStatusPanelPatterns",
   },
+  {
+    idPrefix: "FramedFootageWindow",
+    file: "src/UI/FramedFootageWindow/framed-footage-window.schema.ts",
+    exportName: "framedFootageWindowPatterns",
+  },
+  {
+    idPrefix: "LowerThirdTopicLabel",
+    file: "src/UI/LowerThirdTopicLabel/lower-third-topic-label.schema.ts",
+    exportName: "lowerThirdTopicLabelPatterns",
+  },
 ];
 
 for (const fam of families) {

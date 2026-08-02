@@ -26,6 +26,9 @@ import { emblemMontageBlurPatterns } from "./Background/EmblemMontageBlur/emblem
 import { SunsetLensFlareOverlayTemplate } from "./Background/SunsetLensFlareOverlay/SunsetLensFlareOverlayTemplate";
 import { sunsetLensFlareOverlaySchema } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
 import { sunsetLensFlareOverlayPatterns } from "./Background/SunsetLensFlareOverlay/sunset-lens-flare-overlay.schema";
+import { AgedParchmentOverlayTemplate } from "./Background/AgedParchmentOverlay/AgedParchmentOverlayTemplate";
+import { agedParchmentOverlaySchema } from "./Background/AgedParchmentOverlay/aged-parchment-overlay.schema";
+import { agedParchmentOverlayPatterns } from "./Background/AgedParchmentOverlay/aged-parchment-overlay.schema";
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
@@ -143,6 +146,16 @@ export function BackgroundFolder() {
           Template: SunsetLensFlareOverlayTemplate,
           schema: sunsetLensFlareOverlaySchema,
           durationInFrames: 60,
+        })}
+      </Folder>
+
+      <Folder name="AgedParchmentOverlay">
+        {renderPatternFamily({
+          patterns: agedParchmentOverlayPatterns,
+          idPrefix: "Background-AgedParchmentOverlay-",
+          Template: AgedParchmentOverlayTemplate,
+          schema: agedParchmentOverlaySchema,
+          durationInFrames: 150,
         })}
       </Folder>
 

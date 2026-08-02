@@ -6,10 +6,7 @@ import { withCanvasPreview as withCanvasPreviewImpl } from "../composition/with-
 const FPS = 30;
 
 function capPattern(patternId: string) {
-  return patternId
-    .split(/[\W_]+/)
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
-    .join("");
+  return patternId.charAt(0).toUpperCase() + patternId.slice(1);
 }
 
 export function renderPatternFamily<Props extends Record<string, unknown>>({
