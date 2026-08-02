@@ -44,6 +44,15 @@ import { particleTerrainMeshPatterns } from "./Background/ParticleTerrainMesh/pa
 import { InterlaceGlowBandTemplate } from "./Background/InterlaceGlowBand/InterlaceGlowBandTemplate";
 import { interlaceGlowBandSchema } from "./Background/InterlaceGlowBand/interlace-glow-band.schema";
 import { interlaceGlowBandPatterns } from "./Background/InterlaceGlowBand/interlace-glow-band.schema";
+import { WaveInterferenceLinesTemplate } from "./Background/WaveInterferenceLines/WaveInterferenceLinesTemplate";
+import { waveInterferenceLinesSchema } from "./Background/WaveInterferenceLines/wave-interference-lines.schema";
+import { waveInterferenceLinesPatterns } from "./Background/WaveInterferenceLines/wave-interference-lines.schema";
+import { StripeWaveFieldTemplate } from "./Background/StripeWaveField/StripeWaveFieldTemplate";
+import { stripeWaveFieldSchema } from "./Background/StripeWaveField/stripe-wave-field.schema";
+import { stripeWaveFieldPatterns } from "./Background/StripeWaveField/stripe-wave-field.schema";
+import { HalftoneWaveformTemplate } from "./Background/HalftoneWaveform/HalftoneWaveformTemplate";
+import { halftoneWaveformSchema } from "./Background/HalftoneWaveform/halftone-waveform.schema";
+import { halftoneWaveformPatterns } from "./Background/HalftoneWaveform/halftone-waveform.schema";
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
@@ -220,6 +229,36 @@ export function BackgroundFolder() {
           idPrefix: "Background-InterlaceGlowBand-",
           Template: InterlaceGlowBandTemplate,
           schema: interlaceGlowBandSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="WaveInterferenceLines">
+        {renderPatternFamily({
+          patterns: waveInterferenceLinesPatterns,
+          idPrefix: "Background-WaveInterferenceLines-",
+          Template: WaveInterferenceLinesTemplate,
+          schema: waveInterferenceLinesSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="StripeWaveField">
+        {renderPatternFamily({
+          patterns: stripeWaveFieldPatterns,
+          idPrefix: "Background-StripeWaveField-",
+          Template: StripeWaveFieldTemplate,
+          schema: stripeWaveFieldSchema,
+          durationInFrames: 200,
+        })}
+      </Folder>
+
+      <Folder name="HalftoneWaveform">
+        {renderPatternFamily({
+          patterns: halftoneWaveformPatterns,
+          idPrefix: "Background-HalftoneWaveform-",
+          Template: HalftoneWaveformTemplate,
+          schema: halftoneWaveformSchema,
           durationInFrames: 150,
         })}
       </Folder>

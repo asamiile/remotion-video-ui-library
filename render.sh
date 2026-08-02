@@ -179,6 +179,9 @@ resolve_output_subdir() {
     Background-CodeNoiseWall-*) echo "Background/CodeNoiseWall" ;;
     Background-ParticleTerrainMesh-*) echo "Background/ParticleTerrainMesh" ;;
     Background-InterlaceGlowBand-*) echo "Background/InterlaceGlowBand" ;;
+    Background-WaveInterferenceLines-*) echo "Background/WaveInterferenceLines" ;;
+    Background-StripeWaveField-*) echo "Background/StripeWaveField" ;;
+    Background-HalftoneWaveform-*) echo "Background/HalftoneWaveform" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
     PlaceholderImage) echo "Placeholder" ;;

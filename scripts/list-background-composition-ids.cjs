@@ -75,6 +75,21 @@ const families = [
     file: "src/Background/InterlaceGlowBand/interlace-glow-band.schema.ts",
     exportName: "interlaceGlowBandPatterns",
   },
+  {
+    idPrefix: "Background-WaveInterferenceLines",
+    file: "src/Background/WaveInterferenceLines/wave-interference-lines.schema.ts",
+    exportName: "waveInterferenceLinesPatterns",
+  },
+  {
+    idPrefix: "Background-StripeWaveField",
+    file: "src/Background/StripeWaveField/stripe-wave-field.schema.ts",
+    exportName: "stripeWaveFieldPatterns",
+  },
+  {
+    idPrefix: "Background-HalftoneWaveform",
+    file: "src/Background/HalftoneWaveform/halftone-waveform.schema.ts",
+    exportName: "halftoneWaveformPatterns",
+  },
 ];
 
 for (const id of fixedIds) {
