@@ -11,12 +11,20 @@ import { framedFootageWindowDurationFrames } from "./UI/FramedFootageWindow/fram
 import { LowerThirdTopicLabelTemplate } from "./UI/LowerThirdTopicLabel/LowerThirdTopicLabelTemplate";
 import { lowerThirdTopicLabelSchema } from "./UI/LowerThirdTopicLabel/lower-third-topic-label.schema";
 import { lowerThirdTopicLabelDurationFrames } from "./UI/LowerThirdTopicLabel/lower-third-topic-label.schema";
+import { CircularNeonLogoFrameTemplate } from "./UI/CircularNeonLogoFrame/CircularNeonLogoFrameTemplate";
+import { circularNeonLogoFrameSchema } from "./UI/CircularNeonLogoFrame/circular-neon-logo-frame.schema";
+import { circularNeonLogoFrameDurationFrames } from "./UI/CircularNeonLogoFrame/circular-neon-logo-frame.schema";
+import { WaveAnnouncementBannerTemplate } from "./UI/WaveAnnouncementBanner/WaveAnnouncementBannerTemplate";
+import { waveAnnouncementBannerSchema } from "./UI/WaveAnnouncementBanner/wave-announcement-banner.schema";
+import { waveAnnouncementBannerDurationFrames } from "./UI/WaveAnnouncementBanner/wave-announcement-banner.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
   mergedBattleCalloutBannerPatterns,
   mergedAsymmetricStatusPanelPatterns,
   mergedFramedFootageWindowPatterns,
   mergedLowerThirdTopicLabelPatterns,
+  mergedCircularNeonLogoFramePatterns,
+  mergedWaveAnnouncementBannerPatterns,
 } from "./composition/composition-merged-ui";
 
 const FPS = 30;
@@ -61,6 +69,26 @@ export function UIFolder() {
           Template: LowerThirdTopicLabelTemplate,
           schema: lowerThirdTopicLabelSchema,
           durationInFrames: lowerThirdTopicLabelDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="CircularNeonLogoFrame">
+        {renderPatternFamily({
+          patterns: mergedCircularNeonLogoFramePatterns,
+          idPrefix: "CircularNeonLogoFrame-",
+          Template: CircularNeonLogoFrameTemplate,
+          schema: circularNeonLogoFrameSchema,
+          durationInFrames: circularNeonLogoFrameDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="WaveAnnouncementBanner">
+        {renderPatternFamily({
+          patterns: mergedWaveAnnouncementBannerPatterns,
+          idPrefix: "WaveAnnouncementBanner-",
+          Template: WaveAnnouncementBannerTemplate,
+          schema: waveAnnouncementBannerSchema,
+          durationInFrames: waveAnnouncementBannerDurationFrames,
         })}
       </Folder>
     </Folder>

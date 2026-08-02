@@ -48,6 +48,10 @@ const families = [
   { type: "pattern", file: "Text/RubyWordplayText/ruby-wordplay-text.schema", export: "rubyWordplayTextPatterns", category: "text" },
   { type: "pattern", file: "Text/PedigreeCreditText/pedigree-credit-text.schema", export: "pedigreeCreditTextPatterns", category: "text" },
   { type: "pattern", file: "Text/ChapterTitleCard/chapter-title-card.schema", export: "chapterTitleCardPatterns", category: "text" },
+  { type: "pattern", file: "Text/DiegeticMaterialCredit/diegetic-material-credit.schema", export: "diegeticMaterialCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/CinematicPresentsCredit/cinematic-presents-credit.schema", export: "cinematicPresentsCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/InterviewQuestionCaption/interview-question-caption.schema", export: "interviewQuestionCaptionPatterns", category: "text" },
+  { type: "pattern", file: "Text/AnnouncementEndCard/announcement-end-card.schema", export: "announcementEndCardPatterns", category: "text" },
 
   // Background composition
   { type: "pattern", file: "Background/RandomLinesBackground/random-lines.schema", export: "randomLinesPatterns", localName: "randomLinesBackgroundPatterns", category: "background" },
@@ -57,6 +61,8 @@ const families = [
   { type: "pattern", file: "UI/AsymmetricStatusPanel/asymmetric-status-panel.schema", export: "asymmetricStatusPanelPatterns", category: "ui" },
   { type: "pattern", file: "UI/FramedFootageWindow/framed-footage-window.schema", export: "framedFootageWindowPatterns", category: "ui" },
   { type: "pattern", file: "UI/LowerThirdTopicLabel/lower-third-topic-label.schema", export: "lowerThirdTopicLabelPatterns", category: "ui" },
+  { type: "pattern", file: "UI/CircularNeonLogoFrame/circular-neon-logo-frame.schema", export: "circularNeonLogoFramePatterns", category: "ui" },
+  { type: "pattern", file: "UI/WaveAnnouncementBanner/wave-announcement-banner.schema", export: "waveAnnouncementBannerPatterns", category: "ui" },
 
   // Other compositions
   { type: "pattern", file: "Loading/LoadingIcon/loading-icon.schema", export: "loadingIconPatterns", category: "other" },

@@ -29,6 +29,12 @@ import { sunsetLensFlareOverlayPatterns } from "./Background/SunsetLensFlareOver
 import { AgedParchmentOverlayTemplate } from "./Background/AgedParchmentOverlay/AgedParchmentOverlayTemplate";
 import { agedParchmentOverlaySchema } from "./Background/AgedParchmentOverlay/aged-parchment-overlay.schema";
 import { agedParchmentOverlayPatterns } from "./Background/AgedParchmentOverlay/aged-parchment-overlay.schema";
+import { StarfieldPlanetSilhouetteTemplate } from "./Background/StarfieldPlanetSilhouette/StarfieldPlanetSilhouetteTemplate";
+import { starfieldPlanetSilhouetteSchema } from "./Background/StarfieldPlanetSilhouette/starfield-planet-silhouette.schema";
+import { starfieldPlanetSilhouettePatterns } from "./Background/StarfieldPlanetSilhouette/starfield-planet-silhouette.schema";
+import { SilhouetteDreamBackdropTemplate } from "./Background/SilhouetteDreamBackdrop/SilhouetteDreamBackdropTemplate";
+import { silhouetteDreamBackdropSchema } from "./Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema";
+import { silhouetteDreamBackdropPatterns } from "./Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema";
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
@@ -155,6 +161,26 @@ export function BackgroundFolder() {
           idPrefix: "Background-AgedParchmentOverlay-",
           Template: AgedParchmentOverlayTemplate,
           schema: agedParchmentOverlaySchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="StarfieldPlanetSilhouette">
+        {renderPatternFamily({
+          patterns: starfieldPlanetSilhouettePatterns,
+          idPrefix: "Background-StarfieldPlanetSilhouette-",
+          Template: StarfieldPlanetSilhouetteTemplate,
+          schema: starfieldPlanetSilhouetteSchema,
+          durationInFrames: 150,
+        })}
+      </Folder>
+
+      <Folder name="SilhouetteDreamBackdrop">
+        {renderPatternFamily({
+          patterns: silhouetteDreamBackdropPatterns,
+          idPrefix: "Background-SilhouetteDreamBackdrop-",
+          Template: SilhouetteDreamBackdropTemplate,
+          schema: silhouetteDreamBackdropSchema,
           durationInFrames: 150,
         })}
       </Folder>

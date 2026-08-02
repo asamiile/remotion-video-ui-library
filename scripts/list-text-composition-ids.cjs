@@ -107,6 +107,26 @@ const families = [
     file: "src/Text/ChapterTitleCard/chapter-title-card.schema.ts",
     exportName: "chapterTitleCardPatterns",
   },
+  {
+    idPrefix: "DiegeticMaterialCredit",
+    file: "src/Text/DiegeticMaterialCredit/diegetic-material-credit.schema.ts",
+    exportName: "diegeticMaterialCreditPatterns",
+  },
+  {
+    idPrefix: "CinematicPresentsCredit",
+    file: "src/Text/CinematicPresentsCredit/cinematic-presents-credit.schema.ts",
+    exportName: "cinematicPresentsCreditPatterns",
+  },
+  {
+    idPrefix: "InterviewQuestionCaption",
+    file: "src/Text/InterviewQuestionCaption/interview-question-caption.schema.ts",
+    exportName: "interviewQuestionCaptionPatterns",
+  },
+  {
+    idPrefix: "AnnouncementEndCard",
+    file: "src/Text/AnnouncementEndCard/announcement-end-card.schema.ts",
+    exportName: "announcementEndCardPatterns",
+  },
 ];
 
 for (const fam of families) {

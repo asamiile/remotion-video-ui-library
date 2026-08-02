@@ -26,6 +26,16 @@ const families = [
     file: "src/UI/LowerThirdTopicLabel/lower-third-topic-label.schema.ts",
     exportName: "lowerThirdTopicLabelPatterns",
   },
+  {
+    idPrefix: "CircularNeonLogoFrame",
+    file: "src/UI/CircularNeonLogoFrame/circular-neon-logo-frame.schema.ts",
+    exportName: "circularNeonLogoFramePatterns",
+  },
+  {
+    idPrefix: "WaveAnnouncementBanner",
+    file: "src/UI/WaveAnnouncementBanner/wave-announcement-banner.schema.ts",
+    exportName: "waveAnnouncementBannerPatterns",
+  },
 ];
 
 for (const fam of families) {

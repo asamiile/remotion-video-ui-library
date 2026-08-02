@@ -28,10 +28,16 @@ export type CompositionTextLocal = {
   rubyWordplayTextPatterns?: Record<string, Record<string, unknown>>;
   pedigreeCreditTextPatterns?: Record<string, Record<string, unknown>>;
   chapterTitleCardPatterns?: Record<string, Record<string, unknown>>;
+  diegeticMaterialCreditPatterns?: Record<string, Record<string, unknown>>;
+  cinematicPresentsCreditPatterns?: Record<string, Record<string, unknown>>;
+  interviewQuestionCaptionPatterns?: Record<string, Record<string, unknown>>;
+  announcementEndCardPatterns?: Record<string, Record<string, unknown>>;
   battleCalloutBannerPatterns?: Record<string, Record<string, unknown>>;
   asymmetricStatusPanelPatterns?: Record<string, Record<string, unknown>>;
   framedFootageWindowPatterns?: Record<string, Record<string, unknown>>;
   lowerThirdTopicLabelPatterns?: Record<string, Record<string, unknown>>;
+  circularNeonLogoFramePatterns?: Record<string, Record<string, unknown>>;
+  waveAnnouncementBannerPatterns?: Record<string, Record<string, unknown>>;
   oneTakeLogoText?: Record<string, unknown>;
   location?: Record<string, { locationName?: string }>;
   mapLocationPoints?: Record<

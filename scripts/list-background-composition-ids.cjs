@@ -50,6 +50,16 @@ const families = [
     file: "src/Background/AgedParchmentOverlay/aged-parchment-overlay.schema.ts",
     exportName: "agedParchmentOverlayPatterns",
   },
+  {
+    idPrefix: "Background-StarfieldPlanetSilhouette",
+    file: "src/Background/StarfieldPlanetSilhouette/starfield-planet-silhouette.schema.ts",
+    exportName: "starfieldPlanetSilhouettePatterns",
+  },
+  {
+    idPrefix: "Background-SilhouetteDreamBackdrop",
+    file: "src/Background/SilhouetteDreamBackdrop/silhouette-dream-backdrop.schema.ts",
+    exportName: "silhouetteDreamBackdropPatterns",
+  },
 ];
 
 for (const id of fixedIds) {
