@@ -6,6 +6,7 @@ import {
 } from "remotion";
 import { DottedLineMarkerTextSchemaType } from "./dotted-line-marker-text.schema";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const DottedLineRow: React.FC<{
   leftText: string;
@@ -143,7 +144,7 @@ export const DottedLineMarkerText: React.FC<DottedLineMarkerTextSchemaType> =
     return (
       <AbsoluteFill
         style={{
-          backgroundColor,
+          backgroundColor: resolveCompositionBackdropColor(backgroundColor),
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",

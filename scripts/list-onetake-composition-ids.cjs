@@ -10,6 +10,7 @@ const root = path.join(__dirname, "..");
 const fixedIds = [
   "OneTake-OnboardingConnect",
   "OneTake-OnboardingOperate",
+  "OneTake-OnboardingTest",
 ];
 
 const families = [

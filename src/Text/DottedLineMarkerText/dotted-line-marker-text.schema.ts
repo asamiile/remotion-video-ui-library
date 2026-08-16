@@ -18,7 +18,7 @@ export type DottedLineMarkerTextSchemaType = z.infer<
   typeof dottedLineMarkerTextSchema
 >;
 
-export const dottedLineMarkerTextDurationFrames = 3000;
+export const dottedLineMarkerTextDurationFrames = 900;
 
 export const defaultDottedLineMarkerTextProps: DottedLineMarkerTextSchemaType =
   {
