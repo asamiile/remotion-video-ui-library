@@ -137,7 +137,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={3200}
+          durationInFrames={2100}
           schema={codeStreamSchema}
           defaultProps={mergedCodeStreamPatterns.vertical ?? defaultCodeStreamVerticalProps}
         />

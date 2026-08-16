@@ -11,6 +11,12 @@ import {
   defaultOnboardingOperateProps,
   onboardingOperateDurationFrames,
 } from "./Motion/OneTake/Onboarding/OnboardingOperate/onboarding-operate.schema";
+import { OnboardingTestTemplate } from "./Motion/OneTake/Onboarding/OnboardingTest/OnboardingTestTemplate";
+import {
+  defaultOnboardingTestProps,
+  onboardingTestDurationFrames,
+  onboardingTestSchema,
+} from "./Motion/OneTake/Onboarding/OnboardingTest/onboarding-test.schema";
 import { OneTakeLogoTemplate } from "./Logo/OneTake/OneTakeLogo/OneTakeLogoTemplate";
 import { oneTakeLogoSchema } from "./Logo/OneTake/OneTakeLogo/onetake-logo.schema";
 import { oneTakeLogoPatterns } from "./Logo/OneTake/OneTakeLogo/onetake-logo.schema";
@@ -50,6 +56,20 @@ export function OneTakeFolder() {
               durationInFrames={onboardingOperateDurationFrames}
               schema={onboardingOperateSchema}
               defaultProps={{ ...defaultOnboardingOperateProps }}
+            />
+
+            <Composition
+              id="OneTake-OnboardingTest"
+              component={withCanvasPreview(
+                "OneTake-OnboardingTest",
+                OnboardingTestTemplate,
+              )}
+              width={1920}
+              height={1080}
+              fps={FPS}
+              durationInFrames={onboardingTestDurationFrames}
+              schema={onboardingTestSchema}
+              defaultProps={{ ...defaultOnboardingTestProps }}
             />
           </Folder>
         </Folder>

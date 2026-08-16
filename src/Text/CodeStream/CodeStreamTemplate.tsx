@@ -6,6 +6,7 @@ import {
 } from "remotion";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
 import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker";
+import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import type {
   CodeStreamLineType,
   CodeStreamSchemaType,
@@ -141,10 +142,32 @@ export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
     width,
   ]);
 
-  const totalCycleDistance = paragraphLayouts.reduce(
-    (total, layout) => total + layout.cycleDistance,
-    0,
+  const viewportSpan = direction === "horizontal" ? width : height;
+  const startOutside = viewportSpan + gapPx;
+  const verticalParagraphOffsets = paragraphLayouts.reduce<number[]>(
+    (offsets, layout, index) => {
+      if (index === 0) {
+        offsets.push(0);
+        return offsets;
+      }
+      const previousLayout = paragraphLayouts[index - 1];
+      offsets.push(
+        offsets[index - 1] + previousLayout.panelHeightPx + gapPx,
+      );
+      return offsets;
+    },
+    [],
   );
+  const lastVerticalLayout = paragraphLayouts[paragraphLayouts.length - 1];
+  const totalCycleDistance =
+    direction === "vertical"
+      ? startOutside +
+        (verticalParagraphOffsets[verticalParagraphOffsets.length - 1] ?? 0) +
+        (lastVerticalLayout?.panelHeightPx ?? 0)
+      : paragraphLayouts.reduce(
+          (total, layout) => total + layout.cycleDistance,
+          0,
+        );
   const endPaddingPx = endPaddingFrames * speedPxPerFrame;
   const totalScrollDistance = totalCycleDistance + endPaddingPx;
   const rawMotionPx = frame * speedPxPerFrame;
@@ -176,8 +199,6 @@ export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
       ? (activeParagraphIndex + 1) % paragraphLayouts.length
       : 0;
   const nextLayout = paragraphLayouts[nextParagraphIndex] ?? activeLayout;
-  const viewportSpan = direction === "horizontal" ? width : height;
-  const startOutside = viewportSpan + gapPx;
   const offset = startOutside - activeParagraphOffset;
   const nextOffset =
     offset + activeLayout.cycleDistance;
@@ -225,9 +246,44 @@ export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
 
   const content = buildContent(activeLayout.paragraphLines, "active");
   const nextContent = buildContent(nextLayout.paragraphLines, "next");
+  const panels =
+    direction === "vertical"
+      ? paragraphLayouts.map((layout, index) => ({
+          key: `vertical-panel-${index}`,
+          panelOffset:
+            startOutside + verticalParagraphOffsets[index] - motionPx,
+          panelHeightPx: layout.panelHeightPx,
+          panelContent: buildContent(
+            layout.paragraphLines,
+            `vertical-${index}`,
+          ),
+        }))
+      : [
+          {
+            key: "active-panel",
+            panelOffset: offset,
+            panelHeightPx: activeLayout.panelHeightPx,
+            panelContent: content,
+          },
+          ...(shouldRenderNext
+            ? [
+                {
+                  key: "next-panel",
+                  panelOffset: nextOffset,
+                  panelHeightPx: nextLayout.panelHeightPx,
+                  panelContent: nextContent,
+                },
+              ]
+            : []),
+        ];
 
   return (
-    <AbsoluteFill style={{ backgroundColor, overflow: "hidden" }}>
+    <AbsoluteFill
+      style={{
+        backgroundColor: resolveCompositionBackdropColor(backgroundColor),
+        overflow: "hidden",
+      }}
+    >
       <div
         style={{
           position: "absolute",
@@ -253,24 +309,7 @@ export const CodeStreamTemplate: React.FC<CodeStreamTemplateProps> = ({
             gap: `${gapPx}px`,
           }}
         >
-          {[
-            {
-              key: "active-panel",
-              panelOffset: offset,
-              panelHeightPx: activeLayout.panelHeightPx,
-              panelContent: content,
-            },
-            ...(shouldRenderNext
-              ? [
-                  {
-                    key: "next-panel",
-                    panelOffset: nextOffset,
-                    panelHeightPx: nextLayout.panelHeightPx,
-                    panelContent: nextContent,
-                  },
-                ]
-              : []),
-          ].map((panel) => (
+          {panels.map((panel) => (
             <div
               key={panel.key}
               style={{

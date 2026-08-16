@@ -7,6 +7,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { OnboardingOperateSchemaType } from "./onboarding-operate.schema";
+import { onboardingOperateDurationFrames } from "./onboarding-operate.schema";
 import { resolvedBackdropPair } from "../../../../helpers/transparent-composition-backdrop";
 import { LaptopFrame, PhoneFrame, neonBoxShadow } from "../../onetake-device-chrome";
 
@@ -144,22 +145,42 @@ export const OnboardingOperateTemplate: React.FC<
 > = ({ recordColor, backgroundColor, vignetteOpacity, tapFrame, resetStartFrame }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
+  const cycleDurationInFrames = Math.min(
+    durationInFrames,
+    onboardingOperateDurationFrames,
+  );
+  const animationFrame = frame % cycleDurationInFrames;
 
   const activity = interpolate(
-    frame,
-    [tapFrame, tapFrame + RAMP_UP_FRAMES, resetStartFrame, durationInFrames - 1],
+    animationFrame,
+    [
+      tapFrame,
+      tapFrame + RAMP_UP_FRAMES,
+      resetStartFrame,
+      cycleDurationInFrames - 1,
+    ],
     [0, 1, 1, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
 
-  const rippleScale = interpolate(frame, [tapFrame, tapFrame + 18], [0.3, 2.4], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const rippleOpacity = interpolate(frame, [tapFrame, tapFrame + 18], [0.85, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const rippleScale = interpolate(
+    animationFrame,
+    [tapFrame, tapFrame + 18],
+    [0.3, 2.4],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    },
+  );
+  const rippleOpacity = interpolate(
+    animationFrame,
+    [tapFrame, tapFrame + 18],
+    [0.85, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    },
+  );
 
   const recordStartFrame = tapFrame + RECORD_REACTION_DELAY_FRAMES;
   const laptopGlowStrength = 1 + 0.5 * activity;
@@ -195,7 +216,7 @@ export const OnboardingOperateTemplate: React.FC<
         <LaptopFrame color={recordColor} glowStrength={laptopGlowStrength}>
           <WaveformBars
             color={recordColor}
-            frame={frame}
+            frame={animationFrame}
             recordStartFrame={recordStartFrame}
             activity={activity}
           />
