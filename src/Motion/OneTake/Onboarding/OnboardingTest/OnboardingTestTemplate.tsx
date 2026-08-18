@@ -12,9 +12,11 @@ import { neonBoxShadow } from "../../onetake-device-chrome";
 import { OnboardingTestSchemaType } from "./onboarding-test.schema";
 import { resolveCompositionBackdropColor } from "../../../../helpers/transparent-composition-backdrop";
 
-const SCENE_DURATION_FRAMES = 240;
-const CONNECT_END = SCENE_DURATION_FRAMES;
-const SUCCESS_END = SCENE_DURATION_FRAMES * 2;
+const CONNECTION_TEST_DURATION_FRAMES = 240;
+const CONNECTION_CONFIRMED_DURATION_FRAMES = 180;
+const OPERATION_TEST_DURATION_FRAMES = 480;
+const CONNECT_END = CONNECTION_TEST_DURATION_FRAMES;
+const SUCCESS_END = CONNECT_END + CONNECTION_CONFIRMED_DURATION_FRAMES;
 
 function TestStatus({
   phoneColor,
@@ -155,7 +157,7 @@ export const OnboardingTestTemplate: React.FC<OnboardingTestSchemaType> = (
       <Sequence
         name="Operation test"
         from={SUCCESS_END}
-        durationInFrames={SCENE_DURATION_FRAMES}
+        durationInFrames={OPERATION_TEST_DURATION_FRAMES}
       >
         <OnboardingOperateTemplate
           recordColor={props.recordColor}
