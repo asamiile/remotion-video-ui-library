@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
-import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
+import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/font-line-seed-jp";
 
 export const flickerTitleSchema = z.object({
   eyebrowText: z.string().default("EYEBROW LABEL"),
@@ -19,14 +19,14 @@ export const flickerTitleSchema = z.object({
   titleColor: zColor().default("#F5F5F7"),
   backgroundColor: zColor().default("#0A0A0F"),
 
-  /** Frame at which the eyebrow's flicker-in effect (`helpers/neon-flicker.ts`) fires */
+  /** Frame at which the eyebrow's flicker-in effect (`helpers/effect-neon-flicker.ts`) fires */
   flickerTriggerFrame: z.number().min(0).default(15),
 });
 
 export type FlickerTitleSchemaType = z.infer<typeof flickerTitleSchema>;
 
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
-import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/space-grotesk";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
+import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/font-space-grotesk";
 
 export const flickerTitleDurationFrames = 90;
 

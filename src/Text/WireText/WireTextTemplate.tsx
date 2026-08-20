@@ -7,7 +7,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { WireTextSchemaType } from "./wire-text.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const VB_W = 1600;

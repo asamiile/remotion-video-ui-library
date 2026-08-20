@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { NeonTextSchemaType } from "./neon-text.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 
 function buildNeonTextShadow(

@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { DiegeticMaterialCreditSchemaType } from "./diegetic-material-credit.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const DiegeticMaterialCreditTemplate: React.FC<

@@ -3,8 +3,8 @@ import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { OneTakeLogoTextSchemaType } from "./onetake-logo-text.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import { CTA_FLICKER_CYCLE_MS, ctaFlickerAt } from "../../Motion/OneTake/onetake-flicker";
-import "../../helpers/jetbrains-mono";
-import "../../helpers/space-grotesk";
+import "../../helpers/font-jetbrains-mono";
+import "../../helpers/font-space-grotesk";
 
 /** Same letter spacing/decoration as asami.tokyo's `Eyebrow` (`app/(onetake)/ui.tsx`) */
 const EYEBROW_LETTER_SPACING_PX = 1.5;

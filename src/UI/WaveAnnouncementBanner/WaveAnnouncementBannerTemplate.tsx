@@ -7,7 +7,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { WaveAnnouncementBannerSchemaType } from "./wave-announcement-banner.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const SAMPLE_POINTS = 40;

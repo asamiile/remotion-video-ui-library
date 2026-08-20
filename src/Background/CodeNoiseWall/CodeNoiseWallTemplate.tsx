@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { CodeNoiseWallSchemaType } from "./code-noise-wall.schema";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const CHAR_POOL =

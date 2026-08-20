@@ -32,6 +32,12 @@ import { lightSweepTextSchema } from "./Text/LightSweepText/light-sweep-text.sch
 import { lightSweepTextDurationFrames } from "./Text/LightSweepText/light-sweep-text.schema";
 import { DottedLineMarkerText } from "./Text/DottedLineMarkerText/DottedLineMarkerText";
 import { dottedLineMarkerTextSchema, dottedLineMarkerTextDurationFrames } from "./Text/DottedLineMarkerText/dotted-line-marker-text.schema";
+import { DottedLineMarkerTextTransitionTemplate } from "./Text/DottedLineMarkerText/DottedLineMarkerTextTransitionTemplate";
+import {
+  dottedLineMarkerTextTransitionSchema,
+  dottedLineMarkerTextTransitionDurationFrames,
+  defaultDottedLineMarkerTextTransitionProps,
+} from "./Text/DottedLineMarkerText/dotted-line-marker-text-transition.schema";
 import { TypewriterTextTemplate } from "./Text/TypewriterText/TypewriterTextTemplate";
 import { typewriterTextSchema, typewriterTextDurationFrames } from "./Text/TypewriterText/typewriter-text.schema";
 import { ShakeTextTemplate } from "./Text/ShakeText/ShakeTextTemplate";
@@ -269,6 +275,24 @@ export function TextFolder() {
             />
           )
         )}
+
+        <Composition
+          id="DottedLineMarkerText-GlitchHandover"
+          component={DottedLineMarkerTextTransitionTemplate}
+          durationInFrames={dottedLineMarkerTextTransitionDurationFrames}
+          width={1920}
+          height={1080}
+          fps={30}
+          schema={dottedLineMarkerTextTransitionSchema}
+          defaultProps={{
+            ...defaultDottedLineMarkerTextTransitionProps,
+            fontSize: mergedDottedLineMarkerPatterns["01"].fontSize,
+            textColor: mergedDottedLineMarkerPatterns["01"].textColor,
+            backgroundColor: mergedDottedLineMarkerPatterns["01"].backgroundColor,
+            itemsA: mergedDottedLineMarkerPatterns["01"].items,
+            itemsB: mergedDottedLineMarkerPatterns["02"].items,
+          }}
+        />
       </Folder>
 
       <Folder name="TypewriterText">

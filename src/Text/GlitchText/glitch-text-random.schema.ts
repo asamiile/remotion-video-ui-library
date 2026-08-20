@@ -1,6 +1,6 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 
 export const glitchTextRandomSchema = z.object({
   items: z

@@ -83,6 +83,10 @@ GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS=(
   "GlitchTransitionBridge"
 )
 
+DOTTED_LINE_MARKER_TEXT_TRANSITION_COMPOSITION_IDS=(
+  "DottedLineMarkerText-GlitchHandover"
+)
+
 FLICKER_TITLE_COMPOSITION_IDS=(
   "FlickerTitle"
 )
@@ -147,6 +151,7 @@ resolve_output_subdir() {
     InterviewQuestionCaption-*) echo "Text/InterviewQuestionCaption" ;;
     AnnouncementEndCard-*) echo "Text/AnnouncementEndCard" ;;
     EmergingNoiseTitle-*) echo "Text/EmergingNoiseTitle" ;;
+    DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge*) echo "Effect/GlitchTransitionBridge" ;;
     InkRippleTransition*) echo "Effect/InkRippleTransition" ;;
@@ -300,6 +305,11 @@ render_background() {
 # Render GlitchTransitionBridge compositions
 render_glitch_transition_bridge() {
   render_fixed_id_family "✨ Rendering GlitchTransitionBridge compositions" GLITCH_TRANSITION_BRIDGE_COMPOSITION_IDS
+}
+
+# Render the DottedLineMarkerText 01→02 glitch-handover composition
+render_dotted_line_marker_text_transition() {
+  render_fixed_id_family "✨ Rendering DottedLineMarkerText transition composition" DOTTED_LINE_MARKER_TEXT_TRANSITION_COMPOSITION_IDS
 }
 
 # Render InkRippleTransition compositions
@@ -545,6 +555,7 @@ check_output_dirs() {
     "Intro"
     "PlaceholderImage"
     "GlitchTransitionBridge"
+    "DottedLineMarkerText-GlitchHandover"
     "FlickerTitle"
     "InkRippleTransition"
     "RackFocusBokehTransition"
@@ -622,6 +633,9 @@ main() {
     GlitchTransitionBridge|glitchtransitionbridge)
       render_glitch_transition_bridge
       ;;
+    DottedLineMarkerTextTransition|dottedlinemarkertexttransition)
+      render_dotted_line_marker_text_transition
+      ;;
     InkRippleTransition|inkrippletransition)
       render_ink_ripple_transition
       ;;
@@ -655,6 +669,7 @@ main() {
       render_onetake
       render_background
       render_glitch_transition_bridge
+      render_dotted_line_marker_text_transition
       render_ink_ripple_transition
       render_rack_focus_bokeh_transition
       render_burst
@@ -681,6 +696,7 @@ main() {
       echo "  OneTake            Render OneTake onboarding motion-graphic compositions"
       echo "  Background         Render ambient background overlay compositions (always transparent)"
       echo "  GlitchTransitionBridge  Render the RGB-glitch scene-transition bumper"
+      echo "  DottedLineMarkerTextTransition  Render the DottedLineMarkerText 01→02 glitch-handover composition"
       echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
       echo "  RackFocusBokehTransition Render the rack-focus + bokeh scene-transition bumper"
       echo "  Burst              Render the special-move impact burst"
