@@ -18,6 +18,7 @@ const families = [
     idPrefix: "OneTake-Logo",
     file: "src/Logo/OneTake/OneTakeLogo/onetake-logo.schema.ts",
     exportName: "oneTakeLogoPatterns",
+    join: "",
   },
 ];
 
@@ -29,7 +30,8 @@ for (const fam of families) {
   const full = path.join(root, fam.file);
   const keys = requirePatternKeys(full, fam.exportName);
   for (const patternId of keys) {
-    process.stdout.write(`${fam.idPrefix}-${capPattern(patternId)}\n`);
+    const separator = fam.join === "" ? "" : "-";
+    process.stdout.write(`${fam.idPrefix}${separator}${capPattern(patternId)}\n`);
   }
 }
 

@@ -16,28 +16,35 @@ pnpm i
 pnpm run dev
 ```
 
-**Render video**
+**Render**
 
 ```console
 sh render.sh [subcommand]
 sh render.sh --transparent-bg NeonText-LchikaOrangeJp   # e.g. no backdrop color (transparent)
 sh render.sh --with-canvas-bg AudioSpectrum   # e.g. bake in the preview backdrop when exporting
+sh render.sh --png-sequence CodeStreamVertical # PNG sequence instead of the default MP4
+sh render.sh --adobe-stock-alpha LoadingIcon-Default # transparent ProRes 4444 MOV
+sh render.sh --adobe-stock Background-CodeNoiseWall-AmberGlow # 60-second ProRes 422 HQ MOV
 ```
 
 | Subcommand (batch) | Description |
 |--------------|------|
-| `Intro` | `Intro` → `Intro.mov` |
+| `Intro` | `Intro` → `out/Intro/Intro.mp4` |
 | `LoadingIcon` | All patterns (Default … CustomWithText, etc.) |
 | `Location` | The location list is kept in sync with `composition-text` and `scripts/list-location-composition-ids.cjs` |
 | `MiniMap` | Each location (requires **WebGL** / `--gl=angle`) |
 | `AudioSpectrum` | Simple / Detailed (pattern, `--mute-audio`) |
-| `AudioSpectrumFiles` | One per file under `public/audio/AudioSpectrum/` |
 | `all` | Runs all of the above in order (**default**) |
 
 | Option | Description |
 |------------|------|
-| `--transparent-bg` | `REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1`. Sets the full-screen `backgroundColor` in Neon / Glitch etc. templates to `transparent` and disables the radial vignette (for alpha ProRes output). Can be combined with `--with-canvas-bg` |
+| `--transparent-bg` | `REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1`. Makes supported composition backdrops transparent. Intended for PNG sequence output and can be combined with `--with-canvas-bg` |
 | `--with-canvas-bg` | If omitted, `render.sh` fixes `REMOTION_CANVAS_BACKGROUND=0` (the preview backdrop is not baked in). Only when passed does the [`composition-canvas-preview.ts`](./src/config/composition-canvas-preview.ts) layer get reflected in the render. Distinct from each composition's own `backgroundColor` |
+| `--png-sequence` | Export PNG frames under `out/<Studio Folder>/<CompositionId>/png/` instead of MP4 |
+| `--adobe-stock-alpha` | Export a transparent, silent ProRes 4444 MOV; enables Adobe Stock duration overrides |
+| `--adobe-stock` | Export a silent ProRes 422 HQ MOV; selected background families are extended to 60 seconds |
+
+The default export is H.264 MP4. Output folders mirror the `<Folder>` hierarchy shown in Remotion Studio.
 
 See the header comment in `render.sh` for details.
 

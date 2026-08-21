@@ -1,6 +1,9 @@
 import React, { useId } from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { InkRippleTransitionSchemaType } from "./ink-ripple-transition.schema";
+import {
+  InkRippleTransitionSchemaType,
+  inkRippleTransitionDurationFrames,
+} from "./ink-ripple-transition.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const InkRippleTransitionTemplate: React.FC<
@@ -15,7 +18,7 @@ export const InkRippleTransitionTemplate: React.FC<
   strokeWidthPx,
   roughness,
 }) => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() % inkRippleTransitionDurationFrames;
   const filterId = useId().replace(/:/g, "");
 
   return (

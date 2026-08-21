@@ -38,6 +38,10 @@ import {
 import { withCanvasPreview } from "./helpers/composition-helpers";
 
 const FPS = 30;
+const inkRippleDurationFrames =
+  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
+    ? 600
+    : inkRippleTransitionDurationFrames;
 
 export function EffectFolder() {
   return (
@@ -65,7 +69,7 @@ export function EffectFolder() {
         width={1920}
         height={1080}
         fps={FPS}
-        durationInFrames={inkRippleTransitionDurationFrames}
+        durationInFrames={inkRippleDurationFrames}
         schema={inkRippleTransitionSchema}
         defaultProps={{ ...defaultInkRippleTransitionProps }}
       />

@@ -64,6 +64,9 @@ import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-he
 import { mergedRandomLinesPatterns } from "./composition/composition-merged-background";
 
 const FPS = 30;
+const adobeStockOverlayDurationFrames = 600;
+const adobeStockDurationFrames =
+  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1" ? 1800 : 150;
 
 export function BackgroundFolder() {
   return (
@@ -109,7 +112,10 @@ export function BackgroundFolder() {
           idPrefix: "Background-ScanLine-",
           Template: ScanLineTemplate,
           schema: scanLineSchema,
-          durationInFrames: (patternProps) => patternProps.scanPeriodFrames,
+          durationInFrames: (patternProps) =>
+            process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
+              ? adobeStockOverlayDurationFrames
+              : patternProps.scanPeriodFrames,
         })}
       </Folder>
 
@@ -129,7 +135,7 @@ export function BackgroundFolder() {
           idPrefix: "Background-FilmGrainOverlay-",
           Template: FilmGrainOverlayTemplate,
           schema: filmGrainOverlaySchema,
-          durationInFrames: 150,
+          durationInFrames: adobeStockDurationFrames,
         })}
       </Folder>
 
@@ -209,7 +215,7 @@ export function BackgroundFolder() {
           idPrefix: "Background-CodeNoiseWall-",
           Template: CodeNoiseWallTemplate,
           schema: codeNoiseWallSchema,
-          durationInFrames: 150,
+          durationInFrames: adobeStockDurationFrames,
         })}
       </Folder>
 
@@ -219,7 +225,7 @@ export function BackgroundFolder() {
           idPrefix: "Background-ParticleTerrainMesh-",
           Template: ParticleTerrainMeshTemplate,
           schema: particleTerrainMeshSchema,
-          durationInFrames: 150,
+          durationInFrames: adobeStockDurationFrames,
         })}
       </Folder>
 
