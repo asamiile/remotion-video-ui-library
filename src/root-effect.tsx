@@ -35,7 +35,17 @@ import {
   defaultZoomBlurTransitionProps,
   zoomBlurTransitionDurationFrames,
 } from "./Effects/ZoomBlurTransition/zoom-blur-transition.schema";
-import { withCanvasPreview } from "./helpers/composition-helpers";
+import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
+import { SignalSliceTransitionTemplate } from "./Effects/SignalSliceTransition/SignalSliceTransitionTemplate";
+import { signalSliceTransitionDurationFrames, signalSliceTransitionPatterns, signalSliceTransitionSchema } from "./Effects/SignalSliceTransition/signal-slice-transition.schema";
+import { HologramFragmentTransitionTemplate } from "./Effects/HologramFragmentTransition/HologramFragmentTransitionTemplate";
+import { hologramFragmentTransitionDurationFrames, hologramFragmentTransitionPatterns, hologramFragmentTransitionSchema } from "./Effects/HologramFragmentTransition/hologram-fragment-transition.schema";
+import {KaleidoscopeMirrorTemplate} from "./Effects/KaleidoscopeMirror/KaleidoscopeMirrorTemplate";
+import {kaleidoscopeMirrorDurationFrames,kaleidoscopeMirrorPatterns,kaleidoscopeMirrorSchema} from "./Effects/KaleidoscopeMirror/kaleidoscope-mirror.schema";
+import {DelayTrailTemplate} from "./Effects/DelayTrail/DelayTrailTemplate";
+import {delayTrailDurationFrames,delayTrailPatterns,delayTrailSchema} from "./Effects/DelayTrail/delay-trail.schema";
+import {BloomFlashTransitionTemplate} from "./Effects/BloomFlashTransition/BloomFlashTransitionTemplate";
+import {bloomFlashTransitionDurationFrames,bloomFlashTransitionPatterns,bloomFlashTransitionSchema} from "./Effects/BloomFlashTransition/bloom-flash-transition.schema";
 
 const FPS = 30;
 const inkRippleDurationFrames =
@@ -129,6 +139,15 @@ export function EffectFolder() {
         schema={zoomBlurTransitionSchema}
         defaultProps={{ ...defaultZoomBlurTransitionProps }}
       />
+      <Folder name="SignalSliceTransition">
+        {renderPatternFamily({patterns: signalSliceTransitionPatterns, idPrefix: "SignalSliceTransition-", Template: SignalSliceTransitionTemplate, schema: signalSliceTransitionSchema, durationInFrames: signalSliceTransitionDurationFrames})}
+      </Folder>
+      <Folder name="HologramFragmentTransition">
+        {renderPatternFamily({patterns: hologramFragmentTransitionPatterns, idPrefix: "HologramFragmentTransition-", Template: HologramFragmentTransitionTemplate, schema: hologramFragmentTransitionSchema, durationInFrames: hologramFragmentTransitionDurationFrames})}
+      </Folder>
+      <Folder name="KaleidoscopeMirror">{renderPatternFamily({patterns:kaleidoscopeMirrorPatterns,idPrefix:"KaleidoscopeMirror-",Template:KaleidoscopeMirrorTemplate,schema:kaleidoscopeMirrorSchema,durationInFrames:kaleidoscopeMirrorDurationFrames})}</Folder>
+      <Folder name="DelayTrail">{renderPatternFamily({patterns:delayTrailPatterns,idPrefix:"DelayTrail-",Template:DelayTrailTemplate,schema:delayTrailSchema,durationInFrames:delayTrailDurationFrames})}</Folder>
+      <Folder name="BloomFlashTransition">{renderPatternFamily({patterns:bloomFlashTransitionPatterns,idPrefix:"BloomFlashTransition-",Template:BloomFlashTransitionTemplate,schema:bloomFlashTransitionSchema,durationInFrames:bloomFlashTransitionDurationFrames})}</Folder>
     </Folder>
   );
 }

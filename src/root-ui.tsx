@@ -17,6 +17,12 @@ import { circularNeonLogoFrameDurationFrames } from "./UI/CircularNeonLogoFrame/
 import { WaveAnnouncementBannerTemplate } from "./UI/WaveAnnouncementBanner/WaveAnnouncementBannerTemplate";
 import { waveAnnouncementBannerSchema } from "./UI/WaveAnnouncementBanner/wave-announcement-banner.schema";
 import { waveAnnouncementBannerDurationFrames } from "./UI/WaveAnnouncementBanner/wave-announcement-banner.schema";
+import { RadialAnalysisHUDTemplate } from "./UI/RadialAnalysisHUD/RadialAnalysisHUDTemplate";
+import { radialAnalysisHUDDurationFrames, radialAnalysisHUDPatterns, radialAnalysisHUDSchema } from "./UI/RadialAnalysisHUD/radial-analysis-hud.schema";
+import { SplitScreenEchoTemplate } from "./UI/SplitScreenEcho/SplitScreenEchoTemplate";
+import { splitScreenEchoDurationFrames, splitScreenEchoPatterns, splitScreenEchoSchema } from "./UI/SplitScreenEcho/split-screen-echo.schema";
+import {ParallaxAnalysisStackTemplate} from "./UI/ParallaxAnalysisStack/ParallaxAnalysisStackTemplate";
+import {parallaxAnalysisStackDurationFrames,parallaxAnalysisStackPatterns,parallaxAnalysisStackSchema} from "./UI/ParallaxAnalysisStack/parallax-analysis-stack.schema";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
   mergedBattleCalloutBannerPatterns,
@@ -91,6 +97,13 @@ export function UIFolder() {
           durationInFrames: waveAnnouncementBannerDurationFrames,
         })}
       </Folder>
+      <Folder name="RadialAnalysisHUD">
+        {renderPatternFamily({patterns: radialAnalysisHUDPatterns, idPrefix: "RadialAnalysisHUD-", Template: RadialAnalysisHUDTemplate, schema: radialAnalysisHUDSchema, durationInFrames: radialAnalysisHUDDurationFrames})}
+      </Folder>
+      <Folder name="SplitScreenEcho">
+        {renderPatternFamily({patterns: splitScreenEchoPatterns, idPrefix: "SplitScreenEcho-", Template: SplitScreenEchoTemplate, schema: splitScreenEchoSchema, durationInFrames: splitScreenEchoDurationFrames})}
+      </Folder>
+      <Folder name="ParallaxAnalysisStack">{renderPatternFamily({patterns:parallaxAnalysisStackPatterns,idPrefix:"ParallaxAnalysisStack-",Template:ParallaxAnalysisStackTemplate,schema:parallaxAnalysisStackSchema,durationInFrames:parallaxAnalysisStackDurationFrames})}</Folder>
     </Folder>
   );
 }

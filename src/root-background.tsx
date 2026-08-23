@@ -53,6 +53,14 @@ import { stripeWaveFieldPatterns } from "./Background/StripeWaveField/stripe-wav
 import { HalftoneWaveformTemplate } from "./Background/HalftoneWaveform/HalftoneWaveformTemplate";
 import { halftoneWaveformSchema } from "./Background/HalftoneWaveform/halftone-waveform.schema";
 import { halftoneWaveformPatterns } from "./Background/HalftoneWaveform/halftone-waveform.schema";
+import { HolographicDepthGridTemplate } from "./Background/HolographicDepthGrid/HolographicDepthGridTemplate";
+import { holographicDepthGridDurationFrames, holographicDepthGridPatterns, holographicDepthGridSchema } from "./Background/HolographicDepthGrid/holographic-depth-grid.schema";
+import { SignalInterferenceOverlayTemplate } from "./Background/SignalInterferenceOverlay/SignalInterferenceOverlayTemplate";
+import { signalInterferenceOverlayDurationFrames, signalInterferenceOverlayPatterns, signalInterferenceOverlaySchema } from "./Background/SignalInterferenceOverlay/signal-interference-overlay.schema";
+import {WireframeBuildTemplate} from "./Background/WireframeBuild/WireframeBuildTemplate";
+import {wireframeBuildDurationFrames,wireframeBuildPatterns,wireframeBuildSchema} from "./Background/WireframeBuild/wireframe-build.schema";
+import {DigitalFogTemplate} from "./Background/DigitalFog/DigitalFogTemplate";
+import {digitalFogDurationFrames,digitalFogPatterns,digitalFogSchema} from "./Background/DigitalFog/digital-fog.schema";
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
 import { randomLinesDurationFrames } from "./Background/RandomLinesBackground/random-lines.schema";
@@ -268,6 +276,16 @@ export function BackgroundFolder() {
           durationInFrames: 150,
         })}
       </Folder>
+
+      <Folder name="HolographicDepthGrid">
+        {renderPatternFamily({patterns: holographicDepthGridPatterns, idPrefix: "Background-HolographicDepthGrid-", Template: HolographicDepthGridTemplate, schema: holographicDepthGridSchema, durationInFrames: holographicDepthGridDurationFrames})}
+      </Folder>
+
+      <Folder name="SignalInterferenceOverlay">
+        {renderPatternFamily({patterns: signalInterferenceOverlayPatterns, idPrefix: "Background-SignalInterferenceOverlay-", Template: SignalInterferenceOverlayTemplate, schema: signalInterferenceOverlaySchema, durationInFrames: signalInterferenceOverlayDurationFrames})}
+      </Folder>
+      <Folder name="WireframeBuild">{renderPatternFamily({patterns:wireframeBuildPatterns,idPrefix:"Background-WireframeBuild-",Template:WireframeBuildTemplate,schema:wireframeBuildSchema,durationInFrames:wireframeBuildDurationFrames})}</Folder>
+      <Folder name="DigitalFog">{renderPatternFamily({patterns:digitalFogPatterns,idPrefix:"Background-DigitalFog-",Template:DigitalFogTemplate,schema:digitalFogSchema,durationInFrames:digitalFogDurationFrames})}</Folder>
 
       <Folder name="AngstAnimation">
         <Composition

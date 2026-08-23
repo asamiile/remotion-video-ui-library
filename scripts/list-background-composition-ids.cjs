@@ -100,6 +100,10 @@ const families = [
     file: "src/Background/HalftoneWaveform/halftone-waveform.schema.ts",
     exportName: "halftoneWaveformPatterns",
   },
+  {idPrefix: "Background-HolographicDepthGrid", file: "src/Background/HolographicDepthGrid/holographic-depth-grid.schema.ts", exportName: "holographicDepthGridPatterns"},
+  {idPrefix: "Background-SignalInterferenceOverlay", file: "src/Background/SignalInterferenceOverlay/signal-interference-overlay.schema.ts", exportName: "signalInterferenceOverlayPatterns"},
+  {idPrefix:"Background-WireframeBuild",file:"src/Background/WireframeBuild/wireframe-build.schema.ts",exportName:"wireframeBuildPatterns"},
+  {idPrefix:"Background-DigitalFog",file:"src/Background/DigitalFog/digital-fog.schema.ts",exportName:"digitalFogPatterns"},
 ];
 
 for (const id of fixedIds) {

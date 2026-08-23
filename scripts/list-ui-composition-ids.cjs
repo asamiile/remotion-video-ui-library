@@ -36,6 +36,9 @@ const families = [
     file: "src/UI/WaveAnnouncementBanner/wave-announcement-banner.schema.ts",
     exportName: "waveAnnouncementBannerPatterns",
   },
+  {idPrefix: "RadialAnalysisHUD", file: "src/UI/RadialAnalysisHUD/radial-analysis-hud.schema.ts", exportName: "radialAnalysisHUDPatterns"},
+  {idPrefix: "SplitScreenEcho", file: "src/UI/SplitScreenEcho/split-screen-echo.schema.ts", exportName: "splitScreenEchoPatterns"},
+  {idPrefix:"ParallaxAnalysisStack",file:"src/UI/ParallaxAnalysisStack/parallax-analysis-stack.schema.ts",exportName:"parallaxAnalysisStackPatterns"},
 ];
 
 for (const fam of families) {

@@ -1,0 +1,7 @@
+import React from "react";
+import {AbsoluteFill, interpolate, random, useCurrentFrame, useVideoConfig} from "remotion";
+import type {HologramFragmentTransitionProps} from "./hologram-fragment-transition.schema";
+export const HologramFragmentTransitionTemplate: React.FC<HologramFragmentTransitionProps> = ({primaryColor, secondaryColor, fragmentCount, spreadPx, fragmentSize, mode, randomSeed}) => {
+  const frame = useCurrentFrame(); const {durationInFrames} = useVideoConfig(); let p = interpolate(frame, [0, durationInFrames - 1], [0, 1]); if (mode === "reassemble") p = 1 - p;
+  return <AbsoluteFill><svg width="100%" height="100%" viewBox="0 0 1920 1080">{Array.from({length: fragmentCount}, (_, i) => {const a = random(`${randomSeed}-${i}-a`) * Math.PI * 2; const radius = p * spreadPx * (0.3 + random(`${randomSeed}-${i}-r`) * 0.7); const baseX = 960 + (random(`${randomSeed}-${i}-x`) - 0.5) * 460; const baseY = 540 + (random(`${randomSeed}-${i}-y`) - 0.5) * 520; const scale = mode === "forwardBurst" ? 0.4 + p * 2.4 : 1 - p * 0.65; const size = fragmentSize * (0.35 + random(`${randomSeed}-${i}-s`)); const x = baseX + Math.cos(a) * radius; const y = baseY + Math.sin(a) * radius; return <polygon key={i} points={`0,0 ${size},${size * .16} ${size * .3},${size}`} transform={`translate(${x} ${y}) rotate(${a * 57.3 + p * 100}) scale(${scale})`} fill={i % 2 ? primaryColor : secondaryColor} opacity={(1 - p * .75) * .8} style={{filter: `drop-shadow(0 0 8px ${primaryColor})`}}/>;})}</svg></AbsoluteFill>;
+};

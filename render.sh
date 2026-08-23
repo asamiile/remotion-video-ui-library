@@ -162,12 +162,20 @@ resolve_output_subdir() {
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge|InkRippleTransition|RackFocusBokehTransition|Burst|ShatterCrackTransition|ZoomBlurTransition) echo "Effect" ;;
+    SignalSliceTransition-*) echo "Effect/SignalSliceTransition" ;;
+    HologramFragmentTransition-*) echo "Effect/HologramFragmentTransition" ;;
+    KaleidoscopeMirror-*) echo "Effect/KaleidoscopeMirror" ;;
+    DelayTrail-*) echo "Effect/DelayTrail" ;;
+    BloomFlashTransition-*) echo "Effect/BloomFlashTransition" ;;
     BattleCalloutBanner-*) echo "UI/BattleCalloutBanner" ;;
     AsymmetricStatusPanel-*) echo "UI/AsymmetricStatusPanel" ;;
     FramedFootageWindow-*) echo "UI/FramedFootageWindow" ;;
     LowerThirdTopicLabel-*) echo "UI/LowerThirdTopicLabel" ;;
     CircularNeonLogoFrame-*) echo "UI/CircularNeonLogoFrame" ;;
     WaveAnnouncementBanner-*) echo "UI/WaveAnnouncementBanner" ;;
+    RadialAnalysisHUD-*) echo "UI/RadialAnalysisHUD" ;;
+    SplitScreenEcho-*) echo "UI/SplitScreenEcho" ;;
+    ParallaxAnalysisStack-*) echo "UI/ParallaxAnalysisStack" ;;
     Location-*) echo "Text/Location" ;;
     MiniMap-*) echo "Map" ;;
     AudioSpectrum-*) echo "Audio/AudioSpectrum/Presets" ;;
@@ -195,6 +203,10 @@ resolve_output_subdir() {
     Background-WaveInterferenceLines-*) echo "Background/WaveInterferenceLines" ;;
     Background-StripeWaveField-*) echo "Background/StripeWaveField" ;;
     Background-HalftoneWaveform-*) echo "Background/HalftoneWaveform" ;;
+    Background-HolographicDepthGrid-*) echo "Background/HolographicDepthGrid" ;;
+    Background-SignalInterferenceOverlay-*) echo "Background/SignalInterferenceOverlay" ;;
+    Background-WireframeBuild-*) echo "Background/WireframeBuild" ;;
+    Background-DigitalFog-*) echo "Background/DigitalFog" ;;
     AngstAnimation*) echo "Background/AngstAnimation" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
@@ -361,6 +373,13 @@ render_shatter_crack_transition() {
 # Render ZoomBlurTransition compositions
 render_zoom_blur_transition() {
   render_fixed_id_family "✨ Rendering ZoomBlurTransition compositions" ZOOM_BLUR_TRANSITION_COMPOSITION_IDS
+}
+
+render_new_effects() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
 # Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs)
@@ -540,6 +559,7 @@ check_output_dirs() {
     "list-background-composition-ids.cjs:"
     "list-onetake-composition-ids.cjs:"
     "list-ui-composition-ids.cjs:"
+    "list-effect-composition-ids.cjs:"
   )
   # Single fixed compositions with no pattern family, so no enumeration script exists.
   local fixed_ids=(
@@ -638,6 +658,7 @@ main() {
       ;;
     ZoomBlurTransition|zoomblurtransition)
       render_zoom_blur_transition
+      render_new_effects
       ;;
     UI|ui)
       render_ui
