@@ -218,7 +218,7 @@ export function TextFolder() {
                 `GlitchTextRandom-${patternName}`,
                 GlitchTextRandomTemplate
               )}
-              width={1920}
+              width={1080}
               height={1080}
               fps={FPS}
               durationInFrames={glitchTextRandomDurationFrames}

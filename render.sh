@@ -256,7 +256,7 @@ render_one() {
   mkdir -p "$(dirname "$output_path")"
   local codec_args=(--codec=h264)
   if [ "$OUTPUT_FORMAT" = "png" ]; then
-    codec_args=(--codec=png --image-format=png)
+    codec_args=(--sequence --image-format=png)
     mkdir -p "$output_path"
   elif [ "$OUTPUT_FORMAT" = "stock-alpha" ]; then
     codec_args=(--codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le --muted)

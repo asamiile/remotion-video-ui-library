@@ -35,6 +35,8 @@ export const glitchTextRandomSchema = z.object({
 
   /** Frames between spawn attempts */
   spawnIntervalFrames: z.number().min(5).default(60),
+  /** Frames before the first item appears */
+  initialDelayFrames: z.number().min(0).default(30),
   /** Frames from appearance to glitch start */
   glitchDelayFrames: z.number().min(0).default(90),
   /** Frames from appearance to fade-out start */
@@ -47,7 +49,7 @@ export const glitchTextRandomSchema = z.object({
 
 export type GlitchTextRandomSchemaType = z.infer<typeof glitchTextRandomSchema>;
 
-export const glitchTextRandomDurationFrames = 3000;
+export const glitchTextRandomDurationFrames = 1200;
 
 export const defaultGlitchTextRandomProps = {
   items: [],
@@ -65,6 +67,7 @@ export const defaultGlitchTextRandomProps = {
   scanlineOpacity: 0.08,
   backgroundColor: "#060810",
   spawnIntervalFrames: 60,
+  initialDelayFrames: 30,
   glitchDelayFrames: 90,
   displayDurationFrames: 300,
   fadeOutDuration: 30,
@@ -84,7 +87,7 @@ export const glitchTextRandomPatterns = {
     strongGlitchProbability: 0.32,
     glitchSegmentFrames: 4,
     jitterPx: 3,
-    spawnIntervalFrames: 60,
+    spawnIntervalFrames: 120,
     glitchDelayFrames: 90,
     displayDurationFrames: 300,
     fadeOutDuration: 30,
@@ -102,7 +105,7 @@ export const glitchTextRandomPatterns = {
     strongGlitchProbability: 0.32,
     glitchSegmentFrames: 4,
     jitterPx: 3,
-    spawnIntervalFrames: 60,
+    spawnIntervalFrames: 120,
     glitchDelayFrames: 90,
     displayDurationFrames: 300,
     fadeOutDuration: 30,

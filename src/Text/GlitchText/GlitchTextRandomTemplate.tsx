@@ -10,9 +10,31 @@ import {
 import { GlitchTextRandomSchemaType } from "./glitch-text-random.schema";
 import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 
-const GARBLE_POOL = "0123456789._-#@*$%▯∞";
+const GARBLE_POOL =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-#@*$%▯∞";
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.min(Math.max(value, min), max);
+
+const estimateTextWidth = (
+  text: string,
+  fontSize: number,
+  letterSpacing: string
+): number => {
+  const spacingValue = Number.parseFloat(letterSpacing) || 0;
+  const spacingPx = letterSpacing.endsWith("em")
+    ? spacingValue * fontSize
+    : spacingValue;
+  const glyphWidth = Array.from(text).reduce(
+    (width, character) =>
+      width +
+      ((character.codePointAt(0) ?? 0) <= 0xff ? fontSize * 0.62 : fontSize),
+    0
+  );
+
+  return glyphWidth + Math.max(0, Array.from(text).length - 1) * spacingPx;
+};
 
 function garbleChars(text: string, seed: string, rate: number): string {
   return Array.from(text)
@@ -41,11 +63,11 @@ interface ActiveItem {
 }
 
 /**
- * 4x3 grid of cells for random placement
+ * 4x2 grid of cells for random placement on a square canvas
  * Each item appears in a random cell within the grid
- * 12 items in 12 cells = one item per cell
+ * 8 items in 8 cells = one item per cell
  */
-const GRID_COLS = 3;
+const GRID_COLS = 2;
 const GRID_ROWS = 4;
 
 /**
@@ -59,16 +81,19 @@ const getPositionInGridCell = (
 ): { x: number; y: number } => {
   const cellWidth = 100 / GRID_COLS;
   const cellHeight = 100 / GRID_ROWS;
-
-  // Random offset within the cell (with some padding)
-  const padding = 4; // 4% padding from cell edges (increased for more spacing)
-  const maxX = cellWidth - padding * 2;
-  const maxY = cellHeight - padding * 2;
-
+  const cellCenterX = (cellCol + 0.5) * cellWidth;
+  const cellCenterY = (cellRow + 0.5) * cellHeight;
+  const jitterRatio = 0.18;
   const x =
-    cellCol * cellWidth + padding + random(`${randomSeed}-cx-${randIndex}`) * maxX;
+    cellCenterX +
+    (random(`${randomSeed}-cx-${randIndex}`) - 0.5) *
+      cellWidth *
+      jitterRatio;
   const y =
-    cellRow * cellHeight + padding + random(`${randomSeed}-cy-${randIndex}`) * maxY;
+    cellCenterY +
+    (random(`${randomSeed}-cy-${randIndex}`) - 0.5) *
+      cellHeight *
+      jitterRatio;
 
   return { x, y };
 };
@@ -84,6 +109,7 @@ const generateActiveItems = (
   glitchDelayFrames: number,
   displayDurationFrames: number,
   fadeOutDuration: number,
+  initialDelayFrames: number,
   randomSeed: string
 ): ActiveItem[] => {
   const active: ActiveItem[] = [];
@@ -92,17 +118,20 @@ const generateActiveItems = (
     return active;
   }
 
-  const totalCells = GRID_COLS * GRID_ROWS; // 12 cells
+  const totalCells = GRID_COLS * GRID_ROWS;
 
   // For each possible spawn time, decide if we spawn an item
-  let spawnFrame = 0;
+  let spawnFrame = initialDelayFrames;
   let itemIndex = 0;
 
   while (spawnFrame <= frame) {
     // Use random to decide actual spawn time relative to spawnFrame
-    const offset = Math.floor(
-      random(`${randomSeed}-offset-${itemIndex}`) * spawnIntervalFrames
-    );
+    const offset =
+      itemIndex === 0
+        ? 0
+        : Math.floor(
+            random(`${randomSeed}-offset-${itemIndex}`) * spawnIntervalFrames
+          );
     const actualSpawnFrame = spawnFrame + offset;
 
     if (actualSpawnFrame <= frame) {
@@ -112,7 +141,7 @@ const generateActiveItems = (
       const fadeOutEnd = fadeOutStart + fadeOutDuration;
 
       // Assign grid cell based on itemIndex to ensure each visible item gets a unique cell
-      // This prevents overlap: items 0-11 use cells 0-11, item 12 reuses cell 0 (after it fades out), etc.
+      // This prevents overlap: items cycle through cells after earlier items fade out.
       const cellIndex = itemIndex % totalCells;
       const cellCol = cellIndex % GRID_COLS;
       const cellRow = Math.floor(cellIndex / GRID_COLS);
@@ -166,6 +195,8 @@ const GlitchItem: React.FC<{
   channelBColor: string;
   fadeOutDuration: number;
   scanlineOpacity: number;
+  compositionWidth: number;
+  compositionHeight: number;
 }> = ({
   item,
   frame,
@@ -182,6 +213,8 @@ const GlitchItem: React.FC<{
   channelBColor,
   fadeOutDuration,
   scanlineOpacity,
+  compositionWidth,
+  compositionHeight,
 }) => {
   const activeFrame = frame - item.startFrame;
   const glitchActiveFrame = Math.max(0, frame - item.glitchStartFrame);
@@ -198,10 +231,6 @@ const GlitchItem: React.FC<{
       easing: Easing.out(Easing.quad),
     });
   }, [fadeOutFrame, fadeOutDuration]);
-
-  if (fadeOutOpacity <= 0) {
-    return null;
-  }
 
   // Glitch effect (only after glitch delay)
   const { displayText, offR, offB, rgbBoost, burstY } = useMemo(() => {
@@ -262,12 +291,31 @@ const GlitchItem: React.FC<{
     whiteSpace: "nowrap",
   };
 
+  const effectMargin = rgbOffsetMax * 1.55 + jitterPx + 4;
+  const halfTextWidth =
+    estimateTextWidth(item.text, fontSize, letterSpacing) / 2 + effectMargin;
+  const halfTextHeight = (fontSize * 1.2) / 2 + jitterPx + 4;
+  const safeX = clamp(
+    (item.x / 100) * compositionWidth,
+    halfTextWidth,
+    Math.max(halfTextWidth, compositionWidth - halfTextWidth)
+  );
+  const safeY = clamp(
+    (item.y / 100) * compositionHeight,
+    halfTextHeight,
+    Math.max(halfTextHeight, compositionHeight - halfTextHeight)
+  );
+
+  if (fadeOutOpacity <= 0) {
+    return null;
+  }
+
   return (
     <div
       style={{
         position: "absolute",
-        left: `${item.x}%`,
-        top: `${item.y}%`,
+        left: safeX,
+        top: safeY,
         opacity: fadeOutOpacity,
         transform: `translate(-50%, -50%)`,
       }}
@@ -356,6 +404,7 @@ export const GlitchTextRandomTemplate: React.FC<GlitchTextRandomSchemaType> = ({
   glitchDelayFrames,
   displayDurationFrames,
   fadeOutDuration,
+  initialDelayFrames,
   randomSeed,
 }) => {
   const frame = useCurrentFrame();
@@ -370,9 +419,10 @@ export const GlitchTextRandomTemplate: React.FC<GlitchTextRandomSchemaType> = ({
         glitchDelayFrames,
         displayDurationFrames,
         fadeOutDuration,
+        initialDelayFrames,
         randomSeed
       ),
-    [frame, items, spawnIntervalFrames, glitchDelayFrames, displayDurationFrames, fadeOutDuration, randomSeed]
+    [frame, items, spawnIntervalFrames, glitchDelayFrames, displayDurationFrames, fadeOutDuration, initialDelayFrames, randomSeed]
   );
 
   return (
@@ -400,6 +450,8 @@ export const GlitchTextRandomTemplate: React.FC<GlitchTextRandomSchemaType> = ({
           channelBColor={channelBColor}
           fadeOutDuration={fadeOutDuration}
           scanlineOpacity={scanlineOpacity}
+          compositionWidth={width}
+          compositionHeight={height}
         />
       ))}
 
