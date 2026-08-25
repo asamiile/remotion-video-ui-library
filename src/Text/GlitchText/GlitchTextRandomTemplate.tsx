@@ -62,6 +62,13 @@ interface ActiveItem {
   seed: string;
 }
 
+interface PlacedItem extends ActiveItem {
+  cellIndex: number;
+  fadeOutEndFrame: number;
+  width: number;
+  height: number;
+}
+
 /**
  * 4x2 grid of cells for random placement on a square canvas
  * Each item appears in a random cell within the grid
@@ -73,29 +80,82 @@ const GRID_ROWS = 4;
 /**
  * Get random position within a grid cell
  */
+const getShuffledCells = (cycle: number, randomSeed: string): number[] => {
+  const cells = Array.from({ length: GRID_COLS * GRID_ROWS }, (_, index) => index);
+
+  for (let index = cells.length - 1; index > 0; index--) {
+    const swapIndex = Math.floor(
+      random(`${randomSeed}-cell-cycle-${cycle}-${index}`) * (index + 1)
+    );
+    [cells[index], cells[swapIndex]] = [cells[swapIndex], cells[index]];
+  }
+
+  return cells;
+};
+
 const getPositionInGridCell = (
-  cellCol: number,
-  cellRow: number,
+  cellIndex: number,
   randomSeed: string,
-  randIndex: number
+  randIndex: number,
+  retryIndex: number,
+  textWidth: number,
+  textHeight: number,
+  compositionWidth: number,
+  compositionHeight: number,
+  positionJitterRatio: number
 ): { x: number; y: number } => {
-  const cellWidth = 100 / GRID_COLS;
-  const cellHeight = 100 / GRID_ROWS;
+  const cellCol = cellIndex % GRID_COLS;
+  const cellRow = Math.floor(cellIndex / GRID_COLS);
+  const cellWidth = compositionWidth / GRID_COLS;
+  const cellHeight = compositionHeight / GRID_ROWS;
   const cellCenterX = (cellCol + 0.5) * cellWidth;
   const cellCenterY = (cellRow + 0.5) * cellHeight;
-  const jitterRatio = 0.18;
+  const textWidthRatio = clamp(textWidth / cellWidth, 0, 1);
+  const adaptiveJitterRatio = clamp(
+    positionJitterRatio * (1 - textWidthRatio * 0.7),
+    0.08,
+    positionJitterRatio
+  );
   const x =
     cellCenterX +
-    (random(`${randomSeed}-cx-${randIndex}`) - 0.5) *
+    (random(`${randomSeed}-cx-${randIndex}-${retryIndex}`) - 0.5) *
       cellWidth *
-      jitterRatio;
+      adaptiveJitterRatio;
   const y =
     cellCenterY +
-    (random(`${randomSeed}-cy-${randIndex}`) - 0.5) *
+    (random(`${randomSeed}-cy-${randIndex}-${retryIndex}`) - 0.5) *
       cellHeight *
-      jitterRatio;
+      positionJitterRatio;
 
-  return { x, y };
+  return {
+    x:
+      (clamp(x, textWidth / 2, compositionWidth - textWidth / 2) /
+        compositionWidth) *
+      100,
+    y:
+      (clamp(y, textHeight / 2, compositionHeight - textHeight / 2) /
+        compositionHeight) *
+      100,
+  };
+};
+
+const overlaps = (
+  candidate: Pick<PlacedItem, "x" | "y" | "width" | "height">,
+  existing: Pick<PlacedItem, "x" | "y" | "width" | "height">,
+  compositionWidth: number,
+  compositionHeight: number,
+  minimumHorizontalGapPx: number,
+  minimumVerticalGapPx: number
+): boolean => {
+  const deltaX = Math.abs(candidate.x - existing.x) * compositionWidth / 100;
+  const deltaY = Math.abs(candidate.y - existing.y) * compositionHeight / 100;
+
+  return (
+    deltaX <
+      (candidate.width + existing.width) / 2 + minimumHorizontalGapPx &&
+    deltaY <
+      (candidate.height + existing.height) / 2 + minimumVerticalGapPx
+  );
 };
 
 /**
@@ -110,9 +170,22 @@ const generateActiveItems = (
   displayDurationFrames: number,
   fadeOutDuration: number,
   initialDelayFrames: number,
+  fontSize: number,
+  letterSpacing: string,
+  rgbOffsetMax: number,
+  jitterPx: number,
+  compositionWidth: number,
+  compositionHeight: number,
+  positionJitterRatio: number,
+  minimumHorizontalGapPx: number,
+  minimumVerticalGapPx: number,
+  positionRetryCount: number,
+  avoidRecentCellCount: number,
+  preferDistantCellProbability: number,
   randomSeed: string
 ): ActiveItem[] => {
   const active: ActiveItem[] = [];
+  const placed: PlacedItem[] = [];
 
   if (!items || items.length === 0) {
     return active;
@@ -140,18 +213,93 @@ const generateActiveItems = (
       const fadeOutStart = actualSpawnFrame + displayDurationFrames;
       const fadeOutEnd = fadeOutStart + fadeOutDuration;
 
-      // Assign grid cell based on itemIndex to ensure each visible item gets a unique cell
-      // This prevents overlap: items cycle through cells after earlier items fade out.
-      const cellIndex = itemIndex % totalCells;
-      const cellCol = cellIndex % GRID_COLS;
-      const cellRow = Math.floor(cellIndex / GRID_COLS);
-
-      const { x, y } = getPositionInGridCell(
-        cellCol,
-        cellRow,
-        randomSeed,
-        itemIndex
+      const effectMargin = rgbOffsetMax * 1.55 + jitterPx + 4;
+      const textWidth =
+        estimateTextWidth(item.text, fontSize, letterSpacing) + effectMargin * 2;
+      const textHeight = fontSize * 1.2 + (jitterPx + 4) * 2;
+      const cycle = Math.floor(itemIndex / totalCells);
+      const shuffledCells = getShuffledCells(cycle, randomSeed);
+      const recentCells = new Set(
+        placed.slice(-avoidRecentCellCount).map((placedItem) => placedItem.cellIndex)
       );
+      const overlappingLifetimeItems = placed.filter(
+        (placedItem) => placedItem.fadeOutEndFrame > actualSpawnFrame
+      );
+      let bestCandidate: PlacedItem | null = null;
+      let bestDistance = -1;
+      const preferDistantCell =
+        random(`${randomSeed}-prefer-distant-${itemIndex}`) <
+        preferDistantCellProbability;
+
+      for (let retryIndex = 0; retryIndex < positionRetryCount; retryIndex++) {
+        const permutationIndex = (itemIndex + retryIndex) % totalCells;
+        const cellIndex = shuffledCells[permutationIndex];
+        if (retryIndex < positionRetryCount - 1 && recentCells.has(cellIndex)) {
+          continue;
+        }
+
+        const position = getPositionInGridCell(
+          cellIndex,
+          randomSeed,
+          itemIndex,
+          retryIndex,
+          textWidth,
+          textHeight,
+          compositionWidth,
+          compositionHeight,
+          positionJitterRatio
+        );
+        const candidate: PlacedItem = {
+          text: item.text,
+          startFrame: actualSpawnFrame,
+          glitchStartFrame: glitchStart,
+          fadeOutStartFrame: fadeOutStart,
+          fadeOutEndFrame: fadeOutEnd,
+          x: position.x,
+          y: position.y,
+          width: textWidth,
+          height: textHeight,
+          cellIndex,
+          seed: `${randomSeed}-item-${itemIndex}`,
+        };
+        const collides = overlappingLifetimeItems.some((placedItem) =>
+          overlaps(
+            candidate,
+            placedItem,
+            compositionWidth,
+            compositionHeight,
+            minimumHorizontalGapPx,
+            minimumVerticalGapPx
+          )
+        );
+        const nearestDistance = overlappingLifetimeItems.reduce(
+          (nearest, placedItem) => {
+            const deltaX = (candidate.x - placedItem.x) * compositionWidth / 100;
+            const deltaY = (candidate.y - placedItem.y) * compositionHeight / 100;
+            return Math.min(nearest, Math.hypot(deltaX, deltaY));
+          },
+          Number.POSITIVE_INFINITY
+        );
+
+        if (collides) {
+          continue;
+        }
+        if (!preferDistantCell) {
+          bestCandidate = candidate;
+          break;
+        }
+        if (nearestDistance > bestDistance) {
+          bestCandidate = candidate;
+          bestDistance = nearestDistance;
+        }
+      }
+
+      if (!bestCandidate) {
+        itemIndex++;
+        spawnFrame = actualSpawnFrame + 1;
+        continue;
+      }
+      placed.push(bestCandidate);
 
       // Include fade-out duration in the active check to keep the item visible through fade-out
       if (actualSpawnFrame <= frame && fadeOutEnd > frame) {
@@ -160,9 +308,9 @@ const generateActiveItems = (
           startFrame: actualSpawnFrame,
           glitchStartFrame: glitchStart,
           fadeOutStartFrame: fadeOutStart,
-          x,
-          y,
-          seed: `${randomSeed}-item-${itemIndex}`,
+          x: bestCandidate.x,
+          y: bestCandidate.y,
+          seed: bestCandidate.seed,
         });
       }
 
@@ -405,6 +553,12 @@ export const GlitchTextRandomTemplate: React.FC<GlitchTextRandomSchemaType> = ({
   displayDurationFrames,
   fadeOutDuration,
   initialDelayFrames,
+  positionJitterRatio,
+  minimumHorizontalGapPx,
+  minimumVerticalGapPx,
+  positionRetryCount,
+  avoidRecentCellCount,
+  preferDistantCellProbability,
   randomSeed,
 }) => {
   const frame = useCurrentFrame();
@@ -420,9 +574,21 @@ export const GlitchTextRandomTemplate: React.FC<GlitchTextRandomSchemaType> = ({
         displayDurationFrames,
         fadeOutDuration,
         initialDelayFrames,
+        fontSize,
+        letterSpacing,
+        rgbOffsetMax,
+        jitterPx,
+        width,
+        height,
+        positionJitterRatio,
+        minimumHorizontalGapPx,
+        minimumVerticalGapPx,
+        positionRetryCount,
+        avoidRecentCellCount,
+        preferDistantCellProbability,
         randomSeed
       ),
-    [frame, items, spawnIntervalFrames, glitchDelayFrames, displayDurationFrames, fadeOutDuration, initialDelayFrames, randomSeed]
+    [frame, items, spawnIntervalFrames, glitchDelayFrames, displayDurationFrames, fadeOutDuration, initialDelayFrames, fontSize, letterSpacing, rgbOffsetMax, jitterPx, width, height, positionJitterRatio, minimumHorizontalGapPx, minimumVerticalGapPx, positionRetryCount, avoidRecentCellCount, preferDistantCellProbability, randomSeed]
   );
 
   return (

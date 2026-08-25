@@ -44,6 +44,14 @@ export const glitchTextRandomSchema = z.object({
   /** Fade-out duration (frames) */
   fadeOutDuration: z.number().min(10).default(30),
 
+  /** Maximum cell-relative placement variation; reduced automatically for long text */
+  positionJitterRatio: z.number().min(0).max(0.8).default(0.45),
+  minimumHorizontalGapPx: z.number().min(0).default(40),
+  minimumVerticalGapPx: z.number().min(0).default(30),
+  positionRetryCount: z.number().int().min(1).max(16).default(8),
+  avoidRecentCellCount: z.number().int().min(0).max(8).default(3),
+  preferDistantCellProbability: z.number().min(0).max(1).default(0.7),
+
   randomSeed: z.string().default("glitch-random"),
 });
 
@@ -71,6 +79,12 @@ export const defaultGlitchTextRandomProps = {
   glitchDelayFrames: 90,
   displayDurationFrames: 300,
   fadeOutDuration: 30,
+  positionJitterRatio: 0.45,
+  minimumHorizontalGapPx: 40,
+  minimumVerticalGapPx: 30,
+  positionRetryCount: 8,
+  avoidRecentCellCount: 3,
+  preferDistantCellProbability: 0.7,
   randomSeed: "glitch-random",
 } as const;
 

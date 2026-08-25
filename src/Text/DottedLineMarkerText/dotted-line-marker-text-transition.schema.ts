@@ -17,7 +17,7 @@ export const dottedLineMarkerTextTransitionSchema = z.object({
   itemsB: z.array(dottedLineMarkerTextTransitionItemSchema).default([]),
 
   /** Frame at which the row-by-row glitch handover begins */
-  transitionStartFrame: z.number().min(0).default(600),
+  transitionStartFrame: z.number().min(0).default(360),
   /** Total frames the handover takes across all rows (last row finishes at transitionStartFrame + this) */
   transitionDurationFrames: z.number().min(1).default(60),
   /** How long a single row's own glitch handover takes */
@@ -32,6 +32,11 @@ export const dottedLineMarkerTextTransitionSchema = z.object({
   channelRColor: zColor().default("rgba(255, 51, 102, 0.55)"),
   channelBColor: zColor().default("rgba(51, 204, 255, 0.55)"),
 
+  /** Independent left/right text flicker throughout the composition */
+  flickerProbability: z.number().min(0).max(1).default(0.12),
+  flickerSegmentFrames: z.number().int().min(1).default(3),
+  flickerMinimumOpacity: z.number().min(0).max(1).default(0.35),
+
   randomSeed: z.string().default("dotted-line-marker-transition"),
 });
 
@@ -39,8 +44,8 @@ export type DottedLineMarkerTextTransitionSchemaType = z.infer<
   typeof dottedLineMarkerTextTransitionSchema
 >;
 
-// 20s before the switch + 2s glitch handover + 20s after = 42s total.
-export const dottedLineMarkerTextTransitionDurationFrames = 1260;
+// 12s before the switch + 2s glitch handover + 20s after = 34s total.
+export const dottedLineMarkerTextTransitionDurationFrames = 1020;
 
 export const defaultDottedLineMarkerTextTransitionProps: DottedLineMarkerTextTransitionSchemaType =
   {
@@ -49,7 +54,7 @@ export const defaultDottedLineMarkerTextTransitionProps: DottedLineMarkerTextTra
     backgroundColor: "#060810",
     itemsA: [],
     itemsB: [],
-    transitionStartFrame: 600,
+    transitionStartFrame: 360,
     transitionDurationFrames: 60,
     rowGlitchDurationFrames: 24,
     rgbOffsetMax: 12,
@@ -59,6 +64,9 @@ export const defaultDottedLineMarkerTextTransitionProps: DottedLineMarkerTextTra
     jitterPx: 3,
     channelRColor: "rgba(255, 51, 102, 0.55)",
     channelBColor: "rgba(51, 204, 255, 0.55)",
+    flickerProbability: 0.12,
+    flickerSegmentFrames: 3,
+    flickerMinimumOpacity: 0.35,
     randomSeed: "dotted-line-marker-transition",
   };
 

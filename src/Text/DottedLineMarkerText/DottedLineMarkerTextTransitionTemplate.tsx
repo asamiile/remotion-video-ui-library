@@ -50,6 +50,37 @@ const GlitchTextCell: React.FC<{
   </div>
 );
 
+const FlickerText: React.FC<{
+  children: React.ReactNode;
+  frame: number;
+  seed: string;
+  probability: number;
+  segmentFrames: number;
+  minimumOpacity: number;
+}> = ({ children, frame, seed, probability, segmentFrames, minimumOpacity }) => {
+  const segment = Math.floor(frame / segmentFrames);
+  const flickering = random(`${seed}-active-${segment}`) < probability;
+  const opacity = flickering
+    ? minimumOpacity +
+      random(`${seed}-opacity-${segment}`) * (1 - minimumOpacity)
+    : 1;
+  const brightness = flickering
+    ? 0.72 + random(`${seed}-brightness-${segment}`) * 0.58
+    : 1;
+
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        opacity,
+        filter: `brightness(${brightness})`,
+      }}
+    >
+      {children}
+    </span>
+  );
+};
+
 export const DottedLineMarkerTextTransitionTemplate: React.FC<
   DottedLineMarkerTextTransitionSchemaType
 > = ({
@@ -68,6 +99,9 @@ export const DottedLineMarkerTextTransitionTemplate: React.FC<
   jitterPx,
   channelRColor,
   channelBColor,
+  flickerProbability,
+  flickerSegmentFrames,
+  flickerMinimumOpacity,
   randomSeed,
 }) => {
   const frame = useCurrentFrame();
@@ -184,9 +218,29 @@ export const DottedLineMarkerTextTransitionTemplate: React.FC<
             <DottedLineRow
               key={`row-${rowIndex}`}
               leftText={leftText}
-              leftContent={leftContent}
+              leftContent={
+                <FlickerText
+                  frame={frame}
+                  seed={`${randomSeed}-left-flicker-${rowIndex}`}
+                  probability={flickerProbability}
+                  segmentFrames={flickerSegmentFrames}
+                  minimumOpacity={flickerMinimumOpacity}
+                >
+                  {leftContent ?? leftText}
+                </FlickerText>
+              }
               rightText={rightText}
-              rightContent={rightContent}
+              rightContent={
+                <FlickerText
+                  frame={frame}
+                  seed={`${randomSeed}-right-flicker-${rowIndex}`}
+                  probability={flickerProbability}
+                  segmentFrames={flickerSegmentFrames}
+                  minimumOpacity={flickerMinimumOpacity}
+                >
+                  {rightContent ?? rightText}
+                </FlickerText>
+              }
               fontSize={fontSize}
               textColor={textColor}
             />
