@@ -132,6 +132,27 @@ SCI_FI_OVERLAY_COMPOSITION_IDS=(
   "QuantumParticleOverlay"
 )
 
+TEXTLESS_SCI_FI_OVERLAY_COMPOSITION_IDS=(
+  "ScannerSweepOverlay"
+  "ChromaticSignalTear"
+  "CircuitTracePulse"
+  "HologramDepthSlices"
+  "TargetBracketSwarm"
+  "PerspectiveGridPulse"
+  "EnergyContourLines"
+  "GlitchBlockDisplacement"
+  "ParticleConnectionField"
+  "LensSensorArtifacts"
+  "VolumetricLightScan"
+  "DigitalFragmentDrift"
+  "PlasmaEdgeArc"
+  "RadialInterfacePulse"
+  "CompressionNoiseBurst"
+  "SyntheticFilmGrain"
+  "RefractiveWaveDistortion"
+  "ApertureIrisOverlay"
+)
+
 # For colored output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -181,6 +202,7 @@ resolve_output_subdir() {
     DelayTrail-*) echo "Effect/DelayTrail" ;;
     BloomFlashTransition-*) echo "Effect/BloomFlashTransition" ;;
     TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/$comp_id" ;;
+    ScannerSweepOverlay|ChromaticSignalTear|CircuitTracePulse|HologramDepthSlices|TargetBracketSwarm|PerspectiveGridPulse|EnergyContourLines|GlitchBlockDisplacement|ParticleConnectionField|LensSensorArtifacts|VolumetricLightScan|DigitalFragmentDrift|PlasmaEdgeArc|RadialInterfacePulse|CompressionNoiseBurst|SyntheticFilmGrain|RefractiveWaveDistortion|ApertureIrisOverlay) echo "Effect/$comp_id" ;;
     BattleCalloutBanner-*) echo "UI/BattleCalloutBanner" ;;
     AsymmetricStatusPanel-*) echo "UI/AsymmetricStatusPanel" ;;
     FramedFootageWindow-*) echo "UI/FramedFootageWindow" ;;
@@ -419,6 +441,19 @@ render_sci_fi_overlays() {
   done
   echo ""
   echo -e "${GREEN}✅ Transparent sci-fi overlays rendered successfully!${NC}"
+}
+
+render_textless_sci_fi_overlays() {
+  echo -e "${YELLOW}✨ Rendering textless sci-fi overlays...${NC}"
+  local comp_id
+  for comp_id in "${TEXTLESS_SCI_FI_OVERLAY_COMPOSITION_IDS[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+    render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+  echo ""
+  echo -e "${GREEN}✅ Textless sci-fi overlays rendered successfully!${NC}"
 }
 
 # Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs)
@@ -701,6 +736,9 @@ main() {
     SciFiOverlay|scifioverlay)
       render_sci_fi_overlays
       ;;
+    TextlessSciFiOverlay|textlessscifioverlay)
+      render_textless_sci_fi_overlays
+      ;;
     UI|ui)
       render_ui
       ;;
@@ -724,6 +762,7 @@ main() {
       render_zoom_blur_transition
       render_new_effects
       render_sci_fi_overlays
+      render_textless_sci_fi_overlays
       render_ui
       render_explicit_compositions PlaceholderImage
       ;;
@@ -755,6 +794,7 @@ main() {
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
       echo "  SciFiOverlay       Render all transparent sci-fi video overlay effects"
+      echo "  TextlessSciFiOverlay Render all transparent textless sci-fi overlay effects"
       echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel, framed window, lower-third label)"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"

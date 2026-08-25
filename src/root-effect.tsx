@@ -48,6 +48,8 @@ import {BloomFlashTransitionTemplate} from "./Effects/BloomFlashTransition/Bloom
 import {bloomFlashTransitionDurationFrames,bloomFlashTransitionPatterns,bloomFlashTransitionSchema} from "./Effects/BloomFlashTransition/bloom-flash-transition.schema";
 import {SciFiOverlayTemplate} from "./Effects/SciFiOverlay/SciFiOverlayTemplate";
 import {sciFiOverlayDurationFrames,sciFiOverlayPatterns,sciFiOverlaySchema} from "./Effects/SciFiOverlay/sci-fi-overlay.schema";
+import {TextlessSciFiOverlayTemplate} from "./Effects/TextlessSciFiOverlay/TextlessSciFiOverlayTemplate";
+import {textlessSciFiOverlayDurationFrames,textlessSciFiOverlayPatterns,textlessSciFiOverlaySchema} from "./Effects/TextlessSciFiOverlay/textless-sci-fi-overlay.schema";
 
 const FPS = 30;
 const inkRippleDurationFrames =
@@ -151,6 +153,7 @@ export function EffectFolder() {
       <Folder name="DelayTrail">{renderPatternFamily({patterns:delayTrailPatterns,idPrefix:"DelayTrail-",Template:DelayTrailTemplate,schema:delayTrailSchema,durationInFrames:delayTrailDurationFrames})}</Folder>
       <Folder name="BloomFlashTransition">{renderPatternFamily({patterns:bloomFlashTransitionPatterns,idPrefix:"BloomFlashTransition-",Template:BloomFlashTransitionTemplate,schema:bloomFlashTransitionSchema,durationInFrames:bloomFlashTransitionDurationFrames})}</Folder>
       {renderPatternFamily({patterns:sciFiOverlayPatterns,idPrefix:"",Template:SciFiOverlayTemplate,schema:sciFiOverlaySchema,durationInFrames:sciFiOverlayDurationFrames})}
+      {renderPatternFamily({patterns:textlessSciFiOverlayPatterns,idPrefix:"",Template:TextlessSciFiOverlayTemplate,schema:textlessSciFiOverlaySchema,durationInFrames:textlessSciFiOverlayDurationFrames})}
     </Folder>
   );
 }

@@ -9,6 +9,7 @@ const families = [
   {idPrefix:"DelayTrail",file:"src/Effects/DelayTrail/delay-trail.schema.ts",exportName:"delayTrailPatterns"},
   {idPrefix:"BloomFlashTransition",file:"src/Effects/BloomFlashTransition/bloom-flash-transition.schema.ts",exportName:"bloomFlashTransitionPatterns"},
   {idPrefix:"",file:"src/Effects/SciFiOverlay/sci-fi-overlay.schema.ts",exportName:"sciFiOverlayPatterns",join:""},
+  {idPrefix:"",file:"src/Effects/TextlessSciFiOverlay/textless-sci-fi-overlay.schema.ts",exportName:"textlessSciFiOverlayPatterns",join:""},
 ];
 for (const id of fixedIds) process.stdout.write(`${id}\n`);
 for (const family of families) for (const key of requirePatternKeys(path.join(root, family.file), family.exportName)) process.stdout.write(`${family.idPrefix}${family.join ?? "-"}${capPattern(key)}\n`);
