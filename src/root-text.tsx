@@ -48,7 +48,11 @@ import { confettiPopTextSchema } from "./Text/ConfettiPopText/confetti-pop-text.
 import { confettiPopTextDurationFrames } from "./Text/ConfettiPopText/confetti-pop-text.schema";
 import { FlickerTitleTemplate } from "./Text/FlickerTitle/FlickerTitleTemplate";
 import { flickerTitleSchema } from "./Text/FlickerTitle/flicker-title.schema";
-import { defaultFlickerTitleProps, flickerTitleDurationFrames } from "./Text/FlickerTitle/flicker-title.schema";
+import {
+  defaultFlickerTitleProps,
+  flickerTitleDurationFrames,
+  oneTakeLogoTextDurationFrames,
+} from "./Text/FlickerTitle/flicker-title.schema";
 import { OneTakeLogoTextTemplate } from "./Text/FlickerTitle/OneTakeLogoTextTemplate";
 import { StackedRevealTextTemplate } from "./Text/StackedRevealText/StackedRevealTextTemplate";
 import { stackedRevealTextSchema } from "./Text/StackedRevealText/stacked-reveal-text.schema";
@@ -349,7 +353,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={flickerTitleDurationFrames}
+          durationInFrames={oneTakeLogoTextDurationFrames}
           schema={flickerTitleSchema}
           defaultProps={{ ...mergedOneTakeLogoTextProps }}
         />

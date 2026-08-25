@@ -29,6 +29,7 @@ import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/font-space-grotesk";
 
 export const flickerTitleDurationFrames = 90;
+export const oneTakeLogoTextDurationFrames = flickerTitleDurationFrames * 3;
 
 export const defaultFlickerTitleProps = {
   eyebrowText: "EYEBROW LABEL",

@@ -1,6 +1,9 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
-import { OneTakeLogoTextSchemaType } from "./onetake-logo-text.schema";
+import {
+  FlickerTitleSchemaType,
+  flickerTitleDurationFrames,
+} from "./flicker-title.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import { CTA_FLICKER_CYCLE_MS, ctaFlickerAt } from "../../Motion/OneTake/onetake-flicker";
 import "../../helpers/font-jetbrains-mono";
@@ -24,7 +27,7 @@ const EYEBROW_TEXT_SHADOW = "0 0 12px rgba(55, 233, 255, .5)";
  * anything (same reasoning as OnboardingConnect).
  */
 export const OneTakeLogoTextTemplate: React.FC<
-  OneTakeLogoTextSchemaType
+  FlickerTitleSchemaType
 > = ({
   eyebrowText,
   titleText,
@@ -38,7 +41,7 @@ export const OneTakeLogoTextTemplate: React.FC<
   backgroundColor,
   flickerTriggerFrame,
 }) => {
-  const frame = useCurrentFrame();
+  const frame = useCurrentFrame() % flickerTitleDurationFrames;
   const { fps } = useVideoConfig();
 
   const elapsedSinceFlickerMs =
