@@ -8,6 +8,7 @@ const families = [
   {idPrefix:"KaleidoscopeMirror",file:"src/Effects/KaleidoscopeMirror/kaleidoscope-mirror.schema.ts",exportName:"kaleidoscopeMirrorPatterns"},
   {idPrefix:"DelayTrail",file:"src/Effects/DelayTrail/delay-trail.schema.ts",exportName:"delayTrailPatterns"},
   {idPrefix:"BloomFlashTransition",file:"src/Effects/BloomFlashTransition/bloom-flash-transition.schema.ts",exportName:"bloomFlashTransitionPatterns"},
+  {idPrefix:"",file:"src/Effects/SciFiOverlay/sci-fi-overlay.schema.ts",exportName:"sciFiOverlayPatterns",join:""},
 ];
 for (const id of fixedIds) process.stdout.write(`${id}\n`);
-for (const family of families) for (const key of requirePatternKeys(path.join(root, family.file), family.exportName)) process.stdout.write(`${family.idPrefix}-${capPattern(key)}\n`);
+for (const family of families) for (const key of requirePatternKeys(path.join(root, family.file), family.exportName)) process.stdout.write(`${family.idPrefix}${family.join ?? "-"}${capPattern(key)}\n`);

@@ -119,6 +119,19 @@ ZOOM_BLUR_TRANSITION_COMPOSITION_IDS=(
   "ZoomBlurTransition"
 )
 
+SCI_FI_OVERLAY_COMPOSITION_IDS=(
+  "TacticalScanOverlay"
+  "SignalInterferenceOverlay"
+  "DataAcquisitionLines"
+  "HolographicNoiseOverlay"
+  "ReticleTrackingOverlay"
+  "CinematicDiagnosticFrame"
+  "VolumetricGridOverlay"
+  "DigitalDebrisOverlay"
+  "BiometricScanOverlay"
+  "QuantumParticleOverlay"
+)
+
 # For colored output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -167,6 +180,7 @@ resolve_output_subdir() {
     KaleidoscopeMirror-*) echo "Effect/KaleidoscopeMirror" ;;
     DelayTrail-*) echo "Effect/DelayTrail" ;;
     BloomFlashTransition-*) echo "Effect/BloomFlashTransition" ;;
+    TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/$comp_id" ;;
     BattleCalloutBanner-*) echo "UI/BattleCalloutBanner" ;;
     AsymmetricStatusPanel-*) echo "UI/AsymmetricStatusPanel" ;;
     FramedFootageWindow-*) echo "UI/FramedFootageWindow" ;;
@@ -225,6 +239,18 @@ output_path_for() {
   if [ -z "$subdir" ]; then
     echo -e "${RED}✗ No output directory mapping for: ${comp_id}${NC}" >&2
     return 1
+  fi
+  if [ "${subdir##*/}" = "$comp_id" ]; then
+    if [ "$OUTPUT_FORMAT" = "png" ]; then
+      echo "$OUTPUT_DIR/$subdir/png"
+    elif [ "$OUTPUT_FORMAT" = "stock-alpha" ]; then
+      echo "$OUTPUT_DIR/$subdir/${comp_id}-alpha.mov"
+    elif [ "$OUTPUT_FORMAT" = "stock" ]; then
+      echo "$OUTPUT_DIR/$subdir/${comp_id}-60s.mov"
+    else
+      echo "$OUTPUT_DIR/$subdir/$comp_id.mp4"
+    fi
+    return 0
   fi
   if [ "$OUTPUT_FORMAT" = "png" ]; then
     echo "$OUTPUT_DIR/$subdir/$comp_id/png"
@@ -380,6 +406,19 @@ render_new_effects() {
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
     case "$comp_id" in SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+render_sci_fi_overlays() {
+  echo -e "${YELLOW}✨ Rendering transparent sci-fi overlays...${NC}"
+  local comp_id
+  for comp_id in "${SCI_FI_OVERLAY_COMPOSITION_IDS[@]}"; do
+    echo ""
+    echo -e "${YELLOW}→ ${comp_id}${NC}"
+    render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1
+    echo -e "${GREEN}✓ ${comp_id} rendered${NC}"
+  done
+  echo ""
+  echo -e "${GREEN}✅ Transparent sci-fi overlays rendered successfully!${NC}"
 }
 
 # Render UI compositions (IDs enumerated by scripts/list-ui-composition-ids.cjs)
@@ -658,7 +697,9 @@ main() {
       ;;
     ZoomBlurTransition|zoomblurtransition)
       render_zoom_blur_transition
-      render_new_effects
+      ;;
+    SciFiOverlay|scifioverlay)
+      render_sci_fi_overlays
       ;;
     UI|ui)
       render_ui
@@ -681,6 +722,8 @@ main() {
       render_burst
       render_shatter_crack_transition
       render_zoom_blur_transition
+      render_new_effects
+      render_sci_fi_overlays
       render_ui
       render_explicit_compositions PlaceholderImage
       ;;
@@ -711,6 +754,7 @@ main() {
       echo "  Burst              Render the special-move impact burst"
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
+      echo "  SciFiOverlay       Render all transparent sci-fi video overlay effects"
       echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel, framed window, lower-third label)"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"
