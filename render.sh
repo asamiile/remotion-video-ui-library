@@ -195,14 +195,25 @@ resolve_output_subdir() {
     EmergingNoiseTitle-*) echo "Text/EmergingNoiseTitle" ;;
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
-    GlitchTransitionBridge|InkRippleTransition|RackFocusBokehTransition|Burst|ShatterCrackTransition|ZoomBlurTransition) echo "Effect" ;;
-    SignalSliceTransition-*) echo "Effect/SignalSliceTransition" ;;
-    HologramFragmentTransition-*) echo "Effect/HologramFragmentTransition" ;;
-    KaleidoscopeMirror-*) echo "Effect/KaleidoscopeMirror" ;;
-    DelayTrail-*) echo "Effect/DelayTrail" ;;
-    BloomFlashTransition-*) echo "Effect/BloomFlashTransition" ;;
-    TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/$comp_id" ;;
-    ScannerSweepOverlay|ChromaticSignalTear|CircuitTracePulse|HologramDepthSlices|TargetBracketSwarm|PerspectiveGridPulse|EnergyContourLines|GlitchBlockDisplacement|ParticleConnectionField|LensSensorArtifacts|VolumetricLightScan|DigitalFragmentDrift|PlasmaEdgeArc|RadialInterfacePulse|CompressionNoiseBurst|SyntheticFilmGrain|RefractiveWaveDistortion|ApertureIrisOverlay) echo "Effect/$comp_id" ;;
+    GlitchTransitionBridge) echo "Effect/Transition/GlitchSignal/GlitchTransitionBridge" ;;
+    SignalSliceTransition-*) echo "Effect/Transition/GlitchSignal/SignalSliceTransition" ;;
+    PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition) echo "Effect/Transition/GlitchSignal" ;;
+    LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition) echo "Effect/Transition/ScanControl" ;;
+    HologramFragmentTransition-*) echo "Effect/Transition/HologramParticle/HologramFragmentTransition" ;;
+    VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition) echo "Effect/Transition/HologramParticle" ;;
+    BloomFlashTransition-*) echo "Effect/Transition/OpticalEnergy/BloomFlashTransition" ;;
+    RackFocusBokehTransition) echo "Effect/Transition/OpticalEnergy/RackFocusBokehTransition" ;;
+    PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition) echo "Effect/Transition/OpticalEnergy" ;;
+    InkRippleTransition) echo "Effect/Transition/SpatialWarp/InkRippleTransition" ;;
+    ShatterCrackTransition) echo "Effect/Transition/SpatialWarp/ShatterCrackTransition" ;;
+    ZoomBlurTransition) echo "Effect/Transition/SpatialWarp/ZoomBlurTransition" ;;
+    GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition) echo "Effect/Transition/SpatialWarp" ;;
+    DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) echo "Effect/Transition/DataUI" ;;
+    TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/Overlay/SciFi" ;;
+    ScannerSweepOverlay|ChromaticSignalTear|CircuitTracePulse|HologramDepthSlices|TargetBracketSwarm|PerspectiveGridPulse|EnergyContourLines|GlitchBlockDisplacement|ParticleConnectionField|LensSensorArtifacts|VolumetricLightScan|DigitalFragmentDrift|PlasmaEdgeArc|RadialInterfacePulse|CompressionNoiseBurst|SyntheticFilmGrain|RefractiveWaveDistortion|ApertureIrisOverlay) echo "Effect/Overlay/TextlessSciFi" ;;
+    Burst) echo "Effect/Stylize/Burst" ;;
+    DelayTrail-*) echo "Effect/Stylize/Trail" ;;
+    KaleidoscopeMirror-*) echo "Effect/Stylize/Mirror" ;;
     BattleCalloutBanner-*) echo "UI/BattleCalloutBanner" ;;
     AsymmetricStatusPanel-*) echo "UI/AsymmetricStatusPanel" ;;
     FramedFootageWindow-*) echo "UI/FramedFootageWindow" ;;
@@ -251,37 +262,32 @@ resolve_output_subdir() {
   esac
 }
 
-# Build the full output path from comp_id. MP4 files live directly in the folder
-# matching Studio's Folder nesting. PNG sequences get a composition-specific
-# directory so their frames cannot collide with another composition.
+# Build the full output path from comp_id. Every export lives in a
+# composition-specific directory below the folder matching Studio's Folder nesting:
+#   out/<Studio folders>/<CompositionId>/<CompositionId>.mp4|mov
+#   out/<Studio folders>/<CompositionId>/png/*.png
 output_path_for() {
   local comp_id="$1"
   local subdir
+  local composition_dir
   subdir="$(resolve_output_subdir "$comp_id")"
   if [ -z "$subdir" ]; then
     echo -e "${RED}✗ No output directory mapping for: ${comp_id}${NC}" >&2
     return 1
   fi
   if [ "${subdir##*/}" = "$comp_id" ]; then
-    if [ "$OUTPUT_FORMAT" = "png" ]; then
-      echo "$OUTPUT_DIR/$subdir/png"
-    elif [ "$OUTPUT_FORMAT" = "stock-alpha" ]; then
-      echo "$OUTPUT_DIR/$subdir/${comp_id}-alpha.mov"
-    elif [ "$OUTPUT_FORMAT" = "stock" ]; then
-      echo "$OUTPUT_DIR/$subdir/${comp_id}-60s.mov"
-    else
-      echo "$OUTPUT_DIR/$subdir/$comp_id.mp4"
-    fi
-    return 0
+    composition_dir="$OUTPUT_DIR/$subdir"
+  else
+    composition_dir="$OUTPUT_DIR/$subdir/$comp_id"
   fi
   if [ "$OUTPUT_FORMAT" = "png" ]; then
-    echo "$OUTPUT_DIR/$subdir/$comp_id/png"
+    echo "$composition_dir/png"
   elif [ "$OUTPUT_FORMAT" = "stock-alpha" ]; then
-    echo "$OUTPUT_DIR/$subdir/${comp_id}-alpha.mov"
+    echo "$composition_dir/${comp_id}-alpha.mov"
   elif [ "$OUTPUT_FORMAT" = "stock" ]; then
-    echo "$OUTPUT_DIR/$subdir/${comp_id}-60s.mov"
+    echo "$composition_dir/${comp_id}-60s.mov"
   else
-    echo "$OUTPUT_DIR/$subdir/$comp_id.mp4"
+    echo "$composition_dir/$comp_id.mp4"
   fi
 }
 
@@ -426,7 +432,7 @@ render_zoom_blur_transition() {
 render_new_effects() {
   local comp_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    case "$comp_id" in SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+    case "$comp_id" in SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*|PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition|LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition|VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition|PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition|GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition|DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 

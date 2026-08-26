@@ -25,7 +25,6 @@ export const flickerTitleSchema = z.object({
 
 export type FlickerTitleSchemaType = z.infer<typeof flickerTitleSchema>;
 
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/font-space-grotesk";
 
 export const flickerTitleDurationFrames = 90;

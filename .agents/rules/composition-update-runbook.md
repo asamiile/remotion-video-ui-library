@@ -39,6 +39,12 @@ alwaysApply: false
    - When adding/changing a family that's "filtered by a registration condition" tied to a location or coordinates (e.g. MiniMap only includes locations in `mapLocationPoints` that have both latitude and longitude set), the enumeration script must exactly match `Root.tsx`'s actual registration condition. Reusing another family's enumeration result (e.g. the full location list used for `Location`) will attempt to render composition IDs that don't exist and fail.
    - **Real incident**: `render_minimap` was reusing the same location list as `render_location`, so it failed with `Error: Could not find composition with ID ...` for locations without lat/lng set (fixed by creating a dedicated `scripts/list-minimap-composition-ids.cjs`).
    - **`render.sh`'s `resolve_output_subdir()` is a separate hand-maintained mapping** (composition ID prefix → `out/` subdirectory) that must also stay in sync with `Root.tsx`'s `<Folder>` nesting — a third place that can drift independently of both `Root.tsx` and the enumeration scripts. After adding or renaming a family, add a case to `resolve_output_subdir()`, then run **`./render.sh check`** to verify every composition ID the enumeration scripts (plus the small fixed-ID list inside `check_output_dirs()`) produce actually resolves to a non-empty subdirectory. This won't catch a family missing from `render.sh` entirely (that has no enumeration output to check) — it only catches an ID that's enumerated somewhere but has no output-directory mapping.
+   - Every composition gets its own output folder below that mapped Studio hierarchy. Keep video files and PNG frames in this fixed layout; do not place videos directly in the category folder:
+     ```text
+     out/<Studio Folder>/<CompositionId>/<CompositionId>.mp4
+     out/<Studio Folder>/<CompositionId>/<CompositionId>-alpha.mov
+     out/<Studio Folder>/<CompositionId>/png/*.png
+     ```
 
 ## C. Locations (Location / MiniMap)
 
@@ -81,6 +87,9 @@ node scripts/list-onetake-composition-ids.cjs
 ./render.sh help
 ./render.sh all
 ```
+
+Adobe Stock向けMOVを書き出す場合は、尺・透過形式・`ffprobe`検証を含む
+[Adobe Stock MOV Rendering](./adobe-stock-rendering.md) も参照する。
 
 ## Related Files
 

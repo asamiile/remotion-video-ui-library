@@ -12,7 +12,6 @@ import {
 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import { IntroTemplate } from "./Intro/Intro/IntroTemplate";
 import { introSchema } from "./Intro/Intro/intro.schema";
-import { introSceneTiming } from "./Intro/Intro/intro.schema";
 import { PlaceholderImage } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {

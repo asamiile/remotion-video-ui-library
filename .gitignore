@@ -4,6 +4,8 @@ build
 .DS_Store
 .env
 config/local/*.local.json
+.loop/config.local.json
+.loop/runtime/
 
 # Ignore the output video from Git but not videos you import into src/.
 out

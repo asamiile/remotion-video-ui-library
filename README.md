@@ -48,6 +48,20 @@ The default export is H.264 MP4. Output folders mirror the `<Folder>` hierarchy 
 
 See the header comment in `render.sh` for details.
 
+## Autonomous engineering loop
+
+The repository includes a bounded agent loop for goal-driven implementation, independent verification, persistent evidence, and explicit stopping conditions.
+
+```console
+cp .loop/goal.example.json .loop/active-goal.json
+pnpm loop:validate -- .loop/active-goal.json
+pnpm loop:verify -- --goal .loop/active-goal.json
+pnpm loop:run -- --agent codex --goal .loop/active-goal.json
+# Or use: --agent claude / --agent copilot
+```
+
+The same goal and verification contract works with Codex CLI, Claude Code, and GitHub Copilot CLI. See [`.loop/README.md`](./.loop/README.md) before unattended use. Full renders, deletion, Git delivery, publication, and external writes remain human approval gates.
+
 **Upgrade Remotion**
 
 ```console

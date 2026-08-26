@@ -1,13 +1,12 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { LocationSchemaType } from "./location.schema";
-import { PlaceholderImage } from "../../../Placeholder/PlaceholderImage/PlaceholderImage";
 
 const createAnimationProgress = (
   frame: number,
   startFrame: number,
   duration: number,
-  easing?: any
+  easing?: (value: number) => number
 ) => {
   return interpolate(
     frame,
@@ -98,7 +97,7 @@ export const LocationTemplate: React.FC<LocationSchemaType> = ({
     fontSize: `${fontSize}px`,
     color: textColor,
     fontFamily: fontFamily,
-    fontWeight: fontWeight as any,
+    fontWeight: fontWeight as React.CSSProperties["fontWeight"],
     lineHeight: 1.2,
     whiteSpace: "nowrap",
     textShadow: "0px 4px 20px rgba(107, 99, 84, 0.25)",

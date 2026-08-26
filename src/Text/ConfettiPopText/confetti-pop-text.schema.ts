@@ -46,8 +46,6 @@ export const confettiPopTextSchema = z.object({
 
 export type ConfettiPopTextSchemaType = z.infer<typeof confettiPopTextSchema>;
 
-import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/font-line-seed-jp";
-
 export const confettiPopTextDurationFrames = 180;
 
 export const defaultConfettiPopTextProps = {

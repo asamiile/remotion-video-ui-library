@@ -1,0 +1,20 @@
+{
+  "$schema": "./goal.schema.json",
+  "id": "create-example-overlay",
+  "objective": "Create one transparent, looping Remotion overlay composition under Effect.",
+  "acceptance": [
+    "The composition is registered directly under the Effect folder in Studio.",
+    "The composition is 1920x1080, 30fps, ten seconds, and has no baked background.",
+    "The implementation uses frame-driven deterministic animation.",
+    "The composition is enumerated by the effect ID script and mapped by render.sh."
+  ],
+  "allowedPaths": ["src/Effects/", "src/root-effect.tsx", "scripts/", "render.sh"],
+  "forbiddenActions": ["Modify config/local/*.local.json", "Delete existing compositions", "Change unrelated user edits"],
+  "verification": [
+    {"name": "repository-lint", "command": "npm run lint", "timeoutSeconds": 300},
+    {"name": "effect-id-mapping", "command": "./render.sh check", "timeoutSeconds": 120},
+    {"name": "diff-whitespace", "command": "git diff --check", "timeoutSeconds": 30}
+  ],
+  "limits": {"maxAttempts": 6, "maxMinutes": 45, "maxConsecutiveNoProgress": 2},
+  "humanGates": ["full-render", "delete", "commit", "push", "merge", "publish", "external-write"]
+}

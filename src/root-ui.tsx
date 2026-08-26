@@ -1,4 +1,4 @@
-import { Composition, Folder } from "remotion";
+import { Folder } from "remotion";
 import { BattleCalloutBannerTemplate } from "./UI/BattleCalloutBanner/BattleCalloutBannerTemplate";
 import { battleCalloutBannerSchema } from "./UI/BattleCalloutBanner/battle-callout-banner.schema";
 import { battleCalloutBannerDurationFrames } from "./UI/BattleCalloutBanner/battle-callout-banner.schema";
@@ -23,7 +23,7 @@ import { SplitScreenEchoTemplate } from "./UI/SplitScreenEcho/SplitScreenEchoTem
 import { splitScreenEchoDurationFrames, splitScreenEchoPatterns, splitScreenEchoSchema } from "./UI/SplitScreenEcho/split-screen-echo.schema";
 import {ParallaxAnalysisStackTemplate} from "./UI/ParallaxAnalysisStack/ParallaxAnalysisStackTemplate";
 import {parallaxAnalysisStackDurationFrames,parallaxAnalysisStackPatterns,parallaxAnalysisStackSchema} from "./UI/ParallaxAnalysisStack/parallax-analysis-stack.schema";
-import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
+import { renderPatternFamily } from "./helpers/composition-helpers";
 import {
   mergedBattleCalloutBannerPatterns,
   mergedAsymmetricStatusPanelPatterns,
@@ -32,8 +32,6 @@ import {
   mergedCircularNeonLogoFramePatterns,
   mergedWaveAnnouncementBannerPatterns,
 } from "./composition/composition-merged-ui";
-
-const FPS = 30;
 
 export function UIFolder() {
   return (

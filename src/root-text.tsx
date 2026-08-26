@@ -213,24 +213,15 @@ export function TextFolder() {
           schema: glitchTextSchema,
           durationInFrames: glitchTextDurationFrames,
         })}
-        {Object.entries(mergedGlitchTextRandomPatterns).map(
-          ([patternName, props]) => (
-            <Composition
-              key={`GlitchTextRandom-${patternName}`}
-              id={`GlitchTextRandom-${patternName}`}
-              component={withCanvasPreview(
-                `GlitchTextRandom-${patternName}`,
-                GlitchTextRandomTemplate
-              )}
-              width={1080}
-              height={1080}
-              fps={FPS}
-              durationInFrames={glitchTextRandomDurationFrames}
-              schema={glitchTextRandomSchema}
-              defaultProps={props}
-            />
-          )
-        )}
+        {renderPatternFamily({
+          patterns: mergedGlitchTextRandomPatterns,
+          idPrefix: "GlitchTextRandom-",
+          Template: GlitchTextRandomTemplate,
+          schema: glitchTextRandomSchema,
+          width: 1080,
+          height: 1080,
+          durationInFrames: glitchTextRandomDurationFrames,
+        })}
       </Folder>
 
       <Folder name="WireText">

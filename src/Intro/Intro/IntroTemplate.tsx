@@ -69,8 +69,13 @@ export const IntroTemplate: React.FC<IntroSchemaType> = ({
       );
     } else {
       // Fade-out start timing, given in seconds
-      const fadeOutStartSeconds = scene.fadeOutStartSeconds ?? 8.5;
-      const fadeOutStartProgress = (fadeOutStartSeconds * 30) / scene.duration;
+      const configuredFadeOutStart = scene.fadeOutStartSeconds
+        ? (scene.fadeOutStartSeconds * 30) / scene.duration
+        : 1 - fadeOutDuration / scene.duration;
+      const fadeOutStartProgress = Math.min(
+        configuredFadeOutStart,
+        1 - fadeOutDuration / scene.duration,
+      );
 
       if (sceneProgress > fadeOutStartProgress) {
         opacity = interpolate(

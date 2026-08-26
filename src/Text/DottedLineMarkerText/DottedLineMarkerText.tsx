@@ -112,7 +112,6 @@ export const DottedLineRow: React.FC<{
           style={{
             opacity: dotOpacity,
             transform: `translateX(${dotScrollOffset}px)`,
-            transition: 'none',
           }}
         >
           {dotPattern}

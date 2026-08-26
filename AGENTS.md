@@ -2,13 +2,17 @@
 
 Guide for AI agents working in this repository.
 
+This file is the agent-neutral source of truth for GitHub Copilot, OpenAI Codex, and Claude Code. Product-specific instruction files should only point here or add narrowly product-specific integration notes; do not duplicate repository rules across them.
+
 - Read these first:
 	- [.agents/rules/repository.md](.agents/rules/repository.md) - repository structure, file layout, and core conventions
 	- [.agents/rules/composition-schema-unification.md](.agents/rules/composition-schema-unification.md) - standard .schema.ts file structure (schema + defaults + types unified in one file)
 	- [.agents/rules/composition-update-runbook.md](.agents/rules/composition-update-runbook.md) - how to add or update compositions and render coverage
+	- [.agents/rules/adobe-stock-rendering.md](.agents/rules/adobe-stock-rendering.md) - Adobe Stock MOV duration, alpha, and verification rules
 	- [.agents/rules/config-local-layout.md](.agents/rules/config-local-layout.md) - how `config/local` is wired and what belongs in `*.example.json` vs `*.local.json`
 	- [.agents/rules/composition-text-local.md](.agents/rules/composition-text-local.md) - read-only policy for personal `composition-text.local.json` and the few exceptions
 	- [.agents/rules/agent-tool-usage.md](.agents/rules/agent-tool-usage.md) - token-efficient Read/Edit usage guidance for AI agents
+	- [.loop/policies/remotion-composition.md](.loop/policies/remotion-composition.md) - autonomous-loop boundaries and human approval gates
 
 ## Overview
 
@@ -22,3 +26,4 @@ For specific commands (starting the preview, rendering, upgrading Remotion), see
 
 - Project rules: [.agents/rules/](.agents/rules/)
 - Skills: [.agents/skills/](.agents/skills/)
+- Autonomous goals and runtime: [.loop/README.md](.loop/README.md)
