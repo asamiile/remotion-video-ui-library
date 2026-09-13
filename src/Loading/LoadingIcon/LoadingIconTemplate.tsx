@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate, Easing } from "remotion";
 import { LoadingIconSchemaType } from "./loading-icon.schema";
 import { LoadingIcon } from "./LoadingIcon";
 
@@ -22,6 +22,7 @@ export const LoadingIconTemplate: React.FC<LoadingIconSchemaType> = ({
   delayFrames,
 }) => {
   const frame = useCurrentFrame();
+  const {durationInFrames} = useVideoConfig();
 
   const opacity = useMemo(() => {
     if (frame < delayFrames) return 0;
@@ -39,8 +40,13 @@ export const LoadingIconTemplate: React.FC<LoadingIconSchemaType> = ({
       );
     }
 
-    return 1;
-  }, [frame, delayFrames, fadeInDuration]);
+    return interpolate(
+      frame,
+      [durationInFrames - fadeOutDuration, durationInFrames],
+      [1, 0],
+      {extrapolateLeft: "clamp", extrapolateRight: "clamp"},
+    );
+  }, [frame, delayFrames, fadeInDuration, fadeOutDuration, durationInFrames]);
 
   const containerStyle: React.CSSProperties = useMemo(
     () => ({
@@ -63,7 +69,7 @@ export const LoadingIconTemplate: React.FC<LoadingIconSchemaType> = ({
       color: textColor,
       fontSize,
       fontFamily,
-      fontWeight: fontWeight as any,
+      fontWeight: fontWeight as React.CSSProperties["fontWeight"],
       textShadow: "0px 4px 20px rgba(107, 99, 84, 0.25)",
       margin: 0,
     }),
@@ -91,6 +97,7 @@ export const LoadingIconTemplate: React.FC<LoadingIconSchemaType> = ({
           lightColor={lightColor}
           darkColor={darkColor}
           strokeWidth={strokeWidth}
+          rotationDuration={rotationDuration}
         />
         {showText && <p style={textStyle}>{text}</p>}
       </div>

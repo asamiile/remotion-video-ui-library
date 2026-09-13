@@ -1,5 +1,6 @@
 /** Shape of config/local/composition-text.local.json (all keys optional) */
 export type CompositionTextLocal = {
+  scanEchoTransitionPatterns?: Record<string, Record<string, unknown>>;
   intro?: {
     authorName?: string;
     introTitle?: string;

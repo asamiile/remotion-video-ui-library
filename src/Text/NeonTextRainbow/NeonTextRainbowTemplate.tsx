@@ -8,8 +8,8 @@ import {
   useVideoConfig,
 } from "remotion";
 import { NeonTextRainbowSchemaType } from "./neon-text-rainbow.schema";
-import "../../helpers/jetbrains-mono";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-jetbrains-mono";
+import "../../helpers/font-line-seed-jp";
 import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 
 const VB_W = 1600;

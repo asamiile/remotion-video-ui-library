@@ -1,8 +1,8 @@
 /**
- * Prints the IDs of AudioSpectrum's preset patterns (AudioSpectrum-Simple, etc.) to stdout.
+ * Prints the IDs of AudioSpectrum's preset patterns exactly as Root registers them.
  */
 const path = require("node:path");
-const { capPattern, requirePatternKeys } = require("./lib/ts-config-ast.cjs");
+const { requirePatternKeys } = require("./lib/ts-config-ast.cjs");
 
 const root = path.join(__dirname, "..");
 const configPath = path.join(
@@ -12,5 +12,5 @@ const configPath = path.join(
 
 const keys = requirePatternKeys(configPath, "audioSpectrumPatterns");
 for (const patternId of keys) {
-  process.stdout.write(`AudioSpectrum-${capPattern(patternId)}\n`);
+  process.stdout.write(`AudioSpectrum-${patternId}\n`);
 }

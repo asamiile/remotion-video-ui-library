@@ -1,3 +1,4 @@
+import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
 import { OnboardingConnectTemplate } from "./Motion/OneTake/Onboarding/OnboardingConnect/OnboardingConnectTemplate";
 import { onboardingConnectSchema } from "./Motion/OneTake/Onboarding/OnboardingConnect/onboarding-connect.schema";
@@ -39,7 +40,7 @@ export function OneTakeFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={onboardingConnectDurationFrames}
+              durationInFrames={minimumCompositionFrames(onboardingConnectDurationFrames, FPS)}
               schema={onboardingConnectSchema}
               defaultProps={{ ...defaultOnboardingConnectProps }}
             />
@@ -53,7 +54,7 @@ export function OneTakeFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={onboardingOperateDurationFrames}
+              durationInFrames={minimumCompositionFrames(onboardingOperateDurationFrames, FPS)}
               schema={onboardingOperateSchema}
               defaultProps={{ ...defaultOnboardingOperateProps }}
             />
@@ -67,7 +68,7 @@ export function OneTakeFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={onboardingTestDurationFrames}
+              durationInFrames={minimumCompositionFrames(onboardingTestDurationFrames, FPS)}
               schema={onboardingTestSchema}
               defaultProps={{ ...defaultOnboardingTestProps }}
             />

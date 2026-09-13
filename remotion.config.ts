@@ -20,10 +20,9 @@ const webpack = nodeRequire(
   nodeRequire.resolve("webpack", { paths: [remotionCliRoot] }),
 ) as typeof import("webpack");
 
-// Transparent-background ProRes defaults. UE5 delivery exports select their
-// codec and pixel format on the CLI, so a ProRes-only profile must not leak
-// into those renders.
-if (process.env.REMOTION_UE5_EXPORT !== "1") {
+// Transparent-background ProRes defaults. Standard MP4/PNG exports select
+// their codec on the CLI, so ProRes-only settings must not leak into them.
+if (process.env.REMOTION_STANDARD_EXPORT !== "1") {
   Config.setVideoImageFormat("png");
   Config.setPixelFormat("yuva444p10le");
   Config.setCodec("prores");
@@ -57,6 +56,9 @@ Config.overrideWebpackConfig((currentConfig) => {
     ),
     "process.env.REMOTION_TRANSPARENT_COMPOSITION_BACKDROP": JSON.stringify(
       process.env.REMOTION_TRANSPARENT_COMPOSITION_BACKDROP ?? "0",
+    ),
+    "process.env.REMOTION_ADOBE_STOCK_EXPORT": JSON.stringify(
+      process.env.REMOTION_ADOBE_STOCK_EXPORT ?? "0",
     ),
     "process.env.REMOTION_MAPBOX_TOKEN": JSON.stringify(
       process.env.REMOTION_MAPBOX_TOKEN ?? "",

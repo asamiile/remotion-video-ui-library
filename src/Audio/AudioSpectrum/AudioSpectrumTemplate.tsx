@@ -1,25 +1,20 @@
 import React, { useMemo } from "react";
-import { AbsoluteFill, useCurrentFrame, useVideoConfig, Audio, staticFile, Sequence } from "remotion";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig, staticFile } from "remotion";
 import { useWindowedAudioData, visualizeAudio } from "@remotion/media-utils";
 import { AudioSpectrumSchemaType } from "./audio-spectrum.schema";
-import { PlaceholderImage } from "../../Placeholder/PlaceholderImage/PlaceholderImage";
 
 export const AudioSpectrumTemplate: React.FC<AudioSpectrumSchemaType> = ({
   audioFile,
-  audioOffsetInSeconds = 0,
   barCount,
   barColor,
   barWidth,
   barGap,
   sensitivity,
-  smoothing,
   positionX,
   positionY,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-
-  const audioOffsetInFrames = Math.round(audioOffsetInSeconds * fps);
 
   const { audioData, dataOffsetInSeconds } = useWindowedAudioData({
     src: staticFile(audioFile),

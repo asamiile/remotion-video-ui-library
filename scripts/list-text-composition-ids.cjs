@@ -66,6 +66,7 @@ const families = [
     idPrefix: "CodeStream",
     file: "src/Text/CodeStream/code-stream.schema.ts",
     exportName: "codeStreamPatterns",
+    join: "",
   },
   {
     idPrefix: "StackedRevealText",
@@ -139,6 +140,20 @@ for (const fam of families) {
   const keys = requirePatternKeys(full, fam.exportName);
   const sep = fam.join === "" ? "" : "-";
   for (const patternId of keys) {
-    process.stdout.write(`${fam.idPrefix}${sep}${capPattern(patternId)}\n`);
+    const id = fam.preservePatternCase ? patternId : capPattern(patternId);
+    process.stdout.write(`${fam.idPrefix}${sep}${id}\n`);
   }
+}
+
+const fixedIds = [
+  "GlitchTextRandom-harshSignalRandom-01",
+  "GlitchTextRandom-harshSignalRandom-02",
+  "DottedLineMarkerText-01",
+  "DottedLineMarkerText-02",
+  "DottedLineMarkerText-GlitchHandover",
+  "FlickerTitle",
+];
+
+for (const id of fixedIds) {
+  process.stdout.write(`${id}\n`);
 }

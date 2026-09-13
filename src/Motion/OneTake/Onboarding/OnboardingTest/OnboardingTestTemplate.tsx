@@ -10,10 +10,13 @@ import { OnboardingConnectTemplate } from "../OnboardingConnect/OnboardingConnec
 import { OnboardingOperateTemplate } from "../OnboardingOperate/OnboardingOperateTemplate";
 import { neonBoxShadow } from "../../onetake-device-chrome";
 import { OnboardingTestSchemaType } from "./onboarding-test.schema";
+import { resolveCompositionBackdropColor } from "../../../../helpers/transparent-composition-backdrop";
 
-const SCENE_DURATION_FRAMES = 240;
-const CONNECT_END = SCENE_DURATION_FRAMES;
-const SUCCESS_END = SCENE_DURATION_FRAMES * 2;
+const CONNECTION_TEST_DURATION_FRAMES = 240;
+const CONNECTION_CONFIRMED_DURATION_FRAMES = 180;
+const OPERATION_TEST_DURATION_FRAMES = 480;
+const CONNECT_END = CONNECTION_TEST_DURATION_FRAMES;
+const SUCCESS_END = CONNECT_END + CONNECTION_CONFIRMED_DURATION_FRAMES;
 
 function TestStatus({
   phoneColor,
@@ -78,7 +81,9 @@ function ConnectedPulse({ color }: { color: string }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: `rgba(6, 8, 16, ${interpolate(frame, [0, 10], [0, 0.2], { extrapolateRight: "clamp" })})`,
+        background: resolveCompositionBackdropColor(
+          `rgba(6, 8, 16, ${interpolate(frame, [0, 10], [0, 0.2], { extrapolateRight: "clamp" })})`,
+        ),
       }}
     >
       <div
@@ -115,7 +120,13 @@ export const OnboardingTestTemplate: React.FC<OnboardingTestSchemaType> = (
   props,
 ) => {
   return (
-    <AbsoluteFill style={{ backgroundColor: props.backgroundColor }}>
+    <AbsoluteFill
+      style={{
+        backgroundColor: resolveCompositionBackdropColor(
+          props.backgroundColor,
+        ),
+      }}
+    >
       <Sequence name="Connection test" durationInFrames={CONNECT_END}>
         <OnboardingConnectTemplate
           phoneColor={props.phoneColor}
@@ -146,7 +157,7 @@ export const OnboardingTestTemplate: React.FC<OnboardingTestSchemaType> = (
       <Sequence
         name="Operation test"
         from={SUCCESS_END}
-        durationInFrames={SCENE_DURATION_FRAMES}
+        durationInFrames={OPERATION_TEST_DURATION_FRAMES}
       >
         <OnboardingOperateTemplate
           recordColor={props.recordColor}

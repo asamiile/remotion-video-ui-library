@@ -1,8 +1,6 @@
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { useMemo } from "react";
 
-interface AngstAnimationMultiShapeProps {}
-
 interface CurveSegment {
   id: number;
   points: Array<{ x: number; y: number }>;
@@ -145,9 +143,7 @@ function generateBezierPathData(points: Array<{ x: number; y: number }>): string
 
 function renderCurves(
   curves: CurveSegment[],
-  time: number,
-  centerX: number,
-  centerY: number
+  time: number
 ) {
   return curves.map((curve) => {
     const offsetX = Math.sin(time * curve.animationSpeed + curve.phaseX) * curve.amplitudeX;
@@ -180,11 +176,9 @@ function renderCurves(
   });
 }
 
-export function AngstAnimationMultiShapeTemplate(
-  props: AngstAnimationMultiShapeProps
-): React.ReactElement {
+export function AngstAnimationMultiShapeTemplate(): React.ReactElement {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const { fps } = useVideoConfig();
   const time = frame / fps;
 
   const shapes = useMemo(() => [
@@ -193,9 +187,6 @@ export function AngstAnimationMultiShapeTemplate(
     generateSpiralsWithNoise(34567),
     generateSpiralsWithNoise(45678),
   ], []);
-
-  const centerX = 1920 / 2;
-  const centerY = 1080 / 2;
 
   const shapeIndex = Math.floor((time % 1) * 4);
   const currentShape = shapes[shapeIndex];
@@ -222,7 +213,7 @@ export function AngstAnimationMultiShapeTemplate(
           </filter>
         </defs>
 
-        {renderCurves(currentShape, time, centerX, centerY)}
+        {renderCurves(currentShape, time)}
       </svg>
     </AbsoluteFill>
   );

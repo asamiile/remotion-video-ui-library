@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/space-grotesk";
-import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
+import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/font-space-grotesk";
+import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/font-line-seed-jp";
 
 export const pedigreeCreditTextSchema = z.object({
   /** One or more lines, e.g. a lead-in line plus a pedigree/achievement line */

@@ -142,7 +142,7 @@ export const OnboardingConnectTemplate: React.FC<
       periodFrames: pulsePeriodFrames,
       reverse: false,
       color: phoneColor,
-      size: 18,
+      size: 22,
     });
     const inbound = buildPulseTrain({
       frame,
@@ -150,7 +150,7 @@ export const OnboardingConnectTemplate: React.FC<
       periodFrames: pulsePeriodFrames,
       reverse: true,
       color: laptopColor,
-      size: 18,
+      size: 22,
       phaseOffset: pulsePeriodFrames / (PULSE_COUNT_PER_DIRECTION * 2),
     });
     return [...outbound, ...inbound];
@@ -195,7 +195,7 @@ export const OnboardingConnectTemplate: React.FC<
             borderRadius: p.size / 2,
             background: p.color,
             opacity: p.opacity,
-            boxShadow: neonBoxShadow(p.color, 0.8),
+            boxShadow: neonBoxShadow(p.color, 1.05),
           }}
         />
       ))}

@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.427",
-    "@remotion/google-fonts": "^4.0.427",
+    "@remotion/google-fonts": "4.0.427",
     "@remotion/media-parser": "4.0.427",
     "@remotion/media-utils": "4.0.427",
     "@remotion/tailwind-v4": "4.0.427",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.427",
+    "@types/node": "^26.3.0",
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
     "eslint": "9.19.0",
@@ -34,7 +35,11 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "generate:merged-composition": "node scripts/generate-composition-merged.cjs > src/composition/composition-merged.ts"
+    "generate:merged-composition": "node scripts/generate-composition-merged.cjs > src/composition/composition-merged.ts",
+    "loop:validate": "node scripts/loop/validate-goal.cjs",
+    "loop:verify": "node scripts/loop/run.cjs --verify-only",
+    "loop:run": "node scripts/loop/run.cjs",
+    "loop:test": "node scripts/loop/test-runner.cjs"
   },
   "sideEffects": [
     "*.css"

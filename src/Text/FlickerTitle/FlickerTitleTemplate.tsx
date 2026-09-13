@@ -2,13 +2,13 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { FlickerTitleSchemaType } from "./flicker-title.schema";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
-import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker";
+import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/effect-neon-flicker";
 
 const EYEBROW_LETTER_SPACING_PX = 1.5;
 
 /**
  * Two-line title card: eyebrow + title, with a flicker-in effect
- * (`helpers/neon-flicker.ts`) applied to the eyebrow. This is a generalized
+ * (`helpers/effect-neon-flicker.ts`) applied to the eyebrow. This is a generalized
  * version of the title-card pattern (the OneTake-brand-specific parts of
  * `OneTake-LogoText` have been factored out into neutral defaults here;
  * that original family itself is left unchanged). It deliberately avoids

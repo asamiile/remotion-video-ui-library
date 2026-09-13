@@ -1,3 +1,4 @@
+import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
 import { LoadingIconTemplate } from "./Loading/LoadingIcon/LoadingIconTemplate";
 import { loadingIconSchema } from "./Loading/LoadingIcon/loading-icon.schema";
@@ -12,7 +13,6 @@ import {
 } from "./Audio/AudioSpectrum/audio-spectrum.schema";
 import { IntroTemplate } from "./Intro/Intro/IntroTemplate";
 import { introSchema } from "./Intro/Intro/intro.schema";
-import { introSceneTiming } from "./Intro/Intro/intro.schema";
 import { PlaceholderImage } from "./Placeholder/PlaceholderImage/PlaceholderImage";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 import {
@@ -50,7 +50,7 @@ export function OtherFolder() {
             width={1920}
             height={1080}
             fps={FPS}
-            durationInFrames={1800}
+            durationInFrames={minimumCompositionFrames(1800, FPS)}
             schema={miniMapSchema}
             defaultProps={{
               ...defaultMiniMapProps,
@@ -74,7 +74,7 @@ export function OtherFolder() {
                 width={1920}
                 height={1080}
                 fps={FPS}
-                durationInFrames={1800}
+                durationInFrames={minimumCompositionFrames(1800, FPS)}
                 schema={audioSpectrumSchema}
                 defaultProps={{
                   ...defaultAudioSpectrumProps,
@@ -93,7 +93,7 @@ export function OtherFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={3600}
+          durationInFrames={minimumCompositionFrames(3600, FPS)}
           schema={introSchema}
           defaultProps={mergedDefaultIntroProps}
         />
@@ -106,7 +106,7 @@ export function OtherFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={1}
+          durationInFrames={minimumCompositionFrames(1, FPS)}
         />
       </Folder>
 

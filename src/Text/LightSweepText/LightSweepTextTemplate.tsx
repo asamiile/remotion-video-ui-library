@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { LightSweepTextSchemaType } from "./light-sweep-text.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolvedBackdropPair } from "../../helpers/transparent-composition-backdrop";
 
 function pickSweepEasing(mode: LightSweepTextSchemaType["sweepEasing"]) {

@@ -1,0 +1,49 @@
+[
+  {
+    "prefix": "ScanEchoTransition-",
+    "timing": "scan"
+  },
+  {
+    "prefix": "HologramFragmentTransition-",
+    "timing": "hologram"
+  },
+  {
+    "prefix": "BloomFlashTransition-",
+    "timing": "bloom"
+  },
+  {
+    "ids": [
+      "ZoomBlurTransition"
+    ],
+    "timing": "zoom"
+  },
+  {
+    "ids": [
+      "RackFocusBokehTransition"
+    ],
+    "timing": "bokeh"
+  },
+  {
+    "ids": [
+      "PhaseDesyncTransition",
+      "PacketLossCascadeTransition",
+      "SignalFoldTransition",
+      "LidarDepthGateTransition",
+      "VectorLockTransition",
+      "DiagnosticCurtainTransition",
+      "VoxelMaterializeTransition",
+      "QuantumDustTunnelTransition",
+      "HolographicMembraneTransition",
+      "PhotonShearTransition",
+      "PlasmaVeilTransition",
+      "NeutrinoFlashRingTransition",
+      "GravityLensTransition",
+      "HyperplaneFlipTransition",
+      "SpatialSeamTransition",
+      "DataCellAuthorizationTransition",
+      "NeuralRouteTransition",
+      "CoordinateRemapTransition"
+    ],
+    "timing": "sciFi"
+  }
+]
