@@ -1,3 +1,4 @@
+import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
 import { CodeStreamTemplate } from "./Text/CodeStream/CodeStreamTemplate";
 import { codeStreamSchema } from "./Text/CodeStream/code-stream.schema";
@@ -136,7 +137,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={1800}
+          durationInFrames={minimumCompositionFrames(1800, FPS)}
           schema={codeStreamSchema}
           defaultProps={mergedCodeStreamPatterns.horizontal ?? defaultCodeStreamHorizontalProps}
         />
@@ -147,7 +148,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={2100}
+          durationInFrames={minimumCompositionFrames(2100, FPS)}
           schema={codeStreamSchema}
           defaultProps={mergedCodeStreamPatterns.vertical ?? defaultCodeStreamVerticalProps}
         />
@@ -165,7 +166,7 @@ export function TextFolder() {
             width={1920}
             height={1080}
             fps={FPS}
-            durationInFrames={1800}
+            durationInFrames={minimumCompositionFrames(1800, FPS)}
             schema={locationSchema}
             defaultProps={{
               ...defaultLocationProps,
@@ -261,7 +262,7 @@ export function TextFolder() {
               key={patternName}
               id={`DottedLineMarkerText-${patternName}`}
               component={DottedLineMarkerText}
-              durationInFrames={dottedLineMarkerTextDurationFrames}
+              durationInFrames={minimumCompositionFrames(dottedLineMarkerTextDurationFrames, 30)}
               width={1920}
               height={1080}
               fps={30}
@@ -274,7 +275,7 @@ export function TextFolder() {
         <Composition
           id="DottedLineMarkerText-GlitchHandover"
           component={DottedLineMarkerTextTransitionTemplate}
-          durationInFrames={dottedLineMarkerTextTransitionDurationFrames}
+          durationInFrames={minimumCompositionFrames(dottedLineMarkerTextTransitionDurationFrames, 30)}
           width={1920}
           height={1080}
           fps={30}
@@ -330,7 +331,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={flickerTitleDurationFrames}
+          durationInFrames={minimumCompositionFrames(flickerTitleDurationFrames, FPS)}
           schema={flickerTitleSchema}
           defaultProps={{ ...defaultFlickerTitleProps }}
         />
@@ -344,7 +345,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={oneTakeLogoTextDurationFrames}
+          durationInFrames={minimumCompositionFrames(oneTakeLogoTextDurationFrames, FPS)}
           schema={flickerTitleSchema}
           defaultProps={{ ...mergedOneTakeLogoTextProps }}
         />

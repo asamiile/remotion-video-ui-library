@@ -2,6 +2,8 @@
 
 A Remotion-based video UI library.
 
+短尺素材の最短版（末尾なし） / `-10s` の使い分けは [尺バリエーション](.agents/rules/rendering.md#尺とcompositionの選択) を参照してください。
+
 ## Commands
 
 **Install Dependencies**

@@ -65,6 +65,8 @@ const families = [
   { type: "pattern", file: "UI/CircularNeonLogoFrame/circular-neon-logo-frame.schema", export: "circularNeonLogoFramePatterns", category: "ui" },
   { type: "pattern", file: "UI/WaveAnnouncementBanner/wave-announcement-banner.schema", export: "waveAnnouncementBannerPatterns", category: "ui" },
 
+  { type: "pattern", file: "Effects/Transition/ScanEchoTransition/scan-echo-transition.schema", export: "scanEchoTransitionPatterns", category: "other" },
+
   // Other compositions
   { type: "pattern", file: "Loading/LoadingIcon/loading-icon.schema", export: "loadingIconPatterns", category: "other" },
 

@@ -105,6 +105,7 @@ INK_RIPPLE_TRANSITION_COMPOSITION_IDS=(
 
 RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS=(
   "RackFocusBokehTransition"
+  "RackFocusBokehTransition-10s"
 )
 
 BURST_COMPOSITION_IDS=(
@@ -117,6 +118,7 @@ SHATTER_CRACK_TRANSITION_COMPOSITION_IDS=(
 
 ZOOM_BLUR_TRANSITION_COMPOSITION_IDS=(
   "ZoomBlurTransition"
+  "ZoomBlurTransition-10s"
 )
 
 SCI_FI_OVERLAY_COMPOSITION_IDS=(
@@ -169,6 +171,7 @@ echo ""
 # `NeonText-*` prefix, so its case must be checked first. Add new Folders/compositions here too.
 resolve_output_subdir() {
   local comp_id="$1"
+  comp_id="${comp_id%-10s}"
   case "$comp_id" in
     NeonText-Rainbow*) echo "Text/NeonTextRainbow" ;;
     LedText-*) echo "Text/LedText" ;;
@@ -195,18 +198,19 @@ resolve_output_subdir() {
     EmergingNoiseTitle-*) echo "Text/EmergingNoiseTitle" ;;
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
-    GlitchTransitionBridge) echo "Effect/Transition/GlitchSignal/GlitchTransitionBridge" ;;
-    SignalSliceTransition-*) echo "Effect/Transition/GlitchSignal/SignalSliceTransition" ;;
+    GlitchTransitionBridge) echo "Effect/Transition/GlitchTransitionBridge" ;;
+    ScanEchoTransition-*) echo "Effect/Transition/ScanEchoTransition" ;;
+    SignalSliceTransition-*) echo "Effect/Transition/SignalSliceTransition" ;;
     PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition) echo "Effect/Transition/GlitchSignal" ;;
     LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition) echo "Effect/Transition/ScanControl" ;;
-    HologramFragmentTransition-*) echo "Effect/Transition/HologramParticle/HologramFragmentTransition" ;;
+    HologramFragmentTransition-*) echo "Effect/Transition/HologramFragmentTransition" ;;
     VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition) echo "Effect/Transition/HologramParticle" ;;
-    BloomFlashTransition-*) echo "Effect/Transition/OpticalEnergy/BloomFlashTransition" ;;
-    RackFocusBokehTransition) echo "Effect/Transition/OpticalEnergy/RackFocusBokehTransition" ;;
+    BloomFlashTransition-*) echo "Effect/Transition/BloomFlashTransition" ;;
+    RackFocusBokehTransition) echo "Effect/Transition/RackFocusBokehTransition" ;;
     PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition) echo "Effect/Transition/OpticalEnergy" ;;
-    InkRippleTransition) echo "Effect/Transition/SpatialWarp/InkRippleTransition" ;;
-    ShatterCrackTransition) echo "Effect/Transition/SpatialWarp/ShatterCrackTransition" ;;
-    ZoomBlurTransition) echo "Effect/Transition/SpatialWarp/ZoomBlurTransition" ;;
+    InkRippleTransition) echo "Effect/Transition/InkRippleTransition" ;;
+    ShatterCrackTransition) echo "Effect/Transition/ShatterCrackTransition" ;;
+    ZoomBlurTransition) echo "Effect/Transition/ZoomBlurTransition" ;;
     GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition) echo "Effect/Transition/SpatialWarp" ;;
     DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) echo "Effect/Transition/DataUI" ;;
     TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/Overlay/SciFi" ;;
@@ -429,10 +433,18 @@ render_zoom_blur_transition() {
   render_fixed_id_family "✨ Rendering ZoomBlurTransition compositions" ZOOM_BLUR_TRANSITION_COMPOSITION_IDS
 }
 
-render_new_effects() {
+render_scan_echo_transition() {
   local comp_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    case "$comp_id" in SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*|PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition|LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition|VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition|PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition|GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition|DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+    case "$comp_id" in ScanEchoTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+render_new_effects() {
+  local comp_id base_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    base_id="${comp_id%-10s}"
+    case "$base_id" in ScanEchoTransition-*|SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*|PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition|LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition|VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition|PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition|GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition|DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
@@ -739,6 +751,9 @@ main() {
     ZoomBlurTransition|zoomblurtransition)
       render_zoom_blur_transition
       ;;
+    ScanEchoTransition|scanechotransition)
+      render_scan_echo_transition
+      ;;
     SciFiOverlay|scifioverlay)
       render_sci_fi_overlays
       ;;
@@ -796,6 +811,7 @@ main() {
       echo "  DottedLineMarkerTextTransition  Render the DottedLineMarkerText 01→02 glitch-handover composition"
       echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
       echo "  RackFocusBokehTransition Render the rack-focus + bokeh scene-transition bumper"
+      echo "  ScanEchoTransition Render all scan and glitch echo transition patterns"
       echo "  Burst              Render the special-move impact burst"
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"

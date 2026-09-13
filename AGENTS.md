@@ -8,7 +8,7 @@ This file is the agent-neutral source of truth for GitHub Copilot, OpenAI Codex,
 	- [.agents/rules/repository.md](.agents/rules/repository.md) - repository structure, file layout, and core conventions
 	- [.agents/rules/composition-schema-unification.md](.agents/rules/composition-schema-unification.md) - standard .schema.ts file structure (schema + defaults + types unified in one file)
 	- [.agents/rules/composition-update-runbook.md](.agents/rules/composition-update-runbook.md) - how to add or update compositions and render coverage
-	- [.agents/rules/adobe-stock-rendering.md](.agents/rules/adobe-stock-rendering.md) - Adobe Stock MOV duration, alpha, and verification rules
+	- [.agents/rules/rendering.md](.agents/rules/rendering.md) - rendering duration, formats, output layout, and verification rules
 	- [.agents/rules/config-local-layout.md](.agents/rules/config-local-layout.md) - how `config/local` is wired and what belongs in `*.example.json` vs `*.local.json`
 	- [.agents/rules/composition-text-local.md](.agents/rules/composition-text-local.md) - read-only policy for personal `composition-text.local.json` and the few exceptions
 	- [.agents/rules/agent-tool-usage.md](.agents/rules/agent-tool-usage.md) - token-efficient Read/Edit usage guidance for AI agents

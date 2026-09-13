@@ -10,7 +10,7 @@ import {
   zoomBlurTransitionAnimationDurationFrames,
   ZoomBlurTransitionSchemaType,
 } from "./zoom-blur-transition.schema";
-import { resolveCompositionBackdropColor } from "../../../../helpers/transparent-composition-backdrop";
+import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 export const ZoomBlurTransitionTemplate: React.FC<
   ZoomBlurTransitionSchemaType

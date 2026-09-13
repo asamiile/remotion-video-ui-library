@@ -8,7 +8,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { ShatterCrackTransitionSchemaType } from "./shatter-crack-transition.schema";
-import { resolveCompositionBackdropColor } from "../../../../helpers/transparent-composition-backdrop";
+import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 const GROW_FRAMES = 14;
 

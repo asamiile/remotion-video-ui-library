@@ -88,8 +88,8 @@ node scripts/list-onetake-composition-ids.cjs
 ./render.sh all
 ```
 
-Adobe Stock向けMOVを書き出す場合は、尺・透過形式・`ffprobe`検証を含む
-[Adobe Stock MOV Rendering](./adobe-stock-rendering.md) も参照する。
+動画・PNG連番を書き出す場合は、尺・出力先・透過形式・`ffprobe`検証を含む
+[Rendering](./rendering.md) も参照する。
 
 ## Related Files
 

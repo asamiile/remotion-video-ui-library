@@ -8,7 +8,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { RackFocusBokehTransitionSchemaType } from "./rack-focus-bokeh-transition.schema";
-import { resolveCompositionBackdropColor } from "../../../../helpers/transparent-composition-backdrop";
+import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 export const RackFocusBokehTransitionTemplate: React.FC<
   RackFocusBokehTransitionSchemaType

@@ -1,3 +1,4 @@
+import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
 import { AmbientBlurOrbsTemplate } from "./Background/AmbientBlurOrbs/AmbientBlurOrbsTemplate";
 import { ambientBlurOrbsSchema } from "./Background/AmbientBlurOrbs/ambient-blur-orbs.schema";
@@ -88,7 +89,7 @@ export function BackgroundFolder() {
         width={1920}
         height={1080}
         fps={FPS}
-        durationInFrames={ambientBlurOrbsDurationFrames}
+        durationInFrames={minimumCompositionFrames(ambientBlurOrbsDurationFrames, FPS)}
         schema={ambientBlurOrbsSchema}
         defaultProps={{ ...defaultAmbientBlurOrbsProps }}
       />
@@ -106,7 +107,7 @@ export function BackgroundFolder() {
               width={1920}
               height={1080}
               fps={FPS}
-              durationInFrames={randomLinesDurationFrames}
+              durationInFrames={minimumCompositionFrames(randomLinesDurationFrames, FPS)}
               schema={randomLinesSchema}
               defaultProps={props}
             />
@@ -297,7 +298,7 @@ export function BackgroundFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={900}
+          durationInFrames={minimumCompositionFrames(900, FPS)}
           schema={angstAnimationSchema}
           defaultProps={defaultAngstAnimationProps}
         />
@@ -310,7 +311,7 @@ export function BackgroundFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={900}
+          durationInFrames={minimumCompositionFrames(900, FPS)}
           schema={angstAnimationMultiShapeSchema}
           defaultProps={defaultAngstAnimationMultiShapeProps}
         />

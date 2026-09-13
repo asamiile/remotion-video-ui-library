@@ -4,7 +4,7 @@ import {
   InkRippleTransitionSchemaType,
   inkRippleTransitionDurationFrames,
 } from "./ink-ripple-transition.schema";
-import { resolveCompositionBackdropColor } from "../../../../helpers/transparent-composition-backdrop";
+import { resolveCompositionBackdropColor } from "../../../helpers/transparent-composition-backdrop";
 
 export const InkRippleTransitionTemplate: React.FC<
   InkRippleTransitionSchemaType
