@@ -20,11 +20,16 @@ pnpm run dev
 
 **Render**
 
+`./render.sh all` はStudioに登録された全動画を、実際のFolder階層に揃えて出力します。既存出力は `out/.export/<実行ID>/previous-library/` に退避し、各動画の尺・解像度・fpsを検証します。`./render.sh manifest` は登録一覧と出力先を確認します。
+
+実行記録は `out/.export/<実行ID>/` の `manifest.json`、`status.json`、`completed.json` に保存されます。同じ実行を再開する場合は `REMOTION_EXPORT_RUN="$PWD/out/.export/<実行ID>" ./render.sh all` を使います。出力形式や設定を変える場合は新しい実行IDを使用してください。
+
 ```console
 sh render.sh [subcommand]
 sh render.sh --transparent-bg NeonText-LchikaOrangeJp   # e.g. no backdrop color (transparent)
 sh render.sh --with-canvas-bg AudioSpectrum   # e.g. bake in the preview backdrop when exporting
 sh render.sh --png-sequence CodeStreamVertical # PNG sequence instead of the default MP4
+sh render.sh --alpha overlays # overlay compositions as transparent MOVs, keeping their durations
 sh render.sh --adobe-stock-alpha LoadingIcon-Default # transparent ProRes 4444 MOV
 sh render.sh --adobe-stock Background-CodeNoiseWall-AmberGlow # 60-second ProRes 422 HQ MOV
 ```

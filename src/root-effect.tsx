@@ -1,3 +1,6 @@
+import { DistressTransitionTemplate } from "./Effects/Transition/DistressTransition/DistressTransitionTemplate";
+import { distressTransitionSchema } from "./Effects/Transition/DistressTransition/distress-transition.schema";
+import { mergedDistressTransitionPatterns } from "./composition/composition-merged-other";
 import { renderDurationVariantCompositions } from "./helpers/duration-variant-compositions";
 import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
@@ -109,6 +112,15 @@ export function EffectFolder() {
   return (
     <Folder name="Effect">
       <Folder name="Transition">
+        <Folder name="DistressTransition">
+          {renderPatternFamily({
+            patterns: mergedDistressTransitionPatterns,
+            idPrefix: "DistressTransition-",
+            Template: DistressTransitionTemplate,
+            schema: distressTransitionSchema,
+            durationInFrames: (props) => props.durationFrames,
+          })}
+        </Folder>
         <Folder name="ScanEchoTransition">
           {Object.entries(mergedScanEchoTransitionPatterns).map(
             ([key, props]) => {

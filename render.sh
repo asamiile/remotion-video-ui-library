@@ -54,6 +54,9 @@ for arg in "$@"; do
     export REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1
   elif [ "$arg" = "--png-sequence" ]; then
     OUTPUT_FORMAT="png"
+  elif [ "$arg" = "--alpha" ]; then
+    OUTPUT_FORMAT="alpha"
+    export REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1
   elif [ "$arg" = "--adobe-stock-alpha" ]; then
     OUTPUT_FORMAT="stock-alpha"
     export REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1
@@ -199,6 +202,7 @@ resolve_output_subdir() {
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge) echo "Effect/Transition/GlitchTransitionBridge" ;;
+    DistressTransition-*) echo "Effect/Transition/DistressTransition" ;;
     ScanEchoTransition-*) echo "Effect/Transition/ScanEchoTransition" ;;
     SignalSliceTransition-*) echo "Effect/Transition/SignalSliceTransition" ;;
     PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition) echo "Effect/Transition/GlitchSignal" ;;
@@ -279,14 +283,10 @@ output_path_for() {
     echo -e "${RED}✗ No output directory mapping for: ${comp_id}${NC}" >&2
     return 1
   fi
-  if [ "${subdir##*/}" = "$comp_id" ]; then
-    composition_dir="$OUTPUT_DIR/$subdir"
-  else
-    composition_dir="$OUTPUT_DIR/$subdir/$comp_id"
-  fi
+  composition_dir="$OUTPUT_DIR/$subdir/$comp_id"
   if [ "$OUTPUT_FORMAT" = "png" ]; then
     echo "$composition_dir/png"
-  elif [ "$OUTPUT_FORMAT" = "stock-alpha" ]; then
+  elif [ "$OUTPUT_FORMAT" = "stock-alpha" ] || [ "$OUTPUT_FORMAT" = "alpha" ]; then
     echo "$composition_dir/${comp_id}-alpha.mov"
   elif [ "$OUTPUT_FORMAT" = "stock" ]; then
     echo "$composition_dir/${comp_id}-60s.mov"
@@ -316,7 +316,7 @@ render_one() {
   if [ "$OUTPUT_FORMAT" = "png" ]; then
     codec_args=(--sequence --image-format=png)
     mkdir -p "$output_path"
-  elif [ "$OUTPUT_FORMAT" = "stock-alpha" ]; then
+  elif [ "$OUTPUT_FORMAT" = "stock-alpha" ] || [ "$OUTPUT_FORMAT" = "alpha" ]; then
     codec_args=(--codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le --muted)
   elif [ "$OUTPUT_FORMAT" = "stock" ]; then
     codec_args=(--codec=prores --prores-profile=hq --pixel-format=yuv422p10le --muted)
@@ -433,6 +433,13 @@ render_zoom_blur_transition() {
   render_fixed_id_family "✨ Rendering ZoomBlurTransition compositions" ZOOM_BLUR_TRANSITION_COMPOSITION_IDS
 }
 
+render_distress_transition() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in DistressTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
 render_scan_echo_transition() {
   local comp_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
@@ -444,7 +451,7 @@ render_new_effects() {
   local comp_id base_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
     base_id="${comp_id%-10s}"
-    case "$base_id" in ScanEchoTransition-*|SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*|PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition|LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition|VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition|PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition|GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition|DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+    case "$base_id" in DistressTransition-*|ScanEchoTransition-*|SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*|PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition|LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition|VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition|PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition|GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition|DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
@@ -751,6 +758,9 @@ main() {
     ZoomBlurTransition|zoomblurtransition)
       render_zoom_blur_transition
       ;;
+    DistressTransition|distresstransition)
+      render_distress_transition
+      ;;
     ScanEchoTransition|scanechotransition)
       render_scan_echo_transition
       ;;
@@ -766,26 +776,36 @@ main() {
     FlickerTitle|flickertitle)
       render_flicker_title
       ;;
+    overlays)
+      node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT" --overlays
+      ;;
+    manifest)
+      node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT" --plan
+      ;;
     all)
-      render_intro
-      render_loadingicon
-      render_location
-      render_minimap
-      render_audiospectrum
-      render_text_effects
-      render_onetake
-      render_background
-      render_glitch_transition_bridge
-      render_ink_ripple_transition
-      render_rack_focus_bokeh_transition
-      render_burst
-      render_shatter_crack_transition
-      render_zoom_blur_transition
-      render_new_effects
-      render_sci_fi_overlays
-      render_textless_sci_fi_overlays
-      render_ui
-      render_explicit_compositions PlaceholderImage
+      if [ "$OUTPUT_FORMAT" = "png" ]; then
+        render_intro
+        render_loadingicon
+        render_location
+        render_minimap
+        render_audiospectrum
+        render_text_effects
+        render_onetake
+        render_background
+        render_glitch_transition_bridge
+        render_ink_ripple_transition
+        render_rack_focus_bokeh_transition
+        render_burst
+        render_shatter_crack_transition
+        render_zoom_blur_transition
+        render_new_effects
+        render_sci_fi_overlays
+        render_textless_sci_fi_overlays
+        render_ui
+        render_explicit_compositions PlaceholderImage
+      else
+        node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT"
+      fi
       ;;
     check|Check)
       check_output_dirs
@@ -795,7 +815,10 @@ main() {
       echo ""
       echo "  --transparent-bg   Make the full-screen backdrop & vignette transparent (doesn't bake in *-config colors like Neon's)"
       echo "  --with-canvas-bg   Include the preview-only background layer (always off unless passed)"
+      echo "  manifest           Inspect every registered composition and its Studio output path"
       echo "  --png-sequence     Export PNG frames instead of the default H.264 MP4"
+      echo "  --alpha            Export transparent ProRes 4444 MOV with the selected composition duration"
+      echo "  overlays           Export overlay candidates after checking actual transparency (use --alpha)"
       echo "  --adobe-stock-alpha Export transparent ProRes 4444 MOV; applies Stock duration overrides"
       echo "  --adobe-stock      Export ProRes 422 HQ MOV without audio; selected backgrounds become 60 seconds"
       echo "  Intro              Render Intro composition"
@@ -811,6 +834,7 @@ main() {
       echo "  DottedLineMarkerTextTransition  Render the DottedLineMarkerText 01→02 glitch-handover composition"
       echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
       echo "  RackFocusBokehTransition Render the rack-focus + bokeh scene-transition bumper"
+      echo "  DistressTransition Render distressed brush and analog snow transition patterns"
       echo "  ScanEchoTransition Render all scan and glitch echo transition patterns"
       echo "  Burst              Render the special-move impact burst"
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"

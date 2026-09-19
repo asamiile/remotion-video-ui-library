@@ -3,6 +3,7 @@ const {capPattern, requirePatternKeys} = require("./lib/ts-config-ast.cjs");
 const root = path.join(__dirname, "..");
 const fixedIds = ["GlitchTransitionBridge", "InkRippleTransition", "RackFocusBokehTransition", "Burst", "ShatterCrackTransition", "ZoomBlurTransition"];
 const families = [
+  {idPrefix:"DistressTransition",file:"src/Effects/Transition/DistressTransition/distress-transition.schema.ts",exportName:"distressTransitionPatterns"},
   {idPrefix: "ScanEchoTransition", file: "src/Effects/Transition/ScanEchoTransition/scan-echo-transition.schema.ts", exportName: "scanEchoTransitionPatterns"},
   {idPrefix: "SignalSliceTransition", file: "src/Effects/Transition/SignalSliceTransition/signal-slice-transition.schema.ts", exportName: "signalSliceTransitionPatterns"},
   {idPrefix: "HologramFragmentTransition", file: "src/Effects/Transition/HologramFragmentTransition/hologram-fragment-transition.schema.ts", exportName: "hologramFragmentTransitionPatterns"},

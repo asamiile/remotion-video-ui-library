@@ -18,11 +18,13 @@ Compositionの尺を変更する、またはMP4・MOV・PNG連番を書き出す
 
 - 最短版は演出開始・終了に必要な透明フレームを残し、余分な待機時間を除く。10秒版と演出速度・色・残像を共通にする。BloomFlashでは発光前の余白も除く。
 - propsで演出尺を変更した場合は、最短版の尺も再計算する。
-- 現在の実装対象はScanEchoTransition、SFトランジション18種、HologramFragmentTransition、ZoomBlurTransition、BloomFlashTransition、RackFocusBokehTransition。対象の詳細は `src/composition/duration-variants.json` を参照する。この一覧は実装状況であり、新規Compositionへの適用範囲を制限するものではない。
+- 現在の実装対象はDistressTransition、ScanEchoTransition、SFトランジション18種、HologramFragmentTransition、ZoomBlurTransition、BloomFlashTransition、RackFocusBokehTransition。対象の詳細は `src/composition/duration-variants.json` を参照する。この一覧は実装状況であり、新規Compositionへの適用範囲を制限するものではない。
 
 ## 書き出しと出力先
 
 - 書き出しには `render.sh` を使用する。形式・オプション・一括出力の最新の使い方は `./render.sh help` を参照する。
+- 重ね使い用の通常尺の透過MOVは `./render.sh --alpha <CompositionId...>` を使用する。ProRes 4444・PNG中間フレーム・アルファ対応ピクセル形式・音声なしで出力し、Stock向けの尺変更は適用しない。
+- 重ね使い用素材の一括出力は `./render.sh --alpha overlays` を使用する。通常尺と `-10s` 版を含め、描画内容のあるフレームに透明部分が存在することを確認する。全面不透明または描画内容を確認できない素材は理由を記録して対象外とする。既存MP4を移動せず、同じCompositionフォルダに `-alpha.mov` を追加する。
 - Composition自身の背景を透過させる場合は `--transparent-bg` を使用する。プレビュー用の背景を含める `--with-canvas-bg` とは区別する。
 - PNG連番を依頼されている場合は `--png-sequence` で書き出す。透過素材には `--transparent-bg` も指定する。
 - 出力先はStudioのFolder階層に合わせ、Composition IDごとのフォルダにまとめる。動画をカテゴリフォルダへ直接置かない。

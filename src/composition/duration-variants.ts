@@ -12,6 +12,7 @@ export function getDurationVariantWindow(
   if (!policy) return null;
   const number = (key: string) => Number(props[key]);
   switch (policy.timing) {
+    case "distress":
     case "scan":
     case "sciFi":
       return { frames: number("durationFrames"), sourceStart: 0 };

@@ -1,5 +1,9 @@
 [
   {
+    "prefix": "DistressTransition-",
+    "timing": "distress"
+  },
+  {
     "prefix": "ScanEchoTransition-",
     "timing": "scan"
   },

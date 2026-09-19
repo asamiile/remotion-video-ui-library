@@ -1,4 +1,5 @@
 import { defaultIntroProps } from "../Intro/Intro/intro.schema";
+import { distressTransitionPatterns } from "../Effects/Transition/DistressTransition/distress-transition.schema";
 import { scanEchoTransitionPatterns } from "../Effects/Transition/ScanEchoTransition/scan-echo-transition.schema";
 import { loadingIconPatterns } from "../Loading/LoadingIcon/loading-icon.schema";
 import {
@@ -11,6 +12,11 @@ export const mergedDefaultIntroProps = {
   ...defaultIntroProps,
   ...local.intro,
 };
+
+export const mergedDistressTransitionPatterns = shallowMergePatternRecord(
+  distressTransitionPatterns,
+  local.distressTransitionPatterns,
+) as typeof distressTransitionPatterns;
 
 export const mergedScanEchoTransitionPatterns = shallowMergePatternRecord(
   scanEchoTransitionPatterns,
