@@ -133,6 +133,36 @@ const families = [
     file: "src/Text/EmergingNoiseTitle/emerging-noise-title.schema.ts",
     exportName: "emergingNoiseTitlePatterns",
   },
+  {
+    idPrefix: "FocusPullCredit",
+    file: "src/Text/FocusPullCredit/focus-pull-credit.schema.ts",
+    exportName: "focusPullCreditPatterns",
+  },
+  {
+    idPrefix: "KerningRevealCredit",
+    file: "src/Text/KerningRevealCredit/kerning-reveal-credit.schema.ts",
+    exportName: "kerningRevealCreditPatterns",
+  },
+  {
+    idPrefix: "FeatherWipeCredit",
+    file: "src/Text/FeatherWipeCredit/feather-wipe-credit.schema.ts",
+    exportName: "featherWipeCreditPatterns",
+  },
+  {
+    idPrefix: "ExposureFlashCredit",
+    file: "src/Text/ExposureFlashCredit/exposure-flash-credit.schema.ts",
+    exportName: "exposureFlashCreditPatterns",
+  },
+  {
+    idPrefix: "DepthDollyCredit",
+    file: "src/Text/DepthDollyCredit/depth-dolly-credit.schema.ts",
+    exportName: "depthDollyCreditPatterns",
+  },
+  {
+    idPrefix: "SignalLockCredit",
+    file: "src/Text/SignalLockCredit/signal-lock-credit.schema.ts",
+    exportName: "signalLockCreditPatterns",
+  },
 ];
 
 for (const fam of families) {

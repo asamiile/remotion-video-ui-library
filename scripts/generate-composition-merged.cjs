@@ -53,6 +53,12 @@ const families = [
   { type: "pattern", file: "Text/InterviewQuestionCaption/interview-question-caption.schema", export: "interviewQuestionCaptionPatterns", category: "text" },
   { type: "pattern", file: "Text/AnnouncementEndCard/announcement-end-card.schema", export: "announcementEndCardPatterns", category: "text" },
   { type: "pattern", file: "Text/EmergingNoiseTitle/emerging-noise-title.schema", export: "emergingNoiseTitlePatterns", category: "text" },
+  { type: "pattern", file: "Text/FocusPullCredit/focus-pull-credit.schema", export: "focusPullCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/KerningRevealCredit/kerning-reveal-credit.schema", export: "kerningRevealCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/FeatherWipeCredit/feather-wipe-credit.schema", export: "featherWipeCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/ExposureFlashCredit/exposure-flash-credit.schema", export: "exposureFlashCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/DepthDollyCredit/depth-dolly-credit.schema", export: "depthDollyCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/SignalLockCredit/signal-lock-credit.schema", export: "signalLockCreditPatterns", category: "text" },
 
   // Background composition
   { type: "pattern", file: "Background/RandomLinesBackground/random-lines.schema", export: "randomLinesPatterns", localName: "randomLinesBackgroundPatterns", category: "background" },

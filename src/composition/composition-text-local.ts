@@ -41,6 +41,12 @@ export type CompositionTextLocal = {
   interviewQuestionCaptionPatterns?: Record<string, Record<string, unknown>>;
   announcementEndCardPatterns?: Record<string, Record<string, unknown>>;
   emergingNoiseTitlePatterns?: Record<string, Record<string, unknown>>;
+  focusPullCreditPatterns?: Record<string, Record<string, unknown>>;
+  kerningRevealCreditPatterns?: Record<string, Record<string, unknown>>;
+  featherWipeCreditPatterns?: Record<string, Record<string, unknown>>;
+  exposureFlashCreditPatterns?: Record<string, Record<string, unknown>>;
+  depthDollyCreditPatterns?: Record<string, Record<string, unknown>>;
+  signalLockCreditPatterns?: Record<string, Record<string, unknown>>;
   battleCalloutBannerPatterns?: Record<string, Record<string, unknown>>;
   asymmetricStatusPanelPatterns?: Record<string, Record<string, unknown>>;
   framedFootageWindowPatterns?: Record<string, Record<string, unknown>>;

@@ -24,6 +24,12 @@ import { cinematicPresentsCreditPatterns } from "../Text/CinematicPresentsCredit
 import { interviewQuestionCaptionPatterns } from "../Text/InterviewQuestionCaption/interview-question-caption.schema";
 import { announcementEndCardPatterns } from "../Text/AnnouncementEndCard/announcement-end-card.schema";
 import { emergingNoiseTitlePatterns } from "../Text/EmergingNoiseTitle/emerging-noise-title.schema";
+import { focusPullCreditPatterns } from "../Text/FocusPullCredit/focus-pull-credit.schema";
+import { kerningRevealCreditPatterns } from "../Text/KerningRevealCredit/kerning-reveal-credit.schema";
+import { featherWipeCreditPatterns } from "../Text/FeatherWipeCredit/feather-wipe-credit.schema";
+import { exposureFlashCreditPatterns } from "../Text/ExposureFlashCredit/exposure-flash-credit.schema";
+import { depthDollyCreditPatterns } from "../Text/DepthDollyCredit/depth-dolly-credit.schema";
+import { signalLockCreditPatterns } from "../Text/SignalLockCredit/signal-lock-credit.schema";
 import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.schema";
 import {
   getEffectiveCompositionText,
@@ -164,6 +170,36 @@ export const mergedEmergingNoiseTitlePatterns = shallowMergePatternRecord(
   emergingNoiseTitlePatterns,
   local.emergingNoiseTitlePatterns,
 ) as typeof emergingNoiseTitlePatterns;
+
+export const mergedFocusPullCreditPatterns = shallowMergePatternRecord(
+  focusPullCreditPatterns,
+  local.focusPullCreditPatterns,
+) as typeof focusPullCreditPatterns;
+
+export const mergedKerningRevealCreditPatterns = shallowMergePatternRecord(
+  kerningRevealCreditPatterns,
+  local.kerningRevealCreditPatterns,
+) as typeof kerningRevealCreditPatterns;
+
+export const mergedFeatherWipeCreditPatterns = shallowMergePatternRecord(
+  featherWipeCreditPatterns,
+  local.featherWipeCreditPatterns,
+) as typeof featherWipeCreditPatterns;
+
+export const mergedExposureFlashCreditPatterns = shallowMergePatternRecord(
+  exposureFlashCreditPatterns,
+  local.exposureFlashCreditPatterns,
+) as typeof exposureFlashCreditPatterns;
+
+export const mergedDepthDollyCreditPatterns = shallowMergePatternRecord(
+  depthDollyCreditPatterns,
+  local.depthDollyCreditPatterns,
+) as typeof depthDollyCreditPatterns;
+
+export const mergedSignalLockCreditPatterns = shallowMergePatternRecord(
+  signalLockCreditPatterns,
+  local.signalLockCreditPatterns,
+) as typeof signalLockCreditPatterns;
 
 export const mergedOneTakeLogoTextProps = {
   ...oneTakeLogoTextVariantProps,

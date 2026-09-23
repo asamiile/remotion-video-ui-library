@@ -199,6 +199,12 @@ resolve_output_subdir() {
     InterviewQuestionCaption-*) echo "Text/InterviewQuestionCaption" ;;
     AnnouncementEndCard-*) echo "Text/AnnouncementEndCard" ;;
     EmergingNoiseTitle-*) echo "Text/EmergingNoiseTitle" ;;
+    FocusPullCredit-*) echo "Text/FocusPullCredit" ;;
+    KerningRevealCredit-*) echo "Text/KerningRevealCredit" ;;
+    FeatherWipeCredit-*) echo "Text/FeatherWipeCredit" ;;
+    ExposureFlashCredit-*) echo "Text/ExposureFlashCredit" ;;
+    DepthDollyCredit-*) echo "Text/DepthDollyCredit" ;;
+    SignalLockCredit-*) echo "Text/SignalLockCredit" ;;
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge) echo "Effect/Transition/GlitchTransitionBridge" ;;

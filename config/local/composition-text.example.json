@@ -7672,6 +7672,30 @@
     "buildUp": { "text": "SAMPLE TITLE", "wordFragments": ["ALE", "AIR", "AN"] },
     "buildUpJp": { "text": "サンプルタイトル", "wordFragments": ["サン", "プル", "タイ"] }
   },
+  "focusPullCreditPatterns": {
+    "rackFocus": { "text": "DIRECTED BY SAMPLE NAME" },
+    "rackFocusJp": { "text": "監督 サンプル ネーム" }
+  },
+  "kerningRevealCreditPatterns": {
+    "trackingConverge": { "text": "A SAMPLE FILM" },
+    "trackingConvergeJp": { "text": "サンプル映画" }
+  },
+  "featherWipeCreditPatterns": {
+    "curtainWipe": { "text": "STARRING SAMPLE CAST" },
+    "curtainWipeJp": { "text": "出演 サンプルキャスト" }
+  },
+  "exposureFlashCreditPatterns": {
+    "projectorFlash": { "text": "DIRECTED BY SAMPLE NAME" },
+    "projectorFlashJp": { "text": "監督 サンプル ネーム" }
+  },
+  "depthDollyCreditPatterns": {
+    "dollyPush": { "text": "A SAMPLE FILM" },
+    "dollyPushJp": { "text": "サンプル映画" }
+  },
+  "signalLockCreditPatterns": {
+    "channelLock": { "text": "STARRING SAMPLE CAST" },
+    "channelLockJp": { "text": "出演 サンプルキャスト" }
+  },
   "distressTransitionPatterns": {
     "dryBrushMono": {
       "mode": "dryBrush",
