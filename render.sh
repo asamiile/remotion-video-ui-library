@@ -235,6 +235,12 @@ resolve_output_subdir() {
     MiniMap-*) echo "Map" ;;
     AudioSpectrum-*) echo "Audio/AudioSpectrum/Presets" ;;
     LoadingIcon-*) echo "Loading" ;;
+    DotsLoader-*) echo "Loading/DotsLoader" ;;
+    ProgressBar-*) echo "Loading/ProgressBar" ;;
+    PulseCircle-*) echo "Loading/PulseCircle" ;;
+    SkeletonScreen-*) echo "Loading/SkeletonScreen" ;;
+    RadialSpinner-*) echo "Loading/RadialSpinner" ;;
+    RadialGlowSpinner-*) echo "Loading/RadialGlowSpinner" ;;
     CodeStreamHorizontal|CodeStreamVertical) echo "Text/CodeStream" ;;
     OneTake-LogoText) echo "Text/FlickerTitle" ;;
     DottedLineMarkerText-*) echo "Text/DottedLineMarkerText" ;;
@@ -309,6 +315,10 @@ render_one() {
   shift "$shift_n"
   if [ "$OUTPUT_FORMAT" = "mp4" ] && [ -f "$output_path" ]; then
     echo -e "${GREEN}↷ ${comp_id} already exists; skipping${NC}"
+    return 0
+  fi
+  if [ "$OUTPUT_FORMAT" = "mp4" ] && [ -f "$(dirname "$output_path")/${comp_id}-alpha.mov" ]; then
+    echo -e "${GREEN}↷ ${comp_id} has a transparent overlay; mp4 no longer maintained, skipping${NC}"
     return 0
   fi
   mkdir -p "$(dirname "$output_path")"
@@ -510,6 +520,12 @@ render_loadingicon() {
   echo -e "${GREEN}✅ All LoadingIcon compositions rendered successfully!${NC}"
 }
 
+# Render DotsLoader / ProgressBar / PulseCircle / SkeletonScreen compositions
+# (IDs enumerated by scripts/list-loading-composition-ids.cjs)
+render_loading() {
+  render_from_list_script "⏳ Rendering Loading compositions (DotsLoader / ProgressBar / PulseCircle / SkeletonScreen)" "scripts/list-loading-composition-ids.cjs"
+}
+
 # Render Location compositions
 render_location() {
   echo -e "${YELLOW}📍 Rendering Location compositions...${NC}"
@@ -652,6 +668,7 @@ check_output_dirs() {
   local list_scripts=(
     "list-text-composition-ids.cjs:"
     "list-loading-icon-composition-ids.cjs:"
+    "list-loading-composition-ids.cjs:"
     "list-location-composition-ids.cjs:Location-"
     "list-minimap-composition-ids.cjs:MiniMap-"
     "list-audiospectrum-pattern-composition-ids.cjs:"
@@ -715,6 +732,9 @@ main() {
       ;;
     LoadingIcon|loadingicon)
       render_loadingicon
+      ;;
+    Loading|loading)
+      render_loading
       ;;
     Location|location)
       render_location
@@ -786,6 +806,7 @@ main() {
       if [ "$OUTPUT_FORMAT" = "png" ]; then
         render_intro
         render_loadingicon
+        render_loading
         render_location
         render_minimap
         render_audiospectrum
@@ -823,6 +844,7 @@ main() {
       echo "  --adobe-stock      Export ProRes 422 HQ MOV without audio; selected backgrounds become 60 seconds"
       echo "  Intro              Render Intro composition"
       echo "  LoadingIcon        Render all LoadingIcon compositions"
+      echo "  Loading            Render DotsLoader/ProgressBar/PulseCircle/SkeletonScreen compositions"
       echo "  Location           Render all Location compositions"
       echo "  MiniMap            Render all MiniMap compositions (WebGL required)"
       echo "  AudioSpectrum      Render all AudioSpectrum pattern compositions"

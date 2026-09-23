@@ -25,6 +25,7 @@ Compositionの尺を変更する、またはMP4・MOV・PNG連番を書き出す
 - 書き出しには `render.sh` を使用する。形式・オプション・一括出力の最新の使い方は `./render.sh help` を参照する。
 - 重ね使い用の通常尺の透過MOVは `./render.sh --alpha <CompositionId...>` を使用する。ProRes 4444・PNG中間フレーム・アルファ対応ピクセル形式・音声なしで出力し、Stock向けの尺変更は適用しない。
 - 重ね使い用素材の一括出力は `./render.sh --alpha overlays` を使用する。通常尺と `-10s` 版を含め、描画内容のあるフレームに透明部分が存在することを確認する。全面不透明または描画内容を確認できない素材は理由を記録して対象外とする。既存MP4を移動せず、同じCompositionフォルダに `-alpha.mov` を追加する。
+- 同じCompositionフォルダーに `<CompositionId>-alpha.mov` がすでにある場合、そのCompositionのmp4は重複のため書き出さない（`render.sh` の `render_one` と `render-all.cjs` が自動でスキップする）。透過が確認できず `-alpha.mov` が存在しないCompositionや、Intro/Placeholder/Motion系などオーバーレイ対象外のCompositionは従来どおりmp4を書き出す。
 - Composition自身の背景を透過させる場合は `--transparent-bg` を使用する。プレビュー用の背景を含める `--with-canvas-bg` とは区別する。
 - PNG連番を依頼されている場合は `--png-sequence` で書き出す。透過素材には `--transparent-bg` も指定する。
 - 出力先はStudioのFolder階層に合わせ、Composition IDごとのフォルダにまとめる。動画をカテゴリフォルダへ直接置かない。

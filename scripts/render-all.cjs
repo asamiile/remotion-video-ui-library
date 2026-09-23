@@ -304,6 +304,18 @@ async function inspectAlpha(c, browser) {
         save();
         continue;
       }
+      if (
+        format === "mp4" &&
+        fs.existsSync(path.join(path.dirname(m.file), c.id + "-alpha.mov"))
+      ) {
+        log(`SKIPPED ${c.id}: transparent overlay already covers this composition, mp4 no longer maintained`);
+        state.skipped.push({
+          id: c.id,
+          reason: "Transparent overlay already covers this composition",
+        });
+        save();
+        continue;
+      }
       if (completed[c.id] && fs.existsSync(m.file)) {
         try {
           verify(m.file, c);

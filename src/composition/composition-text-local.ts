@@ -21,6 +21,12 @@ export type CompositionTextLocal = {
   shakeTextPatterns?: Record<string, Record<string, unknown>>;
   confettiPopTextPatterns?: Record<string, Record<string, unknown>>;
   loadingIconPatterns?: Record<string, Record<string, unknown>>;
+  dotsLoaderPatterns?: Record<string, Record<string, unknown>>;
+  progressBarPatterns?: Record<string, Record<string, unknown>>;
+  pulseCirclePatterns?: Record<string, Record<string, unknown>>;
+  skeletonScreenPatterns?: Record<string, Record<string, unknown>>;
+  radialSpinnerPatterns?: Record<string, Record<string, unknown>>;
+  radialGlowSpinnerPatterns?: Record<string, Record<string, unknown>>;
   codeStreamPatterns?: Record<string, Record<string, unknown>>;
   stackedRevealTextPatterns?: Record<string, Record<string, unknown>>;
   tornNoteCaptionPatterns?: Record<string, Record<string, unknown>>;

@@ -59,6 +59,15 @@ const prefixLayers: { prefix: string; layer: CanvasPreviewLayer }[] = [
     prefix: "Angst",
     layer: { kind: "color", color: "#060810" },
   },
+  /** All-white bars are invisible against Studio's default white canvas */
+  // {
+  //   prefix: "RadialSpinner-",
+  //   layer: { kind: "color", color: "#000000" },
+  // },
+  // {
+  //   prefix: "RadialGlowSpinner-",
+  //   layer: { kind: "color", color: "#000000" },
+  // },
 ];
 
 export function resolveCanvasPreviewLayer(

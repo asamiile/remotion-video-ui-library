@@ -70,6 +70,12 @@ const families = [
 
   // Other compositions
   { type: "pattern", file: "Loading/LoadingIcon/loading-icon.schema", export: "loadingIconPatterns", category: "other" },
+  { type: "pattern", file: "Loading/DotsLoader/dots-loader.schema", export: "dotsLoaderPatterns", category: "other" },
+  { type: "pattern", file: "Loading/ProgressBar/progress-bar.schema", export: "progressBarPatterns", category: "other" },
+  { type: "pattern", file: "Loading/PulseCircle/pulse-circle.schema", export: "pulseCirclePatterns", category: "other" },
+  { type: "pattern", file: "Loading/SkeletonScreen/skeleton-screen.schema", export: "skeletonScreenPatterns", category: "other" },
+  { type: "pattern", file: "Loading/RadialSpinner/radial-spinner.schema", export: "radialSpinnerPatterns", category: "other" },
+  { type: "pattern", file: "Loading/RadialGlowSpinner/radial-glow-spinner.schema", export: "radialGlowSpinnerPatterns", category: "other" },
 
   // Special: oneTakeLogo props (goes to 'text' because it's used by root-text.tsx)
   { type: "oneTakeLogo", file: "Text/FlickerTitle/flicker-title.schema", export: "oneTakeLogoTextVariantProps", category: "text" },

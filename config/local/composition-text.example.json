@@ -7395,6 +7395,29 @@
     "largeWithText": { "text": "Loading …" },
     "customWithText": { "text": "Loading …" }
   },
+  "dotsLoaderPatterns": {
+    "defaultWithText": { "text": "Loading …" },
+    "largeWithText": { "text": "Loading …" },
+    "customWithText": { "text": "Loading …" }
+  },
+  "progressBarPatterns": {
+    "defaultWithText": { "text": "Loading …" },
+    "largeWithText": { "text": "Loading …" },
+    "customWithText": { "text": "Loading …" }
+  },
+  "pulseCirclePatterns": {
+    "defaultWithText": { "text": "Loading …" },
+    "largeWithText": { "text": "Loading …" },
+    "customWithText": { "text": "Loading …" }
+  },
+  "radialSpinnerPatterns": {
+    "defaultWithText": { "text": "Loading …" },
+    "largeWithText": { "text": "Loading …" }
+  },
+  "radialGlowSpinnerPatterns": {
+    "defaultWithText": { "text": "Loading …" },
+    "largeWithText": { "text": "Loading …" }
+  },
   "slideInCaptionPatterns": {
     "refWhite": { "text": "2025/06/19 Electronics with Arduino UNO" },
     "refWhiteJp": { "text": "サンプル キャプション" }
