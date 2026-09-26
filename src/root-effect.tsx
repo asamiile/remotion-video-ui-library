@@ -36,6 +36,12 @@ import {
 } from "./Effects/Transition/ShatterCrackTransition/shatter-crack-transition.schema";
 import { ZoomBlurTransitionTemplate } from "./Effects/Transition/ZoomBlurTransition/ZoomBlurTransitionTemplate";
 import { zoomBlurTransitionSchema } from "./Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
+import { InkBleedTransitionTemplate } from "./Effects/Transition/InkBleedTransition/InkBleedTransitionTemplate";
+import {
+  inkBleedTransitionDurationFrames,
+  inkBleedTransitionPatterns,
+  inkBleedTransitionSchema,
+} from "./Effects/Transition/InkBleedTransition/ink-bleed-transition.schema";
 import { VolumetricSmokeTransitionTemplate } from "./Effects/Transition/VolumetricSmokeTransition/VolumetricSmokeTransitionTemplate";
 import {
   volumetricSmokeTransitionDurationFrames,
@@ -284,6 +290,18 @@ export function EffectFolder() {
             props: { ...defaultZoomBlurTransitionProps },
             durationInFrames: minimumCompositionFrames(
               zoomBlurTransitionDurationFrames(),
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="InkBleedTransition">
+          {renderPatternFamily({
+            patterns: inkBleedTransitionPatterns,
+            idPrefix: "InkBleedTransition-",
+            Template: InkBleedTransitionTemplate,
+            schema: inkBleedTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              inkBleedTransitionDurationFrames(),
               FPS,
             ),
           })}

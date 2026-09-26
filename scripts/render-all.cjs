@@ -97,7 +97,9 @@ function contentFrame(c) {
           ? 22
           : id.startsWith("VolumetricSmokeTransition-")
             ? 54
-            : null;
+            : id.startsWith("InkBleedTransition-")
+              ? 60
+              : null;
   if (active)
     return (
       Math.floor(c.durationInFrames / 2) -

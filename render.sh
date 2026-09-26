@@ -222,6 +222,7 @@ resolve_output_subdir() {
     ShatterCrackTransition) echo "Effect/Transition/ShatterCrackTransition" ;;
     ZoomBlurTransition) echo "Effect/Transition/ZoomBlurTransition" ;;
     VolumetricSmokeTransition-*) echo "Effect/Transition/VolumetricSmokeTransition" ;;
+    InkBleedTransition-*) echo "Effect/Transition/InkBleedTransition" ;;
     GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition) echo "Effect/Transition/SpatialWarp" ;;
     DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) echo "Effect/Transition/DataUI" ;;
     TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/Overlay/SciFi" ;;
@@ -313,7 +314,7 @@ output_path_for() {
 # GPU-backed GL; render_one adds --gl=angle for these automatically.
 requires_webgl() {
   case "$1" in
-    Background-VolumetricSmoke-*|VolumetricSmokeTransition-*) return 0 ;;
+    Background-VolumetricSmoke-*|VolumetricSmokeTransition-*|InkBleedTransition-*) return 0 ;;
     *) return 1 ;;
   esac
 }
@@ -463,6 +464,14 @@ render_shatter_crack_transition() {
 # Render ZoomBlurTransition compositions
 render_zoom_blur_transition() {
   render_fixed_id_family "✨ Rendering ZoomBlurTransition compositions" ZOOM_BLUR_TRANSITION_COMPOSITION_IDS
+}
+
+# Render InkBleedTransition compositions (WebGL shader)
+render_ink_bleed_transition() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in InkBleedTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
 # Render VolumetricSmokeTransition compositions (WebGL shader)
@@ -808,6 +817,9 @@ main() {
     ZoomBlurTransition|zoomblurtransition)
       render_zoom_blur_transition
       ;;
+    InkBleedTransition|inkbleedtransition)
+      render_ink_bleed_transition
+      ;;
     VolumetricSmokeTransition|volumetricsmoketransition)
       render_volumetric_smoke_transition
       ;;
@@ -853,6 +865,7 @@ main() {
         render_shatter_crack_transition
         render_zoom_blur_transition
         render_volumetric_smoke_transition
+        render_ink_bleed_transition
         render_new_effects
         render_sci_fi_overlays
         render_textless_sci_fi_overlays
@@ -895,6 +908,7 @@ main() {
       echo "  Burst              Render the special-move impact burst"
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
+      echo "  InkBleedTransition Render the ink-bleeding cover-and-reveal transition (WebGL)"
       echo "  VolumetricSmokeTransition Render the raymarched smoke cover-and-clear transition (WebGL)"
       echo "  SciFiOverlay       Render all transparent sci-fi video overlay effects"
       echo "  TextlessSciFiOverlay Render all transparent textless sci-fi overlay effects"

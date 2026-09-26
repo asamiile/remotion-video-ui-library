@@ -33,6 +33,7 @@ const out = fs.mkdtempSync('/tmp/duration-variants-');
    ['PhaseDesyncTransition', {durationFrames:39}, 39, 19, 149],
    ['HologramFragmentTransition-Dissolve', {}, 90, 45, 150],
    ['ZoomBlurTransition', {}, 22, 11, 150],
+   ['InkBleedTransition-SumiDrop', {}, 60, 30, 150],
    ['VolumetricSmokeTransition-EmberBillow', {}, 54, 27, 150],
    ['BloomFlashTransition-CyanOverexposure', {peakFrame:80, flashFrames:30}, 61, 30, 80],
    ['RackFocusBokehTransition', {rampFrames:16, holdFrames:7}, 40, 16, 16],
