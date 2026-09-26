@@ -99,7 +99,12 @@ function contentFrame(c) {
             ? 54
             : id.startsWith("InkBleedTransition-")
               ? 60
-              : null;
+              : id.startsWith("SuminagashiTransition-")
+                ? 72
+                : id.startsWith("DryBrushTransition-") ||
+                    id.startsWith("WaterRippleTransition-")
+                  ? 60
+                  : null;
   if (active)
     return (
       Math.floor(c.durationInFrames / 2) -

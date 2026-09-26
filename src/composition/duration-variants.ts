@@ -2,6 +2,9 @@ import {hologramFragmentTransitionAnimationDurationFrames} from "../Effects/Tran
 import {zoomBlurTransitionAnimationDurationFrames} from "../Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
 import {volumetricSmokeTransitionAnimationDurationFrames} from "../Effects/Transition/VolumetricSmokeTransition/volumetric-smoke-transition.schema";
 import {inkBleedTransitionAnimationDurationFrames} from "../Effects/Transition/InkBleedTransition/ink-bleed-transition.schema";
+import {suminagashiTransitionAnimationDurationFrames} from "../Effects/Transition/SuminagashiTransition/suminagashi-transition.schema";
+import {dryBrushTransitionAnimationDurationFrames} from "../Effects/Transition/DryBrushTransition/dry-brush-transition.schema";
+import {waterRippleTransitionAnimationDurationFrames} from "../Effects/Transition/WaterRippleTransition/water-ripple-transition.schema";
 import policies from "./duration-variants.json";
 
 export function getDurationVariantWindow(
@@ -22,6 +25,12 @@ export function getDurationVariantWindow(
       return { frames: hologramFragmentTransitionAnimationDurationFrames, sourceStart: 0 };
     case "zoom":
       return { frames: zoomBlurTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "suminagashi":
+      return { frames: suminagashiTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "dryBrush":
+      return { frames: dryBrushTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "waterRipple":
+      return { frames: waterRippleTransitionAnimationDurationFrames, sourceStart: 0 };
     case "inkBleed":
       return { frames: inkBleedTransitionAnimationDurationFrames, sourceStart: 0 };
     case "smoke":

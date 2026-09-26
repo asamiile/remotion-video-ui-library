@@ -48,6 +48,24 @@ import {
   shaderSciFiOverlayPatterns,
   shaderSciFiOverlaySchema,
 } from "./Effects/Overlay/ShaderSciFi/shader-sci-fi-overlay.schema";
+import { SuminagashiTransitionTemplate } from "./Effects/Transition/SuminagashiTransition/SuminagashiTransitionTemplate";
+import {
+  suminagashiTransitionDurationFrames,
+  suminagashiTransitionPatterns,
+  suminagashiTransitionSchema,
+} from "./Effects/Transition/SuminagashiTransition/suminagashi-transition.schema";
+import { DryBrushTransitionTemplate } from "./Effects/Transition/DryBrushTransition/DryBrushTransitionTemplate";
+import {
+  dryBrushTransitionDurationFrames,
+  dryBrushTransitionPatterns,
+  dryBrushTransitionSchema,
+} from "./Effects/Transition/DryBrushTransition/dry-brush-transition.schema";
+import { WaterRippleTransitionTemplate } from "./Effects/Transition/WaterRippleTransition/WaterRippleTransitionTemplate";
+import {
+  waterRippleTransitionDurationFrames,
+  waterRippleTransitionPatterns,
+  waterRippleTransitionSchema,
+} from "./Effects/Transition/WaterRippleTransition/water-ripple-transition.schema";
 import { InkBleedTransitionTemplate } from "./Effects/Transition/InkBleedTransition/InkBleedTransitionTemplate";
 import {
   inkBleedTransitionDurationFrames,
@@ -313,6 +331,42 @@ export function EffectFolder() {
             Template: ShaderEnergyTransitionTemplate,
             schema: shaderEnergyTransitionSchema,
             durationInFrames: shaderEnergyTransitionDurationFrames,
+          })}
+        </Folder>
+        <Folder name="SuminagashiTransition">
+          {renderPatternFamily({
+            patterns: suminagashiTransitionPatterns,
+            idPrefix: "SuminagashiTransition-",
+            Template: SuminagashiTransitionTemplate,
+            schema: suminagashiTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              suminagashiTransitionDurationFrames(),
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="DryBrushTransition">
+          {renderPatternFamily({
+            patterns: dryBrushTransitionPatterns,
+            idPrefix: "DryBrushTransition-",
+            Template: DryBrushTransitionTemplate,
+            schema: dryBrushTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              dryBrushTransitionDurationFrames(),
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="WaterRippleTransition">
+          {renderPatternFamily({
+            patterns: waterRippleTransitionPatterns,
+            idPrefix: "WaterRippleTransition-",
+            Template: WaterRippleTransitionTemplate,
+            schema: waterRippleTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              waterRippleTransitionDurationFrames(),
+              FPS,
+            ),
           })}
         </Folder>
         <Folder name="InkBleedTransition">

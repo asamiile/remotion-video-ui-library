@@ -73,6 +73,7 @@ How to decide when it's unclear:
 - Shader-based work uses three.js via `@remotion/three`. Draw full-frame fragment shaders with `ShaderCanvas` from `src/helpers/shader/` (auto-injects `uResolution` / `uTime` / `uFrame` / `vUv`); share GLSL snippets from `src/helpers/shader/glsl/`.
 - Derive all animation from `useCurrentFrame()` and pass it as uniforms. Never use react-three-fiber's `useFrame`, or renders flicker.
 - Transitions with `-10s` variants must pass time measured from the animation start (e.g. `animationFrame / fps`), not the built-in `uTime` (seconds since frame 0), or the base and `-10s` versions render different frames. Loops should derive motion from `frame / durationInFrames` with `loopOffset` (`src/helpers/shader/glsl/noise.ts`).
+- Clip-to-clip (blend) transitions take `fromSrc`/`toSrc` (path under `public/`, URL, or `""` for a built-in placeholder) via `mediaBlendFields` and render with `BlendShaderCanvas` (`src/helpers/shader/BlendShaderCanvas.tsx`); sample them in GLSL with `mediaSamplingGlsl`. Video frames are fetched per frame while rendering, so output stays frame-accurate. Use `useCenteredTransition` for timing.
 - Output premultiplied RGBA so `--alpha` / `--transparent-bg` exports keep transparency.
 - CLI renders need `--gl=angle`. When adding a shader composition, add its ID pattern to `requires_webgl()` in `render.sh`. `scripts/render-all.cjs` and `scripts/verify-duration-variants.cjs` already launch Chrome with ANGLE.
 
