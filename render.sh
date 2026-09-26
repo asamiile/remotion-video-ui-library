@@ -280,6 +280,14 @@ resolve_output_subdir() {
     Background-DigitalFog-*) echo "Background/DigitalFog" ;;
     Background-VolumetricSmoke-*) echo "Background/VolumetricSmoke" ;;
     Background-DigitalFogShader-*) echo "Background/DigitalFogShader" ;;
+    Background-ShaderBasics-GradientFlow) echo "Background/GradientFlow" ;;
+    Background-ShaderBasics-RippleRings) echo "Background/RippleRings" ;;
+    Background-ShaderBasics-SpeedLines) echo "Background/SpeedLines" ;;
+    Background-ShaderBasics-SynthGrid) echo "Background/SynthGrid" ;;
+    Background-ShaderBasics-HalftoneDots) echo "Background/HalftoneDots" ;;
+    Background-ShaderBasics-Starfield) echo "Background/Starfield" ;;
+    Background-ShaderBasics-Kaleidoscope) echo "Background/Kaleidoscope" ;;
+    Background-ShaderBasics-VoronoiCells) echo "Background/VoronoiCells" ;;
     AngstAnimation*) echo "Background/AngstAnimation" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
@@ -318,7 +326,7 @@ output_path_for() {
 requires_webgl() {
   case "$1" in
     Background-VolumetricSmoke-*|VolumetricSmokeTransition-*|InkBleedTransition-*) return 0 ;;
-    Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-10s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
+    Background-ShaderBasics-*|Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-10s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     *) return 1 ;;
   esac
 }
