@@ -104,6 +104,7 @@ const families = [
   {idPrefix: "Background-SignalInterferenceOverlay", file: "src/Background/SignalInterferenceOverlay/signal-interference-overlay.schema.ts", exportName: "signalInterferenceOverlayPatterns"},
   {idPrefix:"Background-WireframeBuild",file:"src/Background/WireframeBuild/wireframe-build.schema.ts",exportName:"wireframeBuildPatterns"},
   {idPrefix:"Background-DigitalFog",file:"src/Background/DigitalFog/digital-fog.schema.ts",exportName:"digitalFogPatterns"},
+  {idPrefix:"Background-DigitalFogShader",file:"src/Background/DigitalFogShader/digital-fog-shader.schema.ts",exportName:"digitalFogShaderPatterns"},
   {idPrefix:"Background-VolumetricSmoke",file:"src/Background/VolumetricSmoke/volumetric-smoke.schema.ts",exportName:"volumetricSmokePatterns"},
 ];
 

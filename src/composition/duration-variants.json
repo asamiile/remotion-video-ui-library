@@ -54,7 +54,9 @@
       "SpatialSeamTransition",
       "DataCellAuthorizationTransition",
       "NeuralRouteTransition",
-      "CoordinateRemapTransition"
+      "CoordinateRemapTransition",
+      "PlasmaVeilShaderTransition",
+      "QuantumDustTunnelShaderTransition"
     ],
     "timing": "sciFi"
   }

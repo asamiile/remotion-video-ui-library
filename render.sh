@@ -222,6 +222,8 @@ resolve_output_subdir() {
     ShatterCrackTransition) echo "Effect/Transition/ShatterCrackTransition" ;;
     ZoomBlurTransition) echo "Effect/Transition/ZoomBlurTransition" ;;
     VolumetricSmokeTransition-*) echo "Effect/Transition/VolumetricSmokeTransition" ;;
+    PlasmaVeilShaderTransition|QuantumDustTunnelShaderTransition) echo "Effect/Transition/ShaderEnergy" ;;
+    PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) echo "Effect/Overlay/ShaderSciFi" ;;
     InkBleedTransition-*) echo "Effect/Transition/InkBleedTransition" ;;
     GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition) echo "Effect/Transition/SpatialWarp" ;;
     DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) echo "Effect/Transition/DataUI" ;;
@@ -277,6 +279,7 @@ resolve_output_subdir() {
     Background-WireframeBuild-*) echo "Background/WireframeBuild" ;;
     Background-DigitalFog-*) echo "Background/DigitalFog" ;;
     Background-VolumetricSmoke-*) echo "Background/VolumetricSmoke" ;;
+    Background-DigitalFogShader-*) echo "Background/DigitalFogShader" ;;
     AngstAnimation*) echo "Background/AngstAnimation" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
@@ -315,6 +318,7 @@ output_path_for() {
 requires_webgl() {
   case "$1" in
     Background-VolumetricSmoke-*|VolumetricSmokeTransition-*|InkBleedTransition-*) return 0 ;;
+    Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-10s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     *) return 1 ;;
   esac
 }
@@ -471,6 +475,14 @@ render_ink_bleed_transition() {
   local comp_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
     case "$comp_id" in InkBleedTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+# Render WebGL counterparts of the SVG sci-fi transitions and overlays
+render_shader_sci_fi() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in *ShaderTransition|*ShaderTransition-10s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
@@ -820,6 +832,9 @@ main() {
     InkBleedTransition|inkbleedtransition)
       render_ink_bleed_transition
       ;;
+    ShaderSciFi|shaderscifi)
+      render_shader_sci_fi
+      ;;
     VolumetricSmokeTransition|volumetricsmoketransition)
       render_volumetric_smoke_transition
       ;;
@@ -866,6 +881,7 @@ main() {
         render_zoom_blur_transition
         render_volumetric_smoke_transition
         render_ink_bleed_transition
+        render_shader_sci_fi
         render_new_effects
         render_sci_fi_overlays
         render_textless_sci_fi_overlays
@@ -909,6 +925,7 @@ main() {
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
       echo "  InkBleedTransition Render the ink-bleeding cover-and-reveal transition (WebGL)"
+      echo "  ShaderSciFi        Render WebGL versions of PlasmaVeil/QuantumDustTunnel transitions and PlasmaEdgeArc/VolumetricLightScan/EnergyContourLines overlays"
       echo "  VolumetricSmokeTransition Render the raymarched smoke cover-and-clear transition (WebGL)"
       echo "  SciFiOverlay       Render all transparent sci-fi video overlay effects"
       echo "  TextlessSciFiOverlay Render all transparent textless sci-fi overlay effects"

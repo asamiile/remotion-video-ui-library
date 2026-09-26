@@ -49,3 +49,15 @@ float fbm3(vec3 p, int octaves) {
   return sum / norm;
 }
 `;
+
+/**
+ * Offset that travels a closed loop through noise space. Feeding `phase` =
+ * frame / durationInFrames (times an integer cycle count) makes noise-driven
+ * animation loop seamlessly.
+ */
+export const loopOffsetGlsl = /* glsl */ `
+vec3 loopOffset(float phase, float radius, float salt) {
+  float a = 6.28318530718 * phase;
+  return vec3(cos(a + salt), sin(a + salt), sin(a + salt * 1.7)) * radius;
+}
+`;

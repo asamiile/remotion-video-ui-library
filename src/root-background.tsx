@@ -61,6 +61,8 @@ import { signalInterferenceOverlayDurationFrames, signalInterferenceOverlayPatte
 import {WireframeBuildTemplate} from "./Background/WireframeBuild/WireframeBuildTemplate";
 import {wireframeBuildDurationFrames,wireframeBuildPatterns,wireframeBuildSchema} from "./Background/WireframeBuild/wireframe-build.schema";
 import {DigitalFogTemplate} from "./Background/DigitalFog/DigitalFogTemplate";
+import {DigitalFogShaderTemplate} from "./Background/DigitalFogShader/DigitalFogShaderTemplate";
+import {digitalFogShaderDurationFrames,digitalFogShaderPatterns,digitalFogShaderSchema} from "./Background/DigitalFogShader/digital-fog-shader.schema";
 import {VolumetricSmokeTemplate} from "./Background/VolumetricSmoke/VolumetricSmokeTemplate";
 import {volumetricSmokeDurationFrames,volumetricSmokePatterns,volumetricSmokeSchema} from "./Background/VolumetricSmoke/volumetric-smoke.schema";
 import {digitalFogDurationFrames,digitalFogPatterns,digitalFogSchema} from "./Background/DigitalFog/digital-fog.schema";
@@ -289,6 +291,7 @@ export function BackgroundFolder() {
       </Folder>
       <Folder name="WireframeBuild">{renderPatternFamily({patterns:wireframeBuildPatterns,idPrefix:"Background-WireframeBuild-",Template:WireframeBuildTemplate,schema:wireframeBuildSchema,durationInFrames:wireframeBuildDurationFrames})}</Folder>
       <Folder name="DigitalFog">{renderPatternFamily({patterns:digitalFogPatterns,idPrefix:"Background-DigitalFog-",Template:DigitalFogTemplate,schema:digitalFogSchema,durationInFrames:digitalFogDurationFrames})}</Folder>
+      <Folder name="DigitalFogShader">{renderPatternFamily({patterns:digitalFogShaderPatterns,idPrefix:"Background-DigitalFogShader-",Template:DigitalFogShaderTemplate,schema:digitalFogShaderSchema,durationInFrames:digitalFogShaderDurationFrames})}</Folder>
       <Folder name="VolumetricSmoke">{renderPatternFamily({patterns:volumetricSmokePatterns,idPrefix:"Background-VolumetricSmoke-",Template:VolumetricSmokeTemplate,schema:volumetricSmokeSchema,durationInFrames:volumetricSmokeDurationFrames})}</Folder>
 
       <Folder name="AngstAnimation">

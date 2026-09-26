@@ -9,6 +9,8 @@ const families = [
   {idPrefix: "HologramFragmentTransition", file: "src/Effects/Transition/HologramFragmentTransition/hologram-fragment-transition.schema.ts", exportName: "hologramFragmentTransitionPatterns"},
   {idPrefix:"KaleidoscopeMirror",file:"src/Effects/Stylize/Mirror/kaleidoscope-mirror.schema.ts",exportName:"kaleidoscopeMirrorPatterns"},
   {idPrefix:"DelayTrail",file:"src/Effects/Stylize/Trail/delay-trail.schema.ts",exportName:"delayTrailPatterns"},
+  {idPrefix:"",file:"src/Effects/Transition/ShaderEnergy/shader-energy-transition.schema.ts",exportName:"shaderEnergyTransitionPatterns",join:""},
+  {idPrefix:"",file:"src/Effects/Overlay/ShaderSciFi/shader-sci-fi-overlay.schema.ts",exportName:"shaderSciFiOverlayPatterns",join:""},
   {idPrefix:"InkBleedTransition",file:"src/Effects/Transition/InkBleedTransition/ink-bleed-transition.schema.ts",exportName:"inkBleedTransitionPatterns"},
   {idPrefix:"VolumetricSmokeTransition",file:"src/Effects/Transition/VolumetricSmokeTransition/volumetric-smoke-transition.schema.ts",exportName:"volumetricSmokeTransitionPatterns"},
   {idPrefix:"BloomFlashTransition",file:"src/Effects/Transition/BloomFlashTransition/bloom-flash-transition.schema.ts",exportName:"bloomFlashTransitionPatterns"},

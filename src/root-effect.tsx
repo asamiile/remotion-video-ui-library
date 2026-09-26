@@ -36,6 +36,18 @@ import {
 } from "./Effects/Transition/ShatterCrackTransition/shatter-crack-transition.schema";
 import { ZoomBlurTransitionTemplate } from "./Effects/Transition/ZoomBlurTransition/ZoomBlurTransitionTemplate";
 import { zoomBlurTransitionSchema } from "./Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
+import { ShaderEnergyTransitionTemplate } from "./Effects/Transition/ShaderEnergy/ShaderEnergyTransitionTemplate";
+import {
+  shaderEnergyTransitionDurationFrames,
+  shaderEnergyTransitionPatterns,
+  shaderEnergyTransitionSchema,
+} from "./Effects/Transition/ShaderEnergy/shader-energy-transition.schema";
+import { ShaderSciFiOverlayTemplate } from "./Effects/Overlay/ShaderSciFi/ShaderSciFiOverlayTemplate";
+import {
+  shaderSciFiOverlayDurationFrames,
+  shaderSciFiOverlayPatterns,
+  shaderSciFiOverlaySchema,
+} from "./Effects/Overlay/ShaderSciFi/shader-sci-fi-overlay.schema";
 import { InkBleedTransitionTemplate } from "./Effects/Transition/InkBleedTransition/InkBleedTransitionTemplate";
 import {
   inkBleedTransitionDurationFrames,
@@ -294,6 +306,15 @@ export function EffectFolder() {
             ),
           })}
         </Folder>
+        <Folder name="ShaderEnergy">
+          {renderPatternFamily({
+            patterns: shaderEnergyTransitionPatterns,
+            idPrefix: "",
+            Template: ShaderEnergyTransitionTemplate,
+            schema: shaderEnergyTransitionSchema,
+            durationInFrames: shaderEnergyTransitionDurationFrames,
+          })}
+        </Folder>
         <Folder name="InkBleedTransition">
           {renderPatternFamily({
             patterns: inkBleedTransitionPatterns,
@@ -354,6 +375,15 @@ export function EffectFolder() {
             Template: TextlessSciFiOverlayTemplate,
             schema: textlessSciFiOverlaySchema,
             durationInFrames: textlessSciFiOverlayDurationFrames,
+          })}
+        </Folder>
+        <Folder name="ShaderSciFi">
+          {renderPatternFamily({
+            patterns: shaderSciFiOverlayPatterns,
+            idPrefix: "",
+            Template: ShaderSciFiOverlayTemplate,
+            schema: shaderSciFiOverlaySchema,
+            durationInFrames: shaderSciFiOverlayDurationFrames,
           })}
         </Folder>
       </Folder>
