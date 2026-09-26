@@ -1,5 +1,6 @@
 import {hologramFragmentTransitionAnimationDurationFrames} from "../Effects/Transition/HologramFragmentTransition/hologram-fragment-transition.schema";
 import {zoomBlurTransitionAnimationDurationFrames} from "../Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
+import {volumetricSmokeTransitionAnimationDurationFrames} from "../Effects/Transition/VolumetricSmokeTransition/volumetric-smoke-transition.schema";
 import policies from "./duration-variants.json";
 
 export function getDurationVariantWindow(
@@ -20,6 +21,8 @@ export function getDurationVariantWindow(
       return { frames: hologramFragmentTransitionAnimationDurationFrames, sourceStart: 0 };
     case "zoom":
       return { frames: zoomBlurTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "smoke":
+      return { frames: volumetricSmokeTransitionAnimationDurationFrames, sourceStart: 0 };
     case "bokeh":
       return {
         frames: Math.ceil(number("rampFrames") * 2 + number("holdFrames")) + 1,

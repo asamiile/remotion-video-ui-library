@@ -95,7 +95,9 @@ function contentFrame(c) {
         ? 90
         : id === "ZoomBlurTransition"
           ? 22
-          : null;
+          : id.startsWith("VolumetricSmokeTransition-")
+            ? 54
+            : null;
   if (active)
     return (
       Math.floor(c.durationInFrames / 2) -

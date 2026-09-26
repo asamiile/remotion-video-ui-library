@@ -9,6 +9,7 @@ const families = [
   {idPrefix: "HologramFragmentTransition", file: "src/Effects/Transition/HologramFragmentTransition/hologram-fragment-transition.schema.ts", exportName: "hologramFragmentTransitionPatterns"},
   {idPrefix:"KaleidoscopeMirror",file:"src/Effects/Stylize/Mirror/kaleidoscope-mirror.schema.ts",exportName:"kaleidoscopeMirrorPatterns"},
   {idPrefix:"DelayTrail",file:"src/Effects/Stylize/Trail/delay-trail.schema.ts",exportName:"delayTrailPatterns"},
+  {idPrefix:"VolumetricSmokeTransition",file:"src/Effects/Transition/VolumetricSmokeTransition/volumetric-smoke-transition.schema.ts",exportName:"volumetricSmokeTransitionPatterns"},
   {idPrefix:"BloomFlashTransition",file:"src/Effects/Transition/BloomFlashTransition/bloom-flash-transition.schema.ts",exportName:"bloomFlashTransitionPatterns"},
   {idPrefix:"",file:"src/Effects/Overlay/SciFi/sci-fi-overlay.schema.ts",exportName:"sciFiOverlayPatterns",join:""},
   {idPrefix:"",file:"src/Effects/Overlay/TextlessSciFi/textless-sci-fi-overlay.schema.ts",exportName:"textlessSciFiOverlayPatterns",join:""},

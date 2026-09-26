@@ -36,6 +36,12 @@ import {
 } from "./Effects/Transition/ShatterCrackTransition/shatter-crack-transition.schema";
 import { ZoomBlurTransitionTemplate } from "./Effects/Transition/ZoomBlurTransition/ZoomBlurTransitionTemplate";
 import { zoomBlurTransitionSchema } from "./Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
+import { VolumetricSmokeTransitionTemplate } from "./Effects/Transition/VolumetricSmokeTransition/VolumetricSmokeTransitionTemplate";
+import {
+  volumetricSmokeTransitionDurationFrames,
+  volumetricSmokeTransitionPatterns,
+  volumetricSmokeTransitionSchema,
+} from "./Effects/Transition/VolumetricSmokeTransition/volumetric-smoke-transition.schema";
 import {
   defaultZoomBlurTransitionProps,
   zoomBlurTransitionDurationFrames,
@@ -278,6 +284,18 @@ export function EffectFolder() {
             props: { ...defaultZoomBlurTransitionProps },
             durationInFrames: minimumCompositionFrames(
               zoomBlurTransitionDurationFrames(),
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="VolumetricSmokeTransition">
+          {renderPatternFamily({
+            patterns: volumetricSmokeTransitionPatterns,
+            idPrefix: "VolumetricSmokeTransition-",
+            Template: VolumetricSmokeTransitionTemplate,
+            schema: volumetricSmokeTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              volumetricSmokeTransitionDurationFrames(),
               FPS,
             ),
           })}

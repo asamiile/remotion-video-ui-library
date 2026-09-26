@@ -18,7 +18,7 @@ Compositionの尺を変更する、またはMP4・MOV・PNG連番を書き出す
 
 - 最短版は演出開始・終了に必要な透明フレームを残し、余分な待機時間を除く。10秒版と演出速度・色・残像を共通にする。BloomFlashでは発光前の余白も除く。
 - propsで演出尺を変更した場合は、最短版の尺も再計算する。
-- 現在の実装対象はDistressTransition、ScanEchoTransition、SFトランジション18種、HologramFragmentTransition、ZoomBlurTransition、BloomFlashTransition、RackFocusBokehTransition。対象の詳細は `src/composition/duration-variants.json` を参照する。この一覧は実装状況であり、新規Compositionへの適用範囲を制限するものではない。
+- 現在の実装対象はDistressTransition、ScanEchoTransition、SFトランジション18種、HologramFragmentTransition、ZoomBlurTransition、VolumetricSmokeTransition、BloomFlashTransition、RackFocusBokehTransition。対象の詳細は `src/composition/duration-variants.json` を参照する。この一覧は実装状況であり、新規Compositionへの適用範囲を制限するものではない。
 
 ## 書き出しと出力先
 

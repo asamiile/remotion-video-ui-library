@@ -68,6 +68,13 @@ How to decide when it's unclear:
 - **The contents of `src/composition/` are "shared infrastructure"**, distinct from the "feature categories" like `src/Text/` (the similar naming is easy to confuse). It is not a place to add individual compositions.
 - **Never move `.cursor/rules/` or `.agents/skills/` under `.agents/`.** These are fixed, repo-root-relative paths that the Cursor editor auto-detects — not a naming convention specific to this repository. Moving them would break rule/skill loading for anyone using Cursor.
 
+## WebGL / shader compositions
+
+- Shader-based work uses three.js via `@remotion/three`. Draw full-frame fragment shaders with `ShaderCanvas` from `src/helpers/shader/` (auto-injects `uResolution` / `uTime` / `uFrame` / `vUv`); share GLSL snippets from `src/helpers/shader/glsl/`.
+- Derive all animation from `useCurrentFrame()` and pass it as uniforms. Never use react-three-fiber's `useFrame`, or renders flicker.
+- Output premultiplied RGBA so `--alpha` / `--transparent-bg` exports keep transparency.
+- CLI renders need `--gl=angle`. When adding a shader composition, add its ID pattern to `requires_webgl()` in `render.sh`. `scripts/render-all.cjs` and `scripts/verify-duration-variants.cjs` already launch Chrome with ANGLE.
+
 ## Composition duration and folder limits
 
 - 通常尺が10秒以下の動画には、通常尺のCompositionに加えて10秒版のCompositionを追加する。ちょうど10秒の場合も対象とする。

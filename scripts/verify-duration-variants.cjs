@@ -9,7 +9,7 @@ const policies = require('../src/composition/duration-variants.json');
 const serveUrl = path.resolve(process.argv[2] || 'build');
 const out = fs.mkdtempSync('/tmp/duration-variants-');
 (async () => {
- const browser = await renderer.openBrowser('chrome');
+ const browser = await renderer.openBrowser('chrome', {chromiumOptions: {gl: 'angle'}});
  try {
   const all = await renderer.getCompositions(serveUrl, {puppeteerInstance: browser, onBrowserLog: () => {}, logLevel: 'error'});
   assert(!all.some(c => c.id.endsWith('-Shortest')), 'Obsolete suffix remains');
@@ -33,6 +33,7 @@ const out = fs.mkdtempSync('/tmp/duration-variants-');
    ['PhaseDesyncTransition', {durationFrames:39}, 39, 19, 149],
    ['HologramFragmentTransition-Dissolve', {}, 90, 45, 150],
    ['ZoomBlurTransition', {}, 22, 11, 150],
+   ['VolumetricSmokeTransition-EmberBillow', {}, 54, 27, 150],
    ['BloomFlashTransition-CyanOverexposure', {peakFrame:80, flashFrames:30}, 61, 30, 80],
    ['RackFocusBokehTransition', {rampFrames:16, holdFrames:7}, 40, 16, 16],
   ];

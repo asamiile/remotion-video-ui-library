@@ -221,6 +221,7 @@ resolve_output_subdir() {
     InkRippleTransition) echo "Effect/Transition/InkRippleTransition" ;;
     ShatterCrackTransition) echo "Effect/Transition/ShatterCrackTransition" ;;
     ZoomBlurTransition) echo "Effect/Transition/ZoomBlurTransition" ;;
+    VolumetricSmokeTransition-*) echo "Effect/Transition/VolumetricSmokeTransition" ;;
     GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition) echo "Effect/Transition/SpatialWarp" ;;
     DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) echo "Effect/Transition/DataUI" ;;
     TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/Overlay/SciFi" ;;
@@ -274,6 +275,7 @@ resolve_output_subdir() {
     Background-SignalInterferenceOverlay-*) echo "Background/SignalInterferenceOverlay" ;;
     Background-WireframeBuild-*) echo "Background/WireframeBuild" ;;
     Background-DigitalFog-*) echo "Background/DigitalFog" ;;
+    Background-VolumetricSmoke-*) echo "Background/VolumetricSmoke" ;;
     AngstAnimation*) echo "Background/AngstAnimation" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
@@ -307,6 +309,15 @@ output_path_for() {
   fi
 }
 
+# Compositions drawn with WebGL shaders (three.js / src/helpers/shader) need a
+# GPU-backed GL; render_one adds --gl=angle for these automatically.
+requires_webgl() {
+  case "$1" in
+    Background-VolumetricSmoke-*|VolumetricSmokeTransition-*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
 # Render a single MP4 or PNG sequence export.
 # Args: comp_id, output_path, [concurrency=$CONCURRENCY_TEXT_EFFECTS], [network_timeout=$NETWORK_TIMEOUT], [extra flags...]
 # render_minimap (--gl=angle, longer timeout) and render_audiospectrum (--mute-audio)
@@ -337,10 +348,15 @@ render_one() {
   elif [ "$OUTPUT_FORMAT" = "stock" ]; then
     codec_args=(--codec=prores --prores-profile=hq --pixel-format=yuv422p10le --muted)
   fi
+  local gl_args=()
+  if requires_webgl "$comp_id"; then
+    gl_args=(--gl=angle)
+  fi
   npx remotion render src/index.ts "$comp_id" "$output_path" \
     --concurrency="$cc" \
     --network-timeout="$timeout" \
     "${codec_args[@]}" \
+    ${gl_args[@]+"${gl_args[@]}"} \
     "$@" \
     || {
       echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
@@ -447,6 +463,14 @@ render_shatter_crack_transition() {
 # Render ZoomBlurTransition compositions
 render_zoom_blur_transition() {
   render_fixed_id_family "✨ Rendering ZoomBlurTransition compositions" ZOOM_BLUR_TRANSITION_COMPOSITION_IDS
+}
+
+# Render VolumetricSmokeTransition compositions (WebGL shader)
+render_volumetric_smoke_transition() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in VolumetricSmokeTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
 render_distress_transition() {
@@ -784,6 +808,9 @@ main() {
     ZoomBlurTransition|zoomblurtransition)
       render_zoom_blur_transition
       ;;
+    VolumetricSmokeTransition|volumetricsmoketransition)
+      render_volumetric_smoke_transition
+      ;;
     DistressTransition|distresstransition)
       render_distress_transition
       ;;
@@ -825,6 +852,7 @@ main() {
         render_burst
         render_shatter_crack_transition
         render_zoom_blur_transition
+        render_volumetric_smoke_transition
         render_new_effects
         render_sci_fi_overlays
         render_textless_sci_fi_overlays
@@ -867,6 +895,7 @@ main() {
       echo "  Burst              Render the special-move impact burst"
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
+      echo "  VolumetricSmokeTransition Render the raymarched smoke cover-and-clear transition (WebGL)"
       echo "  SciFiOverlay       Render all transparent sci-fi video overlay effects"
       echo "  TextlessSciFiOverlay Render all transparent textless sci-fi overlay effects"
       echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel, framed window, lower-third label)"

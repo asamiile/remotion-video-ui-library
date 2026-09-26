@@ -22,6 +22,10 @@
     "timing": "zoom"
   },
   {
+    "prefix": "VolumetricSmokeTransition-",
+    "timing": "smoke"
+  },
+  {
     "ids": [
       "RackFocusBokehTransition"
     ],
