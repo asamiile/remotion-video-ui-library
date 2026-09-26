@@ -1,6 +1,6 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
+import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/font-line-seed-jp";
 
 export const sprayPaintTextSchema = z.object({
   text: z.string().default("SOUND DESIGN"),

@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { SprayPaintTextSchemaType } from "./spray-paint-text.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 const OVERSPRAY_WINDOW_FRAMES = 7;

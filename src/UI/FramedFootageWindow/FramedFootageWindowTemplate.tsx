@@ -7,7 +7,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { FramedFootageWindowSchemaType } from "./framed-footage-window.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const FramedFootageWindowTemplate: React.FC<

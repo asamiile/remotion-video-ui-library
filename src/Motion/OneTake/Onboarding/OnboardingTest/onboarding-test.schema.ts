@@ -12,7 +12,7 @@ export const onboardingTestSchema = z.object({
 
 export type OnboardingTestSchemaType = z.infer<typeof onboardingTestSchema>;
 
-export const onboardingTestDurationFrames = 720;
+export const onboardingTestDurationFrames = 900;
 
 export const defaultOnboardingTestProps = {
   phoneColor: "#37E9FF",

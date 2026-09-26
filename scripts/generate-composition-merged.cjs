@@ -53,6 +53,12 @@ const families = [
   { type: "pattern", file: "Text/InterviewQuestionCaption/interview-question-caption.schema", export: "interviewQuestionCaptionPatterns", category: "text" },
   { type: "pattern", file: "Text/AnnouncementEndCard/announcement-end-card.schema", export: "announcementEndCardPatterns", category: "text" },
   { type: "pattern", file: "Text/EmergingNoiseTitle/emerging-noise-title.schema", export: "emergingNoiseTitlePatterns", category: "text" },
+  { type: "pattern", file: "Text/FocusPullCredit/focus-pull-credit.schema", export: "focusPullCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/KerningRevealCredit/kerning-reveal-credit.schema", export: "kerningRevealCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/FeatherWipeCredit/feather-wipe-credit.schema", export: "featherWipeCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/ExposureFlashCredit/exposure-flash-credit.schema", export: "exposureFlashCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/DepthDollyCredit/depth-dolly-credit.schema", export: "depthDollyCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/SignalLockCredit/signal-lock-credit.schema", export: "signalLockCreditPatterns", category: "text" },
 
   // Background composition
   { type: "pattern", file: "Background/RandomLinesBackground/random-lines.schema", export: "randomLinesPatterns", localName: "randomLinesBackgroundPatterns", category: "background" },
@@ -65,8 +71,17 @@ const families = [
   { type: "pattern", file: "UI/CircularNeonLogoFrame/circular-neon-logo-frame.schema", export: "circularNeonLogoFramePatterns", category: "ui" },
   { type: "pattern", file: "UI/WaveAnnouncementBanner/wave-announcement-banner.schema", export: "waveAnnouncementBannerPatterns", category: "ui" },
 
+  { type: "pattern", file: "Effects/Transition/DistressTransition/distress-transition.schema", export: "distressTransitionPatterns", category: "other" },
+  { type: "pattern", file: "Effects/Transition/ScanEchoTransition/scan-echo-transition.schema", export: "scanEchoTransitionPatterns", category: "other" },
+
   // Other compositions
   { type: "pattern", file: "Loading/LoadingIcon/loading-icon.schema", export: "loadingIconPatterns", category: "other" },
+  { type: "pattern", file: "Loading/DotsLoader/dots-loader.schema", export: "dotsLoaderPatterns", category: "other" },
+  { type: "pattern", file: "Loading/ProgressBar/progress-bar.schema", export: "progressBarPatterns", category: "other" },
+  { type: "pattern", file: "Loading/PulseCircle/pulse-circle.schema", export: "pulseCirclePatterns", category: "other" },
+  { type: "pattern", file: "Loading/SkeletonScreen/skeleton-screen.schema", export: "skeletonScreenPatterns", category: "other" },
+  { type: "pattern", file: "Loading/RadialSpinner/radial-spinner.schema", export: "radialSpinnerPatterns", category: "other" },
+  { type: "pattern", file: "Loading/RadialGlowSpinner/radial-glow-spinner.schema", export: "radialGlowSpinnerPatterns", category: "other" },
 
   // Special: oneTakeLogo props (goes to 'text' because it's used by root-text.tsx)
   { type: "oneTakeLogo", file: "Text/FlickerTitle/flicker-title.schema", export: "oneTakeLogoTextVariantProps", category: "text" },

@@ -1,8 +1,6 @@
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { useMemo } from "react";
 
-interface AngstAnimationProps {}
-
 interface CurveSegment {
   id: number;
   points: Array<{ x: number; y: number }>;
@@ -150,17 +148,12 @@ function generateBezierPathData(points: Array<{ x: number; y: number }>): string
   return path;
 }
 
-export function AngstAnimationTemplate(
-  props: AngstAnimationProps
-): React.ReactElement {
+export function AngstAnimationTemplate(): React.ReactElement {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const { fps } = useVideoConfig();
   const time = frame / fps;
 
   const curves = useMemo(() => generateSpiralsWithNoise(12345), []);
-
-  const centerX = 1920 / 2;
-  const centerY = 1080 / 2;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#060810" }}>

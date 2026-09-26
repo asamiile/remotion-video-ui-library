@@ -5,19 +5,25 @@ import {
   interpolate,
 } from "remotion";
 import { DottedLineMarkerTextSchemaType } from "./dotted-line-marker-text.schema";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
-const DottedLineRow: React.FC<{
+export const DottedLineRow: React.FC<{
   leftText: string;
   rightText: string;
   fontSize: number;
   textColor: string;
+  /** Overrides the rendered left-text node (e.g. a glitch effect) while keeping `leftText` for width estimation. */
+  leftContent?: React.ReactNode;
+  /** Overrides the rendered right-text node (e.g. a glitch effect) while keeping `rightText` for layout. */
+  rightContent?: React.ReactNode;
 }> = ({
   leftText,
   rightText,
   fontSize,
   textColor,
+  leftContent,
+  rightContent,
 }) => {
   const frame = useCurrentFrame();
 
@@ -85,7 +91,7 @@ const DottedLineRow: React.FC<{
           flexShrink: 0,
         }}
       >
-        {leftText}
+        {leftContent ?? leftText}
       </div>
 
       {/* 左テキストと破線の間の余白 */}
@@ -106,7 +112,6 @@ const DottedLineRow: React.FC<{
           style={{
             opacity: dotOpacity,
             transform: `translateX(${dotScrollOffset}px)`,
-            transition: 'none',
           }}
         >
           {dotPattern}
@@ -124,7 +129,7 @@ const DottedLineRow: React.FC<{
           textAlign: "right",
         }}
       >
-        {rightText}
+        {rightContent ?? rightText}
       </div>
 
       {/* 右マージン */}

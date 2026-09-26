@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/line-seed-jp";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
+import { LINE_SEED_JP_FONT_FAMILY } from "../../helpers/font-line-seed-jp";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 
 export const shakeTextSchema = z.object({
   text: z.string().default("試行錯誤中…"),

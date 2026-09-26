@@ -7,9 +7,19 @@ const { capPattern, requirePatternKeys } = require("./lib/ts-config-ast.cjs");
 
 const root = path.join(__dirname, "..");
 
-const fixedIds = ["Background-AmbientBlurOrbs"];
+const fixedIds = [
+  "Background-AmbientBlurOrbs",
+  "AngstAnimation",
+  "AngstAnimationMultiShape",
+];
 
 const families = [
+  {
+    idPrefix: "RandomLinesBackground",
+    file: "src/Background/RandomLinesBackground/random-lines.schema.ts",
+    exportName: "randomLinesPatterns",
+    preservePatternCase: true,
+  },
   {
     idPrefix: "Background-ScanLine",
     file: "src/Background/ScanLine/scan-line.schema.ts",
@@ -90,6 +100,10 @@ const families = [
     file: "src/Background/HalftoneWaveform/halftone-waveform.schema.ts",
     exportName: "halftoneWaveformPatterns",
   },
+  {idPrefix: "Background-HolographicDepthGrid", file: "src/Background/HolographicDepthGrid/holographic-depth-grid.schema.ts", exportName: "holographicDepthGridPatterns"},
+  {idPrefix: "Background-SignalInterferenceOverlay", file: "src/Background/SignalInterferenceOverlay/signal-interference-overlay.schema.ts", exportName: "signalInterferenceOverlayPatterns"},
+  {idPrefix:"Background-WireframeBuild",file:"src/Background/WireframeBuild/wireframe-build.schema.ts",exportName:"wireframeBuildPatterns"},
+  {idPrefix:"Background-DigitalFog",file:"src/Background/DigitalFog/digital-fog.schema.ts",exportName:"digitalFogPatterns"},
 ];
 
 for (const id of fixedIds) {
@@ -100,6 +114,7 @@ for (const fam of families) {
   const full = path.join(root, fam.file);
   const keys = requirePatternKeys(full, fam.exportName);
   for (const patternId of keys) {
-    process.stdout.write(`${fam.idPrefix}-${capPattern(patternId)}\n`);
+    const id = fam.preservePatternCase ? patternId : capPattern(patternId);
+    process.stdout.write(`${fam.idPrefix}-${id}\n`);
   }
 }

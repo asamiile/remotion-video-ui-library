@@ -1,5 +1,7 @@
 /** Shape of config/local/composition-text.local.json (all keys optional) */
 export type CompositionTextLocal = {
+  distressTransitionPatterns?: Record<string, Record<string, unknown>>;
+  scanEchoTransitionPatterns?: Record<string, Record<string, unknown>>;
   intro?: {
     authorName?: string;
     introTitle?: string;
@@ -19,6 +21,12 @@ export type CompositionTextLocal = {
   shakeTextPatterns?: Record<string, Record<string, unknown>>;
   confettiPopTextPatterns?: Record<string, Record<string, unknown>>;
   loadingIconPatterns?: Record<string, Record<string, unknown>>;
+  dotsLoaderPatterns?: Record<string, Record<string, unknown>>;
+  progressBarPatterns?: Record<string, Record<string, unknown>>;
+  pulseCirclePatterns?: Record<string, Record<string, unknown>>;
+  skeletonScreenPatterns?: Record<string, Record<string, unknown>>;
+  radialSpinnerPatterns?: Record<string, Record<string, unknown>>;
+  radialGlowSpinnerPatterns?: Record<string, Record<string, unknown>>;
   codeStreamPatterns?: Record<string, Record<string, unknown>>;
   stackedRevealTextPatterns?: Record<string, Record<string, unknown>>;
   tornNoteCaptionPatterns?: Record<string, Record<string, unknown>>;
@@ -33,6 +41,12 @@ export type CompositionTextLocal = {
   interviewQuestionCaptionPatterns?: Record<string, Record<string, unknown>>;
   announcementEndCardPatterns?: Record<string, Record<string, unknown>>;
   emergingNoiseTitlePatterns?: Record<string, Record<string, unknown>>;
+  focusPullCreditPatterns?: Record<string, Record<string, unknown>>;
+  kerningRevealCreditPatterns?: Record<string, Record<string, unknown>>;
+  featherWipeCreditPatterns?: Record<string, Record<string, unknown>>;
+  exposureFlashCreditPatterns?: Record<string, Record<string, unknown>>;
+  depthDollyCreditPatterns?: Record<string, Record<string, unknown>>;
+  signalLockCreditPatterns?: Record<string, Record<string, unknown>>;
   battleCalloutBannerPatterns?: Record<string, Record<string, unknown>>;
   asymmetricStatusPanelPatterns?: Record<string, Record<string, unknown>>;
   framedFootageWindowPatterns?: Record<string, Record<string, unknown>>;

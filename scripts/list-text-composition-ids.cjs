@@ -66,6 +66,7 @@ const families = [
     idPrefix: "CodeStream",
     file: "src/Text/CodeStream/code-stream.schema.ts",
     exportName: "codeStreamPatterns",
+    join: "",
   },
   {
     idPrefix: "StackedRevealText",
@@ -132,6 +133,36 @@ const families = [
     file: "src/Text/EmergingNoiseTitle/emerging-noise-title.schema.ts",
     exportName: "emergingNoiseTitlePatterns",
   },
+  {
+    idPrefix: "FocusPullCredit",
+    file: "src/Text/FocusPullCredit/focus-pull-credit.schema.ts",
+    exportName: "focusPullCreditPatterns",
+  },
+  {
+    idPrefix: "KerningRevealCredit",
+    file: "src/Text/KerningRevealCredit/kerning-reveal-credit.schema.ts",
+    exportName: "kerningRevealCreditPatterns",
+  },
+  {
+    idPrefix: "FeatherWipeCredit",
+    file: "src/Text/FeatherWipeCredit/feather-wipe-credit.schema.ts",
+    exportName: "featherWipeCreditPatterns",
+  },
+  {
+    idPrefix: "ExposureFlashCredit",
+    file: "src/Text/ExposureFlashCredit/exposure-flash-credit.schema.ts",
+    exportName: "exposureFlashCreditPatterns",
+  },
+  {
+    idPrefix: "DepthDollyCredit",
+    file: "src/Text/DepthDollyCredit/depth-dolly-credit.schema.ts",
+    exportName: "depthDollyCreditPatterns",
+  },
+  {
+    idPrefix: "SignalLockCredit",
+    file: "src/Text/SignalLockCredit/signal-lock-credit.schema.ts",
+    exportName: "signalLockCreditPatterns",
+  },
 ];
 
 for (const fam of families) {
@@ -139,6 +170,20 @@ for (const fam of families) {
   const keys = requirePatternKeys(full, fam.exportName);
   const sep = fam.join === "" ? "" : "-";
   for (const patternId of keys) {
-    process.stdout.write(`${fam.idPrefix}${sep}${capPattern(patternId)}\n`);
+    const id = fam.preservePatternCase ? patternId : capPattern(patternId);
+    process.stdout.write(`${fam.idPrefix}${sep}${id}\n`);
   }
+}
+
+const fixedIds = [
+  "GlitchTextRandom-harshSignalRandom-01",
+  "GlitchTextRandom-harshSignalRandom-02",
+  "DottedLineMarkerText-01",
+  "DottedLineMarkerText-02",
+  "DottedLineMarkerText-GlitchHandover",
+  "FlickerTitle",
+];
+
+for (const id of fixedIds) {
+  process.stdout.write(`${id}\n`);
 }

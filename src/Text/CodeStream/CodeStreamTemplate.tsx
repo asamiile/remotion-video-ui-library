@@ -4,8 +4,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
-import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/neon-flicker";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
+import { NEON_FLICKER_CYCLE_MS, neonFlickerAt } from "../../helpers/effect-neon-flicker";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 import type {
   CodeStreamLineType,

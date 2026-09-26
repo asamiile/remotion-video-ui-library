@@ -1,6 +1,6 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
-import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/jetbrains-mono";
+import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
 
 export const glitchTextRandomSchema = z.object({
   items: z
@@ -35,6 +35,8 @@ export const glitchTextRandomSchema = z.object({
 
   /** Frames between spawn attempts */
   spawnIntervalFrames: z.number().min(5).default(60),
+  /** Frames before the first item appears */
+  initialDelayFrames: z.number().min(0).default(30),
   /** Frames from appearance to glitch start */
   glitchDelayFrames: z.number().min(0).default(90),
   /** Frames from appearance to fade-out start */
@@ -42,12 +44,20 @@ export const glitchTextRandomSchema = z.object({
   /** Fade-out duration (frames) */
   fadeOutDuration: z.number().min(10).default(30),
 
+  /** Maximum cell-relative placement variation; reduced automatically for long text */
+  positionJitterRatio: z.number().min(0).max(0.8).default(0.45),
+  minimumHorizontalGapPx: z.number().min(0).default(40),
+  minimumVerticalGapPx: z.number().min(0).default(30),
+  positionRetryCount: z.number().int().min(1).max(16).default(8),
+  avoidRecentCellCount: z.number().int().min(0).max(8).default(3),
+  preferDistantCellProbability: z.number().min(0).max(1).default(0.7),
+
   randomSeed: z.string().default("glitch-random"),
 });
 
 export type GlitchTextRandomSchemaType = z.infer<typeof glitchTextRandomSchema>;
 
-export const glitchTextRandomDurationFrames = 3000;
+export const glitchTextRandomDurationFrames = 1200;
 
 export const defaultGlitchTextRandomProps = {
   items: [],
@@ -65,9 +75,16 @@ export const defaultGlitchTextRandomProps = {
   scanlineOpacity: 0.08,
   backgroundColor: "#060810",
   spawnIntervalFrames: 60,
+  initialDelayFrames: 30,
   glitchDelayFrames: 90,
   displayDurationFrames: 300,
   fadeOutDuration: 30,
+  positionJitterRatio: 0.45,
+  minimumHorizontalGapPx: 40,
+  minimumVerticalGapPx: 30,
+  positionRetryCount: 8,
+  avoidRecentCellCount: 3,
+  preferDistantCellProbability: 0.7,
   randomSeed: "glitch-random",
 } as const;
 
@@ -84,7 +101,7 @@ export const glitchTextRandomPatterns = {
     strongGlitchProbability: 0.32,
     glitchSegmentFrames: 4,
     jitterPx: 3,
-    spawnIntervalFrames: 60,
+    spawnIntervalFrames: 120,
     glitchDelayFrames: 90,
     displayDurationFrames: 300,
     fadeOutDuration: 30,
@@ -102,7 +119,7 @@ export const glitchTextRandomPatterns = {
     strongGlitchProbability: 0.32,
     glitchSegmentFrames: 4,
     jitterPx: 3,
-    spawnIntervalFrames: 60,
+    spawnIntervalFrames: 120,
     glitchDelayFrames: 90,
     displayDurationFrames: 300,
     fadeOutDuration: 30,

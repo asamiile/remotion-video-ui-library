@@ -1,0 +1,9 @@
+{
+  "agent": "codex",
+  "adapters": {
+    "codex": "scripts/loop/adapters/codex-exec.sh",
+    "claude": "scripts/loop/adapters/claude-code.sh",
+    "copilot": "scripts/loop/adapters/github-copilot.sh"
+  },
+  "goal": ".loop/active-goal.json"
+}

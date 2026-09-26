@@ -1,0 +1,4 @@
+import {zColor} from "@remotion/zod-types"; import {z} from "zod";
+export const digitalFogSchema=z.object({fogColor:zColor(),particleColor:zColor(),layerCount:z.number().int().min(2).max(12),particleCount:z.number().int().min(0).max(100),opacity:z.number().min(0).max(1),driftPx:z.number().min(0).max(500),speed:z.number().min(0).max(4),randomSeed:z.string()}); export type DigitalFogProps=z.infer<typeof digitalFogSchema>; export const digitalFogDurationFrames=300;
+export const defaultDigitalFogProps={fogColor:"#1abfa8",particleColor:"#93fff0",layerCount:5,particleCount:40,opacity:.08,driftPx:180,speed:1,randomSeed:"digital-fog"} as const;
+export const digitalFogPatterns:Record<string,DigitalFogProps>={cyanDrift:{...defaultDigitalFogProps},emeraldDense:{...defaultDigitalFogProps,fogColor:"#18e57d",particleColor:"#d5ffe8",layerCount:8,opacity:.12,speed:.55,randomSeed:"digital-fog-emerald"}};

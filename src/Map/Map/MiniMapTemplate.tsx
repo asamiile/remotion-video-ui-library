@@ -61,14 +61,11 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
       );
     }
 
-    const fadeOutStartFrame = 8.5 * 30; // 8.5s = 255 frames (at 30fps)
-    const fadeOutFrameDuration = 1.5 * 30; // 1.5s = 45 frames (at 30fps)
-
-
+    const fadeOutStartFrame = durationInFrames - fadeOutDuration;
     if (frame >= fadeOutStartFrame) {
       return interpolate(
         frame,
-        [fadeOutStartFrame, fadeOutStartFrame + fadeOutFrameDuration],
+        [fadeOutStartFrame, durationInFrames],
         [1, 0],
         {
           extrapolateLeft: "clamp",
@@ -79,7 +76,7 @@ export const MiniMapTemplate: React.FC<MiniMapSchemaType> = ({
     }
 
     return 1;
-  }, [frame, delayFrames, fadeInDuration]);
+  }, [frame, delayFrames, fadeInDuration, fadeOutDuration, durationInFrames]);
 
   useEffect(() => {
     console.log("MiniMapTemplate useEffect called", { 

@@ -7,7 +7,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { EmergingNoiseTitleSchemaType } from "./emerging-noise-title.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const EmergingNoiseTitleTemplate: React.FC<

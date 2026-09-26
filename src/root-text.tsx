@@ -1,3 +1,4 @@
+import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
 import { CodeStreamTemplate } from "./Text/CodeStream/CodeStreamTemplate";
 import { codeStreamSchema } from "./Text/CodeStream/code-stream.schema";
@@ -32,6 +33,12 @@ import { lightSweepTextSchema } from "./Text/LightSweepText/light-sweep-text.sch
 import { lightSweepTextDurationFrames } from "./Text/LightSweepText/light-sweep-text.schema";
 import { DottedLineMarkerText } from "./Text/DottedLineMarkerText/DottedLineMarkerText";
 import { dottedLineMarkerTextSchema, dottedLineMarkerTextDurationFrames } from "./Text/DottedLineMarkerText/dotted-line-marker-text.schema";
+import { DottedLineMarkerTextTransitionTemplate } from "./Text/DottedLineMarkerText/DottedLineMarkerTextTransitionTemplate";
+import {
+  dottedLineMarkerTextTransitionSchema,
+  dottedLineMarkerTextTransitionDurationFrames,
+  defaultDottedLineMarkerTextTransitionProps,
+} from "./Text/DottedLineMarkerText/dotted-line-marker-text-transition.schema";
 import { TypewriterTextTemplate } from "./Text/TypewriterText/TypewriterTextTemplate";
 import { typewriterTextSchema, typewriterTextDurationFrames } from "./Text/TypewriterText/typewriter-text.schema";
 import { ShakeTextTemplate } from "./Text/ShakeText/ShakeTextTemplate";
@@ -42,7 +49,11 @@ import { confettiPopTextSchema } from "./Text/ConfettiPopText/confetti-pop-text.
 import { confettiPopTextDurationFrames } from "./Text/ConfettiPopText/confetti-pop-text.schema";
 import { FlickerTitleTemplate } from "./Text/FlickerTitle/FlickerTitleTemplate";
 import { flickerTitleSchema } from "./Text/FlickerTitle/flicker-title.schema";
-import { defaultFlickerTitleProps, flickerTitleDurationFrames } from "./Text/FlickerTitle/flicker-title.schema";
+import {
+  defaultFlickerTitleProps,
+  flickerTitleDurationFrames,
+  oneTakeLogoTextDurationFrames,
+} from "./Text/FlickerTitle/flicker-title.schema";
 import { OneTakeLogoTextTemplate } from "./Text/FlickerTitle/OneTakeLogoTextTemplate";
 import { StackedRevealTextTemplate } from "./Text/StackedRevealText/StackedRevealTextTemplate";
 import { stackedRevealTextSchema } from "./Text/StackedRevealText/stacked-reveal-text.schema";
@@ -82,6 +93,24 @@ import { announcementEndCardDurationFrames } from "./Text/AnnouncementEndCard/an
 import { EmergingNoiseTitleTemplate } from "./Text/EmergingNoiseTitle/EmergingNoiseTitleTemplate";
 import { emergingNoiseTitleSchema } from "./Text/EmergingNoiseTitle/emerging-noise-title.schema";
 import { emergingNoiseTitleDurationFrames } from "./Text/EmergingNoiseTitle/emerging-noise-title.schema";
+import { FocusPullCreditTemplate } from "./Text/FocusPullCredit/FocusPullCreditTemplate";
+import { focusPullCreditSchema } from "./Text/FocusPullCredit/focus-pull-credit.schema";
+import { focusPullCreditDurationFrames } from "./Text/FocusPullCredit/focus-pull-credit.schema";
+import { KerningRevealCreditTemplate } from "./Text/KerningRevealCredit/KerningRevealCreditTemplate";
+import { kerningRevealCreditSchema } from "./Text/KerningRevealCredit/kerning-reveal-credit.schema";
+import { kerningRevealCreditDurationFrames } from "./Text/KerningRevealCredit/kerning-reveal-credit.schema";
+import { FeatherWipeCreditTemplate } from "./Text/FeatherWipeCredit/FeatherWipeCreditTemplate";
+import { featherWipeCreditSchema } from "./Text/FeatherWipeCredit/feather-wipe-credit.schema";
+import { featherWipeCreditDurationFrames } from "./Text/FeatherWipeCredit/feather-wipe-credit.schema";
+import { ExposureFlashCreditTemplate } from "./Text/ExposureFlashCredit/ExposureFlashCreditTemplate";
+import { exposureFlashCreditSchema } from "./Text/ExposureFlashCredit/exposure-flash-credit.schema";
+import { exposureFlashCreditDurationFrames } from "./Text/ExposureFlashCredit/exposure-flash-credit.schema";
+import { DepthDollyCreditTemplate } from "./Text/DepthDollyCredit/DepthDollyCreditTemplate";
+import { depthDollyCreditSchema } from "./Text/DepthDollyCredit/depth-dolly-credit.schema";
+import { depthDollyCreditDurationFrames } from "./Text/DepthDollyCredit/depth-dolly-credit.schema";
+import { SignalLockCreditTemplate } from "./Text/SignalLockCredit/SignalLockCreditTemplate";
+import { signalLockCreditSchema } from "./Text/SignalLockCredit/signal-lock-credit.schema";
+import { signalLockCreditDurationFrames } from "./Text/SignalLockCredit/signal-lock-credit.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -110,6 +139,12 @@ import {
   mergedInterviewQuestionCaptionPatterns,
   mergedAnnouncementEndCardPatterns,
   mergedEmergingNoiseTitlePatterns,
+  mergedFocusPullCreditPatterns,
+  mergedKerningRevealCreditPatterns,
+  mergedFeatherWipeCreditPatterns,
+  mergedExposureFlashCreditPatterns,
+  mergedDepthDollyCreditPatterns,
+  mergedSignalLockCreditPatterns,
   mergedOneTakeLogoTextProps,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
@@ -126,7 +161,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={1800}
+          durationInFrames={minimumCompositionFrames(1800, FPS)}
           schema={codeStreamSchema}
           defaultProps={mergedCodeStreamPatterns.horizontal ?? defaultCodeStreamHorizontalProps}
         />
@@ -137,7 +172,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={2100}
+          durationInFrames={minimumCompositionFrames(2100, FPS)}
           schema={codeStreamSchema}
           defaultProps={mergedCodeStreamPatterns.vertical ?? defaultCodeStreamVerticalProps}
         />
@@ -155,7 +190,7 @@ export function TextFolder() {
             width={1920}
             height={1080}
             fps={FPS}
-            durationInFrames={1800}
+            durationInFrames={minimumCompositionFrames(1800, FPS)}
             schema={locationSchema}
             defaultProps={{
               ...defaultLocationProps,
@@ -203,24 +238,15 @@ export function TextFolder() {
           schema: glitchTextSchema,
           durationInFrames: glitchTextDurationFrames,
         })}
-        {Object.entries(mergedGlitchTextRandomPatterns).map(
-          ([patternName, props]) => (
-            <Composition
-              key={`GlitchTextRandom-${patternName}`}
-              id={`GlitchTextRandom-${patternName}`}
-              component={withCanvasPreview(
-                `GlitchTextRandom-${patternName}`,
-                GlitchTextRandomTemplate
-              )}
-              width={1920}
-              height={1080}
-              fps={FPS}
-              durationInFrames={glitchTextRandomDurationFrames}
-              schema={glitchTextRandomSchema}
-              defaultProps={props}
-            />
-          )
-        )}
+        {renderPatternFamily({
+          patterns: mergedGlitchTextRandomPatterns,
+          idPrefix: "GlitchTextRandom-",
+          Template: GlitchTextRandomTemplate,
+          schema: glitchTextRandomSchema,
+          width: 1080,
+          height: 1080,
+          durationInFrames: glitchTextRandomDurationFrames,
+        })}
       </Folder>
 
       <Folder name="WireText">
@@ -260,7 +286,7 @@ export function TextFolder() {
               key={patternName}
               id={`DottedLineMarkerText-${patternName}`}
               component={DottedLineMarkerText}
-              durationInFrames={dottedLineMarkerTextDurationFrames}
+              durationInFrames={minimumCompositionFrames(dottedLineMarkerTextDurationFrames, 30)}
               width={1920}
               height={1080}
               fps={30}
@@ -269,6 +295,24 @@ export function TextFolder() {
             />
           )
         )}
+
+        <Composition
+          id="DottedLineMarkerText-GlitchHandover"
+          component={DottedLineMarkerTextTransitionTemplate}
+          durationInFrames={minimumCompositionFrames(dottedLineMarkerTextTransitionDurationFrames, 30)}
+          width={1920}
+          height={1080}
+          fps={30}
+          schema={dottedLineMarkerTextTransitionSchema}
+          defaultProps={{
+            ...defaultDottedLineMarkerTextTransitionProps,
+            fontSize: mergedDottedLineMarkerPatterns["01"].fontSize,
+            textColor: mergedDottedLineMarkerPatterns["01"].textColor,
+            backgroundColor: mergedDottedLineMarkerPatterns["01"].backgroundColor,
+            itemsA: mergedDottedLineMarkerPatterns["01"].items,
+            itemsB: mergedDottedLineMarkerPatterns["02"].items,
+          }}
+        />
       </Folder>
 
       <Folder name="TypewriterText">
@@ -311,7 +355,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={flickerTitleDurationFrames}
+          durationInFrames={minimumCompositionFrames(flickerTitleDurationFrames, FPS)}
           schema={flickerTitleSchema}
           defaultProps={{ ...defaultFlickerTitleProps }}
         />
@@ -325,7 +369,7 @@ export function TextFolder() {
           width={1920}
           height={1080}
           fps={FPS}
-          durationInFrames={flickerTitleDurationFrames}
+          durationInFrames={minimumCompositionFrames(oneTakeLogoTextDurationFrames, FPS)}
           schema={flickerTitleSchema}
           defaultProps={{ ...mergedOneTakeLogoTextProps }}
         />
@@ -459,6 +503,73 @@ export function TextFolder() {
           Template: EmergingNoiseTitleTemplate,
           schema: emergingNoiseTitleSchema,
           durationInFrames: emergingNoiseTitleDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="FocusPullCredit">
+        {renderPatternFamily({
+          patterns: mergedFocusPullCreditPatterns,
+          idPrefix: "FocusPullCredit-",
+          Template: FocusPullCreditTemplate,
+          schema: focusPullCreditSchema,
+          durationInFrames: focusPullCreditDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="KerningRevealCredit">
+        {renderPatternFamily({
+          patterns: mergedKerningRevealCreditPatterns,
+          idPrefix: "KerningRevealCredit-",
+          Template: KerningRevealCreditTemplate,
+          schema: kerningRevealCreditSchema,
+          durationInFrames: (patternProps) =>
+            Math.max(
+              kerningRevealCreditDurationFrames,
+              patternProps.delayFrames +
+                Array.from(patternProps.text).length * patternProps.staggerFrames +
+                patternProps.convergeFrames +
+                30,
+            ),
+        })}
+      </Folder>
+
+      <Folder name="FeatherWipeCredit">
+        {renderPatternFamily({
+          patterns: mergedFeatherWipeCreditPatterns,
+          idPrefix: "FeatherWipeCredit-",
+          Template: FeatherWipeCreditTemplate,
+          schema: featherWipeCreditSchema,
+          durationInFrames: featherWipeCreditDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="ExposureFlashCredit">
+        {renderPatternFamily({
+          patterns: mergedExposureFlashCreditPatterns,
+          idPrefix: "ExposureFlashCredit-",
+          Template: ExposureFlashCreditTemplate,
+          schema: exposureFlashCreditSchema,
+          durationInFrames: exposureFlashCreditDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="DepthDollyCredit">
+        {renderPatternFamily({
+          patterns: mergedDepthDollyCreditPatterns,
+          idPrefix: "DepthDollyCredit-",
+          Template: DepthDollyCreditTemplate,
+          schema: depthDollyCreditSchema,
+          durationInFrames: depthDollyCreditDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="SignalLockCredit">
+        {renderPatternFamily({
+          patterns: mergedSignalLockCreditPatterns,
+          idPrefix: "SignalLockCredit-",
+          Template: SignalLockCreditTemplate,
+          schema: signalLockCreditSchema,
+          durationInFrames: signalLockCreditDurationFrames,
         })}
       </Folder>
     </Folder>

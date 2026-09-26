@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { DistressedTitleCardSchemaType } from "./distressed-title-card.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
 
 export const DistressedTitleCardTemplate: React.FC<

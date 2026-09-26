@@ -7,26 +7,9 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { GlitchTextSchemaType } from "./glitch-text.schema";
-import "../../helpers/line-seed-jp";
+import "../../helpers/font-line-seed-jp";
 import { resolveCompositionBackdropColor } from "../../helpers/transparent-composition-backdrop";
-
-const GARBLE_POOL = "0123456789.-▯∞";
-
-function garbleChars(text: string, seed: string, rate: number): string {
-  return Array.from(text)
-    .map((ch, i) => {
-      if (/\s/.test(ch)) {
-        return ch;
-      }
-      if (random(`${seed}-gr-${i}`) < rate) {
-        return GARBLE_POOL[
-          Math.floor(random(`${seed}-gp-${i}`) * GARBLE_POOL.length)
-        ];
-      }
-      return ch;
-    })
-    .join("");
-}
+import { garbleChars } from "../../helpers/effect-glitch-garble";
 
 export const GlitchTextTemplate: React.FC<GlitchTextSchemaType> = ({
   text,

@@ -40,8 +40,6 @@ const generateActiveLines = (
 
   // Calculate display area boundaries (centered vertically)
   const displayAreaTopPx = (height - displayAreaHeightPx) / 2;
-  const displayAreaBottomPx = displayAreaTopPx + displayAreaHeightPx;
-
   // Convert boundaries to percentage
   const displayAreaTopPercent = (displayAreaTopPx / height) * 100;
   const displayAreaHeightPercent = (displayAreaHeightPx / height) * 100;
@@ -126,7 +124,6 @@ const RandomLine: React.FC<{
   lineOpacity: number;
   fadeInDuration: number;
   fadeOutDuration: number;
-  width: number;
 }> = ({
   line,
   frame,
@@ -135,7 +132,6 @@ const RandomLine: React.FC<{
   lineOpacity,
   fadeInDuration,
   fadeOutDuration,
-  width,
 }) => {
   const fadeInFrame = frame - line.startFrame;
   const fadeOutFrame = frame - line.displayEnd;
@@ -202,7 +198,7 @@ export const RandomLinesBackground: React.FC<RandomLinesSchemaType> = ({
   randomSeed,
 }) => {
   const frame = useCurrentFrame();
-  const { width, height } = useVideoConfig();
+  const { height } = useVideoConfig();
 
   const activeLines = useMemo(
     () =>
@@ -251,7 +247,6 @@ export const RandomLinesBackground: React.FC<RandomLinesSchemaType> = ({
           lineOpacity={lineOpacity}
           fadeInDuration={fadeInDuration}
           fadeOutDuration={fadeOutDuration}
-          width={width}
         />
       ))}
     </AbsoluteFill>

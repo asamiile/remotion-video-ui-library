@@ -1,11 +1,12 @@
 import React from "react";
-import { useCurrentFrame, interpolate } from "remotion";
+import { useCurrentFrame } from "remotion";
 
 interface LoadingIconProps {
   size?: number;
   lightColor?: string;
   darkColor?: string;
   strokeWidth?: number;
+  rotationDuration?: number;
 }
 
 export const LoadingIcon: React.FC<LoadingIconProps> = ({
@@ -13,14 +14,10 @@ export const LoadingIcon: React.FC<LoadingIconProps> = ({
   lightColor = "#DFE2D7",
   darkColor = "#6B685C",
   strokeWidth = 4,
+  rotationDuration = 60,
 }) => {
   const frame = useCurrentFrame();
-  
-  // Full 360° rotation, one revolution every 60 frames
-  const rotation = interpolate(frame, [0, 60], [0, 360], {
-    extrapolateLeft: "loop",
-    extrapolateRight: "loop",
-  });
+  const rotation = ((frame % rotationDuration) / rotationDuration) * 360;
 
   const center = size / 2;
   const radius1 = size / 6; // inner circle

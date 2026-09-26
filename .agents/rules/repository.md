@@ -67,3 +67,12 @@ How to decide when it's unclear:
 - **The layout of `config/local` and how it's injected at build time** (`remotion.config.ts` reads `composition-text.local.json` and injects it as `__COMPOSITION_TEXT_LOCAL__`) is documented in [.agents/config-local-layout/SKILL.md](../.agents/config-local-layout/SKILL.md).
 - **The contents of `src/composition/` are "shared infrastructure"**, distinct from the "feature categories" like `src/Text/` (the similar naming is easy to confuse). It is not a place to add individual compositions.
 - **Never move `.cursor/rules/` or `.agents/skills/` under `.agents/`.** These are fixed, repo-root-relative paths that the Cursor editor auto-detects — not a naming convention specific to this repository. Moving them would break rule/skill loading for anyone using Cursor.
+
+## Composition duration and folder limits
+
+- 通常尺が10秒以下の動画には、通常尺のCompositionに加えて10秒版のCompositionを追加する。ちょうど10秒の場合も対象とする。
+- 通常尺のCompositionは元の尺と末尾なしのIDを維持する。10秒版のIDには必ず `-10s` を付ける（例: `ScanEchoTransition-CyanSweep` / `ScanEchoTransition-CyanSweep-10s`）。
+- 10秒版は正確に10秒（30fpsなら300フレーム）にする。通常尺を最低10秒へ強制延長しない。10秒を超える動画は短縮しない。
+- 通常版と10秒版は同じFolderに登録する。演出尺と出力尺を区別し、短いトランジションの10秒版は演出速度を保ち、中央配置と透明な編集余白で延長できる。
+- propsで尺が変わる場合は `calculateMetadata` でも両版の尺を正しく計算する。列挙・書き出し・検証も両版を含める。既存の尺バリエーション実装は `src/composition/duration-variants.json` と `duration-variants.ts` を参照する。
+- StudioのFolderは最大3階層（Composition ID自体を除く）。例: `Effect/Transition/ScanEchoTransition`。ソースと `render.sh` の出力先も合わせ、整理でComposition IDを変更しない。
