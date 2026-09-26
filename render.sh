@@ -283,6 +283,12 @@ resolve_output_subdir() {
     Background-DigitalFog-*) echo "Background/DigitalFog" ;;
     Background-VolumetricSmoke-*) echo "Background/VolumetricSmoke" ;;
     Background-DigitalFogShader-*) echo "Background/DigitalFogShader" ;;
+    Background-TvStatic-*) echo "Background/TvStatic" ;;
+    Background-Aurora-*) echo "Background/Aurora" ;;
+    Background-MarbleFlow-*) echo "Background/MarbleFlow" ;;
+    Background-FireFlames-*) echo "Background/FireFlames" ;;
+    Background-Caustics-*) echo "Background/Caustics" ;;
+    Background-Nebula-*) echo "Background/Nebula" ;;
     Background-ShaderBasics-GradientFlow) echo "Background/GradientFlow" ;;
     Background-ShaderBasics-RippleRings) echo "Background/RippleRings" ;;
     Background-ShaderBasics-SpeedLines) echo "Background/SpeedLines" ;;
@@ -330,6 +336,7 @@ requires_webgl() {
   case "$1" in
     Background-VolumetricSmoke-*|VolumetricSmokeTransition-*|InkBleedTransition-*) return 0 ;;
     SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) return 0 ;;
+    Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
     Background-ShaderBasics-*|Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-10s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     *) return 1 ;;
   esac

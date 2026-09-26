@@ -61,6 +61,18 @@ import { signalInterferenceOverlayDurationFrames, signalInterferenceOverlayPatte
 import {WireframeBuildTemplate} from "./Background/WireframeBuild/WireframeBuildTemplate";
 import {wireframeBuildDurationFrames,wireframeBuildPatterns,wireframeBuildSchema} from "./Background/WireframeBuild/wireframe-build.schema";
 import {DigitalFogTemplate} from "./Background/DigitalFog/DigitalFogTemplate";
+import {TvStaticTemplate} from "./Background/TvStatic/TvStaticTemplate";
+import {tvStaticDurationFrames,tvStaticPatterns,tvStaticSchema} from "./Background/TvStatic/tv-static.schema";
+import {AuroraTemplate} from "./Background/Aurora/AuroraTemplate";
+import {auroraDurationFrames,auroraPatterns,auroraSchema} from "./Background/Aurora/aurora.schema";
+import {MarbleFlowTemplate} from "./Background/MarbleFlow/MarbleFlowTemplate";
+import {marbleFlowDurationFrames,marbleFlowPatterns,marbleFlowSchema} from "./Background/MarbleFlow/marble-flow.schema";
+import {FireFlamesTemplate} from "./Background/FireFlames/FireFlamesTemplate";
+import {fireFlamesDurationFrames,fireFlamesPatterns,fireFlamesSchema} from "./Background/FireFlames/fire-flames.schema";
+import {CausticsTemplate} from "./Background/Caustics/CausticsTemplate";
+import {causticsDurationFrames,causticsPatterns,causticsSchema} from "./Background/Caustics/caustics.schema";
+import {NebulaTemplate} from "./Background/Nebula/NebulaTemplate";
+import {nebulaDurationFrames,nebulaPatterns,nebulaSchema} from "./Background/Nebula/nebula.schema";
 import {GradientFlowTemplate} from "./Background/GradientFlow/GradientFlowTemplate";
 import {gradientFlowDurationFrames,gradientFlowPatterns,gradientFlowSchema} from "./Background/GradientFlow/gradient-flow.schema";
 import {RippleRingsTemplate} from "./Background/RippleRings/RippleRingsTemplate";
@@ -307,6 +319,12 @@ export function BackgroundFolder() {
       </Folder>
       <Folder name="WireframeBuild">{renderPatternFamily({patterns:wireframeBuildPatterns,idPrefix:"Background-WireframeBuild-",Template:WireframeBuildTemplate,schema:wireframeBuildSchema,durationInFrames:wireframeBuildDurationFrames})}</Folder>
       <Folder name="DigitalFog">{renderPatternFamily({patterns:digitalFogPatterns,idPrefix:"Background-DigitalFog-",Template:DigitalFogTemplate,schema:digitalFogSchema,durationInFrames:digitalFogDurationFrames})}</Folder>
+      <Folder name="TvStatic">{renderPatternFamily({patterns:tvStaticPatterns,idPrefix:"Background-TvStatic-",Template:TvStaticTemplate,schema:tvStaticSchema,durationInFrames:tvStaticDurationFrames})}</Folder>
+      <Folder name="Aurora">{renderPatternFamily({patterns:auroraPatterns,idPrefix:"Background-Aurora-",Template:AuroraTemplate,schema:auroraSchema,durationInFrames:auroraDurationFrames})}</Folder>
+      <Folder name="MarbleFlow">{renderPatternFamily({patterns:marbleFlowPatterns,idPrefix:"Background-MarbleFlow-",Template:MarbleFlowTemplate,schema:marbleFlowSchema,durationInFrames:marbleFlowDurationFrames})}</Folder>
+      <Folder name="FireFlames">{renderPatternFamily({patterns:fireFlamesPatterns,idPrefix:"Background-FireFlames-",Template:FireFlamesTemplate,schema:fireFlamesSchema,durationInFrames:fireFlamesDurationFrames})}</Folder>
+      <Folder name="Caustics">{renderPatternFamily({patterns:causticsPatterns,idPrefix:"Background-Caustics-",Template:CausticsTemplate,schema:causticsSchema,durationInFrames:causticsDurationFrames})}</Folder>
+      <Folder name="Nebula">{renderPatternFamily({patterns:nebulaPatterns,idPrefix:"Background-Nebula-",Template:NebulaTemplate,schema:nebulaSchema,durationInFrames:nebulaDurationFrames})}</Folder>
       <Folder name="GradientFlow">{renderPatternFamily({patterns:gradientFlowPatterns,idPrefix:"Background-ShaderBasics-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
       <Folder name="RippleRings">{renderPatternFamily({patterns:rippleRingsPatterns,idPrefix:"Background-ShaderBasics-",Template:RippleRingsTemplate,schema:rippleRingsSchema,durationInFrames:rippleRingsDurationFrames})}</Folder>
       <Folder name="SpeedLines">{renderPatternFamily({patterns:speedLinesPatterns,idPrefix:"Background-ShaderBasics-",Template:SpeedLinesTemplate,schema:speedLinesSchema,durationInFrames:speedLinesDurationFrames})}</Folder>
