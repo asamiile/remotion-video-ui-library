@@ -101,10 +101,15 @@ function contentFrame(c) {
               ? 60
               : id.startsWith("SuminagashiTransition-")
                 ? 72
-                : id.startsWith("DryBrushTransition-") ||
-                    id.startsWith("WaterRippleTransition-")
-                  ? 60
-                  : null;
+                : id.startsWith("CodecCorruptTransition-")
+                  ? 48
+                  : id.startsWith("CrtPowerOffTransition-")
+                    ? 36
+                    : id.startsWith("PixelSortTransition-") ||
+                        id.startsWith("DryBrushTransition-") ||
+                        id.startsWith("WaterRippleTransition-")
+                      ? 60
+                      : null;
   if (active)
     return (
       Math.floor(c.durationInFrames / 2) -
@@ -317,7 +322,9 @@ async function inspectAlpha(c, browser) {
         format === "mp4" &&
         fs.existsSync(path.join(path.dirname(m.file), c.id + "-alpha.mov"))
       ) {
-        log(`SKIPPED ${c.id}: transparent overlay already covers this composition, mp4 no longer maintained`);
+        log(
+          `SKIPPED ${c.id}: transparent overlay already covers this composition, mp4 no longer maintained`,
+        );
         state.skipped.push({
           id: c.id,
           reason: "Transparent overlay already covers this composition",

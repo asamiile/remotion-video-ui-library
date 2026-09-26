@@ -66,6 +66,24 @@ import {
   waterRippleTransitionPatterns,
   waterRippleTransitionSchema,
 } from "./Effects/Transition/WaterRippleTransition/water-ripple-transition.schema";
+import { CodecCorruptTransitionTemplate } from "./Effects/Transition/CodecCorruptTransition/CodecCorruptTransitionTemplate";
+import {
+  codecCorruptTransitionDurationFrames,
+  codecCorruptTransitionPatterns,
+  codecCorruptTransitionSchema,
+} from "./Effects/Transition/CodecCorruptTransition/codec-corrupt-transition.schema";
+import { PixelSortTransitionTemplate } from "./Effects/Transition/PixelSortTransition/PixelSortTransitionTemplate";
+import {
+  pixelSortTransitionDurationFrames,
+  pixelSortTransitionPatterns,
+  pixelSortTransitionSchema,
+} from "./Effects/Transition/PixelSortTransition/pixel-sort-transition.schema";
+import { CrtPowerOffTransitionTemplate } from "./Effects/Transition/CrtPowerOffTransition/CrtPowerOffTransitionTemplate";
+import {
+  crtPowerOffTransitionDurationFrames,
+  crtPowerOffTransitionPatterns,
+  crtPowerOffTransitionSchema,
+} from "./Effects/Transition/CrtPowerOffTransition/crt-power-off-transition.schema";
 import { InkBleedTransitionTemplate } from "./Effects/Transition/InkBleedTransition/InkBleedTransitionTemplate";
 import {
   inkBleedTransitionDurationFrames,
@@ -365,6 +383,42 @@ export function EffectFolder() {
             schema: waterRippleTransitionSchema,
             durationInFrames: minimumCompositionFrames(
               waterRippleTransitionDurationFrames(),
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="CodecCorruptTransition">
+          {renderPatternFamily({
+            patterns: codecCorruptTransitionPatterns,
+            idPrefix: "CodecCorruptTransition-",
+            Template: CodecCorruptTransitionTemplate,
+            schema: codecCorruptTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              codecCorruptTransitionDurationFrames(),
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="PixelSortTransition">
+          {renderPatternFamily({
+            patterns: pixelSortTransitionPatterns,
+            idPrefix: "PixelSortTransition-",
+            Template: PixelSortTransitionTemplate,
+            schema: pixelSortTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              pixelSortTransitionDurationFrames(),
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="CrtPowerOffTransition">
+          {renderPatternFamily({
+            patterns: crtPowerOffTransitionPatterns,
+            idPrefix: "CrtPowerOffTransition-",
+            Template: CrtPowerOffTransitionTemplate,
+            schema: crtPowerOffTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              crtPowerOffTransitionDurationFrames(),
               FPS,
             ),
           })}

@@ -225,6 +225,9 @@ resolve_output_subdir() {
     PlasmaVeilShaderTransition|QuantumDustTunnelShaderTransition) echo "Effect/Transition/ShaderEnergy" ;;
     PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) echo "Effect/Overlay/ShaderSciFi" ;;
     InkBleedTransition-*) echo "Effect/Transition/InkBleedTransition" ;;
+    CodecCorruptTransition-*) echo "Effect/Transition/CodecCorruptTransition" ;;
+    PixelSortTransition-*) echo "Effect/Transition/PixelSortTransition" ;;
+    CrtPowerOffTransition-*) echo "Effect/Transition/CrtPowerOffTransition" ;;
     SuminagashiTransition-*) echo "Effect/Transition/SuminagashiTransition" ;;
     DryBrushTransition-*) echo "Effect/Transition/DryBrushTransition" ;;
     WaterRippleTransition-*) echo "Effect/Transition/WaterRippleTransition" ;;
@@ -336,6 +339,7 @@ requires_webgl() {
   case "$1" in
     Background-VolumetricSmoke-*|VolumetricSmokeTransition-*|InkBleedTransition-*) return 0 ;;
     SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) return 0 ;;
+    CodecCorruptTransition-*|PixelSortTransition-*|CrtPowerOffTransition-*) return 0 ;;
     Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
     Background-ShaderBasics-*|Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-10s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     *) return 1 ;;
@@ -502,6 +506,14 @@ render_material_transitions() {
   local comp_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
     case "$comp_id" in SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+# Render the codec-corruption / pixel-sort / CRT power-off glitch transitions
+render_glitch_shader_transitions() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in CodecCorruptTransition-*|PixelSortTransition-*|CrtPowerOffTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
@@ -859,6 +871,9 @@ main() {
     InkBleedTransition|inkbleedtransition)
       render_ink_bleed_transition
       ;;
+    GlitchShaderTransition|glitchshadertransition)
+      render_glitch_shader_transitions
+      ;;
     MaterialTransition|materialtransition)
       render_material_transitions
       ;;
@@ -913,6 +928,7 @@ main() {
         render_ink_bleed_transition
         render_shader_sci_fi
         render_material_transitions
+        render_glitch_shader_transitions
         render_new_effects
         render_sci_fi_overlays
         render_textless_sci_fi_overlays
@@ -956,6 +972,7 @@ main() {
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
       echo "  InkBleedTransition Render the ink-bleeding cover-and-reveal transition (WebGL)"
+      echo "  GlitchShaderTransition Render CodecCorrupt/PixelSort/CrtPowerOff shader transitions"
       echo "  MaterialTransition Render Suminagashi/DryBrush/WaterRipple shader transitions"
       echo "  ShaderSciFi        Render WebGL versions of PlasmaVeil/QuantumDustTunnel transitions and PlasmaEdgeArc/VolumetricLightScan/EnergyContourLines overlays"
       echo "  VolumetricSmokeTransition Render the raymarched smoke cover-and-clear transition (WebGL)"

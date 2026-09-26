@@ -5,6 +5,9 @@ import {inkBleedTransitionAnimationDurationFrames} from "../Effects/Transition/I
 import {suminagashiTransitionAnimationDurationFrames} from "../Effects/Transition/SuminagashiTransition/suminagashi-transition.schema";
 import {dryBrushTransitionAnimationDurationFrames} from "../Effects/Transition/DryBrushTransition/dry-brush-transition.schema";
 import {waterRippleTransitionAnimationDurationFrames} from "../Effects/Transition/WaterRippleTransition/water-ripple-transition.schema";
+import {codecCorruptTransitionAnimationDurationFrames} from "../Effects/Transition/CodecCorruptTransition/codec-corrupt-transition.schema";
+import {pixelSortTransitionAnimationDurationFrames} from "../Effects/Transition/PixelSortTransition/pixel-sort-transition.schema";
+import {crtPowerOffTransitionAnimationDurationFrames} from "../Effects/Transition/CrtPowerOffTransition/crt-power-off-transition.schema";
 import policies from "./duration-variants.json";
 
 export function getDurationVariantWindow(
@@ -25,6 +28,12 @@ export function getDurationVariantWindow(
       return { frames: hologramFragmentTransitionAnimationDurationFrames, sourceStart: 0 };
     case "zoom":
       return { frames: zoomBlurTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "codecCorrupt":
+      return { frames: codecCorruptTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "pixelSort":
+      return { frames: pixelSortTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "crtPowerOff":
+      return { frames: crtPowerOffTransitionAnimationDurationFrames, sourceStart: 0 };
     case "suminagashi":
       return { frames: suminagashiTransitionAnimationDurationFrames, sourceStart: 0 };
     case "dryBrush":

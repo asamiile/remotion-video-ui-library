@@ -22,6 +22,18 @@
     "timing": "zoom"
   },
   {
+    "prefix": "CodecCorruptTransition-",
+    "timing": "codecCorrupt"
+  },
+  {
+    "prefix": "PixelSortTransition-",
+    "timing": "pixelSort"
+  },
+  {
+    "prefix": "CrtPowerOffTransition-",
+    "timing": "crtPowerOff"
+  },
+  {
     "prefix": "SuminagashiTransition-",
     "timing": "suminagashi"
   },
