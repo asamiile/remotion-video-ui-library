@@ -50,55 +50,55 @@ import {
 } from "./Effects/Overlay/ShaderSciFi/shader-sci-fi-overlay.schema";
 import { SuminagashiTransitionTemplate } from "./Effects/Transition/SuminagashiTransition/SuminagashiTransitionTemplate";
 import {
-  suminagashiTransitionDurationFrames,
+  suminagashiTransitionAnimationDurationFrames,
   suminagashiTransitionPatterns,
   suminagashiTransitionSchema,
 } from "./Effects/Transition/SuminagashiTransition/suminagashi-transition.schema";
 import { DryBrushTransitionTemplate } from "./Effects/Transition/DryBrushTransition/DryBrushTransitionTemplate";
 import {
-  dryBrushTransitionDurationFrames,
+  dryBrushTransitionAnimationDurationFrames,
   dryBrushTransitionPatterns,
   dryBrushTransitionSchema,
 } from "./Effects/Transition/DryBrushTransition/dry-brush-transition.schema";
 import { WaterRippleTransitionTemplate } from "./Effects/Transition/WaterRippleTransition/WaterRippleTransitionTemplate";
 import {
-  waterRippleTransitionDurationFrames,
+  waterRippleTransitionAnimationDurationFrames,
   waterRippleTransitionPatterns,
   waterRippleTransitionSchema,
 } from "./Effects/Transition/WaterRippleTransition/water-ripple-transition.schema";
 import { CodecCorruptTransitionTemplate } from "./Effects/Transition/CodecCorruptTransition/CodecCorruptTransitionTemplate";
 import {
-  codecCorruptTransitionDurationFrames,
+  codecCorruptTransitionAnimationDurationFrames,
   codecCorruptTransitionPatterns,
   codecCorruptTransitionSchema,
 } from "./Effects/Transition/CodecCorruptTransition/codec-corrupt-transition.schema";
 import { PixelSortTransitionTemplate } from "./Effects/Transition/PixelSortTransition/PixelSortTransitionTemplate";
 import {
-  pixelSortTransitionDurationFrames,
+  pixelSortTransitionAnimationDurationFrames,
   pixelSortTransitionPatterns,
   pixelSortTransitionSchema,
 } from "./Effects/Transition/PixelSortTransition/pixel-sort-transition.schema";
 import { CrtPowerOffTransitionTemplate } from "./Effects/Transition/CrtPowerOffTransition/CrtPowerOffTransitionTemplate";
 import {
-  crtPowerOffTransitionDurationFrames,
+  crtPowerOffTransitionAnimationDurationFrames,
   crtPowerOffTransitionPatterns,
   crtPowerOffTransitionSchema,
 } from "./Effects/Transition/CrtPowerOffTransition/crt-power-off-transition.schema";
 import { InkBleedTransitionTemplate } from "./Effects/Transition/InkBleedTransition/InkBleedTransitionTemplate";
 import {
-  inkBleedTransitionDurationFrames,
+  inkBleedTransitionAnimationDurationFrames,
   inkBleedTransitionPatterns,
   inkBleedTransitionSchema,
 } from "./Effects/Transition/InkBleedTransition/ink-bleed-transition.schema";
 import { VolumetricSmokeTransitionTemplate } from "./Effects/Transition/VolumetricSmokeTransition/VolumetricSmokeTransitionTemplate";
 import {
-  volumetricSmokeTransitionDurationFrames,
+  volumetricSmokeTransitionAnimationDurationFrames,
   volumetricSmokeTransitionPatterns,
   volumetricSmokeTransitionSchema,
 } from "./Effects/Transition/VolumetricSmokeTransition/volumetric-smoke-transition.schema";
 import {
   defaultZoomBlurTransitionProps,
-  zoomBlurTransitionDurationFrames,
+  zoomBlurTransitionAnimationDurationFrames,
 } from "./Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
 import {
   renderPatternFamily,
@@ -112,7 +112,7 @@ import {
 } from "./Effects/Transition/SignalSliceTransition/signal-slice-transition.schema";
 import { HologramFragmentTransitionTemplate } from "./Effects/Transition/HologramFragmentTransition/HologramFragmentTransitionTemplate";
 import {
-  hologramFragmentTransitionDurationFrames,
+  hologramFragmentTransitionAnimationDurationFrames,
   hologramFragmentTransitionPatterns,
   hologramFragmentTransitionSchema,
 } from "./Effects/Transition/HologramFragmentTransition/hologram-fragment-transition.schema";
@@ -163,10 +163,6 @@ import { scanEchoTransitionSchema } from "./Effects/Transition/ScanEchoTransitio
 import { mergedScanEchoTransitionPatterns } from "./composition/composition-merged-other";
 
 const FPS = 30;
-const inkRippleDurationFrames =
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 600
-    : inkRippleTransitionDurationFrames;
 
 export function EffectFolder() {
   return (
@@ -247,7 +243,7 @@ export function EffectFolder() {
             idPrefix: "HologramFragmentTransition-",
             Template: HologramFragmentTransitionTemplate,
             schema: hologramFragmentTransitionSchema,
-            durationInFrames: hologramFragmentTransitionDurationFrames,
+            durationInFrames: hologramFragmentTransitionAnimationDurationFrames,
           })}
         </Folder>
         <Folder name="HologramParticle">
@@ -305,7 +301,7 @@ export function EffectFolder() {
             height={1080}
             fps={FPS}
             durationInFrames={minimumCompositionFrames(
-              inkRippleDurationFrames,
+              inkRippleTransitionDurationFrames,
               FPS,
             )}
             schema={inkRippleTransitionSchema}
@@ -337,7 +333,7 @@ export function EffectFolder() {
             schema: zoomBlurTransitionSchema,
             props: { ...defaultZoomBlurTransitionProps },
             durationInFrames: minimumCompositionFrames(
-              zoomBlurTransitionDurationFrames(),
+              zoomBlurTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -358,7 +354,7 @@ export function EffectFolder() {
             Template: SuminagashiTransitionTemplate,
             schema: suminagashiTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              suminagashiTransitionDurationFrames(),
+              suminagashiTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -370,7 +366,7 @@ export function EffectFolder() {
             Template: DryBrushTransitionTemplate,
             schema: dryBrushTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              dryBrushTransitionDurationFrames(),
+              dryBrushTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -382,7 +378,7 @@ export function EffectFolder() {
             Template: WaterRippleTransitionTemplate,
             schema: waterRippleTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              waterRippleTransitionDurationFrames(),
+              waterRippleTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -394,7 +390,7 @@ export function EffectFolder() {
             Template: CodecCorruptTransitionTemplate,
             schema: codecCorruptTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              codecCorruptTransitionDurationFrames(),
+              codecCorruptTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -406,7 +402,7 @@ export function EffectFolder() {
             Template: PixelSortTransitionTemplate,
             schema: pixelSortTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              pixelSortTransitionDurationFrames(),
+              pixelSortTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -418,7 +414,7 @@ export function EffectFolder() {
             Template: CrtPowerOffTransitionTemplate,
             schema: crtPowerOffTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              crtPowerOffTransitionDurationFrames(),
+              crtPowerOffTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -430,7 +426,7 @@ export function EffectFolder() {
             Template: InkBleedTransitionTemplate,
             schema: inkBleedTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              inkBleedTransitionDurationFrames(),
+              inkBleedTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -442,7 +438,7 @@ export function EffectFolder() {
             Template: VolumetricSmokeTransitionTemplate,
             schema: volumetricSmokeTransitionSchema,
             durationInFrames: minimumCompositionFrames(
-              volumetricSmokeTransitionDurationFrames(),
+              volumetricSmokeTransitionAnimationDurationFrames,
               FPS,
             ),
           })}

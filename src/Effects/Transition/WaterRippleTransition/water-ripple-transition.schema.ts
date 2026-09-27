@@ -2,10 +2,6 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const waterRippleTransitionAnimationDurationFrames = 60;
-export const waterRippleTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : waterRippleTransitionAnimationDurationFrames;
 
 /** Overlay: water seals the frame at the midpoint; glints elsewhere. */
 export const waterRippleTransitionSchema = z.object({

@@ -96,7 +96,9 @@ export const tvStaticPatterns: Record<string, TvStaticSchemaType> = {
     colorC: "#9a9a9a",
     scale: 1,
     intensity: 0.12,
-    loopCycles: 2,
+    // One 10-second cycle: same motion as the former 2 cycles in 20 seconds, half the file size.
+    loopCycles: 1,
+    durationSeconds: 10,
     randomSeed: 47,
     scanlines: 0.3,
     trackingBand: 1,

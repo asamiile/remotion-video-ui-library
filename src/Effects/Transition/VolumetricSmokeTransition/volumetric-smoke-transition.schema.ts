@@ -25,10 +25,6 @@ export type VolumetricSmokeTransitionSchemaType = z.infer<
 
 /** Smoke rolls in, fully covers the frame around the midpoint, then clears. */
 export const volumetricSmokeTransitionAnimationDurationFrames = 54;
-export const volumetricSmokeTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : volumetricSmokeTransitionAnimationDurationFrames;
 
 export const defaultVolumetricSmokeTransitionProps = {
   backgroundColor: "#0b0b0d",

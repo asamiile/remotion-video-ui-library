@@ -2,7 +2,7 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
 
 /**
  * Timing for a transition animation centered in its composition (the base
- * version fits it exactly; the -10s version pads both sides).
+ * version fits it exactly; the padded "-5s" version pads both sides).
  *
  * `animationTime` counts from the animation start, not frame 0, so both
  * versions feed shaders identical values — use it instead of uTime.

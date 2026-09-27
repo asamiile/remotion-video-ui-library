@@ -2,10 +2,6 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const dryBrushTransitionAnimationDurationFrames = 60;
-export const dryBrushTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : dryBrushTransitionAnimationDurationFrames;
 
 /** Overlay: paint seals the frame at the midpoint; transparent elsewhere. */
 export const dryBrushTransitionSchema = z.object({

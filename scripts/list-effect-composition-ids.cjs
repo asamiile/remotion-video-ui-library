@@ -30,10 +30,11 @@ const families = [
   {idPrefix:"",file:"src/Effects/Transition/DataUI/data-ui-transitions.ts",exportName:"dataUiTransitionPatterns",join:""},
 ];
 const policies = require("../src/composition/duration-variants.json");
+const { paddedSuffix } = require("../src/composition/duration-variant-config.json");
 function emit(id) {
   process.stdout.write(`${id}\n`);
   if (policies.some((p) => p.prefix ? id.startsWith(p.prefix) : p.ids.includes(id))) {
-    process.stdout.write(`${id}-10s\n`);
+    process.stdout.write(`${id}${paddedSuffix}\n`);
   }
 }
 for (const id of fixedIds) emit(id);

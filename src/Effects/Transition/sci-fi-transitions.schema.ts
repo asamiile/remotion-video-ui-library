@@ -55,4 +55,4 @@ export const sciFiTransitionPatterns: Record<string, SciFiTransitionsProps> = {
 
 export const defaultSciFiTransitionsProps = sciFiTransitionPatterns.lidarDepthGateTransition;
 export const sciFiTransitionsDurationFrames = (props: SciFiTransitionsProps) =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1" ? 150 : props.durationFrames;
+  props.durationFrames;

@@ -2,10 +2,6 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const crtPowerOffTransitionAnimationDurationFrames = 36;
-export const crtPowerOffTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : crtPowerOffTransitionAnimationDurationFrames;
 
 /** The picture collapses to a line and a dot like a CRT switching off (black at the midpoint), then switches back on. */
 export const crtPowerOffTransitionSchema = z.object({

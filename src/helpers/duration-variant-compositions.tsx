@@ -3,6 +3,11 @@ import { Composition, Sequence } from "remotion";
 import { z } from "zod";
 import { minimumCompositionFrames } from "../composition/composition-duration";
 import { getDurationVariantWindow } from "../composition/duration-variants";
+import variantConfig from "../composition/duration-variant-config.json";
+
+// Short compositions also get a padded version (e.g. "-5s"): the same
+// animation centered in paddedSeconds, with transparent frames around it.
+const { paddedSeconds, paddedSuffix } = variantConfig;
 import { withCanvasPreview } from "../composition/with-canvas-preview";
 
 export function renderDurationVariantCompositions<
@@ -28,13 +33,13 @@ export function renderDurationVariantCompositions<
 }) {
   const window = getDurationVariantWindow(id, props);
   const variants = window
-    ? (["", "-10s"] as const)
-    : ([""] as const);
+    ? ["", paddedSuffix]
+    : [""];
   return variants.map((suffix) => {
     const resolveDuration = (input: Props) => {
       if (window && suffix === "")
         return getDurationVariantWindow(id, input)!.frames;
-      if (suffix === "-10s") return fps * 10;
+      if (suffix === paddedSuffix) return fps * paddedSeconds;
       return minimumCompositionFrames(
         typeof durationInFrames === "function"
           ? durationInFrames(input)

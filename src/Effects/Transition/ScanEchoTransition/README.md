@@ -80,34 +80,34 @@ Studio: `Effect / Transition / ScanControl / ScanEchoTransition`。
 
 ## 尺バリエーション
 
-各プリセットは末尾なしのIDが最短版、`-10s` が10秒版です。同じフォルダ内で選択できます。例えば `ScanEchoTransition-CyanSweep` と `ScanEchoTransition-CyanSweep-10s`。最短版はStockフラグでも延長しません。10秒版は中央に演出を配置し、前後に透明余白を設けます。
+各プリセットは末尾なしのIDが最短版、`-5s` が5秒版です。同じフォルダ内で選択できます。例えば `ScanEchoTransition-CyanSweep` と `ScanEchoTransition-CyanSweep-5s`。5秒版は中央に演出を配置し、前後に透明余白を設けます。
 
 ## 編集
 
-- 1920×1080、30fps、10秒版の出力は10秒（300フレーム）。中央の演出はプリセットに応じて32〜72フレーム。各プリセットの演出尺は一覧表に記載。
-- 素材の中央フレームを映像A/Bのカットへ合わせる。10秒素材は150フレーム位置。
+- 1920×1080、30fps、5秒版の出力は5秒（150フレーム）。中央の演出はプリセットに応じて32〜72フレーム。各プリセットの演出尺は一覧表に記載。
+- 素材の中央フレームを映像A/Bのカットへ合わせる。5秒素材は75フレーム位置。
 - 最初と最後は透明。中央の2フレーム以上で全面を覆い、カットを隠す。
 - Studioのpropsで動き、4方向、3色、カットを覆う色、残像数・間隔、glitch強度、seed、尺を編集できる。
 - `cutStyle` で中央の遮蔽を `solid`（単色）、`chromatic`（2色）、`prism`（プリズム）、`static`（デジタルノイズ）、`slats`（スリット）、`iris`（虹彩）から選べる。
-- 演出尺は24〜120フレームで変更可能。10秒版の出力尺は300フレームを維持し、前後を透明な編集余白にする。
+- 演出尺は24〜120フレームで変更可能。5秒版の出力尺は150フレームを維持し、前後を透明な編集余白にする。
 - `coverColor` は不透明色を指定するとカットを完全に隠せる。透明色なら下の映像が透ける。
 - 左／上は逆方向。円形・菱形など中央を基準にする動きでは収束方向になる。右／下は展開方向。
 - 映像自体を変形するものではなく、走査光・信号断片を重ねる素材。残像はエフェクト自身の残像。
 - glitch強度は断片・粒子・揺らぎの量に反映する。一部の幾何学パターンでは使用しない。
 - seedとフレームから生成するため、再生順に依存しない。
-- 10秒版は通常・Adobe Stockとも300フレーム（10秒）に延長し、演出を中央に配置する。
+- 5秒版は150フレーム（5秒）に延長し、演出を中央に配置する。
 
 ## 書き出し
 
 ```sh
-# シリーズ全体（566プリセット × 最短・10秒の2版）
+# シリーズ全体（566プリセット × 最短・5秒の2版）
 ./render.sh ScanEchoTransition
 
 # 1プリセットの透過PNG連番
 ./render.sh --png-sequence --transparent-bg ScanEchoTransition-CyanRadar
 
-# 1プリセットのStock向け透過MOV
-./render.sh --adobe-stock-alpha ScanEchoTransition-RgbTear
+# 1プリセットの透過MOV
+./render.sh --alpha ScanEchoTransition-RgbTear
 ```
 
 全プリセットは `all` の対象。フル書き出しは必要なときに実行する。
@@ -696,14 +696,7 @@ npm run build
 node scripts/verify-scan-echo.cjs
 ```
 
-検証スクリプトはChromiumとffmpegを使用する。全プリセットを各1枚の静止画で確認し、登録IDと書き出し列挙を照合する。全Compositionの出力が10秒以上であることを確認する。演出尺24・25・48・49・119・120フレームについて、先頭／末尾の透明度と中央2フレームの不透明度、異なる順番で同じフレームを描画したときのピクセル一致も確認する。中央マスク全種類の透明度も確認する。画像は一時ディレクトリへ保存する。
-
-Stock用は通常バンドルとは別の場所で確認できる。フル動画のレンダーは行わない。
-
-```sh
-REMOTION_ADOBE_STOCK_EXPORT=1 npx remotion bundle --out-dir=/tmp/scan-echo-stock-build
-node scripts/verify-scan-echo.cjs --stock --bundle=/tmp/scan-echo-stock-build
-```
+検証スクリプトはChromiumとffmpegを使用する。全プリセットを各1枚の静止画で確認し、登録IDと書き出し列挙を照合する。5秒版の出力が正確に5秒であることを確認する。演出尺24・25・48・49・119・120フレームについて、先頭／末尾の透明度と中央2フレームの不透明度、異なる順番で同じフレームを描画したときのピクセル一致も確認する。中央マスク全種類の透明度も確認する。画像は一時ディレクトリへ保存する。
 
 特定の動きを修正した際は `node scripts/verify-scan-echo.cjs --modes=sweep,fracture,moire` のように静止画の対象を絞れる。登録照合と尺・透明度の検証は常に実行する。
 

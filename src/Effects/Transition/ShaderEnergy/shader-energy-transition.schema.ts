@@ -51,5 +51,4 @@ export const shaderEnergyTransitionPatterns: Record<
 
 export const shaderEnergyTransitionDurationFrames = (
   props: ShaderEnergyTransitionSchemaType,
-) =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1" ? 150 : props.durationFrames;
+) => props.durationFrames;

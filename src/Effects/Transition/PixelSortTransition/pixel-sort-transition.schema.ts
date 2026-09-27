@@ -2,10 +2,6 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const pixelSortTransitionAnimationDurationFrames = 60;
-export const pixelSortTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : pixelSortTransitionAnimationDurationFrames;
 
 /** Sorted-gradient drips melt down from the top until the frame is covered, then fall out the bottom. */
 export const pixelSortTransitionSchema = z.object({

@@ -1,5 +1,6 @@
 // Verify procedural transition stills, not full video exports.
 const fs = require('node:fs');
+const {paddedSeconds, paddedSuffix} = require('../src/composition/duration-variant-config.json');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {createRequire} = require('node:module');
@@ -18,7 +19,7 @@ function alpha(file) {
  try {
   const all=await renderer.getCompositions(serveUrl,{puppeteerInstance:browser,logLevel:'error',onBrowserLog:()=>{}});
   const comps=all.filter(c=>c.id.startsWith('DistressTransition-'));
-  const bases=comps.filter(c=>!c.id.endsWith('-10s'));
+  const bases=comps.filter(c=>!c.id.endsWith(paddedSuffix));
   const listed=execFileSync('node',['scripts/list-effect-composition-ids.cjs'],{encoding:'utf8'}).trim().split('\n').filter(id=>id.startsWith('DistressTransition-'));
   assert.deepEqual(comps.map(c=>c.id).sort(),listed.sort());
   assert.equal(new Set(bases.map(c=>c.props.mode)).size,6);
@@ -28,8 +29,8 @@ function alpha(file) {
    return file;
   }
   for(const c of bases){
-   const ten=comps.find(x=>x.id===c.id+'-10s');assert(ten);
-   assert.equal(c.durationInFrames,c.props.durationFrames);assert.equal(ten.durationInFrames,300);
+   const ten=comps.find(x=>x.id===c.id+paddedSuffix);assert(ten);
+   assert.equal(c.durationInFrames,c.props.durationFrames);assert.equal(ten.durationInFrames,paddedSeconds*ten.fps);
    const local=Math.floor(c.durationInFrames*.28);
    const short=await still(c,local,c.id);
    const long=await still(ten,150-Math.floor(c.durationInFrames/2)+local,ten.id);
@@ -50,9 +51,9 @@ function alpha(file) {
    const base=bases.find(c=>c.props.mode===mode);
    const duration=[24,25,48,49,119,120][i];
    const inputProps={durationFrames:duration,grainSize:i%2?.6:8,density:i%2?2:.5,noiseHoldFrames:i%2?4:1,roughness:i%2?1:0};
-   for(const suffix of ['', '-10s']){
+   for(const suffix of ['', paddedSuffix]){
     const c=await renderer.selectComposition({serveUrl,id:base.id+suffix,inputProps,puppeteerInstance:browser,logLevel:'error',onBrowserLog:()=>{}});
-    assert.equal(c.durationInFrames,suffix?300:duration);
+    assert.equal(c.durationInFrames,suffix?paddedSeconds*30:duration);
     const cut=Math.floor(c.durationInFrames/2);
     for(const frame of [0,cut-1,cut,c.durationInFrames-1]){
      const file=await still(c,frame,`${mode}${suffix}-${duration}-${frame}`,inputProps);

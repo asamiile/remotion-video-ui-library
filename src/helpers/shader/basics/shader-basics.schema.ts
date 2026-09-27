@@ -15,11 +15,20 @@ export const shaderBasicsSchema = z.object({
   /** Full animation cycles per composition; integers keep the loop seamless */
   loopCycles: z.number().int().min(1).max(6),
   randomSeed: z.number().int().min(0).max(999),
+  /**
+   * Loop length in seconds (default 20). Pair with loopCycles: a 10-second,
+   * 1-cycle loop moves exactly like a 20-second, 2-cycle one at half the size.
+   */
+  durationSeconds: z.number().int().min(10).max(60).optional(),
 });
 
 export type ShaderBasicsSchemaType = z.infer<typeof shaderBasicsSchema>;
 
-export const shaderBasicsDurationFrames = 600;
+export const DEFAULT_LOOP_SECONDS = 20;
+
+export const shaderBasicsDurationFrames = (props: {
+  durationSeconds?: number;
+}) => (props.durationSeconds ?? DEFAULT_LOOP_SECONDS) * 30;
 
 /** Defaults shared by every basic-technique pattern. */
 export const shaderBasicsBase = {

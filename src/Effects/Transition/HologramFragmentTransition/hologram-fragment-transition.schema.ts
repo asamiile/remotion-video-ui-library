@@ -3,10 +3,6 @@ import {z} from "zod";
 export const hologramFragmentTransitionSchema = z.object({primaryColor: zColor(), secondaryColor: zColor(), fragmentCount: z.number().int().min(6).max(120), spreadPx: z.number().min(20).max(1600), fragmentSize: z.number().min(5).max(180), mode: z.enum(["dissolve", "reassemble", "forwardBurst"]), randomSeed: z.string()});
 export type HologramFragmentTransitionProps = z.infer<typeof hologramFragmentTransitionSchema>;
 export const hologramFragmentTransitionAnimationDurationFrames = 90;
-export const hologramFragmentTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : hologramFragmentTransitionAnimationDurationFrames;
 export const defaultHologramFragmentTransitionProps = {primaryColor: "#3af6ff", secondaryColor: "#9affdd", fragmentCount: 54, spreadPx: 720, fragmentSize: 64, mode: "dissolve", randomSeed: "hologram-fragments"} as const;
 export const hologramFragmentTransitionPatterns: Record<string, HologramFragmentTransitionProps> = {
   dissolve: {...defaultHologramFragmentTransitionProps},

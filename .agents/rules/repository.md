@@ -72,16 +72,16 @@ How to decide when it's unclear:
 
 - Shader-based work uses three.js via `@remotion/three`. Draw full-frame fragment shaders with `ShaderCanvas` from `src/helpers/shader/` (auto-injects `uResolution` / `uTime` / `uFrame` / `vUv`); share GLSL snippets from `src/helpers/shader/glsl/`.
 - Derive all animation from `useCurrentFrame()` and pass it as uniforms. Never use react-three-fiber's `useFrame`, or renders flicker.
-- Transitions with `-10s` variants must pass time measured from the animation start (e.g. `animationFrame / fps`), not the built-in `uTime` (seconds since frame 0), or the base and `-10s` versions render different frames. Loops should derive motion from `frame / durationInFrames` with `loopOffset` (`src/helpers/shader/glsl/noise.ts`).
+- Transitions with padded (`-5s`) variants must pass time measured from the animation start (e.g. `animationFrame / fps`), not the built-in `uTime` (seconds since frame 0), or the base and `-5s` versions render different frames. Loops should derive motion from `frame / durationInFrames` with `loopOffset` (`src/helpers/shader/glsl/noise.ts`).
 - Clip-to-clip (blend) transitions take `fromSrc`/`toSrc` (path under `public/`, URL, or `""` for a built-in placeholder) via `mediaBlendFields` and render with `BlendShaderCanvas` (`src/helpers/shader/BlendShaderCanvas.tsx`); sample them in GLSL with `mediaSamplingGlsl`. Video frames are fetched per frame while rendering, so output stays frame-accurate. Use `useCenteredTransition` for timing.
 - Output premultiplied RGBA so `--alpha` / `--transparent-bg` exports keep transparency.
 - CLI renders need `--gl=angle`. When adding a shader composition, add its ID pattern to `requires_webgl()` in `render.sh`. `scripts/render-all.cjs` and `scripts/verify-duration-variants.cjs` already launch Chrome with ANGLE.
 
 ## Composition duration and folder limits
 
-- 通常尺が10秒以下の動画には、通常尺のCompositionに加えて10秒版のCompositionを追加する。ちょうど10秒の場合も対象とする。
-- 通常尺のCompositionは元の尺と末尾なしのIDを維持する。10秒版のIDには必ず `-10s` を付ける（例: `ScanEchoTransition-CyanSweep` / `ScanEchoTransition-CyanSweep-10s`）。
-- 10秒版は正確に10秒（30fpsなら300フレーム）にする。通常尺を最低10秒へ強制延長しない。10秒を超える動画は短縮しない。
-- 通常版と10秒版は同じFolderに登録する。演出尺と出力尺を区別し、短いトランジションの10秒版は演出速度を保ち、中央配置と透明な編集余白で延長できる。
+- 短いトランジションなど演出尺が5秒未満の動画には、通常尺のCompositionに加えて5秒版のCompositionを追加する（対象は`src/composition/duration-variants.json`、秒数と接尾辞は`src/composition/duration-variant-config.json`）。
+- 通常尺のCompositionは元の尺と末尾なしのIDを維持する。5秒版のIDには必ず `-5s` を付ける（例: `ScanEchoTransition-CyanSweep` / `ScanEchoTransition-CyanSweep-5s`）。
+- 5秒版は正確に5秒（30fpsなら150フレーム）にする。演出は5秒以内に収める。通常尺を強制延長しない。
+- 通常版と5秒版は同じFolderに登録する。演出尺と出力尺を区別し、短いトランジションの5秒版は演出速度を保ち、中央配置と透明な編集余白で延長できる。
 - propsで尺が変わる場合は `calculateMetadata` でも両版の尺を正しく計算する。列挙・書き出し・検証も両版を含める。既存の尺バリエーション実装は `src/composition/duration-variants.json` と `duration-variants.ts` を参照する。
 - StudioのFolderは最大3階層（Composition ID自体を除く）。例: `Effect/Transition/ScanEchoTransition`。ソースと `render.sh` の出力先も合わせ、整理でComposition IDを変更しない。

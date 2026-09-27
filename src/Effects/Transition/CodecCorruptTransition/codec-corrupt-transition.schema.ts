@@ -2,10 +2,6 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const codecCorruptTransitionAnimationDurationFrames = 48;
-export const codecCorruptTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : codecCorruptTransitionAnimationDurationFrames;
 
 /** Macroblock corruption spreads in clumps until the frame is covered, then drops out block by block. */
 export const codecCorruptTransitionSchema = z.object({

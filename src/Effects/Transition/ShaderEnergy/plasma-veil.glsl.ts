@@ -16,7 +16,7 @@ uniform float uIntensity;
 uniform float uDensity;
 uniform float uSeed;
 // Seconds since the animation started (not since frame 0), so the base and
-// -10s versions render identical frames.
+// padded (-5s) versions render identical frames.
 uniform float uAnimTime;
 
 float ridge(float n) {

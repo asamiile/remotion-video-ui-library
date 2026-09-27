@@ -1,6 +1,7 @@
 // Integration verification: registered IDs, representative stills, and alpha at cut boundaries.
 // Requires a current Remotion bundle and ffmpeg. This does not render full videos.
 const fs = require("node:fs");
+const { paddedSeconds, paddedSuffix } = require("../src/composition/duration-variant-config.json");
 const path = require("node:path");
 const assert = require("node:assert/strict");
 const { createRequire } = require("node:module");
@@ -10,7 +11,6 @@ const rendererRequire = createRequire(localRequire.resolve("@remotion/cli"));
 const { openBrowser, getCompositions, selectComposition, renderStill } =
   rendererRequire("@remotion/renderer");
 const { execFileSync } = require("node:child_process");
-const stock = process.argv.includes("--stock");
 const bundleArg = process.argv.find((arg) => arg.startsWith("--bundle="));
 const serveUrl = path.resolve(
   bundleArg ? bundleArg.slice(9) : path.join(root, "build"),
@@ -53,10 +53,13 @@ function alphaRange(file) {
     });
     const policies = require("../src/composition/duration-variants.json");
     for (const c of all) {
-      assert((!c.id.endsWith("-10s") && policies.some(p => p.prefix ? c.id.startsWith(p.prefix) : p.ids.includes(c.id))) || c.durationInFrames >= Math.ceil(c.fps * 10), `${c.id}: shorter than 10 seconds`);
+      // Short base versions are exempt; padded versions are exactly paddedSeconds;
+      // everything else keeps the 10-second minimum.
+      if (c.id.endsWith(paddedSuffix)) assert.equal(c.durationInFrames, c.fps * paddedSeconds, `${c.id}: padded version must be ${paddedSeconds}s`);
+      else assert(policies.some(p => p.prefix ? c.id.startsWith(p.prefix) : p.ids.includes(c.id)) || c.durationInFrames >= Math.ceil(c.fps * 10), `${c.id}: shorter than 10 seconds`);
     }
     console.log(`${all.length} compositions meet the duration policy (short variants excluded)`);
-    const comps = all.filter((c) => c.id.startsWith("ScanEchoTransition-") && !/-10s$/.test(c.id));
+    const comps = all.filter((c) => c.id.startsWith("ScanEchoTransition-") && !c.id.endsWith(paddedSuffix));
     assert(comps.length > 0, "No ScanEchoTransition compositions in bundle");
     const listed = execFileSync(
       "node",
@@ -65,7 +68,7 @@ function alphaRange(file) {
     )
       .trim()
       .split("\n")
-      .filter((id) => id.startsWith("ScanEchoTransition-") && !/-10s$/.test(id));
+      .filter((id) => id.startsWith("ScanEchoTransition-") && !id.endsWith(paddedSuffix));
     assert.deepEqual(comps.map((c) => c.id).sort(), listed.sort());
     const groups = new Map();
     for (const c of comps) {
@@ -92,13 +95,11 @@ function alphaRange(file) {
           comps.some((c) => c.props.cutStyle === style),
           `Unknown cut style: ${style}`,
         );
-    const samples = stock
-      ? []
-      : comps.filter(
-          (c) =>
-            (!requestedModes || requestedModes.includes(c.props.mode)) &&
-            (!requestedCuts || requestedCuts.includes(c.props.cutStyle)),
-        );
+    const samples = comps.filter(
+      (c) =>
+        (!requestedModes || requestedModes.includes(c.props.mode)) &&
+        (!requestedCuts || requestedCuts.includes(c.props.cutStyle)),
+    );
     for (const c of samples) {
       const mode = c.props.mode;
       const file = path.join(out, `${c.id}.png`);

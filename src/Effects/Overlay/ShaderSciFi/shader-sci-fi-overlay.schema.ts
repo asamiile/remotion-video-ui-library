@@ -19,13 +19,17 @@ export const shaderSciFiOverlaySchema = z.object({
   loopCycles: z.number().int().min(1).max(6),
   safeAreaPercent: z.number().min(0).max(20),
   randomSeed: z.number().int().min(0).max(999),
+  /** Loop length in seconds (default 20); see loopCycles */
+  durationSeconds: z.number().int().min(10).max(60).optional(),
 });
 
 export type ShaderSciFiOverlaySchemaType = z.infer<
   typeof shaderSciFiOverlaySchema
 >;
 
-export const shaderSciFiOverlayDurationFrames = 600;
+export const shaderSciFiOverlayDurationFrames = (props: {
+  durationSeconds?: number;
+}) => (props.durationSeconds ?? 20) * 30;
 
 const base = {
   primaryColor: "#37e9ff",
@@ -47,7 +51,9 @@ export const shaderSciFiOverlayPatterns: Record<
     ...base,
     effectType: "plasmaEdgeArc",
     intensity: 1.25,
-    loopCycles: 2,
+    // One 10-second cycle: same motion as the former 2 cycles in 20 seconds, half the file size.
+    loopCycles: 1,
+    durationSeconds: 10,
     randomSeed: 3,
   },
   volumetricLightScanShader: {

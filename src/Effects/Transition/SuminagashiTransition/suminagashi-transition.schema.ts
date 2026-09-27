@@ -2,10 +2,6 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 export const suminagashiTransitionAnimationDurationFrames = 72;
-export const suminagashiTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : suminagashiTransitionAnimationDurationFrames;
 
 /** Overlay: ink seals the frame at the midpoint; transparent elsewhere. */
 export const suminagashiTransitionSchema = z.object({

@@ -29,10 +29,6 @@ export type InkBleedTransitionSchemaType = z.infer<
 
 /** Ink spreads until the frame is covered, holds, then bleeds open. */
 export const inkBleedTransitionAnimationDurationFrames = 60;
-export const inkBleedTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : inkBleedTransitionAnimationDurationFrames;
 
 export const defaultInkBleedTransitionProps = {
   backgroundColor: "#ece6d8",
