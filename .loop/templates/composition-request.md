@@ -1,57 +1,57 @@
-# Remotion Composition追加プロンプト
+# Remotion Composition Addition Prompt
 
-以下のRemotion Compositionを追加してください。
+Please add the following Remotion Composition.
 
-## 基本情報
+## Basic information
 
-- Composition名:
+- Composition name:
 - Composition ID:
-- 配置フォルダ:
-- 用途:
-- 参考にする既存Composition:
+- Folder:
+- Purpose:
+- Existing Composition to reference:
 
-## 映像仕様
+## Video specification
 
-- 幅: 1920px
-- 高さ: 1080px
+- Width: 1920px
+- Height: 1080px
 - FPS: 30
-- 秒数: 10秒
-- アスペクト比:
-- 背景透過: はい / いいえ
-- シームレスループ: はい / いいえ
-- 音声: あり / なし
+- Duration: 10 seconds
+- Aspect ratio:
+- Transparent background: yes / no
+- Seamless loop: yes / no
+- Audio: yes / no
 
-## 表現
+## Look
 
-- 見た目:
-- アニメーション:
-- 色:
-- 文字要素:
-- 画面外へのはみ出し対策:
-- ランダム性:
-- 調整可能にするprops:
+- Appearance:
+- Animation:
+- Colors:
+- Text elements:
+- Handling of overflow outside the frame:
+- Randomness:
+- Adjustable props:
 
-## Studio・書き出し
+## Studio and export
 
-- Remotion Studio上の配置:
-- `render.sh`の出力先:
-- 必要な書き出し形式: PNG連番 / MP4 / 透過MOV / その他
-- フルレンダー: 実行前に承認を求める
+- Placement in Remotion Studio:
+- `render.sh` output location:
+- Required export formats: PNG sequence / MP4 / transparent MOV / other
+- Full render: ask for approval before running
 
-## 完了条件
+## Completion criteria
 
-- 指定フォルダに実装され、Studioへ登録されている
-- アニメーションがフレーム駆動かつ決定的に再現される
-- schema、defaultProps、型がリポジトリ規約に従っている
-- `npm run lint`が成功する
-- `./render.sh check`が成功する
-- `git diff --check`が成功する
-- 変更内容と検証結果が報告される
+- Implemented in the specified folder and registered in Studio
+- Animation is frame-driven and deterministically reproducible
+- schema, defaultProps, and types follow repository conventions
+- `npm run lint` passes
+- `./render.sh check` passes
+- `git diff --check` passes
+- The changes and verification results are reported
 
-## 制約
+## Constraints
 
-- `config/local/*.local.json`を変更しない
-- 既存の無関係な変更を保持する
-- 削除、commit、push、merge、publishは行わない
+- Do not change `config/local/*.local.json`
+- Preserve existing unrelated changes
+- Do not delete, commit, push, merge, or publish
 
-この内容をLoop Engineeringのgoalとして設定し、完了条件を満たすまで自律的に進めてください。フルレンダーや人間の判断が必要になった場合は、理由を示して停止してください。
+Set this as a Loop Engineering goal and proceed autonomously until the completion criteria are met. If a full render or human judgment becomes necessary, stop and explain why.

@@ -1,41 +1,41 @@
-# 既存機能調整プロンプト
+# Existing Feature Adjustment Prompt
 
-以下の既存機能を調整してください。
+Please adjust the following existing feature.
 
-## 対象
+## Target
 
-- Compositionまたは機能名:
-- 対象ファイルまたはフォルダ:
-- 問題が確認できる時刻・フレーム・条件:
+- Composition or feature name:
+- Target files or folders:
+- Time, frame, or conditions where the issue appears:
 
-## 現在の問題
+## Current issue
 
-- 現在の状態:
-- 期待する状態:
-- 再現手順:
+- Current state:
+- Expected state:
+- Steps to reproduce:
 
-## 変更内容
+## Changes
 
-- 変更したい項目:
-- 維持したい項目:
-- 数値指定:
-- 参考画像・動画・既存実装:
+- Items to change:
+- Items to keep:
+- Numeric specifications:
+- Reference images, videos, or existing implementations:
 
-## 完了条件
+## Completion criteria
 
-- 指定した問題が解消されている
-- 維持対象の見た目や動作が変化していない
-- 既存の設定値との互換性が保たれている
-- `npm run lint`が成功する
-- Composition変更時は`./render.sh check`が成功する
-- `git diff --check`が成功する
-- 変更内容と検証結果が報告される
+- The specified issue is resolved
+- The appearance and behavior of items to keep are unchanged
+- Compatibility with existing settings is preserved
+- `npm run lint` passes
+- `./render.sh check` passes when Compositions are changed
+- `git diff --check` passes
+- The changes and verification results are reported
 
-## 制約
+## Constraints
 
-- `config/local/*.local.json`は、対象パスを明示して変更を依頼した場合を除いて変更しない
-- 既存の無関係な変更を保持する
-- 指定範囲外への影響が見つかった場合は報告する
-- 削除、commit、push、merge、publish、フルレンダーは行わない
+- Do not change `config/local/*.local.json` unless the target path is explicitly named in the change request
+- Preserve existing unrelated changes
+- Report any impact found outside the specified scope
+- Do not delete, commit, push, merge, publish, or run full renders
 
-この内容をLoop Engineeringのgoalとして設定し、完了条件を満たすまで自律的に進めてください。仕様が複数の意味に解釈でき、結果が大きく変わる場合は、人間の判断が必要な理由を示して停止してください。
+Set this as a Loop Engineering goal and proceed autonomously until the completion criteria are met. If the specification can be interpreted in multiple ways that would lead to significantly different results, stop and explain why human judgment is needed.

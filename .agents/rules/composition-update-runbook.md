@@ -88,8 +88,8 @@ node scripts/list-onetake-composition-ids.cjs
 ./render.sh all
 ```
 
-動画・PNG連番を書き出す場合は、尺・出力先・透過形式・`ffprobe`検証を含む
-[Rendering](./rendering.md) も参照する。
+When exporting videos or PNG sequences, also see [Rendering](./rendering.md), which covers duration,
+output location, transparent formats, and `ffprobe` verification.
 
 ## Related Files
 

@@ -59,6 +59,7 @@ How to decide when it's unclear:
 
 ## Development Notes
 
+- **Write everything in the repository in English**: code, comments, identifiers, docs, rules, skills, templates, commit messages, `.env.example`, and sample copy. The only exception is sample text whose purpose is to exercise Japanese typesetting (`*Jp` / `jp*` pattern entries and ruby patterns such as `rubyWordplayTextPatterns` in `config/local/composition-text.example.json`). Personal `config/local/*.local.json` files are out of scope.
 - **Do not use copyright-related notices or markings**, including copyright statements, © symbols, or attribution lines.
 - **Do not reference external sources in code**, such as comments indicating which video, article, tutorial, or project the composition was based on. Keep code self-contained without external attribution.
 - **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** See [.agents/rules/composition-text-local.md](../.agents/rules/composition-text-local.md) for the read-only policy and the narrow exception.
@@ -79,9 +80,9 @@ How to decide when it's unclear:
 
 ## Composition duration and folder limits
 
-- 短いトランジションなど演出尺が5秒未満の動画には、通常尺のCompositionに加えて5秒版のCompositionを追加する（対象は`src/composition/duration-variants.json`、秒数と接尾辞は`src/composition/duration-variant-config.json`）。
-- 通常尺のCompositionは元の尺と末尾なしのIDを維持する。5秒版のIDには必ず `-5s` を付ける（例: `ScanEchoTransition-CyanSweep` / `ScanEchoTransition-CyanSweep-5s`）。
-- 5秒版は正確に5秒（30fpsなら150フレーム）にする。演出は5秒以内に収める。通常尺を強制延長しない。
-- 通常版と5秒版は同じFolderに登録する。演出尺と出力尺を区別し、短いトランジションの5秒版は演出速度を保ち、中央配置と透明な編集余白で延長できる。
-- propsで尺が変わる場合は `calculateMetadata` でも両版の尺を正しく計算する。列挙・書き出し・検証も両版を含める。既存の尺バリエーション実装は `src/composition/duration-variants.json` と `duration-variants.ts` を参照する。
-- StudioのFolderは最大3階層（Composition ID自体を除く）。例: `Effect/Transition/ScanEchoTransition`。ソースと `render.sh` の出力先も合わせ、整理でComposition IDを変更しない。
+- For videos whose animation is shorter than 5 seconds, such as short transitions, add a 5-second Composition in addition to the base-duration Composition (targets are listed in `src/composition/duration-variants.json`; seconds and suffix are in `src/composition/duration-variant-config.json`).
+- The base-duration Composition keeps its original duration and unsuffixed ID. Always append `-5s` to the 5-second version's ID (e.g. `ScanEchoTransition-CyanSweep` / `ScanEchoTransition-CyanSweep-5s`).
+- Make the 5-second version exactly 5 seconds (150 frames at 30fps). Keep the animation within 5 seconds. Do not forcibly extend the base duration.
+- Register the base and 5-second versions in the same Folder. Distinguish animation duration from output duration; the 5-second version of a short transition keeps the animation speed and may be extended by centering it with transparent editing margins.
+- When props change the duration, compute both versions' durations correctly in `calculateMetadata` as well. Include both versions in enumeration, export, and verification. See `src/composition/duration-variants.json` and `duration-variants.ts` for the existing duration-variant implementation.
+- Studio Folders are at most 3 levels deep (excluding the Composition ID itself), e.g. `Effect/Transition/ScanEchoTransition`. Keep the source layout and `render.sh` output location aligned, and do not change Composition IDs when reorganizing.
