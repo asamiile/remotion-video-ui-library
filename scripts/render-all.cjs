@@ -15,6 +15,19 @@ const { root, outDir } = require("./lib/output-dir.cjs");
 const format = process.argv[2] || "mp4";
 const planOnly = process.argv.includes("--plan");
 const overlaysOnly = process.argv.includes("--overlays");
+// --ids <file>: render only the composition IDs listed in the file (one per
+// line) with a single bundle and browser, instead of the whole library.
+const idsFlag = process.argv.indexOf("--ids");
+const idsFile = idsFlag > 0 ? process.argv[idsFlag + 1] : null;
+const onlyIds = idsFile
+  ? new Set(
+      fs
+        .readFileSync(idsFile, "utf8")
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean),
+    )
+  : null;
 const alphaFormat = format === "alpha";
 if (overlaysOnly) assert(alphaFormat, "Use --alpha with overlays");
 assert(["mp4", "alpha", "png"].includes(format));
@@ -249,7 +262,17 @@ async function inspectAlpha(c, browser) {
               byId.get(c.id)?.split("/")[0],
             ),
         )
-      : allComps;
+      : onlyIds
+        ? allComps.filter((c) => onlyIds.has(c.id))
+        : allComps;
+    if (onlyIds) {
+      const found = new Set(comps.map((c) => c.id));
+      const missing = [...onlyIds].filter((id) => !found.has(id));
+      assert(
+        missing.length === 0,
+        `Unknown composition IDs: ${missing.join(", ")}`,
+      );
+    }
     const manifest = comps.map((c) => {
       const folder = byId.get(c.id);
       assert(folder !== undefined, c.id);
@@ -258,11 +281,7 @@ async function inspectAlpha(c, browser) {
       const file =
         format === "png"
           ? path.join(directory, "png")
-          : path.join(
-              directory,
-              c.id +
-                (alphaFormat ? "-alpha.mov" : ".mp4"),
-            );
+          : path.join(directory, c.id + (alphaFormat ? "-alpha.mov" : ".mp4"));
       return {
         id: c.id,
         folder,
@@ -285,7 +304,13 @@ async function inspectAlpha(c, browser) {
     );
     if (planOnly) return;
     const archiveMarker = path.join(run, "archive.json");
-    if (!fs.existsSync(archiveMarker) && format === "mp4" && !overlaysOnly) {
+    // A full mp4 run replaces the library, so it sets the previous one aside first.
+    if (
+      !fs.existsSync(archiveMarker) &&
+      format === "mp4" &&
+      !overlaysOnly &&
+      !onlyIds
+    ) {
       const archive = path.join(run, "previous-library");
       fs.mkdirSync(archive, { recursive: true });
       const moved = [];

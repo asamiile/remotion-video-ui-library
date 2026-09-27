@@ -968,6 +968,15 @@ main() {
     overlays)
       node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT" --overlays
       ;;
+    list)
+      # Render the IDs listed in a file with one bundle/browser (much faster than
+      # passing many IDs, which re-bundles for each one).
+      if [ -z "${2:-}" ] || [ ! -f "$2" ]; then
+        echo -e "${RED}✗ Usage: ./render.sh [--alpha] list <file with one CompositionId per line>${NC}" >&2
+        exit 1
+      fi
+      node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT" --ids "$2"
+      ;;
     upload)
       # Move everything already in the output folder to Google Drive (e.g. older renders).
       node "$SCRIPT_DIR/scripts/upload-renders.cjs" --all
@@ -1047,6 +1056,7 @@ main() {
       echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel, framed window, lower-third label)"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"
+      echo "  list <file>        Render the CompositionIds listed in <file> (one per line) with a single bundle"
       echo "  upload             Move everything in the output folder to Google Drive (rclone; see README)"
       echo "  check              Verify every enumerated composition ID has a resolve_output_subdir() mapping (no rendering)"
       echo "  <CompositionId>    e.g. NeonText-LchikaOrangeJp (multiple allowed; must match the ID shown in Studio)"
