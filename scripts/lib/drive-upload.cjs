@@ -105,6 +105,9 @@ function isReadableVideo(file) {
  * succeeds. Unreadable videos stay local. Returns { moved, kept }.
  */
 function upload(paths) {
+  // Empty folders left behind by an interrupted upload are removed first;
+  // this run's own leftovers are removed after the move below.
+  removeEmptyDirectories(outDir);
   const files = paths.flatMap((p) =>
     fs.existsSync(p) && fs.statSync(p).isDirectory() ? pendingFiles(p) : [p],
   );
