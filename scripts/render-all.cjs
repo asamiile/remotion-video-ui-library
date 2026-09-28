@@ -277,10 +277,13 @@ async function inspectAlpha(c, browser) {
       const folder = byId.get(c.id);
       assert(folder !== undefined, c.id);
       assert(folder.split("/").length <= 3 && !folder.includes(".."));
-      const directory = path.join(outDir, folder, c.id);
+      // Padded variants share the base composition's directory.
+      const padded = c.id.endsWith(paddedSuffix);
+      const baseId = padded ? c.id.slice(0, -paddedSuffix.length) : c.id;
+      const directory = path.join(outDir, folder, baseId);
       const file =
         format === "png"
-          ? path.join(directory, "png")
+          ? path.join(directory, "png" + (padded ? paddedSuffix : ""))
           : path.join(directory, c.id + (alphaFormat ? "-alpha.mov" : ".mp4"));
       return {
         id: c.id,

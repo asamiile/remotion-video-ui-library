@@ -29,10 +29,14 @@ Apply this rule when changing a Composition's duration or exporting MP4, MOV, or
 - To make a Composition's own background transparent, use `--transparent-bg`. Keep it distinct from `--with-canvas-bg`, which includes the preview background.
 - When a PNG sequence is requested, export with `--png-sequence`. Also pass `--transparent-bg` for transparent assets.
 - Match the output location to the Studio Folder hierarchy and group outputs into one folder per Composition ID. Do not put videos directly in category folders.
+- Padded `-5s` variants do not get their own folder; they go into the base Composition's folder next to the base-duration files (e.g. `CodecCorruptTransition-GreenMagenta/CodecCorruptTransition-GreenMagenta-5s.mp4`). Their PNG sequence goes to `png-5s/`.
   ```text
-  out/<Studio Folder>/<CompositionId>/<CompositionId>.mp4
-  out/<Studio Folder>/<CompositionId>/<CompositionId>-alpha.mov
-  out/<Studio Folder>/<CompositionId>/png/*.png
+  out/<Studio Folder>/<BaseId>/<BaseId>.mp4
+  out/<Studio Folder>/<BaseId>/<BaseId>-alpha.mov
+  out/<Studio Folder>/<BaseId>/<BaseId>-5s.mp4
+  out/<Studio Folder>/<BaseId>/<BaseId>-5s-alpha.mov
+  out/<Studio Folder>/<BaseId>/png/*.png
+  out/<Studio Folder>/<BaseId>/png-5s/*.png
   ```
 - The output folder can be changed with the `REMOTION_OUTPUT_DIR` environment variable (defaults to the repository's `out/` when unset; resolution is shared by `scripts/lib/output-dir.cjs` and `render.sh`). `out/` below refers to the output folder.
 - Exported videos are automatically moved to the Google Drive folder specified by `REMOTION_UPLOAD_REMOTE` (same hierarchy as `out/`). No upload happens when it is unset. Do not hardcode the path in code or docs (`scripts/lib/drive-upload.cjs`, rclone). Only outputs that fail verification or upload remain in `out/`. Outputs already on Drive are treated as existing and are not re-exported. Disable with `REMOTION_UPLOAD=0`; move existing `out/` contents in bulk with `./render.sh upload`. See the README for setup.

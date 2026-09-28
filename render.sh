@@ -376,21 +376,23 @@ resolve_output_subdir() {
 }
 
 # Build the full output path from comp_id. Every export lives in a
-# composition-specific directory below the folder matching Studio's Folder nesting:
-#   out/<Studio folders>/<CompositionId>/<CompositionId>.mp4|mov
-#   out/<Studio folders>/<CompositionId>/png/*.png
+# composition-specific directory below the folder matching Studio's Folder nesting.
+# Padded (-5s) variants share their base composition's directory:
+#   out/<Studio folders>/<BaseId>/<CompositionId>.mp4|-alpha.mov
+#   out/<Studio folders>/<BaseId>/png/*.png (base) or png-5s/*.png (padded)
 output_path_for() {
   local comp_id="$1"
   local subdir
   local composition_dir
+  local base_id="${comp_id%-5s}"
   subdir="$(resolve_output_subdir "$comp_id")"
   if [ -z "$subdir" ]; then
     echo -e "${RED}✗ No output directory mapping for: ${comp_id}${NC}" >&2
     return 1
   fi
-  composition_dir="$OUTPUT_DIR/$subdir/$comp_id"
+  composition_dir="$OUTPUT_DIR/$subdir/$base_id"
   if [ "$OUTPUT_FORMAT" = "png" ]; then
-    echo "$composition_dir/png"
+    echo "$composition_dir/png${comp_id#"$base_id"}"
   elif [ "$OUTPUT_FORMAT" = "alpha" ]; then
     echo "$composition_dir/${comp_id}-alpha.mov"
   else

@@ -45,7 +45,7 @@ flowchart LR
 | `./render.sh upload` | Move videos left in the output folder to Drive |
 | `./render.sh help` | Other commands |
 
-Output: `<output folder>/<Studio folder>/<CompositionId>/`. Already-rendered compositions (including those on Drive) are skipped.
+Output: `<output folder>/<Studio folder>/<CompositionId>/` (`-5s` variants go into the base composition's folder). Already-rendered compositions (including those on Drive) are skipped.
 
 ## Licence
 
