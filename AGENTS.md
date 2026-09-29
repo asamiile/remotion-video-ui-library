@@ -14,6 +14,12 @@ This file is the agent-neutral source of truth for GitHub Copilot, OpenAI Codex,
 	- [.agents/rules/agent-tool-usage.md](.agents/rules/agent-tool-usage.md) - token-efficient Read/Edit usage guidance for AI agents
 	- [.loop/policies/remotion-composition.md](.loop/policies/remotion-composition.md) - autonomous-loop boundaries and human approval gates
 
+## Language
+
+- Write all repository content in English: code, comments, docs, rules, skills, templates, commit messages, and PR descriptions. Do not add Japanese text.
+- Exception: sample copy that exists to test Japanese typesetting (`*Jp` / `jp*` entries and ruby patterns in `config/local/composition-text.example.json`) stays in Japanese. See [.agents/rules/repository.md](.agents/rules/repository.md#development-notes).
+- Replying to the user in chat may follow the user's language; this rule covers files in the repository.
+
 ## Overview
 
 A Remotion-based video UI library. Text effects, Background, Effects, and other compositions are previewed in Remotion Studio and exported via `render.sh` to MP4, transparent-background ProRes, etc. It's a personal video-production toolkit, not something published as an npm package.

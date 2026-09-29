@@ -36,9 +36,69 @@ import {
 } from "./Effects/Transition/ShatterCrackTransition/shatter-crack-transition.schema";
 import { ZoomBlurTransitionTemplate } from "./Effects/Transition/ZoomBlurTransition/ZoomBlurTransitionTemplate";
 import { zoomBlurTransitionSchema } from "./Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
+import { ShaderEnergyTransitionTemplate } from "./Effects/Transition/ShaderEnergy/ShaderEnergyTransitionTemplate";
+import {
+  shaderEnergyTransitionDurationFrames,
+  shaderEnergyTransitionPatterns,
+  shaderEnergyTransitionSchema,
+} from "./Effects/Transition/ShaderEnergy/shader-energy-transition.schema";
+import { ShaderSciFiOverlayTemplate } from "./Effects/Overlay/ShaderSciFi/ShaderSciFiOverlayTemplate";
+import {
+  shaderSciFiOverlayDurationFrames,
+  shaderSciFiOverlayPatterns,
+  shaderSciFiOverlaySchema,
+} from "./Effects/Overlay/ShaderSciFi/shader-sci-fi-overlay.schema";
+import { SuminagashiTransitionTemplate } from "./Effects/Transition/SuminagashiTransition/SuminagashiTransitionTemplate";
+import {
+  suminagashiTransitionAnimationDurationFrames,
+  suminagashiTransitionPatterns,
+  suminagashiTransitionSchema,
+} from "./Effects/Transition/SuminagashiTransition/suminagashi-transition.schema";
+import { DryBrushTransitionTemplate } from "./Effects/Transition/DryBrushTransition/DryBrushTransitionTemplate";
+import {
+  dryBrushTransitionAnimationDurationFrames,
+  dryBrushTransitionPatterns,
+  dryBrushTransitionSchema,
+} from "./Effects/Transition/DryBrushTransition/dry-brush-transition.schema";
+import { WaterRippleTransitionTemplate } from "./Effects/Transition/WaterRippleTransition/WaterRippleTransitionTemplate";
+import {
+  waterRippleTransitionAnimationDurationFrames,
+  waterRippleTransitionPatterns,
+  waterRippleTransitionSchema,
+} from "./Effects/Transition/WaterRippleTransition/water-ripple-transition.schema";
+import { CodecCorruptTransitionTemplate } from "./Effects/Transition/CodecCorruptTransition/CodecCorruptTransitionTemplate";
+import {
+  codecCorruptTransitionAnimationDurationFrames,
+  codecCorruptTransitionPatterns,
+  codecCorruptTransitionSchema,
+} from "./Effects/Transition/CodecCorruptTransition/codec-corrupt-transition.schema";
+import { PixelSortTransitionTemplate } from "./Effects/Transition/PixelSortTransition/PixelSortTransitionTemplate";
+import {
+  pixelSortTransitionAnimationDurationFrames,
+  pixelSortTransitionPatterns,
+  pixelSortTransitionSchema,
+} from "./Effects/Transition/PixelSortTransition/pixel-sort-transition.schema";
+import { CrtPowerOffTransitionTemplate } from "./Effects/Transition/CrtPowerOffTransition/CrtPowerOffTransitionTemplate";
+import {
+  crtPowerOffTransitionAnimationDurationFrames,
+  crtPowerOffTransitionPatterns,
+  crtPowerOffTransitionSchema,
+} from "./Effects/Transition/CrtPowerOffTransition/crt-power-off-transition.schema";
+import { InkBleedTransitionTemplate } from "./Effects/Transition/InkBleedTransition/InkBleedTransitionTemplate";
+import {
+  inkBleedTransitionAnimationDurationFrames,
+  inkBleedTransitionPatterns,
+  inkBleedTransitionSchema,
+} from "./Effects/Transition/InkBleedTransition/ink-bleed-transition.schema";
+import { VolumetricSmokeTransitionTemplate } from "./Effects/Transition/VolumetricSmokeTransition/VolumetricSmokeTransitionTemplate";
+import {
+  volumetricSmokeTransitionAnimationDurationFrames,
+  volumetricSmokeTransitionPatterns,
+  volumetricSmokeTransitionSchema,
+} from "./Effects/Transition/VolumetricSmokeTransition/volumetric-smoke-transition.schema";
 import {
   defaultZoomBlurTransitionProps,
-  zoomBlurTransitionDurationFrames,
+  zoomBlurTransitionAnimationDurationFrames,
 } from "./Effects/Transition/ZoomBlurTransition/zoom-blur-transition.schema";
 import {
   renderPatternFamily,
@@ -52,7 +112,7 @@ import {
 } from "./Effects/Transition/SignalSliceTransition/signal-slice-transition.schema";
 import { HologramFragmentTransitionTemplate } from "./Effects/Transition/HologramFragmentTransition/HologramFragmentTransitionTemplate";
 import {
-  hologramFragmentTransitionDurationFrames,
+  hologramFragmentTransitionAnimationDurationFrames,
   hologramFragmentTransitionPatterns,
   hologramFragmentTransitionSchema,
 } from "./Effects/Transition/HologramFragmentTransition/hologram-fragment-transition.schema";
@@ -103,10 +163,6 @@ import { scanEchoTransitionSchema } from "./Effects/Transition/ScanEchoTransitio
 import { mergedScanEchoTransitionPatterns } from "./composition/composition-merged-other";
 
 const FPS = 30;
-const inkRippleDurationFrames =
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 600
-    : inkRippleTransitionDurationFrames;
 
 export function EffectFolder() {
   return (
@@ -187,7 +243,7 @@ export function EffectFolder() {
             idPrefix: "HologramFragmentTransition-",
             Template: HologramFragmentTransitionTemplate,
             schema: hologramFragmentTransitionSchema,
-            durationInFrames: hologramFragmentTransitionDurationFrames,
+            durationInFrames: hologramFragmentTransitionAnimationDurationFrames,
           })}
         </Folder>
         <Folder name="HologramParticle">
@@ -245,7 +301,7 @@ export function EffectFolder() {
             height={1080}
             fps={FPS}
             durationInFrames={minimumCompositionFrames(
-              inkRippleDurationFrames,
+              inkRippleTransitionDurationFrames,
               FPS,
             )}
             schema={inkRippleTransitionSchema}
@@ -277,7 +333,112 @@ export function EffectFolder() {
             schema: zoomBlurTransitionSchema,
             props: { ...defaultZoomBlurTransitionProps },
             durationInFrames: minimumCompositionFrames(
-              zoomBlurTransitionDurationFrames(),
+              zoomBlurTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="ShaderEnergy">
+          {renderPatternFamily({
+            patterns: shaderEnergyTransitionPatterns,
+            idPrefix: "",
+            Template: ShaderEnergyTransitionTemplate,
+            schema: shaderEnergyTransitionSchema,
+            durationInFrames: shaderEnergyTransitionDurationFrames,
+          })}
+        </Folder>
+        <Folder name="SuminagashiTransition">
+          {renderPatternFamily({
+            patterns: suminagashiTransitionPatterns,
+            idPrefix: "SuminagashiTransition-",
+            Template: SuminagashiTransitionTemplate,
+            schema: suminagashiTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              suminagashiTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="DryBrushTransition">
+          {renderPatternFamily({
+            patterns: dryBrushTransitionPatterns,
+            idPrefix: "DryBrushTransition-",
+            Template: DryBrushTransitionTemplate,
+            schema: dryBrushTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              dryBrushTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="WaterRippleTransition">
+          {renderPatternFamily({
+            patterns: waterRippleTransitionPatterns,
+            idPrefix: "WaterRippleTransition-",
+            Template: WaterRippleTransitionTemplate,
+            schema: waterRippleTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              waterRippleTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="CodecCorruptTransition">
+          {renderPatternFamily({
+            patterns: codecCorruptTransitionPatterns,
+            idPrefix: "CodecCorruptTransition-",
+            Template: CodecCorruptTransitionTemplate,
+            schema: codecCorruptTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              codecCorruptTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="PixelSortTransition">
+          {renderPatternFamily({
+            patterns: pixelSortTransitionPatterns,
+            idPrefix: "PixelSortTransition-",
+            Template: PixelSortTransitionTemplate,
+            schema: pixelSortTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              pixelSortTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="CrtPowerOffTransition">
+          {renderPatternFamily({
+            patterns: crtPowerOffTransitionPatterns,
+            idPrefix: "CrtPowerOffTransition-",
+            Template: CrtPowerOffTransitionTemplate,
+            schema: crtPowerOffTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              crtPowerOffTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="InkBleedTransition">
+          {renderPatternFamily({
+            patterns: inkBleedTransitionPatterns,
+            idPrefix: "InkBleedTransition-",
+            Template: InkBleedTransitionTemplate,
+            schema: inkBleedTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              inkBleedTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="VolumetricSmokeTransition">
+          {renderPatternFamily({
+            patterns: volumetricSmokeTransitionPatterns,
+            idPrefix: "VolumetricSmokeTransition-",
+            Template: VolumetricSmokeTransitionTemplate,
+            schema: volumetricSmokeTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              volumetricSmokeTransitionAnimationDurationFrames,
               FPS,
             ),
           })}
@@ -318,6 +479,15 @@ export function EffectFolder() {
             Template: TextlessSciFiOverlayTemplate,
             schema: textlessSciFiOverlaySchema,
             durationInFrames: textlessSciFiOverlayDurationFrames,
+          })}
+        </Folder>
+        <Folder name="ShaderSciFi">
+          {renderPatternFamily({
+            patterns: shaderSciFiOverlayPatterns,
+            idPrefix: "",
+            Template: ShaderSciFiOverlayTemplate,
+            schema: shaderSciFiOverlaySchema,
+            durationInFrames: shaderSciFiOverlayDurationFrames,
           })}
         </Folder>
       </Folder>

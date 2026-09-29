@@ -1,39 +1,39 @@
-# 機能追加プロンプト
+# Feature Addition Prompt
 
-以下の内容で機能を追加してください。
+Please add a feature as described below.
 
-## 目的
+## Purpose
 
-- 何を実現したいか:
-- どのような場面で使用するか:
+- What should be achieved:
+- In what situations it will be used:
 
-## 対象
+## Target
 
-- 機能名:
-- 配置場所:
-- 変更してよい範囲:
-- 参考にする既存実装:
+- Feature name:
+- Location:
+- Allowed scope of changes:
+- Existing implementation to reference:
 
-## 仕様
+## Specification
 
-- 必須の動作:
-- 調整可能にする項目:
-- 入力:
-- 出力:
-- 対応しなくてよいこと:
+- Required behavior:
+- Adjustable items:
+- Input:
+- Output:
+- Out of scope:
 
-## 完了条件
+## Completion criteria
 
-- 機能が指定どおり動作する
-- 既存機能を壊していない
-- `npm run lint`が成功する
-- 関連するテストと検証コマンドが成功する
-- 変更内容と検証結果が報告される
+- The feature works as specified
+- Existing features are not broken
+- `npm run lint` passes
+- Related tests and verification commands pass
+- The changes and verification results are reported
 
-## 制約
+## Constraints
 
-- 既存の無関係な変更を保持する
-- 指定範囲外の変更が必要な場合は理由を報告する
-- 削除、commit、push、merge、publish、外部サービスへの書き込みは行わない
+- Preserve existing unrelated changes
+- If changes outside the specified scope are needed, report the reason
+- Do not delete, commit, push, merge, publish, or write to external services
 
-この内容をLoop Engineeringのgoalとして設定し、完了条件を満たすまで自律的に進めてください。人間の判断または承認が必要になった場合は、変更を進めず理由を示して停止してください。
+Set this as a Loop Engineering goal and proceed autonomously until the completion criteria are met. If human judgment or approval becomes necessary, do not proceed with changes; stop and explain why.

@@ -61,6 +61,38 @@ import { signalInterferenceOverlayDurationFrames, signalInterferenceOverlayPatte
 import {WireframeBuildTemplate} from "./Background/WireframeBuild/WireframeBuildTemplate";
 import {wireframeBuildDurationFrames,wireframeBuildPatterns,wireframeBuildSchema} from "./Background/WireframeBuild/wireframe-build.schema";
 import {DigitalFogTemplate} from "./Background/DigitalFog/DigitalFogTemplate";
+import {TvStaticTemplate} from "./Background/TvStatic/TvStaticTemplate";
+import {tvStaticDurationFrames,tvStaticPatterns,tvStaticSchema} from "./Background/TvStatic/tv-static.schema";
+import {AuroraTemplate} from "./Background/Aurora/AuroraTemplate";
+import {auroraDurationFrames,auroraPatterns,auroraSchema} from "./Background/Aurora/aurora.schema";
+import {MarbleFlowTemplate} from "./Background/MarbleFlow/MarbleFlowTemplate";
+import {marbleFlowDurationFrames,marbleFlowPatterns,marbleFlowSchema} from "./Background/MarbleFlow/marble-flow.schema";
+import {FireFlamesTemplate} from "./Background/FireFlames/FireFlamesTemplate";
+import {fireFlamesDurationFrames,fireFlamesPatterns,fireFlamesSchema} from "./Background/FireFlames/fire-flames.schema";
+import {CausticsTemplate} from "./Background/Caustics/CausticsTemplate";
+import {causticsDurationFrames,causticsPatterns,causticsSchema} from "./Background/Caustics/caustics.schema";
+import {NebulaTemplate} from "./Background/Nebula/NebulaTemplate";
+import {nebulaDurationFrames,nebulaPatterns,nebulaSchema} from "./Background/Nebula/nebula.schema";
+import {GradientFlowTemplate} from "./Background/GradientFlow/GradientFlowTemplate";
+import {gradientFlowDurationFrames,gradientFlowPatterns,gradientFlowSchema} from "./Background/GradientFlow/gradient-flow.schema";
+import {RippleRingsTemplate} from "./Background/RippleRings/RippleRingsTemplate";
+import {rippleRingsDurationFrames,rippleRingsPatterns,rippleRingsSchema} from "./Background/RippleRings/ripple-rings.schema";
+import {SpeedLinesTemplate} from "./Background/SpeedLines/SpeedLinesTemplate";
+import {speedLinesDurationFrames,speedLinesPatterns,speedLinesSchema} from "./Background/SpeedLines/speed-lines.schema";
+import {SynthGridTemplate} from "./Background/SynthGrid/SynthGridTemplate";
+import {synthGridDurationFrames,synthGridPatterns,synthGridSchema} from "./Background/SynthGrid/synth-grid.schema";
+import {HalftoneDotsTemplate} from "./Background/HalftoneDots/HalftoneDotsTemplate";
+import {halftoneDotsDurationFrames,halftoneDotsPatterns,halftoneDotsSchema} from "./Background/HalftoneDots/halftone-dots.schema";
+import {StarfieldTemplate} from "./Background/Starfield/StarfieldTemplate";
+import {starfieldDurationFrames,starfieldPatterns,starfieldSchema} from "./Background/Starfield/starfield.schema";
+import {KaleidoscopeTemplate} from "./Background/Kaleidoscope/KaleidoscopeTemplate";
+import {kaleidoscopeDurationFrames,kaleidoscopePatterns,kaleidoscopeSchema} from "./Background/Kaleidoscope/kaleidoscope.schema";
+import {VoronoiCellsTemplate} from "./Background/VoronoiCells/VoronoiCellsTemplate";
+import {voronoiCellsDurationFrames,voronoiCellsPatterns,voronoiCellsSchema} from "./Background/VoronoiCells/voronoi-cells.schema";
+import {DigitalFogShaderTemplate} from "./Background/DigitalFogShader/DigitalFogShaderTemplate";
+import {digitalFogShaderDurationFrames,digitalFogShaderPatterns,digitalFogShaderSchema} from "./Background/DigitalFogShader/digital-fog-shader.schema";
+import {VolumetricSmokeTemplate} from "./Background/VolumetricSmoke/VolumetricSmokeTemplate";
+import {volumetricSmokeDurationFrames,volumetricSmokePatterns,volumetricSmokeSchema} from "./Background/VolumetricSmoke/volumetric-smoke.schema";
 import {digitalFogDurationFrames,digitalFogPatterns,digitalFogSchema} from "./Background/DigitalFog/digital-fog.schema";
 import { RandomLinesBackground } from "./Background/RandomLinesBackground/RandomLinesBackground";
 import { randomLinesSchema } from "./Background/RandomLinesBackground/random-lines.schema";
@@ -73,9 +105,6 @@ import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-he
 import { mergedRandomLinesPatterns } from "./composition/composition-merged-background";
 
 const FPS = 30;
-const adobeStockOverlayDurationFrames = 600;
-const adobeStockDurationFrames =
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1" ? 1800 : 150;
 
 export function BackgroundFolder() {
   return (
@@ -121,10 +150,7 @@ export function BackgroundFolder() {
           idPrefix: "Background-ScanLine-",
           Template: ScanLineTemplate,
           schema: scanLineSchema,
-          durationInFrames: (patternProps) =>
-            process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-              ? adobeStockOverlayDurationFrames
-              : patternProps.scanPeriodFrames,
+          durationInFrames: (patternProps) => patternProps.scanPeriodFrames,
         })}
       </Folder>
 
@@ -144,7 +170,7 @@ export function BackgroundFolder() {
           idPrefix: "Background-FilmGrainOverlay-",
           Template: FilmGrainOverlayTemplate,
           schema: filmGrainOverlaySchema,
-          durationInFrames: adobeStockDurationFrames,
+          durationInFrames: 150,
         })}
       </Folder>
 
@@ -224,7 +250,7 @@ export function BackgroundFolder() {
           idPrefix: "Background-CodeNoiseWall-",
           Template: CodeNoiseWallTemplate,
           schema: codeNoiseWallSchema,
-          durationInFrames: adobeStockDurationFrames,
+          durationInFrames: 150,
         })}
       </Folder>
 
@@ -234,7 +260,7 @@ export function BackgroundFolder() {
           idPrefix: "Background-ParticleTerrainMesh-",
           Template: ParticleTerrainMeshTemplate,
           schema: particleTerrainMeshSchema,
-          durationInFrames: adobeStockDurationFrames,
+          durationInFrames: 150,
         })}
       </Folder>
 
@@ -287,6 +313,22 @@ export function BackgroundFolder() {
       </Folder>
       <Folder name="WireframeBuild">{renderPatternFamily({patterns:wireframeBuildPatterns,idPrefix:"Background-WireframeBuild-",Template:WireframeBuildTemplate,schema:wireframeBuildSchema,durationInFrames:wireframeBuildDurationFrames})}</Folder>
       <Folder name="DigitalFog">{renderPatternFamily({patterns:digitalFogPatterns,idPrefix:"Background-DigitalFog-",Template:DigitalFogTemplate,schema:digitalFogSchema,durationInFrames:digitalFogDurationFrames})}</Folder>
+      <Folder name="TvStatic">{renderPatternFamily({patterns:tvStaticPatterns,idPrefix:"Background-TvStatic-",Template:TvStaticTemplate,schema:tvStaticSchema,durationInFrames:tvStaticDurationFrames})}</Folder>
+      <Folder name="Aurora">{renderPatternFamily({patterns:auroraPatterns,idPrefix:"Background-Aurora-",Template:AuroraTemplate,schema:auroraSchema,durationInFrames:auroraDurationFrames})}</Folder>
+      <Folder name="MarbleFlow">{renderPatternFamily({patterns:marbleFlowPatterns,idPrefix:"Background-MarbleFlow-",Template:MarbleFlowTemplate,schema:marbleFlowSchema,durationInFrames:marbleFlowDurationFrames})}</Folder>
+      <Folder name="FireFlames">{renderPatternFamily({patterns:fireFlamesPatterns,idPrefix:"Background-FireFlames-",Template:FireFlamesTemplate,schema:fireFlamesSchema,durationInFrames:fireFlamesDurationFrames})}</Folder>
+      <Folder name="Caustics">{renderPatternFamily({patterns:causticsPatterns,idPrefix:"Background-Caustics-",Template:CausticsTemplate,schema:causticsSchema,durationInFrames:causticsDurationFrames})}</Folder>
+      <Folder name="Nebula">{renderPatternFamily({patterns:nebulaPatterns,idPrefix:"Background-Nebula-",Template:NebulaTemplate,schema:nebulaSchema,durationInFrames:nebulaDurationFrames})}</Folder>
+      <Folder name="GradientFlow">{renderPatternFamily({patterns:gradientFlowPatterns,idPrefix:"Background-ShaderBasics-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
+      <Folder name="RippleRings">{renderPatternFamily({patterns:rippleRingsPatterns,idPrefix:"Background-ShaderBasics-",Template:RippleRingsTemplate,schema:rippleRingsSchema,durationInFrames:rippleRingsDurationFrames})}</Folder>
+      <Folder name="SpeedLines">{renderPatternFamily({patterns:speedLinesPatterns,idPrefix:"Background-ShaderBasics-",Template:SpeedLinesTemplate,schema:speedLinesSchema,durationInFrames:speedLinesDurationFrames})}</Folder>
+      <Folder name="SynthGrid">{renderPatternFamily({patterns:synthGridPatterns,idPrefix:"Background-ShaderBasics-",Template:SynthGridTemplate,schema:synthGridSchema,durationInFrames:synthGridDurationFrames})}</Folder>
+      <Folder name="HalftoneDots">{renderPatternFamily({patterns:halftoneDotsPatterns,idPrefix:"Background-ShaderBasics-",Template:HalftoneDotsTemplate,schema:halftoneDotsSchema,durationInFrames:halftoneDotsDurationFrames})}</Folder>
+      <Folder name="Starfield">{renderPatternFamily({patterns:starfieldPatterns,idPrefix:"Background-ShaderBasics-",Template:StarfieldTemplate,schema:starfieldSchema,durationInFrames:starfieldDurationFrames})}</Folder>
+      <Folder name="Kaleidoscope">{renderPatternFamily({patterns:kaleidoscopePatterns,idPrefix:"Background-ShaderBasics-",Template:KaleidoscopeTemplate,schema:kaleidoscopeSchema,durationInFrames:kaleidoscopeDurationFrames})}</Folder>
+      <Folder name="VoronoiCells">{renderPatternFamily({patterns:voronoiCellsPatterns,idPrefix:"Background-ShaderBasics-",Template:VoronoiCellsTemplate,schema:voronoiCellsSchema,durationInFrames:voronoiCellsDurationFrames})}</Folder>
+      <Folder name="DigitalFogShader">{renderPatternFamily({patterns:digitalFogShaderPatterns,idPrefix:"Background-DigitalFogShader-",Template:DigitalFogShaderTemplate,schema:digitalFogShaderSchema,durationInFrames:digitalFogShaderDurationFrames})}</Folder>
+      <Folder name="VolumetricSmoke">{renderPatternFamily({patterns:volumetricSmokePatterns,idPrefix:"Background-VolumetricSmoke-",Template:VolumetricSmokeTemplate,schema:volumetricSmokeSchema,durationInFrames:volumetricSmokeDurationFrames})}</Folder>
 
       <Folder name="AngstAnimation">
         <Composition

@@ -57,9 +57,6 @@ Config.overrideWebpackConfig((currentConfig) => {
     "process.env.REMOTION_TRANSPARENT_COMPOSITION_BACKDROP": JSON.stringify(
       process.env.REMOTION_TRANSPARENT_COMPOSITION_BACKDROP ?? "0",
     ),
-    "process.env.REMOTION_ADOBE_STOCK_EXPORT": JSON.stringify(
-      process.env.REMOTION_ADOBE_STOCK_EXPORT ?? "0",
-    ),
     "process.env.REMOTION_MAPBOX_TOKEN": JSON.stringify(
       process.env.REMOTION_MAPBOX_TOKEN ?? "",
     ),

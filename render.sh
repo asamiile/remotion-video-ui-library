@@ -21,7 +21,33 @@
 set -e  # stop on error
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-OUTPUT_DIR="$SCRIPT_DIR/out"
+# Load .env (see .env.example). Values already set in the environment, e.g.
+# `REMOTION_UPLOAD=0 ./render.sh ...`, take precedence. Plain KEY=VALUE lines
+# only; nothing is evaluated.
+if [ -f "$SCRIPT_DIR/.env" ]; then
+  while IFS= read -r line || [ -n "$line" ]; do
+    line="${line%$'\r'}"
+    case "$line" in ''|'#'*) continue ;; esac
+    key="${line%%=*}"
+    value="${line#*=}"
+    [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || continue
+    value="${value#\"}"; value="${value%\"}"
+    value="${value#\'}"; value="${value%\'}"
+    [ -n "${!key+set}" ] || export "$key=$value"
+  done < "$SCRIPT_DIR/.env"
+fi
+
+# Output folder: REMOTION_OUTPUT_DIR (absolute, "~/...", or relative to the
+# repository root), default <repo>/out. Same rules as scripts/lib/output-dir.cjs.
+OUTPUT_DIR="${REMOTION_OUTPUT_DIR:-$SCRIPT_DIR/out}"
+case "$OUTPUT_DIR" in
+  "~") OUTPUT_DIR="$HOME" ;;
+  "~/"*) OUTPUT_DIR="$HOME/${OUTPUT_DIR#"~/"}" ;;
+  /*) ;;
+  *) OUTPUT_DIR="$SCRIPT_DIR/$OUTPUT_DIR" ;;
+esac
+# Pass the resolved path on so the Node helpers use the same folder.
+export REMOTION_OUTPUT_DIR="$OUTPUT_DIR"
 
 # Settings
 CONCURRENCY_LOADINGICON=4
@@ -35,6 +61,53 @@ OUTPUT_FORMAT="mp4"
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 
+# Google Drive upload (scripts/lib/drive-upload.cjs, via rclone). Finished
+# renders are moved to REMOTION_UPLOAD_REMOTE when the script exits, and
+# outputs already on Drive count as existing. Off with REMOTION_UPLOAD=0, or
+# automatically when rclone isn't set up (outputs then stay in $OUTPUT_DIR).
+UPLOAD_ENABLED=0
+if node "$SCRIPT_DIR/scripts/upload-renders.cjs" --enabled 2>/dev/null; then
+  UPLOAD_ENABLED=1
+fi
+REMOTE_LIST_FILE=""
+RENDERED_LIST_FILE="$(mktemp -t remotion-rendered)"
+
+upload_rendered_outputs() {
+  local status=$?
+  if [ "$UPLOAD_ENABLED" = 1 ] && [ -s "$RENDERED_LIST_FILE" ]; then
+    echo ""
+    echo -e "${YELLOW:-}☁️  Uploading this run's outputs to Google Drive...${NC:-}"
+    local rendered=()
+    while IFS= read -r path || [ -n "$path" ]; do
+      [ -n "$path" ] && rendered+=("$path")
+    done < "$RENDERED_LIST_FILE"
+    node "$SCRIPT_DIR/scripts/upload-renders.cjs" "${rendered[@]}" || status=1
+  fi
+  rm -f "$RENDERED_LIST_FILE" "$REMOTE_LIST_FILE"
+  exit "$status"
+}
+trap upload_rendered_outputs EXIT
+
+# True if the output exists in out/ or (once uploaded) on Google Drive.
+# The Drive listing is fetched once per run, on first use.
+output_exists() {
+  local path="$1"
+  [ -e "$path" ] && return 0
+  [ "$UPLOAD_ENABLED" = 1 ] || return 1
+  if [ -z "$REMOTE_LIST_FILE" ]; then
+    REMOTE_LIST_FILE="$(mktemp -t remotion-remote)"
+    if ! node "$SCRIPT_DIR/scripts/upload-renders.cjs" --list-remote > "$REMOTE_LIST_FILE"; then
+      echo -e "${YELLOW:-}⚠️  Could not list Google Drive; only the output folder is checked for existing outputs${NC:-}" >&2
+      : > "$REMOTE_LIST_FILE"
+    fi
+  fi
+  local relative="${path#"$OUTPUT_DIR"/}"
+  # A file, or a directory (PNG sequence) with anything inside it.
+  awk -v file="$relative" -v dir="$relative/" \
+    '$0 == file || index($0, dir) == 1 { found = 1; exit } END { exit !found }' \
+    "$REMOTE_LIST_FILE"
+}
+
 # The preview-only canvas background (composition-canvas-preview.ts) is not baked into
 # renders by default. Force it back to 0 here even if REMOTION_CANVAS_BACKGROUND=1
 # happens to be set in the shell already. Pass --with-canvas-bg to include it.
@@ -43,7 +116,6 @@ export REMOTION_CANVAS_BACKGROUND=0
 # Make the composition's full-screen backdrop transparent (read via remotion.config's DefinePlugin by the templates)
 export REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=0
 export REMOTION_STANDARD_EXPORT=1
-export REMOTION_ADOBE_STOCK_EXPORT=0
 
 # Don't forward render.sh-only options to npx.
 FILTERED_ARGS=()
@@ -57,13 +129,6 @@ for arg in "$@"; do
   elif [ "$arg" = "--alpha" ]; then
     OUTPUT_FORMAT="alpha"
     export REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1
-  elif [ "$arg" = "--adobe-stock-alpha" ]; then
-    OUTPUT_FORMAT="stock-alpha"
-    export REMOTION_TRANSPARENT_COMPOSITION_BACKDROP=1
-    export REMOTION_ADOBE_STOCK_EXPORT=1
-  elif [ "$arg" = "--adobe-stock" ]; then
-    OUTPUT_FORMAT="stock"
-    export REMOTION_ADOBE_STOCK_EXPORT=1
   else
     FILTERED_ARGS+=("$arg")
   fi
@@ -108,7 +173,7 @@ INK_RIPPLE_TRANSITION_COMPOSITION_IDS=(
 
 RACK_FOCUS_BOKEH_TRANSITION_COMPOSITION_IDS=(
   "RackFocusBokehTransition"
-  "RackFocusBokehTransition-10s"
+  "RackFocusBokehTransition-5s"
 )
 
 BURST_COMPOSITION_IDS=(
@@ -121,7 +186,7 @@ SHATTER_CRACK_TRANSITION_COMPOSITION_IDS=(
 
 ZOOM_BLUR_TRANSITION_COMPOSITION_IDS=(
   "ZoomBlurTransition"
-  "ZoomBlurTransition-10s"
+  "ZoomBlurTransition-5s"
 )
 
 SCI_FI_OVERLAY_COMPOSITION_IDS=(
@@ -174,7 +239,9 @@ echo ""
 # `NeonText-*` prefix, so its case must be checked first. Add new Folders/compositions here too.
 resolve_output_subdir() {
   local comp_id="$1"
-  comp_id="${comp_id%-10s}"
+  # Padded duration variants share the base folder; the suffix is set in
+  # src/composition/duration-variant-config.json (paddedSuffix).
+  comp_id="${comp_id%-5s}"
   case "$comp_id" in
     NeonText-Rainbow*) echo "Text/NeonTextRainbow" ;;
     LedText-*) echo "Text/LedText" ;;
@@ -221,6 +288,16 @@ resolve_output_subdir() {
     InkRippleTransition) echo "Effect/Transition/InkRippleTransition" ;;
     ShatterCrackTransition) echo "Effect/Transition/ShatterCrackTransition" ;;
     ZoomBlurTransition) echo "Effect/Transition/ZoomBlurTransition" ;;
+    VolumetricSmokeTransition-*) echo "Effect/Transition/VolumetricSmokeTransition" ;;
+    PlasmaVeilShaderTransition|QuantumDustTunnelShaderTransition) echo "Effect/Transition/ShaderEnergy" ;;
+    PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) echo "Effect/Overlay/ShaderSciFi" ;;
+    InkBleedTransition-*) echo "Effect/Transition/InkBleedTransition" ;;
+    CodecCorruptTransition-*) echo "Effect/Transition/CodecCorruptTransition" ;;
+    PixelSortTransition-*) echo "Effect/Transition/PixelSortTransition" ;;
+    CrtPowerOffTransition-*) echo "Effect/Transition/CrtPowerOffTransition" ;;
+    SuminagashiTransition-*) echo "Effect/Transition/SuminagashiTransition" ;;
+    DryBrushTransition-*) echo "Effect/Transition/DryBrushTransition" ;;
+    WaterRippleTransition-*) echo "Effect/Transition/WaterRippleTransition" ;;
     GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition) echo "Effect/Transition/SpatialWarp" ;;
     DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) echo "Effect/Transition/DataUI" ;;
     TacticalScanOverlay|SignalInterferenceOverlay|DataAcquisitionLines|HolographicNoiseOverlay|ReticleTrackingOverlay|CinematicDiagnosticFrame|VolumetricGridOverlay|DigitalDebrisOverlay|BiometricScanOverlay|QuantumParticleOverlay) echo "Effect/Overlay/SciFi" ;;
@@ -274,6 +351,22 @@ resolve_output_subdir() {
     Background-SignalInterferenceOverlay-*) echo "Background/SignalInterferenceOverlay" ;;
     Background-WireframeBuild-*) echo "Background/WireframeBuild" ;;
     Background-DigitalFog-*) echo "Background/DigitalFog" ;;
+    Background-VolumetricSmoke-*) echo "Background/VolumetricSmoke" ;;
+    Background-DigitalFogShader-*) echo "Background/DigitalFogShader" ;;
+    Background-TvStatic-*) echo "Background/TvStatic" ;;
+    Background-Aurora-*) echo "Background/Aurora" ;;
+    Background-MarbleFlow-*) echo "Background/MarbleFlow" ;;
+    Background-FireFlames-*) echo "Background/FireFlames" ;;
+    Background-Caustics-*) echo "Background/Caustics" ;;
+    Background-Nebula-*) echo "Background/Nebula" ;;
+    Background-ShaderBasics-GradientFlow) echo "Background/GradientFlow" ;;
+    Background-ShaderBasics-RippleRings) echo "Background/RippleRings" ;;
+    Background-ShaderBasics-SpeedLines) echo "Background/SpeedLines" ;;
+    Background-ShaderBasics-SynthGrid) echo "Background/SynthGrid" ;;
+    Background-ShaderBasics-HalftoneDots) echo "Background/HalftoneDots" ;;
+    Background-ShaderBasics-Starfield) echo "Background/Starfield" ;;
+    Background-ShaderBasics-Kaleidoscope) echo "Background/Kaleidoscope" ;;
+    Background-ShaderBasics-VoronoiCells) echo "Background/VoronoiCells" ;;
     AngstAnimation*) echo "Background/AngstAnimation" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
@@ -283,28 +376,41 @@ resolve_output_subdir() {
 }
 
 # Build the full output path from comp_id. Every export lives in a
-# composition-specific directory below the folder matching Studio's Folder nesting:
-#   out/<Studio folders>/<CompositionId>/<CompositionId>.mp4|mov
-#   out/<Studio folders>/<CompositionId>/png/*.png
+# composition-specific directory below the folder matching Studio's Folder nesting.
+# Padded (-5s) variants share their base composition's directory:
+#   out/<Studio folders>/<BaseId>/<CompositionId>.mp4|-alpha.mov
+#   out/<Studio folders>/<BaseId>/png/*.png (base) or png-5s/*.png (padded)
 output_path_for() {
   local comp_id="$1"
   local subdir
   local composition_dir
+  local base_id="${comp_id%-5s}"
   subdir="$(resolve_output_subdir "$comp_id")"
   if [ -z "$subdir" ]; then
     echo -e "${RED}✗ No output directory mapping for: ${comp_id}${NC}" >&2
     return 1
   fi
-  composition_dir="$OUTPUT_DIR/$subdir/$comp_id"
+  composition_dir="$OUTPUT_DIR/$subdir/$base_id"
   if [ "$OUTPUT_FORMAT" = "png" ]; then
-    echo "$composition_dir/png"
-  elif [ "$OUTPUT_FORMAT" = "stock-alpha" ] || [ "$OUTPUT_FORMAT" = "alpha" ]; then
+    echo "$composition_dir/png${comp_id#"$base_id"}"
+  elif [ "$OUTPUT_FORMAT" = "alpha" ]; then
     echo "$composition_dir/${comp_id}-alpha.mov"
-  elif [ "$OUTPUT_FORMAT" = "stock" ]; then
-    echo "$composition_dir/${comp_id}-60s.mov"
   else
     echo "$composition_dir/$comp_id.mp4"
   fi
+}
+
+# Compositions drawn with WebGL shaders (three.js / src/helpers/shader) need a
+# GPU-backed GL; render_one adds --gl=angle for these automatically.
+requires_webgl() {
+  case "$1" in
+    Background-VolumetricSmoke-*|VolumetricSmokeTransition-*|InkBleedTransition-*) return 0 ;;
+    SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) return 0 ;;
+    CodecCorruptTransition-*|PixelSortTransition-*|CrtPowerOffTransition-*) return 0 ;;
+    Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
+    Background-ShaderBasics-*|Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
+    *) return 1 ;;
+  esac
 }
 
 # Render a single MP4 or PNG sequence export.
@@ -319,11 +425,11 @@ render_one() {
   local shift_n=4
   [ "$#" -lt "$shift_n" ] && shift_n="$#"
   shift "$shift_n"
-  if [ "$OUTPUT_FORMAT" = "mp4" ] && [ -f "$output_path" ]; then
+  if [ "$OUTPUT_FORMAT" = "mp4" ] && output_exists "$output_path"; then
     echo -e "${GREEN}↷ ${comp_id} already exists; skipping${NC}"
     return 0
   fi
-  if [ "$OUTPUT_FORMAT" = "mp4" ] && [ -f "$(dirname "$output_path")/${comp_id}-alpha.mov" ]; then
+  if [ "$OUTPUT_FORMAT" = "mp4" ] && output_exists "$(dirname "$output_path")/${comp_id}-alpha.mov"; then
     echo -e "${GREEN}↷ ${comp_id} has a transparent overlay; mp4 no longer maintained, skipping${NC}"
     return 0
   fi
@@ -332,20 +438,24 @@ render_one() {
   if [ "$OUTPUT_FORMAT" = "png" ]; then
     codec_args=(--sequence --image-format=png)
     mkdir -p "$output_path"
-  elif [ "$OUTPUT_FORMAT" = "stock-alpha" ] || [ "$OUTPUT_FORMAT" = "alpha" ]; then
+  elif [ "$OUTPUT_FORMAT" = "alpha" ]; then
     codec_args=(--codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le --muted)
-  elif [ "$OUTPUT_FORMAT" = "stock" ]; then
-    codec_args=(--codec=prores --prores-profile=hq --pixel-format=yuv422p10le --muted)
+  fi
+  local gl_args=()
+  if requires_webgl "$comp_id"; then
+    gl_args=(--gl=angle)
   fi
   npx remotion render src/index.ts "$comp_id" "$output_path" \
     --concurrency="$cc" \
     --network-timeout="$timeout" \
     "${codec_args[@]}" \
+    ${gl_args[@]+"${gl_args[@]}"} \
     "$@" \
     || {
       echo -e "${RED}✗ Failed to render ${comp_id}${NC}"
       return 1
     }
+  echo "$output_path" >> "$RENDERED_LIST_FILE"
 }
 
 # Render a fixed composition ID (pattern: fixed ID array, single render per ID)
@@ -449,6 +559,46 @@ render_zoom_blur_transition() {
   render_fixed_id_family "✨ Rendering ZoomBlurTransition compositions" ZOOM_BLUR_TRANSITION_COMPOSITION_IDS
 }
 
+# Render InkBleedTransition compositions (WebGL shader)
+render_ink_bleed_transition() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in InkBleedTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+# Render the ink-marbling / dry-brush / water-ripple shader transitions
+render_material_transitions() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+# Render the codec-corruption / pixel-sort / CRT power-off glitch transitions
+render_glitch_shader_transitions() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in CodecCorruptTransition-*|PixelSortTransition-*|CrtPowerOffTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+# Render WebGL counterparts of the SVG sci-fi transitions and overlays
+render_shader_sci_fi() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in *ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
+# Render VolumetricSmokeTransition compositions (WebGL shader)
+render_volumetric_smoke_transition() {
+  local comp_id
+  while IFS= read -r comp_id || [ -n "$comp_id" ]; do
+    case "$comp_id" in VolumetricSmokeTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+  done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
+}
+
 render_distress_transition() {
   local comp_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
@@ -466,7 +616,7 @@ render_scan_echo_transition() {
 render_new_effects() {
   local comp_id base_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    base_id="${comp_id%-10s}"
+    base_id="${comp_id%-5s}"
     case "$base_id" in DistressTransition-*|ScanEchoTransition-*|SignalSliceTransition-*|HologramFragmentTransition-*|KaleidoscopeMirror-*|DelayTrail-*|BloomFlashTransition-*|PhaseDesyncTransition|PacketLossCascadeTransition|SignalFoldTransition|LidarDepthGateTransition|VectorLockTransition|DiagnosticCurtainTransition|VoxelMaterializeTransition|QuantumDustTunnelTransition|HolographicMembraneTransition|PhotonShearTransition|PlasmaVeilTransition|NeutrinoFlashRingTransition|GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition|DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
@@ -784,6 +934,21 @@ main() {
     ZoomBlurTransition|zoomblurtransition)
       render_zoom_blur_transition
       ;;
+    InkBleedTransition|inkbleedtransition)
+      render_ink_bleed_transition
+      ;;
+    GlitchShaderTransition|glitchshadertransition)
+      render_glitch_shader_transitions
+      ;;
+    MaterialTransition|materialtransition)
+      render_material_transitions
+      ;;
+    ShaderSciFi|shaderscifi)
+      render_shader_sci_fi
+      ;;
+    VolumetricSmokeTransition|volumetricsmoketransition)
+      render_volumetric_smoke_transition
+      ;;
     DistressTransition|distresstransition)
       render_distress_transition
       ;;
@@ -805,6 +970,19 @@ main() {
     overlays)
       node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT" --overlays
       ;;
+    list)
+      # Render the IDs listed in a file with one bundle/browser (much faster than
+      # passing many IDs, which re-bundles for each one).
+      if [ -z "${2:-}" ] || [ ! -f "$2" ]; then
+        echo -e "${RED}✗ Usage: ./render.sh [--alpha] list <file with one CompositionId per line>${NC}" >&2
+        exit 1
+      fi
+      node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT" --ids "$2"
+      ;;
+    upload)
+      # Move everything already in the output folder to Google Drive (e.g. older renders).
+      node "$SCRIPT_DIR/scripts/upload-renders.cjs" --all
+      ;;
     manifest)
       node "$SCRIPT_DIR/scripts/render-all.cjs" "$OUTPUT_FORMAT" --plan
       ;;
@@ -825,6 +1003,11 @@ main() {
         render_burst
         render_shatter_crack_transition
         render_zoom_blur_transition
+        render_volumetric_smoke_transition
+        render_ink_bleed_transition
+        render_shader_sci_fi
+        render_material_transitions
+        render_glitch_shader_transitions
         render_new_effects
         render_sci_fi_overlays
         render_textless_sci_fi_overlays
@@ -838,7 +1021,7 @@ main() {
       check_output_dirs
       ;;
     help|-h|--help)
-      echo "Usage: $0 [--with-canvas-bg] [--transparent-bg] [--png-sequence|--adobe-stock-alpha|--adobe-stock] [Intro|…|all|<CompositionId>…]"
+      echo "Usage: $0 [--with-canvas-bg] [--transparent-bg] [--png-sequence|--alpha] [Intro|…|all|<CompositionId>…]"
       echo ""
       echo "  --transparent-bg   Make the full-screen backdrop & vignette transparent (doesn't bake in *-config colors like Neon's)"
       echo "  --with-canvas-bg   Include the preview-only background layer (always off unless passed)"
@@ -846,8 +1029,6 @@ main() {
       echo "  --png-sequence     Export PNG frames instead of the default H.264 MP4"
       echo "  --alpha            Export transparent ProRes 4444 MOV with the selected composition duration"
       echo "  overlays           Export overlay candidates after checking actual transparency (use --alpha)"
-      echo "  --adobe-stock-alpha Export transparent ProRes 4444 MOV; applies Stock duration overrides"
-      echo "  --adobe-stock      Export ProRes 422 HQ MOV without audio; selected backgrounds become 60 seconds"
       echo "  Intro              Render Intro composition"
       echo "  LoadingIcon        Render all LoadingIcon compositions"
       echo "  Loading            Render DotsLoader/ProgressBar/PulseCircle/SkeletonScreen compositions"
@@ -857,7 +1038,7 @@ main() {
       echo "  TextEffects        Render Led/Neon/Glitch/Wire/… pattern compositions"
       echo "  TextEffectsJp      Render fixed JP sample set (see TEXT_EFFECTS_JP_SAMPLE_IDS)"
       echo "  OneTake            Render OneTake onboarding motion-graphic compositions"
-      echo "  Background         Render ambient background overlay compositions (always transparent)"
+      echo "  Background         Render all Background compositions"
       echo "  GlitchTransitionBridge  Render the RGB-glitch scene-transition bumper"
       echo "  DottedLineMarkerTextTransition  Render the DottedLineMarkerText 01→02 glitch-handover composition"
       echo "  InkRippleTransition     Render the ink-brush ripple scene-transition bumper"
@@ -867,11 +1048,18 @@ main() {
       echo "  Burst              Render the special-move impact burst"
       echo "  ShatterCrackTransition  Render the radiating glass-crack scene-transition bumper"
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
+      echo "  InkBleedTransition Render the ink-bleeding cover-and-reveal transition (WebGL)"
+      echo "  GlitchShaderTransition Render CodecCorrupt/PixelSort/CrtPowerOff shader transitions"
+      echo "  MaterialTransition Render Suminagashi/DryBrush/WaterRipple shader transitions"
+      echo "  ShaderSciFi        Render WebGL versions of PlasmaVeil/QuantumDustTunnel transitions and PlasmaEdgeArc/VolumetricLightScan/EnergyContourLines overlays"
+      echo "  VolumetricSmokeTransition Render the raymarched smoke cover-and-clear transition (WebGL)"
       echo "  SciFiOverlay       Render all transparent sci-fi video overlay effects"
       echo "  TextlessSciFiOverlay Render all transparent textless sci-fi overlay effects"
       echo "  UI                 Render game-style UI chrome mockups (callout banner, status panel, framed window, lower-third label)"
       echo "  FlickerTitle       Render the eyebrow+title flicker-reveal composition"
       echo "  all                Render all compositions (default)"
+      echo "  list <file>        Render the CompositionIds listed in <file> (one per line) with a single bundle"
+      echo "  upload             Move everything in the output folder to Google Drive (rclone; see README)"
       echo "  check              Verify every enumerated composition ID has a resolve_output_subdir() mapping (no rendering)"
       echo "  <CompositionId>    e.g. NeonText-LchikaOrangeJp (multiple allowed; must match the ID shown in Studio)"
       exit 0

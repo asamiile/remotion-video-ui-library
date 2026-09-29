@@ -59,6 +59,7 @@ How to decide when it's unclear:
 
 ## Development Notes
 
+- **Write everything in the repository in English**: code, comments, identifiers, docs, rules, skills, templates, commit messages, `.env.example`, and sample copy. The only exception is sample text whose purpose is to exercise Japanese typesetting (`*Jp` / `jp*` pattern entries and ruby patterns such as `rubyWordplayTextPatterns` in `config/local/composition-text.example.json`). Personal `config/local/*.local.json` files are out of scope.
 - **Do not use copyright-related notices or markings**, including copyright statements, © symbols, or attribution lines.
 - **Do not reference external sources in code**, such as comments indicating which video, article, tutorial, or project the composition was based on. Keep code self-contained without external attribution.
 - **`config/local/*.local.json` is for personal, uncommitted, per-user settings.** See [.agents/rules/composition-text-local.md](../.agents/rules/composition-text-local.md) for the read-only policy and the narrow exception.
@@ -68,11 +69,20 @@ How to decide when it's unclear:
 - **The contents of `src/composition/` are "shared infrastructure"**, distinct from the "feature categories" like `src/Text/` (the similar naming is easy to confuse). It is not a place to add individual compositions.
 - **Never move `.cursor/rules/` or `.agents/skills/` under `.agents/`.** These are fixed, repo-root-relative paths that the Cursor editor auto-detects — not a naming convention specific to this repository. Moving them would break rule/skill loading for anyone using Cursor.
 
+## WebGL / shader compositions
+
+- Shader-based work uses three.js via `@remotion/three`. Draw full-frame fragment shaders with `ShaderCanvas` from `src/helpers/shader/` (auto-injects `uResolution` / `uTime` / `uFrame` / `vUv`); share GLSL snippets from `src/helpers/shader/glsl/`.
+- Derive all animation from `useCurrentFrame()` and pass it as uniforms. Never use react-three-fiber's `useFrame`, or renders flicker.
+- Transitions with padded (`-5s`) variants must pass time measured from the animation start (e.g. `animationFrame / fps`), not the built-in `uTime` (seconds since frame 0), or the base and `-5s` versions render different frames. Loops should derive motion from `frame / durationInFrames` with `loopOffset` (`src/helpers/shader/glsl/noise.ts`).
+- Clip-to-clip (blend) transitions take `fromSrc`/`toSrc` (path under `public/`, URL, or `""` for a built-in placeholder) via `mediaBlendFields` and render with `BlendShaderCanvas` (`src/helpers/shader/BlendShaderCanvas.tsx`); sample them in GLSL with `mediaSamplingGlsl`. Video frames are fetched per frame while rendering, so output stays frame-accurate. Use `useCenteredTransition` for timing.
+- Output premultiplied RGBA so `--alpha` / `--transparent-bg` exports keep transparency.
+- CLI renders need `--gl=angle`. When adding a shader composition, add its ID pattern to `requires_webgl()` in `render.sh`. `scripts/render-all.cjs` and `scripts/verify-duration-variants.cjs` already launch Chrome with ANGLE.
+
 ## Composition duration and folder limits
 
-- 通常尺が10秒以下の動画には、通常尺のCompositionに加えて10秒版のCompositionを追加する。ちょうど10秒の場合も対象とする。
-- 通常尺のCompositionは元の尺と末尾なしのIDを維持する。10秒版のIDには必ず `-10s` を付ける（例: `ScanEchoTransition-CyanSweep` / `ScanEchoTransition-CyanSweep-10s`）。
-- 10秒版は正確に10秒（30fpsなら300フレーム）にする。通常尺を最低10秒へ強制延長しない。10秒を超える動画は短縮しない。
-- 通常版と10秒版は同じFolderに登録する。演出尺と出力尺を区別し、短いトランジションの10秒版は演出速度を保ち、中央配置と透明な編集余白で延長できる。
-- propsで尺が変わる場合は `calculateMetadata` でも両版の尺を正しく計算する。列挙・書き出し・検証も両版を含める。既存の尺バリエーション実装は `src/composition/duration-variants.json` と `duration-variants.ts` を参照する。
-- StudioのFolderは最大3階層（Composition ID自体を除く）。例: `Effect/Transition/ScanEchoTransition`。ソースと `render.sh` の出力先も合わせ、整理でComposition IDを変更しない。
+- For videos whose animation is shorter than 5 seconds, such as short transitions, add a 5-second Composition in addition to the base-duration Composition (targets are listed in `src/composition/duration-variants.json`; seconds and suffix are in `src/composition/duration-variant-config.json`).
+- The base-duration Composition keeps its original duration and unsuffixed ID. Always append `-5s` to the 5-second version's ID (e.g. `ScanEchoTransition-CyanSweep` / `ScanEchoTransition-CyanSweep-5s`).
+- Make the 5-second version exactly 5 seconds (150 frames at 30fps). Keep the animation within 5 seconds. Do not forcibly extend the base duration.
+- Register the base and 5-second versions in the same Folder. Distinguish animation duration from output duration; the 5-second version of a short transition keeps the animation speed and may be extended by centering it with transparent editing margins.
+- When props change the duration, compute both versions' durations correctly in `calculateMetadata` as well. Include both versions in enumeration, export, and verification. See `src/composition/duration-variants.json` and `duration-variants.ts` for the existing duration-variant implementation.
+- Studio Folders are at most 3 levels deep (excluding the Composition ID itself), e.g. `Effect/Transition/ScanEchoTransition`. Keep the source layout and `render.sh` output location aligned, and do not change Composition IDs when reorganizing.

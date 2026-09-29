@@ -22,6 +22,38 @@
     "timing": "zoom"
   },
   {
+    "prefix": "CodecCorruptTransition-",
+    "timing": "codecCorrupt"
+  },
+  {
+    "prefix": "PixelSortTransition-",
+    "timing": "pixelSort"
+  },
+  {
+    "prefix": "CrtPowerOffTransition-",
+    "timing": "crtPowerOff"
+  },
+  {
+    "prefix": "SuminagashiTransition-",
+    "timing": "suminagashi"
+  },
+  {
+    "prefix": "DryBrushTransition-",
+    "timing": "dryBrush"
+  },
+  {
+    "prefix": "WaterRippleTransition-",
+    "timing": "waterRipple"
+  },
+  {
+    "prefix": "InkBleedTransition-",
+    "timing": "inkBleed"
+  },
+  {
+    "prefix": "VolumetricSmokeTransition-",
+    "timing": "smoke"
+  },
+  {
     "ids": [
       "RackFocusBokehTransition"
     ],
@@ -46,7 +78,9 @@
       "SpatialSeamTransition",
       "DataCellAuthorizationTransition",
       "NeuralRouteTransition",
-      "CoordinateRemapTransition"
+      "CoordinateRemapTransition",
+      "PlasmaVeilShaderTransition",
+      "QuantumDustTunnelShaderTransition"
     ],
     "timing": "sciFi"
   }

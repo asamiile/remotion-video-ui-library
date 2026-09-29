@@ -7,18 +7,34 @@ const { createRequire } = require("node:module");
 const renderer = createRequire(require.resolve("@remotion/cli"))(
   "@remotion/renderer",
 );
-const root = path.resolve(__dirname, "..");
+const drive = require("./lib/drive-upload.cjs");
+const {
+  paddedSuffix,
+} = require("../src/composition/duration-variant-config.json");
+const { root, outDir } = require("./lib/output-dir.cjs");
 const format = process.argv[2] || "mp4";
 const planOnly = process.argv.includes("--plan");
 const overlaysOnly = process.argv.includes("--overlays");
-const alphaFormat = format === "alpha" || format === "stock-alpha";
+// --ids <file>: render only the composition IDs listed in the file (one per
+// line) with a single bundle and browser, instead of the whole library.
+const idsFlag = process.argv.indexOf("--ids");
+const idsFile = idsFlag > 0 ? process.argv[idsFlag + 1] : null;
+const onlyIds = idsFile
+  ? new Set(
+      fs
+        .readFileSync(idsFile, "utf8")
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean),
+    )
+  : null;
+const alphaFormat = format === "alpha";
 if (overlaysOnly) assert(alphaFormat, "Use --alpha with overlays");
-assert(["mp4", "alpha", "stock-alpha", "stock", "png"].includes(format));
+assert(["mp4", "alpha", "png"].includes(format));
 const run = path.resolve(
   process.env.REMOTION_EXPORT_RUN ||
     path.join(
-      root,
-      "out",
+      outDir,
       ".export",
       new Date().toISOString().replace(/[:.]/g, "-"),
     ),
@@ -82,7 +98,9 @@ function verify(file, c) {
 }
 function contentFrame(c) {
   const p = c.props,
-    id = c.id.replace(/-10s$/, "");
+    id = c.id.endsWith(paddedSuffix)
+      ? c.id.slice(0, -paddedSuffix.length)
+      : c.id;
   if (id.startsWith("BloomFlashTransition-"))
     return Math.max(1, Math.floor(p.peakFrame - p.flashFrames * 0.5));
   if (id === "RackFocusBokehTransition") return Math.floor(p.rampFrames);
@@ -95,7 +113,21 @@ function contentFrame(c) {
         ? 90
         : id === "ZoomBlurTransition"
           ? 22
-          : null;
+          : id.startsWith("VolumetricSmokeTransition-")
+            ? 54
+            : id.startsWith("InkBleedTransition-")
+              ? 60
+              : id.startsWith("SuminagashiTransition-")
+                ? 72
+                : id.startsWith("CodecCorruptTransition-")
+                  ? 48
+                  : id.startsWith("CrtPowerOffTransition-")
+                    ? 36
+                    : id.startsWith("PixelSortTransition-") ||
+                        id.startsWith("DryBrushTransition-") ||
+                        id.startsWith("WaterRippleTransition-")
+                      ? 60
+                      : null;
   if (active)
     return (
       Math.floor(c.durationInFrames / 2) -
@@ -230,24 +262,29 @@ async function inspectAlpha(c, browser) {
               byId.get(c.id)?.split("/")[0],
             ),
         )
-      : allComps;
+      : onlyIds
+        ? allComps.filter((c) => onlyIds.has(c.id))
+        : allComps;
+    if (onlyIds) {
+      const found = new Set(comps.map((c) => c.id));
+      const missing = [...onlyIds].filter((id) => !found.has(id));
+      assert(
+        missing.length === 0,
+        `Unknown composition IDs: ${missing.join(", ")}`,
+      );
+    }
     const manifest = comps.map((c) => {
       const folder = byId.get(c.id);
       assert(folder !== undefined, c.id);
       assert(folder.split("/").length <= 3 && !folder.includes(".."));
-      const directory = path.join(root, "out", folder, c.id);
+      // Padded variants share the base composition's directory.
+      const padded = c.id.endsWith(paddedSuffix);
+      const baseId = padded ? c.id.slice(0, -paddedSuffix.length) : c.id;
+      const directory = path.join(outDir, folder, baseId);
       const file =
         format === "png"
-          ? path.join(directory, "png")
-          : path.join(
-              directory,
-              c.id +
-                (alphaFormat
-                  ? "-alpha.mov"
-                  : format === "stock"
-                    ? "-60s.mov"
-                    : ".mp4"),
-            );
+          ? path.join(directory, "png" + (padded ? paddedSuffix : ""))
+          : path.join(directory, c.id + (alphaFormat ? "-alpha.mov" : ".mp4"));
       return {
         id: c.id,
         folder,
@@ -270,15 +307,21 @@ async function inspectAlpha(c, browser) {
     );
     if (planOnly) return;
     const archiveMarker = path.join(run, "archive.json");
-    if (!fs.existsSync(archiveMarker) && format === "mp4" && !overlaysOnly) {
+    // A full mp4 run replaces the library, so it sets the previous one aside first.
+    if (
+      !fs.existsSync(archiveMarker) &&
+      format === "mp4" &&
+      !overlaysOnly &&
+      !onlyIds
+    ) {
       const archive = path.join(run, "previous-library");
       fs.mkdirSync(archive, { recursive: true });
       const moved = [];
-      for (const name of fs.readdirSync(path.join(root, "out"))) {
+      for (const name of fs.readdirSync(outDir)) {
         if (name === ".export") continue;
         const destination = path.join(archive, name);
         assert(!fs.existsSync(destination), `Archive collision: ${name}`);
-        fs.renameSync(path.join(root, "out", name), destination);
+        fs.renameSync(path.join(outDir, name), destination);
         moved.push(name);
       }
       fs.writeFileSync(
@@ -287,6 +330,12 @@ async function inspectAlpha(c, browser) {
       );
       log(`Preserved previous outputs in ${archive}`);
     }
+
+    // Outputs already moved to Google Drive count as existing; this run's
+    // verified outputs are moved there at the end (see drive-upload.cjs).
+    const uploadEnabled = drive.isEnabled();
+    const remoteFiles = uploadEnabled ? drive.listRemote() : null;
+    const toUpload = [];
 
     const completedFile = path.join(run, "completed.json");
     const skippedFile = path.join(run, "skipped.json");
@@ -306,13 +355,28 @@ async function inspectAlpha(c, browser) {
       }
       if (
         format === "mp4" &&
-        fs.existsSync(path.join(path.dirname(m.file), c.id + "-alpha.mov"))
+        drive.outputExists(
+          path.join(path.dirname(m.file), c.id + "-alpha.mov"),
+          remoteFiles,
+        )
       ) {
-        log(`SKIPPED ${c.id}: transparent overlay already covers this composition, mp4 no longer maintained`);
+        log(
+          `SKIPPED ${c.id}: transparent overlay already covers this composition, mp4 no longer maintained`,
+        );
         state.skipped.push({
           id: c.id,
           reason: "Transparent overlay already covers this composition",
         });
+        save();
+        continue;
+      }
+      if (
+        completed[c.id] &&
+        !fs.existsSync(m.file) &&
+        drive.outputExists(m.file, remoteFiles)
+      ) {
+        // Verified before being uploaded to Drive.
+        state.completed.push(c.id);
         save();
         continue;
       }
@@ -356,7 +420,7 @@ async function inspectAlpha(c, browser) {
           const backup = path.join(
             run,
             "previous",
-            path.relative(path.join(root, "out"), m.file),
+            path.relative(outDir, m.file),
           );
           fs.mkdirSync(path.dirname(backup), { recursive: true });
           if (!fs.existsSync(backup)) fs.renameSync(m.file, backup);
@@ -380,16 +444,11 @@ async function inspectAlpha(c, browser) {
             outputLocation: temp,
             puppeteerInstance: renderBrowser,
             codec: format === "mp4" ? "h264" : "prores",
-            pixelFormat:
-              format === "mp4"
-                ? "yuv420p"
-                : alphaFormat
-                  ? "yuva444p10le"
-                  : "yuv422p10le",
+            pixelFormat: format === "mp4" ? "yuv420p" : "yuva444p10le",
             ...(format === "mp4"
               ? {}
               : {
-                  proResProfile: alphaFormat ? "4444" : "hq",
+                  proResProfile: "4444",
                   muted: true,
                 }),
             ...(c.id.startsWith("MiniMap-")
@@ -416,6 +475,7 @@ async function inspectAlpha(c, browser) {
         }
         const bytes = verify(temp, c);
         fs.renameSync(temp, m.file);
+        toUpload.push(m.file);
         completed[c.id] = { bytes, finished: new Date().toISOString() };
         fs.writeFileSync(completedFile, JSON.stringify(completed, null, 2));
         state.completed.push(c.id);
@@ -432,6 +492,12 @@ async function inspectAlpha(c, browser) {
     log(
       `${state.completed.length} verified, ${state.skipped.length} non-overlay compositions skipped, ${state.failed.length} failed`,
     );
+    if (uploadEnabled && toUpload.length) {
+      log(`uploading ${toUpload.length} verified outputs to ${drive.remote}`);
+      const { moved, kept } = drive.upload(toUpload);
+      log(`moved ${moved.length} to Drive, ${kept.length} kept in ${outDir}`);
+      if (kept.length) process.exitCode = 1;
+    }
     if (state.failed.length) process.exitCode = 1;
   } finally {
     await browser.close({ silent: true });

@@ -18,10 +18,6 @@ export type ZoomBlurTransitionSchemaType = z.infer<
 >;
 
 export const zoomBlurTransitionAnimationDurationFrames = 22;
-export const zoomBlurTransitionDurationFrames = () =>
-  process.env.REMOTION_ADOBE_STOCK_EXPORT === "1"
-    ? 150
-    : zoomBlurTransitionAnimationDurationFrames;
 
 export const defaultZoomBlurTransitionProps = {
   backgroundColor: "#060810",

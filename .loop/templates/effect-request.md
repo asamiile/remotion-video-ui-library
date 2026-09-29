@@ -1,60 +1,58 @@
-# 映像Effect追加プロンプト
+# Video Effect Addition Prompt
 
-以下の映像Effectを追加してください。
+Please add the following video Effect.
 
-## 基本情報
+## Basic information
 
-- Effect名:
+- Effect name:
 - Composition ID:
-- 配置: `src/Effects/<Effect名>/`
-- 用途: 動画への重ね合わせ / トランジション / その他
-- テーマ:
-- 参考にする既存Effect:
+- Location: `src/Effects/<EffectName>/`
+- Purpose: overlay on video / transition / other
+- Theme:
+- Existing Effect to reference:
 
-## 映像仕様
+## Video specification
 
-- 幅: 1920px
-- 高さ: 1080px
+- Width: 1920px
+- Height: 1080px
 - FPS: 30
-- 秒数: 10秒
-- 背景透過: はい
-- シームレスループ: はい / いいえ
-- 文字要素: なし / あり
+- Duration: 10 seconds
+- Transparent background: yes
+- Seamless loop: yes / no
+- Text elements: none / yes
 
-## 表現
+## Look
 
-- 主な視覚要素:
-- 動き:
-- 色:
-- 合成方法の想定:
-- ランダム性:
-- 強度や速度など調整可能にするprops:
+- Main visual elements:
+- Motion:
+- Colors:
+- Intended compositing method:
+- Randomness:
+- Adjustable props such as intensity or speed:
 
-## 書き出し
+## Export
 
-- PNG連番: 必要 / 不要
-- 透過MOV: 必要 / 不要
-- MP4: 必要 / 不要
-- 出力構造: `Effect/<Effect名>/png`、`Effect/<Effect名>/*.mov`など
-- フルレンダー: 実行前に承認を求める
+- PNG sequence: required / not required
+- Transparent MOV: required / not required
+- MP4: required / not required
+- Output structure: `Effect/<EffectName>/png`, `Effect/<EffectName>/*.mov`, etc.
+- Full render: ask for approval before running
 
-## 完了条件
+## Completion criteria
 
-- `Effect/<Effect名>`としてRemotion Studioに表示される
-- 透過指定の場合、背景色が焼き込まれていない
-- アニメーションがフレーム駆動かつ決定的に再現される
-- `render.sh`から指定形式を書き出せる
-- `npm run lint`が成功する
-- `./render.sh check`が成功する
-- `git diff --check`が成功する
-- 変更内容と検証結果が報告される
+- Shown in Remotion Studio as `Effect/<EffectName>`
+- When transparency is specified, no background color is baked in
+- Animation is frame-driven and deterministically reproducible
+- The specified formats can be exported from `render.sh`
+- `npm run lint` passes
+- `./render.sh check` passes
+- `git diff --check` passes
+- The changes and verification results are reported
 
-## 制約
+## Constraints
 
-- `config/local/*.local.json`を変更しない
-- 既存の無関係な変更を保持する
-- 削除、commit、push、merge、publishは行わない
+- Do not change `config/local/*.local.json`
+- Preserve existing unrelated changes
+- Do not delete, commit, push, merge, or publish
 
-この内容をLoop Engineeringのgoalとして設定し、完了条件を満たすまで自律的に進めてください。フルレンダーや人間の判断が必要になった場合は、理由を示して停止してください。
-
-
+Set this as a Loop Engineering goal and proceed autonomously until the completion criteria are met. If a full render or human judgment becomes necessary, stop and explain why.
