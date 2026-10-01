@@ -1,17 +1,16 @@
 import {
-  shaderBasicsBase,
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundBase,
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as synthGridSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as synthGridSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const synthGridDurationFrames = shaderBasicsDurationFrames;
+export const synthGridDurationFrames = shaderBackgroundDurationFrames;
 
-// The pattern key keeps the original "Background-ShaderBasics-SynthGrid" ID.
-export const synthGridPatterns: Record<string, ShaderBasicsSchemaType> = {
-  synthGrid: {
-    ...shaderBasicsBase,
+export const synthGridPatterns: Record<string, ShaderBackgroundSchemaType> = {
+  classic: {
+    ...shaderBackgroundBase,
     backgroundColor: "#0a0418",
     colorA: "#ff2bd6",
     colorB: "#ffb347",

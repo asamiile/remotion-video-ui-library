@@ -55,6 +55,18 @@ import {
   suminagashiTransitionSchema,
 } from "./Effects/Transition/SuminagashiTransition/suminagashi-transition.schema";
 import { DryBrushTransitionTemplate } from "./Effects/Transition/DryBrushTransition/DryBrushTransitionTemplate";
+import { TornPaperTransitionTemplate } from "./Effects/Transition/TornPaperTransition/TornPaperTransitionTemplate";
+import { GrungeTransitionTemplate } from "./Effects/Transition/GrungeTransition/GrungeTransitionTemplate";
+import {
+  grungeTransitionAnimationDurationFrames,
+  grungeTransitionPatterns,
+  grungeTransitionSchema,
+} from "./Effects/Transition/GrungeTransition/grunge-transition.schema";
+import {
+  tornPaperTransitionAnimationDurationFrames,
+  tornPaperTransitionPatterns,
+  tornPaperTransitionSchema,
+} from "./Effects/Transition/TornPaperTransition/torn-paper-transition.schema";
 import {
   dryBrushTransitionAnimationDurationFrames,
   dryBrushTransitionPatterns,
@@ -367,6 +379,30 @@ export function EffectFolder() {
             schema: dryBrushTransitionSchema,
             durationInFrames: minimumCompositionFrames(
               dryBrushTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="TornPaperTransition">
+          {renderPatternFamily({
+            patterns: tornPaperTransitionPatterns,
+            idPrefix: "TornPaperTransition-",
+            Template: TornPaperTransitionTemplate,
+            schema: tornPaperTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              tornPaperTransitionAnimationDurationFrames,
+              FPS,
+            ),
+          })}
+        </Folder>
+        <Folder name="GrungeTransition">
+          {renderPatternFamily({
+            patterns: grungeTransitionPatterns,
+            idPrefix: "GrungeTransition-",
+            Template: GrungeTransitionTemplate,
+            schema: grungeTransitionSchema,
+            durationInFrames: minimumCompositionFrames(
+              grungeTransitionAnimationDurationFrames,
               FPS,
             ),
           })}

@@ -42,6 +42,14 @@
     "timing": "dryBrush"
   },
   {
+    "prefix": "TornPaperTransition-",
+    "timing": "tornPaper"
+  },
+  {
+    "prefix": "GrungeTransition-",
+    "timing": "grunge"
+  },
+  {
     "prefix": "WaterRippleTransition-",
     "timing": "waterRipple"
   },

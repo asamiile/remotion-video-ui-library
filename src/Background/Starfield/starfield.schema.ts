@@ -1,17 +1,16 @@
 import {
-  shaderBasicsBase,
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundBase,
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as starfieldSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as starfieldSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const starfieldDurationFrames = shaderBasicsDurationFrames;
+export const starfieldDurationFrames = shaderBackgroundDurationFrames;
 
-// The pattern key keeps the original "Background-ShaderBasics-Starfield" ID.
-export const starfieldPatterns: Record<string, ShaderBasicsSchemaType> = {
-  starfield: {
-    ...shaderBasicsBase,
+export const starfieldPatterns: Record<string, ShaderBackgroundSchemaType> = {
+  classic: {
+    ...shaderBackgroundBase,
     backgroundColor: "transparent",
     colorA: "#ffffff",
     colorB: "#9ecbff",

@@ -1,4 +1,83 @@
 {
+  "halftoneDotsPatterns": {
+    "coralGoldSweep": {
+      "field": "sweep"
+    },
+    "newsprint": {
+      "field": "sweep",
+      "backgroundColor": "#f3ecd9",
+      "colorA": "#242422",
+      "colorB": "#242422",
+      "scale": 1.35,
+      "intensity": 0.9
+    },
+    "ripple": {
+      "field": "ripple",
+      "backgroundColor": "#101e38",
+      "colorA": "#3889bf",
+      "colorB": "#9edee5",
+      "scale": 1.1,
+      "intensity": 0.88
+    },
+    "contour": {
+      "field": "contour",
+      "backgroundColor": "#f5e8d5",
+      "colorA": "#b8563e",
+      "colorB": "#b8563e",
+      "scale": 1.2,
+      "intensity": 0.92
+    },
+    "spotlight": {
+      "field": "spotlight",
+      "backgroundColor": "#101c30",
+      "colorA": "#428eac",
+      "colorB": "#a5dbe3",
+      "scale": 0.85,
+      "intensity": 0.86
+    },
+    "lavenderDiamonds": {
+      "palette": "lavender",
+      "shape": "diamond",
+      "field": "contour",
+      "scale": 0.8,
+      "intensity": 0.94
+    },
+    "skyLines": {
+      "palette": "sky",
+      "shape": "line",
+      "field": "ribbon",
+      "scale": 0.75,
+      "intensity": 0.82
+    },
+    "sorbetCrosses": {
+      "palette": "sorbet",
+      "shape": "cross",
+      "field": "ripple",
+      "scale": 0.7,
+      "intensity": 0.9
+    },
+    "sunsetSquares": {
+      "palette": "sunset",
+      "shape": "square",
+      "field": "sweep",
+      "scale": 0.9,
+      "intensity": 0.85
+    },
+    "oceanInterference": {
+      "palette": "ocean",
+      "shape": "dot",
+      "field": "interference",
+      "scale": 1.05,
+      "intensity": 0.9
+    },
+    "paperRibbon": {
+      "palette": "paper",
+      "shape": "dot",
+      "field": "ribbon",
+      "scale": 1.25,
+      "intensity": 0.88
+    }
+  },
   "scanEchoTransitionPatterns": {
   "cyanSweep": {
     "mode": "sweep",
@@ -7524,6 +7603,23 @@
     "credit": { "text": "SAMPLE CREDIT" },
     "creditJp": { "text": "サンプルクレジット" },
     "wallGraffitiJp": { "text": "サンプル" }
+  },
+  "stampTextPatterns": {
+    "approved": { "text": "APPROVED" },
+    "confidential": { "text": "CONFIDENTIAL", "subText": "FILE NO. 0427" },
+    "soldOut": { "text": "SOLD OUT" },
+    "approvedTransparent": { "text": "APPROVED" },
+    "approvedJp": { "text": "検印済" }
+  },
+  "grungeTextPatterns": {
+    "stencilSpray": { "text": "NO ENTRY" },
+    "stencilSprayJp": { "text": "立入禁止" },
+    "ransomNote": { "text": "LISTEN UP" },
+    "typewriterMemo": { "text": "CASE FILE 0427", "subText": "SUBJECT: UNKNOWN" },
+    "tapeLabel": { "text": "DEMO TAPE VOL.2" },
+    "burnTitle": { "text": "OUTLAW" },
+    "grungeLowerThird": { "text": "ASAMI TOKYO", "subText": "SOUND DESIGNER" },
+    "markupCircle": { "text": "LOOK HERE" }
   },
   "oneTakeLogoText": {
     "eyebrowText": "DAW Remote Controller",

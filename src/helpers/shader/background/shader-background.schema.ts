@@ -2,7 +2,7 @@ import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 
 /** Props shared by the basic-technique shader backgrounds. */
-export const shaderBasicsSchema = z.object({
+export const shaderBackgroundSchema = z.object({
   /** "transparent" draws only the effect, for layering over footage */
   backgroundColor: zColor(),
   colorA: zColor(),
@@ -22,16 +22,16 @@ export const shaderBasicsSchema = z.object({
   durationSeconds: z.number().int().min(10).max(60).optional(),
 });
 
-export type ShaderBasicsSchemaType = z.infer<typeof shaderBasicsSchema>;
+export type ShaderBackgroundSchemaType = z.infer<typeof shaderBackgroundSchema>;
 
 export const DEFAULT_LOOP_SECONDS = 20;
 
-export const shaderBasicsDurationFrames = (props: {
+export const shaderBackgroundDurationFrames = (props: {
   durationSeconds?: number;
 }) => (props.durationSeconds ?? DEFAULT_LOOP_SECONDS) * 30;
 
 /** Defaults shared by every basic-technique pattern. */
-export const shaderBasicsBase = {
+export const shaderBackgroundBase = {
   scale: 1,
   intensity: 1,
   loopCycles: 1,

@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 import {
   loopOffsetGlsl,
   valueNoise3dGlsl,
@@ -11,7 +11,7 @@ import {
  * colorA at the bottom to colorB at the top.
  */
 export const auroraGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 ${valueNoise3dGlsl}
 ${loopOffsetGlsl}
 

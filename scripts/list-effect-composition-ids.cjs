@@ -13,6 +13,8 @@ const families = [
   {idPrefix:"",file:"src/Effects/Overlay/ShaderSciFi/shader-sci-fi-overlay.schema.ts",exportName:"shaderSciFiOverlayPatterns",join:""},
   {idPrefix:"SuminagashiTransition",file:"src/Effects/Transition/SuminagashiTransition/suminagashi-transition.schema.ts",exportName:"suminagashiTransitionPatterns"},
   {idPrefix:"DryBrushTransition",file:"src/Effects/Transition/DryBrushTransition/dry-brush-transition.schema.ts",exportName:"dryBrushTransitionPatterns"},
+  {idPrefix:"TornPaperTransition",file:"src/Effects/Transition/TornPaperTransition/torn-paper-transition.schema.ts",exportName:"tornPaperTransitionPatterns"},
+  {idPrefix:"GrungeTransition",file:"src/Effects/Transition/GrungeTransition/grunge-transition.schema.ts",exportName:"grungeTransitionPatterns"},
   {idPrefix:"WaterRippleTransition",file:"src/Effects/Transition/WaterRippleTransition/water-ripple-transition.schema.ts",exportName:"waterRippleTransitionPatterns"},
   {idPrefix:"CodecCorruptTransition",file:"src/Effects/Transition/CodecCorruptTransition/codec-corrupt-transition.schema.ts",exportName:"codecCorruptTransitionPatterns"},
   {idPrefix:"PixelSortTransition",file:"src/Effects/Transition/PixelSortTransition/pixel-sort-transition.schema.ts",exportName:"pixelSortTransitionPatterns"},

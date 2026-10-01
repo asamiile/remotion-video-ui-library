@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: Voronoi (distance to the nearest random point).
@@ -7,7 +7,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * draws glowing cell walls.
  */
 export const voronoiCellsGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 void main() {
   vec2 p = centered() * 2.4 * uScale;

@@ -1,11 +1,11 @@
 import { z } from "zod";
 import {
-  shaderBasicsDurationFrames,
-  shaderBasicsSchema,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundDurationFrames,
+  shaderBackgroundSchema,
+} from "../../helpers/shader/background/shader-background.schema";
 
 /** Shared basic props plus analog artifacts; each artifact is off at 0. */
-export const tvStaticSchema = shaderBasicsSchema.extend({
+export const tvStaticSchema = shaderBackgroundSchema.extend({
   /** CRT tube: barrel distortion, rounded corners, vignette */
   curvature: z.number().min(0).max(1),
   /** RGB phosphor stripes */
@@ -22,7 +22,7 @@ export const tvStaticSchema = shaderBasicsSchema.extend({
 
 export type TvStaticSchemaType = z.infer<typeof tvStaticSchema>;
 
-export const tvStaticDurationFrames = shaderBasicsDurationFrames;
+export const tvStaticDurationFrames = shaderBackgroundDurationFrames;
 
 const noArtifacts = {
   curvature: 0,

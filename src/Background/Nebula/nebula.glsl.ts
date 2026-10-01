@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 import {
   loopOffsetGlsl,
   valueNoise3dGlsl,
@@ -10,7 +10,7 @@ import {
  * them, a glowing core in colorC and a thin layer of twinkling stars.
  */
 export const nebulaGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 ${valueNoise3dGlsl}
 ${loopOffsetGlsl}
 

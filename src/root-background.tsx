@@ -1,3 +1,4 @@
+import { mergedHalftoneDotsPatterns } from "./composition/composition-merged-background";
 import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
 import { AmbientBlurOrbsTemplate } from "./Background/AmbientBlurOrbs/AmbientBlurOrbsTemplate";
@@ -73,8 +74,10 @@ import {CausticsTemplate} from "./Background/Caustics/CausticsTemplate";
 import {causticsDurationFrames,causticsPatterns,causticsSchema} from "./Background/Caustics/caustics.schema";
 import {NebulaTemplate} from "./Background/Nebula/NebulaTemplate";
 import {nebulaDurationFrames,nebulaPatterns,nebulaSchema} from "./Background/Nebula/nebula.schema";
-import {GradientFlowTemplate} from "./Background/GradientFlow/GradientFlowTemplate";
-import {gradientFlowDurationFrames,gradientFlowPatterns,gradientFlowSchema} from "./Background/GradientFlow/gradient-flow.schema";
+import {GradientTemplate} from "./Background/Gradient/GradientTemplate";
+import {GeometricTemplate} from "./Background/Geometric/GeometricTemplate";
+import {geometricDurationFrames,geometricFloatPatterns,geometricFramePatterns,geometricGridPatterns,geometricMemphisPatterns,geometricOrbitPatterns,geometricSchema,geometricStripePatterns} from "./Background/Geometric/geometric.schema";
+import {gradientDurationFrames,gradientLinearPatterns,gradientMarblePatterns,gradientMeshPatterns,gradientSchema,gradientScoopPatterns,gradientWavesPatterns} from "./Background/Gradient/gradient.schema";
 import {RippleRingsTemplate} from "./Background/RippleRings/RippleRingsTemplate";
 import {rippleRingsDurationFrames,rippleRingsPatterns,rippleRingsSchema} from "./Background/RippleRings/ripple-rings.schema";
 import {SpeedLinesTemplate} from "./Background/SpeedLines/SpeedLinesTemplate";
@@ -82,7 +85,13 @@ import {speedLinesDurationFrames,speedLinesPatterns,speedLinesSchema} from "./Ba
 import {SynthGridTemplate} from "./Background/SynthGrid/SynthGridTemplate";
 import {synthGridDurationFrames,synthGridPatterns,synthGridSchema} from "./Background/SynthGrid/synth-grid.schema";
 import {HalftoneDotsTemplate} from "./Background/HalftoneDots/HalftoneDotsTemplate";
-import {halftoneDotsDurationFrames,halftoneDotsPatterns,halftoneDotsSchema} from "./Background/HalftoneDots/halftone-dots.schema";
+import {HalftoneOverlayTemplate} from "./Background/HalftoneOverlay/HalftoneOverlayTemplate";
+import {GrungeOverlayTemplate} from "./Background/GrungeOverlay/GrungeOverlayTemplate";
+import {GrungeSurfaceTemplate} from "./Background/GrungeSurface/GrungeSurfaceTemplate";
+import {grungeSurfaceDurationFrames,grungeSurfacePatterns,grungeSurfaceSchema} from "./Background/GrungeSurface/grunge-surface.schema";
+import {grungeOverlayDurationFrames,grungeOverlayPatterns,grungeOverlaySchema} from "./Background/GrungeOverlay/grunge-overlay.schema";
+import {halftoneOverlayDurationFrames,halftoneOverlayPatterns,halftoneOverlaySchema} from "./Background/HalftoneOverlay/halftone-overlay.schema";
+import {halftoneDotsDurationFrames,halftoneDotsSchema} from "./Background/HalftoneDots/halftone-dots.schema";
 import {StarfieldTemplate} from "./Background/Starfield/StarfieldTemplate";
 import {starfieldDurationFrames,starfieldPatterns,starfieldSchema} from "./Background/Starfield/starfield.schema";
 import {KaleidoscopeTemplate} from "./Background/Kaleidoscope/KaleidoscopeTemplate";
@@ -319,14 +328,31 @@ export function BackgroundFolder() {
       <Folder name="FireFlames">{renderPatternFamily({patterns:fireFlamesPatterns,idPrefix:"Background-FireFlames-",Template:FireFlamesTemplate,schema:fireFlamesSchema,durationInFrames:fireFlamesDurationFrames})}</Folder>
       <Folder name="Caustics">{renderPatternFamily({patterns:causticsPatterns,idPrefix:"Background-Caustics-",Template:CausticsTemplate,schema:causticsSchema,durationInFrames:causticsDurationFrames})}</Folder>
       <Folder name="Nebula">{renderPatternFamily({patterns:nebulaPatterns,idPrefix:"Background-Nebula-",Template:NebulaTemplate,schema:nebulaSchema,durationInFrames:nebulaDurationFrames})}</Folder>
-      <Folder name="GradientFlow">{renderPatternFamily({patterns:gradientFlowPatterns,idPrefix:"Background-ShaderBasics-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
-      <Folder name="RippleRings">{renderPatternFamily({patterns:rippleRingsPatterns,idPrefix:"Background-ShaderBasics-",Template:RippleRingsTemplate,schema:rippleRingsSchema,durationInFrames:rippleRingsDurationFrames})}</Folder>
-      <Folder name="SpeedLines">{renderPatternFamily({patterns:speedLinesPatterns,idPrefix:"Background-ShaderBasics-",Template:SpeedLinesTemplate,schema:speedLinesSchema,durationInFrames:speedLinesDurationFrames})}</Folder>
-      <Folder name="SynthGrid">{renderPatternFamily({patterns:synthGridPatterns,idPrefix:"Background-ShaderBasics-",Template:SynthGridTemplate,schema:synthGridSchema,durationInFrames:synthGridDurationFrames})}</Folder>
-      <Folder name="HalftoneDots">{renderPatternFamily({patterns:halftoneDotsPatterns,idPrefix:"Background-ShaderBasics-",Template:HalftoneDotsTemplate,schema:halftoneDotsSchema,durationInFrames:halftoneDotsDurationFrames})}</Folder>
-      <Folder name="Starfield">{renderPatternFamily({patterns:starfieldPatterns,idPrefix:"Background-ShaderBasics-",Template:StarfieldTemplate,schema:starfieldSchema,durationInFrames:starfieldDurationFrames})}</Folder>
-      <Folder name="Kaleidoscope">{renderPatternFamily({patterns:kaleidoscopePatterns,idPrefix:"Background-ShaderBasics-",Template:KaleidoscopeTemplate,schema:kaleidoscopeSchema,durationInFrames:kaleidoscopeDurationFrames})}</Folder>
-      <Folder name="VoronoiCells">{renderPatternFamily({patterns:voronoiCellsPatterns,idPrefix:"Background-ShaderBasics-",Template:VoronoiCellsTemplate,schema:voronoiCellsSchema,durationInFrames:voronoiCellsDurationFrames})}</Folder>
+      <Folder name="Geometric">
+        <Folder name="Frame">{renderPatternFamily({patterns:geometricFramePatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Orbit">{renderPatternFamily({patterns:geometricOrbitPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Grid">{renderPatternFamily({patterns:geometricGridPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Float">{renderPatternFamily({patterns:geometricFloatPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Stripe">{renderPatternFamily({patterns:geometricStripePatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Memphis">{renderPatternFamily({patterns:geometricMemphisPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+      </Folder>
+      <Folder name="Gradient">
+        <Folder name="Waves">{renderPatternFamily({patterns:gradientWavesPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Mesh">{renderPatternFamily({patterns:gradientMeshPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Linear">{renderPatternFamily({patterns:gradientLinearPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Marble">{renderPatternFamily({patterns:gradientMarblePatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Scoop">{renderPatternFamily({patterns:gradientScoopPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+      </Folder>
+      <Folder name="RippleRings">{renderPatternFamily({patterns:rippleRingsPatterns,idPrefix:"Background-RippleRings-",Template:RippleRingsTemplate,schema:rippleRingsSchema,durationInFrames:rippleRingsDurationFrames})}</Folder>
+      <Folder name="SpeedLines">{renderPatternFamily({patterns:speedLinesPatterns,idPrefix:"Background-SpeedLines-",Template:SpeedLinesTemplate,schema:speedLinesSchema,durationInFrames:speedLinesDurationFrames})}</Folder>
+      <Folder name="SynthGrid">{renderPatternFamily({patterns:synthGridPatterns,idPrefix:"Background-SynthGrid-",Template:SynthGridTemplate,schema:synthGridSchema,durationInFrames:synthGridDurationFrames})}</Folder>
+      <Folder name="HalftoneDots">{renderPatternFamily({patterns:mergedHalftoneDotsPatterns,idPrefix:"Background-HalftoneDots-",Template:HalftoneDotsTemplate,schema:halftoneDotsSchema,durationInFrames:halftoneDotsDurationFrames})}</Folder>
+      <Folder name="HalftoneOverlay">{renderPatternFamily({patterns:halftoneOverlayPatterns,idPrefix:"Background-HalftoneOverlay-",Template:HalftoneOverlayTemplate,schema:halftoneOverlaySchema,durationInFrames:halftoneOverlayDurationFrames})}</Folder>
+      <Folder name="GrungeOverlay">{renderPatternFamily({patterns:grungeOverlayPatterns,idPrefix:"Background-GrungeOverlay-",Template:GrungeOverlayTemplate,schema:grungeOverlaySchema,durationInFrames:grungeOverlayDurationFrames})}</Folder>
+      <Folder name="GrungeSurface">{renderPatternFamily({patterns:grungeSurfacePatterns,idPrefix:"Background-GrungeSurface-",Template:GrungeSurfaceTemplate,schema:grungeSurfaceSchema,durationInFrames:grungeSurfaceDurationFrames})}</Folder>
+      <Folder name="Starfield">{renderPatternFamily({patterns:starfieldPatterns,idPrefix:"Background-Starfield-",Template:StarfieldTemplate,schema:starfieldSchema,durationInFrames:starfieldDurationFrames})}</Folder>
+      <Folder name="Kaleidoscope">{renderPatternFamily({patterns:kaleidoscopePatterns,idPrefix:"Background-Kaleidoscope-",Template:KaleidoscopeTemplate,schema:kaleidoscopeSchema,durationInFrames:kaleidoscopeDurationFrames})}</Folder>
+      <Folder name="VoronoiCells">{renderPatternFamily({patterns:voronoiCellsPatterns,idPrefix:"Background-VoronoiCells-",Template:VoronoiCellsTemplate,schema:voronoiCellsSchema,durationInFrames:voronoiCellsDurationFrames})}</Folder>
       <Folder name="DigitalFogShader">{renderPatternFamily({patterns:digitalFogShaderPatterns,idPrefix:"Background-DigitalFogShader-",Template:DigitalFogShaderTemplate,schema:digitalFogShaderSchema,durationInFrames:digitalFogShaderDurationFrames})}</Folder>
       <Folder name="VolumetricSmoke">{renderPatternFamily({patterns:volumetricSmokePatterns,idPrefix:"Background-VolumetricSmoke-",Template:VolumetricSmokeTemplate,schema:volumetricSmokeSchema,durationInFrames:volumetricSmokeDurationFrames})}</Folder>
 

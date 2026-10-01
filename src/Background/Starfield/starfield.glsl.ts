@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: grid cells + hash (random point per cell) + exp glow.
@@ -6,7 +6,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * sizes and speeds give parallax; bright stars get cross-shaped glints.
  */
 export const starfieldGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 vec4 starLayer(vec2 p, float layer) {
   float aspect = uResolution.x / uResolution.y;

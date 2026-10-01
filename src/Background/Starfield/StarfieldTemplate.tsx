@@ -1,8 +1,8 @@
 import React from "react";
-import { ShaderBasicsLayer } from "../../helpers/shader/basics/ShaderBasicsLayer";
-import type { ShaderBasicsSchemaType } from "../../helpers/shader/basics/shader-basics.schema";
+import { ShaderBackgroundLayer } from "../../helpers/shader/background/ShaderBackgroundLayer";
+import type { ShaderBackgroundSchemaType } from "../../helpers/shader/background/shader-background.schema";
 import { starfieldGlsl } from "./starfield.glsl";
 
-export const StarfieldTemplate: React.FC<ShaderBasicsSchemaType> = (props) => (
-  <ShaderBasicsLayer {...props} fragmentShader={starfieldGlsl} />
+export const StarfieldTemplate: React.FC<ShaderBackgroundSchemaType> = (props) => (
+  <ShaderBackgroundLayer {...props} fragmentShader={starfieldGlsl} />
 );

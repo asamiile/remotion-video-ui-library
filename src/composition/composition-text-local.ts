@@ -1,5 +1,6 @@
 /** Shape of config/local/composition-text.local.json (all keys optional) */
 export type CompositionTextLocal = {
+  halftoneDotsPatterns?: Record<string, Record<string, unknown>>;
   distressTransitionPatterns?: Record<string, Record<string, unknown>>;
   scanEchoTransitionPatterns?: Record<string, Record<string, unknown>>;
   intro?: {
@@ -32,6 +33,8 @@ export type CompositionTextLocal = {
   tornNoteCaptionPatterns?: Record<string, Record<string, unknown>>;
   distressedTitleCardPatterns?: Record<string, Record<string, unknown>>;
   sprayPaintTextPatterns?: Record<string, Record<string, unknown>>;
+  stampTextPatterns?: Record<string, Record<string, unknown>>;
+  grungeTextPatterns?: Record<string, Record<string, unknown>>;
   chromaticLogoTextPatterns?: Record<string, Record<string, unknown>>;
   rubyWordplayTextPatterns?: Record<string, Record<string, unknown>>;
   pedigreeCreditTextPatterns?: Record<string, Record<string, unknown>>;

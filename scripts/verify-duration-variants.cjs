@@ -42,6 +42,8 @@ const out = fs.mkdtempSync('/tmp/duration-variants-');
    ['CrtPowerOffTransition-Classic', {}, 36, 18, 75],
    ['SuminagashiTransition-SumiSwirl', {}, 72, 36, 75],
    ['DryBrushTransition-CharcoalStrokes', {}, 60, 30, 75],
+   ['TornPaperTransition-Kraft', {}, 60, 30, 75],
+   ['GrungeTransition-MaskingTape', {}, 60, 30, 75],
    ['WaterRippleTransition-AquaFlood', {}, 60, 30, 75],
    ['InkBleedTransition-SumiDrop', {}, 60, 30, 75],
    ['VolumetricSmokeTransition-EmberBillow', {}, 54, 27, 75],

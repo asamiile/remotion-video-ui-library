@@ -1,13 +1,13 @@
 import {
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as fireFlamesSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as fireFlamesSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const fireFlamesDurationFrames = shaderBasicsDurationFrames;
+export const fireFlamesDurationFrames = shaderBackgroundDurationFrames;
 
-export const fireFlamesPatterns: Record<string, ShaderBasicsSchemaType> = {
+export const fireFlamesPatterns: Record<string, ShaderBackgroundSchemaType> = {
   /** Orange flames along the bottom edge, no backdrop */
   blaze: {
     backgroundColor: "transparent",

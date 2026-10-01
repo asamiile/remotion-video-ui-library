@@ -1,13 +1,13 @@
 import {
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as auroraSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as auroraSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const auroraDurationFrames = shaderBasicsDurationFrames;
+export const auroraDurationFrames = shaderBackgroundDurationFrames;
 
-export const auroraPatterns: Record<string, ShaderBasicsSchemaType> = {
+export const auroraPatterns: Record<string, ShaderBackgroundSchemaType> = {
   /** Green curtains fading to violet over a night sky */
   boreal: {
     backgroundColor: "#030713",

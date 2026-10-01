@@ -1,13 +1,13 @@
 import {
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as nebulaSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as nebulaSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const nebulaDurationFrames = shaderBasicsDurationFrames;
+export const nebulaDurationFrames = shaderBackgroundDurationFrames;
 
-export const nebulaPatterns: Record<string, ShaderBasicsSchemaType> = {
+export const nebulaPatterns: Record<string, ShaderBackgroundSchemaType> = {
   /** Magenta and violet gas with a warm core */
   crimson: {
     backgroundColor: "#04030a",

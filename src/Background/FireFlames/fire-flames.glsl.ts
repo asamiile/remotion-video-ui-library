@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 import { valueNoise3dGlsl } from "../../helpers/shader/glsl/noise";
 
 /**
@@ -9,7 +9,7 @@ import { valueNoise3dGlsl } from "../../helpers/shader/glsl/noise";
  * that moves whole cells per loop.
  */
 export const fireFlamesGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 ${valueNoise3dGlsl}
 
 const float SCROLL = 2.4;

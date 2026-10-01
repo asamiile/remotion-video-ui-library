@@ -1,8 +1,8 @@
 import React from "react";
-import { ShaderBasicsLayer } from "../../helpers/shader/basics/ShaderBasicsLayer";
-import type { ShaderBasicsSchemaType } from "../../helpers/shader/basics/shader-basics.schema";
+import { ShaderBackgroundLayer } from "../../helpers/shader/background/ShaderBackgroundLayer";
+import type { ShaderBackgroundSchemaType } from "../../helpers/shader/background/shader-background.schema";
 import { kaleidoscopeGlsl } from "./kaleidoscope.glsl";
 
-export const KaleidoscopeTemplate: React.FC<ShaderBasicsSchemaType> = (
+export const KaleidoscopeTemplate: React.FC<ShaderBackgroundSchemaType> = (
   props,
-) => <ShaderBasicsLayer {...props} fragmentShader={kaleidoscopeGlsl} />;
+) => <ShaderBackgroundLayer {...props} fragmentShader={kaleidoscopeGlsl} />;

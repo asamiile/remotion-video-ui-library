@@ -1,17 +1,16 @@
 import {
-  shaderBasicsBase,
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundBase,
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as speedLinesSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as speedLinesSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const speedLinesDurationFrames = shaderBasicsDurationFrames;
+export const speedLinesDurationFrames = shaderBackgroundDurationFrames;
 
-// The pattern key keeps the original "Background-ShaderBasics-SpeedLines" ID.
-export const speedLinesPatterns: Record<string, ShaderBasicsSchemaType> = {
-  speedLines: {
-    ...shaderBasicsBase,
+export const speedLinesPatterns: Record<string, ShaderBackgroundSchemaType> = {
+  classic: {
+    ...shaderBackgroundBase,
     backgroundColor: "transparent",
     colorA: "#ffffff",
     colorB: "#cfe8ff",
