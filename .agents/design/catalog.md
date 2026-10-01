@@ -23,6 +23,7 @@ A reference list of common design styles. **Status** shows where each one stands
 | Marble (stone, veins, ripples) | [marble.md](./marble.md) | `Background/MarbleFlow` |
 | Halftone (print dot grid) | [halftone.md](./halftone.md) | `Background/HalftoneDots`, `Background/HalftoneWaveform` |
 | Infographics / flat geometric shapes | [infographics.md](./infographics.md) | `Background/Geometric` |
+| Grunge (dust, grime, toner, stains, light leaks, film edge, VHS, CMY misregister, walls, collage, rust, cardboard, torn paper, tape, film burn, photocopy, stamp, stencil, ransom, typewriter, tape label, burn, lower third, markup) | [grunge.md](./grunge.md) | `Background/GrungeOverlay`, `Background/GrungeSurface`, `TornPaperTransition`, `GrungeTransition`, `StampText`, `GrungeText` |
 
 ## Texture and material
 
@@ -31,7 +32,7 @@ A reference list of common design styles. **Status** shows where each one stands
 | Noise / Grain | Film or paper grain layered on top of other looks | Component | `Background/FilmGrainOverlay`; the `grain` prop in Gradient |
 | Paper / Aged | Paper texture, aged edges | Component | `Background/AgedParchmentOverlay` |
 | Glassmorphism | Frosted translucent panels blurring what is behind | Idea | SVG/CSS panels with `backdrop-filter: blur()` over a Gradient pattern |
-| Collage | Torn paper, cut-outs, handmade feel | Idea | SVG shapes with rough edges (noise-displaced paths), drop shadows |
+| Collage | Torn paper, cut-outs, handmade feel | Spec | GrungeSurface `collage`, GrungeText `ransom` ([grunge.md](./grunge.md)) |
 | Metallic / Chrome | Glossy chrome or liquid metal (Y2K) | Idea | Shader: environment-like gradient bands warped by noise (Gradient `marble` technique with a steel palette and sharp highlights) |
 
 ## Pattern and geometric

@@ -44,6 +44,8 @@ const families = [
   { type: "pattern", file: "Text/TornNoteCaption/torn-note-caption.schema", export: "tornNoteCaptionPatterns", category: "text" },
   { type: "pattern", file: "Text/DistressedTitleCard/distressed-title-card.schema", export: "distressedTitleCardPatterns", category: "text" },
   { type: "pattern", file: "Text/SprayPaintText/spray-paint-text.schema", export: "sprayPaintTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/StampText/stamp-text.schema", export: "stampTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/GrungeText/grunge-text.schema", export: "grungeTextPatterns", category: "text" },
   { type: "pattern", file: "Text/ChromaticLogoText/chromatic-logo-text.schema", export: "chromaticLogoTextPatterns", category: "text" },
   { type: "pattern", file: "Text/RubyWordplayText/ruby-wordplay-text.schema", export: "rubyWordplayTextPatterns", category: "text" },
   { type: "pattern", file: "Text/PedigreeCreditText/pedigree-credit-text.schema", export: "pedigreeCreditTextPatterns", category: "text" },

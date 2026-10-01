@@ -15,6 +15,8 @@ import { stackedRevealTextPatterns } from "../Text/StackedRevealText/stacked-rev
 import { tornNoteCaptionPatterns } from "../Text/TornNoteCaption/torn-note-caption.schema";
 import { distressedTitleCardPatterns } from "../Text/DistressedTitleCard/distressed-title-card.schema";
 import { sprayPaintTextPatterns } from "../Text/SprayPaintText/spray-paint-text.schema";
+import { stampTextPatterns } from "../Text/StampText/stamp-text.schema";
+import { grungeTextPatterns } from "../Text/GrungeText/grunge-text.schema";
 import { chromaticLogoTextPatterns } from "../Text/ChromaticLogoText/chromatic-logo-text.schema";
 import { rubyWordplayTextPatterns } from "../Text/RubyWordplayText/ruby-wordplay-text.schema";
 import { pedigreeCreditTextPatterns } from "../Text/PedigreeCreditText/pedigree-credit-text.schema";
@@ -125,6 +127,16 @@ export const mergedSprayPaintTextPatterns = shallowMergePatternRecord(
   sprayPaintTextPatterns,
   local.sprayPaintTextPatterns,
 ) as typeof sprayPaintTextPatterns;
+
+export const mergedStampTextPatterns = shallowMergePatternRecord(
+  stampTextPatterns,
+  local.stampTextPatterns,
+) as typeof stampTextPatterns;
+
+export const mergedGrungeTextPatterns = shallowMergePatternRecord(
+  grungeTextPatterns,
+  local.grungeTextPatterns,
+) as typeof grungeTextPatterns;
 
 export const mergedChromaticLogoTextPatterns = shallowMergePatternRecord(
   chromaticLogoTextPatterns,

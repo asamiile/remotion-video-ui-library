@@ -86,6 +86,10 @@ import {SynthGridTemplate} from "./Background/SynthGrid/SynthGridTemplate";
 import {synthGridDurationFrames,synthGridPatterns,synthGridSchema} from "./Background/SynthGrid/synth-grid.schema";
 import {HalftoneDotsTemplate} from "./Background/HalftoneDots/HalftoneDotsTemplate";
 import {HalftoneOverlayTemplate} from "./Background/HalftoneOverlay/HalftoneOverlayTemplate";
+import {GrungeOverlayTemplate} from "./Background/GrungeOverlay/GrungeOverlayTemplate";
+import {GrungeSurfaceTemplate} from "./Background/GrungeSurface/GrungeSurfaceTemplate";
+import {grungeSurfaceDurationFrames,grungeSurfacePatterns,grungeSurfaceSchema} from "./Background/GrungeSurface/grunge-surface.schema";
+import {grungeOverlayDurationFrames,grungeOverlayPatterns,grungeOverlaySchema} from "./Background/GrungeOverlay/grunge-overlay.schema";
 import {halftoneOverlayDurationFrames,halftoneOverlayPatterns,halftoneOverlaySchema} from "./Background/HalftoneOverlay/halftone-overlay.schema";
 import {halftoneDotsDurationFrames,halftoneDotsSchema} from "./Background/HalftoneDots/halftone-dots.schema";
 import {StarfieldTemplate} from "./Background/Starfield/StarfieldTemplate";
@@ -344,6 +348,8 @@ export function BackgroundFolder() {
       <Folder name="SynthGrid">{renderPatternFamily({patterns:synthGridPatterns,idPrefix:"Background-SynthGrid-",Template:SynthGridTemplate,schema:synthGridSchema,durationInFrames:synthGridDurationFrames})}</Folder>
       <Folder name="HalftoneDots">{renderPatternFamily({patterns:mergedHalftoneDotsPatterns,idPrefix:"Background-HalftoneDots-",Template:HalftoneDotsTemplate,schema:halftoneDotsSchema,durationInFrames:halftoneDotsDurationFrames})}</Folder>
       <Folder name="HalftoneOverlay">{renderPatternFamily({patterns:halftoneOverlayPatterns,idPrefix:"Background-HalftoneOverlay-",Template:HalftoneOverlayTemplate,schema:halftoneOverlaySchema,durationInFrames:halftoneOverlayDurationFrames})}</Folder>
+      <Folder name="GrungeOverlay">{renderPatternFamily({patterns:grungeOverlayPatterns,idPrefix:"Background-GrungeOverlay-",Template:GrungeOverlayTemplate,schema:grungeOverlaySchema,durationInFrames:grungeOverlayDurationFrames})}</Folder>
+      <Folder name="GrungeSurface">{renderPatternFamily({patterns:grungeSurfacePatterns,idPrefix:"Background-GrungeSurface-",Template:GrungeSurfaceTemplate,schema:grungeSurfaceSchema,durationInFrames:grungeSurfaceDurationFrames})}</Folder>
       <Folder name="Starfield">{renderPatternFamily({patterns:starfieldPatterns,idPrefix:"Background-Starfield-",Template:StarfieldTemplate,schema:starfieldSchema,durationInFrames:starfieldDurationFrames})}</Folder>
       <Folder name="Kaleidoscope">{renderPatternFamily({patterns:kaleidoscopePatterns,idPrefix:"Background-Kaleidoscope-",Template:KaleidoscopeTemplate,schema:kaleidoscopeSchema,durationInFrames:kaleidoscopeDurationFrames})}</Folder>
       <Folder name="VoronoiCells">{renderPatternFamily({patterns:voronoiCellsPatterns,idPrefix:"Background-VoronoiCells-",Template:VoronoiCellsTemplate,schema:voronoiCellsSchema,durationInFrames:voronoiCellsDurationFrames})}</Folder>

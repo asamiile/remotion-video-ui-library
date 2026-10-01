@@ -7604,6 +7604,23 @@
     "creditJp": { "text": "サンプルクレジット" },
     "wallGraffitiJp": { "text": "サンプル" }
   },
+  "stampTextPatterns": {
+    "approved": { "text": "APPROVED" },
+    "confidential": { "text": "CONFIDENTIAL", "subText": "FILE NO. 0427" },
+    "soldOut": { "text": "SOLD OUT" },
+    "approvedTransparent": { "text": "APPROVED" },
+    "approvedJp": { "text": "検印済" }
+  },
+  "grungeTextPatterns": {
+    "stencilSpray": { "text": "NO ENTRY" },
+    "stencilSprayJp": { "text": "立入禁止" },
+    "ransomNote": { "text": "LISTEN UP" },
+    "typewriterMemo": { "text": "CASE FILE 0427", "subText": "SUBJECT: UNKNOWN" },
+    "tapeLabel": { "text": "DEMO TAPE VOL.2" },
+    "burnTitle": { "text": "OUTLAW" },
+    "grungeLowerThird": { "text": "ASAMI TOKYO", "subText": "SOUND DESIGNER" },
+    "markupCircle": { "text": "LOOK HERE" }
+  },
   "oneTakeLogoText": {
     "eyebrowText": "DAW Remote Controller",
     "titleText": "OneTake - Remote Control",

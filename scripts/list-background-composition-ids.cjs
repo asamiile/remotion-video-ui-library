@@ -126,6 +126,8 @@ const families = [
   {idPrefix:"Background-SynthGrid",file:"src/Background/SynthGrid/synth-grid.schema.ts",exportName:"synthGridPatterns"},
   {idPrefix:"Background-HalftoneDots",file:"src/Background/HalftoneDots/halftone-dots.schema.ts",exportName:"halftoneDotsPatterns"},
   {idPrefix:"Background-HalftoneOverlay",file:"src/Background/HalftoneOverlay/halftone-overlay.schema.ts",exportName:"halftoneOverlayPatterns"},
+  {idPrefix:"Background-GrungeOverlay",file:"src/Background/GrungeOverlay/grunge-overlay.schema.ts",exportName:"grungeOverlayPatterns"},
+  {idPrefix:"Background-GrungeSurface",file:"src/Background/GrungeSurface/grunge-surface.schema.ts",exportName:"grungeSurfacePatterns"},
   {idPrefix:"Background-Starfield",file:"src/Background/Starfield/starfield.schema.ts",exportName:"starfieldPatterns"},
   {idPrefix:"Background-Kaleidoscope",file:"src/Background/Kaleidoscope/kaleidoscope.schema.ts",exportName:"kaleidoscopePatterns"},
   {idPrefix:"Background-VoronoiCells",file:"src/Background/VoronoiCells/voronoi-cells.schema.ts",exportName:"voronoiCellsPatterns"},

@@ -67,6 +67,10 @@ import { distressedTitleCardDurationFrames } from "./Text/DistressedTitleCard/di
 import { SprayPaintTextTemplate } from "./Text/SprayPaintText/SprayPaintTextTemplate";
 import { sprayPaintTextSchema } from "./Text/SprayPaintText/spray-paint-text.schema";
 import { sprayPaintTextDurationFrames } from "./Text/SprayPaintText/spray-paint-text.schema";
+import { StampTextTemplate } from "./Text/StampText/StampTextTemplate";
+import { stampTextDurationFrames, stampTextSchema } from "./Text/StampText/stamp-text.schema";
+import { GrungeTextTemplate } from "./Text/GrungeText/GrungeTextTemplate";
+import { grungeTextDurationFrames, grungeTextSchema } from "./Text/GrungeText/grunge-text.schema";
 import { ChromaticLogoTextTemplate } from "./Text/ChromaticLogoText/ChromaticLogoTextTemplate";
 import { chromaticLogoTextSchema } from "./Text/ChromaticLogoText/chromatic-logo-text.schema";
 import { chromaticLogoTextDurationFrames } from "./Text/ChromaticLogoText/chromatic-logo-text.schema";
@@ -130,6 +134,8 @@ import {
   mergedTornNoteCaptionPatterns,
   mergedDistressedTitleCardPatterns,
   mergedSprayPaintTextPatterns,
+  mergedStampTextPatterns,
+  mergedGrungeTextPatterns,
   mergedChromaticLogoTextPatterns,
   mergedRubyWordplayTextPatterns,
   mergedPedigreeCreditTextPatterns,
@@ -412,6 +418,26 @@ export function TextFolder() {
           Template: SprayPaintTextTemplate,
           schema: sprayPaintTextSchema,
           durationInFrames: sprayPaintTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="StampText">
+        {renderPatternFamily({
+          patterns: mergedStampTextPatterns,
+          idPrefix: "StampText-",
+          Template: StampTextTemplate,
+          schema: stampTextSchema,
+          durationInFrames: stampTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="GrungeText">
+        {renderPatternFamily({
+          patterns: mergedGrungeTextPatterns,
+          idPrefix: "GrungeText-",
+          Template: GrungeTextTemplate,
+          schema: grungeTextSchema,
+          durationInFrames: grungeTextDurationFrames,
         })}
       </Folder>
 

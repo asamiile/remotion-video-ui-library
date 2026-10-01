@@ -125,6 +125,8 @@ function contentFrame(c) {
                     ? 36
                     : id.startsWith("PixelSortTransition-") ||
                         id.startsWith("DryBrushTransition-") ||
+                        id.startsWith("TornPaperTransition-") ||
+                        id.startsWith("GrungeTransition-") ||
                         id.startsWith("WaterRippleTransition-")
                       ? 60
                       : null;

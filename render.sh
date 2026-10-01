@@ -257,6 +257,8 @@ resolve_output_subdir() {
     TornNoteCaption-*) echo "Text/TornNoteCaption" ;;
     DistressedTitleCard-*) echo "Text/DistressedTitleCard" ;;
     SprayPaintText-*) echo "Text/SprayPaintText" ;;
+    StampText-*) echo "Text/StampText" ;;
+    GrungeText-*) echo "Text/GrungeText" ;;
     ChromaticLogoText-*) echo "Text/ChromaticLogoText" ;;
     RubyWordplayText-*) echo "Text/RubyWordplayText" ;;
     PedigreeCreditText-*) echo "Text/PedigreeCreditText" ;;
@@ -297,6 +299,8 @@ resolve_output_subdir() {
     CrtPowerOffTransition-*) echo "Effect/Transition/CrtPowerOffTransition" ;;
     SuminagashiTransition-*) echo "Effect/Transition/SuminagashiTransition" ;;
     DryBrushTransition-*) echo "Effect/Transition/DryBrushTransition" ;;
+    TornPaperTransition-*) echo "Effect/Transition/TornPaperTransition" ;;
+    GrungeTransition-*) echo "Effect/Transition/GrungeTransition" ;;
     WaterRippleTransition-*) echo "Effect/Transition/WaterRippleTransition" ;;
     GravityLensTransition|HyperplaneFlipTransition|SpatialSeamTransition) echo "Effect/Transition/SpatialWarp" ;;
     DataCellAuthorizationTransition|NeuralRouteTransition|CoordinateRemapTransition) echo "Effect/Transition/DataUI" ;;
@@ -376,6 +380,8 @@ resolve_output_subdir() {
     Background-SynthGrid-*) echo "Background/SynthGrid" ;;
     Background-HalftoneDots-*) echo "Background/HalftoneDots" ;;
     Background-HalftoneOverlay-*) echo "Background/HalftoneOverlay" ;;
+    Background-GrungeOverlay-*) echo "Background/GrungeOverlay" ;;
+    Background-GrungeSurface-*) echo "Background/GrungeSurface" ;;
     Background-Starfield-*) echo "Background/Starfield" ;;
     Background-Kaleidoscope-*) echo "Background/Kaleidoscope" ;;
     Background-VoronoiCells-*) echo "Background/VoronoiCells" ;;
@@ -417,11 +423,11 @@ output_path_for() {
 requires_webgl() {
   case "$1" in
     Background-VolumetricSmoke-*|VolumetricSmokeTransition-*|InkBleedTransition-*) return 0 ;;
-    SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) return 0 ;;
+    SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*|TornPaperTransition-*|GrungeTransition-*) return 0 ;;
     CodecCorruptTransition-*|PixelSortTransition-*|CrtPowerOffTransition-*) return 0 ;;
     Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
     Background-Gradient-*|Background-RippleRings-*|Background-SpeedLines-*|Background-SynthGrid-*) return 0 ;;
-    Background-HalftoneOverlay-*) return 0 ;;
+    Background-HalftoneOverlay-*|Background-GrungeOverlay-*|Background-GrungeSurface-*) return 0 ;;
     Background-HalftoneDots-*|Background-Starfield-*|Background-Kaleidoscope-*|Background-VoronoiCells-*) return 0 ;;
     Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     *) return 1 ;;
@@ -582,11 +588,11 @@ render_ink_bleed_transition() {
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
-# Render the ink-marbling / dry-brush / water-ripple shader transitions
+# Render the ink-marbling / dry-brush / water-ripple / torn-paper / grunge shader transitions
 render_material_transitions() {
   local comp_id
   while IFS= read -r comp_id || [ -n "$comp_id" ]; do
-    case "$comp_id" in SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
+    case "$comp_id" in SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*|TornPaperTransition-*|GrungeTransition-*) render_one "$comp_id" "$(output_path_for "$comp_id")" || return 1 ;; esac
   done < <(node "$SCRIPT_DIR/scripts/list-effect-composition-ids.cjs")
 }
 
@@ -1065,7 +1071,7 @@ main() {
       echo "  ZoomBlurTransition Render the zoom+motion-blur dissolve scene-transition bumper"
       echo "  InkBleedTransition Render the ink-bleeding cover-and-reveal transition (WebGL)"
       echo "  GlitchShaderTransition Render CodecCorrupt/PixelSort/CrtPowerOff shader transitions"
-      echo "  MaterialTransition Render Suminagashi/DryBrush/WaterRipple shader transitions"
+      echo "  MaterialTransition Render Suminagashi/DryBrush/TornPaper/Grunge/WaterRipple shader transitions"
       echo "  ShaderSciFi        Render WebGL versions of PlasmaVeil/QuantumDustTunnel transitions and PlasmaEdgeArc/VolumetricLightScan/EnergyContourLines overlays"
       echo "  VolumetricSmokeTransition Render the raymarched smoke cover-and-clear transition (WebGL)"
       echo "  SciFiOverlay       Render all transparent sci-fi video overlay effects"

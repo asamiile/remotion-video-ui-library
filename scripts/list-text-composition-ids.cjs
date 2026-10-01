@@ -89,6 +89,16 @@ const families = [
     exportName: "sprayPaintTextPatterns",
   },
   {
+    idPrefix: "StampText",
+    file: "src/Text/StampText/stamp-text.schema.ts",
+    exportName: "stampTextPatterns",
+  },
+  {
+    idPrefix: "GrungeText",
+    file: "src/Text/GrungeText/grunge-text.schema.ts",
+    exportName: "grungeTextPatterns",
+  },
+  {
     idPrefix: "ChromaticLogoText",
     file: "src/Text/ChromaticLogoText/chromatic-logo-text.schema.ts",
     exportName: "chromaticLogoTextPatterns",

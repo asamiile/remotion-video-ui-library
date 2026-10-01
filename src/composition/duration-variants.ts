@@ -4,6 +4,8 @@ import {volumetricSmokeTransitionAnimationDurationFrames} from "../Effects/Trans
 import {inkBleedTransitionAnimationDurationFrames} from "../Effects/Transition/InkBleedTransition/ink-bleed-transition.schema";
 import {suminagashiTransitionAnimationDurationFrames} from "../Effects/Transition/SuminagashiTransition/suminagashi-transition.schema";
 import {dryBrushTransitionAnimationDurationFrames} from "../Effects/Transition/DryBrushTransition/dry-brush-transition.schema";
+import {tornPaperTransitionAnimationDurationFrames} from "../Effects/Transition/TornPaperTransition/torn-paper-transition.schema";
+import {grungeTransitionAnimationDurationFrames} from "../Effects/Transition/GrungeTransition/grunge-transition.schema";
 import {waterRippleTransitionAnimationDurationFrames} from "../Effects/Transition/WaterRippleTransition/water-ripple-transition.schema";
 import {codecCorruptTransitionAnimationDurationFrames} from "../Effects/Transition/CodecCorruptTransition/codec-corrupt-transition.schema";
 import {pixelSortTransitionAnimationDurationFrames} from "../Effects/Transition/PixelSortTransition/pixel-sort-transition.schema";
@@ -38,6 +40,10 @@ export function getDurationVariantWindow(
       return { frames: suminagashiTransitionAnimationDurationFrames, sourceStart: 0 };
     case "dryBrush":
       return { frames: dryBrushTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "tornPaper":
+      return { frames: tornPaperTransitionAnimationDurationFrames, sourceStart: 0 };
+    case "grunge":
+      return { frames: grungeTransitionAnimationDurationFrames, sourceStart: 0 };
     case "waterRipple":
       return { frames: waterRippleTransitionAnimationDurationFrames, sourceStart: 0 };
     case "inkBleed":

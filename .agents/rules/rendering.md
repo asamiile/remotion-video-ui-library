@@ -18,7 +18,7 @@ Apply this rule when changing a Composition's duration or exporting MP4, MOV, or
 
 - The shortest version keeps only the transparent frames needed for the animation to start and end, and removes extra idle time. Share animation speed, colors, and trails with the 5-second version. For BloomFlash, also remove the margin before the flash.
 - When props change the animation duration, recalculate the shortest version's duration as well.
-- Currently implemented for: DistressTransition, ScanEchoTransition, the 18 SF transitions, HologramFragmentTransition, ZoomBlurTransition, VolumetricSmokeTransition, InkBleedTransition, CodecCorruptTransition, PixelSortTransition, CrtPowerOffTransition, SuminagashiTransition, DryBrushTransition, WaterRippleTransition, PlasmaVeilShaderTransition, QuantumDustTunnelShaderTransition, BloomFlashTransition, RackFocusBokehTransition. See `src/composition/duration-variants.json` for details. This list reflects implementation status and does not limit which new Compositions it applies to.
+- Currently implemented for: DistressTransition, ScanEchoTransition, the 18 SF transitions, HologramFragmentTransition, ZoomBlurTransition, VolumetricSmokeTransition, InkBleedTransition, CodecCorruptTransition, PixelSortTransition, CrtPowerOffTransition, SuminagashiTransition, DryBrushTransition, TornPaperTransition, GrungeTransition, WaterRippleTransition, PlasmaVeilShaderTransition, QuantumDustTunnelShaderTransition, BloomFlashTransition, RackFocusBokehTransition. See `src/composition/duration-variants.json` for details. This list reflects implementation status and does not limit which new Compositions it applies to.
 
 ## Export and output location
 
