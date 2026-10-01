@@ -1,5 +1,5 @@
 import React from "react";
-import { ShaderBasicsLayer } from "../../helpers/shader/basics/ShaderBasicsLayer";
+import { ShaderBackgroundLayer } from "../../helpers/shader/background/ShaderBackgroundLayer";
 import { tvStaticGlsl } from "./tv-static.glsl";
 import type { TvStaticSchemaType } from "./tv-static.schema";
 
@@ -12,7 +12,7 @@ export const TvStaticTemplate: React.FC<TvStaticSchemaType> = ({
   verticalRoll,
   ...basics
 }) => (
-  <ShaderBasicsLayer
+  <ShaderBackgroundLayer
     {...basics}
     fragmentShader={tvStaticGlsl}
     extraUniforms={{

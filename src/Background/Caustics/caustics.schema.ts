@@ -1,13 +1,13 @@
 import {
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as causticsSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as causticsSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const causticsDurationFrames = shaderBasicsDurationFrames;
+export const causticsDurationFrames = shaderBackgroundDurationFrames;
 
-export const causticsPatterns: Record<string, ShaderBasicsSchemaType> = {
+export const causticsPatterns: Record<string, ShaderBackgroundSchemaType> = {
   /** Sunlight dancing on a pool floor */
   pool: {
     backgroundColor: "#0a4a6b",

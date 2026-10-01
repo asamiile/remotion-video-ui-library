@@ -1,8 +1,8 @@
 import React from "react";
-import { ShaderBasicsLayer } from "../../helpers/shader/basics/ShaderBasicsLayer";
-import type { ShaderBasicsSchemaType } from "../../helpers/shader/basics/shader-basics.schema";
+import { ShaderBackgroundLayer } from "../../helpers/shader/background/ShaderBackgroundLayer";
+import type { ShaderBackgroundSchemaType } from "../../helpers/shader/background/shader-background.schema";
 import { synthGridGlsl } from "./synth-grid.glsl";
 
-export const SynthGridTemplate: React.FC<ShaderBasicsSchemaType> = (props) => (
-  <ShaderBasicsLayer {...props} fragmentShader={synthGridGlsl} />
+export const SynthGridTemplate: React.FC<ShaderBackgroundSchemaType> = (props) => (
+  <ShaderBackgroundLayer {...props} fragmentShader={synthGridGlsl} />
 );

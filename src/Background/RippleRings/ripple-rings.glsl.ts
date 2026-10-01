@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: length + sin + smoothstep.
@@ -6,7 +6,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * subtracting time makes them travel outward, smoothstep sharpens the crests.
  */
 export const rippleRingsGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 void main() {
   vec2 p = centered();

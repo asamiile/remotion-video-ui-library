@@ -1,8 +1,8 @@
 import React from "react";
-import { ShaderBasicsLayer } from "../../helpers/shader/basics/ShaderBasicsLayer";
-import type { ShaderBasicsSchemaType } from "../../helpers/shader/basics/shader-basics.schema";
+import { ShaderBackgroundLayer } from "../../helpers/shader/background/ShaderBackgroundLayer";
+import type { ShaderBackgroundSchemaType } from "../../helpers/shader/background/shader-background.schema";
 import { halftoneDotsGlsl } from "./halftone-dots.glsl";
 
-export const HalftoneDotsTemplate: React.FC<ShaderBasicsSchemaType> = (
+export const HalftoneDotsTemplate: React.FC<ShaderBackgroundSchemaType> = (
   props,
-) => <ShaderBasicsLayer {...props} fragmentShader={halftoneDotsGlsl} />;
+) => <ShaderBackgroundLayer {...props} fragmentShader={halftoneDotsGlsl} />;

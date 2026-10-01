@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: fract (repetition) + perspective division + fwidth.
@@ -7,7 +7,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * lines one pixel wide at every depth. A striped sun sits on the horizon.
  */
 export const synthGridGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 void main() {
   vec2 p = centered();

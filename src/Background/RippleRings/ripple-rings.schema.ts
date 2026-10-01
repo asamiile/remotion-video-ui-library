@@ -1,17 +1,16 @@
 import {
-  shaderBasicsBase,
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundBase,
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as rippleRingsSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as rippleRingsSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const rippleRingsDurationFrames = shaderBasicsDurationFrames;
+export const rippleRingsDurationFrames = shaderBackgroundDurationFrames;
 
-// The pattern key keeps the original "Background-ShaderBasics-RippleRings" ID.
-export const rippleRingsPatterns: Record<string, ShaderBasicsSchemaType> = {
-  rippleRings: {
-    ...shaderBasicsBase,
+export const rippleRingsPatterns: Record<string, ShaderBackgroundSchemaType> = {
+  classic: {
+    ...shaderBackgroundBase,
     backgroundColor: "transparent",
     colorA: "#5fd4ff",
     colorB: "#2a6cff",

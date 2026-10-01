@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: atan (polar angle) + hash.
@@ -6,7 +6,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * random line that is re-rolled every step, giving manga-style focus lines.
  */
 export const speedLinesGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 void main() {
   vec2 p = centered();

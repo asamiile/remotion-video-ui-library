@@ -11,7 +11,7 @@ import { hashGlsl } from "../glsl/noise";
  * All motion uses uPhase (0-1 over the loop), so animations built from
  * sin(TAU * uPhase * integer) or fract(... + uPhase * integer) loop seamlessly.
  */
-export const shaderBasicsCommonGlsl = /* glsl */ `
+export const shaderBackgroundCommonGlsl = /* glsl */ `
 ${hashGlsl}
 
 uniform vec3 uColorA;

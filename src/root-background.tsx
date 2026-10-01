@@ -74,7 +74,7 @@ import {causticsDurationFrames,causticsPatterns,causticsSchema} from "./Backgrou
 import {NebulaTemplate} from "./Background/Nebula/NebulaTemplate";
 import {nebulaDurationFrames,nebulaPatterns,nebulaSchema} from "./Background/Nebula/nebula.schema";
 import {GradientFlowTemplate} from "./Background/GradientFlow/GradientFlowTemplate";
-import {gradientFlowDurationFrames,gradientFlowPatterns,gradientFlowSchema} from "./Background/GradientFlow/gradient-flow.schema";
+import {gradientFlowDurationFrames,gradientFlowLinearPatterns,gradientFlowMarblePatterns,gradientFlowPatterns,gradientFlowSchema,gradientFlowScoopPatterns} from "./Background/GradientFlow/gradient-flow.schema";
 import {RippleRingsTemplate} from "./Background/RippleRings/RippleRingsTemplate";
 import {rippleRingsDurationFrames,rippleRingsPatterns,rippleRingsSchema} from "./Background/RippleRings/ripple-rings.schema";
 import {SpeedLinesTemplate} from "./Background/SpeedLines/SpeedLinesTemplate";
@@ -319,14 +319,19 @@ export function BackgroundFolder() {
       <Folder name="FireFlames">{renderPatternFamily({patterns:fireFlamesPatterns,idPrefix:"Background-FireFlames-",Template:FireFlamesTemplate,schema:fireFlamesSchema,durationInFrames:fireFlamesDurationFrames})}</Folder>
       <Folder name="Caustics">{renderPatternFamily({patterns:causticsPatterns,idPrefix:"Background-Caustics-",Template:CausticsTemplate,schema:causticsSchema,durationInFrames:causticsDurationFrames})}</Folder>
       <Folder name="Nebula">{renderPatternFamily({patterns:nebulaPatterns,idPrefix:"Background-Nebula-",Template:NebulaTemplate,schema:nebulaSchema,durationInFrames:nebulaDurationFrames})}</Folder>
-      <Folder name="GradientFlow">{renderPatternFamily({patterns:gradientFlowPatterns,idPrefix:"Background-ShaderBasics-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
-      <Folder name="RippleRings">{renderPatternFamily({patterns:rippleRingsPatterns,idPrefix:"Background-ShaderBasics-",Template:RippleRingsTemplate,schema:rippleRingsSchema,durationInFrames:rippleRingsDurationFrames})}</Folder>
-      <Folder name="SpeedLines">{renderPatternFamily({patterns:speedLinesPatterns,idPrefix:"Background-ShaderBasics-",Template:SpeedLinesTemplate,schema:speedLinesSchema,durationInFrames:speedLinesDurationFrames})}</Folder>
-      <Folder name="SynthGrid">{renderPatternFamily({patterns:synthGridPatterns,idPrefix:"Background-ShaderBasics-",Template:SynthGridTemplate,schema:synthGridSchema,durationInFrames:synthGridDurationFrames})}</Folder>
-      <Folder name="HalftoneDots">{renderPatternFamily({patterns:halftoneDotsPatterns,idPrefix:"Background-ShaderBasics-",Template:HalftoneDotsTemplate,schema:halftoneDotsSchema,durationInFrames:halftoneDotsDurationFrames})}</Folder>
-      <Folder name="Starfield">{renderPatternFamily({patterns:starfieldPatterns,idPrefix:"Background-ShaderBasics-",Template:StarfieldTemplate,schema:starfieldSchema,durationInFrames:starfieldDurationFrames})}</Folder>
-      <Folder name="Kaleidoscope">{renderPatternFamily({patterns:kaleidoscopePatterns,idPrefix:"Background-ShaderBasics-",Template:KaleidoscopeTemplate,schema:kaleidoscopeSchema,durationInFrames:kaleidoscopeDurationFrames})}</Folder>
-      <Folder name="VoronoiCells">{renderPatternFamily({patterns:voronoiCellsPatterns,idPrefix:"Background-ShaderBasics-",Template:VoronoiCellsTemplate,schema:voronoiCellsSchema,durationInFrames:voronoiCellsDurationFrames})}</Folder>
+      <Folder name="GradientFlow">
+        <Folder name="Linear">{renderPatternFamily({patterns:gradientFlowLinearPatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
+        <Folder name="Marble">{renderPatternFamily({patterns:gradientFlowMarblePatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
+        <Folder name="Scoop">{renderPatternFamily({patterns:gradientFlowScoopPatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
+        {renderPatternFamily({patterns:gradientFlowPatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}
+      </Folder>
+      <Folder name="RippleRings">{renderPatternFamily({patterns:rippleRingsPatterns,idPrefix:"Background-RippleRings-",Template:RippleRingsTemplate,schema:rippleRingsSchema,durationInFrames:rippleRingsDurationFrames})}</Folder>
+      <Folder name="SpeedLines">{renderPatternFamily({patterns:speedLinesPatterns,idPrefix:"Background-SpeedLines-",Template:SpeedLinesTemplate,schema:speedLinesSchema,durationInFrames:speedLinesDurationFrames})}</Folder>
+      <Folder name="SynthGrid">{renderPatternFamily({patterns:synthGridPatterns,idPrefix:"Background-SynthGrid-",Template:SynthGridTemplate,schema:synthGridSchema,durationInFrames:synthGridDurationFrames})}</Folder>
+      <Folder name="HalftoneDots">{renderPatternFamily({patterns:halftoneDotsPatterns,idPrefix:"Background-HalftoneDots-",Template:HalftoneDotsTemplate,schema:halftoneDotsSchema,durationInFrames:halftoneDotsDurationFrames})}</Folder>
+      <Folder name="Starfield">{renderPatternFamily({patterns:starfieldPatterns,idPrefix:"Background-Starfield-",Template:StarfieldTemplate,schema:starfieldSchema,durationInFrames:starfieldDurationFrames})}</Folder>
+      <Folder name="Kaleidoscope">{renderPatternFamily({patterns:kaleidoscopePatterns,idPrefix:"Background-Kaleidoscope-",Template:KaleidoscopeTemplate,schema:kaleidoscopeSchema,durationInFrames:kaleidoscopeDurationFrames})}</Folder>
+      <Folder name="VoronoiCells">{renderPatternFamily({patterns:voronoiCellsPatterns,idPrefix:"Background-VoronoiCells-",Template:VoronoiCellsTemplate,schema:voronoiCellsSchema,durationInFrames:voronoiCellsDurationFrames})}</Folder>
       <Folder name="DigitalFogShader">{renderPatternFamily({patterns:digitalFogShaderPatterns,idPrefix:"Background-DigitalFogShader-",Template:DigitalFogShaderTemplate,schema:digitalFogShaderSchema,durationInFrames:digitalFogShaderDurationFrames})}</Folder>
       <Folder name="VolumetricSmoke">{renderPatternFamily({patterns:volumetricSmokePatterns,idPrefix:"Background-VolumetricSmoke-",Template:VolumetricSmokeTemplate,schema:volumetricSmokeSchema,durationInFrames:volumetricSmokeDurationFrames})}</Folder>
 

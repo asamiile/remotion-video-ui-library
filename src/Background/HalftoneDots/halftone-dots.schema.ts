@@ -1,17 +1,16 @@
 import {
-  shaderBasicsBase,
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundBase,
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as halftoneDotsSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as halftoneDotsSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const halftoneDotsDurationFrames = shaderBasicsDurationFrames;
+export const halftoneDotsDurationFrames = shaderBackgroundDurationFrames;
 
-// The pattern key keeps the original "Background-ShaderBasics-HalftoneDots" ID.
-export const halftoneDotsPatterns: Record<string, ShaderBasicsSchemaType> = {
-  halftoneDots: {
-    ...shaderBasicsBase,
+export const halftoneDotsPatterns: Record<string, ShaderBackgroundSchemaType> = {
+  classic: {
+    ...shaderBackgroundBase,
     backgroundColor: "transparent",
     colorA: "#ff4f6d",
     colorB: "#ffd166",

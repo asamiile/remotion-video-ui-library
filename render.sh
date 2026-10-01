@@ -359,14 +359,17 @@ resolve_output_subdir() {
     Background-FireFlames-*) echo "Background/FireFlames" ;;
     Background-Caustics-*) echo "Background/Caustics" ;;
     Background-Nebula-*) echo "Background/Nebula" ;;
-    Background-ShaderBasics-GradientFlow) echo "Background/GradientFlow" ;;
-    Background-ShaderBasics-RippleRings) echo "Background/RippleRings" ;;
-    Background-ShaderBasics-SpeedLines) echo "Background/SpeedLines" ;;
-    Background-ShaderBasics-SynthGrid) echo "Background/SynthGrid" ;;
-    Background-ShaderBasics-HalftoneDots) echo "Background/HalftoneDots" ;;
-    Background-ShaderBasics-Starfield) echo "Background/Starfield" ;;
-    Background-ShaderBasics-Kaleidoscope) echo "Background/Kaleidoscope" ;;
-    Background-ShaderBasics-VoronoiCells) echo "Background/VoronoiCells" ;;
+    Background-GradientFlow-*Linear) echo "Background/GradientFlow/Linear" ;;
+    Background-GradientFlow-*Marble) echo "Background/GradientFlow/Marble" ;;
+    Background-GradientFlow-*Scoop) echo "Background/GradientFlow/Scoop" ;;
+    Background-GradientFlow-*) echo "Background/GradientFlow" ;;
+    Background-RippleRings-*) echo "Background/RippleRings" ;;
+    Background-SpeedLines-*) echo "Background/SpeedLines" ;;
+    Background-SynthGrid-*) echo "Background/SynthGrid" ;;
+    Background-HalftoneDots-*) echo "Background/HalftoneDots" ;;
+    Background-Starfield-*) echo "Background/Starfield" ;;
+    Background-Kaleidoscope-*) echo "Background/Kaleidoscope" ;;
+    Background-VoronoiCells-*) echo "Background/VoronoiCells" ;;
     AngstAnimation*) echo "Background/AngstAnimation" ;;
     Background-*) echo "Background" ;;
     Intro) echo "Intro" ;;
@@ -408,7 +411,9 @@ requires_webgl() {
     SuminagashiTransition-*|DryBrushTransition-*|WaterRippleTransition-*) return 0 ;;
     CodecCorruptTransition-*|PixelSortTransition-*|CrtPowerOffTransition-*) return 0 ;;
     Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
-    Background-ShaderBasics-*|Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
+    Background-GradientFlow-*|Background-RippleRings-*|Background-SpeedLines-*|Background-SynthGrid-*) return 0 ;;
+    Background-HalftoneDots-*|Background-Starfield-*|Background-Kaleidoscope-*|Background-VoronoiCells-*) return 0 ;;
+    Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     *) return 1 ;;
   esac
 }

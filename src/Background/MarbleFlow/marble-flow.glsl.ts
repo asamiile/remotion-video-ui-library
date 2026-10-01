@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 import {
   loopOffsetGlsl,
   valueNoise3dGlsl,
@@ -20,7 +20,7 @@ import {
  * glows through thin areas, and the vein lines are softened.
  */
 export const marbleFlowGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 ${valueNoise3dGlsl}
 ${loopOffsetGlsl}
 

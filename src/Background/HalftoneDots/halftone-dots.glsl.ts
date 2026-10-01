@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: grid cells (floor / fract) + circle.
@@ -6,7 +6,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * follows a wave sweeping across the frame, like print halftone.
  */
 export const halftoneDotsGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 void main() {
   vec2 p = centered();

@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: per-pixel hash noise re-rolled every step.
@@ -14,7 +14,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * - uVerticalRoll: picture rolling upward with a dark sync bar
  */
 export const tvStaticGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 uniform float uCurvature;
 uniform float uPhosphorMask;

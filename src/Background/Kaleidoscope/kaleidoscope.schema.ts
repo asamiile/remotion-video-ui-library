@@ -1,17 +1,16 @@
 import {
-  shaderBasicsBase,
-  shaderBasicsDurationFrames,
-  type ShaderBasicsSchemaType,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundBase,
+  shaderBackgroundDurationFrames,
+  type ShaderBackgroundSchemaType,
+} from "../../helpers/shader/background/shader-background.schema";
 
-export { shaderBasicsSchema as kaleidoscopeSchema } from "../../helpers/shader/basics/shader-basics.schema";
+export { shaderBackgroundSchema as kaleidoscopeSchema } from "../../helpers/shader/background/shader-background.schema";
 
-export const kaleidoscopeDurationFrames = shaderBasicsDurationFrames;
+export const kaleidoscopeDurationFrames = shaderBackgroundDurationFrames;
 
-// The pattern key keeps the original "Background-ShaderBasics-Kaleidoscope" ID.
-export const kaleidoscopePatterns: Record<string, ShaderBasicsSchemaType> = {
-  kaleidoscope: {
-    ...shaderBasicsBase,
+export const kaleidoscopePatterns: Record<string, ShaderBackgroundSchemaType> = {
+  classic: {
+    ...shaderBackgroundBase,
     backgroundColor: "#07060f",
     colorA: "#00d1b2",
     colorB: "#3a0ca3",

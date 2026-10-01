@@ -1,13 +1,13 @@
 import { z } from "zod";
 import {
-  shaderBasicsDurationFrames,
-  shaderBasicsSchema,
-} from "../../helpers/shader/basics/shader-basics.schema";
+  shaderBackgroundDurationFrames,
+  shaderBackgroundSchema,
+} from "../../helpers/shader/background/shader-background.schema";
 
 export const MARBLE_FLOW_MODES = ["drift", "swirl", "wave", "pulse"] as const;
 
 /** Shared basic props plus marble motion, translucency and water ripples. */
-export const marbleFlowSchema = shaderBasicsSchema.extend({
+export const marbleFlowSchema = shaderBackgroundSchema.extend({
   /**
    * How the marble sways: drift = slow churning in place, swirl = the whole
    * field turns with a twist near the center, wave = silky side-to-side
@@ -34,7 +34,7 @@ export const marbleFlowSchema = shaderBasicsSchema.extend({
 
 export type MarbleFlowSchemaType = z.infer<typeof marbleFlowSchema>;
 
-export const marbleFlowDurationFrames = shaderBasicsDurationFrames;
+export const marbleFlowDurationFrames = shaderBackgroundDurationFrames;
 
 /** Churning drift with a translucent finish and no ripples. */
 const plainMarble = {

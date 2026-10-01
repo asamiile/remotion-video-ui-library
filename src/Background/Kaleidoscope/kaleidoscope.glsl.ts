@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 
 /**
  * Technique: polar coordinates + angle folding (mod / abs).
@@ -6,7 +6,7 @@ import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
  * Rotating by exactly one wedge per loop looks identical, so it loops.
  */
 export const kaleidoscopeGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 
 void main() {
   vec2 p = centered();

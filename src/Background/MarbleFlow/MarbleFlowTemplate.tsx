@@ -1,5 +1,5 @@
 import React from "react";
-import { ShaderBasicsLayer } from "../../helpers/shader/basics/ShaderBasicsLayer";
+import { ShaderBackgroundLayer } from "../../helpers/shader/background/ShaderBackgroundLayer";
 import { marbleFlowGlsl } from "./marble-flow.glsl";
 import { MARBLE_FLOW_MODES, type MarbleFlowSchemaType } from "./marble-flow.schema";
 
@@ -13,7 +13,7 @@ export const MarbleFlowTemplate: React.FC<MarbleFlowSchemaType> = ({
   rippleSpeed,
   ...basics
 }) => (
-  <ShaderBasicsLayer
+  <ShaderBackgroundLayer
     {...basics}
     fragmentShader={marbleFlowGlsl}
     extraUniforms={{

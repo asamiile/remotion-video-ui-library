@@ -12,6 +12,7 @@ This file is the agent-neutral source of truth for GitHub Copilot, OpenAI Codex,
 	- [.agents/rules/config-local-layout.md](.agents/rules/config-local-layout.md) - how `config/local` is wired and what belongs in `*.example.json` vs `*.local.json`
 	- [.agents/rules/composition-text-local.md](.agents/rules/composition-text-local.md) - read-only policy for personal `composition-text.local.json` and the few exceptions
 	- [.agents/rules/agent-tool-usage.md](.agents/rules/agent-tool-usage.md) - token-efficient Read/Edit usage guidance for AI agents
+	- [.agents/rules/gradient-design.md](.agents/rules/gradient-design.md) - modern gradient look (Gradient): the approved palette list, styles, color roles, what to avoid, how to add or reuse
 	- [.loop/policies/remotion-composition.md](.loop/policies/remotion-composition.md) - autonomous-loop boundaries and human approval gates
 
 ## Language

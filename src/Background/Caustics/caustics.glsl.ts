@@ -1,4 +1,4 @@
-import { shaderBasicsCommonGlsl } from "../../helpers/shader/basics/common";
+import { shaderBackgroundCommonGlsl } from "../../helpers/shader/background/common";
 import {
   loopOffsetGlsl,
   valueNoise3dGlsl,
@@ -11,7 +11,7 @@ import {
  * surface onto a pool floor.
  */
 export const causticsGlsl = /* glsl */ `
-${shaderBasicsCommonGlsl}
+${shaderBackgroundCommonGlsl}
 ${valueNoise3dGlsl}
 ${loopOffsetGlsl}
 
