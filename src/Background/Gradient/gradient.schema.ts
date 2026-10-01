@@ -6,18 +6,18 @@ import {
   shaderBackgroundSchema,
 } from "../../helpers/shader/background/shader-background.schema";
 
-export const GRADIENT_FLOW_STYLES = ["waves", "mesh", "linear", "marble", "scoop"] as const;
+export const GRADIENT_STYLES = ["waves", "mesh", "linear", "marble", "scoop"] as const;
 
 /** Shared basic props plus gradient style, contrast, film grain and vignette. */
-export const gradientFlowSchema = shaderBackgroundSchema.extend({
+export const gradientSchema = shaderBackgroundSchema.extend({
   /**
    * waves = two sine waves bending a three-color gradient, mesh = soft color
    * blobs drifting over colorA (mesh-gradient wallpaper), linear = soft,
    * motion-blurred light streaks over a linear gradient, marble = soft
    * marbled swirls (domain warping) without veins, scoop = ice cream: base
-   * with two-tone areas (colorC), sauce ribbons (colorB) and specks
+   * with two-tone areas (colorC), sauce ribbons (colorB, ribbon2Color)
    */
-  style: z.enum(GRADIENT_FLOW_STYLES),
+  style: z.enum(GRADIENT_STYLES),
   /** Crisper blobs, more colorA showing through and an S-curve; 0 = soft */
   contrast: z.number().min(0).max(1),
   /** Animated film grain; 0 = clean */
@@ -26,15 +26,15 @@ export const gradientFlowSchema = shaderBackgroundSchema.extend({
   vignette: z.number().min(0).max(2),
   /** scoop only: sauce-ribbon width; 0 = no ribbon */
   ribbon: z.number().min(0).max(2),
-  /** scoop only: amount of chips / sprinkles; 0 = none */
-  specks: z.number().min(0).max(1),
-  /** scoop only: chip / sprinkle color */
-  speckColor: zColor(),
+  /** scoop only: second, thinner sauce ribbon on another swirl; 0 = none */
+  ribbon2: z.number().min(0).max(2),
+  /** scoop only: second ribbon color */
+  ribbon2Color: zColor(),
 });
 
-export type GradientFlowSchemaType = z.infer<typeof gradientFlowSchema>;
+export type GradientSchemaType = z.infer<typeof gradientSchema>;
 
-export const gradientFlowDurationFrames = shaderBackgroundDurationFrames;
+export const gradientDurationFrames = shaderBackgroundDurationFrames;
 
 const base = {
   ...shaderBackgroundBase,
@@ -44,240 +44,138 @@ const base = {
   grain: 0,
   vignette: 1,
   ribbon: 0,
-  specks: 0,
-  speckColor: "#3a2a25",
+  ribbon2: 0,
+  ribbon2Color: "#3a2a25",
 } as const;
 
-export const gradientFlowPatterns: Record<string, GradientFlowSchemaType> = {
-  /** Sunset: dusk lavender waves warming into peach and soft gold */
-  classic: {
-    ...base,
-    colorA: "#8f86e8",
-    colorB: "#ffab9c",
-    colorC: "#ffd98a",
-    contrast: 0.2,
-    grain: 0.15,
-    vignette: 0,
-  },
+type GradientPalette = { deep: string; light: string; accent: string };
 
-  // --- Mesh gradients -----------------------------------------------------
+/**
+ * Approved gradient palettes (see .agents/design/gradient.md). Every
+ * palette is available in every style below; add new palettes here first.
+ */
+export const gradientPalettes = {
+  aqua: { deep: "#1aa9c4", light: "#7fe6d0", accent: "#d6f25a" },
+  periwinkle: { deep: "#6d7cff", light: "#b7a6ff", accent: "#e8e4ff" },
+  mint: { deep: "#86d9ee", light: "#cdf2ec", accent: "#9fe04c" },
+  sky: { deep: "#0a64d8", light: "#6cb8ff", accent: "#d4ecff" },
+  blush: { deep: "#ff8fb1", light: "#ffd3de", accent: "#ffe56b" },
+  sunset: { deep: "#8f86e8", light: "#ffab9c", accent: "#ffd98a" },
+  peach: { deep: "#c9b6f2", light: "#f6eee6", accent: "#ffb38a" },
+  sorbet: { deep: "#ff7aa2", light: "#ffd6e0", accent: "#ffcf5c" },
+} as const satisfies Record<string, GradientPalette>;
 
-  /** Peach, lilac and cream blobs on warm ivory, lightly grained */
-  peachMesh: {
-    ...base,
-    style: "mesh",
-    colorA: "#f6eee6",
-    colorB: "#c9b6f2",
-    colorC: "#ffb38a",
-    intensity: 1,
-    grain: 0.35,
-    vignette: 0,
-    randomSeed: 12,
-  },
-  /** Pink, tangerine and butter-yellow sorbet */
-  sorbetMesh: {
-    ...base,
-    style: "mesh",
-    colorA: "#ffd6e0",
-    colorB: "#ff7aa2",
-    colorC: "#ffcf5c",
-    scale: 1.2,
-    intensity: 1,
-    grain: 0.25,
-    vignette: 0,
-    randomSeed: 58,
-  },
+const P = gradientPalettes;
 
-  // --- Mesh in the Linear palettes ---------------------------------------
+/** mesh: the light tone is the base, deep and accent tones are the blobs. */
+const meshColors = (p: GradientPalette) => ({
+  colorA: p.light,
+  colorB: p.deep,
+  colorC: p.accent,
+});
 
-  /** Mint base with deep teal and lime blobs (Aqua palette) */
-  aquaMesh: {
-    ...base,
-    style: "mesh",
-    colorA: "#7fe6d0",
-    colorB: "#1aa9c4",
-    colorC: "#d6f25a",
-    intensity: 1.1,
-    contrast: 0.4,
-    grain: 0.15,
-    vignette: 0,
-    randomSeed: 6,
-  },
-  /** Lilac base with periwinkle and pale lavender blobs */
-  periwinkleMesh: {
-    ...base,
-    style: "mesh",
-    colorA: "#b7a6ff",
-    colorB: "#6d7cff",
-    colorC: "#e8e4ff",
-    intensity: 1.1,
-    contrast: 0.4,
-    grain: 0.15,
-    vignette: 0,
-    randomSeed: 27,
-  },
-  /** Pale aqua base with sky and soft green blobs */
+/** waves, linear, marble: a deep-to-light ramp plus the accent. */
+const rampColors = (p: GradientPalette) => ({
+  colorA: p.deep,
+  colorB: p.light,
+  colorC: p.accent,
+});
+
+const wavesBase = { ...base, contrast: 0.2, grain: 0.15, vignette: 0 } as const;
+const meshBase = {
+  ...base,
+  style: "mesh",
+  intensity: 1.1,
+  contrast: 0.4,
+  grain: 0.15,
+  vignette: 0,
+} as const;
+const linearBase = { ...base, style: "linear", grain: 0.12, vignette: 0 } as const;
+const marbleBase = {
+  ...base,
+  style: "marble",
+  contrast: 0.2,
+  grain: 0.12,
+  vignette: 0,
+} as const;
+
+// Each style has its own Studio subfolder; keys must end in the style name
+// (render.sh routes Background-Gradient-*<Style> to that folder).
+
+/** Two slow sine waves bending the palette ramp. */
+export const gradientWavesPatterns: Record<string, GradientSchemaType> = {
+  aquaWaves: { ...wavesBase, ...rampColors(P.aqua), randomSeed: 6 },
+  periwinkleWaves: { ...wavesBase, ...rampColors(P.periwinkle), randomSeed: 27 },
+  mintWaves: { ...wavesBase, ...rampColors(P.mint), randomSeed: 48 },
+  skyWaves: { ...wavesBase, ...rampColors(P.sky), randomSeed: 72 },
+  blushWaves: { ...wavesBase, ...rampColors(P.blush), randomSeed: 15 },
+  sunsetWaves: { ...wavesBase, ...rampColors(P.sunset) },
+  peachWaves: { ...wavesBase, ...rampColors(P.peach), randomSeed: 12 },
+  sorbetWaves: { ...wavesBase, ...rampColors(P.sorbet), randomSeed: 58 },
+};
+
+/** Soft color blobs drifting over the light tone (mesh-gradient wallpaper). */
+export const gradientMeshPatterns: Record<string, GradientSchemaType> = {
+  aquaMesh: { ...meshBase, ...meshColors(P.aqua), randomSeed: 6 },
+  periwinkleMesh: { ...meshBase, ...meshColors(P.periwinkle), randomSeed: 27 },
   mintMesh: {
-    ...base,
-    style: "mesh",
-    colorA: "#cdf2ec",
-    colorB: "#86d9ee",
-    colorC: "#9fe04c",
+    ...meshBase,
+    ...meshColors(P.mint),
     scale: 1.1,
     intensity: 1,
     contrast: 0.3,
-    grain: 0.15,
-    vignette: 0,
     randomSeed: 48,
   },
-  /** Bright sky base with deep azure and ice-blue blobs */
-  skyMesh: {
-    ...base,
-    style: "mesh",
-    colorA: "#6cb8ff",
-    colorB: "#0a64d8",
-    colorC: "#d4ecff",
-    intensity: 1.1,
-    contrast: 0.45,
-    grain: 0.15,
-    vignette: 0,
-    randomSeed: 72,
+  skyMesh: { ...meshBase, ...meshColors(P.sky), contrast: 0.45, randomSeed: 72 },
+  blushMesh: { ...meshBase, ...meshColors(P.blush), randomSeed: 15 },
+  sunsetMesh: { ...meshBase, ...meshColors(P.sunset), randomSeed: 33 },
+  peachMesh: {
+    ...meshBase,
+    ...meshColors(P.peach),
+    intensity: 1,
+    contrast: 0,
+    grain: 0.35,
+    randomSeed: 12,
+  },
+  sorbetMesh: {
+    ...meshBase,
+    ...meshColors(P.sorbet),
+    scale: 1.2,
+    intensity: 1,
+    contrast: 0,
+    grain: 0.25,
+    randomSeed: 58,
   },
 };
 
-/** Linear streak patterns; registered in their own Studio subfolder. */
-export const gradientFlowLinearPatterns: Record<string, GradientFlowSchemaType> = {
-  /** Teal to sky blue with a lime streak */
-  aquaLinear: {
-    ...base,
-    style: "linear",
-    colorA: "#1aa9c4",
-    colorB: "#7fe6d0",
-    colorC: "#d6f25a",
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 6,
-  },
-  /** Periwinkle and lilac with a pale lavender glow */
-  periwinkleLinear: {
-    ...base,
-    style: "linear",
-    colorA: "#6d7cff",
-    colorB: "#b7a6ff",
-    colorC: "#e8e4ff",
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 27,
-  },
-  /** Pale aqua with a soft green streak */
-  mintLinear: {
-    ...base,
-    style: "linear",
-    colorA: "#86d9ee",
-    colorB: "#cdf2ec",
-    colorC: "#9fe04c",
-    intensity: 0.85,
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 48,
-  },
-  /** Rose pink sweeping into butter yellow */
-  blushLinear: {
-    ...base,
-    style: "linear",
-    colorA: "#ff8fb1",
-    colorB: "#ffd3de",
-    colorC: "#ffe56b",
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 15,
-  },
-  /** Deep azure to bright sky */
-  skyLinear: {
-    ...base,
-    style: "linear",
-    colorA: "#0a64d8",
-    colorB: "#6cb8ff",
-    colorC: "#d4ecff",
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 72,
-  },
+/** Soft, motion-blurred light streaks over the palette ramp. */
+export const gradientLinearPatterns: Record<string, GradientSchemaType> = {
+  aquaLinear: { ...linearBase, ...rampColors(P.aqua), randomSeed: 6 },
+  periwinkleLinear: { ...linearBase, ...rampColors(P.periwinkle), randomSeed: 27 },
+  mintLinear: { ...linearBase, ...rampColors(P.mint), intensity: 0.85, randomSeed: 48 },
+  skyLinear: { ...linearBase, ...rampColors(P.sky), randomSeed: 72 },
+  blushLinear: { ...linearBase, ...rampColors(P.blush), randomSeed: 15 },
+  sunsetLinear: { ...linearBase, ...rampColors(P.sunset), randomSeed: 33 },
+  peachLinear: { ...linearBase, ...rampColors(P.peach), randomSeed: 12 },
+  sorbetLinear: { ...linearBase, ...rampColors(P.sorbet), randomSeed: 58 },
 };
 
-/** Marble swirl patterns in the approved palettes; own Studio subfolder. */
-export const gradientFlowMarblePatterns: Record<string, GradientFlowSchemaType> = {
-  /** Deep teal and mint folded with lime */
-  aquaMarble: {
-    ...base,
-    style: "marble",
-    colorA: "#1aa9c4",
-    colorB: "#7fe6d0",
-    colorC: "#d6f25a",
-    contrast: 0.2,
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 6,
-  },
-  /** Periwinkle and lilac folded with pale lavender */
-  periwinkleMarble: {
-    ...base,
-    style: "marble",
-    colorA: "#6d7cff",
-    colorB: "#b7a6ff",
-    colorC: "#e8e4ff",
-    contrast: 0.2,
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 27,
-  },
-  /** Pale aqua folded with soft green */
+/** Soft paint marbling (domain warping) without veins. */
+export const gradientMarblePatterns: Record<string, GradientSchemaType> = {
+  aquaMarble: { ...marbleBase, ...rampColors(P.aqua), randomSeed: 6 },
+  periwinkleMarble: { ...marbleBase, ...rampColors(P.periwinkle), randomSeed: 27 },
   mintMarble: {
-    ...base,
-    style: "marble",
-    colorA: "#86d9ee",
-    colorB: "#cdf2ec",
-    colorC: "#9fe04c",
+    ...marbleBase,
+    ...rampColors(P.mint),
     intensity: 0.85,
-    grain: 0.12,
-    vignette: 0,
+    contrast: 0,
     randomSeed: 48,
   },
-  /** Rose pink folded with butter yellow */
-  blushMarble: {
-    ...base,
-    style: "marble",
-    colorA: "#ff8fb1",
-    colorB: "#ffd3de",
-    colorC: "#ffe56b",
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 15,
-  },
-  /** Deep azure and sky folded with ice blue */
-  skyMarble: {
-    ...base,
-    style: "marble",
-    colorA: "#0a64d8",
-    colorB: "#6cb8ff",
-    colorC: "#d4ecff",
-    contrast: 0.2,
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 72,
-  },
-  /** Dusk lavender and peach folded with soft gold (Sunset palette) */
-  sunsetMarble: {
-    ...base,
-    style: "marble",
-    colorA: "#8f86e8",
-    colorB: "#ffab9c",
-    colorC: "#ffd98a",
-    contrast: 0.2,
-    grain: 0.12,
-    vignette: 0,
-    randomSeed: 33,
-  },
+  skyMarble: { ...marbleBase, ...rampColors(P.sky), randomSeed: 72 },
+  blushMarble: { ...marbleBase, ...rampColors(P.blush), contrast: 0, randomSeed: 15 },
+  sunsetMarble: { ...marbleBase, ...rampColors(P.sunset), randomSeed: 33 },
+  peachMarble: { ...marbleBase, ...rampColors(P.peach), randomSeed: 12 },
+  sorbetMarble: { ...marbleBase, ...rampColors(P.sorbet), randomSeed: 58 },
 };
 
 const scoopBase = {
@@ -290,25 +188,23 @@ const scoopBase = {
 } as const;
 
 /** Ice-cream scoop patterns; own Studio subfolder. */
-export const gradientFlowScoopPatterns: Record<string, GradientFlowSchemaType> = {
-  /** Mint green with chocolate chips */
+export const gradientScoopPatterns: Record<string, GradientSchemaType> = {
+  /** Mint green with a chocolate ribbon */
   mintChipScoop: {
     ...scoopBase,
     colorA: "#a9e5cc",
-    colorB: "#8fd8bb",
+    colorB: "#3a2a25",
     colorC: "#bdeed8",
-    specks: 0.7,
-    speckColor: "#3a2a25",
+    ribbon: 0.8,
     randomSeed: 4,
   },
-  /** Vanilla with dark cookie chips */
+  /** Vanilla with a dark cookie ribbon */
   cookiesCreamScoop: {
     ...scoopBase,
     colorA: "#f4eddf",
-    colorB: "#e8dfcd",
+    colorB: "#2f2825",
     colorC: "#ece4d3",
-    specks: 0.8,
-    speckColor: "#2b2522",
+    ribbon: 0.9,
     randomSeed: 32,
   },
   /** Cream with a soft strawberry-pink ribbon */
@@ -356,37 +252,37 @@ export const gradientFlowScoopPatterns: Record<string, GradientFlowSchemaType> =
     ribbon: 0.7,
     randomSeed: 15,
   },
-  /** Lavender with a cocoa ribbon and candy chips */
+  /** Lavender with cocoa and candy-yellow ribbons */
   lavenderCocoaScoop: {
     ...scoopBase,
     colorA: "#a58bd8",
     colorB: "#3f2f2e",
     colorC: "#9479cc",
     ribbon: 1.4,
-    specks: 0.35,
-    speckColor: "#f6c84a",
+    ribbon2: 0.5,
+    ribbon2Color: "#f6c84a",
     randomSeed: 61,
   },
-  /** Pastel pink with green sprinkles */
+  /** Pastel pink with cream and green ribbons */
   bubblegumScoop: {
     ...scoopBase,
     colorA: "#f8c9d4",
     colorB: "#fbe3b5",
     colorC: "#f4b2c2",
     ribbon: 0.6,
-    specks: 0.4,
-    speckColor: "#45a85c",
+    ribbon2: 0.5,
+    ribbon2Color: "#45a85c",
     randomSeed: 40,
   },
-  /** Sky blue with a cocoa ribbon and berry chips */
+  /** Sky blue with cocoa and berry ribbons */
   sodaFloatScoop: {
     ...scoopBase,
     colorA: "#6cc0ea",
     colorB: "#3d2c29",
     colorC: "#82cbef",
     ribbon: 1.2,
-    specks: 0.3,
-    speckColor: "#d9536a",
+    ribbon2: 0.5,
+    ribbon2Color: "#d9536a",
     randomSeed: 78,
   },
 };

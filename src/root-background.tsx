@@ -73,8 +73,10 @@ import {CausticsTemplate} from "./Background/Caustics/CausticsTemplate";
 import {causticsDurationFrames,causticsPatterns,causticsSchema} from "./Background/Caustics/caustics.schema";
 import {NebulaTemplate} from "./Background/Nebula/NebulaTemplate";
 import {nebulaDurationFrames,nebulaPatterns,nebulaSchema} from "./Background/Nebula/nebula.schema";
-import {GradientFlowTemplate} from "./Background/GradientFlow/GradientFlowTemplate";
-import {gradientFlowDurationFrames,gradientFlowLinearPatterns,gradientFlowMarblePatterns,gradientFlowPatterns,gradientFlowSchema,gradientFlowScoopPatterns} from "./Background/GradientFlow/gradient-flow.schema";
+import {GradientTemplate} from "./Background/Gradient/GradientTemplate";
+import {GeometricTemplate} from "./Background/Geometric/GeometricTemplate";
+import {geometricDurationFrames,geometricFloatPatterns,geometricFramePatterns,geometricGridPatterns,geometricMemphisPatterns,geometricOrbitPatterns,geometricSchema,geometricStripePatterns} from "./Background/Geometric/geometric.schema";
+import {gradientDurationFrames,gradientLinearPatterns,gradientMarblePatterns,gradientMeshPatterns,gradientSchema,gradientScoopPatterns,gradientWavesPatterns} from "./Background/Gradient/gradient.schema";
 import {RippleRingsTemplate} from "./Background/RippleRings/RippleRingsTemplate";
 import {rippleRingsDurationFrames,rippleRingsPatterns,rippleRingsSchema} from "./Background/RippleRings/ripple-rings.schema";
 import {SpeedLinesTemplate} from "./Background/SpeedLines/SpeedLinesTemplate";
@@ -319,11 +321,20 @@ export function BackgroundFolder() {
       <Folder name="FireFlames">{renderPatternFamily({patterns:fireFlamesPatterns,idPrefix:"Background-FireFlames-",Template:FireFlamesTemplate,schema:fireFlamesSchema,durationInFrames:fireFlamesDurationFrames})}</Folder>
       <Folder name="Caustics">{renderPatternFamily({patterns:causticsPatterns,idPrefix:"Background-Caustics-",Template:CausticsTemplate,schema:causticsSchema,durationInFrames:causticsDurationFrames})}</Folder>
       <Folder name="Nebula">{renderPatternFamily({patterns:nebulaPatterns,idPrefix:"Background-Nebula-",Template:NebulaTemplate,schema:nebulaSchema,durationInFrames:nebulaDurationFrames})}</Folder>
-      <Folder name="GradientFlow">
-        <Folder name="Linear">{renderPatternFamily({patterns:gradientFlowLinearPatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
-        <Folder name="Marble">{renderPatternFamily({patterns:gradientFlowMarblePatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
-        <Folder name="Scoop">{renderPatternFamily({patterns:gradientFlowScoopPatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}</Folder>
-        {renderPatternFamily({patterns:gradientFlowPatterns,idPrefix:"Background-GradientFlow-",Template:GradientFlowTemplate,schema:gradientFlowSchema,durationInFrames:gradientFlowDurationFrames})}
+      <Folder name="Geometric">
+        <Folder name="Frame">{renderPatternFamily({patterns:geometricFramePatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Orbit">{renderPatternFamily({patterns:geometricOrbitPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Grid">{renderPatternFamily({patterns:geometricGridPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Float">{renderPatternFamily({patterns:geometricFloatPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Stripe">{renderPatternFamily({patterns:geometricStripePatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+        <Folder name="Memphis">{renderPatternFamily({patterns:geometricMemphisPatterns,idPrefix:"Background-Geometric-",Template:GeometricTemplate,schema:geometricSchema,durationInFrames:geometricDurationFrames})}</Folder>
+      </Folder>
+      <Folder name="Gradient">
+        <Folder name="Waves">{renderPatternFamily({patterns:gradientWavesPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Mesh">{renderPatternFamily({patterns:gradientMeshPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Linear">{renderPatternFamily({patterns:gradientLinearPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Marble">{renderPatternFamily({patterns:gradientMarblePatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
+        <Folder name="Scoop">{renderPatternFamily({patterns:gradientScoopPatterns,idPrefix:"Background-Gradient-",Template:GradientTemplate,schema:gradientSchema,durationInFrames:gradientDurationFrames})}</Folder>
       </Folder>
       <Folder name="RippleRings">{renderPatternFamily({patterns:rippleRingsPatterns,idPrefix:"Background-RippleRings-",Template:RippleRingsTemplate,schema:rippleRingsSchema,durationInFrames:rippleRingsDurationFrames})}</Folder>
       <Folder name="SpeedLines">{renderPatternFamily({patterns:speedLinesPatterns,idPrefix:"Background-SpeedLines-",Template:SpeedLinesTemplate,schema:speedLinesSchema,durationInFrames:speedLinesDurationFrames})}</Folder>

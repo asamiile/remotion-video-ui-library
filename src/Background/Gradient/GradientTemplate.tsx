@@ -1,33 +1,33 @@
 import React from "react";
 import { cssColorToVec3 } from "../../helpers/shader/color";
 import { ShaderBackgroundLayer } from "../../helpers/shader/background/ShaderBackgroundLayer";
-import { gradientFlowGlsl } from "./gradient-flow.glsl";
+import { gradientGlsl } from "./gradient.glsl";
 import {
-  GRADIENT_FLOW_STYLES,
-  type GradientFlowSchemaType,
-} from "./gradient-flow.schema";
+  GRADIENT_STYLES,
+  type GradientSchemaType,
+} from "./gradient.schema";
 
-export const GradientFlowTemplate: React.FC<GradientFlowSchemaType> = ({
+export const GradientTemplate: React.FC<GradientSchemaType> = ({
   style,
   contrast,
   grain,
   vignette,
   ribbon,
-  specks,
-  speckColor,
+  ribbon2,
+  ribbon2Color,
   ...basics
 }) => (
   <ShaderBackgroundLayer
     {...basics}
-    fragmentShader={gradientFlowGlsl}
+    fragmentShader={gradientGlsl}
     extraUniforms={{
-      uStyle: GRADIENT_FLOW_STYLES.indexOf(style),
+      uStyle: GRADIENT_STYLES.indexOf(style),
       uContrast: contrast,
       uGrain: grain,
       uVignette: vignette,
       uRibbon: ribbon,
-      uSpecks: specks,
-      uSpeckColor: cssColorToVec3(speckColor),
+      uRibbon2: ribbon2,
+      uRibbon2Color: cssColorToVec3(ribbon2Color),
     }}
   />
 );

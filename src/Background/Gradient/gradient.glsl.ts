@@ -15,11 +15,11 @@ import {
  * - marble: fbm domain warping folds a colorA-to-colorB ramp into marbled
  *   swirls with soft colorC bands; no veins or drawn lines.
  * - scoop: ice-cream look; a colorA base with soft two-tone areas of colorC,
- *   colorB sauce ribbons, specks of speckColor and a fine frozen texture.
+ *   colorB sauce ribbons, an optional second ribbon and a fine frozen texture.
  * Contrast sharpens the mesh blobs and applies an S-curve to the result.
  * All motion uses whole turns of uPhase, so every style loops seamlessly.
  */
-export const gradientFlowGlsl = /* glsl */ `
+export const gradientGlsl = /* glsl */ `
 ${shaderBackgroundCommonGlsl}
 ${valueNoise3dGlsl}
 ${loopOffsetGlsl}
@@ -29,8 +29,8 @@ uniform float uGrain;
 uniform float uVignette;
 uniform float uContrast;
 uniform float uRibbon;
-uniform float uSpecks;
-uniform vec3 uSpeckColor;
+uniform float uRibbon2;
+uniform vec3 uRibbon2Color;
 
 vec3 waves(vec2 p, float t) {
   // Waves whose phase advances by whole turns over the loop.
@@ -115,10 +115,25 @@ vec3 marble(vec2 p, float t) {
   return mix(color, vec3(1.0), smoothstep(0.8, 1.0, w1) * 0.18 * uIntensity);
 }
 
+/**
+ * Sauce-ribbon mask: one broad band along a smooth warped contour. Dividing
+ * by the slope keeps a steady on-screen width. salt picks another contour.
+ */
+float scoopRibbon(vec2 w, vec3 lo, float salt, float widthScale) {
+  vec3 cp = vec3(w * 0.8 + salt * vec2(3.1, 7.4), 6.0 + salt) + lo * 0.6;
+  float contour = fbm3(cp, 3);
+  float e = 0.01;
+  vec2 grad = vec2(fbm3(cp + vec3(e, 0.0, 0.0), 3), fbm3(cp + vec3(0.0, e, 0.0), 3)) - contour;
+  float slope = max(length(grad) / e, 1e-3);
+  float dist = abs(contour - 0.5) / slope;
+  float width = widthScale * (0.03 + 0.035 * fbm3(vec3(w * 1.5, 9.0 + salt), 2));
+  return (1.0 - smoothstep(width * 0.6, width, dist)) * step(0.001, widthScale);
+}
+
 vec3 scoop(vec2 p, float t) {
   vec3 lo = loopOffset(uPhase, 0.35, uSeed);
   vec2 m = p * 0.6 * uScale;
-  // Everything is drawn in warped space, so ribbons and chips fold together.
+  // Everything is drawn in warped space, so areas and ribbons fold together.
   vec2 q = vec2(
     fbm3(vec3(m, 0.0) + lo, 4),
     fbm3(vec3(m + vec2(5.2, 1.3), 1.0) + lo, 4));
@@ -128,30 +143,9 @@ vec3 scoop(vec2 p, float t) {
   float region = fbm3(vec3(w * 0.6, 4.0) + lo * 0.5, 2);
   vec3 color = mix(uColorA, uColorC, smoothstep(0.47, 0.53, region));
 
-  // Sauce ribbons (colorB): one broad band along a smooth warped contour.
-  vec3 cp = vec3(w * 0.8, 6.0) + lo * 0.6;
-  float contour = fbm3(cp, 3);
-  // Divide by the slope so ribbons keep a steady on-screen width.
-  float e = 0.01;
-  vec2 grad = vec2(fbm3(cp + vec3(e, 0.0, 0.0), 3), fbm3(cp + vec3(0.0, e, 0.0), 3)) - contour;
-  float slope = max(length(grad) / e, 1e-3);
-  float dist = abs(contour - 0.5) / slope;
-  float width = uRibbon * (0.03 + 0.035 * fbm3(vec3(w * 1.5, 9.0), 2));
-  float ribbon = 1.0 - smoothstep(width * 0.6, width, dist);
-  color = mix(color, uColorB, ribbon * step(0.001, uRibbon));
-
-  // Chips / sprinkles: one irregular speck in some cells of the warped grid.
-  // Chips follow the flow only loosely so they stay chunky, not stretched.
-  vec2 g = (m + 0.8 * q) * 9.0;
-  vec2 cell = floor(g);
-  float h = hash12(cell + uSeed);
-  vec2 center = cell + 0.25 + 0.5 * vec2(h, hash12(cell + 7.1));
-  vec2 d = g - center;
-  float jag = 0.75 + 0.5 * valueNoise3(vec3(normalize(d + 1e-4) * 2.0, h * 9.0));
-  float r = length(d * vec2(1.0, 0.8 + 0.4 * h)) / jag;
-  float size = 0.14 + 0.14 * hash12(cell + 3.3);
-  float speck = (1.0 - smoothstep(size * 0.7, size, r)) * step(h, uSpecks * 0.6);
-  color = mix(color, uSpeckColor, speck);
+  // Sauce ribbons: the main one in colorB, an optional second in ribbon2Color.
+  color = mix(color, uColorB, scoopRibbon(w, lo, 0.0, uRibbon));
+  color = mix(color, uRibbon2Color, scoopRibbon(w, lo, 1.0, uRibbon2));
 
   // Frozen, creamy surface: fine crystalline shading plus a soft broad light.
   float crystal = valueNoise3(vec3(p * 60.0 * uScale + q * 4.0, 8.0));

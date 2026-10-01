@@ -1,7 +1,7 @@
 import { hashGlsl } from "../glsl/noise";
 
 /**
- * Shared by the basic-technique shader backgrounds (GradientFlow, RippleRings, ...): the uniforms the template passes in
+ * Shared by the basic-technique shader backgrounds (Gradient, RippleRings, ...): the uniforms the template passes in
  * and two small helpers.
  *
  * - centered(): screen position with the origin in the middle, y in [-1, 1]
