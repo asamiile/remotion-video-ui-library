@@ -15,7 +15,7 @@ Rules in `.agents/rules/` cover *how the repository works*. Files here cover *ho
 |---|---|---|
 | [gradient.md](./gradient.md) | Modern pastel gradients: waves, mesh, linear streaks, soft marbling, ice-cream scoop | `src/Background/Gradient/` |
 | [marble.md](./marble.md) | Stone-like marble with veins, translucency, sway and water ripples | `src/Background/MarbleFlow/` (+ the Gradient `marble` style) |
-| [halftone.md](./halftone.md) | Print-style dot grids driven by a brightness field or a waveform | `src/Background/HalftoneDots/`, `src/Background/HalftoneWaveform/` |
+| [halftone.md](./halftone.md) | Print-style dot grids driven by a brightness field or a waveform, and transparent halftone textures for editors | `src/Background/HalftoneDots/`, `src/Background/HalftoneWaveform/`, `src/Background/HalftoneOverlay/` |
 | [infographics.md](./infographics.md) | Flat geometric shapes for presentation / infographic motion backgrounds | `src/Background/Geometric/` |
 | [catalog.md](./catalog.md) | Reference list of common design styles, what already exists, and how a missing one could be built | — |
 

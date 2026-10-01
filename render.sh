@@ -375,6 +375,7 @@ resolve_output_subdir() {
     Background-SpeedLines-*) echo "Background/SpeedLines" ;;
     Background-SynthGrid-*) echo "Background/SynthGrid" ;;
     Background-HalftoneDots-*) echo "Background/HalftoneDots" ;;
+    Background-HalftoneOverlay-*) echo "Background/HalftoneOverlay" ;;
     Background-Starfield-*) echo "Background/Starfield" ;;
     Background-Kaleidoscope-*) echo "Background/Kaleidoscope" ;;
     Background-VoronoiCells-*) echo "Background/VoronoiCells" ;;
@@ -420,6 +421,7 @@ requires_webgl() {
     CodecCorruptTransition-*|PixelSortTransition-*|CrtPowerOffTransition-*) return 0 ;;
     Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
     Background-Gradient-*|Background-RippleRings-*|Background-SpeedLines-*|Background-SynthGrid-*) return 0 ;;
+    Background-HalftoneOverlay-*) return 0 ;;
     Background-HalftoneDots-*|Background-Starfield-*|Background-Kaleidoscope-*|Background-VoronoiCells-*) return 0 ;;
     Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     *) return 1 ;;

@@ -1,5 +1,6 @@
 /** Shape of config/local/composition-text.local.json (all keys optional) */
 export type CompositionTextLocal = {
+  halftoneDotsPatterns?: Record<string, Record<string, unknown>>;
   distressTransitionPatterns?: Record<string, Record<string, unknown>>;
   scanEchoTransitionPatterns?: Record<string, Record<string, unknown>>;
   intro?: {
