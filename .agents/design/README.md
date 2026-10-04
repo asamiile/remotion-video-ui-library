@@ -2,7 +2,7 @@
 name: design-patterns
 description: >-
   Index of the visual design pattern specs (gradient, marble, halftone,
-  infographics, grunge). Read the matching file before creating or restyling a
+  infographics, grunge, machine vision). Read the matching file before creating or restyling a
   composition in that look, and update it when a design decision is made.
 alwaysApply: false
 ---
@@ -18,6 +18,7 @@ Rules in `.agents/rules/` cover *how the repository works*. Files here cover *ho
 | [halftone.md](./halftone.md) | Print-style dot grids driven by a brightness field or a waveform, and transparent halftone textures for editors | `src/Background/HalftoneDots/`, `src/Background/HalftoneWaveform/`, `src/Background/HalftoneOverlay/` |
 | [infographics.md](./infographics.md) | Flat geometric shapes for presentation / infographic motion backgrounds | `src/Background/Geometric/` |
 | [grunge.md](./grunge.md) | Worn, dirty, torn textures: transparent overlays, surfaces, transitions and titles | `src/Background/GrungeOverlay/`, `src/Background/GrungeSurface/`, `src/Effects/Transition/TornPaperTransition/`, `src/Effects/Transition/GrungeTransition/`, `src/Text/StampText/`, `src/Text/GrungeText/` |
+| [machine-vision.md](./machine-vision.md) | Computer vision: the world as a machine perceives it (detection boxes, LiDAR, perception passes, optical flow, thermal, pose, footage passes) | `src/Background/{LidarPointCloud,SceneUnderstanding,OpticalFlow,ThermalDrone,PoseEstimation}/`, `src/Effects/Overlay/ObjectDetectionOverlay/`, `src/Effects/Stylize/FootagePass/` |
 | [catalog.md](./catalog.md) | Reference list of common design styles, what already exists, and how a missing one could be built | — |
 
 ## Shared principles

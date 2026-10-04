@@ -133,6 +133,31 @@ const families = [
   {idPrefix:"Background-VoronoiCells",file:"src/Background/VoronoiCells/voronoi-cells.schema.ts",exportName:"voronoiCellsPatterns"},
   {idPrefix:"Background-DigitalFogShader",file:"src/Background/DigitalFogShader/digital-fog-shader.schema.ts",exportName:"digitalFogShaderPatterns"},
   {idPrefix:"Background-VolumetricSmoke",file:"src/Background/VolumetricSmoke/volumetric-smoke.schema.ts",exportName:"volumetricSmokePatterns"},
+  {
+    idPrefix: "Background-LidarPointCloud",
+    file: "src/Background/LidarPointCloud/lidar-point-cloud.schema.ts",
+    exportName: "lidarPointCloudPatterns",
+  },
+  {
+    idPrefix: "Background-SceneUnderstanding",
+    file: "src/Background/SceneUnderstanding/scene-understanding.schema.ts",
+    exportName: "sceneUnderstandingPatterns",
+  },
+  {
+    idPrefix: "Background-OpticalFlow",
+    file: "src/Background/OpticalFlow/optical-flow.schema.ts",
+    exportName: "opticalFlowPatterns",
+  },
+  {
+    idPrefix: "Background-ThermalDrone",
+    file: "src/Background/ThermalDrone/thermal-drone.schema.ts",
+    exportName: "thermalDronePatterns",
+  },
+  {
+    idPrefix: "Background-PoseEstimation",
+    file: "src/Background/PoseEstimation/pose-estimation.schema.ts",
+    exportName: "poseEstimationPatterns",
+  },
 ];
 
 for (const id of fixedIds) {

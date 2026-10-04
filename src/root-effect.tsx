@@ -1,3 +1,7 @@
+import { ObjectDetectionOverlayTemplate } from "./Effects/Overlay/ObjectDetectionOverlay/ObjectDetectionOverlayTemplate";
+import { objectDetectionOverlayDurationFrames, objectDetectionOverlayPatterns, objectDetectionOverlaySchema } from "./Effects/Overlay/ObjectDetectionOverlay/object-detection-overlay.schema";
+import { FootagePassTemplate } from "./Effects/Stylize/FootagePass/FootagePassTemplate";
+import { footagePassDurationFrames, footagePassPatterns, footagePassSchema } from "./Effects/Stylize/FootagePass/footage-pass.schema";
 import { DistressTransitionTemplate } from "./Effects/Transition/DistressTransition/DistressTransitionTemplate";
 import { distressTransitionSchema } from "./Effects/Transition/DistressTransition/distress-transition.schema";
 import { mergedDistressTransitionPatterns } from "./composition/composition-merged-other";
@@ -526,6 +530,15 @@ export function EffectFolder() {
             durationInFrames: shaderSciFiOverlayDurationFrames,
           })}
         </Folder>
+        <Folder name="ObjectDetectionOverlay">
+          {renderPatternFamily({
+            patterns: objectDetectionOverlayPatterns,
+            idPrefix: "ObjectDetectionOverlay-",
+            Template: ObjectDetectionOverlayTemplate,
+            schema: objectDetectionOverlaySchema,
+            durationInFrames: objectDetectionOverlayDurationFrames,
+          })}
+        </Folder>
       </Folder>
       <Folder name="Stylize">
         <Folder name="Burst">
@@ -559,6 +572,15 @@ export function EffectFolder() {
             Template: KaleidoscopeMirrorTemplate,
             schema: kaleidoscopeMirrorSchema,
             durationInFrames: kaleidoscopeMirrorDurationFrames,
+          })}
+        </Folder>
+        <Folder name="FootagePass">
+          {renderPatternFamily({
+            patterns: footagePassPatterns,
+            idPrefix: "FootagePass-",
+            Template: FootagePassTemplate,
+            schema: footagePassSchema,
+            durationInFrames: footagePassDurationFrames,
           })}
         </Folder>
       </Folder>

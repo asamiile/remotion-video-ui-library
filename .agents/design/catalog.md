@@ -24,6 +24,7 @@ A reference list of common design styles. **Status** shows where each one stands
 | Halftone (print dot grid) | [halftone.md](./halftone.md) | `Background/HalftoneDots`, `Background/HalftoneWaveform` |
 | Infographics / flat geometric shapes | [infographics.md](./infographics.md) | `Background/Geometric` |
 | Grunge (dust, grime, toner, stains, light leaks, film edge, VHS, CMY misregister, walls, collage, rust, cardboard, torn paper, tape, film burn, photocopy, stamp, stencil, ransom, typewriter, tape label, burn, lower third, markup) | [grunge.md](./grunge.md) | `Background/GrungeOverlay`, `Background/GrungeSurface`, `TornPaperTransition`, `GrungeTransition`, `StampText`, `GrungeText` |
+| Machine vision (object detection, LiDAR, perception passes, optical flow, thermal drone, pose, footage passes) | [machine-vision.md](./machine-vision.md) | `Background/LidarPointCloud`, `Background/SceneUnderstanding`, `Background/OpticalFlow`, `Background/ThermalDrone`, `Background/PoseEstimation`, `Effect/Overlay/ObjectDetectionOverlay`, `Effect/Stylize/FootagePass` |
 
 ## Texture and material
 

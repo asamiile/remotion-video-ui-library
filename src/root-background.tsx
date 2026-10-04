@@ -1,3 +1,13 @@
+import {LidarPointCloudTemplate} from "./Background/LidarPointCloud/LidarPointCloudTemplate";
+import {lidarPointCloudDurationFrames,lidarPointCloudPatterns,lidarPointCloudSchema} from "./Background/LidarPointCloud/lidar-point-cloud.schema";
+import {SceneUnderstandingTemplate} from "./Background/SceneUnderstanding/SceneUnderstandingTemplate";
+import {sceneUnderstandingDurationFrames,sceneUnderstandingPatterns,sceneUnderstandingSchema} from "./Background/SceneUnderstanding/scene-understanding.schema";
+import {OpticalFlowTemplate} from "./Background/OpticalFlow/OpticalFlowTemplate";
+import {opticalFlowDurationFrames,opticalFlowPatterns,opticalFlowSchema} from "./Background/OpticalFlow/optical-flow.schema";
+import {ThermalDroneTemplate} from "./Background/ThermalDrone/ThermalDroneTemplate";
+import {thermalDroneDurationFrames,thermalDronePatterns,thermalDroneSchema} from "./Background/ThermalDrone/thermal-drone.schema";
+import {PoseEstimationTemplate} from "./Background/PoseEstimation/PoseEstimationTemplate";
+import {poseEstimationDurationFrames,poseEstimationPatterns,poseEstimationSchema} from "./Background/PoseEstimation/pose-estimation.schema";
 import { mergedHalftoneDotsPatterns } from "./composition/composition-merged-background";
 import { minimumCompositionFrames } from "./composition/composition-duration";
 import { Composition, Folder } from "remotion";
@@ -384,6 +394,11 @@ export function BackgroundFolder() {
           defaultProps={defaultAngstAnimationMultiShapeProps}
         />
       </Folder>
+      <Folder name="LidarPointCloud">{renderPatternFamily({patterns:lidarPointCloudPatterns,idPrefix:"Background-LidarPointCloud-",Template:LidarPointCloudTemplate,schema:lidarPointCloudSchema,durationInFrames:lidarPointCloudDurationFrames})}</Folder>
+      <Folder name="SceneUnderstanding">{renderPatternFamily({patterns:sceneUnderstandingPatterns,idPrefix:"Background-SceneUnderstanding-",Template:SceneUnderstandingTemplate,schema:sceneUnderstandingSchema,durationInFrames:sceneUnderstandingDurationFrames})}</Folder>
+      <Folder name="OpticalFlow">{renderPatternFamily({patterns:opticalFlowPatterns,idPrefix:"Background-OpticalFlow-",Template:OpticalFlowTemplate,schema:opticalFlowSchema,durationInFrames:opticalFlowDurationFrames})}</Folder>
+      <Folder name="ThermalDrone">{renderPatternFamily({patterns:thermalDronePatterns,idPrefix:"Background-ThermalDrone-",Template:ThermalDroneTemplate,schema:thermalDroneSchema,durationInFrames:thermalDroneDurationFrames})}</Folder>
+      <Folder name="PoseEstimation">{renderPatternFamily({patterns:poseEstimationPatterns,idPrefix:"Background-PoseEstimation-",Template:PoseEstimationTemplate,schema:poseEstimationSchema,durationInFrames:poseEstimationDurationFrames})}</Folder>
     </Folder>
   );
 }
