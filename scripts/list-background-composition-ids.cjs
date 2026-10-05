@@ -128,6 +128,8 @@ const families = [
   {idPrefix:"Background-HalftoneOverlay",file:"src/Background/HalftoneOverlay/halftone-overlay.schema.ts",exportName:"halftoneOverlayPatterns"},
   {idPrefix:"Background-GrungeOverlay",file:"src/Background/GrungeOverlay/grunge-overlay.schema.ts",exportName:"grungeOverlayPatterns"},
   {idPrefix:"Background-GrungeSurface",file:"src/Background/GrungeSurface/grunge-surface.schema.ts",exportName:"grungeSurfacePatterns"},
+  {idPrefix:"Background-SprayTexture",file:"src/Background/SprayTexture/spray-texture.schema.ts",exportName:"sprayTexturePatterns"},
+  {idPrefix:"Background-InkTexture",file:"src/Background/InkTexture/ink-texture.schema.ts",exportName:"inkTexturePatterns"},
   {idPrefix:"Background-Starfield",file:"src/Background/Starfield/starfield.schema.ts",exportName:"starfieldPatterns"},
   {idPrefix:"Background-Kaleidoscope",file:"src/Background/Kaleidoscope/kaleidoscope.schema.ts",exportName:"kaleidoscopePatterns"},
   {idPrefix:"Background-VoronoiCells",file:"src/Background/VoronoiCells/voronoi-cells.schema.ts",exportName:"voronoiCellsPatterns"},

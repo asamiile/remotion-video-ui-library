@@ -384,6 +384,8 @@ resolve_output_subdir() {
     Background-HalftoneOverlay-*) echo "Background/HalftoneOverlay" ;;
     Background-GrungeOverlay-*) echo "Background/GrungeOverlay" ;;
     Background-GrungeSurface-*) echo "Background/GrungeSurface" ;;
+    Background-SprayTexture-*) echo "Background/SprayTexture" ;;
+    Background-InkTexture-*) echo "Background/InkTexture" ;;
     Background-Starfield-*) echo "Background/Starfield" ;;
     Background-LidarPointCloud-*) echo "Background/LidarPointCloud" ;;
     Background-SceneUnderstanding-*) echo "Background/SceneUnderstanding" ;;
@@ -435,6 +437,7 @@ requires_webgl() {
     Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
     Background-Gradient-*|Background-RippleRings-*|Background-SpeedLines-*|Background-SynthGrid-*) return 0 ;;
     Background-HalftoneOverlay-*|Background-GrungeOverlay-*|Background-GrungeSurface-*) return 0 ;;
+    Background-SprayTexture-*|Background-InkTexture-*) return 0 ;;
     Background-HalftoneDots-*|Background-Starfield-*|Background-Kaleidoscope-*|Background-VoronoiCells-*) return 0 ;;
     Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     Background-LidarPointCloud-*|Background-SceneUnderstanding-*|Background-OpticalFlow-*|Background-ThermalDrone-*|FootagePass-*) return 0 ;;
