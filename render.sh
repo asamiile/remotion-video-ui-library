@@ -318,6 +318,8 @@ resolve_output_subdir() {
     RadialAnalysisHUD-*) echo "UI/RadialAnalysisHUD" ;;
     SplitScreenEcho-*) echo "UI/SplitScreenEcho" ;;
     ParallaxAnalysisStack-*) echo "UI/ParallaxAnalysisStack" ;;
+    ObjectDetectionOverlay-*) echo "Effect/Overlay/ObjectDetectionOverlay" ;;
+    FootagePass-*) echo "Effect/Stylize/FootagePass" ;;
     Location-*) echo "Text/Location" ;;
     MiniMap-*) echo "Map" ;;
     AudioSpectrum-*) echo "Audio/AudioSpectrum/Presets" ;;
@@ -383,6 +385,11 @@ resolve_output_subdir() {
     Background-GrungeOverlay-*) echo "Background/GrungeOverlay" ;;
     Background-GrungeSurface-*) echo "Background/GrungeSurface" ;;
     Background-Starfield-*) echo "Background/Starfield" ;;
+    Background-LidarPointCloud-*) echo "Background/LidarPointCloud" ;;
+    Background-SceneUnderstanding-*) echo "Background/SceneUnderstanding" ;;
+    Background-OpticalFlow-*) echo "Background/OpticalFlow" ;;
+    Background-ThermalDrone-*) echo "Background/ThermalDrone" ;;
+    Background-PoseEstimation-*) echo "Background/PoseEstimation" ;;
     Background-Kaleidoscope-*) echo "Background/Kaleidoscope" ;;
     Background-VoronoiCells-*) echo "Background/VoronoiCells" ;;
     AngstAnimation*) echo "Background/AngstAnimation" ;;
@@ -430,6 +437,7 @@ requires_webgl() {
     Background-HalftoneOverlay-*|Background-GrungeOverlay-*|Background-GrungeSurface-*) return 0 ;;
     Background-HalftoneDots-*|Background-Starfield-*|Background-Kaleidoscope-*|Background-VoronoiCells-*) return 0 ;;
     Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
+    Background-LidarPointCloud-*|Background-SceneUnderstanding-*|Background-OpticalFlow-*|Background-ThermalDrone-*|FootagePass-*) return 0 ;;
     *) return 1 ;;
   esac
 }
