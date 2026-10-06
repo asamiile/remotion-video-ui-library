@@ -319,6 +319,7 @@ resolve_output_subdir() {
     SplitScreenEcho-*) echo "UI/SplitScreenEcho" ;;
     ParallaxAnalysisStack-*) echo "UI/ParallaxAnalysisStack" ;;
     ObjectDetectionOverlay-*) echo "Effect/Overlay/ObjectDetectionOverlay" ;;
+    CompositionGuide-*) echo "Effect/Overlay/CompositionGuide" ;;
     FootagePass-*) echo "Effect/Stylize/FootagePass" ;;
     Location-*) echo "Text/Location" ;;
     MiniMap-*) echo "Map" ;;

@@ -1,5 +1,7 @@
 import { ObjectDetectionOverlayTemplate } from "./Effects/Overlay/ObjectDetectionOverlay/ObjectDetectionOverlayTemplate";
 import { objectDetectionOverlayDurationFrames, objectDetectionOverlayPatterns, objectDetectionOverlaySchema } from "./Effects/Overlay/ObjectDetectionOverlay/object-detection-overlay.schema";
+import { CompositionGuideTemplate } from "./Effects/Overlay/CompositionGuide/CompositionGuideTemplate";
+import { compositionGuideDurationFrames, compositionGuidePatterns, compositionGuideSchema } from "./Effects/Overlay/CompositionGuide/composition-guide.schema";
 import { FootagePassTemplate } from "./Effects/Stylize/FootagePass/FootagePassTemplate";
 import { footagePassDurationFrames, footagePassPatterns, footagePassSchema } from "./Effects/Stylize/FootagePass/footage-pass.schema";
 import { DistressTransitionTemplate } from "./Effects/Transition/DistressTransition/DistressTransitionTemplate";
@@ -537,6 +539,15 @@ export function EffectFolder() {
             Template: ObjectDetectionOverlayTemplate,
             schema: objectDetectionOverlaySchema,
             durationInFrames: objectDetectionOverlayDurationFrames,
+          })}
+        </Folder>
+        <Folder name="CompositionGuide">
+          {renderPatternFamily({
+            patterns: compositionGuidePatterns,
+            idPrefix: "CompositionGuide-",
+            Template: CompositionGuideTemplate,
+            schema: compositionGuideSchema,
+            durationInFrames: compositionGuideDurationFrames,
           })}
         </Folder>
       </Folder>
