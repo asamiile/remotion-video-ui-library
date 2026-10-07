@@ -11,6 +11,7 @@ const families = [
   {idPrefix:"DelayTrail",file:"src/Effects/Stylize/Trail/delay-trail.schema.ts",exportName:"delayTrailPatterns"},
   {idPrefix:"FootagePass",file:"src/Effects/Stylize/FootagePass/footage-pass.schema.ts",exportName:"footagePassPatterns"},
   {idPrefix:"ObjectDetectionOverlay",file:"src/Effects/Overlay/ObjectDetectionOverlay/object-detection-overlay.schema.ts",exportName:"objectDetectionOverlayPatterns"},
+  {idPrefix:"CompositionGuide",file:"src/Effects/Overlay/CompositionGuide/composition-guide.schema.ts",exportName:"compositionGuidePatterns"},
   {idPrefix:"",file:"src/Effects/Transition/ShaderEnergy/shader-energy-transition.schema.ts",exportName:"shaderEnergyTransitionPatterns",join:""},
   {idPrefix:"",file:"src/Effects/Overlay/ShaderSciFi/shader-sci-fi-overlay.schema.ts",exportName:"shaderSciFiOverlayPatterns",join:""},
   {idPrefix:"SuminagashiTransition",file:"src/Effects/Transition/SuminagashiTransition/suminagashi-transition.schema.ts",exportName:"suminagashiTransitionPatterns"},
