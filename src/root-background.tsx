@@ -104,6 +104,14 @@ import {SprayTextureTemplate} from "./Background/SprayTexture/SprayTextureTempla
 import {sprayTextureDurationFrames,sprayTexturePatterns,sprayTextureSchema} from "./Background/SprayTexture/spray-texture.schema";
 import {InkTextureTemplate} from "./Background/InkTexture/InkTextureTemplate";
 import {inkTextureDurationFrames,inkTexturePatterns,inkTextureSchema} from "./Background/InkTexture/ink-texture.schema";
+import {HazeBloomLeakTemplate} from "./Background/HazeBloomLeak/HazeBloomLeakTemplate";
+import {hazeBloomLeakDurationFrames,hazeBloomLeakPatterns,hazeBloomLeakSchema,hazeBloomLeakVerticalPatterns} from "./Background/HazeBloomLeak/haze-bloom-leak.schema";
+import {DubEchoTrailsTemplate} from "./Background/DubEchoTrails/DubEchoTrailsTemplate";
+import {dubEchoTrailsDurationFrames,dubEchoTrailsPatterns,dubEchoTrailsSchema,dubEchoTrailsVerticalPatterns} from "./Background/DubEchoTrails/dub-echo-trails.schema";
+import {SpectralLinesTemplate} from "./Background/SpectralLines/SpectralLinesTemplate";
+import {LaserBeamsTemplate} from "./Background/LaserBeams/LaserBeamsTemplate";
+import {laserBeamsDurationFrames,laserBeamsPatterns,laserBeamsSchema,laserBeamsVerticalPatterns} from "./Background/LaserBeams/laser-beams.schema";
+import {spectralLinesDurationFrames,spectralLinesPatterns,spectralLinesSchema,spectralLinesVerticalPatterns} from "./Background/SpectralLines/spectral-lines.schema";
 import {halftoneOverlayDurationFrames,halftoneOverlayPatterns,halftoneOverlaySchema} from "./Background/HalftoneOverlay/halftone-overlay.schema";
 import {halftoneDotsDurationFrames,halftoneDotsSchema} from "./Background/HalftoneDots/halftone-dots.schema";
 import {StarfieldTemplate} from "./Background/Starfield/StarfieldTemplate";
@@ -366,6 +374,10 @@ export function BackgroundFolder() {
       <Folder name="GrungeSurface">{renderPatternFamily({patterns:grungeSurfacePatterns,idPrefix:"Background-GrungeSurface-",Template:GrungeSurfaceTemplate,schema:grungeSurfaceSchema,durationInFrames:grungeSurfaceDurationFrames})}</Folder>
       <Folder name="SprayTexture">{renderPatternFamily({patterns:sprayTexturePatterns,idPrefix:"Background-SprayTexture-",Template:SprayTextureTemplate,schema:sprayTextureSchema,durationInFrames:sprayTextureDurationFrames})}</Folder>
       <Folder name="InkTexture">{renderPatternFamily({patterns:inkTexturePatterns,idPrefix:"Background-InkTexture-",Template:InkTextureTemplate,schema:inkTextureSchema,durationInFrames:inkTextureDurationFrames})}</Folder>
+      <Folder name="HazeBloomLeak">{renderPatternFamily({patterns:hazeBloomLeakPatterns,idPrefix:"Background-HazeBloomLeak-",Template:HazeBloomLeakTemplate,schema:hazeBloomLeakSchema,durationInFrames:hazeBloomLeakDurationFrames})}{renderPatternFamily({patterns:hazeBloomLeakVerticalPatterns,idPrefix:"Background-HazeBloomLeak-",Template:HazeBloomLeakTemplate,schema:hazeBloomLeakSchema,width:1080,height:1920,durationInFrames:hazeBloomLeakDurationFrames})}</Folder>
+      <Folder name="DubEchoTrails">{renderPatternFamily({patterns:dubEchoTrailsPatterns,idPrefix:"Background-DubEchoTrails-",Template:DubEchoTrailsTemplate,schema:dubEchoTrailsSchema,durationInFrames:dubEchoTrailsDurationFrames})}{renderPatternFamily({patterns:dubEchoTrailsVerticalPatterns,idPrefix:"Background-DubEchoTrails-",Template:DubEchoTrailsTemplate,schema:dubEchoTrailsSchema,width:1080,height:1920,durationInFrames:dubEchoTrailsDurationFrames})}</Folder>
+      <Folder name="SpectralLines">{renderPatternFamily({patterns:spectralLinesPatterns,idPrefix:"Background-SpectralLines-",Template:SpectralLinesTemplate,schema:spectralLinesSchema,durationInFrames:spectralLinesDurationFrames})}{renderPatternFamily({patterns:spectralLinesVerticalPatterns,idPrefix:"Background-SpectralLines-",Template:SpectralLinesTemplate,schema:spectralLinesSchema,width:1080,height:1920,durationInFrames:spectralLinesDurationFrames})}</Folder>
+      <Folder name="LaserBeams">{renderPatternFamily({patterns:laserBeamsPatterns,idPrefix:"Background-LaserBeams-",Template:LaserBeamsTemplate,schema:laserBeamsSchema,durationInFrames:laserBeamsDurationFrames})}{renderPatternFamily({patterns:laserBeamsVerticalPatterns,idPrefix:"Background-LaserBeams-",Template:LaserBeamsTemplate,schema:laserBeamsSchema,width:1080,height:1920,durationInFrames:laserBeamsDurationFrames})}</Folder>
       <Folder name="Starfield">{renderPatternFamily({patterns:starfieldPatterns,idPrefix:"Background-Starfield-",Template:StarfieldTemplate,schema:starfieldSchema,durationInFrames:starfieldDurationFrames})}</Folder>
       <Folder name="Kaleidoscope">{renderPatternFamily({patterns:kaleidoscopePatterns,idPrefix:"Background-Kaleidoscope-",Template:KaleidoscopeTemplate,schema:kaleidoscopeSchema,durationInFrames:kaleidoscopeDurationFrames})}</Folder>
       <Folder name="VoronoiCells">{renderPatternFamily({patterns:voronoiCellsPatterns,idPrefix:"Background-VoronoiCells-",Template:VoronoiCellsTemplate,schema:voronoiCellsSchema,durationInFrames:voronoiCellsDurationFrames})}</Folder>
