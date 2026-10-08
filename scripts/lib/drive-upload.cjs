@@ -16,8 +16,16 @@ const { outDir } = require("./output-dir.cjs");
 const remote = process.env.REMOTION_UPLOAD_REMOTE || "";
 const VIDEO_EXTENSION = /\.(mp4|mov)$/i;
 
+// The recursive Drive listing outgrows spawnSync's 1 MB default buffer, which
+// kills rclone and looks like a failed listing.
+const RCLONE_MAX_BUFFER = 256 * 1024 * 1024;
+
 function rclone(args, options = {}) {
-  return spawnSync("rclone", args, { encoding: "utf8", ...options });
+  return spawnSync("rclone", args, {
+    encoding: "utf8",
+    maxBuffer: RCLONE_MAX_BUFFER,
+    ...options,
+  });
 }
 
 /** Upload is on when a destination is set, not disabled, and known to rclone. */
