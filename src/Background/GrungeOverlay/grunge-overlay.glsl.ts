@@ -191,8 +191,8 @@ vec4 vhs(vec2 q, float j) {
   float inBand = step(bandTop + (hash13(vec3(floor(q.x / 40.0), j, 2.0)) - 0.5) * 16.0, q.y);
   float bandNoise = step(0.45, hash13(vec3(floor(q.x / 3.0), floor(q.y / 2.0), j)));
   float tr = inBand * bandNoise * 0.8;
-  acc += vec4(vec3(1.0) * tr, tr) * (1.0 - acc.a);
-  // White dropouts.
+  acc += vec4(uColorA * tr, tr) * (1.0 - acc.a);
+  // Dropouts in the mark color.
   for (int i = 0; i < 4; i++) {
     float fi = float(i);
     vec3 k = vec3(fi, j, uSeed);
@@ -201,7 +201,7 @@ vec4 vhs(vec2 q, float j) {
     float x0 = hash13(k + 1.0) * W;
     float seg = step(x0, q.x) * step(q.x, x0 + (80.0 + 400.0 * hash13(k + 2.0)) * uSize);
     float dl = on * seg * (1.0 - smoothstep(0.5, 1.5, dy)) * 0.85;
-    acc += vec4(vec3(1.0) * dl, dl) * (1.0 - acc.a);
+    acc += vec4(uColorA * dl, dl) * (1.0 - acc.a);
   }
   // Chroma streak rows (cyan / magenta).
   float rowId = floor(q.y / 2.0);
@@ -212,7 +212,7 @@ vec4 vhs(vec2 q, float j) {
   // Rolling soft band.
   float by = fract(uPhase * 2.0) * 1400.0 - 160.0;
   float roll = exp(-pow((q.y - by) / 70.0, 2.0)) * 0.08;
-  acc += vec4(vec3(1.0) * roll, roll) * (1.0 - acc.a);
+  acc += vec4(uColorA * roll, roll) * (1.0 - acc.a);
   // Scanlines.
   float scan = step(2.0, mod(q.y, 3.0)) * 0.12 * (0.5 + uDensity);
   acc += vec4(vec3(0.0), scan) * (1.0 - acc.a);

@@ -53,6 +53,8 @@ export const inkTexturePatterns: Record<string, InkTextureSchemaType> = {
   blackBleed: { ...black, style: "bleed", color: "#2a2724", color2: "#0b0a09", density: 0.5, tempo: 3, randomSeed: 41 },
   /** Indigo ink with a deep navy rim (Multiply) */
   indigoBleed: { ...black, style: "bleed", color: "#3a4a6b", color2: "#141c33", density: 0.5, tempo: 3, randomSeed: 53 },
+  /** White ink soaking in, the indigoBleed look for dark footage (Screen) */
+  whiteBleed: { ...white, style: "bleed", density: 0.5, tempo: 3, randomSeed: 53 },
   /** Black dry-brush slashes (Multiply) */
   blackBrush: { ...black, style: "brush", density: 0.55, tempo: 5, randomSeed: 61 },
   /** White dry-brush slashes (Screen) */
@@ -61,6 +63,8 @@ export const inkTexturePatterns: Record<string, InkTextureSchemaType> = {
   electricBrush: { ...black, style: "brush", color: "#2f5bff", color2: "#ffffff", density: 0.55, tempo: 5, randomSeed: 89 },
   /** Black ink clouds in water (Multiply) */
   blackFlow: { ...black, style: "flow", color2: "#4a4642", density: 0.5, tempo: 2, randomSeed: 73 },
+  /** White ink clouds, the blackFlow look for dark footage (Screen) */
+  whiteFlow: { ...white, style: "flow", color2: "#c8c8c8", density: 0.5, tempo: 2, randomSeed: 73 },
   /** Sepia ink clouds in water (Multiply) */
   sepiaFlow: { ...black, style: "flow", color: "#4a2c14", color2: "#a8805a", density: 0.5, tempo: 2, randomSeed: 79 },
 };
