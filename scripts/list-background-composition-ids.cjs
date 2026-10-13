@@ -138,6 +138,8 @@ const families = [
   {idPrefix:"Background-SpectralLines",file:"src/Background/SpectralLines/spectral-lines.schema.ts",exportName:"spectralLinesVerticalPatterns"},
   {idPrefix:"Background-LaserBeams",file:"src/Background/LaserBeams/laser-beams.schema.ts",exportName:"laserBeamsPatterns"},
   {idPrefix:"Background-LaserBeams",file:"src/Background/LaserBeams/laser-beams.schema.ts",exportName:"laserBeamsVerticalPatterns"},
+  {idPrefix:"Background-WaveShapes",file:"src/Background/WaveShapes/wave-shapes.schema.ts",exportName:"waveShapesPatterns"},
+  {idPrefix:"Background-WaveShapes",file:"src/Background/WaveShapes/wave-shapes.schema.ts",exportName:"waveShapesVerticalPatterns"},
   {idPrefix:"Background-Starfield",file:"src/Background/Starfield/starfield.schema.ts",exportName:"starfieldPatterns"},
   {idPrefix:"Background-Kaleidoscope",file:"src/Background/Kaleidoscope/kaleidoscope.schema.ts",exportName:"kaleidoscopePatterns"},
   {idPrefix:"Background-VoronoiCells",file:"src/Background/VoronoiCells/voronoi-cells.schema.ts",exportName:"voronoiCellsPatterns"},

@@ -391,6 +391,7 @@ resolve_output_subdir() {
     Background-DubEchoTrails-*) echo "Background/DubEchoTrails" ;;
     Background-SpectralLines-*) echo "Background/SpectralLines" ;;
     Background-LaserBeams-*) echo "Background/LaserBeams" ;;
+    Background-WaveShapes-*) echo "Background/WaveShapes" ;;
     Background-Starfield-*) echo "Background/Starfield" ;;
     Background-LidarPointCloud-*) echo "Background/LidarPointCloud" ;;
     Background-SceneUnderstanding-*) echo "Background/SceneUnderstanding" ;;
