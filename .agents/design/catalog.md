@@ -48,6 +48,7 @@ A reference list of common design styles. **Status** shows where each one stands
 | Isometric | Cubes and tiles seen from above at an angle | Idea | SVG with an isometric transform; tech diagrams |
 | Memphis | 80s squiggles, zigzags, small primary shapes | Spec | Geometric `memphis` ([infographics.md](./infographics.md)) |
 | Line art / Topographic | Contour lines, fine line patterns | Component | `Background/WaveInterferenceLines`, `Background/RandomLinesBackground`; contour lines from noise isolines in a shader |
+| Waveform / Oscillator | Large white sine, square, triangle, sawtooth, and composite waves on black, optional scope grid | Component | `Background/WaveShapes` |
 
 ## Light and space
 

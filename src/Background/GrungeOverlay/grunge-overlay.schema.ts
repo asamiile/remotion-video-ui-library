@@ -75,6 +75,10 @@ export const grungeOverlayPatterns: Record<string, GrungeOverlaySchemaType> = {
   filmEdge: { ...black, style: "filmEdge", color: "#0b0a09", color2: "#d98a3a", density: 0.5, holdFrames: 2 },
   /** VHS artefacts: tracking noise, dropouts, chroma streaks, scanlines (Normal / Screen) */
   vhsTracking: { ...white, style: "vhs", density: 0.55, holdFrames: 2, randomSeed: 61 },
+  /** VHS artefacts tinted coral (Normal / Screen) */
+  vhsTrackingCoral: { ...white, style: "vhs", color: "#F98362", color2: "#F98362", density: 0.55, holdFrames: 2, randomSeed: 61 },
+  /** VHS artefacts tinted sky blue (Normal / Screen) */
+  vhsTrackingSky: { ...white, style: "vhs", color: "#61CCF9", color2: "#61CCF9", density: 0.55, holdFrames: 2, randomSeed: 61 },
   /** Misregistered CMY halftone (Multiply) */
   cmykMisregister: { ...black, style: "misregister", density: 0.6, holdFrames: 4, randomSeed: 73 },
 };

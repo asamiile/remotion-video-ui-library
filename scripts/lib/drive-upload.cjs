@@ -5,6 +5,8 @@
 //
 // Remote:  REMOTION_UPLOAD_REMOTE (rclone "remote:path"; uploads are off when unset)
 // Disable: REMOTION_UPLOAD=0 (outputs then stay in the output folder)
+// Tuning:  REMOTION_UPLOAD_TRANSFERS (parallel uploads, default 8),
+//          REMOTION_UPLOAD_CHUNK_SIZE (Drive upload chunk, default 64M)
 // Setup:   see README.md (Render > "Google Driveへの自動アップロード").
 const fs = require("node:fs");
 const os = require("node:os");
@@ -15,6 +17,11 @@ const { outDir } = require("./output-dir.cjs");
 // No default: uploads happen only when a destination is configured.
 const remote = process.env.REMOTION_UPLOAD_REMOTE || "";
 const VIDEO_EXTENSION = /\.(mp4|mov)$/i;
+// Drive spends most of each small-file upload on per-file round trips, so
+// parallel transfers matter for PNG sequences; a larger chunk speeds up the
+// multi-GB MOVs (each transfer buffers one chunk in memory).
+const TRANSFERS = process.env.REMOTION_UPLOAD_TRANSFERS || "8";
+const CHUNK_SIZE = process.env.REMOTION_UPLOAD_CHUNK_SIZE || "64M";
 
 // The recursive Drive listing outgrows spawnSync's 1 MB default buffer, which
 // kills rclone and looks like a failed listing.
@@ -145,7 +152,11 @@ function upload(paths) {
         "--files-from",
         listFile,
         "--transfers",
-        "2",
+        TRANSFERS,
+        "--checkers",
+        "16",
+        "--drive-chunk-size",
+        CHUNK_SIZE,
         "--retries",
         "3",
         "--stats-one-line",

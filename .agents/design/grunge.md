@@ -40,7 +40,7 @@ Shader marks measured in 1080p pixels (same size at any render scale) on a fully
 | `stain` | Ink / coffee stains that spread, darken at the rim, then fade (looping) | Multiply |
 | `lightLeak` | Warm leaks breathing in from the left / right edges, flickering per step | Screen / Add |
 | `filmEdge` | Black film strips with scrolling sprocket holes, edge-code dashes, rounded gate corners, gate weave | Normal |
-| `vhs` | Scanlines, bottom tracking noise, white dropouts, cyan / magenta streaks, rolling band | Normal / Screen |
+| `vhs` | Scanlines, bottom tracking noise, dropouts in the mark color (`color`), cyan / magenta streaks, rolling band | Normal / Screen |
 | `misregister` | Patchy CMY halftone screens at print angles, slightly out of register (fixed CMY inks) | Multiply |
 
 Props: `color`, `color2` (stain rim, leak edge, film edge codes), `density` (0–1), `size` (mark scale), `holdFrames` (jitter rate), `randomSeed`. Patterns: `blackDust`, `whiteDust`, `blackFrame`, `whiteFrame`, `blackToner`, `whiteToner`, `inkStain`, `coffeeStain`, `warmLightLeak`, `filmEdge`, `vhsTracking`, `cmykMisregister`. Control strength with the editor's opacity, not by baking it in.

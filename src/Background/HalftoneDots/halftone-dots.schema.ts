@@ -171,4 +171,7 @@ export const halftoneDotsPatterns: Record<string, HalftoneDotsSchemaType> = {
     scale: 1.25,
     intensity: 0.88,
   },
+  coral: { ...defaultHalftoneDotsProps, colorA: "#F98362", colorB: "#F98362" },
+  sky: { ...defaultHalftoneDotsProps, colorA: "#61CCF9", colorB: "#61CCF9" },
+  white: { ...defaultHalftoneDotsProps, colorA: "#ffffff", colorB: "#ffffff" },
 };

@@ -76,6 +76,21 @@
       "field": "ribbon",
       "scale": 1.25,
       "intensity": 0.88
+    },
+    "coral": {
+      "field": "sweep",
+      "colorA": "#F98362",
+      "colorB": "#F98362"
+    },
+    "sky": {
+      "field": "sweep",
+      "colorA": "#61CCF9",
+      "colorB": "#61CCF9"
+    },
+    "white": {
+      "field": "sweep",
+      "colorA": "#ffffff",
+      "colorB": "#ffffff"
     }
   },
   "scanEchoTransitionPatterns": {

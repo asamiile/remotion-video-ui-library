@@ -11,4 +11,7 @@ export const signalInterferenceOverlayPatterns = {
   acidViolet: {...defaultSignalInterferenceOverlayProps, lineColor: "#ebdfff", redChannel: "#b44cff", cyanChannel: "#baff2f", blockCount: 24, maxOffset: 54, intensity: 0.68, randomSeed: "signal-interference-acid-violet"},
   amberBlue: {...defaultSignalInterferenceOverlayProps, lineColor: "#fff1c2", redChannel: "#ff9b28", cyanChannel: "#287dff", blockCount: 30, maxOffset: 72, intensity: 0.76, randomSeed: "signal-interference-amber-blue"},
   monochrome: {...defaultSignalInterferenceOverlayProps, lineColor: "#ffffff", redChannel: "#d8d8d8", cyanChannel: "#737373", scanlineOpacity: 0.22, blockCount: 20, maxOffset: 44, intensity: 0.58, randomSeed: "signal-interference-monochrome"},
+  coral: {...defaultSignalInterferenceOverlayProps, lineColor: "#F98362", redChannel: "#F98362", cyanChannel: "#F98362"},
+  sky: {...defaultSignalInterferenceOverlayProps, lineColor: "#61CCF9", redChannel: "#61CCF9", cyanChannel: "#61CCF9"},
+  white: {...defaultSignalInterferenceOverlayProps, lineColor: "#FFFFFF", redChannel: "#FFFFFF", cyanChannel: "#FFFFFF"},
 };

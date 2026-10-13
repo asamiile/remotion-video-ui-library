@@ -20,6 +20,8 @@ Set the output and upload destinations in `.env`.
 | `REMOTION_OUTPUT_DIR` | Output folder (defaults to `out/`) |
 | `REMOTION_UPLOAD_REMOTE` | Upload destination (e.g. `gdrive:Videos/remotion`). No upload if unset |
 | `REMOTION_UPLOAD` | Set to `0` to skip uploading |
+| `REMOTION_UPLOAD_TRANSFERS` | Parallel uploads (default `8`) |
+| `REMOTION_UPLOAD_CHUNK_SIZE` | Drive upload chunk size (default `64M`; uses this much memory per parallel upload) |
 
 rclone's shared client ID is being retired in 2026. Create [your own client ID](https://rclone.org/drive/#making-your-own-client-id) and set it with `rclone config update gdrive client_id=... client_secret=...`.
 

@@ -46,4 +46,9 @@ export const scanLinePatterns = {
     scanColor: "#EEF1FC",
     bandHeight: 60,
   },
+
+  // Single-color clean scan lines.
+  coral: { ...defaultScanLineProps, scanColor: "#F98362" },
+  sky: { ...defaultScanLineProps, scanColor: "#61CCF9" },
+  white: { ...defaultScanLineProps, scanColor: "#FFFFFF" },
 };
