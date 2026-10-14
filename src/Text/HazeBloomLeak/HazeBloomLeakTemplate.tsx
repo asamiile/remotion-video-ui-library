@@ -2,8 +2,7 @@ import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { HazeBloomLeakTemplate } from "../../Background/HazeBloomLeak/HazeBloomLeakTemplate";
 import { hazeBloomLeakPatterns } from "../../Background/HazeBloomLeak/haze-bloom-leak.schema";
-import "../../helpers/font-line-seed-jp";
-import "../../helpers/font-space-grotesk";
+import { CenteredTextLayer } from "../../helpers/centered-text-layer";
 import type { HazeBloomLeakTextSchemaType } from "./haze-bloom-leak.schema";
 
 /** Blend between linear and smoothstep progress. */
@@ -13,21 +12,13 @@ const easeTravel = (t: number, amount: number) => {
 };
 
 export const HazeBloomLeakTextTemplate: React.FC<HazeBloomLeakTextSchemaType> = ({
-  text,
-  fontFamily,
-  fontSize,
-  fontWeight,
-  letterSpacing,
-  textColor,
-  textOpacity,
-  textOffsetX,
-  textOffsetY,
   backgroundPattern,
   backgroundTravel,
   easing,
+  ...textProps
 }) => {
   const frame = useCurrentFrame();
-  const { durationInFrames, width, height } = useVideoConfig();
+  const { durationInFrames, height } = useVideoConfig();
 
   const linear = interpolate(frame, [0, durationInFrames - 1], [0, 1], {
     extrapolateLeft: "clamp",
@@ -53,30 +44,7 @@ export const HazeBloomLeakTextTemplate: React.FC<HazeBloomLeakTextSchemaType> = 
         <HazeBloomLeakTemplate {...background} />
       </AbsoluteFill>
 
-      <AbsoluteFill
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          transform: `translate(${textOffsetX * width}px, ${textOffsetY * height}px)`,
-        }}
-      >
-        <div
-          style={{
-            fontFamily,
-            fontSize,
-            fontWeight,
-            letterSpacing,
-            lineHeight: 1,
-            color: textColor,
-            opacity: textOpacity,
-            // Break only at "\n" in the text, never automatically
-            whiteSpace: "pre",
-            textAlign: "center",
-          }}
-        >
-          {text}
-        </div>
-      </AbsoluteFill>
+      <CenteredTextLayer {...textProps} />
     </AbsoluteFill>
   );
 };

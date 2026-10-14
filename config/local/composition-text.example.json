@@ -7817,6 +7817,11 @@
     "sectionDrop": { "text": "Sample Text" },
     "sectionBreakdown": { "text": "Sample Text" }
   },
+  "halftoneDotsTextPatterns": {
+    "coral": { "text": "Sample Text" },
+    "sky": { "text": "Sample Text" },
+    "white": { "text": "Sample Text" }
+  },
   "distressTransitionPatterns": {
     "dryBrushMono": {
       "mode": "dryBrush",

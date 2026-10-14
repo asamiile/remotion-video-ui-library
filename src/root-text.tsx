@@ -117,6 +117,8 @@ import { signalLockCreditSchema } from "./Text/SignalLockCredit/signal-lock-cred
 import { signalLockCreditDurationFrames } from "./Text/SignalLockCredit/signal-lock-credit.schema";
 import { HazeBloomLeakTextTemplate } from "./Text/HazeBloomLeak/HazeBloomLeakTemplate";
 import { hazeBloomLeakTextDurationFrames, hazeBloomLeakTextSchema } from "./Text/HazeBloomLeak/haze-bloom-leak.schema";
+import { HalftoneDotsTextTemplate } from "./Text/HalftoneDots/HalftoneDotsTemplate";
+import { halftoneDotsTextDurationFrames, halftoneDotsTextSchema } from "./Text/HalftoneDots/halftone-dots.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -154,6 +156,7 @@ import {
   mergedDepthDollyCreditPatterns,
   mergedSignalLockCreditPatterns,
   mergedHazeBloomLeakTextPatterns,
+  mergedHalftoneDotsTextPatterns,
   mergedOneTakeLogoTextProps,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
@@ -609,6 +612,16 @@ export function TextFolder() {
           Template: HazeBloomLeakTextTemplate,
           schema: hazeBloomLeakTextSchema,
           durationInFrames: hazeBloomLeakTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="HalftoneDots">
+        {renderPatternFamily({
+          patterns: mergedHalftoneDotsTextPatterns,
+          idPrefix: "HalftoneDots-",
+          Template: HalftoneDotsTextTemplate,
+          schema: halftoneDotsTextSchema,
+          durationInFrames: halftoneDotsTextDurationFrames,
         })}
       </Folder>
     </Folder>

@@ -33,6 +33,7 @@ import { exposureFlashCreditPatterns } from "../Text/ExposureFlashCredit/exposur
 import { depthDollyCreditPatterns } from "../Text/DepthDollyCredit/depth-dolly-credit.schema";
 import { signalLockCreditPatterns } from "../Text/SignalLockCredit/signal-lock-credit.schema";
 import { hazeBloomLeakTextPatterns } from "../Text/HazeBloomLeak/haze-bloom-leak.schema";
+import { halftoneDotsTextPatterns } from "../Text/HalftoneDots/halftone-dots.schema";
 import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.schema";
 import {
   getEffectiveCompositionText,
@@ -218,6 +219,11 @@ export const mergedHazeBloomLeakTextPatterns = shallowMergePatternRecord(
   hazeBloomLeakTextPatterns,
   local.hazeBloomLeakTextPatterns,
 ) as typeof hazeBloomLeakTextPatterns;
+
+export const mergedHalftoneDotsTextPatterns = shallowMergePatternRecord(
+  halftoneDotsTextPatterns,
+  local.halftoneDotsTextPatterns,
+) as typeof halftoneDotsTextPatterns;
 
 export const mergedOneTakeLogoTextProps = {
   ...oneTakeLogoTextVariantProps,

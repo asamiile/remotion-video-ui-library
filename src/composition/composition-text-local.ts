@@ -51,6 +51,7 @@ export type CompositionTextLocal = {
   depthDollyCreditPatterns?: Record<string, Record<string, unknown>>;
   signalLockCreditPatterns?: Record<string, Record<string, unknown>>;
   hazeBloomLeakTextPatterns?: Record<string, Record<string, unknown>>;
+  halftoneDotsTextPatterns?: Record<string, Record<string, unknown>>;
   battleCalloutBannerPatterns?: Record<string, Record<string, unknown>>;
   asymmetricStatusPanelPatterns?: Record<string, Record<string, unknown>>;
   framedFootageWindowPatterns?: Record<string, Record<string, unknown>>;

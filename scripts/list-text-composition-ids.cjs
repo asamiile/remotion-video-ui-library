@@ -178,6 +178,11 @@ const families = [
     file: "src/Text/HazeBloomLeak/haze-bloom-leak.schema.ts",
     exportName: "hazeBloomLeakTextPatterns",
   },
+  {
+    idPrefix: "HalftoneDots",
+    file: "src/Text/HalftoneDots/halftone-dots.schema.ts",
+    exportName: "halftoneDotsTextPatterns",
+  },
 ];
 
 for (const fam of families) {

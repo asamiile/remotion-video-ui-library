@@ -1,8 +1,7 @@
-import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
 import { hazeBloomLeakPatterns } from "../../Background/HazeBloomLeak/haze-bloom-leak.schema";
+import { centeredTextFields, defaultCenteredTextProps } from "../../helpers/centered-text-layer";
 import { JETBRAINS_MONO_FONT_FAMILY } from "../../helpers/font-jetbrains-mono";
-import { SPACE_GROTESK_FONT_FAMILY } from "../../helpers/font-space-grotesk";
 
 const backgroundPatternIds = Object.keys(hazeBloomLeakPatterns) as [string, ...string[]];
 
@@ -12,19 +11,7 @@ const backgroundPatternIds = Object.keys(hazeBloomLeakPatterns) as [string, ...s
  * different depths.
  */
 export const hazeBloomLeakTextSchema = z.object({
-  text: z.string().default("Sample Text"),
-
-  fontFamily: z.string().default(SPACE_GROTESK_FONT_FAMILY),
-  fontSize: z.number().min(24).max(480).default(260),
-  fontWeight: z.number().min(100).max(900).default(700),
-  letterSpacing: z.string().default("-0.02em"),
-  textColor: zColor().default("#ffffff"),
-  /** Text opacity, independent of textColor (0 = invisible, 1 = opaque) */
-  textOpacity: z.number().min(0).max(1).default(1),
-  /** Horizontal offset from center, as a fraction of frame width (positive = right) */
-  textOffsetX: z.number().min(-0.5).max(0.5).default(0),
-  /** Vertical offset from center, as a fraction of frame height (positive = down) */
-  textOffsetY: z.number().min(-0.5).max(0.5).default(0),
+  ...centeredTextFields,
 
   /** HazeBloomLeak pattern drawn behind the text */
   backgroundPattern: z.enum(backgroundPatternIds).default("edgeWarm"),
@@ -41,22 +28,15 @@ export type HazeBloomLeakTextSchemaType = z.infer<typeof hazeBloomLeakTextSchema
 export const hazeBloomLeakTextDurationFrames = 300;
 
 export const defaultHazeBloomLeakTextProps = {
-  text: "Sample Text",
-
-  fontFamily: SPACE_GROTESK_FONT_FAMILY,
+  ...defaultCenteredTextProps,
   fontSize: 300,
-  fontWeight: 700,
-  letterSpacing: "-0.02em",
-  textColor: "#ffffff",
   textOpacity: 0.5,
-  textOffsetX: 0,
-  textOffsetY: 0,
 
   backgroundPattern: "edgeMono",
   backgroundTravel: 0.3,
 
   easing: 0.35,
-} as const;
+} as const satisfies HazeBloomLeakTextSchemaType;
 
 export const hazeBloomLeakTextPatterns = {
   /** "Sample Text" held still over warm edge leaks drifting down (English default) */
@@ -102,4 +82,4 @@ export const hazeBloomLeakTextPatterns = {
     ...defaultHazeBloomLeakTextProps,
     backgroundPattern: "sectionBreakdown",
   },
-};
+} satisfies Record<string, HazeBloomLeakTextSchemaType>;
