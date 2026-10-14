@@ -57,7 +57,7 @@ export const hazeBloomLeakTextPatterns = {
   sweepDuoJa: {
     ...defaultHazeBloomLeakTextProps,
     fontFamily: JETBRAINS_MONO_FONT_FAMILY,
-    fontSize: 130,
+    fontSize: 102,
     backgroundPattern: "sweepDuo",
   },
 

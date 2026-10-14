@@ -8,12 +8,10 @@ const EYEBROW_LETTER_SPACING_PX = 1.5;
 
 /**
  * Two-line title card: eyebrow + title, with a flicker-in effect
- * (`helpers/effect-neon-flicker.ts`) applied to the eyebrow. This is a generalized
- * version of the title-card pattern (the OneTake-brand-specific parts of
- * `OneTake-LogoText` have been factored out into neutral defaults here;
- * that original family itself is left unchanged). It deliberately avoids
- * neon-sign-style glow shadows or highly saturated colors — text, font, and
- * color all use neutral defaults in the schema.
+ * (`helpers/effect-neon-flicker.ts`) applied to the eyebrow. The default
+ * pattern stays neutral (no glow, muted colors); looks such as a glowing
+ * eyebrow or a repeating flicker are patterns in `flickerTitlePatterns`, and
+ * per-project copy belongs in `composition-text.local.json`.
  *
  * The flicker-in effect fires exactly once at `flickerTriggerFrame`, after
  * which it settles into a steady "lit" state. Because the pre-trigger state
@@ -32,9 +30,14 @@ export const FlickerTitleTemplate: React.FC<FlickerTitleSchemaType> = ({
   eyebrowColor,
   titleColor,
   backgroundColor,
+  eyebrowGlowColor,
+  eyebrowGlowBlurPx,
   flickerTriggerFrame,
+  flickerRepeatFrames,
 }) => {
-  const frame = useCurrentFrame();
+  const currentFrame = useCurrentFrame();
+  const frame =
+    flickerRepeatFrames > 0 ? currentFrame % flickerRepeatFrames : currentFrame;
   const { fps } = useVideoConfig();
 
   const elapsedSinceFlickerMs =
@@ -72,6 +75,10 @@ export const FlickerTitleTemplate: React.FC<FlickerTitleSchemaType> = ({
             letterSpacing: EYEBROW_LETTER_SPACING_PX,
             textTransform: "uppercase",
             color: eyebrowColor,
+            textShadow:
+              eyebrowGlowBlurPx > 0
+                ? `0 0 ${eyebrowGlowBlurPx}px ${eyebrowGlowColor}`
+                : undefined,
             opacity: flicker.opacity,
             filter: `brightness(${flicker.brightness})`,
           }}

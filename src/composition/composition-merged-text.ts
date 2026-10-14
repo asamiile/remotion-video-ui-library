@@ -34,7 +34,7 @@ import { depthDollyCreditPatterns } from "../Text/DepthDollyCredit/depth-dolly-c
 import { signalLockCreditPatterns } from "../Text/SignalLockCredit/signal-lock-credit.schema";
 import { hazeBloomLeakTextPatterns } from "../Text/HazeBloomLeak/haze-bloom-leak.schema";
 import { halftoneDotsTextPatterns } from "../Text/HalftoneDots/halftone-dots.schema";
-import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.schema";
+import { flickerTitlePatterns } from "../Text/FlickerTitle/flicker-title.schema";
 import {
   getEffectiveCompositionText,
   shallowMergePatternRecord,
@@ -225,10 +225,10 @@ export const mergedHalftoneDotsTextPatterns = shallowMergePatternRecord(
   local.halftoneDotsTextPatterns,
 ) as typeof halftoneDotsTextPatterns;
 
-export const mergedOneTakeLogoTextProps = {
-  ...oneTakeLogoTextVariantProps,
-  ...(local.oneTakeLogoText || {}),
-};
+export const mergedFlickerTitlePatterns = shallowMergePatternRecord(
+  flickerTitlePatterns,
+  local.flickerTitlePatterns,
+) as typeof flickerTitlePatterns;
 
 export const mergedLocationConfigs =
   buildLocationConfigsFromCompositionKeys(local, locationCompositionKeys);

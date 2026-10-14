@@ -202,6 +202,7 @@ const fixedIds = [
   "DottedLineMarkerText-02",
   "DottedLineMarkerText-GlitchHandover",
   "FlickerTitle",
+  "FlickerTitle-CyanGlow",
 ];
 
 for (const id of fixedIds) {

@@ -165,6 +165,7 @@ DOTTED_LINE_MARKER_TEXT_TRANSITION_COMPOSITION_IDS=(
 
 FLICKER_TITLE_COMPOSITION_IDS=(
   "FlickerTitle"
+  "FlickerTitle-CyanGlow"
 )
 
 INK_RIPPLE_TRANSITION_COMPOSITION_IDS=(
@@ -334,7 +335,6 @@ resolve_output_subdir() {
     RadialSpinner-*) echo "Loading/RadialSpinner" ;;
     RadialGlowSpinner-*) echo "Loading/RadialGlowSpinner" ;;
     CodeStreamHorizontal|CodeStreamVertical) echo "Text/CodeStream" ;;
-    OneTake-LogoText) echo "Text/FlickerTitle" ;;
     DottedLineMarkerText-*) echo "Text/DottedLineMarkerText" ;;
     GlitchTextRandom-*) echo "Text/GlitchText" ;;
     OneTake-Onboarding*) echo "Motion/OneTake/Onboarding" ;;
