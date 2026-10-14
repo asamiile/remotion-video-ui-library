@@ -183,6 +183,11 @@ const families = [
     file: "src/Text/HalftoneDots/halftone-dots.schema.ts",
     exportName: "halftoneDotsTextPatterns",
   },
+  {
+    idPrefix: "TextGrid",
+    file: "src/Text/TextGrid/text-grid.schema.ts",
+    exportName: "textGridPatterns",
+  },
 ];
 
 for (const fam of families) {

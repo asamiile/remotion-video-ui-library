@@ -59,6 +59,7 @@ export type CompositionTextLocal = {
   circularNeonLogoFramePatterns?: Record<string, Record<string, unknown>>;
   waveAnnouncementBannerPatterns?: Record<string, Record<string, unknown>>;
   flickerTitlePatterns?: Record<string, Record<string, unknown>>;
+  textGridPatterns?: Record<string, Record<string, unknown>>;
   location?: Record<string, { locationName?: string }>;
   mapLocationPoints?: Record<
     string,

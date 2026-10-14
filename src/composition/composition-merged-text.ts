@@ -35,6 +35,7 @@ import { signalLockCreditPatterns } from "../Text/SignalLockCredit/signal-lock-c
 import { hazeBloomLeakTextPatterns } from "../Text/HazeBloomLeak/haze-bloom-leak.schema";
 import { halftoneDotsTextPatterns } from "../Text/HalftoneDots/halftone-dots.schema";
 import { flickerTitlePatterns } from "../Text/FlickerTitle/flicker-title.schema";
+import { textGridPatterns } from "../Text/TextGrid/text-grid.schema";
 import {
   getEffectiveCompositionText,
   shallowMergePatternRecord,
@@ -229,6 +230,11 @@ export const mergedFlickerTitlePatterns = shallowMergePatternRecord(
   flickerTitlePatterns,
   local.flickerTitlePatterns,
 ) as typeof flickerTitlePatterns;
+
+export const mergedTextGridPatterns = shallowMergePatternRecord(
+  textGridPatterns,
+  local.textGridPatterns,
+) as typeof textGridPatterns;
 
 export const mergedLocationConfigs =
   buildLocationConfigsFromCompositionKeys(local, locationCompositionKeys);

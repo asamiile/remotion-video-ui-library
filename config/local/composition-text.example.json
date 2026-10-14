@@ -7815,6 +7815,11 @@
     "sky": { "text": "Sample Text" },
     "white": { "text": "Sample Text" }
   },
+  "textGridPatterns": {
+    "grid3x2": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
+    "grid3x2Flicker": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
+    "grid3x2Glitch": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] }
+  },
   "distressTransitionPatterns": {
     "dryBrushMono": {
       "mode": "dryBrush",

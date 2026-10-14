@@ -113,6 +113,8 @@ import { HazeBloomLeakTextTemplate } from "./Text/HazeBloomLeak/HazeBloomLeakTem
 import { hazeBloomLeakTextDurationFrames, hazeBloomLeakTextSchema } from "./Text/HazeBloomLeak/haze-bloom-leak.schema";
 import { HalftoneDotsTextTemplate } from "./Text/HalftoneDots/HalftoneDotsTemplate";
 import { halftoneDotsTextDurationFrames, halftoneDotsTextSchema } from "./Text/HalftoneDots/halftone-dots.schema";
+import { TextGridTemplate } from "./Text/TextGrid/TextGridTemplate";
+import { textGridDurationFrames, textGridSchema } from "./Text/TextGrid/text-grid.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -151,6 +153,7 @@ import {
   mergedSignalLockCreditPatterns,
   mergedHazeBloomLeakTextPatterns,
   mergedHalftoneDotsTextPatterns,
+  mergedTextGridPatterns,
   mergedFlickerTitlePatterns,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
@@ -613,6 +616,16 @@ export function TextFolder() {
           Template: HalftoneDotsTextTemplate,
           schema: halftoneDotsTextSchema,
           durationInFrames: halftoneDotsTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="TextGrid">
+        {renderPatternFamily({
+          patterns: mergedTextGridPatterns,
+          idPrefix: "TextGrid-",
+          Template: TextGridTemplate,
+          schema: textGridSchema,
+          durationInFrames: textGridDurationFrames,
         })}
       </Folder>
     </Folder>

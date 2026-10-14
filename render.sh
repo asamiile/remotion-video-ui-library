@@ -277,6 +277,7 @@ resolve_output_subdir() {
     SignalLockCredit-*) echo "Text/SignalLockCredit" ;;
     HazeBloomLeak-*) echo "Text/HazeBloomLeak" ;;
     HalftoneDots-*) echo "Text/HalftoneDots" ;;
+    TextGrid-*) echo "Text/TextGrid" ;;
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge) echo "Effect/Transition/GlitchTransitionBridge" ;;
