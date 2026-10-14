@@ -173,6 +173,21 @@ const families = [
     file: "src/Text/SignalLockCredit/signal-lock-credit.schema.ts",
     exportName: "signalLockCreditPatterns",
   },
+  {
+    idPrefix: "HazeBloomLeak",
+    file: "src/Text/HazeBloomLeak/haze-bloom-leak.schema.ts",
+    exportName: "hazeBloomLeakTextPatterns",
+  },
+  {
+    idPrefix: "HalftoneDots",
+    file: "src/Text/HalftoneDots/halftone-dots.schema.ts",
+    exportName: "halftoneDotsTextPatterns",
+  },
+  {
+    idPrefix: "TextGrid",
+    file: "src/Text/TextGrid/text-grid.schema.ts",
+    exportName: "textGridPatterns",
+  },
 ];
 
 for (const fam of families) {
@@ -192,6 +207,7 @@ const fixedIds = [
   "DottedLineMarkerText-02",
   "DottedLineMarkerText-GlitchHandover",
   "FlickerTitle",
+  "FlickerTitle-CyanGlow",
 ];
 
 for (const id of fixedIds) {

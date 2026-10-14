@@ -61,6 +61,10 @@ const families = [
   { type: "pattern", file: "Text/ExposureFlashCredit/exposure-flash-credit.schema", export: "exposureFlashCreditPatterns", category: "text" },
   { type: "pattern", file: "Text/DepthDollyCredit/depth-dolly-credit.schema", export: "depthDollyCreditPatterns", category: "text" },
   { type: "pattern", file: "Text/SignalLockCredit/signal-lock-credit.schema", export: "signalLockCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/HazeBloomLeak/haze-bloom-leak.schema", export: "hazeBloomLeakTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/HalftoneDots/halftone-dots.schema", export: "halftoneDotsTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/FlickerTitle/flicker-title.schema", export: "flickerTitlePatterns", category: "text" },
+  { type: "pattern", file: "Text/TextGrid/text-grid.schema", export: "textGridPatterns", category: "text" },
 
   { type: "pattern", file: "Background/HalftoneDots/halftone-dots.schema", export: "halftoneDotsPatterns", category: "background" },
 
@@ -87,9 +91,6 @@ const families = [
   { type: "pattern", file: "Loading/RadialSpinner/radial-spinner.schema", export: "radialSpinnerPatterns", category: "other" },
   { type: "pattern", file: "Loading/RadialGlowSpinner/radial-glow-spinner.schema", export: "radialGlowSpinnerPatterns", category: "other" },
 
-  // Special: oneTakeLogo props (goes to 'text' because it's used by root-text.tsx)
-  { type: "oneTakeLogo", file: "Text/FlickerTitle/flicker-title.schema", export: "oneTakeLogoTextVariantProps", category: "text" },
-
   // Location & Map (go to 'other' since root-other.tsx uses them)
   // Note: these are not generated separately; they're built from Location keys
 ];
@@ -113,19 +114,13 @@ for (const family of families) {
 
 // Special handling: merge location/map handling into 'text' category (Location is a Text composition)
 byCategory.text.push({
-  type: "special",
-  category: "text",
-  export: "mergedOneTakeLogoTextProps",
-});
-
-byCategory.text.push({
   type: "locationAndMap",
   category: "text",
 });
 
 // Validation
 for (const family of families) {
-  if (family.type === "intro" || family.type === "pattern" || family.type === "oneTakeLogo") {
+  if (family.type === "intro" || family.type === "pattern") {
     const fullPath = path.join(SRC, family.file + ".ts");
     if (!fs.existsSync(fullPath)) {
       throw new Error(`File not found: ${fullPath}`);
@@ -141,7 +136,7 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
 
   // Collect imports
   for (const family of categorizedFamilies) {
-    if (family.type === "intro" || family.type === "pattern" || family.type === "oneTakeLogo") {
+    if (family.type === "intro" || family.type === "pattern") {
       const importPath = `../${family.file}`;
       imports.push(`import { ${family.export} } from "${importPath}";`);
     }
@@ -200,12 +195,6 @@ function generateCategoryFile(categoryName, categorizedFamilies) {
       exportLines.push(`  ${family.export},`);
       exportLines.push(`  local.${localName},`);
       exportLines.push(`) as typeof ${family.export};`);
-      exportLines.push("");
-    } else if (family.type === "special" && family.export === "mergedOneTakeLogoTextProps") {
-      exportLines.push("export const mergedOneTakeLogoTextProps = {");
-      exportLines.push("  ...oneTakeLogoTextVariantProps,");
-      exportLines.push("  ...(local.oneTakeLogoText || {}),");
-      exportLines.push("};");
       exportLines.push("");
     } else if (family.type === "locationAndMap") {
       // Location and Map exports

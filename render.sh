@@ -165,6 +165,7 @@ DOTTED_LINE_MARKER_TEXT_TRANSITION_COMPOSITION_IDS=(
 
 FLICKER_TITLE_COMPOSITION_IDS=(
   "FlickerTitle"
+  "FlickerTitle-CyanGlow"
 )
 
 INK_RIPPLE_TRANSITION_COMPOSITION_IDS=(
@@ -274,6 +275,9 @@ resolve_output_subdir() {
     ExposureFlashCredit-*) echo "Text/ExposureFlashCredit" ;;
     DepthDollyCredit-*) echo "Text/DepthDollyCredit" ;;
     SignalLockCredit-*) echo "Text/SignalLockCredit" ;;
+    HazeBloomLeak-*) echo "Text/HazeBloomLeak" ;;
+    HalftoneDots-*) echo "Text/HalftoneDots" ;;
+    TextGrid-*) echo "Text/TextGrid" ;;
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge) echo "Effect/Transition/GlitchTransitionBridge" ;;
@@ -332,7 +336,6 @@ resolve_output_subdir() {
     RadialSpinner-*) echo "Loading/RadialSpinner" ;;
     RadialGlowSpinner-*) echo "Loading/RadialGlowSpinner" ;;
     CodeStreamHorizontal|CodeStreamVertical) echo "Text/CodeStream" ;;
-    OneTake-LogoText) echo "Text/FlickerTitle" ;;
     DottedLineMarkerText-*) echo "Text/DottedLineMarkerText" ;;
     GlitchTextRandom-*) echo "Text/GlitchText" ;;
     OneTake-Onboarding*) echo "Motion/OneTake/Onboarding" ;;
@@ -443,7 +446,7 @@ requires_webgl() {
     Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
     Background-Gradient-*|Background-RippleRings-*|Background-SpeedLines-*|Background-SynthGrid-*) return 0 ;;
     Background-HalftoneOverlay-*|Background-GrungeOverlay-*|Background-GrungeSurface-*) return 0 ;;
-    Background-SprayTexture-*|Background-InkTexture-*|Background-HazeBloomLeak-*|Background-DubEchoTrails-*|Background-LaserBeams-*) return 0 ;;
+    Background-SprayTexture-*|Background-InkTexture-*|Background-HazeBloomLeak-*|HazeBloomLeak-*|HalftoneDots-*|Background-DubEchoTrails-*|Background-LaserBeams-*) return 0 ;;
     Background-HalftoneDots-*|Background-Starfield-*|Background-Kaleidoscope-*|Background-VoronoiCells-*) return 0 ;;
     Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     Background-LidarPointCloud-*|Background-SceneUnderstanding-*|Background-OpticalFlow-*|Background-ThermalDrone-*|FootagePass-*) return 0 ;;

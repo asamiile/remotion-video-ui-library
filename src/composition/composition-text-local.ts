@@ -50,13 +50,16 @@ export type CompositionTextLocal = {
   exposureFlashCreditPatterns?: Record<string, Record<string, unknown>>;
   depthDollyCreditPatterns?: Record<string, Record<string, unknown>>;
   signalLockCreditPatterns?: Record<string, Record<string, unknown>>;
+  hazeBloomLeakTextPatterns?: Record<string, Record<string, unknown>>;
+  halftoneDotsTextPatterns?: Record<string, Record<string, unknown>>;
   battleCalloutBannerPatterns?: Record<string, Record<string, unknown>>;
   asymmetricStatusPanelPatterns?: Record<string, Record<string, unknown>>;
   framedFootageWindowPatterns?: Record<string, Record<string, unknown>>;
   lowerThirdTopicLabelPatterns?: Record<string, Record<string, unknown>>;
   circularNeonLogoFramePatterns?: Record<string, Record<string, unknown>>;
   waveAnnouncementBannerPatterns?: Record<string, Record<string, unknown>>;
-  oneTakeLogoText?: Record<string, unknown>;
+  flickerTitlePatterns?: Record<string, Record<string, unknown>>;
+  textGridPatterns?: Record<string, Record<string, unknown>>;
   location?: Record<string, { locationName?: string }>;
   mapLocationPoints?: Record<
     string,

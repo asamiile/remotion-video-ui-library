@@ -7636,16 +7636,9 @@
     "grungeLowerThird": { "text": "ASAMI TOKYO", "subText": "SOUND DESIGNER" },
     "markupCircle": { "text": "LOOK HERE" }
   },
-  "oneTakeLogoText": {
-    "eyebrowText": "DAW Remote Controller",
-    "titleText": "OneTake - Remote Control",
-    "eyebrowFontSize": 24,
-    "titleFontSize": 48,
-    "gapPx": 20,
-    "eyebrowColor": "#37E9FF",
-    "titleColor": "#EEF1FC",
-    "backgroundColor": "#060810",
-    "flickerTriggerFrame": 15
+  "flickerTitlePatterns": {
+    "default": { "eyebrowText": "EYEBROW LABEL", "titleText": "Your Title Here" },
+    "cyanGlow": { "eyebrowText": "EYEBROW LABEL", "titleText": "Your Title Here" }
   },
   "codeStreamPatterns": {
     "horizontal": {
@@ -7806,6 +7799,26 @@
   "signalLockCreditPatterns": {
     "channelLock": { "text": "STARRING SAMPLE CAST" },
     "channelLockJp": { "text": "出演 サンプルキャスト" }
+  },
+  "hazeBloomLeakTextPatterns": {
+    "edgeMono": { "text": "Sample Text" },
+    "edgeWarm": { "text": "Sample Text" },
+    "sweepDuo": { "text": "Sample Text" },
+    "sweepDuoJa": { "text": "サンプルテキスト" },
+    "topMono": { "text": "Sample Text" },
+    "sectionBuild": { "text": "Sample Text" },
+    "sectionDrop": { "text": "Sample Text" },
+    "sectionBreakdown": { "text": "Sample Text" }
+  },
+  "halftoneDotsTextPatterns": {
+    "coral": { "text": "Sample Text" },
+    "sky": { "text": "Sample Text" },
+    "white": { "text": "Sample Text" }
+  },
+  "textGridPatterns": {
+    "grid3x2": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
+    "grid3x2Flicker": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
+    "grid3x2Glitch": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] }
   },
   "distressTransitionPatterns": {
     "dryBrushMono": {
