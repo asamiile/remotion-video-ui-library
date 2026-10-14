@@ -7807,6 +7807,16 @@
     "channelLock": { "text": "STARRING SAMPLE CAST" },
     "channelLockJp": { "text": "出演 サンプルキャスト" }
   },
+  "hazeBloomLeakTextPatterns": {
+    "edgeMono": { "text": "Sample Text" },
+    "edgeWarm": { "text": "Sample Text" },
+    "sweepDuo": { "text": "Sample Text" },
+    "sweepDuoJa": { "text": "サンプルテキスト" },
+    "topMono": { "text": "Sample Text" },
+    "sectionBuild": { "text": "Sample Text" },
+    "sectionDrop": { "text": "Sample Text" },
+    "sectionBreakdown": { "text": "Sample Text" }
+  },
   "distressTransitionPatterns": {
     "dryBrushMono": {
       "mode": "dryBrush",

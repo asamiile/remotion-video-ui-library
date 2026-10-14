@@ -61,6 +61,7 @@ const families = [
   { type: "pattern", file: "Text/ExposureFlashCredit/exposure-flash-credit.schema", export: "exposureFlashCreditPatterns", category: "text" },
   { type: "pattern", file: "Text/DepthDollyCredit/depth-dolly-credit.schema", export: "depthDollyCreditPatterns", category: "text" },
   { type: "pattern", file: "Text/SignalLockCredit/signal-lock-credit.schema", export: "signalLockCreditPatterns", category: "text" },
+  { type: "pattern", file: "Text/HazeBloomLeak/haze-bloom-leak.schema", export: "hazeBloomLeakTextPatterns", category: "text" },
 
   { type: "pattern", file: "Background/HalftoneDots/halftone-dots.schema", export: "halftoneDotsPatterns", category: "background" },
 

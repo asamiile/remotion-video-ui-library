@@ -115,6 +115,8 @@ import { depthDollyCreditDurationFrames } from "./Text/DepthDollyCredit/depth-do
 import { SignalLockCreditTemplate } from "./Text/SignalLockCredit/SignalLockCreditTemplate";
 import { signalLockCreditSchema } from "./Text/SignalLockCredit/signal-lock-credit.schema";
 import { signalLockCreditDurationFrames } from "./Text/SignalLockCredit/signal-lock-credit.schema";
+import { HazeBloomLeakTextTemplate } from "./Text/HazeBloomLeak/HazeBloomLeakTemplate";
+import { hazeBloomLeakTextDurationFrames, hazeBloomLeakTextSchema } from "./Text/HazeBloomLeak/haze-bloom-leak.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -151,6 +153,7 @@ import {
   mergedExposureFlashCreditPatterns,
   mergedDepthDollyCreditPatterns,
   mergedSignalLockCreditPatterns,
+  mergedHazeBloomLeakTextPatterns,
   mergedOneTakeLogoTextProps,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
@@ -596,6 +599,16 @@ export function TextFolder() {
           Template: SignalLockCreditTemplate,
           schema: signalLockCreditSchema,
           durationInFrames: signalLockCreditDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="HazeBloomLeak">
+        {renderPatternFamily({
+          patterns: mergedHazeBloomLeakTextPatterns,
+          idPrefix: "HazeBloomLeak-",
+          Template: HazeBloomLeakTextTemplate,
+          schema: hazeBloomLeakTextSchema,
+          durationInFrames: hazeBloomLeakTextDurationFrames,
         })}
       </Folder>
     </Folder>

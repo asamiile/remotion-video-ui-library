@@ -274,6 +274,7 @@ resolve_output_subdir() {
     ExposureFlashCredit-*) echo "Text/ExposureFlashCredit" ;;
     DepthDollyCredit-*) echo "Text/DepthDollyCredit" ;;
     SignalLockCredit-*) echo "Text/SignalLockCredit" ;;
+    HazeBloomLeak-*) echo "Text/HazeBloomLeak" ;;
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;
     GlitchTransitionBridge) echo "Effect/Transition/GlitchTransitionBridge" ;;
@@ -443,7 +444,7 @@ requires_webgl() {
     Background-TvStatic-*|Background-Aurora-*|Background-MarbleFlow-*|Background-FireFlames-*|Background-Caustics-*|Background-Nebula-*) return 0 ;;
     Background-Gradient-*|Background-RippleRings-*|Background-SpeedLines-*|Background-SynthGrid-*) return 0 ;;
     Background-HalftoneOverlay-*|Background-GrungeOverlay-*|Background-GrungeSurface-*) return 0 ;;
-    Background-SprayTexture-*|Background-InkTexture-*|Background-HazeBloomLeak-*|Background-DubEchoTrails-*|Background-LaserBeams-*) return 0 ;;
+    Background-SprayTexture-*|Background-InkTexture-*|Background-HazeBloomLeak-*|HazeBloomLeak-*|Background-DubEchoTrails-*|Background-LaserBeams-*) return 0 ;;
     Background-HalftoneDots-*|Background-Starfield-*|Background-Kaleidoscope-*|Background-VoronoiCells-*) return 0 ;;
     Background-DigitalFogShader-*|*ShaderTransition|*ShaderTransition-5s|PlasmaEdgeArcShader|VolumetricLightScanShader|EnergyContourLinesShader) return 0 ;;
     Background-LidarPointCloud-*|Background-SceneUnderstanding-*|Background-OpticalFlow-*|Background-ThermalDrone-*|FootagePass-*) return 0 ;;
