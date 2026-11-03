@@ -199,6 +199,11 @@ const families = [
     exportName: "retroTvTextPatterns",
   },
   {
+    idPrefix: "TvScreenText",
+    file: "src/Text/TvScreenText/tv-screen-text.schema.ts",
+    exportName: "tvScreenTextPatterns",
+  },
+  {
     idPrefix: "KineticType",
     file: "src/Text/KineticType/kinetic-type.schema.ts",
     exportName: "kineticTypePatterns",

@@ -119,6 +119,8 @@ import { PunchCardTemplate } from "./Text/PunchCard/PunchCardTemplate";
 import { punchCardDurationFrames, punchCardSchema } from "./Text/PunchCard/punch-card.schema";
 import { RetroTvTextTemplate } from "./Text/RetroTvText/RetroTvTextTemplate";
 import { retroTvTextDurationFrames, retroTvTextSchema } from "./Text/RetroTvText/retro-tv-text.schema";
+import { TvScreenTextTemplate } from "./Text/TvScreenText/TvScreenTextTemplate";
+import { tvScreenTextDurationFrames, tvScreenTextSchema } from "./Text/TvScreenText/tv-screen-text.schema";
 import { KineticTypeTemplate } from "./Text/KineticType/KineticTypeTemplate";
 import { kineticTypeDurationFrames, kineticTypeSchema } from "./Text/KineticType/kinetic-type.schema";
 import {
@@ -162,6 +164,7 @@ import {
   mergedTextGridPatterns,
   mergedPunchCardPatterns,
   mergedRetroTvTextPatterns,
+  mergedTvScreenTextPatterns,
   mergedKineticTypePatterns,
   mergedFlickerTitlePatterns,
 } from "./composition/composition-merged-text";
@@ -655,6 +658,16 @@ export function TextFolder() {
           Template: RetroTvTextTemplate,
           schema: retroTvTextSchema,
           durationInFrames: retroTvTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="TvScreenText">
+        {renderPatternFamily({
+          patterns: mergedTvScreenTextPatterns,
+          idPrefix: "TvScreenText-",
+          Template: TvScreenTextTemplate,
+          schema: tvScreenTextSchema,
+          durationInFrames: tvScreenTextDurationFrames,
         })}
       </Folder>
 

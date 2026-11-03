@@ -38,6 +38,7 @@ import { flickerTitlePatterns } from "../Text/FlickerTitle/flicker-title.schema"
 import { textGridPatterns } from "../Text/TextGrid/text-grid.schema";
 import { punchCardPatterns } from "../Text/PunchCard/punch-card.schema";
 import { retroTvTextPatterns } from "../Text/RetroTvText/retro-tv-text.schema";
+import { tvScreenTextPatterns } from "../Text/TvScreenText/tv-screen-text.schema";
 import { kineticTypePatterns } from "../Text/KineticType/kinetic-type.schema";
 import {
   getEffectiveCompositionText,
@@ -248,6 +249,11 @@ export const mergedRetroTvTextPatterns = shallowMergePatternRecord(
   retroTvTextPatterns,
   local.retroTvTextPatterns,
 ) as typeof retroTvTextPatterns;
+
+export const mergedTvScreenTextPatterns = shallowMergePatternRecord(
+  tvScreenTextPatterns,
+  local.tvScreenTextPatterns,
+) as typeof tvScreenTextPatterns;
 
 export const mergedKineticTypePatterns = shallowMergePatternRecord(
   kineticTypePatterns,

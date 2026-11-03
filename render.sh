@@ -280,6 +280,7 @@ resolve_output_subdir() {
     TextGrid-*) echo "Text/TextGrid" ;;
     PunchCard-*) echo "Text/PunchCard" ;;
     RetroTvText-*) echo "Text/RetroTvText" ;;
+    TvScreenText-*) echo "Text/TvScreenText" ;;
     KineticType-*) echo "Text/KineticType" ;;
     DottedLineMarkerText-GlitchHandover) echo "Text/DottedLineMarkerText" ;;
     FlickerTitle*) echo "Text/FlickerTitle" ;;

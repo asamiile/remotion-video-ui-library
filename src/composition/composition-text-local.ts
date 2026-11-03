@@ -62,6 +62,7 @@ export type CompositionTextLocal = {
   textGridPatterns?: Record<string, Record<string, unknown>>;
   punchCardPatterns?: Record<string, Record<string, unknown>>;
   retroTvTextPatterns?: Record<string, Record<string, unknown>>;
+  tvScreenTextPatterns?: Record<string, Record<string, unknown>>;
   kineticTypePatterns?: Record<string, Record<string, unknown>>;
   location?: Record<string, { locationName?: string }>;
   mapLocationPoints?: Record<

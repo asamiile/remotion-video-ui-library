@@ -7847,6 +7847,13 @@
     "walnut": { "text": "NOW ON AIR", "subText": "CHANNEL 7" },
     "walnutJp": { "text": "放送開始", "subText": "チャンネル 7" }
   },
+  "tvScreenTextPatterns": {
+    "crt": { "text": "NOW ON AIR", "subText": "CHANNEL 7" },
+    "crtJp": { "text": "放送開始", "subText": "チャンネル 7" },
+    "vhs": { "text": "HOME VIDEO", "subText": "SUMMER 1989", "osdText": "PLAY ▶" },
+    "digital": { "text": "LIVE BROADCAST", "subText": "CH 07 HD" },
+    "mono": { "text": "SYSTEM READY", "subText": "> AWAITING INPUT" }
+  },
   "kineticTypePatterns": {
     "wave": { "text": "KINETIC" },
     "tunnel": { "text": "MOTION" },
