@@ -7863,7 +7863,12 @@
     "ribbons": { "text": "TYPOGRAPHY", "subText": "ANIMATION" },
     "liquid": { "text": "LIQUID" },
     "boxTunnel": { "text": "TYPOGRAPHY", "subText": "ANIMATION" },
-    "cloth": { "text": "WORLD WAVE" }
+    "cloth": { "text": "WORLD WAVE" },
+    "textMask": { "text": "MOTION", "subText": "KINETIC TYPOGRAPHY" },
+    "zoom": { "text": "INFINITE", "subText": "LOOP" },
+    "vortex": { "text": "VORTEX" },
+    "pillar": { "text": "KINETIC" },
+    "ripple": { "text": "RIPPLE" }
   },
   "distressTransitionPatterns": {
     "dryBrushMono": {

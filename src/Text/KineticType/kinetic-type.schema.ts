@@ -14,6 +14,11 @@ export const KINETIC_TYPE_STYLES = [
   "liquid",
   "boxTunnel",
   "cloth",
+  "textMask",
+  "zoom",
+  "vortex",
+  "pillar",
+  "ripple",
 ] as const;
 
 /**
@@ -34,7 +39,12 @@ export const kineticTypeSchema = z.object({
    * the center with colored echoes smearing sideways over a bulging grid;
    * boxTunnel = a square tunnel whose walls carry text running toward the
    * vanishing point; cloth = dense rows on a waving sheet in perspective with
-   * a red/cyan split and blurred edges
+   * a red/cyan split and blurred edges; textMask = one huge main word whose
+   * letters are filled with small scrolling rows of the sub word; zoom =
+   * square rings of text nested inside each other, zooming in forever;
+   * vortex = rows twisted into a whirlpool around the center; pillar = a row
+   * of spinning columns wrapped in text; ripple = flat rows pushed outward by
+   * circular ripples spreading from the center
    */
   style: z.enum(KINETIC_TYPE_STYLES),
   text: z.string(),
@@ -42,22 +52,25 @@ export const kineticTypeSchema = z.object({
   subText: z.string(),
   fontFamily: z.string(),
   fontWeight: z.enum(["400", "700", "800"]),
-  /** Filled rows; the band color for ribbons / boxTunnel; the word in liquid */
+  /** Filled rows; the band color for ribbons / boxTunnel; the word in liquid; the big word's outline in textMask */
   textColor: zColor(),
-  /** Outlined rows; the second row pair in fold; text on bands; the liquid grid */
+  /** Outlined rows; the second row pair in fold; text on bands; the liquid grid; the big word's fill in textMask */
   accentColor: zColor(),
   /** "transparent" for an overlay */
   backgroundColor: zColor(),
   /**
    * Rows of text: across the frame (wave, fold, ribbons, cloth), along the
    * tunnel, or pole to pole (sphere); grid cells in liquid. stack fits rows to
-   * the text width and boxTunnel uses two bands per wall instead.
+   * the text width, boxTunnel uses two bands per wall, and zoom sizes its
+   * rings to the frame instead. In textMask, the small rows; in pillar, rows
+   * per column height.
    */
   rows: z.number().min(2).max(30),
   /**
    * Distortion strength: wave height, tunnel twist, sphere tilt, stack letter
    * lean, fold angle, ribbons sway, liquid bulge and echo spread, boxTunnel
-   * roll, cloth wave height
+   * roll, cloth wave height, textMask breathing, zoom sway, vortex twist,
+   * pillar drift, ripple height
    */
   distortion: z.number().min(0).max(2),
   /** Full scroll / spin cycles per loop; integers keep the loop seamless */
@@ -219,5 +232,86 @@ export const kineticTypePatterns = {
     glitch: 0.1,
     grain: 0.2,
     randomSeed: 83,
+  },
+  /** A huge word filled with small scrolling rows, orange on black */
+  textMask: {
+    ...base,
+    style: "textMask" as const,
+    text: "MOTION",
+    subText: "KINETIC TYPOGRAPHY",
+    fontFamily: MONTSERRAT_FONT_FAMILY,
+    fontWeight: "800" as const,
+    textColor: "#f4f4f2",
+    accentColor: "#ff6a2a",
+    backgroundColor: "#080808",
+    rows: 26,
+    loopCycles: 1,
+    chromaticAberration: 0.3,
+    glitch: 0.1,
+    grain: 0.2,
+    randomSeed: 91,
+  },
+  /** Rings of text zooming in forever, white and lime */
+  zoom: {
+    ...base,
+    style: "zoom" as const,
+    text: "INFINITE",
+    subText: "LOOP",
+    fontFamily: MONTSERRAT_FONT_FAMILY,
+    fontWeight: "800" as const,
+    textColor: "#f4f4f2",
+    accentColor: "#c8ff3c",
+    backgroundColor: "#060606",
+    rows: 8,
+    loopCycles: 1,
+    chromaticAberration: 0.3,
+    glitch: 0.1,
+    grain: 0.15,
+    randomSeed: 97,
+  },
+  /** Rows twisted into a whirlpool, white and violet */
+  vortex: {
+    ...base,
+    style: "vortex" as const,
+    text: "VORTEX",
+    textColor: "#f2f0ea",
+    accentColor: "#8a6cff",
+    backgroundColor: "#07060c",
+    rows: 14,
+    loopCycles: 1,
+    randomSeed: 103,
+  },
+  /** Spinning columns of condensed type, white and orange */
+  pillar: {
+    ...base,
+    style: "pillar" as const,
+    text: "KINETIC",
+    fontFamily: OSWALD_FONT_FAMILY,
+    textColor: "#f4f4f2",
+    accentColor: "#ff8a2a",
+    backgroundColor: "#060606",
+    rows: 16,
+    loopCycles: 1,
+    chromaticAberration: 0.25,
+    glitch: 0.1,
+    grain: 0.15,
+    randomSeed: 109,
+  },
+  /** Rows rippling out from the center, white and sky blue on deep navy */
+  ripple: {
+    ...base,
+    style: "ripple" as const,
+    text: "RIPPLE",
+    fontFamily: MONTSERRAT_FONT_FAMILY,
+    fontWeight: "800" as const,
+    textColor: "#f2f4f8",
+    accentColor: "#7ad7ff",
+    backgroundColor: "#050a12",
+    rows: 11,
+    loopCycles: 1,
+    chromaticAberration: 0.4,
+    glitch: 0.1,
+    grain: 0.1,
+    randomSeed: 113,
   },
 };

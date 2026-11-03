@@ -4,7 +4,8 @@
  * opaque black. Each row repeats at its own tile width (`uTileWidths`).
  *
  * Styles: 0 wave, 1 tunnel, 2 sphere, 3 stack, 4 fold, 5 ribbons, 6 liquid,
- * 7 boxTunnel, 8 cloth (KINETIC_TYPE_STYLES order).
+ * 7 boxTunnel, 8 cloth, 9 textMask, 10 zoom, 11 vortex, 12 pillar, 13 ripple
+ * (KINETIC_TYPE_STYLES order).
  * Row modes: 0 = filled / outlined rows alternate; 1 = filled, colored in
  * pairs of rows; 2 = filled bands with dark text alternate with outlined text;
  * 3 = every row filled.
@@ -145,7 +146,9 @@ vec4 tunnelLayer(vec2 p) {
   float v = depth * uRows * 0.22 + uPhase * uCycles * 8.0;
   vec2 dx = vec2(angleGrad(a, aOpposite, true) * 3.0, dFdx(v));
   vec2 dy = vec2(angleGrad(a, aOpposite, false) * 3.0, dFdy(v));
-  vec4 c = cellTiles(floor(v), a * 3.0, fract(v), dx, dy);
+  // Rows move 8 per cycle, so their index repeats on that period to keep
+  // per-row offsets the same at both ends of the loop.
+  vec4 c = cellTiles(mod(floor(v), 8.0 * uCycles), a * 3.0, fract(v), dx, dy);
   return c * smoothstep(0.02, 0.45, r);
 }
 
@@ -158,7 +161,8 @@ vec4 sphereSide(vec2 p, float side) {
   n.xz = mat2(cos(spin), -sin(spin), sin(spin), cos(spin)) * n.xz;
   float lon = atan(n.x, n.z) / TAU;
   float lonOpposite = atan(-n.x, -n.z) / TAU;
-  float v = acos(clamp(n.y, -0.999, 0.999)) / 3.14159265 * uRows;
+  // n.y points down the screen; measure from the top pole so letters stand upright.
+  float v = acos(clamp(-n.y, -0.999, 0.999)) / 3.14159265 * uRows;
   vec2 dx = vec2(angleGrad(lon, lonOpposite, true) * 3.0, dFdx(v));
   vec2 dy = vec2(angleGrad(lon, lonOpposite, false) * 3.0, dFdy(v));
   vec4 c = cellTiles(floor(v), lon * 3.0, fract(v), dx, dy);
@@ -345,6 +349,122 @@ vec4 clothLayer(vec2 p) {
   return c * shade * fog * step(0.0, h.z);
 }
 
+// One huge main word used as a mask: inside its letters, small rows of the
+// sub word scroll (knocked out of the accent fill); outside, the same rows
+// show faintly, and the big word gets a thin outline.
+vec4 textMaskLayer(vec2 p) {
+  float ph = TAU * uPhase * uCycles;
+  float aspect = uResolution.x / uResolution.y;
+  float wordAsp = uWordWidths.x / uRowHeight;
+  float asp0 = tileAspect(0.0);
+  float rowScreen = 0.9 * aspect / wordAsp * (1.0 + uDistortion * 0.03 * sin(ph));
+  vec2 bp = p / rowScreen + vec2(wordAsp * 0.5, 0.5);
+  vec2 bdx = vec2(dFdx(bp.x) / asp0, dFdx(bp.y));
+  vec2 bdy = vec2(dFdy(bp.x) / asp0, dFdy(bp.y));
+  vec4 big = texRow(0.0, vec2(bp.x / asp0, bp.y), bdx, bdy);
+  float inBig = step(0.0, bp.x) * step(bp.x, wordAsp) * step(0.0, bp.y) * step(bp.y, 1.0);
+  float mask = big.r * inBig;
+  float edge = big.g * inBig;
+
+  // Small rows: always the sub word (odd row index); every other row gets
+  // two extra tiles per cycle so neighbours scroll in opposite directions.
+  vec2 st = p * uRows + vec2(0.0, uRows * 0.5);
+  float row = floor(st.y);
+  float flip = (mod(row, 2.0) < 0.5 ? 2.0 : 0.0) * uPhase * uCycles * tileAspect(1.0);
+  float rows = cellRows(row * 2.0 + 1.0, st.x + flip, fract(st.y), dFdx(st), dFdy(st)).a;
+
+  vec3 ink = uBg.a > 0.0 ? uBg.rgb : vec3(0.0);
+  vec4 c = vec4(mix(uAccentColor, ink, rows) * mask, mask);
+  float faint = rows * 0.1 * (1.0 - mask);
+  c += vec4(uTextColor * faint, faint) * (1.0 - c.a);
+  return vec4(uTextColor * edge, edge) + c * (1.0 - edge);
+}
+
+// Rings of text nested inside each other (each a fixed fraction of the
+// last), zooming in forever. Text runs clockwise around each square ring
+// with the letter tops facing out.
+vec4 zoomLayer(vec2 p) {
+  const float F = 0.78;
+  float ph = TAU * uPhase;
+  float spin = uDistortion * 0.08 * sin(ph);
+  p = mat2(cos(spin), -sin(spin), sin(spin), cos(spin)) * p;
+  float ax = abs(p.x);
+  float ay = abs(p.y);
+  float r = max(max(ax, ay), 1e-4);
+  // Two rings per cycle (an even count keeps fill / outline parity).
+  float kf = log(r / 0.5) / log(F) + uPhase * uCycles * 2.0;
+  float level = floor(kf);
+  float y = fract(kf);
+  float along = ay >= ax ? (p.y < 0.0 ? p.x : -p.x) : (p.x > 0.0 ? p.y : -p.y);
+  float ringW = 1.0 - F;
+  float x = along / (r / pow(F, y) * ringW);
+  float xCont = along / (r * ringW);
+  vec2 dx = vec2(dFdx(xCont), dFdx(kf));
+  vec2 dy = vec2(dFdy(xCont), dFdy(kf));
+  // A ring's index shifts by 2 * cycles over the loop; repeat on that period.
+  vec4 c = cellRows(mod(level, 2.0 * uCycles), x, y, dx, dy);
+  // A thin mitred gap where two sides of a ring meet.
+  float mitre = smoothstep(0.004, 0.02, abs(ax - ay) / r);
+  return c * mitre * smoothstep(0.004, 0.06, r);
+}
+
+// Flat rows twisted into a whirlpool: the closer to the center, the further
+// they are turned; the whole field makes one turn per loop.
+vec4 vortexLayer(vec2 p) {
+  float ph = TAU * uPhase * uCycles;
+  float r = length(p);
+  float ang = uDistortion * (1.6 + 0.6 * sin(ph)) / (r * 3.0 + 0.25) + TAU * uPhase;
+  vec2 q = mat2(cos(ang), -sin(ang), sin(ang), cos(ang)) * p;
+  vec2 st = q * uRows + vec2(0.0, uRows * 0.5);
+  vec4 c = cellRows(floor(st.y), st.x, fract(st.y), dFdx(st), dFdy(st));
+  float shade = 0.65 + 0.35 * smoothstep(0.0, 0.6, r);
+  return c * shade * smoothstep(0.015, 0.12, r);
+}
+
+// A row of spinning columns wrapped in text; neighbours spin in opposite
+// directions and drift up and down out of step.
+vec4 pillarLayer(vec2 p) {
+  const float COUNT = 5.0;
+  const float HALF_WIDTH = 0.42;
+  float aspect = uResolution.x / uResolution.y;
+  float ph = TAU * uPhase * uCycles;
+  float pitch = aspect / COUNT;
+  float fx = (p.x + aspect * 0.5) / pitch;
+  float i = floor(fx);
+  float lx = (fract(fx) - 0.5) / HALF_WIDTH;
+  float inside = 1.0 - smoothstep(0.97, 1.0, abs(lx));
+  float theta = asin(clamp(lx, -1.0, 1.0));
+  float dir = mod(i, 2.0) < 0.5 ? 1.0 : -1.0;
+  float lon = (theta + dir * TAU * uPhase * uCycles) / TAU + hash11(i + 40.0);
+  // Whole tiles around the circumference so the text closes on itself.
+  float around = max(1.0, floor(TAU * HALF_WIDTH * pitch * uRows / tileAspect(0.0) + 0.5));
+  float v = p.y * uRows + uRows * 0.5 + uDistortion * 0.8 * sin(ph + i * 1.7);
+  vec2 dx = vec2(dFdx(lon) * around, dFdx(v));
+  vec2 dy = vec2(dFdy(lon) * around, dFdy(v));
+  vec4 c = cellTiles(floor(v), lon * around, fract(v), dx, dy);
+  float shade = 0.15 + 0.85 * pow(max(0.0, 1.0 - lx * lx), 0.75);
+  return c * shade * inside;
+}
+
+// Flat rows pushed outward by circular ripples spreading from the center,
+// fading with distance; crests catch the light and troughs fall into shade.
+vec4 rippleLayer(vec2 p) {
+  float ph = TAU * uPhase * uCycles;
+  float r = max(length(p), 1e-4);
+  // Calm right at the center so the middle rows stay readable.
+  float falloff = smoothstep(0.0, 0.15, r) / (1.0 + r * 1.8);
+  float w = r * 16.0 - ph * 2.0;
+  float push = uDistortion * 0.032 * sin(w) * falloff;
+  vec2 q = p + p / r * push;
+  vec2 st = q * uRows + vec2(0.0, uRows * 0.5);
+  vec4 c = cellRows(floor(st.y), st.x, fract(st.y), dFdx(st), dFdy(st));
+  float crest = cos(w) * min(1.0, uDistortion * falloff * 2.5);
+  c *= 0.55 + 0.45 * crest;
+  // A faint glow along each crest so the rings read between the letters too.
+  float glow = pow(max(crest, 0.0), 3.0) * 0.07;
+  return c + vec4(uAccentColor * glow, glow) * (1.0 - c.a);
+}
+
 vec4 scene(vec2 uv) {
   float aspect = uResolution.x / uResolution.y;
   vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
@@ -357,7 +477,12 @@ vec4 scene(vec2 uv) {
   if (uStyle < 5.5) return ribbonsLayer(p);
   if (uStyle < 6.5) return liquidLayer(p);
   if (uStyle < 7.5) return boxTunnelLayer(p);
-  return clothLayer(p);
+  if (uStyle < 8.5) return clothLayer(p);
+  if (uStyle < 9.5) return textMaskLayer(p);
+  if (uStyle < 10.5) return zoomLayer(p);
+  if (uStyle < 11.5) return vortexLayer(p);
+  if (uStyle < 12.5) return pillarLayer(p);
+  return rippleLayer(p);
 }
 
 void main() {

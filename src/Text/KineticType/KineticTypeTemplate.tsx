@@ -31,6 +31,11 @@ const STYLE_SETTINGS: Record<
   liquid: { rowMode: 0, scroll: 0, splitMode: 1, rowFill: 0 },
   boxTunnel: { rowMode: 2, scroll: 0, splitMode: 1, rowFill: 0.72 },
   cloth: { rowMode: 3, scroll: 1, splitMode: 2, rowFill: 0.82 },
+  textMask: { rowMode: 3, scroll: 1, splitMode: 1, rowFill: 0.8 },
+  zoom: { rowMode: 0, scroll: 1, splitMode: 0, rowFill: 0.8 },
+  vortex: { rowMode: 0, scroll: 1, splitMode: 0, rowFill: 0 },
+  pillar: { rowMode: 0, scroll: 0, splitMode: 1, rowFill: 0.85 },
+  ripple: { rowMode: 0, scroll: 1, splitMode: 0, rowFill: 0.75 },
 };
 
 type TextTexture = {
