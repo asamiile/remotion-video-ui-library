@@ -115,6 +115,12 @@ import { HalftoneDotsTextTemplate } from "./Text/HalftoneDots/HalftoneDotsTempla
 import { halftoneDotsTextDurationFrames, halftoneDotsTextSchema } from "./Text/HalftoneDots/halftone-dots.schema";
 import { TextGridTemplate } from "./Text/TextGrid/TextGridTemplate";
 import { textGridDurationFrames, textGridSchema } from "./Text/TextGrid/text-grid.schema";
+import { PunchCardTemplate } from "./Text/PunchCard/PunchCardTemplate";
+import { punchCardDurationFrames, punchCardSchema } from "./Text/PunchCard/punch-card.schema";
+import { RetroTvTextTemplate } from "./Text/RetroTvText/RetroTvTextTemplate";
+import { retroTvTextDurationFrames, retroTvTextSchema } from "./Text/RetroTvText/retro-tv-text.schema";
+import { KineticTypeTemplate } from "./Text/KineticType/KineticTypeTemplate";
+import { kineticTypeDurationFrames, kineticTypeSchema } from "./Text/KineticType/kinetic-type.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -154,6 +160,9 @@ import {
   mergedHazeBloomLeakTextPatterns,
   mergedHalftoneDotsTextPatterns,
   mergedTextGridPatterns,
+  mergedPunchCardPatterns,
+  mergedRetroTvTextPatterns,
+  mergedKineticTypePatterns,
   mergedFlickerTitlePatterns,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
@@ -626,6 +635,36 @@ export function TextFolder() {
           Template: TextGridTemplate,
           schema: textGridSchema,
           durationInFrames: textGridDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="PunchCard">
+        {renderPatternFamily({
+          patterns: mergedPunchCardPatterns,
+          idPrefix: "PunchCard-",
+          Template: PunchCardTemplate,
+          schema: punchCardSchema,
+          durationInFrames: punchCardDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="RetroTvText">
+        {renderPatternFamily({
+          patterns: mergedRetroTvTextPatterns,
+          idPrefix: "RetroTvText-",
+          Template: RetroTvTextTemplate,
+          schema: retroTvTextSchema,
+          durationInFrames: retroTvTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="KineticType">
+        {renderPatternFamily({
+          patterns: mergedKineticTypePatterns,
+          idPrefix: "KineticType-",
+          Template: KineticTypeTemplate,
+          schema: kineticTypeSchema,
+          durationInFrames: kineticTypeDurationFrames,
         })}
       </Folder>
     </Folder>

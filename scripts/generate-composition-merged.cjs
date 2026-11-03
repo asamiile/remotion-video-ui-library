@@ -65,6 +65,9 @@ const families = [
   { type: "pattern", file: "Text/HalftoneDots/halftone-dots.schema", export: "halftoneDotsTextPatterns", category: "text" },
   { type: "pattern", file: "Text/FlickerTitle/flicker-title.schema", export: "flickerTitlePatterns", category: "text" },
   { type: "pattern", file: "Text/TextGrid/text-grid.schema", export: "textGridPatterns", category: "text" },
+  { type: "pattern", file: "Text/PunchCard/punch-card.schema", export: "punchCardPatterns", category: "text" },
+  { type: "pattern", file: "Text/RetroTvText/retro-tv-text.schema", export: "retroTvTextPatterns", category: "text" },
+  { type: "pattern", file: "Text/KineticType/kinetic-type.schema", export: "kineticTypePatterns", category: "text" },
 
   { type: "pattern", file: "Background/HalftoneDots/halftone-dots.schema", export: "halftoneDotsPatterns", category: "background" },
 

@@ -188,6 +188,21 @@ const families = [
     file: "src/Text/TextGrid/text-grid.schema.ts",
     exportName: "textGridPatterns",
   },
+  {
+    idPrefix: "PunchCard",
+    file: "src/Text/PunchCard/punch-card.schema.ts",
+    exportName: "punchCardPatterns",
+  },
+  {
+    idPrefix: "RetroTvText",
+    file: "src/Text/RetroTvText/retro-tv-text.schema.ts",
+    exportName: "retroTvTextPatterns",
+  },
+  {
+    idPrefix: "KineticType",
+    file: "src/Text/KineticType/kinetic-type.schema.ts",
+    exportName: "kineticTypePatterns",
+  },
 ];
 
 for (const fam of families) {

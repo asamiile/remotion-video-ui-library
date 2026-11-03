@@ -68,11 +68,11 @@ export const defaultStampTextProps = {
 
 export const stampTextPatterns = {
   /** Black ink in a box on kraft paper */
-  approved: {
+  rectangle: {
     ...defaultStampTextProps,
   },
   /** Muted rust ink, double border, date line, on newsprint */
-  confidential: {
+  rectangleDouble: {
     ...defaultStampTextProps,
     text: "CONFIDENTIAL",
     subText: "FILE NO. 0427",
@@ -85,7 +85,7 @@ export const stampTextPatterns = {
     randomSeed: "stamp-confidential",
   },
   /** Off-white ink in a circle on black */
-  soldOut: {
+  circle: {
     ...defaultStampTextProps,
     text: "SOLD OUT",
     fontSize: 120,
@@ -97,12 +97,12 @@ export const stampTextPatterns = {
     randomSeed: "stamp-sold-out",
   },
   /** Black ink, no backdrop, for layering over footage */
-  approvedTransparent: {
+  rectangleTransparent: {
     ...defaultStampTextProps,
     backgroundColor: "transparent",
   },
   /** Japanese sample */
-  approvedJp: {
+  rectangleJp: {
     ...defaultStampTextProps,
     text: "検印済",
     fontFamily: LINE_SEED_JP_FONT_FAMILY,

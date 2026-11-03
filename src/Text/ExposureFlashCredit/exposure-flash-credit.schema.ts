@@ -54,6 +54,13 @@ export const exposureFlashCreditPatterns = {
     text: "DIRECTED BY SAMPLE NAME",
   },
 
+  /** Same as projectorFlash, no backdrop, for layering over footage */
+  projectorFlashTransparent: {
+    ...defaultExposureFlashCreditProps,
+    text: "DIRECTED BY SAMPLE NAME",
+    backgroundColor: "transparent",
+  },
+
   /** Same motion, Japanese sample copy */
   projectorFlashJp: {
     ...defaultExposureFlashCreditProps,

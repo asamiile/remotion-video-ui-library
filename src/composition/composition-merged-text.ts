@@ -36,6 +36,9 @@ import { hazeBloomLeakTextPatterns } from "../Text/HazeBloomLeak/haze-bloom-leak
 import { halftoneDotsTextPatterns } from "../Text/HalftoneDots/halftone-dots.schema";
 import { flickerTitlePatterns } from "../Text/FlickerTitle/flicker-title.schema";
 import { textGridPatterns } from "../Text/TextGrid/text-grid.schema";
+import { punchCardPatterns } from "../Text/PunchCard/punch-card.schema";
+import { retroTvTextPatterns } from "../Text/RetroTvText/retro-tv-text.schema";
+import { kineticTypePatterns } from "../Text/KineticType/kinetic-type.schema";
 import {
   getEffectiveCompositionText,
   shallowMergePatternRecord,
@@ -235,6 +238,21 @@ export const mergedTextGridPatterns = shallowMergePatternRecord(
   textGridPatterns,
   local.textGridPatterns,
 ) as typeof textGridPatterns;
+
+export const mergedPunchCardPatterns = shallowMergePatternRecord(
+  punchCardPatterns,
+  local.punchCardPatterns,
+) as typeof punchCardPatterns;
+
+export const mergedRetroTvTextPatterns = shallowMergePatternRecord(
+  retroTvTextPatterns,
+  local.retroTvTextPatterns,
+) as typeof retroTvTextPatterns;
+
+export const mergedKineticTypePatterns = shallowMergePatternRecord(
+  kineticTypePatterns,
+  local.kineticTypePatterns,
+) as typeof kineticTypePatterns;
 
 export const mergedLocationConfigs =
   buildLocationConfigsFromCompositionKeys(local, locationCompositionKeys);

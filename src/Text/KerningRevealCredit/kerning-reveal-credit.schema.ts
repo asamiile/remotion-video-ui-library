@@ -54,6 +54,13 @@ export const kerningRevealCreditPatterns = {
     text: "A SAMPLE FILM",
   },
 
+  /** Same as trackingConverge, no backdrop, for layering over footage */
+  trackingConvergeTransparent: {
+    ...defaultKerningRevealCreditProps,
+    text: "A SAMPLE FILM",
+    backgroundColor: "transparent",
+  },
+
   /** Same motion, Japanese sample copy */
   trackingConvergeJp: {
     ...defaultKerningRevealCreditProps,

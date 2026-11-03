@@ -60,6 +60,9 @@ export type CompositionTextLocal = {
   waveAnnouncementBannerPatterns?: Record<string, Record<string, unknown>>;
   flickerTitlePatterns?: Record<string, Record<string, unknown>>;
   textGridPatterns?: Record<string, Record<string, unknown>>;
+  punchCardPatterns?: Record<string, Record<string, unknown>>;
+  retroTvTextPatterns?: Record<string, Record<string, unknown>>;
+  kineticTypePatterns?: Record<string, Record<string, unknown>>;
   location?: Record<string, { locationName?: string }>;
   mapLocationPoints?: Record<
     string,

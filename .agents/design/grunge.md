@@ -120,11 +120,11 @@ The stamp drops in large and faint, lands at `impactFrames` with a small squash 
 
 | Pattern | Ink | Paper | Border |
 |---|---|---|---|
-| `approved` | Black `#1f1d1b` | Kraft | box |
-| `confidential` | Rust `#a3452f` + sub line | Newsprint | double |
-| `soldOut` | Off-white `#ece6d8` | Black | circle |
-| `approvedTransparent` | Black | Transparent (overlay) | box |
-| `approvedJp` | Rust | Newsprint | box |
+| `rectangle` | Black `#1f1d1b` | Kraft | box |
+| `rectangleDouble` | Rust `#a3452f` + sub line | Newsprint | double |
+| `circle` | Off-white `#ece6d8` | Black | circle |
+| `rectangleTransparent` | Black | Transparent (overlay) | box |
+| `rectangleJp` | Rust | Newsprint | box |
 
 ## GrungeText
 
@@ -134,13 +134,13 @@ One template, seven styles sharing `text`, `subText`, `fontFamily`, `fontSize`, 
 |---|---|---|---|
 | `stencil` | Letters with a stencil bridge fade from a blurry mist to sharp, with an overspray halo | overspray | `stencilSpray`, `stencilSprayJp` |
 | `ransom` | Cut-out letters, each a different font / case / scrap, pasted one by one with a pop and shadow | one scrap color | `ransomNote` |
-| `typewriter` | Keys struck one by one with uneven ink and jitter, a jolt per strike, blinking block caret | — | `typewriterMemo` |
+| `typewriter` | Keys struck one by one with uneven ink and jitter, a jolt per strike, blinking block caret | — | `typewriterMemo`, `typewriterMemoTransparent` |
 | `tape` | Masking tape slaps down, then marker text is written left → right | tape | `tapeLabel` |
 | `burn` | Letters burn in through spreading noise patches with an ember glow and rising sparks | ember glow | `burnTitle` |
 | `lowerThird` | Rough painted band grows from the left, name slides in, black sub band follows | band | `grungeLowerThird` |
 | `markup` | Marker circle drawn around a spot, an arrow from the note, then the note | marker | `markupCircle` |
 
-`lowerThird` and `markup` default to a transparent backdrop for layering over footage.
+`lowerThird`, `markup`, and `typewriterMemoTransparent` use a transparent backdrop for layering over footage.
 
 ## Palette
 

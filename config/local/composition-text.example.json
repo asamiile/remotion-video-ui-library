@@ -7620,17 +7620,18 @@
     "wallGraffitiJp": { "text": "サンプル" }
   },
   "stampTextPatterns": {
-    "approved": { "text": "APPROVED" },
-    "confidential": { "text": "CONFIDENTIAL", "subText": "FILE NO. 0427" },
-    "soldOut": { "text": "SOLD OUT" },
-    "approvedTransparent": { "text": "APPROVED" },
-    "approvedJp": { "text": "検印済" }
+    "rectangle": { "text": "APPROVED" },
+    "rectangleDouble": { "text": "CONFIDENTIAL", "subText": "FILE NO. 0427" },
+    "circle": { "text": "SOLD OUT" },
+    "rectangleTransparent": { "text": "APPROVED" },
+    "rectangleJp": { "text": "検印済" }
   },
   "grungeTextPatterns": {
     "stencilSpray": { "text": "NO ENTRY" },
     "stencilSprayJp": { "text": "立入禁止" },
     "ransomNote": { "text": "LISTEN UP" },
     "typewriterMemo": { "text": "CASE FILE 0427", "subText": "SUBJECT: UNKNOWN" },
+    "typewriterMemoTransparent": { "text": "CASE FILE 0427", "subText": "SUBJECT: UNKNOWN" },
     "tapeLabel": { "text": "DEMO TAPE VOL.2" },
     "burnTitle": { "text": "OUTLAW" },
     "grungeLowerThird": { "text": "ASAMI TOKYO", "subText": "SOUND DESIGNER" },
@@ -7782,6 +7783,7 @@
   },
   "kerningRevealCreditPatterns": {
     "trackingConverge": { "text": "A SAMPLE FILM" },
+    "trackingConvergeTransparent": { "text": "A SAMPLE FILM" },
     "trackingConvergeJp": { "text": "サンプル映画" }
   },
   "featherWipeCreditPatterns": {
@@ -7790,6 +7792,7 @@
   },
   "exposureFlashCreditPatterns": {
     "projectorFlash": { "text": "DIRECTED BY SAMPLE NAME" },
+    "projectorFlashTransparent": { "text": "DIRECTED BY SAMPLE NAME" },
     "projectorFlashJp": { "text": "監督 サンプル ネーム" }
   },
   "depthDollyCreditPatterns": {
@@ -7819,6 +7822,41 @@
     "grid3x2": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
     "grid3x2Flicker": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
     "grid3x2Glitch": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] }
+  },
+  "punchCardPatterns": {
+    "white": {
+      "lines": [
+        "      PROGRAM HELLO",
+        "      DO 10 I = 1, 5",
+        "      PRINT *, 'HELLO, WORLD', I",
+        "   10 CONTINUE",
+        "      END"
+      ]
+    },
+    "blue": {
+      "lines": [
+        "      PROGRAM HELLO",
+        "      DO 10 I = 1, 5",
+        "      PRINT *, 'HELLO, WORLD', I",
+        "   10 CONTINUE",
+        "      END"
+      ]
+    }
+  },
+  "retroTvTextPatterns": {
+    "walnut": { "text": "NOW ON AIR", "subText": "CHANNEL 7" },
+    "walnutJp": { "text": "放送開始", "subText": "チャンネル 7" }
+  },
+  "kineticTypePatterns": {
+    "wave": { "text": "KINETIC" },
+    "tunnel": { "text": "MOTION" },
+    "sphere": { "text": "TYPE" },
+    "stack": { "text": "TYPE IN MOTION" },
+    "fold": { "text": "KINETIC" },
+    "ribbons": { "text": "TYPOGRAPHY", "subText": "ANIMATION" },
+    "liquid": { "text": "LIQUID" },
+    "boxTunnel": { "text": "TYPOGRAPHY", "subText": "ANIMATION" },
+    "cloth": { "text": "WORLD WAVE" }
   },
   "distressTransitionPatterns": {
     "dryBrushMono": {
