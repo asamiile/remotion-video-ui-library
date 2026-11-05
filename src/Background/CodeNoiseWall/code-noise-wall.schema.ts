@@ -1,5 +1,6 @@
 import { zColor } from "@remotion/zod-types";
 import { z } from "zod";
+import { ambientElectronicPalette as P } from "../../helpers/palette-ambient-electronic";
 
 export const codeNoiseWallSchema = z.object({
   backgroundColor: zColor().default("#04040c"),
@@ -48,5 +49,23 @@ export const codeNoiseWallPatterns = {
     ...defaultCodeNoiseWallProps,
     charColor: "#cc8822",
     backgroundColor: "#0a0603",
+  },
+
+  /** Coral characters */
+  coral: {
+    ...defaultCodeNoiseWallProps,
+    charColor: P.coral,
+  },
+
+  /** Sky-blue characters */
+  sky: {
+    ...defaultCodeNoiseWallProps,
+    charColor: P.sky,
+  },
+
+  /** White characters */
+  white: {
+    ...defaultCodeNoiseWallProps,
+    charColor: P.white,
   },
 };

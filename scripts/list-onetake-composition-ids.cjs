@@ -34,7 +34,3 @@ for (const fam of families) {
     process.stdout.write(`${fam.idPrefix}${separator}${capPattern(patternId)}\n`);
   }
 }
-
-// OneTake-LogoText has no pattern family; print after Logo's enumerated IDs to
-// match the order Root.tsx registers them in (Logo patterns, then LogoText).
-process.stdout.write("OneTake-LogoText\n");

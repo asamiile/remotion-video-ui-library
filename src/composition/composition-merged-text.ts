@@ -32,7 +32,14 @@ import { featherWipeCreditPatterns } from "../Text/FeatherWipeCredit/feather-wip
 import { exposureFlashCreditPatterns } from "../Text/ExposureFlashCredit/exposure-flash-credit.schema";
 import { depthDollyCreditPatterns } from "../Text/DepthDollyCredit/depth-dolly-credit.schema";
 import { signalLockCreditPatterns } from "../Text/SignalLockCredit/signal-lock-credit.schema";
-import { oneTakeLogoTextVariantProps } from "../Text/FlickerTitle/flicker-title.schema";
+import { hazeBloomLeakTextPatterns } from "../Text/HazeBloomLeak/haze-bloom-leak.schema";
+import { halftoneDotsTextPatterns } from "../Text/HalftoneDots/halftone-dots.schema";
+import { flickerTitlePatterns } from "../Text/FlickerTitle/flicker-title.schema";
+import { textGridPatterns } from "../Text/TextGrid/text-grid.schema";
+import { punchCardPatterns } from "../Text/PunchCard/punch-card.schema";
+import { retroTvTextPatterns } from "../Text/RetroTvText/retro-tv-text.schema";
+import { tvScreenTextPatterns } from "../Text/TvScreenText/tv-screen-text.schema";
+import { kineticTypePatterns } from "../Text/KineticType/kinetic-type.schema";
 import {
   getEffectiveCompositionText,
   shallowMergePatternRecord,
@@ -213,10 +220,45 @@ export const mergedSignalLockCreditPatterns = shallowMergePatternRecord(
   local.signalLockCreditPatterns,
 ) as typeof signalLockCreditPatterns;
 
-export const mergedOneTakeLogoTextProps = {
-  ...oneTakeLogoTextVariantProps,
-  ...(local.oneTakeLogoText || {}),
-};
+export const mergedHazeBloomLeakTextPatterns = shallowMergePatternRecord(
+  hazeBloomLeakTextPatterns,
+  local.hazeBloomLeakTextPatterns,
+) as typeof hazeBloomLeakTextPatterns;
+
+export const mergedHalftoneDotsTextPatterns = shallowMergePatternRecord(
+  halftoneDotsTextPatterns,
+  local.halftoneDotsTextPatterns,
+) as typeof halftoneDotsTextPatterns;
+
+export const mergedFlickerTitlePatterns = shallowMergePatternRecord(
+  flickerTitlePatterns,
+  local.flickerTitlePatterns,
+) as typeof flickerTitlePatterns;
+
+export const mergedTextGridPatterns = shallowMergePatternRecord(
+  textGridPatterns,
+  local.textGridPatterns,
+) as typeof textGridPatterns;
+
+export const mergedPunchCardPatterns = shallowMergePatternRecord(
+  punchCardPatterns,
+  local.punchCardPatterns,
+) as typeof punchCardPatterns;
+
+export const mergedRetroTvTextPatterns = shallowMergePatternRecord(
+  retroTvTextPatterns,
+  local.retroTvTextPatterns,
+) as typeof retroTvTextPatterns;
+
+export const mergedTvScreenTextPatterns = shallowMergePatternRecord(
+  tvScreenTextPatterns,
+  local.tvScreenTextPatterns,
+) as typeof tvScreenTextPatterns;
+
+export const mergedKineticTypePatterns = shallowMergePatternRecord(
+  kineticTypePatterns,
+  local.kineticTypePatterns,
+) as typeof kineticTypePatterns;
 
 export const mergedLocationConfigs =
   buildLocationConfigsFromCompositionKeys(local, locationCompositionKeys);

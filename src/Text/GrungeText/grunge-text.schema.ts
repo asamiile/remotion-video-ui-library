@@ -111,6 +111,18 @@ export const grungeTextPatterns = {
     roughness: 1.5,
     inkWear: 0.35,
   },
+  /** Typewritten memo, no backdrop, for layering over footage */
+  typewriterMemoTransparent: {
+    ...base,
+    style: "typewriter" as const,
+    text: "CASE FILE 0427",
+    subText: "SUBJECT: UNKNOWN",
+    fontFamily: JETBRAINS_MONO_FONT_FAMILY,
+    fontSize: 72,
+    backgroundColor: "transparent",
+    roughness: 1.5,
+    inkWear: 0.35,
+  },
   /** Masking tape label with marker writing, on a dark board */
   tapeLabel: {
     ...base,

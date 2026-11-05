@@ -7620,32 +7620,26 @@
     "wallGraffitiJp": { "text": "サンプル" }
   },
   "stampTextPatterns": {
-    "approved": { "text": "APPROVED" },
-    "confidential": { "text": "CONFIDENTIAL", "subText": "FILE NO. 0427" },
-    "soldOut": { "text": "SOLD OUT" },
-    "approvedTransparent": { "text": "APPROVED" },
-    "approvedJp": { "text": "検印済" }
+    "rectangle": { "text": "APPROVED" },
+    "rectangleDouble": { "text": "CONFIDENTIAL", "subText": "FILE NO. 0427" },
+    "circle": { "text": "SOLD OUT" },
+    "rectangleTransparent": { "text": "APPROVED" },
+    "rectangleJp": { "text": "検印済" }
   },
   "grungeTextPatterns": {
     "stencilSpray": { "text": "NO ENTRY" },
     "stencilSprayJp": { "text": "立入禁止" },
     "ransomNote": { "text": "LISTEN UP" },
     "typewriterMemo": { "text": "CASE FILE 0427", "subText": "SUBJECT: UNKNOWN" },
+    "typewriterMemoTransparent": { "text": "CASE FILE 0427", "subText": "SUBJECT: UNKNOWN" },
     "tapeLabel": { "text": "DEMO TAPE VOL.2" },
     "burnTitle": { "text": "OUTLAW" },
     "grungeLowerThird": { "text": "ASAMI TOKYO", "subText": "SOUND DESIGNER" },
     "markupCircle": { "text": "LOOK HERE" }
   },
-  "oneTakeLogoText": {
-    "eyebrowText": "DAW Remote Controller",
-    "titleText": "OneTake - Remote Control",
-    "eyebrowFontSize": 24,
-    "titleFontSize": 48,
-    "gapPx": 20,
-    "eyebrowColor": "#37E9FF",
-    "titleColor": "#EEF1FC",
-    "backgroundColor": "#060810",
-    "flickerTriggerFrame": 15
+  "flickerTitlePatterns": {
+    "default": { "eyebrowText": "EYEBROW LABEL", "titleText": "Your Title Here" },
+    "cyanGlow": { "eyebrowText": "EYEBROW LABEL", "titleText": "Your Title Here" }
   },
   "codeStreamPatterns": {
     "horizontal": {
@@ -7789,6 +7783,7 @@
   },
   "kerningRevealCreditPatterns": {
     "trackingConverge": { "text": "A SAMPLE FILM" },
+    "trackingConvergeTransparent": { "text": "A SAMPLE FILM" },
     "trackingConvergeJp": { "text": "サンプル映画" }
   },
   "featherWipeCreditPatterns": {
@@ -7797,6 +7792,7 @@
   },
   "exposureFlashCreditPatterns": {
     "projectorFlash": { "text": "DIRECTED BY SAMPLE NAME" },
+    "projectorFlashTransparent": { "text": "DIRECTED BY SAMPLE NAME" },
     "projectorFlashJp": { "text": "監督 サンプル ネーム" }
   },
   "depthDollyCreditPatterns": {
@@ -7806,6 +7802,73 @@
   "signalLockCreditPatterns": {
     "channelLock": { "text": "STARRING SAMPLE CAST" },
     "channelLockJp": { "text": "出演 サンプルキャスト" }
+  },
+  "hazeBloomLeakTextPatterns": {
+    "edgeMono": { "text": "Sample Text" },
+    "edgeWarm": { "text": "Sample Text" },
+    "sweepDuo": { "text": "Sample Text" },
+    "sweepDuoJa": { "text": "サンプルテキスト" },
+    "topMono": { "text": "Sample Text" },
+    "sectionBuild": { "text": "Sample Text" },
+    "sectionDrop": { "text": "Sample Text" },
+    "sectionBreakdown": { "text": "Sample Text" }
+  },
+  "halftoneDotsTextPatterns": {
+    "coral": { "text": "Sample Text" },
+    "sky": { "text": "Sample Text" },
+    "white": { "text": "Sample Text" }
+  },
+  "textGridPatterns": {
+    "grid3x2": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
+    "grid3x2Flicker": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] },
+    "grid3x2Glitch": { "texts": ["Text 01", "Text 02", "Text 03", "Text 04", "Text 05", "Text 06"] }
+  },
+  "punchCardPatterns": {
+    "white": {
+      "lines": [
+        "      PROGRAM HELLO",
+        "      DO 10 I = 1, 5",
+        "      PRINT *, 'HELLO, WORLD', I",
+        "   10 CONTINUE",
+        "      END"
+      ]
+    },
+    "blue": {
+      "lines": [
+        "      PROGRAM HELLO",
+        "      DO 10 I = 1, 5",
+        "      PRINT *, 'HELLO, WORLD', I",
+        "   10 CONTINUE",
+        "      END"
+      ]
+    }
+  },
+  "retroTvTextPatterns": {
+    "walnut": { "text": "NOW ON AIR", "subText": "CHANNEL 7" },
+    "walnutJp": { "text": "放送開始", "subText": "チャンネル 7" }
+  },
+  "tvScreenTextPatterns": {
+    "crt": { "text": "NOW ON AIR", "subText": "CHANNEL 7" },
+    "crtJp": { "text": "放送開始", "subText": "チャンネル 7" },
+    "vhs": { "text": "HOME VIDEO", "subText": "SUMMER 1989", "osdText": "PLAY ▶" },
+    "digital": { "text": "LIVE BROADCAST", "subText": "CH 07 HD" },
+    "mono": { "text": "SYSTEM READY", "subText": "> AWAITING INPUT" }
+  },
+  "kineticTypePatterns": {
+    "wave": { "text": "KINETIC" },
+    "tunnel": { "text": "MOTION" },
+    "sphere": { "text": "TYPE" },
+    "stack": { "text": "TYPE IN MOTION" },
+    "fold": { "text": "KINETIC" },
+    "ribbons": { "text": "TYPOGRAPHY", "subText": "ANIMATION" },
+    "liquid": { "text": "LIQUID" },
+    "boxTunnel": { "text": "TYPOGRAPHY", "subText": "ANIMATION" },
+    "cloth": { "text": "WORLD WAVE" },
+    "textMask": { "text": "MOTION", "subText": "KINETIC TYPOGRAPHY" },
+    "zoom": { "text": "INFINITE", "subText": "LOOP" },
+    "vortex": { "text": "VORTEX" },
+    "pillar": { "text": "KINETIC" },
+    "ripple": { "text": "RIPPLE" }
   },
   "distressTransitionPatterns": {
     "dryBrushMono": {

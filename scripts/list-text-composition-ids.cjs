@@ -173,6 +173,41 @@ const families = [
     file: "src/Text/SignalLockCredit/signal-lock-credit.schema.ts",
     exportName: "signalLockCreditPatterns",
   },
+  {
+    idPrefix: "HazeBloomLeak",
+    file: "src/Text/HazeBloomLeak/haze-bloom-leak.schema.ts",
+    exportName: "hazeBloomLeakTextPatterns",
+  },
+  {
+    idPrefix: "HalftoneDots",
+    file: "src/Text/HalftoneDots/halftone-dots.schema.ts",
+    exportName: "halftoneDotsTextPatterns",
+  },
+  {
+    idPrefix: "TextGrid",
+    file: "src/Text/TextGrid/text-grid.schema.ts",
+    exportName: "textGridPatterns",
+  },
+  {
+    idPrefix: "PunchCard",
+    file: "src/Text/PunchCard/punch-card.schema.ts",
+    exportName: "punchCardPatterns",
+  },
+  {
+    idPrefix: "RetroTvText",
+    file: "src/Text/RetroTvText/retro-tv-text.schema.ts",
+    exportName: "retroTvTextPatterns",
+  },
+  {
+    idPrefix: "TvScreenText",
+    file: "src/Text/TvScreenText/tv-screen-text.schema.ts",
+    exportName: "tvScreenTextPatterns",
+  },
+  {
+    idPrefix: "KineticType",
+    file: "src/Text/KineticType/kinetic-type.schema.ts",
+    exportName: "kineticTypePatterns",
+  },
 ];
 
 for (const fam of families) {
@@ -192,6 +227,7 @@ const fixedIds = [
   "DottedLineMarkerText-02",
   "DottedLineMarkerText-GlitchHandover",
   "FlickerTitle",
+  "FlickerTitle-CyanGlow",
 ];
 
 for (const id of fixedIds) {

@@ -48,13 +48,7 @@ import { ConfettiPopTextTemplate } from "./Text/ConfettiPopText/ConfettiPopTextT
 import { confettiPopTextSchema } from "./Text/ConfettiPopText/confetti-pop-text.schema";
 import { confettiPopTextDurationFrames } from "./Text/ConfettiPopText/confetti-pop-text.schema";
 import { FlickerTitleTemplate } from "./Text/FlickerTitle/FlickerTitleTemplate";
-import { flickerTitleSchema } from "./Text/FlickerTitle/flicker-title.schema";
-import {
-  defaultFlickerTitleProps,
-  flickerTitleDurationFrames,
-  oneTakeLogoTextDurationFrames,
-} from "./Text/FlickerTitle/flicker-title.schema";
-import { OneTakeLogoTextTemplate } from "./Text/FlickerTitle/OneTakeLogoTextTemplate";
+import { flickerTitleDurationFrames, flickerTitleSchema } from "./Text/FlickerTitle/flicker-title.schema";
 import { StackedRevealTextTemplate } from "./Text/StackedRevealText/StackedRevealTextTemplate";
 import { stackedRevealTextSchema } from "./Text/StackedRevealText/stacked-reveal-text.schema";
 import { stackedRevealTextDurationFrames } from "./Text/StackedRevealText/stacked-reveal-text.schema";
@@ -115,6 +109,20 @@ import { depthDollyCreditDurationFrames } from "./Text/DepthDollyCredit/depth-do
 import { SignalLockCreditTemplate } from "./Text/SignalLockCredit/SignalLockCreditTemplate";
 import { signalLockCreditSchema } from "./Text/SignalLockCredit/signal-lock-credit.schema";
 import { signalLockCreditDurationFrames } from "./Text/SignalLockCredit/signal-lock-credit.schema";
+import { HazeBloomLeakTextTemplate } from "./Text/HazeBloomLeak/HazeBloomLeakTemplate";
+import { hazeBloomLeakTextDurationFrames, hazeBloomLeakTextSchema } from "./Text/HazeBloomLeak/haze-bloom-leak.schema";
+import { HalftoneDotsTextTemplate } from "./Text/HalftoneDots/HalftoneDotsTemplate";
+import { halftoneDotsTextDurationFrames, halftoneDotsTextSchema } from "./Text/HalftoneDots/halftone-dots.schema";
+import { TextGridTemplate } from "./Text/TextGrid/TextGridTemplate";
+import { textGridDurationFrames, textGridSchema } from "./Text/TextGrid/text-grid.schema";
+import { PunchCardTemplate } from "./Text/PunchCard/PunchCardTemplate";
+import { punchCardDurationFrames, punchCardSchema } from "./Text/PunchCard/punch-card.schema";
+import { RetroTvTextTemplate } from "./Text/RetroTvText/RetroTvTextTemplate";
+import { retroTvTextDurationFrames, retroTvTextSchema } from "./Text/RetroTvText/retro-tv-text.schema";
+import { TvScreenTextTemplate } from "./Text/TvScreenText/TvScreenTextTemplate";
+import { tvScreenTextDurationFrames, tvScreenTextSchema } from "./Text/TvScreenText/tv-screen-text.schema";
+import { KineticTypeTemplate } from "./Text/KineticType/KineticTypeTemplate";
+import { kineticTypeDurationFrames, kineticTypeSchema } from "./Text/KineticType/kinetic-type.schema";
 import {
   mergedLocationConfigs,
   mergedLedTextPatterns,
@@ -151,11 +159,22 @@ import {
   mergedExposureFlashCreditPatterns,
   mergedDepthDollyCreditPatterns,
   mergedSignalLockCreditPatterns,
-  mergedOneTakeLogoTextProps,
+  mergedHazeBloomLeakTextPatterns,
+  mergedHalftoneDotsTextPatterns,
+  mergedTextGridPatterns,
+  mergedPunchCardPatterns,
+  mergedRetroTvTextPatterns,
+  mergedTvScreenTextPatterns,
+  mergedKineticTypePatterns,
+  mergedFlickerTitlePatterns,
 } from "./composition/composition-merged-text";
 import { renderPatternFamily, withCanvasPreview } from "./helpers/composition-helpers";
 
 const FPS = 30;
+
+/** `default` keeps the plain `FlickerTitle` ID; the rest become `FlickerTitle-<Pattern>`. */
+const { default: flickerTitleDefaultProps, ...flickerTitleVariantPatterns } =
+  mergedFlickerTitlePatterns;
 
 export function TextFolder() {
   return (
@@ -363,22 +382,15 @@ export function TextFolder() {
           fps={FPS}
           durationInFrames={minimumCompositionFrames(flickerTitleDurationFrames, FPS)}
           schema={flickerTitleSchema}
-          defaultProps={{ ...defaultFlickerTitleProps }}
+          defaultProps={{ ...flickerTitleDefaultProps }}
         />
-
-        <Composition
-          id="OneTake-LogoText"
-          component={withCanvasPreview(
-            "OneTake-LogoText",
-            OneTakeLogoTextTemplate,
-          )}
-          width={1920}
-          height={1080}
-          fps={FPS}
-          durationInFrames={minimumCompositionFrames(oneTakeLogoTextDurationFrames, FPS)}
-          schema={flickerTitleSchema}
-          defaultProps={{ ...mergedOneTakeLogoTextProps }}
-        />
+        {renderPatternFamily({
+          patterns: flickerTitleVariantPatterns,
+          idPrefix: "FlickerTitle-",
+          Template: FlickerTitleTemplate,
+          schema: flickerTitleSchema,
+          durationInFrames: flickerTitleDurationFrames,
+        })}
       </Folder>
 
       <Folder name="StackedRevealText">
@@ -596,6 +608,76 @@ export function TextFolder() {
           Template: SignalLockCreditTemplate,
           schema: signalLockCreditSchema,
           durationInFrames: signalLockCreditDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="HazeBloomLeak">
+        {renderPatternFamily({
+          patterns: mergedHazeBloomLeakTextPatterns,
+          idPrefix: "HazeBloomLeak-",
+          Template: HazeBloomLeakTextTemplate,
+          schema: hazeBloomLeakTextSchema,
+          durationInFrames: hazeBloomLeakTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="HalftoneDots">
+        {renderPatternFamily({
+          patterns: mergedHalftoneDotsTextPatterns,
+          idPrefix: "HalftoneDots-",
+          Template: HalftoneDotsTextTemplate,
+          schema: halftoneDotsTextSchema,
+          durationInFrames: halftoneDotsTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="TextGrid">
+        {renderPatternFamily({
+          patterns: mergedTextGridPatterns,
+          idPrefix: "TextGrid-",
+          Template: TextGridTemplate,
+          schema: textGridSchema,
+          durationInFrames: textGridDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="PunchCard">
+        {renderPatternFamily({
+          patterns: mergedPunchCardPatterns,
+          idPrefix: "PunchCard-",
+          Template: PunchCardTemplate,
+          schema: punchCardSchema,
+          durationInFrames: punchCardDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="RetroTvText">
+        {renderPatternFamily({
+          patterns: mergedRetroTvTextPatterns,
+          idPrefix: "RetroTvText-",
+          Template: RetroTvTextTemplate,
+          schema: retroTvTextSchema,
+          durationInFrames: retroTvTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="TvScreenText">
+        {renderPatternFamily({
+          patterns: mergedTvScreenTextPatterns,
+          idPrefix: "TvScreenText-",
+          Template: TvScreenTextTemplate,
+          schema: tvScreenTextSchema,
+          durationInFrames: tvScreenTextDurationFrames,
+        })}
+      </Folder>
+
+      <Folder name="KineticType">
+        {renderPatternFamily({
+          patterns: mergedKineticTypePatterns,
+          idPrefix: "KineticType-",
+          Template: KineticTypeTemplate,
+          schema: kineticTypeSchema,
+          durationInFrames: kineticTypeDurationFrames,
         })}
       </Folder>
     </Folder>

@@ -17,7 +17,7 @@ export const dottedLineMarkerTextTransitionSchema = z.object({
   itemsB: z.array(dottedLineMarkerTextTransitionItemSchema).default([]),
 
   /** Frame at which the row-by-row glitch handover begins */
-  transitionStartFrame: z.number().min(0).default(360),
+  transitionStartFrame: z.number().min(0).default(180),
   /** Total frames the handover takes across all rows (last row finishes at transitionStartFrame + this) */
   transitionDurationFrames: z.number().min(1).default(60),
   /** How long a single row's own glitch handover takes */
@@ -44,8 +44,8 @@ export type DottedLineMarkerTextTransitionSchemaType = z.infer<
   typeof dottedLineMarkerTextTransitionSchema
 >;
 
-// 12s before the switch + 2s glitch handover + 20s after = 34s total.
-export const dottedLineMarkerTextTransitionDurationFrames = 1020;
+// 6s before the switch + 2s glitch handover + 12s after = 20s total.
+export const dottedLineMarkerTextTransitionDurationFrames = 600;
 
 export const defaultDottedLineMarkerTextTransitionProps: DottedLineMarkerTextTransitionSchemaType =
   {
@@ -54,7 +54,7 @@ export const defaultDottedLineMarkerTextTransitionProps: DottedLineMarkerTextTra
     backgroundColor: "#060810",
     itemsA: [],
     itemsB: [],
-    transitionStartFrame: 360,
+    transitionStartFrame: 180,
     transitionDurationFrames: 60,
     rowGlitchDurationFrames: 24,
     rgbOffsetMax: 12,

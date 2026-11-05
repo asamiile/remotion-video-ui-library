@@ -11,6 +11,24 @@ function capPattern(patternId) {
 }
 
 /**
+ * Strips `satisfies T`, `as T` / `as const`, and parentheses so
+ * `export const x = { ... } satisfies T` reads like a plain literal.
+ * @param {import("typescript").Expression | undefined} expr
+ */
+function unwrapExpression(expr) {
+  let current = expr;
+  while (
+    current &&
+    (ts.isSatisfiesExpression(current) ||
+      ts.isAsExpression(current) ||
+      ts.isParenthesizedExpression(current))
+  ) {
+    current = current.expression;
+  }
+  return current;
+}
+
+/**
  * @param {import("typescript").SourceFile} sf
  * @param {string} exportName
  * @returns {string[] | null}
@@ -30,7 +48,7 @@ function extractObjectKeysFromExport(sf, exportName) {
       if (!ts.isIdentifier(decl.name) || decl.name.text !== exportName) {
         continue;
       }
-      const init = decl.initializer;
+      const init = unwrapExpression(decl.initializer);
       if (!init || !ts.isObjectLiteralExpression(init)) {
         continue;
       }
@@ -66,7 +84,7 @@ function extractStringIdsFromExportedArray(sf, exportName, idProperty = "id") {
       if (!ts.isIdentifier(decl.name) || decl.name.text !== exportName) {
         continue;
       }
-      const init = decl.initializer;
+      const init = unwrapExpression(decl.initializer);
       if (!init || !ts.isArrayLiteralExpression(init)) {
         continue;
       }
